@@ -1,0 +1,209 @@
+%% 
+%% This is file `siam10.clo', based on size10.clo
+%% Revision of siam macros for use with LaTeX 2e
+%% 
+%% By Paul Duggan for the Society for Industrial and Applied
+%% Mathematics. 
+%% 
+%% February 4, 1997
+%%
+%% Version 1.1
+%% 
+%% You are not allowed to change this file. 
+%% 
+%% You are allowed to distribute this file under the condition that 
+%% it is distributed together with all of the files in the siam macro 
+%% distribution. These are:
+%%
+%%  siamltex.cls (main LaTeX macro for SIAM)
+%%  siamltex.sty (includes siamltex.cls for compatibility mode)
+%%  siam10.clo   (this file)
+%%  subeqn.clo   (allows equation numbners with lettered subelements)
+%%  siam.bst     (bibliographic style file for use with BibTeX)
+%%  docultex.tex (documentation file)
+%%  lexample.tex (example file for latex macro) 
+%% 
+%% If you receive only some of these files from someone, complain! 
+%% 
+%% You are NOT ALLOWED to distribute this file alone. You are NOT 
+%% ALLOWED to take money for the distribution or use of either this 
+%% file or a changed version, except for a nominal charge for copying 
+%% etc. 
+%% \CharacterTable
+%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%%   Digits        \0\1\2\3\4\5\6\7\8\9
+%%   Exclamation   \!     Double quote  \"     Hash (number) \#
+%%   Dollar        \$     Percent       \%     Ampersand     \&
+%%   Acute accent  \'     Left paren    \(     Right paren   \)
+%%   Asterisk      \*     Plus          \+     Comma         \,
+%%   Minus         \-     Point         \.     Solidus       \/
+%%   Colon         \:     Semicolon     \;     Less than     \<
+%%   Equals        \=     Greater than  \>     Question mark \?
+%%   Commercial at \@     Left bracket  \[     Backslash     \\
+%%   Right bracket \]     Circumflex    \^     Underscore    \_
+%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
+%%   Right brace   \}     Tilde         \~}
+\ProvidesFile{siam10.clo}
+              [1994/10/01 v1.0
+      SIAM LaTeX file (size option)]
+\renewcommand{\normalsize}{%
+   \@setfontsize\normalsize\@xpt\@xiipt
+   \abovedisplayskip 10\p@ \@plus2\p@ \@minus5\p@
+   \abovedisplayshortskip \abovedisplayskip
+   \belowdisplayshortskip \belowdisplayskip
+   \belowdisplayskip \abovedisplayskip
+   \let\@listi\@listI}
+\normalsize
+\newcommand{\small}{%
+   \@setfontsize\small\@ixpt{11}%
+   \abovedisplayskip 8.5\p@ \@plus3\p@ \@minus4\p@
+   \abovedisplayshortskip \z@ \@plus2\p@
+   \belowdisplayshortskip 4\p@ \@plus2\p@ \@minus2\p@
+   \def\@listi{\leftmargin\leftmargini
+               \topsep 4\p@ \@plus2\p@ \@minus2\p@
+               \parsep 2\p@ \@plus\p@ \@minus\p@
+               \itemsep \parsep}%
+   \belowdisplayskip \abovedisplayskip
+}
+\newcommand{\footnotesize}{%
+   \@setfontsize\footnotesize\@viiipt{9.5}%
+   \abovedisplayskip 6\p@ \@plus2\p@ \@minus4\p@
+   \abovedisplayshortskip \abovedisplayskip
+   \belowdisplayshortskip \belowdisplayskip
+   \def\@listi{\leftmargin\leftmargini
+               \topsep \z@
+               \parsep \z@
+               \itemsep \parsep}%
+   \belowdisplayskip \abovedisplayskip
+}
+\newcommand{\scriptsize}{\@setfontsize\scriptsize\@viipt\@viiipt}
+\newcommand{\tiny}{\@setfontsize\tiny\@vpt\@vipt}
+\newcommand{\large}{\@setfontsize\large\@xiipt{14}}
+\newcommand{\Large}{\@setfontsize\Large\@xivpt{18}}
+\newcommand{\LARGE}{\@setfontsize\LARGE\@xviipt{22}}
+\newcommand{\huge}{\@setfontsize\huge\@xxpt{25}}
+\newcommand{\Huge}{\@setfontsize\Huge\@xxvpt{30}}
+\if@twocolumn
+  \setlength\parindent{1em}
+\else
+  \setlength\parindent{.25in}
+\fi
+\setlength\headheight{10\p@}
+\setlength\headsep   {.2in}
+%\setlength\topskip   {10\p@}
+\setlength\footskip{.2in}
+\if@compatibility 
+ \setlength\maxdepth{4\p@}
+\else
+ \setlength\maxdepth{.5\topskip} 
+\fi
+\setlength\@maxdepth\maxdepth
+\if@compatibility
+  \if@twocolumn
+    \setlength\textwidth{410\p@}
+  \else
+    \setlength\textwidth{5.125in}
+  \fi
+\else
+  \if@twocolumn
+    \setlength\textwidth{410\p@}
+  \else
+    \setlength\textwidth{5.125in}
+  \fi
+\fi
+%\if@compatibility\else
+%  \@settopoint\textwidth
+%\fi
+\if@compatibility
+  \setlength\textheight{8.25in}
+\else
+  \setlength\textheight{8.25in}
+\fi
+%\addtolength\textheight{\topskip}
+\if@compatibility
+  \if@twoside
+%     \setlength\oddsidemargin   {.5in}
+%     \setlength\evensidemargin  {.5in}
+     \setlength\marginparwidth {1.25in}
+  \else
+%     \setlength\oddsidemargin   {.5in}
+%     \setlength\evensidemargin  {.5in}
+     \setlength\marginparwidth  {1.25in}
+  \fi
+  \if@twocolumn
+     \setlength\oddsidemargin  {30\p@}
+     \setlength\evensidemargin {30\p@}
+     \setlength\marginparwidth {48\p@}
+  \fi
+\else
+  \if@twoside
+%     \setlength\oddsidemargin   {.5in}
+%     \setlength\evensidemargin  {.5in}
+     \setlength\marginparwidth {1.25in}
+  \else
+%     \setlength\oddsidemargin   {.5in}
+%     \setlength\evensidemargin  {.5in}
+     \setlength\marginparwidth {1.25in}
+  \fi
+  \@settopoint\oddsidemargin
+  \@settopoint\marginparwidth
+\fi
+\if@twocolumn
+  \setlength\marginparsep {10\p@}
+\else
+  \setlength\marginparsep{11\p@}
+\fi
+\setlength\marginparpush{5\p@}
+\if@compatibility
+  \setlength\topmargin{\z@}
+\else
+\setlength\topmargin {\z@}
+%  \@settopoint\topmargin
+\fi
+
+\setlength\footnotesep{6.65\p@}
+\skip\footins 13\p@ \@plus 4\p@ \@minus 2\p@
+\setlength\floatsep    {12\p@ \@plus 2\p@ \@minus 2\p@}
+\setlength\textfloatsep{20\p@ \@plus 2\p@ \@minus 4\p@}
+\setlength\intextsep   {12\p@ \@plus 2\p@ \@minus 2\p@}
+\setlength\dblfloatsep    {12\p@ \@plus 2\p@ \@minus 2\p@}
+\setlength\dbltextfloatsep{20\p@ \@plus 2\p@ \@minus 4\p@}
+\setlength\@fptop{0\p@ \@plus 1fil}
+\setlength\@fpsep{8\p@ \@plus 2fil}
+\setlength\@fpbot{0\p@ \@plus 1fil}
+\setlength\@dblfptop{0\p@ \@plus 1fil}
+\setlength\@dblfpsep{8\p@ \@plus 2fil}
+\setlength\@dblfpbot{0\p@ \@plus 1fil}
+\setlength\partopsep{\z@}
+\def\@listI{\leftmargin\leftmargini
+            \parsep \z@
+            \topsep \z@
+            \itemsep \parsep}
+\let\@listi\@listI
+\@listi
+\def\@listii {\leftmargin\leftmarginii
+              \labelwidth\leftmarginii
+              \advance\labelwidth-\labelsep
+              \topsep    \z@
+              \parsep    \z@
+              \itemsep   \parsep}
+\def\@listiii{\leftmargin\leftmarginiii
+              \labelwidth\leftmarginiii
+              \advance\labelwidth-\labelsep
+              \topsep    \z@
+              \parsep    \z@
+              \partopsep \z@
+              \itemsep   \topsep}
+\def\@listiv {\leftmargin\leftmarginiv
+              \labelwidth\leftmarginiv
+              \advance\labelwidth-\labelsep}
+\def\@listv  {\leftmargin\leftmarginv
+              \labelwidth\leftmarginv
+              \advance\labelwidth-\labelsep}
+\def\@listvi {\leftmargin\leftmarginvi
+              \labelwidth\leftmarginvi
+              \advance\labelwidth-\labelsep}
+\endinput
+%% 
+%% End of file `siam10.clo'.

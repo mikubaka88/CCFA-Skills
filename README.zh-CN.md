@@ -201,6 +201,8 @@ ccf-paper-compressor
 ccf-conference-reviewer
 ccf-conference-writing-reviewer
 ccf-conference-paper-rebuttal
+ccf-conference-skills
+ccf-latex-templates
 ccf-common
 forge-skills
 ```
@@ -215,7 +217,7 @@ macOS / Linux：
 git clone https://github.com/mikubaka88/CCFA-Skills.git
 cd CCFA-Skills
 mkdir -p ~/.codex/skills
-cp -R ccf-* forge-skills ~/.codex/skills/
+cp -R ccf-* forge-skills ccf-conference-skills ccf-latex-templates ~/.codex/skills/
 ```
 
 Windows PowerShell：
@@ -226,6 +228,8 @@ Set-Location .\CCFA-Skills
 New-Item -ItemType Directory -Force "$HOME\.codex\skills" | Out-Null
 Copy-Item -Recurse -Force .\ccf-* "$HOME\.codex\skills\"
 Copy-Item -Recurse -Force .\forge-skills "$HOME\.codex\skills\"
+Copy-Item -Recurse -Force .\ccf-conference-skills "$HOME\.codex\skills\"
+Copy-Item -Recurse -Force .\ccf-latex-templates "$HOME\.codex\skills\"
 ```
 
 复制完成后建议重新开启一个会话。可以用这句话快速测试：`Use ccf-idea-optimizer to refine this rough research idea...`
@@ -240,7 +244,7 @@ Claude Code 可以从用户级 skills 目录或项目级 skills 目录加载 ski
 git clone https://github.com/mikubaka88/CCFA-Skills.git
 cd CCFA-Skills
 mkdir -p ~/.claude/skills
-cp -R ccf-* forge-skills ~/.claude/skills/
+cp -R ccf-* forge-skills ccf-conference-skills ccf-latex-templates ~/.claude/skills/
 ```
 
 项目级安装：
@@ -248,7 +252,7 @@ cp -R ccf-* forge-skills ~/.claude/skills/
 ```bash
 git clone https://github.com/mikubaka88/CCFA-Skills.git
 mkdir -p your-paper-repo/.claude/skills
-cp -R CCFA-Skills/ccf-* CCFA-Skills/forge-skills your-paper-repo/.claude/skills/
+cp -R CCFA-Skills/ccf-* CCFA-Skills/forge-skills CCFA-Skills/ccf-conference-skills CCFA-Skills/ccf-latex-templates your-paper-repo/.claude/skills/
 ```
 
 Windows PowerShell：
@@ -259,13 +263,27 @@ Set-Location .\CCFA-Skills
 New-Item -ItemType Directory -Force "$HOME\.claude\skills" | Out-Null
 Copy-Item -Recurse -Force .\ccf-* "$HOME\.claude\skills\"
 Copy-Item -Recurse -Force .\forge-skills "$HOME\.claude\skills\"
+Copy-Item -Recurse -Force .\ccf-conference-skills "$HOME\.claude\skills\"
+Copy-Item -Recurse -Force .\ccf-latex-templates "$HOME\.claude\skills\"
 ```
 
 安装后可以直接按名称调用，例如 `/ccf-idea-reviewer`，也可以用自然语言要求 Claude Code 使用对应的 CCFA skill。如果新加入的 skill 目录没有被识别，重启 Claude Code 即可。
 
 如果你希望使用更强的 subagent 隔离，也可以创建 Claude Code subagent wrapper 指向这些已安装 skill 目录，但 `SKILL.md` 和对应的 `references/` 应保持为唯一的知识源。
 
-### 3. Other agents or manual use
+### 3. Cursor
+
+Cursor 项目级 skills 可以放在 `.cursor/skills/` 下。
+
+```bash
+git clone https://github.com/mikubaka88/CCFA-Skills.git
+mkdir -p your-project/.cursor/skills
+cp -R CCFA-Skills/ccf-* CCFA-Skills/forge-skills CCFA-Skills/ccf-conference-skills CCFA-Skills/ccf-latex-templates your-project/.cursor/skills/
+```
+
+如果你希望在项目里同时保留 venue-specific 论文模板，也可以把 `ccf-latex-templates/` 复制到论文仓库中，并让对应 venue skill 指向本地模板目录。
+
+### 4. Other agents or manual use
 
 对于其他 agent 框架，请将同样的目录复制到该框架的 skill、tool、memory 或 instruction 目录，并保持相对路径不变。每个模块都应以对应目录下的 `SKILL.md` 作为入口文件。
 

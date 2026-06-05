@@ -1,0 +1,263 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Template for USENIX papers.
+%
+% History:
+%
+% - TEMPLATE for Usenix papers, specifically to meet requirements of
+%   USENIX '05. originally a template for producing IEEE-format
+%   articles using LaTeX. written by Matthew Ward, CS Department,
+%   Worcester Polytechnic Institute. adapted by David Beazley for his
+%   excellent SWIG paper in Proceedings, Tcl 96. turned into a
+%   smartass generic template by De Clarke, with thanks to both the
+%   above pioneers. Use at your own risk. Complaints to /dev/null.
+%   Make it two column with no page numbering, default is 10 point.
+%
+% - Munged by Fred Douglis <douglis@research.att.com> 10/97 to
+%   separate the .sty file from the LaTeX source template, so that
+%   people can more easily include the .sty file into an existing
+%   document. Also changed to more closely follow the style guidelines
+%   as represented by the Word sample file.
+%
+% - Note that since 2010, USENIX does not require endnotes. If you
+%   want foot of page notes, don't include the endnotes package in the
+%   usepackage command, below.
+% - This version uses the latex2e styles, not the very ancient 2.09
+%   stuff.
+%
+% - Updated July 2018: Text block size changed from 6.5" to 7"
+%
+% - Updated Dec 2018 for ATC'19:
+%
+%   * Revised text to pass HotCRP's auto-formatting check, with
+%     hotcrp.settings.submission_form.body_font_size=10pt, and
+%     hotcrp.settings.submission_form.line_height=12pt
+%
+%   * Switched from \endnote-s to \footnote-s to match Usenix's policy.
+%
+%   * \section* => \begin{abstract} ... \end{abstract}
+%
+%   * Make template self-contained in terms of bibtex entires, to allow
+%     this file to be compiled. (And changing refs style to 'plain'.)
+%
+%   * Make template self-contained in terms of figures, to
+%     allow this file to be compiled. 
+%
+%   * Added packages for hyperref, embedding fonts, and improving
+%     appearance.
+%   
+%   * Removed outdated text.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[letterpaper,twocolumn,10pt]{article}
+\usepackage{usenix2019_v3}
+
+% to be able to draw some self-contained figs
+\usepackage{tikz}
+\usepackage{amsmath}
+
+% inlined bib file
+\usepackage{filecontents}
+
+%-------------------------------------------------------------------------------
+\begin{filecontents}{\jobname.bib}
+%-------------------------------------------------------------------------------
+@Book{arpachiDusseau18:osbook,
+  author =       {Arpaci-Dusseau, Remzi H. and Arpaci-Dusseau Andrea C.},
+  title =        {Operating Systems: Three Easy Pieces},
+  publisher =    {Arpaci-Dusseau Books, LLC},
+  year =         2015,
+  edition =      {1.00},
+  note =         {\url{http://pages.cs.wisc.edu/~remzi/OSTEP/}}
+}
+@InProceedings{waldspurger02,
+  author =       {Waldspurger, Carl A.},
+  title =        {Memory resource management in {VMware ESX} server},
+  booktitle =    {USENIX Symposium on Operating System Design and
+                  Implementation (OSDI)},
+  year =         2002,
+  pages =        {181--194},
+  note =         {\url{https://www.usenix.org/legacy/event/osdi02/tech/waldspurger/waldspurger.pdf}}}
+\end{filecontents}
+
+%-------------------------------------------------------------------------------
+\begin{document}
+%-------------------------------------------------------------------------------
+
+%don't want date printed
+\date{}
+
+% make title bold and 14 pt font (Latex default is non-bold, 16 pt)
+\title{\Large \bf Formatting Submissions for a USENIX Conference:\\
+  An (Incomplete) Example}
+
+%for single author (just remove % characters)
+\author{
+{\rm Your N.\ Here}\\
+Your Institution
+\and
+{\rm Second Name}\\
+Second Institution
+% copy the following lines to add more authors
+% \and
+% {\rm Name}\\
+%Name Institution
+} % end author
+
+\maketitle
+
+%-------------------------------------------------------------------------------
+\begin{abstract}
+%-------------------------------------------------------------------------------
+Your abstract text goes here. Just a few facts. Whet our appetites.
+Not more than 200 words, if possible, and preferably closer to 150.
+\end{abstract}
+
+
+%-------------------------------------------------------------------------------
+\section{Introduction}
+%-------------------------------------------------------------------------------
+
+A paragraph of text goes here. Lots of text. Plenty of interesting
+text. Text text text text text text text text text text text text text
+text text text text text text text text text text text text text text
+text text text text text text text text text text text text text text
+text text text text text text text.
+More fascinating text. Features galore, plethora of promises.
+
+%-------------------------------------------------------------------------------
+\section{Footnotes, Verbatim, and Citations}
+%-------------------------------------------------------------------------------
+
+Footnotes should be places after punctuation characters, without any
+spaces between said characters and footnotes, like so.%
+\footnote{Remember that USENIX format stopped using endnotes and is
+  now using regular footnotes.} And some embedded literal code may
+look as follows.
+
+\begin{verbatim}
+int main(int argc, char *argv[]) 
+{
+    return 0;
+}
+\end{verbatim}
+
+Now we're going to cite somebody. Watch for the cite tag. Here it
+comes. Arpachi-Dusseau and Arpachi-Dusseau co-authored an excellent OS
+book, which is also really funny~\cite{arpachiDusseau18:osbook}, and
+Waldspurger got into the SIGOPS hall-of-fame due to his seminal paper
+about resource management in the ESX hypervisor~\cite{waldspurger02}.
+
+The tilde character (\~{}) in the tex source means a non-breaking
+space. This way, your reference will always be attached to the word
+that preceded it, instead of going to the next line.
+
+And the 'cite' package sorts your citations by their numerical order
+of the corresponding references at the end of the paper, ridding you
+from the need to notice that, e.g, ``Waldspurger'' appears after
+``Arpachi-Dusseau'' when sorting references
+alphabetically~\cite{waldspurger02,arpachiDusseau18:osbook}. 
+
+It'd be nice and thoughtful of you to include a suitable link in each
+and every bibtex entry that you use in your submission, to allow
+reviewers (and other readers) to easily get to the cited work, as is
+done in all entries found in the References section of this document.
+
+Now we're going take a look at Section~\ref{sec:figs}, but not before
+observing that refs to sections and citations and such are colored and
+clickable in the PDF because of the packages we've included.
+
+%-------------------------------------------------------------------------------
+\section{Floating Figures and Lists}
+\label{sec:figs}
+%-------------------------------------------------------------------------------
+
+
+%---------------------------
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}
+  \draw[thin,gray!40] (-2,-2) grid (2,2);
+  \draw[<->] (-2,0)--(2,0) node[right]{$x$};
+  \draw[<->] (0,-2)--(0,2) node[above]{$y$};
+  \draw[line width=2pt,blue,-stealth](0,0)--(1,1)
+        node[anchor=south west]{$\boldsymbol{u}$};
+  \draw[line width=2pt,red,-stealth](0,0)--(-1,-1)
+        node[anchor=north east]{$\boldsymbol{-u}$};
+\end{tikzpicture}
+\end{center}
+\caption{\label{fig:vectors} Text size inside figure should be as big as
+  caption's text. Text size inside figure should be as big as
+  caption's text. Text size inside figure should be as big as
+  caption's text. Text size inside figure should be as big as
+  caption's text. Text size inside figure should be as big as
+  caption's text. }
+\end{figure}
+%% %---------------------------
+
+
+Here's a typical reference to a floating figure:
+Figure~\ref{fig:vectors}. Floats should usually be placed where latex
+wants then. Figure\ref{fig:vectors} is centered, and has a caption
+that instructs you to make sure that the size of the text within the
+figures that you use is as big as (or bigger than) the size of the
+text in the caption of the figures. Please do. Really.
+
+In our case, we've explicitly drawn the figure inlined in latex, to
+allow this tex file to cleanly compile. But usually, your figures will
+reside in some file.pdf, and you'd include them in your document
+with, say, \textbackslash{}includegraphics.
+
+Lists are sometimes quite handy. If you want to itemize things, feel
+free:
+
+\begin{description}
+  
+\item[fread] a function that reads from a \texttt{stream} into the
+  array \texttt{ptr} at most \texttt{nobj} objects of size
+  \texttt{size}, returning returns the number of objects read.
+
+\item[Fred] a person's name, e.g., there once was a dude named Fred
+  who separated usenix.sty from this file to allow for easy
+  inclusion.
+\end{description}
+
+\noindent
+The noindent at the start of this paragraph in its tex version makes
+it clear that it's a continuation of the preceding paragraph, as
+opposed to a new paragraph in its own right.
+
+
+\subsection{LaTeX-ing Your TeX File}
+%-----------------------------------
+
+People often use \texttt{pdflatex} these days for creating pdf-s from
+tex files via the shell. And \texttt{bibtex}, of course. Works for us.
+
+%-------------------------------------------------------------------------------
+\section*{Acknowledgments}
+%-------------------------------------------------------------------------------
+
+The USENIX latex style is old and very tired, which is why
+there's no \textbackslash{}acks command for you to use when
+acknowledging. Sorry.
+
+%-------------------------------------------------------------------------------
+\section*{Availability}
+%-------------------------------------------------------------------------------
+
+USENIX program committees give extra points to submissions that are
+backed by artifacts that are publicly available. If you made your code
+or data available, it's worth mentioning this fact in a dedicated
+section.
+
+%-------------------------------------------------------------------------------
+\bibliographystyle{plain}
+\bibliography{\jobname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%  LocalWords:  endnotes includegraphics fread ptr nobj noindent
+%%  LocalWords:  pdflatex acks

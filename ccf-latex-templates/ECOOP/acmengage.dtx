@@ -1,0 +1,257 @@
+%
+% ACM Engage course material
+%
+%<*acmengage>
+%%
+%% 
+%% Commands for TeXCount
+%<<TCMACROS
+%TC:macro \cite [option:text,text]
+%TC:macro \citep [option:text,text]
+%TC:macro \citet [option:text,text]
+%TC:envir table 0 1
+%TC:envir table* 0 1
+%TC:envir tabular [ignore] word
+%TC:envir displaymath 0 word
+%TC:envir math 0 word
+%TC:envir comment 0 0
+%TCMACROS
+%% 
+%% 
+%% The first command in your LaTeX source must be the \documentclass command.
+\documentclass[acmengage]{acmart}
+
+%% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    Bib\TeX}}}
+
+%% Rights management information.  This information is sent to you
+%% when you complete the rights form.  These commands have SAMPLE
+%% values in them; it is your responsibility as an author to replace
+%% the commands and values with those provided to you when you
+%% complete the rights form.  Note that by default course materials
+%% use Creative Commons license
+%
+\setcopyright{cc}
+\setcctype{by}
+\copyrightyear{2022}
+\acmYear{May 2022}
+\acmBooktitle{ACM EngageCSEdu}
+\acmDOI{XXXXXXX.XXXXXXX}
+
+\begin{document}
+\title{EngageCSEdu Submission Title (600 char limit)}
+\author{Author One}
+\email{author1@institution.edu}
+\affiliation{%
+  \institution{University of XXX}
+  \city{SomeCity}
+  \country{SomeCountry}}
+
+\author{Author Two}
+\email{author2@institution.xxx}
+\affiliation{%
+  \institution{Some School}
+  \city{SomeCity}
+  \country{SomeCountry}}
+
+\author{Author Three}
+\email{author3@school.xxx}
+\affiliation{%
+  \institution{A3 affiliation}
+  \city{SomeCity}
+  \country{SomeCountry}}
+
+%% The synopsis is a name for the abstract
+\begin{abstract}
+A required section. The synopsis is similar to a paper abstract. The synop-
+sis will display in the digital library as the abstract. The synopsis should
+be copied into ScholarOne as the abstract for submission. The synopsis
+should contain an overall description of the Open Educational Resource
+(OER). The synopsis lets other instructors quickly understand what this
+material is about. Include any learning objectives and a description of the
+approach taken. Put details about implementation and necessary prerequi-
+site knowledge in the Recommendations section. The following template is
+a suggested format:
+This [assignment/project/homework/lab] helps students gain experience
+and proficiency with [ e.g. arrays, for/while loops, conditional statements.]
+Students will learn how to [skills acquired].
+The reader should get an understanding of what topic is associated with
+the OER and what, if anything, the students will be asked to do.
+\end{abstract}
+
+%% Metadata for the course
+\setengagemetadata{Course}{CS1}
+\setengagemetadata{Programming Language}{Python}
+\setengagemetadata{Knowledge Unit}{Programming Concepts}
+\setengagemetadata{CS Topics}{Functions, Data Types, Expressions,
+  Mathematical Reasoning}
+
+%% Keywords
+\keywords{Arithmetic Operators, Assignment Statements, Comprehension,
+  Student Voice}
+\maketitle
+
+\section{Engagement Highlights}
+
+A required section. This section of the paper should detail how the OER engages the students. The engagement must be based on at least one evidenced-based teaching practice known to broaden participation or improve student learning. Examples include the practices from the NCWIT Engagement Practices Framework: using meaningful and relevant content, making interdisciplinary connections to CS, addressing misconceptions about the field of CS, incorporating student choice, giving effective encouragement, mitigating stereotype threat, offering student-centered assessments, providing opportunities for interaction with faculty, avoiding stereotypes, using well-structured collaborative learning, or encouraging student interaction. Other potential evidence-based practices include using culturally relevant pedagogy, or universal design for learning. All submissions must identify what evidence-based practice they incorporate and be specific in how the practice is included within the OER. 
+
+Information on how to differentiate this assignment (i.e. provide different versions for students of differing abilities) could also go in this section. It could also outline how instructors might modify
+the assignment to increase enhance student engagement. If these modifications are extensive, they could also be discussed in their own section.
+
+\section{Recommendations}
+
+A required section. In this section authors should give specific recommendations and advice to other instructors who might want to adapt this resource for their own classroom. Important information to include in this section includes identifying how much time is required to introduce or complete the task, potential pitfalls or student struggles, lessons learned from using the OER, and any information on extensions or differentiation for students. Think of this section as the information you would provide a colleague before they use this OER in their classroom.
+
+\section{Additional Sections}
+
+Optional. Authors may add additional sections to fully explain all the pieces of their OER. It can (and probably should) have multiple sections and the section headers are at the discretion of the authors. Sections may expand on information presented in the synopsis, recommendations, and engagement highlights. Suggested sections include: Introduction, Background Material, Implementation Guidelines, Marking Guidelines, Extensions and Modifications, Pitfalls, Acknowledgements, Student Feedback, and References.
+
+\section{Related Online Resources}
+
+EngageCSEdu requires that all materials that are part of the OER submission be included with the submission and not just URL links to materials stored on other sites. However, any related background or reference material used to provide instructor or student knowledge as opposed to instructional material may be included as citations within the paper
+(see section \ref{sec:citations}) 
+or you may include a numbered list of external links and extensions in an optional section titled ``Auxilary Materials" that should come immediately before "References".
+
+\section{Materials}
+
+A required section. You must provide a list of the contents of the zipped file including a description of each contained file. This may be provided as text or as an unordered list.
+
+A single zipped file containing all the OER instructional materials including assignment handouts / specification, starter code, rubric, solution, etc. will also be submitted.
+
+\section{Meta-Data}
+
+This section is included in the template to explain the choices for the meta-data at the top of the paper. It should not be included in the final paper submission.
+
+\subsection{Course}
+
+Current courses are:
+
+\begin{itemize}
+    \item CS0---a breadth first introductory computing course similar to Exploring Computer Science or AP CS Principles
+    \item CS1---an introductory programming course covering topics normally associated with an imperative or functional programming course. Similar to an AP CS A course
+    \item Data Structures---a follow-on course occurring after CS1 that introduces linear and non-linear data structures including implementation and usage
+    \item Discrete Math---a course covering discrete mathematical
+      structures such as integers, graphs and logic statements. This
+      may include logic, set theory, combinatorics, graphy theory,
+      number theory, topology, etc.
+    \item HCI---a course in the general area of human computer
+      interaction. This might be a general HCI course or a course in a
+      specific subdiscipline such as user-centred design.
+\end{itemize}
+
+More than one course may be selected. If you are submitting an OER for a special topics issue of Engage, please discuss the appropriate course choice with the guest editors of the special issue.
+
+\subsection{Programming Language}
+Authors may select all that apply from the following list:
+\begin{itemize}
+    \item C
+    \item C++
+    \item C\#
+    \item Java
+    \item JavaScript
+    \item Processing
+    \item Python
+    \item Racket (DrScheme)
+    \item Scheme
+    \item Scratch
+    \item Pseudocode
+    \item Other
+    \item None
+\end{itemize}
+
+\subsection{Resource Type}
+One resource type must be selected. Current list to select from includes:
+
+\begin{itemize}
+    \item Assignment---the most common OER type. Typically represents a task assigned to individual or groups of students that will be completed outside of class time.
+    \item Lecture slides---an annotated set of presentation slides to introduce or explain a topic, typically a cutting-edge research topic, to a more lay audience. An example might be explaining a specific cryptography algorithm, blockchain, or an AI / ML solution to a problem.
+    \item Lab---this represents a task assigned to an individual or group of students to be completed under supervision, usually during a closed-lab model
+    \item Project---an assignment that is of a longer duration, perhaps multiple weeks to an entire term
+    \item Tutorial---a task usually completed by an individual to learn some material on their own
+    \item Other---any other type of OER that does not fit into one of the above categories
+\end{itemize}
+
+\subsection{CS Concepts}
+This is selectable from the ontology of topics found at \url{https://www.engage-csedu.org/ontology}. Up to three topics may be selected. Eventually this page will be a tool allowing you to select up to three nodes in the tree and then copy / paste the descriptive text into your document and the submission system.
+
+\subsection{Knowledge Unit}
+Authors will select the most appropriate one from the following list:
+
+\begin{itemize}
+    \item Programming Concepts---anything involving programming
+    \item Data Structures---anything involving data structures
+    \item Software Development Methods---if the OER centers around software development (i.e., requirements gathering, testing, maintenance, code reviews) rather than the actual programming content
+    \item Discrete Math---anything involving discrete math
+    \item N/A---not applicable
+\end{itemize}
+
+\subsection{Creative Commons License}
+During the submission process on ScholarOne, authors will select one create commons license from the following list:
+
+\begin{itemize}
+    \item CC BY-SA
+    \item CC BY-NC
+    \item CC BY-NC-ND
+    \item CC BY-NC-SA
+    \item CC BY-ND
+    \item CC BY
+\end{itemize}
+
+The correct typesetting of materials under creative commons license
+requires the corresponding CC icon. A modern \TeX\ distribution
+includes these icons in the package \textsl{doclicense}
+\cite{doclicense}.  In case your distribution does not have them, ACM
+provides a file \path{ccicons.zip} with these icons.  Just unzip it in
+the same directory where your document is.
+
+More information on Creative Common Licensing may be found at \url{https://creativecommons.org/licenses/}.
+
+\section{Submission}
+When you make a submission using ScholarOne you must upload:
+
+\begin{itemize}
+    \item an anonymized version of this paper for review
+    \item a zipped file containing all the student-facing materials. The materials in this file must also be anonymized for the purposes of fully anonymous review.
+\end{itemize}
+
+\section{Citations and References}
+\label{sec:citations}
+We recommend using \BibTeX\ to prepare your references. The bibliography is included 
+in your source document with these two commands, placed just before 
+the \verb|\end{document}| command:
+\begin{verbatim}
+  \bibliographystyle{ACM-Reference-Format}
+  \bibliography{bibfile}
+\end{verbatim}
+where ``\verb|bibfile|'' is the name, without the ``\verb|.bib|''
+suffix, of the \BibTeX\ file.
+
+Here are a few examples of the types of things you might cite in an EngageCSEdu submission: 
+  a book \cite{Kosiur01},
+  a journal article \cite{Abril07}, 
+  an informally published work \cite{Harel78}, 
+  an online document / world wide web resource \cite{Thornburg01, Ablamowicz07}, 
+  a video \cite{Obama08}, 
+  a software package \cite{R}, and an online dataset \cite{UMassCitations}.
+
+For other examples, see the file sample-acmsmall-conf.tex \cite{CTANacmart}.
+
+\section{Auxiliary Materials}
+This section is optional, but if included must immediately precede the References section. If there are no References, Auxiliary Materials should be last. This should be
+a numbered list of URLs with an optional brief description of the content found at each URL. Here is an example.
+\begin{enumerate}
+\item \url{https://somenews.org/xxx/}  A news article relevant to this OER.
+\item \url{https://somesite.gov/xxx/} A relevant government report.
+\item \url{https://someplace.edu/xxxx/} A public data set of interest. 
+\item \url{https://github.com/xxxx/} A public github project that is related.
+\end{enumerate} 
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{sample-base}
+
+
+
+\end{document}
+%</acmengage>

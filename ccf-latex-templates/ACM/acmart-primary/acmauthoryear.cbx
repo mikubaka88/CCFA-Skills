@@ -1,0 +1,219 @@
+\ProvidesFile{acmauthoryear.cbx}[2022-02-14 v0.1]
+
+\RequireCitationStyle{authoryear-comp}
+\RequirePackage{xpatch}
+
+%
+% Hyperlink citations like acmart natbib implementation
+%
+% From https://tex.stackexchange.com/a/27615/133551
+
+% Combine label and labelyear links
+\xpatchbibmacro{cite}
+  {\usebibmacro{cite:label}%
+   \setunit{\printdelim{nonameyeardelim}}%
+   \usebibmacro{cite:labeldate+extradate}}
+  {\printtext[bibhyperref]{%
+     \DeclareFieldAlias{bibhyperref}{default}%
+     \usebibmacro{cite:label}%
+     \setunit{\printdelim{nonameyeardelim}}%
+     \usebibmacro{cite:labeldate+extradate}}}
+  {}
+  {\PackageWarning{biblatex-patch}
+     {Failed to patch cite bibmacro}}
+
+% Include labelname in labelyear link
+\xpatchbibmacro{cite}
+  {\printnames{labelname}%
+   \setunit{\printdelim{nameyeardelim}}%
+   \usebibmacro{cite:labeldate+extradate}}
+  {\printtext[bibhyperref]{%
+     \DeclareFieldAlias{bibhyperref}{default}%
+     \printnames{labelname}%
+     \setunit{\printdelim{nameyeardelim}}%
+     \usebibmacro{cite:labeldate+extradate}}}
+  {}
+  {\PackageWarning{biblatex-patch}
+     {Failed to patch cite bibmacro}}
+
+\renewbibmacro*{textcite}{%
+  \iffieldequals{namehash}{\cbx@lasthash}
+    {\iffieldundef{shorthand}
+       {\ifthenelse{\iffieldequals{labelyear}{\cbx@lastyear}\AND
+                    \(\value{multicitecount}=0\OR\iffieldundef{postnote}\)}
+          {\setunit{\addcomma}%
+           \usebibmacro{cite:extradate}}
+          {\setunit{\compcitedelim}%
+           \usebibmacro{cite:labeldate+extradate}%
+           \savefield{labelyear}{\cbx@lastyear}}}
+       {\setunit{\compcitedelim}%
+        \usebibmacro{cite:shorthand}%
+        \global\undef\cbx@lastyear}}
+    {\ifnameundef{labelname}
+       {\iffieldundef{shorthand}
+          {\usebibmacro{cite:label}%
+           \setunit{%
+             \global\booltrue{cbx:parens}%
+             \printdelim{nonameyeardelim}\bibopenbracket}%
+           \ifnumequal{\value{citecount}}{1}
+             {\usebibmacro{prenote}}
+             {}%
+           \usebibmacro{cite:labeldate+extradate}}
+          {\usebibmacro{cite:shorthand}}}
+       {\printnames{labelname}%
+        \setunit{%
+          \global\booltrue{cbx:parens}%
+          \printdelim{nameyeardelim}\bibopenbracket}%
+        \ifnumequal{\value{citecount}}{1}
+          {\usebibmacro{prenote}}
+          {}%
+        \iffieldundef{shorthand}
+          {\iffieldundef{labelyear}
+             {\usebibmacro{cite:label}}
+             {\usebibmacro{cite:labeldate+extradate}}%
+           \savefield{labelyear}{\cbx@lastyear}}
+          {\usebibmacro{cite:shorthand}%
+           \global\undef\cbx@lastyear}}%
+     \stepcounter{textcitecount}%
+     \savefield{namehash}{\cbx@lasthash}}%
+  \setunit{%
+    \ifbool{cbx:parens}
+      {\bibclosebracket\global\boolfalse{cbx:parens}}
+      {}%
+    \textcitedelim}}
+
+\xpatchbibmacro{textcite}
+  {\printnames{labelname}}
+  {\printtext[bibhyperref]{\printnames{labelname}}}
+  {}
+  {\PackageWarning{biblatex-patch}
+     {Failed to patch textcite bibmacro}}
+
+\renewbibmacro*{textcite:postnote}{%
+  \usebibmacro{postnote}%
+  \ifthenelse{\value{multicitecount}=\value{multicitetotal}}
+    {\setunit{}%
+     \printtext{%
+       \ifbool{cbx:parens}
+         {\bibclosebracket\global\boolfalse{cbx:parens}}
+         {}}}
+    {\setunit{%
+       \ifbool{cbx:parens}
+         {\bibclosebracket\global\boolfalse{cbx:parens}}
+         {}%
+       \textcitedelim}}}
+
+% NEW
+\newbibmacro*{citeauthor}{%
+  \ifnameundef{labelname}
+    {\iffieldundef{shorthand}
+      {\printtext[bibhyperref]{%
+          \usebibmacro{cite:label}}%
+        \setunit{%
+          \global\booltrue{cbx:parens}%
+          \printdelim{nonameyeardelim}\bibopenbracket}%
+        \ifnumequal{\value{citecount}}{1}
+          {\usebibmacro{prenote}}
+          {}%
+        \printtext[bibhyperref]{\usebibmacro{cite:labeldate+extradate}}}
+      {\printtext[bibhyperref]{\usebibmacro{cite:shorthand}}}}
+    \printtext[bibhyperref]{\printnames{labelname}}}
+
+%
+% Put brackets around citations
+%
+
+\DeclareCiteCommand{\cite}[\mkbibbrackets]
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite}}
+  {}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand*{\cite}[\mkbibbrackets]
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{citeyear}}
+  {}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\parencite}[\mkbibbrackets]
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite}}
+  {}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand*{\parencite}[\mkbibbrackets]
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{citeyear}}
+  {}
+  {\usebibmacro{postnote}}
+
+\DeclareMultiCiteCommand{\parencites}[\mkbibbrackets]{\parencite}
+  {\setunit{\multicitedelim}}
+
+\DeclareCiteCommand{\footcite}[\mkbibfootnote]
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite}}
+  {}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\footcitetext}[\mkbibfootnotetext]
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite}}
+  {}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\smartcite}[\iffootnote\mkbibbrackets\mkbibfootnote]
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite}}
+  {}
+  {\usebibmacro{postnote}}
+
+\DeclareMultiCiteCommand{\smartcites}[\iffootnote\mkbibbrackets\mkbibfootnote]
+  {\smartcite}{\setunit{\multicitedelim}}
+
+\DeclareCiteCommand{\citeauthor}
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{citeauthor}}
+  {}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\citeyear}
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{citeyear}}
+  {}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\citeyearpar}[\mkbibbrackets]
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{citeyear}}
+  {}
+  {\usebibmacro{postnote}}
+
+%
+% Provide aliases for natbib-compatible commands
+%
+\newcommand*{\citep}{\parencite}
+\newcommand*{\citet}{\textcite}
+% add others here
+
+\endinput

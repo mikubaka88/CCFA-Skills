@@ -1,0 +1,336 @@
+\typeout{Conference Style, version of November 2018}
+
+% All bug reports should be directed to proceedings@ijcai.org
+% The following comments are from the original ijcai97.sty
+
+% The current two-column conference style.
+% Heavily adapted from the IJCAI-89 original style.
+% Fixes from various people incorporated up to the IJCAI-95 style.
+% Some major changes for the IJCAI-2018 edition
+
+% To use, place in a file called conference.sty, or whatever your conference
+% is called, in the TeX search path.  (Placing it in the same directory as
+% the paper should also work.) 
+
+% Prepared by Peter F. Patel-Schneider, 
+% liberally using the ideas of
+% other style hackers, including Barbara Beeton.
+% This style is NOT guaranteed to work.  It is provided in the hope
+% that it will make the preparation of papers easier.
+%
+% The preparation of this file was supported by Schlumberger Palo Alto
+% Research, AT\&T Bell Laboratories, AAAI, and Morgan Kaufmann Publishers.
+%
+% \pubnote added by J. Scott Penberthy
+
+% These instructions can be modified and used in other conferences as long
+% as credit to the authors and supporting agencies is retained, this notice
+% is not changed, and further modification or reuse is not restricted.
+%
+% If you are organizing a conference, and want to use this file, you should
+% appoint a contact person to handle any problems!
+%
+% If you are using this file for the preparation of papers for a
+% conference that supplied you with this file, you should contact the
+% organizers of the conference if you have any problems.  They should have
+% much more information than I have.
+
+% There are undoubtably bugs in this style.  If you make bug fixes,
+% improvements, etc.  please let us know at proceedings@ijcai.org.
+
+% NOTE:  Some laser printers have a serious problem printing TeX output.
+% These printing devices, commonly known as ``write-white'' laser
+% printers, tend to make characters too light.  To get around this
+% problem, a darker set of fonts must be created for these devices.
+
+% Physical page layout
+\twocolumn \flushbottom \sloppy
+% Note that TeX has built-in 1-inch top and left margins.
+\setlength\topmargin{-0.25in} 
+\setlength\oddsidemargin{-0.25in}
+\setlength\evensidemargin{-0.25in}
+\setlength\textheight{9.0in}
+\setlength\textwidth{7.0in}
+\setlength\columnsep{0.25in}  
+
+% No pages numbers or other headers or footers
+\setlength\headheight{0pt}   \setlength\headsep{0pt}
+%\setlength\footheight{0pt}   \setlength\footskip{0pt}
+\thispagestyle{empty}        \pagestyle{empty}
+
+% jsp added:
+\def\pubnote#1{\thispagestyle{myheadings}
+\markboth{#1}{#1}
+\def\thepage{}
+}
+
+% Less leading in most fonts (due to the narrow columns)
+% The choices were between 1-pt and 1.5-pt leading
+% \def\@normalsize{\@setsize\normalsize{11pt}\xpt\@xpt} % 10 point on 11
+% \def\small{\@setsize\small{10pt}\ixpt\@ixpt}          % 9 point on 10
+% \def\footnotesize{\@setsize\footnotesize{10pt}\ixpt\@ixpt} % 9 point on 10
+% \def\scriptsize{\@setsize\scriptsize{8pt}\viipt\@viipt}       % 7 point on 8
+% \def\tiny{\@setsize\tiny{7pt}\vipt\@vipt}             % 6 point on 7
+% \def\large{\@setsize\large{12pt}\xipt\@xipt}          % 11 point on 12
+% \def\Large{\@setsize\Large{14pt}\xiipt\@xiipt}                % 12 point on 14
+% \def\LARGE{\@setsize\LARGE{16pt}\xivpt\@xivpt}                % 14 point on 16
+% \def\huge{\@setsize\huge{20pt}\xviipt\@xviipt}                % 17 point on 20
+% \def\Huge{\@setsize\Huge{23pt}\xxpt\@xxpt}            % 20 point on 23
+
+% latex2e compatibility mode hack - kek@cs.brown.edu 11/10/98
+\def\@normalsize{\@setsize\normalsize{11pt}\xpt\@xpt}   % 10 point on 11
+\def\normalsize{\@setsize\normalsize{11pt}\xpt\@xpt}   % 10 point on 11
+\def\small{\@setsize\small{10pt}\ixpt\@ixpt}            % 9 point on 10
+\def\footnotesize{\@setsize\footnotesize{10pt}\ixpt\@ixpt} % 9 point on 10
+\def\scriptsize{\@setsize\scriptsize{8pt}\viipt\@viipt} % 7 point on 8
+\def\tiny{\@setsize\tiny{7pt}\vipt\@vipt}               % 6 point on 7
+\def\large{\@setsize\large{12pt}\xipt\@xipt}            % 11 point on 12
+\def\Large{\@setsize\Large{14pt}\xiipt\@xiipt}          % 12 point on 14
+\def\LARGE{\@setsize\LARGE{16pt}\xivpt\@xivpt}          % 14 point on 16
+\def\huge{\@setsize\huge{20pt}\xviipt\@xviipt}          % 17 point on 20
+\def\Huge{\@setsize\Huge{23pt}\xxpt\@xxpt}              % 20 point on 23
+
+
+% Paragraphs
+\parindent 1em
+\parskip 0pt plus 1pt
+
+% Title stuff, taken from deproc.
+\newlength\titlepad \setlength\titlepad{0in}
+\newlength\titlebox \setlength\titlebox{2.25in}
+\def\maketitle{\par
+ \begingroup % to make the footnote style local to the title
+   \def\thefootnote{\fnsymbol{footnote}}
+   \def\@makefnmark{$^{\@thefnmark}$}
+   \twocolumn[\@maketitle] \@thanks
+ \endgroup
+ \setcounter{footnote}{0}
+ \let\maketitle\relax \let\@maketitle\relax
+ \gdef\@thanks{}\gdef\@author{}\gdef\@title{}\let\thanks\relax}%
+%
+\def\@maketitle{%
+    \newsavebox{\titlearea}
+    \sbox{\titlearea}{
+        \let\footnote\thanks\relax
+        \vbox{
+            \hsize\textwidth \linewidth\hsize%
+            \vskip 0.5in%
+            \centering%
+            {\LARGE\bf \@title \par}%
+            \vskip 0.1in%
+            {%
+                \def\and{\unskip\thinspace{\rm ,}\enspace}%
+                \def\And{\unskip\enspace{\rm and}\enspace}%
+                \def\affiliations{%
+                    \egroup\par\Large\bgroup\rm%
+                }%
+                \def\emails{%
+                    \egroup\par\Large\bgroup\rm%
+                }%
+                \bgroup\Large\bf\@author\egroup%%
+            }%
+            \vskip 0.2in%
+        }
+    }
+
+    \newlength\actualheight
+    \settoheight{\actualheight}{\usebox{\titlearea}}
+       
+    \ifdim\actualheight>\titlebox
+        \setlength{\titlebox}{\actualheight}
+    \fi
+    %\setlength{\titlepad}{\dimexpr\titlepad+\titlepad\relax}
+       
+    \setcounter{footnote}{0}
+    \vbox to \titlebox {
+        \def\thanks##1{\footnotemark}\relax
+        \hsize\textwidth \linewidth\hsize%
+            \vskip 0.5in%
+            \centering%
+            {\LARGE\bf \@title \par}%
+            \vskip 0.2in plus 4fil minus 0.1in%
+            {%
+                \def\and{\unskip\thinspace{\rm ,}\enspace}%
+                \def\And{\unskip\enspace{\rm and}\enspace}%
+                \def\affiliations{
+                    \egroup%
+                    \vskip 0.05in minus 0.05in%
+                    \par\bgroup\Large\rm%
+                }
+                \def\emails{
+                    \egroup%
+                    \vskip 0.05in minus 0.05in%
+                    \par\bgroup\Large\rm%
+                }
+                \bgroup\Large\bf\@author\egroup%
+            }%
+            \vskip 0.3in plus 8fil minus 0.1in
+    }
+}
+\renewenvironment{abstract}{\centerline{\Large\bf
+Abstract}\vspace{0.5ex}\begin{quote}}{\par\end{quote}\vskip 1ex}
+
+% Sections with less space
+\def\section{\@startsection{section}{1}{\z@}{-10pt plus
+    -3pt minus -2pt}{4pt plus 2pt minus 1pt}{\Large\bf\raggedright}}
+\def\subsection{\@startsection{subsection}{2}{\z@}{-8pt plus
+    -2pt minus -2pt}{3pt plus 2pt minus 1pt}{\large\bf\raggedright}}
+\def\subsubsection{\@startsection{subsubsection}{3}{\z@}{-6pt plus
+   -2pt minus -1pt}{1pt plus 1pt minus 1pt}{\normalsize\bf\raggedright}}
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}{-4pt plus
+   -2pt minus -1pt}{-1em}{\normalsize\bf}}
+\setcounter{secnumdepth}{2} % Don't number subsubsections
+
+% Footnotes
+\footnotesep 6.65pt \skip\footins 9pt plus 4pt minus 2pt
+\def\footnoterule{\kern-3pt \hrule width 5pc \kern 2.6pt }
+\setcounter{footnote}{0}
+
+% Illustrations (floats)
+\floatsep 12pt plus 2pt minus 2pt
+\textfloatsep 16pt plus 2pt minus 4pt
+\intextsep 12pt plus 2pt minus 2pt
+\dblfloatsep 12pt plus 2pt minus 2pt
+\dbltextfloatsep 18pt plus 2pt minus 4pt
+
+% Displays
+\abovedisplayskip 7pt plus2pt minus5pt%
+\belowdisplayskip \abovedisplayskip
+\abovedisplayshortskip  0pt plus3pt%   
+\belowdisplayshortskip  4pt plus3pt minus3pt%
+
+% Lists
+\leftmargini 2em
+\leftmarginii 2em
+\leftmarginiii 1em 
+\leftmarginiv 0.5em
+\leftmarginv 0.5em 
+\leftmarginvi 0.5em
+
+\leftmargin\leftmargini
+\labelsep 5pt
+\labelwidth\leftmargini\advance\labelwidth-\labelsep
+
+\def\@listI{\leftmargin\leftmargini 
+\parsep 2pt plus 1pt minus 0.5pt%
+\topsep 4pt plus 1pt minus 2pt%
+\itemsep 2pt plus 1pt minus 0.5pt%
+\partopsep 1pt plus 0.5pt minus 0.5pt}
+
+\let\@listi\@listI
+\@listi 
+
+\def\@listii{\leftmargin\leftmarginii
+   \labelwidth\leftmarginii\advance\labelwidth-\labelsep
+   \parsep 1pt plus 0.5pt minus 0.5pt
+   \topsep 2pt plus 1pt minus 0.5pt
+   \itemsep \parsep}
+\def\@listiii{\leftmargin\leftmarginiii
+    \labelwidth\leftmarginiii\advance\labelwidth-\labelsep
+    \parsep 0pt plus 1pt
+    \partopsep 0.5pt plus 0pt minus 0.5pt
+    \topsep 1pt plus 0.5pt minus 0.5pt 
+    \itemsep \topsep}
+\def\@listiv{\leftmargin\leftmarginiv
+     \labelwidth\leftmarginiv\advance\labelwidth-\labelsep}
+\def\@listv{\leftmargin\leftmarginv
+     \labelwidth\leftmarginv\advance\labelwidth-\labelsep}
+\def\@listvi{\leftmargin\leftmarginvi
+     \labelwidth\leftmarginvi\advance\labelwidth-\labelsep}
+
+% We're never going to need a table of contents, so just flush it to
+% save space --- suggested by drstrip@sandia-2
+%\def\addcontentsline#1#2#3{}
+
+
+%%%% named.sty
+
+\typeout{Named Citation Style, version of 30 November 1994}
+
+% This file implements citations for the ``named'' bibliography style.
+%  Place it in a file called named.sty in the TeX search path.  (Placing it
+% in the same directory as the LaTeX document should also work.)
+
+% Prepared by Peter F. Patel-Schneider, with the assistance of several,
+% since forgotten, LaTeX hackers.
+% This style is NOT guaranteed to work.  It is provided in the hope
+% that it will make the preparation of papers easier.
+%
+% There are undoubtably bugs in this style.  If you make bug fixes,
+% improvements, etc.  please let me know.  My e-mail address is:
+%       pfps@research.att.com
+
+% The preparation of this file was supported by Schlumberger Palo Alto
+% Research and AT\&T Bell Laboratories.
+
+% This file can be modified and used in other conferences as long
+% as credit to the authors and supporting agencies is retained, this notice
+% is not changed, and further modification or reuse is not restricted.
+
+% The ``named'' bibliography style creates citations with labels like
+%       \citeauthoryear{author-info}{year}
+% these labels are processed by the following commands:
+%       \cite{keylist}
+%               which produces citations with both author and year,
+%               enclosed in square brackets
+%       \shortcite{keylist}
+%               which produces citations with year only,
+%               enclosed in square brackets
+%       \citeauthor{key}
+%               which produces the author information only
+%       \citeyear{key}
+%               which produces the year information only
+
+\def\leftcite{\@up[}\def\rightcite{\@up]}
+
+\def\cite{\def\citeauthoryear##1##2{\def\@thisauthor{##1}%
+             \ifx \@lastauthor \@thisauthor \relax \else##1, \fi ##2}\@icite}
+\def\shortcite{\def\citeauthoryear##1##2{##2}\@icite}
+
+\def\citeauthor{\def\citeauthoryear##1##2{##1}\@nbcite}
+\def\citeyear{\def\citeauthoryear##1##2{##2}\@nbcite}
+
+% internal macro for citations with [] and with breaks between citations
+% used in \cite and \shortcite
+\def\@icite{\leavevmode\def\@citeseppen{-1000}%
+ \def\@cite##1##2{\leftcite\nobreak\hskip 0in{##1\if@tempswa , ##2\fi}\rightcite}%
+ \@ifnextchar [{\@tempswatrue\@citex}{\@tempswafalse\@citex[]}}
+% internal macro for citations without [] and with no breaks
+% used in \citeauthor and \citeyear
+\def\@nbcite{\leavevmode\def\@citeseppen{1000}%
+ \def\@cite##1##2{{##1\if@tempswa , ##2\fi}}%
+ \@ifnextchar [{\@tempswatrue\@citex}{\@tempswafalse\@citex[]}}
+
+% don't box citations, separate with ; and a space
+% also, make the penalty between citations a parameter, 
+% it may be a good place to break
+\def\@citex[#1]#2{%
+  \def\@lastauthor{}\def\@citea{}%
+  \@cite{\@for\@citeb:=#2\do
+    {\@citea\def\@citea{;\penalty\@citeseppen\ }%
+     \if@filesw\immediate\write\@auxout{\string\citation{\@citeb}}\fi
+     \@ifundefined{b@\@citeb}{\def\@thisauthor{}{\bf ?}\@warning
+       {Citation `\@citeb' on page \thepage \space undefined}}%
+     {\csname b@\@citeb\endcsname}\let\@lastauthor\@thisauthor}}{#1}}
+
+% raise the brackets in bibliography labels
+\def\@biblabel#1{\def\citeauthoryear##1##2{##1, ##2}\@up{[}#1\@up{]}\hfill}
+
+\def\@up#1{\leavevmode\raise.2ex\hbox{#1}}
+
+% Optional changes
+
+%%%% use parentheses in the reference list and citations
+%\def\leftcite{(}\def\rightcite{)}
+%\def\@biblabel#1{\def\citeauthoryear##1##2{##1, ##2}(#1)\hfill}
+
+%%%% no key in the reference list
+%\def\@lbibitem[#1]#2{\item\if@filesw 
+%      { \def\protect##1{\string ##1\space}\immediate
+%        \write\@auxout{\string\bibcite{#2}{#1}}}\fi\ignorespaces}
+%\def\thebibliography#1{\section*{References\@mkboth
+%  {REFERENCES}{REFERENCES}}\list
+%  {}{\labelwidth 0pt\leftmargin\labelwidth \itemsep 0.5ex}
+%    \def\newblock{\hskip .11em plus .33em minus .07em}
+%    \sloppy\clubpenalty4000\widowpenalty4000
+%    \sfcode`\.=1000\relax}

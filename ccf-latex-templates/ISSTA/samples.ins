@@ -1,0 +1,28 @@
+\def\batchfile{samples.ins}
+\input docstrip
+\keepsilent
+\showprogress
+
+
+\askforoverwritefalse
+
+\generate{%
+  \file{manuscript.tex}{\from{samples.dtx}{all,proceedings,manuscript}}
+  \file{acmsmall.tex}{\from{samples.dtx}{all,acmsmall}}
+  \file{acmsmall-submission.tex}{\from{samples.dtx}{all,acmsmall,submission}}
+  \file{acmsmall-biblatex.tex}{\from{samples.dtx}{all,acmsmall,biblatex}}
+  \file{acmlarge.tex}{\from{samples.dtx}{all,acmlarge}}
+  \file{acmtog.tex}{\from{samples.dtx}{all,acmtog}}
+  \file{sigconf.tex}{\from{samples.dtx}{all,proceedings,sigconf}}
+  \file{sigconf-biblatex.tex}{\from{samples.dtx}{all,proceedings,sigconf,biblatex}}
+  \file{sigconf-authordraft.tex}{\from{samples.dtx}{all,proceedings,sigconf,authordraft}}
+  \file{sigconf-i13n.tex}{\from{samples.dtx}{all,proceedings,sigconf,i13n}}
+  \file{sigconf-lualatex.tex}{\from{samples.dtx}{all,proceedings,sigconf}}     
+  \file{sigplan.tex}{\from{samples.dtx}{all,proceedings,sigplan}}
+  \file{acmsmall-conf.tex}{\from{samples.dtx}{all,proceedings,acmsmall,conf}}
+  \file{acmtog-conf.tex}{\from{samples.dtx}{all,proceedings,acmtog,conf}}
+  \file{acmcp.tex}{\from{samples.dtx}{all,acmcp}}          
+  \file{acmengage.tex}{\from{acmengage.dtx}{acmengage}}
+  \file{acmsmall-tagged.tex}{\from{samples.dtx}{all,acmsmall,tagged}}
+}
+

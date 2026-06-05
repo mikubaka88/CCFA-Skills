@@ -1,0 +1,433 @@
+This package provides a class for typesetting publications of the
+Association for Computing Machinery.
+
+Your TeX distribution probably includes the latest released version of
+this package.  If you decide to install it yourself, please see the
+Installation section of the User's Guide.
+
+Please note that the version on Github is a development (or
+experimental) version: please download it for testing new features.
+The production version is the one on CTAN and ACM sites.
+
+
+Changes
+
+Version 2.17   2026-03-28
+	       Bugs fixed
+
+Version 2.16   2025-08-27
+	       Emergency release: fixes a typo in the code.
+
+
+Version 2.15   2025-08-21
+	       Bug fixes.  Documentation updates
+	       New journals: AILET, TAIS, TAISAP, ACMJDS
+
+Version 2.14   2025-05-30
+	       Bib style update.  Documentation update.  DLT is now using
+	       acmlarge format.
+	       Generate error if a user tries to redefine sectioning commands
+
+Version 2.13   
+               Documentation update
+	       Added mathcal in unicode mode
+	       Bug fixes
+
+Version 2.12   2024-12-31
+	       Bug fixes
+	       Switched to unicode-math and libertinus for Unicode engines
+
+Version 2.11   2024-12-21
+	       Conference date is no longer printed in bibstrip.
+	       ISBN now uses 4-digit year
+	       DOI in bibliography is now output as doi:XX.XXXX/XXXXX.XXXX
+	       Changed URL in Creative Commons licenses (deleted
+	       trailing /legalcode)
+
+Version 2.10.  2024-10-19
+	       Bug fixes.  Documentation update.
+
+Version 2.09   2024-08-25
+	       Experimental tagging code is now in the main branch.
+	       Creative Commons license is now allowed for all materials. 
+
+Version 2.08   2024-06-01
+	       Section titles are in lowercase now.
+	       Documentation updates.
+
+Version 2.07   2024-04-17
+	       Corrected typo in TELO eISSN.
+
+Version 2.06   2024-04-13
+	       Added eISSN for a number of journals.
+               ACM no longer collects or prints authors'
+	       postal addresses
+
+Version 2.05   2024-04-04
+	       Changed title for TELO.
+
+Version 2.04   2024-03-31
+	       Compatibility with the new latex-dev format
+               eSSN is always printed, even if pSSN is present
+	       Wording change in copyright statement
+
+Version 2.03   2024-02-04
+	       Cleaned generation of samples.
+	       New options for printing conference proceedings
+	       in ACM journals
+
+Version 2.02   2024-01-21
+	       Documentation update.
+	       Changes in TOG templates
+	       Corrected typo in ACM/IMS journals
+
+Version 2.01   2023-12-29
+	       \acmPrice now produces a warning.
+
+Version 2.00   2023-11-08
+	       ACM switches to electronic only version.
+	       We do not print article tabs anymore.
+	       New copyright wording.
+	       Deleted \acmPrice.
+
+Version 1.93   Added PACMSE
+
+Version 1.92   Documentation update
+	       Emergency change: changed order of hyperref and hyperxmp
+	       due to changes in the undelying packages
+
+Version 1.91   Minor changes in ACMCP format
+
+Version 1.90a  Changes in the sample keywords and concepts
+
+Version 1.90   Journal ISSN updated
+
+Version 1.89a  Added version info to .bst
+
+Version 1.89   Bug fixes
+	       Redesign of ACMCP
+	       New positioning of badges
+	       New journals: PACMMOD, TOPML
+
+Version 1.88   New ISSNs
+	       Documentation updates
+	       New journal:  PACMNET
+
+Version 1.87   CC license is allowed for non-acm documents and ACM Engage
+	       documents only
+	       New format acmcp for the cover page
+	       New journals: JATS, ACMJCSS, TORS
+	       Bug fixes
+
+Version 1.86.  Empty country in affiliation now produces an error
+               Bug fixes
+	       New samples for acmengage
+
+Version 1.85.  Bug fixes
+	       Added support for Creative Commons licenses (requires
+	       doclicense images)
+	       New journals
+	       New format acmengage for ACM Engage CSEdu course materials 
+
+Version 1.84   Support for BibLaTeX rewritten (thanks to
+	       Roberto Di Cosmo and Kartik Singhal)
+	       Corrected German translation (thanks to Dirk Beyer)
+	       New journals
+
+Version 1.83   Support for multilanguage papers
+	       ISSN changes for some journals
+
+Version 1.82   Bug fixes.
+	       New command \anon for anonymization of short strings.
+	       Documentation update.
+
+Version 1.81   Bug fixes
+	       New bib field distinctURL to print URL even if doi is present.
+	       Reworded samples
+
+Version 1.80   New journals: DLT, FAC
+
+Version 1.79   Fixed pages with index
+	       (https://github.com/borisveytsman/acmart/issues/440)
+	       Updated information for TAP, TCPS, TEAC
+
+Version 1.78   Documentation update.
+	       Magic texcount comments for samples.
+	       Title page now is split if there are too many authors
+	       Bug fixes.
+
+Version 1.77   Changed the way to typeset multiple affiliations (Christoph Sommer)
+
+Version 1.76   Added many journal abbreviations to the bst.
+	       New experimental option: pbalance
+	       ORCID linking code
+
+Version 1.75   Omitted \country now produces error.
+	       Added \AtBeginMaketitle
+
+Version 1.74   Bug fixes.  A regression introduced in the font changes
+	       is reverted.
+
+Version 1.73   Bug fixes
+	       The elements institution, city and country are now obligatory
+	       for affiliations.  The absence of them produces a warning
+
+Version 1.72   Bug fixes.  Better handling of metadata.
+
+Version 1.71   Bug fixes
+               Formats sigchi and sigchi-a are retired
+	       Bibliography formatting changes for @inproceedings entries
+	       having both series and volume
+	       LuaLaTeX now uses the same OTF fonts as XeLaTeX
+
+Version 1.70   Title change for ACM/IMS Transactions on Data Science
+               Bug fixes for bibliography
+
+Version 1.69   Bug fixes
+	       Compatibility with LaTeX 2020-02-02 release
+
+Version 1.68   Bug fixes
+               BST now recognizes words `Paper' or 'Article' in
+	       eid or articleno
+
+Version 1.67   Urgent bug fixes:
+	       BibTeX style bug fixed (Michael D. Adams)
+	       Sigplan special section bugfix
+
+Version 1.66   Bug fixes
+	       BibTeX change:  location is now a synonym for city (Feras Saad) 
+	       ACM reference format is now mandatory for papers over one page.
+	       CCS concepts and keywords are now mandatory for
+	       papers over two pages.
+	       Authors' addresses are mandatory for journal articles.
+
+Version 1.65   Bug fixes
+	       New journal: DGOV
+	       DTRAP and HEALTH are now using acmlarge format
+
+Version 1.64    Produce error if abstract is entered after maketitle
+		(previously abstract was silently dropped)
+		Bug fixes for line numbering
+
+Version 1.63a   Moved TQUANT to TQC
+
+Version 1.63	New journals: TQUANT, FACMP
+
+Version 1.62    Documentation update
+		New journal: TELO
+		Bug fixes
+
+Version 1.61    Bug fixes
+                New bibtex types for artifacts
+
+Version 1.60    New option: urlbreakonhyphens (thanks to Peter Kemp)
+		Smaller header size for acmsmall
+
+Version 1.59    Now a journal format can be used for conference proceedings
+		All samples are now generated from the same .dtx file
+		Bug fixes
+
+Version 1.58    Suppressed spurious warnings.
+		New journal:  HEALTH.
+		TDSCI is renamed to TDS.
+
+Version 1.57    Change of \baselinestretch now produces an error
+                Booktabs is now always loaded
+                Added option `balance' to balance last page in two-column mode
+                E-mail is no longer split in addresses
+                New samples (Stephen Spencer)
+
+Version 1.56    Bug fixes
+                Added \flushbottom to two column formats (Philip Quinn)
+                The final punctuation for the list of concepts
+                is now a period instead of a semicolon (Philip Quinn)
+                New command \Description to describe images for visually
+                impaired users.
+
+Version 1.55    Bug fixes
+                Font changes for SIGCHI table captions
+
+Version 1.54    New option: 'nonacm' (Gabriel Scherer)
+                Deleted indent for subsubsection (suggested by Ross Moore)
+                Suppressed some obscurious warning in BibTeX processing
+                Suppressed hyperrerf warnings (Paolo G. Giarrusso)
+                New code for sections to help with accessibility patches
+                (Ross Moore)
+                Submission id, if present, is printed in anon mode
+                Bug fixes
+
+Version 1.53    New journals: PACMCGIT, TIOT, TDSCI
+
+Version 1.52    Another rewording of licenses
+
+Version 1.51    Journal footers now use abbreviated journal titles.
+                Corrected the bug with acmPrice.
+                Do not show price when copyright is set to iw3c2w3 and iw3c2w3g.
+                The package now is compatible with polyglossia (Joachim Breitner).
+                Slightly reworded copyright statements.
+
+Version 1.50    Changes in iw3c2w3 and iw3c2w3g
+
+Version 1.49    New jorunal:  DTRAP
+
+Version 1.48    Bug fixes
+                Review mode now switches on folios
+                Code prettying (Michael D. Adams)
+                Bibliography changes: @MISC entries no longer have a
+                separate date
+                Sigch-a sample bibliography renamed
+                Bib code cleanup (Zack Weinberg)
+                Acmart and version info are added to pdfcreator tag
+                \citeyear no longer produces parenthetical year
+                Added initial support for Biblatex (Daniel Thomas)
+                Added support for IW3C2 conferences
+
+Version 1.47    New journal: THRI
+
+Version 1.46    Bug fixes for bibliography: label width is now calculated
+                correctly.
+                All PACM now use screen option.  This requires etoolbox.
+                Added subtitle to ACM reference format.
+                Now acmart is compatible with fontspec.
+                \thanks is now obsolete.  The addresses are automatically
+                added to the journal version; this can be overriden with
+                \authorsaddresses command.
+                Deleted the rule at the end of frontmatter for all formats.
+                Deleted new line before doi in the reference format.
+                Reintegrated theorem code into acmart.dtx (Matthew Fluet)
+
+Version 1.45    Workaround for a Libertine bug.  Thanks to LianTze Lim
+                from Overleaf
+
+Version 1.44    Bug fixes.
+                Empty DOI and ISBN suppress printing DOI or ISBN lines
+                Separated theorem code into acmthm.sty, loaded by default.
+                Article number can be set for proceedings.
+                New commands: \acmBooktile, \editor.
+                Reference citation format updated.
+
+Version 1.43    Bug fixes
+
+Version 1.42    Deleted ACM badges
+                Bug fixes
+
+Version 1.41    Rearranged bib files
+                Added new badges
+
+Version 1.40    Bibliography changes
+                Added processing of one-compoment ccsdesc nodes
+                Bug fixes.
+                Made the height a multiple of \baselineskip + \topskip
+                Added cleveref
+                We no longer print street address in SIGs
+
+Version 1.39    Added \authornotemark commmand
+
+Version 1.38    Increase default font size for SIGPLAN
+
+Version 1.37    Reduce list indentation (Matthew Fluet)
+
+Version 1.36    Bug fixes
+                Moved PACMPL to acmlarge format
+                New journal: PACMHCI
+                Added the possibility to adjust number of author
+                boxes per row in conference formats
+
+Version 1.35    Author-year bib style now uses square brackets.
+                Changed defaults for TOG sample
+                Price is suppressed for usgov and rightsretained modes.
+                Bugs fixed
+
+Version 1.34    Deleted DOI from doi numbers
+                Changed bibstrip formatting
+                The command \terms is now obsolete
+                The rulers in review mode now have continuous numbering
+
+Version 1.33    New option `timestamp' (Michael D. Adams)
+                New option `authordraft'
+                Documentation updates
+                Bug fixes
+                We now use Type 1 versions of Libertine fonts even with XeTeX.
+                New hook acmart-preload-hook.tex (wizards only!)
+                Added new options `obeypunctuation' for \affiliation command
+                Added SubmissionID
+                Added right line count ruler for two-column formats
+                Added workaround for Adobe Acrobat bugs in selection
+                Added eid field to the bibliography
+
+Version 1.32    New DOI formatting.
+                Format siggraph is now obsolete, and sigconf
+                is used instead.
+                New proceedings title: POMACS.
+
+Version 1.31    Changed default year and month to the current ones
+                (thanks to Matteo Riondato)
+                Table of contents now works
+                Marginalia now work in all formats
+                New command \additionalaffiliation
+                Documentation changes
+
+Version 1.30    Bibtex style now recognizes https:// in doi.
+                Added \frenchspacing.
+                \department now has an optional hierarchy level.
+                Switched to T1 encoding
+                Updated IMWUT and PACMPL
+
+Version 1.29    Documentation changes.  Head height increased from 12pt to 13pt.
+                Removed spurious indent at start of abstract.
+                Improved kerning in CCS description list.
+
+Version 1.28    Bug fixes: natbib=false now behaves correctly.
+
+Version 1.27    Bug fixes
+
+Version 1.26    Bug fixes
+
+Version 1.25    Updated PACMPL journal option.
+
+Version 1.24    Added IMWUT journal option.
+
+Version 1.23    Added PACM PL journal option.
+
+Version 1.22    Bibliography changes for Aptara backend; should be
+                invisible for the users.
+
+Version 1.21    Bibliography changes: added arXiv, some cleanup
+
+Version 1.20    Bug fixes, documentation updates
+
+Version 1.19    Include 'Abstract', 'Acknowledgements', and 'References'
+                in PDF bookmarks.
+
+Version 1.18    Natbib is now the default for all versions.  A unified bib
+                file is used for all styles.  Better treatment
+                of multiple affiliations.
+
+
+Version 1.17    Formatting changes for margins and lists.  Bug fixes.
+
+Version 1.16    Formatting changes for headers and footers.
+
+Version 1.15    New structured affiliation command.
+                New commands for acknowledgements.
+
+Version 1.14    Warn about undefined citation styles; move definitions
+                of acmauthoryear and acmnumeric citation styles before
+                use.
+
+Version 1.13    Formatting changes: headers, folios etc.
+                Bibliography changes.
+
+Version 1.12    Bug fixes and documentation updates.
+                Footnotes rearranged.
+                Option natbib is now mostly superfluous: the class
+                makes a guess based on the format chosen.
+
+Version 1.11    Customization of ACM theorem styles and proof
+                environment (Matthew Fluet).
+
+Version 1.10    Bug fixes
+
+Version 1.09    SIGPLAN: revert caption rules (Matthew Fluet)
+
+Version 1.08    SIGPLAN reformatting (Matthew Fluet); bug fixes

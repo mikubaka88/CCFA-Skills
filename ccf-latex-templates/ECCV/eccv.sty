@@ -1,0 +1,255 @@
+% ---------------------------------------------------------------
+%
+% Formatting Package for ECCV Submissions
+% 
+% initially created for ECCV 2024
+% by Stefan Roth
+%
+% based on previous ECCV templates:
+%   updated April 2002 by Antje Endemann
+%   Based on CVPR 07 and LNCS, with modifications by DAF, AZ and elle, 2008 and AA, 2010, and CC, 2011; TT, 2014; AAS, 2016; AAS, 2020; TH, 2022
+%
+% and the CVPR templates:
+%   https://github.com/cvpr-org/author-kit
+%
+% No guarantee is given that the format corresponds perfectly to
+% LNCS Proceedings, but most features should be ok.
+%
+% ---------------------------------------------------------------
+%
+% use as
+%   \documentclass[runningheads]{llncs}
+%   \usepackage[options]{eccv}
+%
+% "options" include
+%  * "review" for submitting a paper for review and
+%  * "final" for the camera ready (default).
+%  * "mobile" for camera ready on small-screen devices
+%  * "year=20??" allows to specify the conference year (default current year).
+%  * "ID=12345" allows to specify the paper ID (default `none').
+%
+% specify references as
+%   \bibliographystyle{splncs04}
+%   \bibliography{...your files...}
+% ---------------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesPackage{eccv}[LaTeX style for ECCV]
+
+
+% ---------------------------------------------------------------
+% Suppress unwanted warnings
+
+\RequirePackage{silence}  
+\WarningFilter{amsmath}{Unable to redefine math accent \vec}
+\WarningFilter{caption}{Unknown document class (or package)}
+\RequirePackage{etoolbox}
+
+
+% ---------------------------------------------------------------
+% Basic packages 
+
+\RequirePackage[T1]{fontenc}             % Required to avoid font issues
+\RequirePackage[left,mathlines]{lineno}  % Support for line numbers
+\RequirePackage[dvipsnames]{xcolor}      % Color for line numbers
+\RequirePackage{amsmath}                 % Need AMS packages to bug fix 
+\RequirePackage{amssymb}                 %   line numbers in equations
+\RequirePackage{cite}                    % Sort citations
+\RequirePackage{xspace}  
+
+% Breaking lines for URLs in the bib
+\RequirePackage[hyphens]{url}
+\Urlmuskip=0mu plus 1mu\relax
+
+% Color for links and line numbers
+\definecolor{eccvblue}{rgb}{0.12,0.49,0.85}
+
+% ---------------------------------------------------------------
+% Use modern caption package to allow for sub-figures etc.
+% Reproduces the original LNCS style as closely as possible.
+
+\RequirePackage[labelfont=bf,font=small,tableposition=bottom]{caption}
+\RequirePackage[skip=3pt]{subcaption}
+
+
+% ---------------------------------------------------------------
+% Process ECCV package options
+
+% Key value options
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+  family=eccv,
+  prefix=eccv@
+}
+
+\DeclareBoolOption{review}
+\DeclareComplementaryOption{final}{review}
+\DeclareBoolOption{mobile}
+\DeclareStringOption[\the\year]{year}
+\DeclareStringOption[none]{ID}
+\DeclareDefaultOption{\PackageWarning{eccv}{Unkown option `\CurrentOption'}}
+\ProcessKeyvalOptions*
+
+% Enable processing options also in main paper with \eccvsetup{ key=value, ... }
+\newcommand*{\eccvsetup}
+  {\setkeys{eccv}%
+}
+
+% Warn if ECCV package for review version is not loaded with paper ID option
+\ifeccv@review
+  \ifdefstring{\eccv@ID}{none}{%
+    \PackageWarningNoLine{eccv}{Review version requires a paper ID. Please load `eccv' package with `ID=*****' option and replace `*****' with your paper ID}
+  }{}
+\fi
+
+
+% ---------------------------------------------------------------
+% Basic error handling
+
+\AtBeginDocument{%
+  % Print an error if document class other than llncs is used
+  \@ifclassloaded{llncs}{}{%
+    \PackageError{eccv}{Package only meant to be used with document class `llncs'}{Change document class to `llncs'.}
+  }
+  % Print a warning if incorrect options for llncs are specified
+  \@ifclasswith{llncs}{runningheads}{}{%
+    \PackageWarningNoLine{eccv}{Running heads incorrectly suppressed - ECCV requires running heads. Please load document class `llncs' with `runningheads' option}
+  }
+  % Print a warning if hyperref is not loaded and/or if the pagebackref option is missing
+  \ifeccv@review
+    \@ifpackageloaded{hyperref}{%
+      \@ifpackagewith{hyperref}{pagebackref}{}{%
+        \PackageWarningNoLine{eccv}{Package `hyperref' is not loaded with option `pagebackref', which is strongly recommended for review version}
+      }
+    }{%
+      \PackageWarningNoLine{eccv}{Package `hyperref' is not loaded, but strongly recommended for review version}
+    }
+  \else
+    \@ifpackageloaded{hyperref}{%
+      \@ifpackagewith{hyperref}{pagebackref}{%
+        \PackageWarningNoLine{eccv}{Package `hyperref' is loaded with option `pagebackref', which is *not* recommended for camera-ready version}{}
+      }{}
+    }{%
+        \PackageWarningNoLine{eccv}{Package `hyperref' is not loaded, but highly recommended for camera-ready version}
+    }
+  \fi
+}
+
+
+% ---------------------------------------------------------------
+% Line number support for the review version
+
+% NUMBER with left flushed zeros  \fillzeros[<WIDTH>]<NUMBER>
+% from CVPR template
+\newcount\cv@tmpc@ \newcount\cv@tmpc
+\def\fillzeros[#1]#2{\cv@tmpc@=#2\relax\ifnum\cv@tmpc@<0\cv@tmpc@=-\cv@tmpc@\fi
+\cv@tmpc=1 %
+\loop\ifnum\cv@tmpc@<10 \else \divide\cv@tmpc@ by 10 \advance\cv@tmpc by 1 \fi
+   \ifnum\cv@tmpc@=10\relax\cv@tmpc@=11\relax\fi \ifnum\cv@tmpc@>10 \repeat
+\ifnum#2<0\advance\cv@tmpc1\relax-\fi
+\loop\ifnum\cv@tmpc<#1\relax0\advance\cv@tmpc1\relax\fi \ifnum\cv@tmpc<#1 \repeat
+\cv@tmpc@=#2\relax\ifnum\cv@tmpc@<0\cv@tmpc@=-\cv@tmpc@\fi \relax\the\cv@tmpc@}%
+
+
+% colored, bold, sans serif line numbers
+\renewcommand\thelinenumber{\color{eccvblue}\normalfont\sffamily\scriptsize\fillzeros[3]{\arabic{linenumber}}\color[rgb]{0,0,0}}
+% on both sides
+\renewcommand\makeLineNumber{\hss\thelinenumber\ \hspace{4.5mm} \rlap{\hskip\textwidth\ \hspace{5mm}\thelinenumber}}
+
+
+% Bug: An equation with $$ ... $$ isn't numbered, nor is the previous line.
+% Patch amsmath commands so that the previous line and the equation itself
+% are numbered. Bug: multiline has an extra line number.
+% https://tex.stackexchange.com/questions/461186/how-to-use-lineno-with-amsmath-align
+
+%% Patch 'normal' math environments:
+\newcommand*\linenomathpatch[1]{%
+  \cspreto{#1}{\linenomath}%
+  \cspreto{#1*}{\linenomath}%
+  \csappto{end#1}{\endlinenomath}%
+  \csappto{end#1*}{\endlinenomath}%
+}
+%% Patch AMS math environments:
+\newcommand*\linenomathpatchAMS[1]{%
+  \cspreto{#1}{\linenomathAMS}%
+  \cspreto{#1*}{\linenomathAMS}%
+  \csappto{end#1}{\endlinenomath}%
+  \csappto{end#1*}{\endlinenomath}%
+}
+
+%% Definition of \linenomathAMS depends on whether the mathlines option is provided
+\expandafter\ifx\linenomath\linenomathWithnumbers
+  \let\linenomathAMS\linenomathWithnumbers
+  %% The following line gets rid of an extra line numbers at the bottom:
+  \patchcmd\linenomathAMS{\advance\postdisplaypenalty\linenopenalty}{}{}{}
+\else
+  \let\linenomathAMS\linenomathNonumbers
+\fi
+
+\linenomathpatch{equation}
+\linenomathpatchAMS{gather}
+\linenomathpatchAMS{multline}
+\linenomathpatchAMS{align}
+\linenomathpatchAMS{alignat}
+\linenomathpatchAMS{flalign}
+
+% Disable line numbering during measurement step of multline
+\makeatletter
+\patchcmd{\mmeasure@}{\measuring@true}{
+  \measuring@true
+  \ifnum-\linenopenaltypar>\interdisplaylinepenalty
+    \advance\interdisplaylinepenalty-\linenopenalty
+  \fi
+  }{}{}
+\makeatother
+
+
+% ---------------------------------------------------------------
+% Modifications to LNCS template for review version
+
+\makeatletter
+\ifeccv@review
+  % Display line numbers
+  \AtBeginDocument{%
+    \linenumbers
+    \linenomathpatch{equation}%
+    \linenomathpatchAMS{gather}%
+    \linenomathpatchAMS{multline}%
+    \linenomathpatchAMS{align}%
+    \linenomathpatchAMS{alignat}%
+    \linenomathpatchAMS{flalign}%
+  }
+
+  % Crop the page for review version
+  \RequirePackage[width=122mm,left=12mm,paperwidth=146mm,height=193mm,top=12mm,paperheight=217mm]{geometry}
+
+  % Replace authors, institute, and running title with review placeholders
+  \let\maketitleold\maketitle
+  \renewcommand{\maketitle}{\author{Anonymous ECCV \eccv@year{} Submission}%
+                            \titlerunning{ECCV \eccv@year{} Submission \#\eccv@ID}% 
+                            \authorrunning{ECCV \eccv@year{} Submission \#\eccv@ID}% 
+                            \institute{Paper ID \#\eccv@ID}%
+                            \maketitleold}
+\fi
+
+\ifeccv@mobile
+  % Crop the page for mobile version
+  \RequirePackage[width=122mm,left=12mm,paperwidth=146mm,height=193mm,top=12mm,paperheight=217mm]{geometry}
+\fi
+
+% Macro for ECCV year in main text
+\newcommand{\ECCVyear}{\eccv@year\xspace}
+\makeatother
+
+
+% ---------------------------------------------------------------
+% Support for easy cross-referencing (e.g., \cref{eq:loss}, \cref{sec:intro})
+% configured with \AtEndPreamble as it needs to be called after hyperref
+
+\AtEndPreamble{
+    \usepackage[capitalize]{cleveref}
+    \crefname{section}{Sec.}{Secs.}
+    \Crefname{section}{Section}{Sections}
+    \crefname{table}{Tab.}{Tabs.}
+    \Crefname{table}{Table}{Tables}
+}

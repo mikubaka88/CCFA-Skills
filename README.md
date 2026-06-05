@@ -103,7 +103,11 @@ The second `ccf-idea-optimizer` pass is therefore not duplication. The first pas
 
 This structure keeps the main review questions separate: novelty, significance, soundness, evidence, clarity, reproducibility, and venue fit. The skills handle these questions separately while keeping their dependencies visible.
 
+The repository also includes a venue layer for conference-specific authoring support. `ccf-conference-skills/` contains per-conference skills, and `ccf-latex-templates/` provides matching LaTeX templates and publisher bases that can be copied directly into paper repositories.
+
 ## Skill Family
+
+### Research workflow skills
 
 ### `ccf-brainstorming`
 
@@ -175,6 +179,12 @@ It keeps the family extensible: new domain skills can be added without turning t
 
 Provides the shared control layer for CCFA routing, handoff modes, private-material safety, source registry, and venue-family mapping. It is not an ordinary research-writing skill; it is loaded by maintainers and sibling skills to keep behavior consistent.
 
+### Conference venue skills
+
+Conference-specific writing and formatting skills live in `ccf-conference-skills/`. These modules keep venue policy, track options, page limits, anonymity rules, citation styles, camera-ready steps, and template pointers separate from the main workflow skills so the repository can add venue coverage without changing the core CCFA research loop.
+
+Representative venue skills include `aaai`, `neurips`, `icml`, `iclr`, `cvpr`, `iccv`, `eccv`, `acl`, `emnlp`, `naacl`, `ccs`, `usenix-security`, `osdi`, `sosp`, `sigcomm`, `sigmod`, `chi`, `uist`, `stoc`, `focs`, and many others across CCF A/B/C conferences.
+
 ## What The Family Optimizes For
 
 | Objective | Meaning |
@@ -201,6 +211,8 @@ ccf-paper-compressor
 ccf-conference-reviewer
 ccf-conference-writing-reviewer
 ccf-conference-paper-rebuttal
+ccf-conference-skills
+ccf-latex-templates
 ccf-common
 forge-skills
 ```
@@ -215,7 +227,7 @@ macOS / Linux:
 git clone https://github.com/mikubaka88/CCFA-Skills.git
 cd CCFA-Skills
 mkdir -p ~/.codex/skills
-cp -R ccf-* forge-skills ~/.codex/skills/
+cp -R ccf-* forge-skills ccf-conference-skills ccf-latex-templates ~/.codex/skills/
 ```
 
 Windows PowerShell:
@@ -226,6 +238,8 @@ Set-Location .\CCFA-Skills
 New-Item -ItemType Directory -Force "$HOME\.codex\skills" | Out-Null
 Copy-Item -Recurse -Force .\ccf-* "$HOME\.codex\skills\"
 Copy-Item -Recurse -Force .\forge-skills "$HOME\.codex\skills\"
+Copy-Item -Recurse -Force .\ccf-conference-skills "$HOME\.codex\skills\"
+Copy-Item -Recurse -Force .\ccf-latex-templates "$HOME\.codex\skills\"
 ```
 
 Start a new session after copying. A quick smoke test is: `Use ccf-idea-optimizer to refine this rough research idea...`
@@ -240,7 +254,7 @@ User-level install:
 git clone https://github.com/mikubaka88/CCFA-Skills.git
 cd CCFA-Skills
 mkdir -p ~/.claude/skills
-cp -R ccf-* forge-skills ~/.claude/skills/
+cp -R ccf-* forge-skills ccf-conference-skills ccf-latex-templates ~/.claude/skills/
 ```
 
 Project-local install:
@@ -248,7 +262,7 @@ Project-local install:
 ```bash
 git clone https://github.com/mikubaka88/CCFA-Skills.git
 mkdir -p your-paper-repo/.claude/skills
-cp -R CCFA-Skills/ccf-* CCFA-Skills/forge-skills your-paper-repo/.claude/skills/
+cp -R CCFA-Skills/ccf-* CCFA-Skills/forge-skills CCFA-Skills/ccf-conference-skills CCFA-Skills/ccf-latex-templates your-paper-repo/.claude/skills/
 ```
 
 Windows PowerShell:
@@ -259,13 +273,27 @@ Set-Location .\CCFA-Skills
 New-Item -ItemType Directory -Force "$HOME\.claude\skills" | Out-Null
 Copy-Item -Recurse -Force .\ccf-* "$HOME\.claude\skills\"
 Copy-Item -Recurse -Force .\forge-skills "$HOME\.claude\skills\"
+Copy-Item -Recurse -Force .\ccf-conference-skills "$HOME\.claude\skills\"
+Copy-Item -Recurse -Force .\ccf-latex-templates "$HOME\.claude\skills\"
 ```
 
 After installation, call a skill by name, for example `/ccf-idea-reviewer`, or ask Claude Code to use the relevant CCFA skill in natural language. If a newly added skill folder is not detected, restart Claude Code.
 
 If you prefer subagent isolation, create Claude Code subagent wrappers that point to these installed skill folders, but keep the `SKILL.md` files and their `references/` directories as the source of truth.
 
-### 3. Other agents or manual use
+### 3. Cursor
+
+Cursor project skills can live under `.cursor/skills/`.
+
+```bash
+git clone https://github.com/mikubaka88/CCFA-Skills.git
+mkdir -p your-project/.cursor/skills
+cp -R CCFA-Skills/ccf-* CCFA-Skills/forge-skills CCFA-Skills/ccf-conference-skills CCFA-Skills/ccf-latex-templates your-project/.cursor/skills/
+```
+
+If you want venue-specific paper templates in the project as well, copy `ccf-latex-templates/` into your paper repository and point the venue skill to the local template folder.
+
+### 4. Other agents or manual use
 
 For other agent frameworks, copy the same folders into the framework's skill, tool, memory, or instruction directory and preserve the relative paths. The agent should treat each `SKILL.md` as the entrypoint for that module.
 
