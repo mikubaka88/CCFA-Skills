@@ -1,0 +1,32 @@
+{
+  "name": "ccfa-skills",
+  "version": "0.4.0",
+  "description": "CCFA CCF paper-project workflow skill family.",
+  "author": {
+    "name": "CCFA Skills maintainers"
+  },
+  "homepage": "https://github.com/mikubaka88/CCFA-Skills",
+  "repository": "https://github.com/mikubaka88/CCFA-Skills",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "skills",
+    "research",
+    "ccf",
+    "paper-writing"
+  ],
+  "interface": {
+    "displayName": "CCFA Skills",
+    "shortDescription": "CCF paper-project workflow skills.",
+    "longDescription": "A governed ccf-* skill family for CCF research ideation, literature, experiments, writing, review, submission, rebuttal, resubmission, and presentation workflows.",
+    "developerName": "CCFA Skills maintainers",
+    "category": "Productivity",
+    "capabilities": [
+      "skills",
+      "research-workflow",
+      "paper-writing"
+    ],
+    "brandColor": "#1F6F8B",
+    "defaultPrompt": "Use the appropriate ccf-* skill from CCFA Skills. Respect trigger boundaries, artifact contracts, and venue-guide routing."
+  }
+}

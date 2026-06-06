@@ -1,0 +1,30 @@
+version: "0.4.0"
+project:
+  title: ""
+  short_name: ""
+  root: "."
+target_venue:
+  name: ""
+  year: ""
+  mode: "review"
+stage:
+  current: "scaffolded"
+  gate: "not_started"
+  updated_at: ""
+artifacts:
+  manuscript: "manuscript/main.tex"
+  bibliography: "manuscript/references.bib"
+  figures: "figures/"
+  tables: "tables/"
+  experiments: "experiments/"
+  reviews: "reviews/"
+  submission: "submission/"
+claims: []
+experiments: []
+reviews: []
+revision_ledger:
+  path: "reviews/revision-ledger.md"
+  status: "not_started"
+submission_checks:
+  path: "submission/checks.md"
+  status: "not_started"

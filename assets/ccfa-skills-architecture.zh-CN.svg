@@ -1,137 +1,15 @@
-<svg width="1440" height="980" viewBox="0 0 1440 980" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">CCFA Skills 整体架构</title>
-  <desc id="desc">CCFA Skills 分层架构：输入澄清、思路、证据、论文、评审、回应与共享治理。</desc>
-  <defs>
-    <filter id="shadow" x="-12%" y="-18%" width="124%" height="140%" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.11"/>
-    </filter>
-    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
-      <path d="M2 2L10 6L2 10" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </marker>
-    <marker id="arrowSoft" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
-      <path d="M2 2L10 6L2 10" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </marker>
-    <style>
-      .font{font-family:"Microsoft YaHei","Noto Sans SC","Inter","Segoe UI",Arial,sans-serif}
-      .title{font-size:34px;font-weight:800;fill:#0f172a}
-      .sub{font-size:15px;fill:#475569}
-      .band-title{font-size:15px;font-weight:800;fill:#0f172a}
-      .band-note{font-size:12px;fill:#64748b}
-      .card-title{font-size:15px;font-weight:800}
-      .card-sub{font-size:12px}
-      .card-skill{font-size:11px;font-weight:800}
-      .small{font-size:11px}
-      .tiny{font-size:10px}
-    </style>
-  </defs>
-
-  <rect width="1440" height="980" rx="28" fill="#f8fafc"/>
-  <rect x="40" y="34" width="1360" height="902" rx="22" fill="#ffffff" stroke="#e2e8f0"/>
-
-  <text x="720" y="78" text-anchor="middle" class="font title">CCFA Skills 家族架构</text>
-  <text x="720" y="108" text-anchor="middle" class="font sub">从需求澄清到投稿前审稿，再到显式 rebuttal 的分层联动架构</text>
-
-  <rect x="76" y="140" width="1288" height="112" rx="14" fill="#fefce8" stroke="#fde68a"/>
-  <text x="104" y="172" class="font band-title" fill="#854d0e">0. 输入层：按需上游澄清</text>
-  <text x="104" y="196" class="font band-note">触发：头脑风暴、需求澄清、方案共识、任务拆解、研究/设计 brief。不是全局硬门，不替代后续模块。</text>
-  <g filter="url(#shadow)">
-    <rect x="980" y="164" width="300" height="58" rx="8" fill="#fff7ed" stroke="#f59e0b"/>
-    <text x="1130" y="188" text-anchor="middle" class="font card-title" fill="#78350f">ccf-brainstorming</text>
-    <text x="1130" y="208" text-anchor="middle" class="font card-sub" fill="#92400e">目标 / 约束 / 成功标准 / 下一步路由</text>
-  </g>
-
-  <rect x="76" y="286" width="1288" height="306" rx="14" fill="#f8fafc" stroke="#cbd5e1"/>
-  <text x="104" y="318" class="font band-title">默认投稿前闭环</text>
-  <text x="365" y="318" class="font band-note">默认投稿前闭环：先形成问题-方法-证据，再写作、压缩、完整审稿和定向修复</text>
-
-  <g filter="url(#shadow)">
-    <rect x="112" y="352" width="190" height="92" rx="8" fill="#dbeafe" stroke="#2563eb"/>
-    <text x="207" y="380" text-anchor="middle" class="font card-title" fill="#1e3a8a">1. 思路优化</text>
-    <text x="207" y="403" text-anchor="middle" class="font card-sub" fill="#1d4ed8">具象化模糊 idea</text>
-    <text x="207" y="424" text-anchor="middle" class="font card-skill" fill="#1e40af">ccf-idea-optimizer</text>
-  </g>
-
-  <g filter="url(#shadow)">
-    <rect x="342" y="352" width="190" height="92" rx="8" fill="#ede9fe" stroke="#7c3aed"/>
-    <text x="437" y="380" text-anchor="middle" class="font card-title" fill="#4c1d95">2. 思路评审</text>
-    <text x="437" y="403" text-anchor="middle" class="font card-sub" fill="#6d28d9">仅显式评分 / 排名</text>
-    <text x="437" y="424" text-anchor="middle" class="font card-skill" fill="#5b21b6">ccf-idea-reviewer</text>
-  </g>
-
-  <g filter="url(#shadow)">
-    <rect x="572" y="352" width="190" height="92" rx="8" fill="#ccfbf1" stroke="#0f766e"/>
-    <text x="667" y="380" text-anchor="middle" class="font card-title" fill="#134e4a">3. 文献检索</text>
-    <text x="667" y="403" text-anchor="middle" class="font card-sub" fill="#0f766e">高质量来源筛选</text>
-    <text x="667" y="424" text-anchor="middle" class="font card-skill" fill="#115e59">ccf-literature-search</text>
-  </g>
-
-  <g filter="url(#shadow)">
-    <rect x="802" y="352" width="190" height="92" rx="8" fill="#dcfce7" stroke="#16a34a"/>
-    <text x="897" y="380" text-anchor="middle" class="font card-title" fill="#14532d">4. 实验设计</text>
-    <text x="897" y="403" text-anchor="middle" class="font card-sub" fill="#15803d">baseline / ablation / 表格</text>
-    <text x="897" y="424" text-anchor="middle" class="font card-skill" fill="#166534">ccf-experiment-designer</text>
-  </g>
-
-  <g filter="url(#shadow)">
-    <rect x="1032" y="352" width="190" height="92" rx="8" fill="#fee2e2" stroke="#ef4444"/>
-    <text x="1127" y="380" text-anchor="middle" class="font card-title" fill="#7f1d1d">5. 论文写作</text>
-    <text x="1127" y="403" text-anchor="middle" class="font card-sub" fill="#991b1b">写作 / 结构 / 故事线</text>
-    <text x="1127" y="424" text-anchor="middle" class="font card-skill" fill="#991b1b">ccf-writing-skills</text>
-  </g>
-
-  <path d="M302 398H330" stroke="#334155" stroke-width="2.2" marker-end="url(#arrow)"/>
-  <path d="M532 398H560" stroke="#334155" stroke-width="2.2" marker-end="url(#arrow)"/>
-  <path d="M762 398H790" stroke="#334155" stroke-width="2.2" marker-end="url(#arrow)"/>
-  <path d="M992 398H1020" stroke="#334155" stroke-width="2.2" marker-end="url(#arrow)"/>
-
-  <g filter="url(#shadow)">
-    <rect x="292" y="484" width="214" height="72" rx="8" fill="#fce7f3" stroke="#db2777"/>
-    <text x="399" y="512" text-anchor="middle" class="font card-title" fill="#831843">6. 篇幅压缩</text>
-    <text x="399" y="534" text-anchor="middle" class="font card-skill" fill="#9d174d">ccf-paper-compressor</text>
-  </g>
-
-  <g filter="url(#shadow)">
-    <rect x="612" y="484" width="244" height="72" rx="8" fill="#e0f2fe" stroke="#0284c7"/>
-    <text x="734" y="509" text-anchor="middle" class="font card-title" fill="#0c4a6e">7. 完整论文评审</text>
-    <text x="734" y="532" text-anchor="middle" class="font card-skill" fill="#075985">ccf-conference-reviewer</text>
-  </g>
-
-  <g filter="url(#shadow)">
-    <rect x="956" y="484" width="244" height="72" rx="8" fill="#ecfeff" stroke="#0891b2"/>
-    <text x="1078" y="509" text-anchor="middle" class="font card-title" fill="#164e63">8. 写作 / LaTeX 评审</text>
-    <text x="1078" y="532" text-anchor="middle" class="font card-skill" fill="#0e7490">ccf-conference-writing-reviewer</text>
-  </g>
-
-  <path d="M1127 444C1117 470 1047 470 1078 484" stroke="#64748b" stroke-width="2.1" fill="none" marker-end="url(#arrowSoft)"/>
-  <path d="M1127 444C1024 472 764 454 734 484" stroke="#334155" stroke-width="2.2" fill="none" marker-end="url(#arrow)"/>
-  <path d="M506 520H600" stroke="#334155" stroke-width="2.2" marker-end="url(#arrow)"/>
-  <path d="M856 520H944" stroke="#64748b" stroke-width="2.1" stroke-dasharray="7 7" marker-end="url(#arrowSoft)"/>
-  <path d="M734 556C622 584 308 580 207 444" stroke="#64748b" stroke-width="2" stroke-dasharray="7 7" fill="none" marker-end="url(#arrowSoft)"/>
-  <text x="486" y="576" class="font small" fill="#64748b">主要问题 -> 按 owner skill 定向修复</text>
-
-  <rect x="76" y="626" width="1288" height="128" rx="14" fill="#fff7ed" stroke="#fed7aa"/>
-  <text x="104" y="658" class="font band-title" fill="#9a3412">回应层：显式分支，不属于默认闭环</text>
-  <text x="104" y="682" class="font band-note" fill="#9a3412">仅在用户明确要求 rebuttal、审稿意见回复、作者回应、回复信或重投稿回应 时启动。</text>
-  <g filter="url(#shadow)">
-    <rect x="382" y="704" width="260" height="44" rx="8" fill="#ffedd5" stroke="#f97316"/>
-    <text x="512" y="732" text-anchor="middle" class="font card-title" fill="#9a3412">真实审稿意见 / 显式 rebuttal</text>
-  </g>
-  <g filter="url(#shadow)">
-    <rect x="782" y="704" width="300" height="44" rx="8" fill="#ffffff" stroke="#f97316"/>
-    <text x="932" y="723" text-anchor="middle" class="font card-title" fill="#9a3412">ccf-conference-paper-rebuttal</text>
-    <text x="932" y="740" text-anchor="middle" class="font tiny" fill="#9a3412">回应策略 / TeX 模板 / 承诺控制</text>
-  </g>
-  <path d="M642 726H770" stroke="#9a3412" stroke-width="2.2" marker-end="url(#arrow)"/>
-
-  <rect x="76" y="786" width="1288" height="96" rx="14" fill="#f1f5f9" stroke="#cbd5e1"/>
-  <text x="104" y="818" class="font band-title">共享治理层</text>
-  <text x="104" y="844" class="font sub">ccf-common：路由、quick/standard 模式、PARTIAL handoff、隐私/证据、来源质量规则、来源表</text>
-  <text x="104" y="868" class="font sub">forge-skills：skill 创建、维护、校验、双语触发词、家族一致性审计</text>
-
-  <rect x="990" y="800" width="320" height="58" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
-  <text x="1150" y="824" text-anchor="middle" class="font card-title" fill="#0f172a">全局约束</text>
-  <text x="1150" y="844" text-anchor="middle" class="font small" fill="#334155">不编造结果 / 不隐式查询私有文本</text>
-  <text x="1150" y="860" text-anchor="middle" class="font small" fill="#334155">不承诺接收概率 / 尊重 denylist</text>
-
-  <text x="720" y="922" text-anchor="middle" class="font tiny" fill="#64748b">CCFA Skills v0.3.x 架构快照：owner 路由互斥；跨阶段工作遵循 ccf-common handoff 策略。</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#59616b"/></marker></defs>
+<rect width="1200" height="520" fill="#f7f8fa"/>
+<text x="60" y="62" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#1f2933">CCFA v0.4 架构</text>
+<rect x="60" y="120" width="300" height="82" rx="8" fill="#1F6F8B"/><text x="210" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">治理</text>
+<line x1="360" y1="161" x2="430" y2="161" stroke="#59616b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="430" y="120" width="300" height="82" rx="8" fill="#2D8A68"/><text x="580" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">项目状态</text>
+<line x1="730" y1="161" x2="800" y2="161" stroke="#59616b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="800" y="120" width="300" height="82" rx="8" fill="#B85C38"/><text x="950" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">研究链路</text>
+<rect x="60" y="270" width="300" height="82" rx="8" fill="#6B5B95"/><text x="210" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">会议指南</text>
+<line x1="360" y1="311" x2="430" y2="311" stroke="#59616b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="430" y="270" width="300" height="82" rx="8" fill="#3B3F46"/><text x="580" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">审计</text>
+<line x1="730" y1="311" x2="800" y2="311" stroke="#59616b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="800" y="270" width="300" height="82" rx="8" fill="#B08D57"/><text x="950" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">发布</text>
 </svg>

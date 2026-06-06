@@ -140,3 +140,8 @@ Load only what is needed:
 - `references/source-notes.md`: Use when source provenance, official-policy checks, or method rationale matters.
 
 If the user's task is complete scientific paper review, simulated reviewers, AC/meta-review, or paper scoring, follow the CCFA handoff mode before switching to `ccf-conference-reviewer`. If the user's task is post-review communication rather than manuscript writing review, switch to `ccf-conference-paper-rebuttal` only when the user explicitly requests rebuttal, author response, response letter, resubmission response, or 审稿意见回复. If the user asks to score an early idea rather than a manuscript, follow the CCFA handoff mode before switching to `ccf-idea-reviewer`; if not confirmed, provide only a scope warning.
+
+
+## v0.4 Venue Guide Boundary
+
+For LaTeX/page/anonymity/template checks, read `../ccf-writing-skills/references/venue-guides/index.md` and the specific venue guide if present. This skill may diagnose format and writing-presentation risks, but it must not rewrite manuscript content unless the user asks for writing revision and routing allows handoff to `ccf-writing-skills`.

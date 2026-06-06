@@ -1,0 +1,4 @@
+interface:
+  display_name: "CCF Paper Project Scaffold"
+  short_description: "Create a CCF paper project directory, copy or select LaTeX templates, initialize ccfa"
+  default_prompt: "Use $ccf-paper-project-scaffold for its owned CCFA workflow. Respect routing boundaries, project artifacts, evidence limits, and handoff rules."

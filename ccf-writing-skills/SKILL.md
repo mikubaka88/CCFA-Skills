@@ -55,7 +55,7 @@ Load `references/writing-checklists.md` for the full checklist whenever the task
 
 1. Identify mode, target venue, field, paper type, draft state, deadline pressure, available materials, and whether the user authorized idea-scope changes. If the target venue is unknown, default to the user-custom writing format in `references/custom-format/default-user-format.md` and say this assumption explicitly.
    - If the user has only a rough research idea and no manuscript plan, follow the CCFA handoff mode before using `ccf-idea-optimizer` or `ccf-idea-reviewer`. If not confirmed or disabled, produce a writing-only scaffold and label idea-level risks without changing the idea.
-2. Build a venue writing plan. If a target CCF A venue is specified, load `references/ccf-a-venue-map.md` to map the target to a CCF A field, then load `references/venue-adapters.md` to choose reviewer expectations and evidence priorities. If no venue is specified, use the custom format instead of asking the user to choose a venue.
+2. Build a venue writing plan. If a target CCF venue is specified, load `references/venue-guides/index.md` first, then the specific `references/venue-guides/<venue>.md` when available for LaTeX/page/anonymity/template constraints. Then load `references/ccf-a-venue-map.md` and `references/venue-adapters.md` for reviewer expectations and evidence priorities. Do not trigger the removed legacy `ccf-conference-skills/<venue>` runtime layer.
 3. Analyze reference papers if provided, if the custom format is active, or if the target venue needs exemplar guidance. Load `references/exemplars/index.md` first to select built-in exemplar cards, including non-AI/CV/NLP cards when the target is DB, systems, security, HCI, PL, theory, graphics, or related fields. Then load `references/exemplar-style-analysis.md` to extract only abstract writing techniques: section moves, paragraph roles, transitions, claim-evidence patterns, figure/table narration, and review-facing framing.
 4. Build the global paper story before drafting any section. Load `references/storyline-blueprint.md` and define task, gap, root challenge, insight, method mechanism, contribution types, evidence promises, limitations, and target reviewer questions from the user's supplied idea and evidence. Do not change those elements unless explicitly confirmed.
 5. If Related Work, Introduction, novelty, datasets, or baselines require current sources, follow CCFA handoff mode before using `ccf-literature-search`. If denied, mark citation and novelty risks rather than inventing sources.
@@ -71,6 +71,7 @@ Load `references/writing-checklists.md` for the full checklist whenever the task
 
 Load only what is needed:
 
+- `references/venue-guides/index.md`: Use first when a target venue is explicit; then load the specific `references/venue-guides/<venue>.md` for LaTeX, page, anonymity, template, and camera-ready constraints.
 - `references/ccf-a-venue-map.md`: Use to identify the CCF A venue family and broad field.
 - `references/venue-adapters.md`: Use to adapt writing priorities to AI, CV, NLP, DB/IR/KDD, systems, security, PL/SE, HCI, graphics, theory, and other CCF A families.
 - `references/custom-format/default-user-format.md`: Use by default when the user has not specified a target venue or wants the user's custom exemplar style.

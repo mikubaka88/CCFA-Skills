@@ -1,124 +1,15 @@
-<svg width="1440" height="940" viewBox="0 0 1440 940" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">CCFA 評審邊界架構</title>
-  <desc id="desc">CCFA 思路評審、完整論文評審、寫作評審和明確 rebuttal 模組的邊界圖。</desc>
-  <defs>
-    <filter id="shadow" x="-12%" y="-18%" width="124%" height="140%" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.1"/>
-    </filter>
-    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
-      <path d="M2 2L10 6L2 10" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </marker>
-    <marker id="arrowOrange" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
-      <path d="M2 2L10 6L2 10" stroke="#9a3412" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </marker>
-    <style>
-      .font{font-family:"Microsoft YaHei","Noto Sans SC","Inter","Segoe UI",Arial,sans-serif}
-      .title{font-size:34px;font-weight:800;fill:#0f172a}
-      .sub{font-size:15px;fill:#475569}
-      .h{font-size:16px;font-weight:800}
-      .b{font-size:12px;fill:#334155}
-      .s{font-size:11px;fill:#64748b}
-      .skill{font-size:12px;font-weight:800}
-      .label{font-size:12px;font-weight:800;fill:#0f172a}
-    </style>
-  </defs>
-
-  <rect width="1440" height="940" rx="28" fill="#f8fafc"/>
-  <rect x="40" y="34" width="1360" height="858" rx="22" fill="#ffffff" stroke="#e2e8f0"/>
-  <text x="720" y="78" text-anchor="middle" class="font title">評審 / Reviewer 邊界圖</text>
-  <text x="720" y="108" text-anchor="middle" class="font sub">明確拆分 idea 評分、完整論文評審、寫作評審和 rebuttal，避免空泛評審</text>
-
-  <rect x="82" y="148" width="1276" height="86" rx="8" fill="#f1f5f9" stroke="#cbd5e1"/>
-  <text x="110" y="180" class="font label">路由規則</text>
-  <text x="236" y="180" class="font b">審稿這篇論文 / 完整審稿 / 模擬審稿人 / AC meta-review / 論文評分 -> `ccf-conference-reviewer`</text>
-  <text x="236" y="205" class="font b">逐段寫作評審 / LaTeX / 行文邏輯 / 全文一致性 -> `ccf-conference-writing-reviewer`；idea 評分/排名 -> `ccf-idea-reviewer`；rebuttal -> 僅明確觸發</text>
-
-  <g filter="url(#shadow)">
-    <rect x="82" y="278" width="286" height="432" rx="8" fill="#f5f3ff" stroke="#7c3aed"/>
-    <text x="225" y="314" text-anchor="middle" class="font h" fill="#4c1d95">思路評審</text>
-    <text x="225" y="338" text-anchor="middle" class="font skill" fill="#5b21b6">ccf-idea-reviewer</text>
-    <line x1="110" y1="358" x2="340" y2="358" stroke="#c4b5fd"/>
-    <text x="110" y="388" class="font label">啟動條件</text>
-    <text x="110" y="412" class="font b">使用者明確要求 idea 評分、選題評分、</text>
-    <text x="110" y="432" class="font b">排名、選擇、嚴格銳評、是否值得做。</text>
-    <text x="110" y="470" class="font label">負責</text>
-    <text x="110" y="494" class="font b">早期 idea 的 novelty、insight、</text>
-    <text x="110" y="514" class="font b">method soundness、feasibility、venue fit。</text>
-    <text x="110" y="552" class="font label">不負責</text>
-    <text x="110" y="576" class="font b">具象化模糊 idea、論文全文審稿、</text>
-    <text x="110" y="596" class="font b">寫作 / LaTeX 審查或 rebuttal。</text>
-    <text x="110" y="634" class="font label">輸出</text>
-    <text x="110" y="658" class="font b">分數、排序、最接近工作風險、</text>
-    <text x="110" y="678" class="font b">會改變判斷的證據。</text>
-  </g>
-
-  <g filter="url(#shadow)">
-    <rect x="410" y="278" width="326" height="432" rx="8" fill="#e0f2fe" stroke="#0284c7"/>
-    <text x="573" y="314" text-anchor="middle" class="font h" fill="#0c4a6e">完整論文評審</text>
-    <text x="573" y="338" text-anchor="middle" class="font skill" fill="#075985">ccf-conference-reviewer</text>
-    <line x1="438" y1="358" x2="708" y2="358" stroke="#7dd3fc"/>
-    <text x="438" y="388" class="font label">啟動條件</text>
-    <text x="438" y="412" class="font b">完整審稿、模擬審稿人、AC/meta-review、</text>
-    <text x="438" y="432" class="font b">論文評分、桌面拒稿風險、接收風險。</text>
-    <text x="438" y="470" class="font label">負責</text>
-    <text x="438" y="494" class="font b">桌面檢查、公開安全相關工作檢索、</text>
-    <text x="438" y="514" class="font b">新穎性/可靠性/證據、實驗/復現審計、</text>
-    <text x="438" y="534" class="font b">多審稿人小組、AC 綜合意見、分數。</text>
-    <text x="438" y="572" class="font label">不負責</text>
-    <text x="438" y="596" class="font b">直接改寫全文、純 LaTeX 審查、作者回應。</text>
-    <text x="438" y="634" class="font label">標準輸出</text>
-    <text x="438" y="658" class="font b">固定格式 Markdown 審稿報告、問題表、</text>
-    <text x="438" y="678" class="font b">分數調整條件、交接動作。</text>
-  </g>
-
-  <g filter="url(#shadow)">
-    <rect x="778" y="278" width="286" height="432" rx="8" fill="#ecfeff" stroke="#0891b2"/>
-    <text x="921" y="314" text-anchor="middle" class="font h" fill="#164e63">寫作評審</text>
-    <text x="921" y="338" text-anchor="middle" class="font skill" fill="#0e7490">ccf-conference-writing-reviewer</text>
-    <line x1="806" y1="358" x2="1036" y2="358" stroke="#67e8f9"/>
-    <text x="806" y="388" class="font label">啟動條件</text>
-    <text x="806" y="412" class="font b">寫作評審、逐段寫作評審、LaTeX、</text>
-    <text x="806" y="432" class="font b">格式、行文邏輯、全文一致性。</text>
-    <text x="806" y="470" class="font label">負責</text>
-    <text x="806" y="494" class="font b">段落 ID、故事線、主張-證據</text>
-    <text x="806" y="514" class="font b">呈現、術語、圖表敘述、</text>
-    <text x="806" y="534" class="font b">LaTeX / 模板 / 引用檢查。</text>
-    <text x="806" y="572" class="font label">不負責</text>
-    <text x="806" y="596" class="font b">科學新穎性裁決、接收式評分、</text>
-    <text x="806" y="616" class="font b">AC/meta-review 或 審稿人模擬。</text>
-    <text x="806" y="654" class="font label">輸出</text>
-    <text x="806" y="678" class="font b">逐段問題表、具體改寫动作、格式風險。</text>
-  </g>
-
-  <g filter="url(#shadow)">
-    <rect x="1106" y="278" width="252" height="432" rx="8" fill="#fff7ed" stroke="#f97316"/>
-    <text x="1232" y="314" text-anchor="middle" class="font h" fill="#9a3412">Rebuttal</text>
-    <text x="1232" y="338" text-anchor="middle" class="font skill" fill="#9a3412">ccf-conference-paper-rebuttal</text>
-    <line x1="1134" y1="358" x2="1330" y2="358" stroke="#fdba74"/>
-    <text x="1134" y="388" class="font label">啟動條件</text>
-    <text x="1134" y="412" class="font b">真實審稿意見 + 使用者明確要求</text>
-    <text x="1134" y="432" class="font b">rebuttal / 作者回應 / response letter。</text>
-    <text x="1134" y="470" class="font label">負責</text>
-    <text x="1134" y="494" class="font b">回應策略、語氣、承諾控制、</text>
-    <text x="1134" y="514" class="font b">AC/R1/R2 映射、TeX 回應文件。</text>
-    <text x="1134" y="552" class="font label">不負責</text>
-    <text x="1134" y="576" class="font b">投稿前閉環中的普通評審。</text>
-    <text x="1134" y="614" class="font label">輸出</text>
-    <text x="1134" y="638" class="font b">作者回應、修改承諾、補充實驗占位。</text>
-  </g>
-
-  <path d="M368 494H398" stroke="#334155" stroke-width="2.2" marker-end="url(#arrow)"/>
-  <text x="383" y="480" text-anchor="middle" class="font s">已有草稿</text>
-  <path d="M736 494H766" stroke="#334155" stroke-width="2.2" marker-end="url(#arrow)"/>
-  <text x="751" y="480" text-anchor="middle" class="font s">寫作细查</text>
-  <path d="M1064 494H1094" stroke="#9a3412" stroke-width="2.2" stroke-dasharray="7 7" marker-end="url(#arrowOrange)"/>
-  <text x="1079" y="480" text-anchor="middle" class="font s" fill="#9a3412">真實審稿意見</text>
-
-  <rect x="82" y="766" width="1276" height="74" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-  <text x="110" y="796" class="font label">反空话約束</text>
-  <text x="270" y="796" class="font b">每個問題必須指向具體主張、段落、章節、圖表、實驗、closest prior work 或缺失證據路徑。</text>
-  <text x="270" y="820" class="font b">不得編造引用、結果、reviewer 共识、分數變化、基準排名或接收機率。</text>
-
-  <rect x="82" y="858" width="1276" height="36" rx="8" fill="#f1f5f9" stroke="#cbd5e1"/>
-  <text x="720" y="881" text-anchor="middle" class="font s">边界快照：reviewer skills 是专门模組；跨模組移动遵循 ccf-common 的 PARTIAL handoff 和使用者 denylist。</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#59616b"/></marker></defs>
+<rect width="1200" height="520" fill="#f7f8fa"/>
+<text x="60" y="62" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#1f2933">CCFA 評審與稽核邊界</text>
+<rect x="60" y="120" width="300" height="82" rx="8" fill="#1F6F8B"/><text x="210" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">科學審稿</text>
+<line x1="360" y1="161" x2="430" y2="161" stroke="#59616b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="430" y="120" width="300" height="82" rx="8" fill="#2D8A68"/><text x="580" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">寫作評審</text>
+<line x1="730" y1="161" x2="800" y2="161" stroke="#59616b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="800" y="120" width="300" height="82" rx="8" fill="#B85C38"/><text x="950" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">完整性稽核</text>
+<rect x="60" y="270" width="300" height="82" rx="8" fill="#6B5B95"/><text x="210" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">引用稽核</text>
+<line x1="360" y1="311" x2="430" y2="311" stroke="#59616b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="430" y="270" width="300" height="82" rx="8" fill="#3B3F46"/><text x="580" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">投稿檢查</text>
+<line x1="730" y1="311" x2="800" y2="311" stroke="#59616b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="800" y="270" width="300" height="82" rx="8" fill="#B08D57"/><text x="950" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">回應審稿</text>
 </svg>

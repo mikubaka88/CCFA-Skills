@@ -14,7 +14,7 @@ metadata:
 
 ## Core Rule
 
-This is the shared control module for the CCFA Skills family. Do not use it as a user-facing research assistant module. Use it to keep routing, handoff behavior, source provenance, private-material handling, and score-risk language consistent across `ccf-*` skills and `forge-skills`.
+This is the shared control module for the CCFA Skills family. Do not use it as a user-facing research assistant module. Use it to keep routing, handoff behavior, source provenance, private-material handling, and score-risk language consistent across `ccf-*` skills and `ccf-forge-skills`.
 
 ## Invocation Controls
 
@@ -30,6 +30,9 @@ Load only the file needed for the current maintenance task:
 - `references/privacy-and-evidence.md`: Use when handling manuscripts, reviews, rebuttals, private drafts, literature searches, or evidence claims.
 - `references/source-registry.yaml`: Use as the shared source inventory for venue rules, review methods, exemplar records, and research-workflow references.
 - `references/ccf-a-venue-map.md`: Use when a non-writing skill needs venue-family mapping without depending on `ccf-writing-skills`.
+- `references/skill-trigger-registry.yaml`: Use as the v0.4 public trigger registry for routing conflict audits.
+- `references/artifact-contracts.md`: Use to decide which skill may read or write each project artifact.
+- `references/ccfa-yaml-contract.md`: Use for the shared `ccfa.yaml` project-state schema.
 
 ## Maintenance Workflow
 

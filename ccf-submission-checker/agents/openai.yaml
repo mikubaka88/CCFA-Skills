@@ -1,0 +1,4 @@
+interface:
+  display_name: "CCF Submission Checker"
+  short_description: "Check CCF conference submission packages for LaTeX compilation, PDF metadata, page limit, anonymity, fonts, template com"
+  default_prompt: "Use $ccf-submission-checker for its owned CCFA workflow. Respect routing boundaries, project artifacts, evidence limits, and handoff rules."

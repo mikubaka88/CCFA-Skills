@@ -1,0 +1,4 @@
+interface:
+  display_name: "CCF Integrity Auditor"
+  short_description: "Audit manuscript integrity: claim-support alignment, result-to-claim consistency, numeric consistency, citation-context "
+  default_prompt: "Use $ccf-integrity-auditor for its owned CCFA workflow. Respect routing boundaries, project artifacts, evidence limits, and handoff rules."

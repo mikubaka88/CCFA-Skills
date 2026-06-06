@@ -1,90 +1,106 @@
 # CCFA Routing
 
-Use this file to prevent trigger overlap across the CCFA Skills family. Route by the user's current task, not by every possible downstream action.
+Use this file to prevent trigger overlap across the CCFA Skills family. Route by the user's current task, not by every possible downstream action. `SKILL.md` remains authoritative if this file conflicts with an individual skill.
 
-## Canonical Route
+## Canonical Routes
 
 | User intent | Owning skill | Boundary |
 | --- | --- | --- |
-| Clarify goals, constraints, success criteria, workflow options, task decomposition, or next CCFA-skill routing before complex work | `ccf-brainstorming` | On-demand upstream planning only. Do not optimize ideas, search literature, design experiments, write/compress/review manuscripts, or draft rebuttals as the main output. |
-| Turn a rough direction into a problem-method-evidence plan | `ccf-idea-optimizer` | Do not score as the main output unless requested. Use literature search only through the handoff rule when novelty/current prior art matters. |
-| Explicitly score, rank, select, or strictly review early ideas | `ccf-idea-reviewer` | Use only when idea scoring/review is explicit. Do not optimize generic fuzzy ideas or review manuscripts. |
-| Search related work, closest prior art, datasets, benchmarks, or citation evidence | `ccf-literature-search` | Do not optimize the idea or write the paper as the main output. Follow the shared source-quality policy. |
-| Design experiments, datasets, benchmarks, baselines, ablations, or result-fill tables | `ccf-experiment-designer` | Do not fabricate results. Use placeholders unless the user supplies numbers. |
-| Draft, revise, polish, or restructure paper text | `ccf-writing-skills` | Preserve idea scope unless explicitly authorized. |
-| Compress a paper, section, introduction, related work, method, or experiment text to a target length | `ccf-paper-compressor` | Preserve claims, evidence, results, and limitations; ask once before appendix/delete if policy is unknown. |
-| Complete scientific paper review, simulated reviewers, AC/meta-review, desk rejection assessment, paper scoring, acceptance-risk diagnosis, or fixed-format review report | `ccf-conference-reviewer` | Full manuscript scientific review only. Do not perform writing rewrites; route writing/LaTeX detail to `ccf-conference-writing-reviewer`. |
-| Writing-only manuscript review, paragraph-by-paragraph writing critique, LaTeX/format audit, story logic, consistency, contribution presentation, or reviewer-facing clarity risks | `ccf-conference-writing-reviewer` | Use only when writing/format review is explicit. Do not score scientific acceptance or simulate full reviewers. |
-| Draft rebuttal, author response, response letter, revision summary, or TeX response after real reviews | `ccf-conference-paper-rebuttal` | Isolated post-review module. Use only when the user explicitly asks for rebuttal/author response/审稿意见回复/response letter, or explicitly names the skill. |
-| Create, update, validate, or audit CCFA skills and shared controls | `forge-skills` | Use `ccf-common` as shared policy, not as a replacement for `forge-skills`. |
-| Shared routing, task modes, handoff, privacy, source, or provenance policy | `ccf-common` | Not an ordinary user-facing research task skill. |
+| Complex research workflow clarification, task decomposition, and skill-routing planning. | `ccf-brainstorming` | Do not optimize ideas, search literature, write, review, or rebut as the primary output. |
+| Make rough research directions concrete: problem, method, novelty, and evidence plan. | `ccf-idea-optimizer` | Do not rank or score ideas as the main job. |
+| Strictly score, rank, compare, and triage early research ideas. | `ccf-idea-reviewer` | Do not polish manuscripts or optimize a single fuzzy idea unless scoring is explicit. |
+| Find prior art, related work, datasets, benchmarks, and citation evidence online. | `ccf-literature-search` | Do not write the paper or audit an already fixed bibliography as the main task. |
+| Design evaluation protocols, baselines, ablations, metrics, and result table templates. | `ccf-experiment-designer` | Do not invent experimental results. |
+| Plan, draft, revise, polish, and reviewer-proof manuscript text. | `ccf-writing-skills` | Do not change idea scope without confirmation; do not replace full scientific review or rebuttal. |
+| Reduce paper, section, abstract, related-work, method, or experiment length. | `ccf-paper-compressor` | Do not change claims, evidence, results, or limitations. |
+| Full scientific manuscript review, simulated reviewers, AC/meta-review, scoring, and acceptance-risk diagnosis. | `ccf-conference-reviewer` | Do not rewrite prose or perform venue-format-only checks. |
+| Writing-only review, paragraph logic, consistency, LaTeX/format audit, and presentation risks. | `ccf-conference-writing-reviewer` | Do not score scientific acceptance as a full reviewer. |
+| Draft rebuttal, author response, response letter, and revision summary after real reviews. | `ccf-conference-paper-rebuttal` | Do not trigger for ordinary manuscript writing. |
+| Query conference LaTeX, template, anonymity, page limit, camera-ready, and venue-format requirements. | `ccf-conference-guides` | Do not write, polish, review, or rebut paper content. |
+| Coordinate project stages, gates, handoffs, and ccfa.yaml state. | `ccf-pipeline-orchestrator` | Do not write, review, search, or design experiments itself. |
+| Create a paper-project directory, copy templates, and initialize ccfa.yaml. | `ccf-paper-project-scaffold` | Do not generate research content. |
+| Audit claim-support, result-to-claim alignment, numbers, terminology, and evidence consistency. | `ccf-integrity-auditor` | Do not perform full scientific acceptance review. |
+| Verify existing citations, BibTeX metadata, existence, and citation-context support. | `ccf-citation-auditor` | Do not perform broad literature search for new papers. |
+| Check LaTeX/PDF build, page limit, anonymity, metadata, fonts, templates, and policy freshness. | `ccf-submission-checker` | Do not polish or rewrite manuscript content. |
+| Generate or audit figures, LaTeX tables, SVG/PDF outputs, and QA from real supplied results. | `ccf-figure-table-builder` | Do not invent data. |
+| Prepare artifact checklist, code/data/model release plan, seed/env notes, and reproducibility appendix. | `ccf-artifact-reproducibility` | Do not claim reproducibility without evidence. |
+| Maintain reviewer-comment to action to manuscript-location to status tracking. | `ccf-revision-ledger` | Do not replace rebuttal wording. |
+| Adapt an existing manuscript to a new venue under conservative default constraints. | `ccf-resubmission-adapter` | Do not add experiments or edit bibliography unless authorized. |
+| Convert a paper into slides, poster, talk script, Q&A, or presentation plan. | `ccf-paper-talk` | Do not perform pre-submission scientific review. |
+| Shared routing, handoff, task modes, source registry, privacy/evidence, and artifact governance. | `ccf-common` | Not an ordinary research task skill. |
+| Create, update, validate, or audit CCFA/Codex skills and shared controls. | `ccf-forge-skills` | Do not perform research writing or review work. |
 
-## Default Closed Loop
+## Venue Layer Rule
 
-The default pre-submission loop is:
+`ccf-conference-skills/<venue>/SKILL.md` is removed as a runtime layer in v0.4. Venue knowledge now enters through:
+
+- `ccf-writing-skills/references/venue-guides/index.md`
+- `ccf-writing-skills/references/venue-guides/<venue>.md`
+- `ccf-conference-guides` for format-only user questions
+
+Writing, polishing, review, rebuttal, resubmission, and submission-package checks must route to their owning skills.
+
+## Default Paper Project Flow
 
 ```text
-ccf-brainstorming (optional for ambiguous or multi-stage requests)
-  -> routed downstream skill
-ccf-idea-optimizer
-  -> ccf-idea-reviewer (only when explicit scoring/review is requested)
+ccf-paper-project-scaffold
+  -> ccf-pipeline-orchestrator
+  -> ccf-brainstorming
+  -> ccf-idea-optimizer
+  -> ccf-idea-reviewer
   -> ccf-literature-search
   -> ccf-experiment-designer
   -> ccf-writing-skills
-  -> ccf-conference-reviewer (full scientific review)
-  -> ccf-conference-writing-reviewer / ccf-writing-skills / ccf-experiment-designer / ccf-paper-compressor as needed
+  -> ccf-integrity-auditor / ccf-citation-auditor
+  -> ccf-figure-table-builder / ccf-artifact-reproducibility
+  -> ccf-paper-compressor
+  -> ccf-conference-reviewer
+  -> ccf-conference-writing-reviewer
+  -> ccf-submission-checker
+  -> ccf-conference-paper-rebuttal / ccf-revision-ledger
+  -> ccf-resubmission-adapter / ccf-paper-talk
 ```
 
-`ccf-conference-paper-rebuttal` is outside this loop. It can call other modules when explicitly active and the user allows the handoff, but other modules should not route into rebuttal unless the user asked for rebuttal, author response, response letter, meta-review response, resubmission response, or 审稿意见回复.
+## Handoff Map
 
-## Route Resolution Rules
-
-1. If the user explicitly names a CCFA skill, use that skill and load this route only to avoid accidental sibling transitions.
-2. If the request asks to brainstorm, clarify requirements, compare workflow approaches, decompose a broad research task, create a research/design brief, or decide which CCFA skill should run next, route to `ccf-brainstorming`.
-3. If the request is about a rough idea and asks to improve, concrete-ize, optimize, develop, or reshape it, route to `ccf-idea-optimizer`.
-4. If the request explicitly asks to rate, rank, score, compare, select, strictly review, or decide whether to invest in ideas, route to `ccf-idea-reviewer`.
-5. If the request asks to search papers, find related work, build a literature folder, check prior art, find datasets/benchmarks, or support Related Work/Introduction with sources, route to `ccf-literature-search`.
-6. If the request asks to design experiments, choose datasets, benchmark baselines, plan ablations, create result tables, or align experiments to claims, route to `ccf-experiment-designer`.
-7. If the request asks to write, polish, rewrite, plan sections, align claims to evidence, or improve presentation, route to `ccf-writing-skills`.
-8. If the request asks to shorten, compress, reduce words/pages, move to appendix, or fit a page limit, route to `ccf-paper-compressor`.
-9. If the request asks for complete paper review, simulated reviewers, paper scoring, AC/meta-review, desk rejection assessment, acceptance-risk diagnosis, or a fixed-format review report, route to `ccf-conference-reviewer`.
-10. If the request asks to review manuscript writing, read a paper/section paragraph by paragraph for writing, check LaTeX or format, diagnose paper logic, consistency, contribution presentation, or writing-related reviewer risk, route to `ccf-conference-writing-reviewer`.
-11. If the request includes real reviewer comments and asks for a response, rebuttal, response letter, revision summary, or resubmission response, route to `ccf-conference-paper-rebuttal`.
-12. If the request is about creating or maintaining skills, route to `forge-skills`; load `ccf-common` only for CCFA family controls.
-
-## Ambiguous Requests
-
-- "Improve this idea and tell me if it is worth pursuing": route to `ccf-idea-optimizer`, then apply a local risk scan unless `ccf-idea-reviewer` is explicitly requested or allowed by `handoff_question_mode`.
-- "I have a broad research workflow and do not know where to start": route to `ccf-brainstorming`, then follow handoff mode before the owning downstream skill.
-- "This idea may be stale; find current work and then improve it": route to `ccf-literature-search` first, then follow handoff mode before `ccf-idea-optimizer`.
-- "Polish this introduction and reduce rejection risk": route to `ccf-writing-skills`; use quick mode for one paragraph and standard mode for a full introduction.
-- "Compress this introduction to half length": route to `ccf-paper-compressor`, not the general writing skill.
-- "Design experiments for this draft": route to `ccf-experiment-designer`; follow handoff mode before literature search if datasets/baselines are unknown.
-- "Review this paper and rewrite the introduction": route to `ccf-conference-reviewer` for full scientific diagnosis if the user means complete review; route to `ccf-conference-writing-reviewer` if the user means writing diagnosis; then follow handoff mode before writing.
-- "Simulate scientific reviewers and score acceptance risk": route to `ccf-conference-reviewer`.
-- "逐段审稿": route to `ccf-conference-writing-reviewer` when writing/format/logic is the goal; route to `ccf-conference-reviewer` when scientific scoring is requested.
-- "Respond to reviews and revise the paper": route to `ccf-conference-paper-rebuttal` only because response is explicit; then follow handoff mode before manuscript writing.
+- `ccf-brainstorming` -> Most CCFA skills through partial handoff.
+- `ccf-idea-optimizer` -> ccf-literature-search, ccf-experiment-designer, ccf-writing-skills.
+- `ccf-idea-reviewer` -> ccf-literature-search, ccf-idea-optimizer.
+- `ccf-literature-search` -> ccf-idea-optimizer, ccf-idea-reviewer, ccf-experiment-designer, ccf-writing-skills.
+- `ccf-experiment-designer` -> ccf-literature-search, ccf-writing-skills, ccf-figure-table-builder.
+- `ccf-writing-skills` -> ccf-conference-guides, ccf-paper-compressor, ccf-conference-writing-reviewer, ccf-conference-reviewer.
+- `ccf-paper-compressor` -> ccf-writing-skills, ccf-submission-checker.
+- `ccf-conference-reviewer` -> ccf-writing-skills, ccf-conference-writing-reviewer, ccf-experiment-designer.
+- `ccf-conference-writing-reviewer` -> ccf-writing-skills, ccf-conference-guides, ccf-submission-checker.
+- `ccf-conference-paper-rebuttal` -> ccf-revision-ledger, ccf-writing-skills.
+- `ccf-conference-guides` -> ccf-writing-skills, ccf-conference-writing-reviewer, ccf-submission-checker.
+- `ccf-pipeline-orchestrator` -> All stage-owning CCFA skills.
+- `ccf-paper-project-scaffold` -> ccf-pipeline-orchestrator, ccf-writing-skills, ccf-submission-checker.
+- `ccf-integrity-auditor` -> ccf-writing-skills, ccf-conference-reviewer, ccf-citation-auditor.
+- `ccf-citation-auditor` -> ccf-literature-search, ccf-writing-skills.
+- `ccf-submission-checker` -> ccf-conference-guides, ccf-paper-compressor, ccf-writing-skills.
+- `ccf-figure-table-builder` -> ccf-experiment-designer, ccf-writing-skills, ccf-integrity-auditor.
+- `ccf-artifact-reproducibility` -> ccf-experiment-designer, ccf-submission-checker, ccf-writing-skills.
+- `ccf-revision-ledger` -> ccf-conference-paper-rebuttal, ccf-writing-skills.
+- `ccf-resubmission-adapter` -> ccf-conference-guides, ccf-writing-skills, ccf-submission-checker.
+- `ccf-paper-talk` -> ccf-writing-skills.
+- `ccf-common` -> All CCFA skills.
+- `ccf-forge-skills` -> ccf-common.
 
 ## Smoke Prompts
 
-Use these for routing audits:
-
-```text
-帮我头脑风暴一个复杂研究项目流程 -> ccf-brainstorming
-先讨论 / 需求澄清 / 任务拆解 / research brief -> ccf-brainstorming
-优化一个 CVPR idea -> ccf-idea-optimizer
-把一个模糊 idea 具体化 -> ccf-idea-optimizer
-给三个 idea 评分/排名 -> ccf-idea-reviewer
-idea严格锐评 / 选题评分 -> ccf-idea-reviewer
-联网搜索 related work 并评分 -> ccf-literature-search
-查找 benchmark 和数据集 -> ccf-literature-search or ccf-experiment-designer by main output
-设计对比实验和消融实验 -> ccf-experiment-designer
-润色 introduction 并降低 reviewer 风险 -> ccf-writing-skills
-quick polish this paragraph -> ccf-writing-skills quick mode
-压缩 related work 到 800 字 -> ccf-paper-compressor
-完整审稿这篇论文并给分 -> ccf-conference-reviewer
-模拟 NeurIPS reviewers 和 AC meta-review -> ccf-conference-reviewer
-逐段写作评审 / LaTeX格式检查 / 全文一致性评审 -> ccf-conference-writing-reviewer
-根据 R1/R2 写 rebuttal / 审稿意见回复 -> ccf-conference-paper-rebuttal
-维护 CCFA skill -> forge-skills
-```
+| Prompt | Expected route |
+| --- | --- |
+| 优化一个 CVPR idea | `ccf-idea-optimizer` |
+| 给三个 idea 评分排名 | `ccf-idea-reviewer` |
+| 搜索 related work 和 benchmark | `ccf-literature-search` |
+| 设计对比实验和消融 | `ccf-experiment-designer` |
+| 润色 introduction 并降低 reviewer 风险 | `ccf-writing-skills` |
+| CVPR page limit / LaTeX template / anonymity | `ccf-conference-guides` |
+| 完整审稿并给分 | `ccf-conference-reviewer` |
+| 逐段写作评审和 LaTeX 检查 | `ccf-conference-writing-reviewer` |
+| 根据 R1/R2 写 rebuttal | `ccf-conference-paper-rebuttal` |
+| 检查引用是否真实且支持上下文 | `ccf-citation-auditor` |
+| 审计 claim 和数字是否一致 | `ccf-integrity-auditor` |
+| 迁移到 SIGMOD 但不新增实验 | `ccf-resubmission-adapter` |
+| 把论文做成 slides 和 Q&A | `ccf-paper-talk` |

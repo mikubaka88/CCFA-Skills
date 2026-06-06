@@ -250,20 +250,29 @@ sources:
     verified_at: null
     stale_after_days: 730
     notes: Use for research taste and importance framing.
-  - id: academic-research-skills-codex
-    title: Academic Research Skills For Codex
-    url: https://github.com/Imbad0202/academic-research-skills-codex
+  - id: academic-research-skills
+    title: Academic Research Skills
+    url: https://github.com/Imbad0202/academic-research-skills
     source_type: background_method
-    used_by: [ccf-idea-optimizer, ccf-idea-reviewer]
+    used_by: [ccf-common, ccf-idea-optimizer, ccf-idea-reviewer, ccf-writing-skills]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
     notes: Related skill direction, not an authoritative venue source.
-  - id: auto-claude-research-in-sleep
-    title: Auto Claude Research-In-Sleep Idea Creator
-    url: https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/main/skills/idea-creator/SKILL.md
+  - id: nature-skills
+    title: Nature Skills
+    url: https://github.com/Yuan1z0825/nature-skills
     source_type: background_method
-    used_by: [ccf-idea-optimizer, ccf-idea-reviewer]
+    used_by: [ccf-common, ccf-writing-skills, ccf-conference-writing-reviewer]
+    recorded_at: 2026-06-06
+    verified_at: null
+    stale_after_days: 365
+    notes: Related skill family for high-standard paper writing and style workflow comparison; not an authoritative CCF venue source.
+  - id: auto-claude-research-in-sleep
+    title: Auto Claude Code Research In Sleep
+    url: https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep
+    source_type: background_method
+    used_by: [ccf-common, ccf-idea-optimizer, ccf-idea-reviewer, ccf-pipeline-orchestrator]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -596,7 +605,7 @@ sources:
     title: Local CCFA Architecture SVG Assets
     url: repo:assets/
     source_type: local_reference
-    used_by: [ccf-common, forge-skills]
+    used_by: [ccf-common, ccf-forge-skills]
     recorded_at: 2026-06-05
     verified_at: 2026-06-05
     stale_after_days: 365

@@ -1,124 +1,15 @@
-<svg width="1440" height="940" viewBox="0 0 1440 940" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">CCFA Review Boundary Architecture</title>
-  <desc id="desc">Boundary map for CCFA idea review, full paper review, writing review, and explicit rebuttal modules.</desc>
-  <defs>
-    <filter id="shadow" x="-12%" y="-18%" width="124%" height="140%" color-interpolation-filters="sRGB">
-      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.1"/>
-    </filter>
-    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
-      <path d="M2 2L10 6L2 10" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </marker>
-    <marker id="arrowOrange" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
-      <path d="M2 2L10 6L2 10" stroke="#9a3412" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </marker>
-    <style>
-      .font{font-family:"Microsoft YaHei","Noto Sans SC","Inter","Segoe UI",Arial,sans-serif}
-      .title{font-size:34px;font-weight:800;fill:#0f172a}
-      .sub{font-size:15px;fill:#475569}
-      .h{font-size:16px;font-weight:800}
-      .b{font-size:12px;fill:#334155}
-      .s{font-size:11px;fill:#64748b}
-      .skill{font-size:12px;font-weight:800}
-      .label{font-size:12px;font-weight:800;fill:#0f172a}
-    </style>
-  </defs>
-
-  <rect width="1440" height="940" rx="28" fill="#f8fafc"/>
-  <rect x="40" y="34" width="1360" height="858" rx="22" fill="#ffffff" stroke="#e2e8f0"/>
-  <text x="720" y="78" text-anchor="middle" class="font title">Review / Reviewer Boundary Map</text>
-  <text x="720" y="108" text-anchor="middle" class="font sub">Separate idea scoring, full paper review, writing review, and rebuttal to avoid generic reviews</text>
-
-  <rect x="82" y="148" width="1276" height="86" rx="8" fill="#f1f5f9" stroke="#cbd5e1"/>
-  <text x="110" y="180" class="font label">Routing rule</text>
-  <text x="236" y="180" class="font b">review this paper / full review / simulated reviewers / AC meta-review / paper scoring -> `ccf-conference-reviewer`</text>
-  <text x="236" y="205" class="font b">paragraph writing review / LaTeX / writing logic / consistency -> `ccf-conference-writing-reviewer`; idea scoring/ranking -> `ccf-idea-reviewer`; rebuttal -> explicit only</text>
-
-  <g filter="url(#shadow)">
-    <rect x="82" y="278" width="286" height="432" rx="8" fill="#f5f3ff" stroke="#7c3aed"/>
-    <text x="225" y="314" text-anchor="middle" class="font h" fill="#4c1d95">Idea Review</text>
-    <text x="225" y="338" text-anchor="middle" class="font skill" fill="#5b21b6">ccf-idea-reviewer</text>
-    <line x1="110" y1="358" x2="340" y2="358" stroke="#c4b5fd"/>
-    <text x="110" y="388" class="font label">Starts when</text>
-    <text x="110" y="412" class="font b">explicit idea scoring, topic scoring,</text>
-    <text x="110" y="432" class="font b">ranking, selection, strict review, investment decision.</text>
-    <text x="110" y="470" class="font label">Owns</text>
-    <text x="110" y="494" class="font b">early idea novelty, insight,</text>
-    <text x="110" y="514" class="font b">method soundness, feasibility, venue fit.</text>
-    <text x="110" y="552" class="font label">Does not own</text>
-    <text x="110" y="576" class="font b">fuzzy idea concretization, full paper review,</text>
-    <text x="110" y="596" class="font b">writing/LaTeX review, or rebuttal.</text>
-    <text x="110" y="634" class="font label">Output</text>
-    <text x="110" y="658" class="font b">scores, ranking, closest-work risks,</text>
-    <text x="110" y="678" class="font b">evidence that would change the verdict.</text>
-  </g>
-
-  <g filter="url(#shadow)">
-    <rect x="410" y="278" width="326" height="432" rx="8" fill="#e0f2fe" stroke="#0284c7"/>
-    <text x="573" y="314" text-anchor="middle" class="font h" fill="#0c4a6e">Full Paper Review</text>
-    <text x="573" y="338" text-anchor="middle" class="font skill" fill="#075985">ccf-conference-reviewer</text>
-    <line x1="438" y1="358" x2="708" y2="358" stroke="#7dd3fc"/>
-    <text x="438" y="388" class="font label">Starts when</text>
-    <text x="438" y="412" class="font b">full review, simulated reviewers, AC/meta-review,</text>
-    <text x="438" y="432" class="font b">paper score, desk rejection, acceptance risk.</text>
-    <text x="438" y="470" class="font label">Owns</text>
-    <text x="438" y="494" class="font b">desk checks, public-safe related-work search,</text>
-    <text x="438" y="514" class="font b">novelty/soundness/evidence, experiment/reproducibility audit,</text>
-    <text x="438" y="534" class="font b">multi-reviewer panel, AC synthesis, scores.</text>
-    <text x="438" y="572" class="font label">Does not own</text>
-    <text x="438" y="596" class="font b">full manuscript rewriting, pure LaTeX audit, author response.</text>
-    <text x="438" y="634" class="font label">Standard output</text>
-    <text x="438" y="658" class="font b">fixed Markdown review report, concerns table,</text>
-    <text x="438" y="678" class="font b">score revision criteria, handoff actions.</text>
-  </g>
-
-  <g filter="url(#shadow)">
-    <rect x="778" y="278" width="286" height="432" rx="8" fill="#ecfeff" stroke="#0891b2"/>
-    <text x="921" y="314" text-anchor="middle" class="font h" fill="#164e63">Writing Review</text>
-    <text x="921" y="338" text-anchor="middle" class="font skill" fill="#0e7490">ccf-conference-writing-reviewer</text>
-    <line x1="806" y1="358" x2="1036" y2="358" stroke="#67e8f9"/>
-    <text x="806" y="388" class="font label">Starts when</text>
-    <text x="806" y="412" class="font b">writing review, paragraph writing review, LaTeX,</text>
-    <text x="806" y="432" class="font b">format, writing logic, consistency.</text>
-    <text x="806" y="470" class="font label">Owns</text>
-    <text x="806" y="494" class="font b">paragraph IDs, storyline, claim-evidence</text>
-    <text x="806" y="514" class="font b">presentation, terminology, fig/table narration,</text>
-    <text x="806" y="534" class="font b">LaTeX/template/citation checks.</text>
-    <text x="806" y="572" class="font label">Does not own</text>
-    <text x="806" y="596" class="font b">novelty verdict, acceptance-style scoring,</text>
-    <text x="806" y="616" class="font b">AC/meta-review or reviewer simulation.</text>
-    <text x="806" y="654" class="font label">Output</text>
-    <text x="806" y="678" class="font b">paragraph issue table, concrete revision actions, format risks.</text>
-  </g>
-
-  <g filter="url(#shadow)">
-    <rect x="1106" y="278" width="252" height="432" rx="8" fill="#fff7ed" stroke="#f97316"/>
-    <text x="1232" y="314" text-anchor="middle" class="font h" fill="#9a3412">Rebuttal</text>
-    <text x="1232" y="338" text-anchor="middle" class="font skill" fill="#9a3412">ccf-conference-paper-rebuttal</text>
-    <line x1="1134" y1="358" x2="1330" y2="358" stroke="#fdba74"/>
-    <text x="1134" y="388" class="font label">Starts when</text>
-    <text x="1134" y="412" class="font b">real reviewer comments plus explicit request</text>
-    <text x="1134" y="432" class="font b">rebuttal / author response / response letter.</text>
-    <text x="1134" y="470" class="font label">Owns</text>
-    <text x="1134" y="494" class="font b">response strategy, tone, promise control,</text>
-    <text x="1134" y="514" class="font b">AC/R1/R2 mapping, TeX response files.</text>
-    <text x="1134" y="552" class="font label">Does not own</text>
-    <text x="1134" y="576" class="font b">ordinary pre-submission review.</text>
-    <text x="1134" y="614" class="font label">Output</text>
-    <text x="1134" y="638" class="font b">author response, revision promises, extra-experiment placeholders.</text>
-  </g>
-
-  <path d="M368 494H398" stroke="#334155" stroke-width="2.2" marker-end="url(#arrow)"/>
-  <text x="383" y="480" text-anchor="middle" class="font s">draft exists</text>
-  <path d="M736 494H766" stroke="#334155" stroke-width="2.2" marker-end="url(#arrow)"/>
-  <text x="751" y="480" text-anchor="middle" class="font s">writing detail</text>
-  <path d="M1064 494H1094" stroke="#9a3412" stroke-width="2.2" stroke-dasharray="7 7" marker-end="url(#arrowOrange)"/>
-  <text x="1079" y="480" text-anchor="middle" class="font s" fill="#9a3412">real reviews</text>
-
-  <rect x="82" y="766" width="1276" height="74" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
-  <text x="110" y="796" class="font label">Anti-filler safeguards</text>
-  <text x="270" y="796" class="font b">Every issue must cite a concrete claim, paragraph, section, figure/table, experiment, closest prior work, or missing evidence path.</text>
-  <text x="270" y="820" class="font b">No invented citations, results, reviewer consensus, score changes, benchmark ranks, or acceptance probabilities.</text>
-
-  <rect x="82" y="858" width="1276" height="36" rx="8" fill="#f1f5f9" stroke="#cbd5e1"/>
-  <text x="720" y="881" text-anchor="middle" class="font s">Boundary snapshot: reviewer skills are specialized modules; cross-module movement follows ccf-common PARTIAL handoff and user denylists.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#59616b"/></marker></defs>
+<rect width="1200" height="520" fill="#f7f8fa"/>
+<text x="60" y="62" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#1f2933">CCFA Review And Audit Boundaries</text>
+<rect x="60" y="120" width="300" height="82" rx="8" fill="#1F6F8B"/><text x="210" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">Scientific Review</text>
+<line x1="360" y1="161" x2="430" y2="161" stroke="#59616b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="430" y="120" width="300" height="82" rx="8" fill="#2D8A68"/><text x="580" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">Writing Review</text>
+<line x1="730" y1="161" x2="800" y2="161" stroke="#59616b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="800" y="120" width="300" height="82" rx="8" fill="#B85C38"/><text x="950" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">Integrity Audit</text>
+<rect x="60" y="270" width="300" height="82" rx="8" fill="#6B5B95"/><text x="210" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">Citation Audit</text>
+<line x1="360" y1="311" x2="430" y2="311" stroke="#59616b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="430" y="270" width="300" height="82" rx="8" fill="#3B3F46"/><text x="580" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">Submission Check</text>
+<line x1="730" y1="311" x2="800" y2="311" stroke="#59616b" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="800" y="270" width="300" height="82" rx="8" fill="#B08D57"/><text x="950" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">Rebuttal</text>
 </svg>

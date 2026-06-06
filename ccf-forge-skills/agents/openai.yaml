@@ -1,0 +1,4 @@
+interface:
+  display_name: "CCF Forge Skills"
+  short_description: "Design, create, update, and audit CCFA/Codex skills"
+  default_prompt: "Use $ccf-forge-skills to design, create, update, or audit a CCFA/Codex skill. Preserve CCFA invocation controls, quick/standard modes, handoff boundaries, source registry rules, path privacy, and ccf-* naming."

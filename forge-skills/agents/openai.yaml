@@ -1,4 +1,0 @@
-interface:
-  display_name: "Forge Skills"
-  short_description: "Design and create Codex skills"
-  default_prompt: "Use $forge-skills to design, create, update, or audit a Codex skill from my goal and examples. Preserve CCFA invocation controls when editing this family: follow quick/standard task modes, CCFA handoff_question_mode, respect disabled skills, protect writing-only idea scope, and avoid hallucinated capabilities."
