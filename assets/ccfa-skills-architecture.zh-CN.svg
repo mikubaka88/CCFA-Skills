@@ -49,7 +49,7 @@
 <rect x="88" y="630" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="88" y="630" width="8" height="66" rx="18" fill="#2D3742" stroke="none" stroke-width="2" />
 <text x="112" y="664" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-writer</text>
-<text x="112" y="689" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">起草、润色、压缩、展示</text>
+<text x="112" y="689" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">起草、篇幅、压缩、展示</text>
 <rect x="650" y="560" width="500" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="650" y="560" width="500" height="52" rx="24" fill="#B58B2A" stroke="none" stroke-width="2" />
 <text x="672" y="594" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">质量保障</text>

@@ -17,6 +17,7 @@ Run enough checks to avoid fabrication and obvious dead ends, but do not apply s
 **standard** is the default for substantial work:
 
 - whole-paper planning, review, or rewriting,
+- venue-aware full-manuscript drafting with page/word budget,
 - full idea optimization or scoring,
 - literature search that informs novelty, Related Work, Introduction, or experiment design,
 - full experiment design,
@@ -62,6 +63,8 @@ Review-related skills may keep stricter fixed formats because their value is dia
 When `ccf-idea-reviewer` is used on an early seed, separate `current conference readiness` from `development potential`. A low current score means the seed is not ready, not that the direction is dead. Use `abandon` only when the idea has no testable claim and no plausible reformulation after at least one concrete rescue attempt.
 
 For broad requests such as "完整流程", "完整文章", "详细报告", "用所有 skills", "full paper", "full review", or "closed loop", do not return fragments. Produce complete artifacts with enough concrete content to be useful: full drafts rather than abstract-only samples, filled tables rather than headings only, reviewer comments with evidence rather than generic risks, and handoff packets that name files, claims, blockers, and next actions.
+
+For submission-style manuscript requests, "complete" also means length-aware. The writing owner should establish the target venue's page/word budget, aim near that budget, expand underfilled drafts with evidence-bound content, and compress overfilled drafts before final/submission checks.
 
 For editing, polishing, compression, and local revision, preserve the user's existing format and markup unless the user explicitly asks for restructuring. Do not convert LaTeX into a checklist report, Markdown into a different outline, or a paragraph into a table just because the skill has a template.
 

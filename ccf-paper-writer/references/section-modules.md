@@ -187,7 +187,8 @@ Visible output default: the rewritten paragraph only, preserving Markdown/LaTeX/
 When the user supplies only an idea and asks for a paper draft:
 
 1. Read the target venue guide from `venue-guides/index.md`; if the target venue is missing or unspecified, use the NeurIPS guide as the fallback.
-2. Use the venue's template path and section conventions for the visible LaTeX draft.
-3. Keep missing results, citations, figures, and theorem/proof details as `TBD` placeholders instead of inventing them.
-4. Prefer a compilable skeleton with real section content over a checklist report.
-5. Include venue-freshness or missing-evidence notes after the LaTeX output, not before it.
+2. Establish a venue length budget using `length-budget-policy.md`.
+3. Use the venue's template path and section conventions for the visible LaTeX draft.
+4. Keep missing results, citations, figures, and theorem/proof details as `TBD` placeholders instead of inventing them.
+5. Prefer a full submission-shaped draft with real section content over a short compilable skeleton.
+6. Include venue-freshness, current page count, or missing-evidence notes after the LaTeX output, not before it.

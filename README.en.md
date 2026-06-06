@@ -65,7 +65,7 @@ project scaffold
 | Idea gate | `ccf-idea-reviewer` | Explicitly score, rank, stress-test, or triage ideas. | Scores, risks, stage-aware development potential. | Brainstorming or developing one rough idea further. |
 | Evidence | `ccf-literature-searcher` | Search related work, prior art, datasets, benchmarks, and open gaps. | Literature notes, opportunity map, evidence gaps, related-work structure. | Auditing already cited papers or treating related work as a final idea kill gate. |
 | Experiments | `ccf-experiment-designer` | Design baselines, metrics, ablations, robustness checks. | Protocols, baseline matrix, result templates, real-result tables. | Inventing results or drawing docs diagrams. |
-| Manuscript | `ccf-paper-writer` | Draft, revise, polish, compress, create venue-aware LaTeX, make presentations. | Manuscript text, format-preserving edits, compressed text, slides/poster/talk. | Full review, integrity audit, submission check, rebuttal. |
+| Manuscript | `ccf-paper-writer` | Draft, revise, polish, compress, create venue- and length-aware LaTeX, make presentations. | Manuscript text, format-preserving edits, compressed text, page budget, slides/poster/talk. | Full review, integrity audit, submission check, rebuttal. |
 | Review | `ccf-paper-reviewer` | Run scientific review, writing review, scoring, AC/meta-review. | Review report, risk table, revision priorities. | Rewriting the manuscript directly. |
 | Integrity | `ccf-integrity-auditor` | Check claims, numbers, tables/figures, citations, BibTeX. | Claim-support table, numeric consistency report, citation audit. | Broad literature search or full paper review. |
 | Submission | `ccf-submission-checker` | Check venue rules, pages, anonymity, PDF metadata, artifacts. | Submission package report, LaTeX/PDF build result, artifact checklist. | Polishing manuscript content. |
@@ -130,7 +130,8 @@ ccf-doc-diagram-designer
 
 - Writing, polishing, compression, and presentation tasks should follow the user's requested output format.
 - If the user provides LaTeX, preserve LaTeX; if the user provides Markdown, preserve Markdown.
-- From-scratch manuscript requests read the target venue guide first; if missing, use the NeurIPS fallback.
+- From-scratch manuscript requests read the target venue guide and page budget first; if missing, use the NeurIPS fallback.
+- Submission-style full drafts should target the venue's main-body length. Underfilled drafts are expanded by `ccf-paper-writer`; overfilled drafts are compressed by `ccf-paper-writer`; final page compliance is checked by `ccf-submission-checker`.
 - Non-review skills should produce concrete, information-dense artifacts.
 - Review, audit, and submission-gate skills may remain more structured because their value is traceable diagnosis.
 - No skill may invent results, citations, official rules, or reviewer conclusions.

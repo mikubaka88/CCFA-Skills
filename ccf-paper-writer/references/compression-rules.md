@@ -2,6 +2,8 @@
 
 Use this file to reduce length while preserving the paper's story, evidence, and venue fit.
 
+Compression is triggered when a manuscript exceeds the target venue budget or the user's requested word/page limit. It is the counterpart to `length-budget-policy.md`: underfilled manuscripts should be expanded, overfilled manuscripts should be compressed.
+
 ## Mode Selection
 
 Quick mode:
@@ -17,6 +19,8 @@ Standard mode:
 - Build a content inventory and appendix/delete decision table.
 - Check claim-evidence preservation.
 - Ask once before appendix/delete if the user's preference is unknown.
+
+If a draft is only slightly over budget (<= 10%), first compress wording, repeated motivation, and low-value background. If it is substantially over budget (> 10%), create a section-level cut plan before rewriting.
 
 ## Compression Hierarchy
 

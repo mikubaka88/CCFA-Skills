@@ -29,7 +29,7 @@ skills:
     exclude: "Does not invent results or draw docs diagrams."
     handoff: "ccf-literature-searcher, ccf-paper-writer, ccf-integrity-auditor, ccf-submission-checker"
   - name: ccf-paper-writer
-    trigger: "Draft, revise, polish, compress, preserve source format during edits, create venue-aware LaTeX manuscripts from ideas, and presentation-adapt paper text."
+    trigger: "Draft, revise, polish, compress, preserve source format during edits, create venue- and length-aware LaTeX manuscripts from ideas, and presentation-adapt paper text."
     exclude: "Does not perform full review, evidence audit, package check, or rebuttal."
     handoff: "ccf-literature-searcher, ccf-experiment-designer, ccf-paper-reviewer, ccf-submission-checker, ccf-rebuttal-writer"
   - name: ccf-paper-reviewer

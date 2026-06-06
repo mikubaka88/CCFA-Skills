@@ -14,7 +14,7 @@ metadata:
 
 ## Core Rule
 
-Treat submission as a build, venue-policy, and artifact-readiness gate. Use local venue guides for expected rules, then require official-policy freshness for final decisions. Do not rewrite paper content.
+Treat submission as a build, venue-policy, page-budget, and artifact-readiness gate. Use local venue guides for expected rules, then require official-policy freshness for final decisions. Do not rewrite paper content.
 
 ## Modes
 
@@ -28,9 +28,9 @@ Treat submission as a build, venue-policy, and artifact-readiness gate. Use loca
 1. Identify venue/year/track, submission mode, project directory, TeX/PDF files, supplementary/artifact files, and deadline pressure.
 2. Read `ccfa.yaml` when available. If absent, proceed with supplied files and state that project-state tracking is unavailable.
 3. For venue questions, read `../ccf-paper-writer/references/venue-guides/index.md` and the specific venue guide before checking official freshness.
-4. For package checks, inspect compile status, page count, anonymity, fonts, PDF metadata, template path, references, supplementary files, and required forms.
+4. For package checks, inspect compile status, page count, target page budget, anonymity, fonts, PDF metadata, template path, references, supplementary files, and required forms.
 5. For artifact checks, build a reproducibility checklist: code, data, models, environment, seeds, hardware, license, access restrictions, and README.
-6. Hand off to `ccf-paper-writer` for text/page rewrites, `ccf-experiment-designer` for missing reproducibility experiments, and `ccf-rebuttal-writer` for post-review response packaging.
+6. Hand off to `ccf-paper-writer` for text/page rewrites: compression when over limit, expansion when a full manuscript is materially underfilled, and normal polishing when within budget. Hand off to `ccf-experiment-designer` for missing reproducibility experiments and `ccf-rebuttal-writer` for post-review response packaging.
 
 ## Output Contract
 
@@ -41,6 +41,7 @@ Files checked:
 Pass/fail checklist:
 Build/package issues:
 Anonymity/page/font/metadata issues:
+Length budget status:
 Artifact/reproducibility issues:
 Required fixes:
 Next CCFA owner:

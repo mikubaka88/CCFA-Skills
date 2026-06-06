@@ -41,7 +41,7 @@
 <rect x="1024" y="524" width="230" height="38" rx="19" fill="#2D3742" stroke="none" stroke-width="2" />
 <text x="1139" y="549" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">寫正文</text>
 <text x="1285" y="547" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-writer</text>
-<text x="1285" y="576" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">起草、潤飾、壓縮、展示</text>
+<text x="1285" y="576" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">起草、篇幅、壓縮、展示</text>
 <text x="900" y="562" font-size="28" font-weight="850" fill="#94A3B8" text-anchor="middle">vs</text>
 <rect x="90" y="635" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="114" y="659" width="230" height="38" rx="19" fill="#B58B2A" stroke="none" stroke-width="2" />

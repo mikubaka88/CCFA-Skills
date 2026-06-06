@@ -7,8 +7,9 @@ Use this reference when the requested writing output could conflict with the def
 1. User-requested final format.
 2. Original source format for edit/polish/compression tasks.
 3. Target venue LaTeX format for from-scratch manuscript tasks.
-4. NeurIPS LaTeX fallback when the target venue is absent, unknown, or has no local guide.
-5. Compact risk/status note only after the main writing output.
+4. Target venue length/page budget for full-manuscript tasks.
+5. NeurIPS LaTeX fallback when the target venue is absent, unknown, or has no local guide.
+6. Compact risk/status note only after the main writing output.
 
 ## Edit And Polish
 
@@ -27,9 +28,12 @@ When the user has only an idea and asks to write a paper:
 1. Search `venue-guides/index.md` for the target venue.
 2. Read the specific venue guide when it exists.
 3. Draft a LaTeX manuscript using that venue's template conventions.
-4. If the venue guide is missing or no venue is named, draft with the NeurIPS template path `ccf-latex-templates/NeurIPS/neurips_2026.tex`.
-5. Use `TBD` for missing results, citations, figures, or implementation details.
-6. For "完整文章", "full paper", "from scratch", or "投稿", include all normal paper parts for the target venue: abstract, introduction, background/related work or preliminaries, method, experiments, analysis/ablation, limitations, ethics/reproducibility if relevant, conclusion, references, and appendix/checklist placeholders when expected.
+4. Establish a page/word budget from `length-budget-policy.md`; for submission-style drafts, aim near the venue limit rather than producing a short skeleton.
+5. If the venue guide is missing or no venue is named, draft with the NeurIPS template path `ccf-latex-templates/NeurIPS/neurips_2026.tex`.
+6. Use `TBD` for missing results, citations, figures, or implementation details.
+7. For "完整文章", "full paper", "from scratch", or "投稿", include all normal paper parts for the target venue: abstract, introduction, background/related work or preliminaries, method, experiments, analysis/ablation, limitations, ethics/reproducibility if relevant, conclusion, references, and appendix/checklist placeholders when expected.
+
+If the first draft is substantially below the venue budget, expand with useful missing content before declaring it complete. If it exceeds the budget, run compression locally because compression is owned by `ccf-paper-writer`.
 
 Do not block the draft because final venue policy may be stale. State the freshness risk briefly and route final compliance to `ccf-submission-checker`.
 

@@ -9,11 +9,14 @@ These are transferable writing patterns, not copied examples. Do not reuse sente
 For broad writing tasks, produce the artifact first and make it substantial:
 
 - Full manuscript request: write a full LaTeX/Markdown manuscript, not only an abstract or outline.
+- Submission manuscript request: target the venue's page budget, not the minimum text needed to compile.
 - Section request: write the section, not only paragraph roles.
 - Revision request: provide revised text in source format plus only the necessary edit notes.
 - Exemplar request: show the source writing pattern, then adapt it into original text.
 
 Avoid empty "next steps" and generic warnings. A warning is useful only if it names the unsupported claim, missing evidence, affected section, and concrete fix.
+
+For underfilled full drafts, add substantive paper content before finishing: deeper problem setup, closest-work contrast, method mechanism, experiment protocol, analysis scaffolds, limitations, and reproducibility notes. Use `TBD` for missing evidence; do not pad with generic background.
 
 ## Exemplar And Source-Paper Mode
 

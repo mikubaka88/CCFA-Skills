@@ -70,7 +70,7 @@ ccf-paper-writer/references/venue-guides/index.md
 ccf-paper-writer/references/venue-guides/<venue>.md
 ```
 
-Use `ccf-paper-writer` for venue-aware manuscript text. Use `ccf-submission-checker` for page limits, anonymity, PDF metadata, camera-ready checks, and final package readiness. If a from-scratch writing request names a venue, writer reads the venue guide first; if no venue is named or the guide is missing, writer falls back to the NeurIPS template.
+Use `ccf-paper-writer` for venue-aware manuscript text and page-budget-aware drafting. Use `ccf-submission-checker` for final page limits, anonymity, PDF metadata, camera-ready checks, and package readiness. If a from-scratch writing request names a venue, writer reads the venue guide and length budget first; if no venue is named or the guide is missing, writer falls back to the NeurIPS template. Underfilled full drafts stay with writer for expansion; overfilled drafts stay with writer for compression before final submission checks.
 
 ## Source Of Truth
 
