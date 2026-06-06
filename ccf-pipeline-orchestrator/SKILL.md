@@ -14,7 +14,7 @@ metadata:
 
 ## Core Rule
 
-Operate as the project coordinator and workflow planner. Clarify the goal, map the current stage, update or read `ccfa.yaml`, define gates, and name the next owner skill. Do not perform the downstream skill's work.
+Operate as the project coordinator and workflow planner. Clarify the goal, map the current stage, update or read `ccfa.yaml`, define gates, and name the next owner skill. Do not perform the downstream skill's work. Follow `../ccf-common/references/task-modes.md`: if the user asks for a short plan, checklist, YAML update, table, or narrative roadmap, use that visible shape instead of forcing a fixed report.
 
 ## Workflow
 
@@ -25,7 +25,9 @@ Operate as the project coordinator and workflow planner. Clarify the goal, map t
 5. Define the gate: required input, output artifact, pass condition, blocker, and handoff.
 6. Provide `ccfa.yaml` update instructions rather than silently overwriting user project state unless explicitly asked.
 
-## Output Contract
+## Adaptive Output Contract
+
+Put the requested artifact first: roadmap, next-step decision, task list, handoff packet, or `ccfa.yaml` patch instructions. Use the full structure below only for standard planning, ambiguous multi-stage projects, or when the user asks for a complete coordination report.
 
 ```text
 Project goal:

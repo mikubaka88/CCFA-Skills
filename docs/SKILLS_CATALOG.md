@@ -12,7 +12,7 @@ This catalog is the public trigger-conflict index for the current CCFA family. I
 | `ccf-idea-reviewer` | Idea | Score, compare, rank, and triage early ideas. | 严格评分、比较、排序早期 idea。 | idea scoring | Manuscript polishing or single-idea development. |
 | `ccf-literature-searcher` | Evidence | Search and screen literature, prior art, datasets, benchmarks. | 检索相关工作、prior art、数据集和 benchmark。 | search, screening | Auditing only already cited papers. |
 | `ccf-experiment-designer` | Evidence | Design experiments and build real-result tables/figures. | 设计实验、baseline、消融、结果表和真实结果图。 | experiment design, result templates, result figures/tables | Inventing results or drawing CCFA docs diagrams. |
-| `ccf-paper-writer` | Manuscript | Draft, revise, polish, compress, and presentation-adapt paper text. | 写作、润色、压缩论文，并生成 slides/poster/talk/Q&A。 | draft, polish, compression, presentation | Full review, evidence audit, package check, rebuttal. |
+| `ccf-paper-writer` | Manuscript | Draft, revise, polish, compress, preserve source format during edits, create venue-aware LaTeX manuscripts from ideas, and presentation-adapt paper text. | 写作、润色、压缩；润色时保留原格式；只有 idea 时可按目标会议 LaTeX 起草，缺省回退 NeurIPS。 | draft, polish, compression, venue-aware LaTeX drafting, presentation | Full review, evidence audit, package check, rebuttal. |
 | `ccf-paper-reviewer` | Review | Review manuscripts scientifically and stylistically. | 做科学审稿、写作评审、格式表达风险和 AC/meta-review。 | scientific review, writing review, format-facing review | Rewriting manuscript text or drafting rebuttals. |
 | `ccf-integrity-auditor` | Audit | Audit claims, numbers, figures/tables, citations, and BibTeX. | 审计 claim、数字、图表、引用、BibTeX 和上下文支撑。 | claim audit, numeric audit, citation audit | Full scientific review or broad literature search. |
 | `ccf-submission-checker` | Submission | Check venue rules, LaTeX/PDF package, anonymity, metadata, artifacts. | 查会议格式、模板页数、匿名、PDF metadata、artifact/reproducibility。 | venue format, package check, artifact | Polishing manuscript content. |
@@ -37,9 +37,12 @@ This catalog is the public trigger-conflict index for the current CCFA family. I
 
 ## Conflict Rules
 
+- Non-review workflow skills should follow the user's requested output shape. Their internal checklists are safeguards, not mandatory visible report templates.
+- Review, audit, and submission-gate skills may remain structured because their job is traceable diagnosis and pass/fail risk control.
 - Idea shaping goes to `ccf-idea-optimizer`; idea scoring/ranking goes to `ccf-idea-reviewer`.
 - New literature discovery goes to `ccf-literature-searcher`; existing citation verification goes to `ccf-integrity-auditor`.
 - Manuscript rewriting, compression, and presentation outputs go to `ccf-paper-writer`; judgment goes to `ccf-paper-reviewer`.
+- `ccf-paper-writer` should follow the user's requested output shape. For polishing, keep the source Markdown/LaTeX format; for from-scratch manuscript writing, search venue guides first and use NeurIPS as fallback.
 - Real result tables and figures go to `ccf-experiment-designer`; docs diagrams go to `ccf-skill-forger`.
 - Venue requirements, package checks, anonymity, and artifact readiness go to `ccf-submission-checker`.
 - Reviewer responses, revision ledgers, and resubmission plans go to `ccf-rebuttal-writer`.

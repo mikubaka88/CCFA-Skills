@@ -24,7 +24,7 @@ Source-quality exclusion: do not search, cite, recommend, or include policy-excl
 
 ## Core Rule
 
-Ground novelty and positioning using high-quality, inspectable sources. Prefer influential conferences, strong journals, official proceedings pages, archival repositories, and public paper pages. Do not invent papers, citations, venues, links, acceptance status, benchmark status, or numerical results. Separate searched evidence from inference.
+Ground novelty and positioning using high-quality, inspectable sources. Prefer influential conferences, strong journals, official proceedings pages, archival repositories, and public paper pages. Do not invent papers, citations, venues, links, acceptance status, benchmark status, or numerical results. Separate searched evidence from inference. Follow the user's requested output shape: short list, related-work clusters, BibTeX candidates, benchmark table, search folder, or handoff summary.
 
 ## Mandatory Search Checklist
 
@@ -70,7 +70,9 @@ literature-search-YYYYMMDD-<topic-slug>/
    - For experiment design: datasets, baselines, metrics, benchmark protocols.
    - For paper review: missing related work and baseline risks.
 
-## Output Contracts
+## Adaptive Output Contracts
+
+Return the requested artifact first. If the user asks for a list of papers, output the list/table directly. If they ask for Related Work material, output clusters and positioning notes. If they ask for a folder, write the folder and summarize it. Use the following defaults for standard or quick search reports.
 
 For standard search, return:
 

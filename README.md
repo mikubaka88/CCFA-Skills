@@ -14,7 +14,7 @@
 
 ---
 
-CCFA Skills is a local Codex skill family for research-paper projects. v0.4.2 intentionally reduces the runtime surface from many helper skills to 13 clear owners. Helper capabilities such as compression, writing review, citation audit, result figures, artifact packaging, venue format lookup, resubmission, paper talks, and docs SVG generation now live as modes or references inside their owning skills.
+CCFA Skills is a local Codex skill family for research-paper projects. The current v0.4 line intentionally reduces the runtime surface from many helper skills to 13 clear owners. Helper capabilities such as compression, writing review, citation audit, result figures, artifact packaging, venue format lookup, resubmission, paper talks, and docs SVG generation now live as modes or references inside their owning skills.
 
 ![Architecture](assets/ccfa-skills-architecture.svg)
 
@@ -54,7 +54,7 @@ See [INSTALLATION_MATRIX.md](docs/INSTALLATION_MATRIX.md) before installing a su
 - `ccf-idea-reviewer`: scores, compares, ranks, and triages early ideas.
 - `ccf-literature-searcher`: searches related work, prior art, datasets, benchmarks, and citation evidence.
 - `ccf-experiment-designer`: designs experiments and builds real-result tables/figures without inventing numbers.
-- `ccf-paper-writer`: drafts, revises, polishes, compresses, and presentation-adapts manuscript text.
+- `ccf-paper-writer`: drafts, revises, polishes, compresses, preserves source format during edits, creates venue-aware LaTeX drafts from ideas, and presentation-adapts manuscript text.
 - `ccf-paper-reviewer`: reviews scientific quality, writing quality, format-facing risks, reviewer scores, and AC/meta-review.
 - `ccf-integrity-auditor`: audits claims, numbers, figures/tables, citations, BibTeX, and citation-context support.
 - `ccf-submission-checker`: checks venue rules, templates, page/anonymity, LaTeX/PDF package, metadata, and artifacts.
@@ -102,7 +102,7 @@ ccf-paper-writer/references/venue-guides/index.md
 ccf-paper-writer/references/venue-guides/<venue>.md
 ```
 
-Use `ccf-paper-writer` for venue-aware manuscript text and `ccf-submission-checker` for venue compliance and package checks.
+Use `ccf-paper-writer` for venue-aware manuscript text and `ccf-submission-checker` for venue compliance and package checks. For from-scratch manuscript writing, `ccf-paper-writer` reads the target venue guide first; if the guide is missing or no venue is provided, it drafts with the NeurIPS LaTeX fallback.
 
 ## Demo
 

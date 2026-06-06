@@ -2,16 +2,20 @@
 
 Use this file when drafting, rewriting, or checking a specific paper section. Always connect section writing back to `references/storyline-blueprint.md`.
 
+Use the steps below as internal writing control unless the user asks to see the plan. For direct polishing, line editing, compression, or LaTeX revision, return the revised text in the user's original format rather than exposing paragraph-role analysis.
+
 ## Module Template
 
 For any section:
 
-1. State the section role in the whole-paper story.
-2. List paragraph roles before writing.
+1. Determine the section role in the whole-paper story.
+2. Decide paragraph roles before writing.
 3. Draft paragraphs one role at a time.
 4. Check local flow: one paragraph, one message.
 5. Check global flow: section supports the main story and venue plan.
 6. Update claim-evidence and reviewer-risk maps.
+
+Show steps 1-2 only when the user requested a plan, outline, diagnosis, or explanation.
 
 ## Abstract
 
@@ -175,3 +179,15 @@ When the user gives one paragraph:
 4. Check term consistency.
 5. Check whether claims are supported or need softer wording.
 6. Rewrite with the same technical meaning unless the user asks for structural changes.
+
+Visible output default: the rewritten paragraph only, preserving Markdown/LaTeX/citation formatting. Add a short note only if a claim was softened, a citation/result looked unsupported, or the user asked for explanation.
+
+## LaTeX Drafting Mode
+
+When the user supplies only an idea and asks for a paper draft:
+
+1. Read the target venue guide from `venue-guides/index.md`; if the target venue is missing or unspecified, use the NeurIPS guide as the fallback.
+2. Use the venue's template path and section conventions for the visible LaTeX draft.
+3. Keep missing results, citations, figures, and theorem/proof details as `TBD` placeholders instead of inventing them.
+4. Prefer a compilable skeleton with real section content over a checklist report.
+5. Include venue-freshness or missing-evidence notes after the LaTeX output, not before it.

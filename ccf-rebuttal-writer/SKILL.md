@@ -14,7 +14,7 @@ metadata:
 
 ## Core Rule
 
-Handle post-review communication and revision accountability. Responses must be calm, factual, evidence-grounded, and promise only feasible changes. Resubmission adaptation is conservative by default: no new experiments and no bibliography changes unless the user explicitly authorizes them.
+Handle post-review communication and revision accountability. Responses must be calm, factual, evidence-grounded, and promise only feasible changes. Resubmission adaptation is conservative by default: no new experiments and no bibliography changes unless the user explicitly authorizes them. Follow the user's requested response format: plain text, TeX, reviewer-by-reviewer, issue-grouped, table-first, or short response.
 
 ## Modes
 
@@ -33,7 +33,9 @@ Handle post-review communication and revision accountability. Responses must be 
 6. For resubmission, map old reviewer concerns to the new venue's constraints through `ccf-submission-checker`; do not silently add experiments or bibliography changes.
 7. Hand off to `ccf-paper-writer` for manuscript revisions, `ccf-experiment-designer` for authorized new evidence, and `ccf-submission-checker` for venue/package checks.
 
-## Output Contract
+## Adaptive Output Contract
+
+Put the requested response artifact first. For "write rebuttal", output the rebuttal text or TeX first. For "make a ledger", output the ledger first. Use the full structure below for standard multi-reviewer response planning or when the user asks for strategy plus draft:
 
 ```text
 Mode:

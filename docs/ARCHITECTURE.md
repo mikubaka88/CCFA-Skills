@@ -1,6 +1,6 @@
 # CCFA Architecture
 
-CCFA is a CCF/NeurIPS-style paper-project workflow family. v0.4.2 keeps the runtime surface small: each stage has one clear owner, and helper capabilities live as modes under that owner.
+CCFA is a CCF/NeurIPS-style paper-project workflow family. The current v0.4 line keeps the runtime surface small: each stage has one clear owner, and helper capabilities live as modes under that owner.
 
 ## Layers
 
@@ -27,7 +27,7 @@ project -> planning -> idea -> literature -> experiments
 
 The family is deliberately not one giant all-purpose skill. It is also no longer a large pile of tiny helpers. Each owner can run multiple modes:
 
-- `ccf-paper-writer`: drafting, polishing, compression, paper-derived presentation.
+- `ccf-paper-writer`: drafting, polishing, source-format-preserving edits, venue-aware LaTeX drafting from ideas, compression, paper-derived presentation.
 - `ccf-paper-reviewer`: scientific review, writing review, format-facing critique.
 - `ccf-integrity-auditor`: claim audit, numeric audit, citation audit.
 - `ccf-experiment-designer`: experiment design, result templates, real-result figures/tables.
@@ -42,7 +42,7 @@ Venue knowledge remains reference-only:
 - `ccf-paper-writer/references/venue-guides/index.md`
 - `ccf-paper-writer/references/venue-guides/<venue>.md`
 
-Use `ccf-paper-writer` for venue-aware manuscript text. Use `ccf-submission-checker` for venue compliance, template, page limit, anonymity, camera-ready, and submission package questions.
+Use `ccf-paper-writer` for venue-aware manuscript text. When only an idea is available, the writer reads the target venue guide and drafts a LaTeX manuscript; if the venue is absent or unspecified, it falls back to the NeurIPS template. Use `ccf-submission-checker` for venue compliance, template, page limit, anonymity, camera-ready, and submission package questions.
 
 ## Source Of Truth
 

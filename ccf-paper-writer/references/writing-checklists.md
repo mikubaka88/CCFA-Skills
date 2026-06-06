@@ -1,6 +1,6 @@
 # Writing Checklists
 
-Use this file to prevent omissions during planning, drafting, revision, score-risk auditing, and final readiness checks. Load `../../ccf-common/references/task-modes.md` when deciding quick versus standard mode. For small paragraph edits in quick mode, run only the relevant subset and state what was intentionally skipped.
+Use this file to prevent omissions during planning, drafting, revision, score-risk auditing, and final readiness checks. Load `../../ccf-common/references/task-modes.md` when deciding quick versus standard mode. For writing tasks, this checklist is usually internal. Show checklist status only when the user asks for audit/rationale, when the output feeds another CCFA skill, or when an unresolved risk affects reliability.
 
 ## Quick Mode Checklist
 
@@ -13,7 +13,7 @@ Use this for one paragraph, one small subsection, or single-pass polish:
 - No citation, result, experiment, or reviewer impact is invented.
 - Full paper storyline, full score-risk loop, and final-readiness checks are skipped unless the user requests standard mode.
 
-Compact status:
+Visible output default: put the revised text first and preserve the user's original Markdown/LaTeX/citation format. Use this compact status only when useful:
 
 ```text
 Mode: quick
@@ -38,7 +38,8 @@ Use the remaining checklist sections for full sections, whole papers, score-risk
 
 - Venue family is mapped with `ccf-a-venue-map.md` when a CCF-A target is named.
 - Venue expectations are selected from `venue-adapters.md`.
-- If no venue is named, `custom-format/default-user-format.md` is used and labeled.
+- If a manuscript is requested and no venue is named, the NeurIPS venue guide is the LaTeX fallback. If the user asks for non-LaTeX prose or a custom format, `custom-format/default-user-format.md` is used and labeled.
+- If a target venue is named but no local venue guide exists, use the NeurIPS LaTeX fallback and state that the final format must be checked by `ccf-submission-checker`.
 - Exemplar cards are used only for writing moves, not wording or technical content.
 - Venue-specific evidence package is visible: baselines, ablations, proof, user study, systems evaluation, security threat model, visual evidence, or theory proof as appropriate.
 

@@ -10,7 +10,7 @@ This file is the ordered dry run. It uses every current runtime skill once, incl
 | 4 | `ccf-idea-reviewer` | `01-idea-document.md` | Score idea risk. | Verdict: strong insight, high prior-art framing risk, evidence must be explicit. |
 | 5 | `ccf-literature-searcher` | Idea and venue | Identify related-work targets. | Search targets: attention mechanisms, sequence-to-sequence, recurrent MT, convolutional seq2seq, WMT baselines. |
 | 6 | `ccf-experiment-designer` | Idea + official data | Design WMT evidence package and real-result tables. | `result-tables.md`; no invented numbers. |
-| 7 | `ccf-paper-writer` | Idea + result tables | Draft NeurIPS-style abstract/introduction outline; also show compression and talk-output modes. | `03-writing-draft.md`. |
+| 7 | `ccf-paper-writer` | Idea + result tables | Read NeurIPS venue guide, use the NeurIPS LaTeX fallback, and draft the manuscript instead of returning only a plan. | `03-writing-draft.md` and `paper/attention_neurips_demo.tex`. |
 | 8 | `ccf-paper-reviewer` | Writing draft | Run scientific + writing review. | `04-review-and-rebuttal.md` review section. |
 | 9 | `ccf-integrity-auditor` | Draft + official values | Audit claim support, numbers, and citation metadata needs. | `04-review-and-rebuttal.md` audit section. |
 | 10 | `ccf-submission-checker` | Draft + venue assumption | Check venue, package, and artifact readiness. | `05-submission-check.md`; cannot pass without compiled PDF/current policy check. |

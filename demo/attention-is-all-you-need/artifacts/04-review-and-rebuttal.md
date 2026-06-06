@@ -4,6 +4,8 @@ Owners: `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-rebuttal-writer`
 
 ## Paper Reviewer - Scientific And Writing Review
 
+Reviewed artifact: `paper/attention_neurips_demo.tex`.
+
 Likely stance in a NeurIPS-style pre-publication review: strong accept potential if the empirical comparison and prior-art positioning are clear.
 
 ### Strengths
@@ -28,6 +30,7 @@ Likely stance in a NeurIPS-style pre-publication review: strong accept potential
 - The introduction should distinguish "attention as an auxiliary mechanism" from "attention as the full sequence modeling backbone."
 - The method section should introduce positional encoding before claiming the model can remove recurrence.
 - Result narration should pair BLEU with dataset and model size.
+- The LaTeX draft correctly puts the primary writing artifact before process notes; remaining review output should not be fed back as manuscript text until `ccf-paper-writer` applies the revisions.
 
 ## Integrity Auditor
 

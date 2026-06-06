@@ -1,0 +1,129 @@
+\documentclass{article}
+
+% Demo note:
+% This file is a CCFA writing demo. The NeurIPS style file is copied into this
+% folder to mirror ccf-project-scaffolder behavior for a real manuscript.
+\usepackage{neurips_2026}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+\title{Attention-Only Sequence Transduction}
+
+\author{Anonymous Authors}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We study whether sequence transduction can be performed without recurrent or convolutional sequence modeling layers. The resulting architecture, the Transformer, uses multi-head self-attention to relate positions directly and position-wise feed-forward networks to transform token representations. This design shortens dependency paths and enables more parallel training than recurrent computation. In the original official report, Transformer big reaches 28.4 BLEU on WMT 2014 English--German and 41.0 BLEU on WMT 2014 English--French as a single model. These results support attention as a complete backbone for machine translation rather than only an auxiliary alignment mechanism.
+\end{abstract}
+
+\section{Introduction}
+
+Sequence transduction is a central problem in machine learning: a model must read an input sequence and generate an output sequence while preserving semantic and structural dependencies. Neural machine translation has made this setting a standard testbed because translation quality depends on both local phrase evidence and long-range context.
+
+Before the Transformer, strong neural transduction systems were commonly built around recurrent or convolutional sequence modeling. Recurrent networks process positions sequentially, which limits parallelization and creates long dependency paths. Convolutional models improve parallelism, but distant positions still communicate through stacks of layers. These properties make the architecture itself part of the bottleneck.
+
+The core idea is to make attention the sequence modeling primitive. Self-attention allows each position to attend directly to other positions, and multi-head attention lets the model represent several relation types in parallel. Positional encodings provide order information that would otherwise be absent after removing recurrence.
+
+We therefore frame the contribution as an architecture-level simplification: the model replaces recurrent and convolutional sequence modeling layers with attention, while retaining an encoder--decoder structure for conditional generation. The important novelty claim is not that attention exists, but that attention can serve as the complete backbone for sequence transduction.
+
+The official evidence combines translation results, complexity analysis, and ablation studies. This demo draft only uses values reported in the original paper; it does not claim an independent reproduction.
+
+\section{Method}
+
+\subsection{Architecture Overview}
+
+The Transformer is an encoder--decoder architecture. Each encoder layer contains multi-head self-attention followed by a position-wise feed-forward network. Each decoder layer contains masked self-attention, encoder--decoder attention, and a feed-forward network. Residual connections and layer normalization are used around each sublayer.
+
+\subsection{Scaled Dot-Product Attention}
+
+For queries $Q$, keys $K$, and values $V$, attention is computed as
+\begin{equation}
+\mathrm{Attention}(Q,K,V) =
+\mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V.
+\end{equation}
+The scaling term stabilizes dot products when the key dimension $d_k$ is large.
+
+\subsection{Multi-Head Attention}
+
+Multi-head attention projects the same input into several query, key, and value subspaces. Each head can specialize in a different relation pattern, and the head outputs are concatenated before a final projection. This gives the model multiple direct interaction channels without recurring over sequence positions.
+
+\subsection{Position Information}
+
+Because the architecture removes recurrence and convolution, it needs an explicit position signal. The original paper uses positional encodings added to token embeddings so that the model can condition on token order.
+
+\section{Experiments}
+
+\subsection{Setup}
+
+The official paper evaluates on WMT 2014 English--German and English--French translation. The base and big model configurations, training schedules, and hardware are taken from the original report. This demo does not add new training runs or new benchmark values.
+
+\begin{table}[t]
+  \caption{Official WMT 2014 BLEU values used by this demo.}
+  \label{tab:bleu}
+  \centering
+  \begin{tabular}{lll}
+    \toprule
+    System & Dataset & BLEU \\
+    \midrule
+    Transformer big & English--German & 28.4 \\
+    Transformer big single model & English--French & 41.0 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Path Length And Parallelism}
+
+The architectural argument is that self-attention provides a constant maximum path length between positions, while recurrent computation has a path length linear in sequence length. This supports the claim that attention directly exposes long-range token interactions.
+
+\begin{table}[t]
+  \caption{Complexity and path-length comparison summarized from the official paper.}
+  \label{tab:complexity}
+  \centering
+  \small
+  \begin{tabular}{llll}
+    \toprule
+    Layer & Per-layer cost & Seq. ops & Max path \\
+    \midrule
+    Self-attention & $O(n^2 d)$ & $O(1)$ & $O(1)$ \\
+    Recurrent & $O(n d^2)$ & $O(n)$ & $O(n)$ \\
+    Convolutional & $O(k n d^2)$ & $O(1)$ & $O(\log_k n)$ \\
+    Restricted self-attention & $O(r n d)$ & $O(1)$ & $O(n/r)$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Ablation Plan}
+
+The original study analyzes model size, number of heads, attention dimensions, dropout, positional encodings, and label smoothing. A real new submission should include a full reproduced ablation table or clearly state which values are historical. In this demo, missing ablation values remain \texttt{TBD} unless they are copied from the official paper.
+
+\section{Limitations}
+
+This draft is a source-grounded demonstration of CCFA skills, not a new empirical submission. It inherits the scope of the original WMT experiments and does not evaluate modern datasets, large-scale pretraining, multilingual transfer, long-context tasks, or current NeurIPS reproducibility expectations. Any real submission would need a current related-work search, fresh baselines, implementation details, code and data release planning, and an official venue-policy check.
+
+\section{Conclusion}
+
+The Transformer demonstrates that attention can act as the central architecture for sequence transduction. By replacing recurrence and convolution with multi-head self-attention and positional encodings, it shortens dependency paths while preserving strong machine translation performance in the official WMT results. The CCFA writing path should treat this as an architecture and evidence story: direct token interaction, parallel training, official translation quality, and clearly bounded claims.
+
+\begin{thebibliography}{1}
+
+\bibitem[Vaswani et~al.(2017)]{vaswani2017attention}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+Aidan N. Gomez, Lukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2017.
+
+\end{thebibliography}
+
+\end{document}

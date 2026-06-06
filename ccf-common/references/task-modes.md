@@ -14,7 +14,7 @@ Use this file to decide how much checklist and audit work a CCFA skill should ru
 - rebuttal plans, TeX files, or multi-reviewer responses,
 - any workflow that will feed another CCFA module.
 
-Run the skill's full mandatory checklist or explicitly state skipped items with reasons.
+Run the skill's full mandatory checklist internally. Surface skipped items only when the user asked for an audit, the task is review-related, or the omission changes the reliability of the answer.
 
 **quick** is for narrow local work:
 
@@ -25,7 +25,7 @@ Run the skill's full mandatory checklist or explicitly state skipped items with 
 - a quick idea-risk note,
 - a short reviewer-risk note.
 
-Quick mode does not require the full mandatory checklist. Run the local subset only, keep the output short, and return a compact status such as:
+Quick mode does not require the full mandatory checklist. Run the local subset only and keep the visible output short. Use a compact status only when it helps the user understand risk:
 
 ```text
 Mode: quick
@@ -42,9 +42,19 @@ Unresolved:
 4. If the user gives a full section, manuscript, review set, literature search, or experiment plan, default to standard mode.
 5. Safety rules never become quick: do not invent evidence or results, do not expose private text in searches without authorization, preserve idea scope unless authorized, and apply source-quality exclusions in literature search.
 
-## Output Contract
+## Output Flexibility
 
-Every CCFA skill should include mode in final output when it affects checklist strictness:
+For non-review skills, the user's requested output shape wins over the skill's default report shape. If the user asks for LaTeX, Markdown, a table, a direct rewrite, a short answer, a file, Chinese prose, English prose, or a specific section structure, produce that format first and put internal checks behind it.
+
+Review-related skills may keep stricter fixed formats because their value is diagnosis, scoring, and traceable criticism. `ccf-paper-reviewer`, `ccf-idea-reviewer`, and integrity/submission gate checks should remain more structured than writing, search, planning, or experiment-design outputs.
+
+For editing, polishing, compression, and local revision, preserve the user's existing format and markup unless the user explicitly asks for restructuring. Do not convert LaTeX into a checklist report, Markdown into a different outline, or a paragraph into a table just because the skill has a template.
+
+When a non-review task is under-specified, proceed with reasonable assumptions and ask at most a small number of targeted questions as optional suggestions. Do not block ordinary writing or planning work merely because a full checklist cannot be completed.
+
+## Minimal Status
+
+Every CCFA skill may include mode in final output when checklist strictness affects reliability:
 
 ```text
 Mode:

@@ -2,7 +2,7 @@
 
 Route by the user's primary intent. Do not activate every downstream skill just because it may become useful later.
 
-v0.4.2 consolidates helper skills into the owning workflow skills. Runtime surface is intentionally small: 13 installable `ccf-*` skills plus the LaTeX/template reference tree. Removed helper names must not be installed as standalone skills.
+v0.4.3 consolidates helper skills into the owning workflow skills. Runtime surface is intentionally small: 13 installable `ccf-*` skills plus the LaTeX/template reference tree. Removed helper names must not be installed as standalone skills.
 
 ## Canonical Runtime Skills
 
@@ -14,7 +14,7 @@ v0.4.2 consolidates helper skills into the owning workflow skills. Runtime surfa
 | Score, compare, rank, and triage early ideas. | `ccf-idea-reviewer` | idea scoring | Does not polish manuscripts. |
 | Search literature, prior art, datasets, benchmarks, and citation evidence. | `ccf-literature-searcher` | search, screening | Does not audit only already cited papers. |
 | Design experiments and real-result tables/figures. | `ccf-experiment-designer` | experiment design, result templates, result figures/tables | Does not invent results. |
-| Draft, revise, polish, compress, and presentation-adapt paper text. | `ccf-paper-writer` | writing, polishing, compression, slides/poster/talk/Q&A | Does not run full review or rebuttal. |
+| Draft, revise, polish, compress, and presentation-adapt paper text. | `ccf-paper-writer` | writing, polishing, compression, venue-aware LaTeX drafting, slides/poster/talk/Q&A | Preserves user format for edits; does not run full review or rebuttal. |
 | Review manuscripts scientifically and stylistically. | `ccf-paper-reviewer` | scientific review, writing review, format-facing review, AC/meta-review | Does not rewrite or rebut. |
 | Audit evidence integrity, numbers, figures/tables, and existing citations. | `ccf-integrity-auditor` | claim audit, numeric audit, citation audit | Does not replace review or broad literature search. |
 | Check venue rules, LaTeX/PDF package, anonymity, metadata, and artifacts. | `ccf-submission-checker` | venue format, package check, artifact/reproducibility | Does not polish content. |
@@ -62,6 +62,8 @@ Venue knowledge is reference material, not venue-specific runtime skills. Use:
 - `ccf-paper-writer/references/venue-guides/index.md`
 - `ccf-paper-writer/references/venue-guides/<venue>.md`
 - `ccf-submission-checker` for venue format, template, page-limit, anonymity, and package questions
+
+For manuscript writing from only an idea, `ccf-paper-writer` checks the venue guide first and drafts in that venue's LaTeX style. If no target venue guide exists or no venue is named, it uses the NeurIPS guide/template as the fallback and leaves final policy freshness to `ccf-submission-checker`.
 
 ## Smoke Prompts
 

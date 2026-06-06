@@ -1,6 +1,6 @@
 # Naming And Merge Audit
 
-v0.4.2 reduces CCFA runtime skills from 23 to 13. The goal is not to remove capability, but to remove trigger ambiguity. A user should be able to choose one owner for a request without guessing among small helper skills.
+The current v0.4 line reduces CCFA runtime skills from 23 to 13. The goal is not to remove capability, but to remove trigger ambiguity. A user should be able to choose one owner for a request without guessing among small helper skills.
 
 ## Current Runtime Surface
 
@@ -41,6 +41,7 @@ Install only the 13 current runtime skills. Do not copy merged helper names into
 The demo must use the current 13 runtime skills. Merged abilities still appear in the demo as modes:
 
 - compression and talk output inside `ccf-paper-writer`
+- source-format-preserving polish and venue-aware LaTeX drafting inside `ccf-paper-writer`
 - result figures/tables inside `ccf-experiment-designer`
 - citation audit inside `ccf-integrity-auditor`
 - venue and artifact checks inside `ccf-submission-checker`

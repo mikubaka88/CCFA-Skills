@@ -17,11 +17,12 @@ Primary sources:
 2. `artifacts/00-original-paper-reading.md` - source-reading notes from the original paper.
 3. `artifacts/01-idea-document.md` - the idea brief extracted from the original paper.
 4. `artifacts/02-neurips-skill-run.md` - the step-by-step CCFA run using all 13 runtime skills.
-5. `artifacts/03-writing-draft.md` - NeurIPS-style writing output derived from the idea and official data.
-6. `artifacts/04-review-and-rebuttal.md` - review simulation, action ledger, and rebuttal draft.
-7. `artifacts/05-submission-check.md` - venue/package/artifact readiness check.
-8. `artifacts/official-data.md` and `artifacts/result-tables.md` - official values and real-result tables.
-9. `skill-self-tests.md` - smoke prompts proving the consolidated 13-skill routing.
+5. `artifacts/03-writing-draft.md` - how `ccf-paper-writer` produced the NeurIPS-style writing output.
+6. `paper/attention_neurips_demo.tex` - the actual LaTeX manuscript draft generated from the idea and official data.
+7. `artifacts/04-review-and-rebuttal.md` - review simulation, action ledger, and rebuttal draft.
+8. `artifacts/05-submission-check.md` - venue/package/artifact readiness check.
+9. `artifacts/official-data.md` and `artifacts/result-tables.md` - official values and real-result tables.
+10. `skill-self-tests.md` - smoke prompts proving the consolidated 13-skill routing.
 
 ## What This Demo Is
 

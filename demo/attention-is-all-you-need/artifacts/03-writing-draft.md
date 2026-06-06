@@ -2,35 +2,65 @@
 
 Owner: `ccf-paper-writer`
 
-Mode: draft + polish + compression + presentation.
+This step demonstrates the corrected writer behavior. The input is only an idea document plus official result tables, so the writer should not stop at a checklist. It should search the local venue guide for NeurIPS, use the NeurIPS LaTeX fallback, and create a manuscript draft with unsupported details marked as `TBD` or bounded notes.
 
-## NeurIPS-Style Abstract Draft
+## User-Style Command Simulated
 
-We present the Transformer, a sequence transduction architecture based entirely on attention. The model removes recurrent and convolutional sequence modeling layers, using multi-head self-attention to connect positions directly and feed-forward blocks to transform token representations. This design shortens dependency paths and enables highly parallel training. On WMT 2014 English-to-German, Transformer big reports 28.4 BLEU; on WMT 2014 English-to-French, the single model reports 41.0 BLEU. The official paper reports training on one machine with 8 NVIDIA P100 GPUs, with the big English-to-German model trained for about 300K steps over about 3.5 days. These results support attention as a complete sequence modeling backbone for machine translation.
+```text
+基于上面的 idea 和官方数据，假设投稿 NeurIPS，从 0 写一篇 LaTeX 草稿。
+不要编造新结果；缺失的实验和引用用 TBD 标出。
+```
 
-## Introduction Storyline
+## Writer Routing
 
-1. Sequence transduction requires modeling relationships across positions.
-2. Recurrent models create sequential computation paths; convolutional models reduce this issue but require stacked layers for distant interactions.
-3. Attention can connect sequence positions directly.
-4. The key question is whether attention can replace recurrence and convolution as the central architecture, not only act as an auxiliary alignment module.
-5. The Transformer answers this with multi-head self-attention, positional encodings, and encoder-decoder attention.
-6. Evidence comes from WMT translation quality, complexity/path-length analysis, ablations, and training efficiency.
+- Mode: `draft`.
+- Target venue: NeurIPS.
+- Venue reference: `ccf-paper-writer/references/venue-guides/neurips.md`.
+- Template fallback used for demo: `ccf-latex-templates/NeurIPS/neurips_2026.tex`.
+- Output artifact: `paper/attention_neurips_demo.tex`.
 
-## Compressed Abstract
+## Actual Draft Artifact
 
-Transformer is a sequence transduction architecture built entirely on attention. By replacing recurrent and convolutional sequence modeling with multi-head self-attention and positional encodings, it shortens dependency paths and enables parallel training. The official paper reports 28.4 BLEU on WMT 2014 English-German and 41.0 BLEU on WMT 2014 English-French with Transformer big, supporting attention as a complete backbone for machine translation.
+The main writing output is not a report. It is the LaTeX file:
 
-## Talk / Poster Output
+```text
+demo/attention-is-all-you-need/paper/attention_neurips_demo.tex
+```
 
-Three-slide talk skeleton:
+It contains:
 
-1. Problem: sequence modeling needs long-range dependencies without slow sequential computation.
+- NeurIPS-style preamble and anonymous author block.
+- Abstract grounded in the original paper's official values.
+- Introduction with task, gap, insight, method, and evidence story.
+- Method section with attention equation and architecture explanation.
+- Experiment section with official BLEU table and complexity/path-length table.
+- Limitation section that clearly says this is not a reproduction.
+- BibTeX-style bibliography entry for the original paper.
+
+## Draft Abstract
+
+We study whether sequence transduction can be performed without recurrent or convolutional sequence modeling layers. The resulting architecture, the Transformer, uses multi-head self-attention to relate positions directly and position-wise feed-forward networks to transform token representations. This design shortens dependency paths and enables more parallel training than recurrent computation. In the original official report, Transformer big reaches 28.4 BLEU on WMT 2014 English--German and 41.0 BLEU on WMT 2014 English--French as a single model. These results support attention as a complete backbone for machine translation rather than only an auxiliary alignment mechanism.
+
+## Compression Mode Example
+
+If the user asks to compress the abstract, the writer should preserve the prose format and return the compressed paragraph directly:
+
+Transformer replaces recurrent and convolutional sequence modeling with multi-head self-attention. By directly relating sequence positions and adding positional encodings, it shortens dependency paths while enabling parallel training. The official paper reports 28.4 BLEU on WMT 2014 English--German and 41.0 BLEU on WMT 2014 English--French with Transformer big, supporting attention as a complete sequence transduction backbone.
+
+## Presentation Mode Example
+
+If the user asks for a talk instead of a manuscript, the writer should produce the requested presentation format:
+
+1. Problem: sequence models need long-range dependencies without slow sequential recurrence.
 2. Method: multi-head self-attention replaces recurrence/convolution; positional encodings restore order.
-3. Evidence: WMT BLEU, path-length comparison, ablations, and training schedule.
+3. Evidence: official WMT BLEU, constant self-attention path length, ablations, and training-cost report.
 
-## Writing Boundaries
+## Why This Is Better Than The Previous Demo
 
-- No extra benchmark values were added.
-- No current NeurIPS policy claims were made.
-- Claims are phrased as official-paper results, not demo reproduction results.
+The earlier demo made `ccf-paper-writer` look like a checklist generator. The corrected behavior is:
+
+- Draft first, notes second.
+- Preserve requested output format.
+- Use venue LaTeX when starting from an idea.
+- Keep review/audit strictness out of ordinary writing.
+- Mark missing evidence without refusing to write.

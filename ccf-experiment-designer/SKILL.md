@@ -14,7 +14,7 @@ metadata:
 
 ## Core Rule
 
-Design experiments that test the paper's central claims. Build result tables and publication figures only from supplied real values or explicit placeholders. Never fabricate numbers, improvements, significance, benchmark ranks, or user-study outcomes.
+Design experiments that test the paper's central claims. Build result tables and publication figures only from supplied real values or explicit placeholders. Never fabricate numbers, improvements, significance, benchmark ranks, or user-study outcomes. Follow the user's requested output shape: experiment plan, table, LaTeX table, figure spec, ablation list, or execution queue.
 
 ## Modes
 
@@ -32,7 +32,9 @@ Design experiments that test the paper's central claims. Build result tables and
 6. For result presentation, preserve units, seeds, confidence intervals, dataset names, and metric direction. Mark missing values explicitly.
 7. Hand off to `ccf-paper-writer` for manuscript prose, `ccf-integrity-auditor` for number/claim consistency, and `ccf-submission-checker` for package or artifact readiness.
 
-## Output Contract
+## Adaptive Output Contract
+
+Return the requested artifact first. For a result table request, output the table. For a figure request, output the figure spec/caption/QA notes. For a full experiment-design request, use this default structure:
 
 ```text
 Mode:

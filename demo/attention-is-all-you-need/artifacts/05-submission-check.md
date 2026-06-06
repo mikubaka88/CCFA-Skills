@@ -17,12 +17,13 @@ Local reference path:
 
 | Item | Demo status | Result |
 | --- | --- | --- |
-| Main TeX source | Not provided | Cannot pass. |
-| Compiled PDF | Not provided | Cannot pass. |
-| Page count | Not available | Must be checked after compilation. |
-| Anonymity | Not applicable to demo markdown | Must be checked in PDF/TeX. |
+| Main TeX source | `paper/attention_neurips_demo.tex` | Present as demo draft. |
+| NeurIPS style file | `paper/neurips_2026.sty` | Copied into demo paper folder to mirror scaffold behavior. |
+| Compiled PDF | Builds with `pdflatex` during validation; PDF not committed. | Demo compile passes, but real submission must compile in the project environment. |
+| Page count | 3 pages in validation build | Real submission must re-check after full content and official policy update. |
+| Anonymity | Anonymous author block in TeX | Must still be checked in compiled PDF and metadata. |
 | PDF metadata | Not available | Must be checked after compilation. |
-| Bibliography | Primary source named only | Needs full BibTeX for real submission. |
+| Bibliography | Original paper listed in TeX bibliography | Needs full BibTeX and all related work for real submission. |
 
 ## Artifact / Reproducibility Check
 
@@ -39,4 +40,4 @@ Local reference path:
 
 Demo gate: pass as a workflow demonstration.
 
-Real submission gate: fail until TeX/PDF, current official policy, artifact package, and bibliography are checked.
+Real submission gate: fail until PDF compilation, current official policy, artifact package, full related work, and bibliography are checked.

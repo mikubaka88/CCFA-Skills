@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.4.4 - 2026-06-06
+
+- Tightened `ccf-paper-writer` output behavior: polish/rewrite/compression preserves the user's original Markdown/LaTeX format, while from-scratch manuscript requests draft the requested artifact instead of a process report.
+- Added writer NeurIPS fallback rules: search target venue guides first, then use the NeurIPS LaTeX template when the venue is missing or unspecified.
+- Added `ccf-paper-writer/references/output-style-policy.md` and updated shared task modes so non-review skills stay flexible while review/audit gates remain structured.
+- Reworked the Attention demo writing step into a real NeurIPS-style LaTeX draft with a copied style file and successful `pdflatex` validation.
+
 ## v0.4.3 - 2026-06-06
 
 - Consolidated the runtime surface from 23 skills to 13 clear owner skills.

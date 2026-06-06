@@ -14,7 +14,7 @@
 
 ---
 
-CCFA Skills 是一套本地 Codex skills，用來管理論文專案從 idea 到 rebuttal 的完整流程。v0.4.2 不再繼續堆 helper skills，而是把 runtime 入口收斂到 13 個清晰 owner。壓縮、寫作評審、引用稽核、結果圖表、artifact、會議格式、重投、報告展示和文件 SVG 都已經併入對應主 skill。
+CCFA Skills 是一套本地 Codex skills，用來管理論文專案從 idea 到 rebuttal 的完整流程。當前 v0.4 線不再繼續堆 helper skills，而是把 runtime 入口收斂到 13 個清晰 owner。壓縮、寫作評審、引用稽核、結果圖表、artifact、會議格式、重投、報告展示和文件 SVG 都已經併入對應主 skill。
 
 ![架構](assets/ccfa-skills-architecture.zh-TW.svg)
 
@@ -54,7 +54,7 @@ foreach ($s in $skills) { Copy-Item -Recurse -Force $s "$env:CODEX_HOME\skills\"
 - `ccf-idea-reviewer`：對早期 idea 嚴格評分、比較、排序、取捨。
 - `ccf-literature-searcher`：檢索相關工作、prior art、資料集、benchmark 和引用證據。
 - `ccf-experiment-designer`：設計實驗，並基於真實結果生成結果表/圖，不編造數字。
-- `ccf-paper-writer`：寫作、潤飾、壓縮論文，並把論文轉成 slides/poster/talk/Q&A。
+- `ccf-paper-writer`：寫作、潤飾、壓縮；潤飾時保留原 Markdown/LaTeX 格式；只有 idea 時可按目標會議 LaTeX 起草，缺省回退 NeurIPS；也能把論文轉成 slides/poster/talk/Q&A。
 - `ccf-paper-reviewer`：做科學審稿、寫作評審、格式表達風險、評分和 AC/meta-review。
 - `ccf-integrity-auditor`：稽核 claim、數字、圖表、引用、BibTeX 和引用上下文支撐。
 - `ccf-submission-checker`：檢查會議規則、模板頁數、匿名、LaTeX/PDF、metadata 和 artifact。
@@ -102,7 +102,7 @@ ccf-paper-writer/references/venue-guides/index.md
 ccf-paper-writer/references/venue-guides/<venue>.md
 ```
 
-正文寫作走 `ccf-paper-writer`，會議合規和投稿包檢查走 `ccf-submission-checker`。
+正文寫作走 `ccf-paper-writer`，會議合規和投稿包檢查走 `ccf-submission-checker`。從 0 寫稿時，`ccf-paper-writer` 會先查目標會議 guide；找不到目標會議或沒有指定會議時，按 NeurIPS LaTeX 模板起草。
 
 ## Demo
 

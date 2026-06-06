@@ -16,13 +16,25 @@ metadata:
 
 **CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode`, `../ccf-common/references/handoff-modes.md`, and `../ccf-common/references/task-modes.md`.
 
-This is the manuscript text owner. It also owns local compression and presentation adaptation because both change paper wording or paper-derived communication. Keep idea scope, method mechanism, experiments, numbers, and conclusions unchanged unless the user explicitly authorizes a research-scope change.
+This is the manuscript text owner. It also owns local compression and presentation adaptation because both change paper wording or paper-derived communication. Keep idea scope, method mechanism, experiments, numbers, and conclusions unchanged unless the user explicitly authorizes a research-scope change. Follow `../ccf-common/references/task-modes.md`, especially the output-flexibility rule: user-requested output format comes before this skill's internal checklist shape.
 
 Do not invent results, citations, baselines, experiments, reviewer impact, or missing evidence. Unsupported claims must be weakened, marked as needing evidence, or left unchanged with a risk note.
 
 ## Core Rule
 
 Write for the target CCF venue, not for a generic paper. Improve structure, section logic, paragraph roles, contribution framing, claim-evidence alignment, reviewer-facing clarity, and concise presentation. Do not use reference papers to copy wording, claims, examples, technical content, or distinctive phrasing.
+
+The visible output should feel like useful writing, not a process report. Use planning tables and checklists internally; show them only when the user asks for planning, audit status, or rationale.
+
+## Format And Output Policy
+
+1. For polishing, rewriting, line editing, or compression of existing text, preserve the original format unless the user asks to restructure it. Keep LaTeX commands, section headings, citation keys, labels, equations, figure/table environments, Markdown headings, lists, and table shape intact whenever possible. Return the revised text in the same format first.
+2. For one paragraph or one subsection, default to a direct improved version plus a short optional note only if a claim, number, citation, or meaning changed.
+3. For a rough idea or "write from scratch" request, create the requested artifact rather than stopping at a plan. If the user asks for a paper/manuscript and names a target venue, read `references/venue-guides/index.md` and the specific venue guide, then draft in that venue's LaTeX style. If the venue is absent or no venue is provided, use the NeurIPS guide and `ccf-latex-templates/NeurIPS/neurips_2026.tex` as the fallback and label the assumption.
+4. If the user requests Markdown, Chinese prose, English prose, an outline, a full LaTeX file, a diff-style rewrite, or a section-only output, follow that request. Do not force the default CCF paper storyline order when the user's format is intentional.
+5. Be flexible outside review tasks. When a choice could improve the paper but changes direction, present it as a concise question or option, for example: "可以把贡献改成 benchmark 视角吗？这会降低方法新颖性风险，但需要补数据集定位。"
+6. Never invent results, citations, baselines, experiments, reviewer impact, or missing evidence. When evidence is absent, use `TBD`, a cautious placeholder, or a clearly marked "needs evidence" sentence.
+7. Do not block drafting because current venue policy is not freshly verified. Use the local venue guide for draft shape, add a freshness note when relevant, and route final compliance to `ccf-submission-checker`.
 
 ## Modes
 
@@ -33,33 +45,28 @@ Write for the target CCF venue, not for a generic paper. Improve structure, sect
 
 ## Workflow
 
-1. Identify mode, target venue, paper type, draft state, available evidence, and whether idea-scope changes are authorized.
-2. If a target venue is named, read `references/venue-guides/index.md` and the specific venue guide for LaTeX/page/anonymity/template constraints; use `references/venue-adapters.md` for reviewer priorities.
-3. Build or update the global story with `references/storyline-blueprint.md`: task -> gap -> root challenge -> insight -> method -> evidence -> limitation.
-4. Draft or revise section by section using `references/section-modules.md` and `references/writing-checklists.md`.
-5. For compression, load `references/compression-rules.md`; rank content by claim importance, remove repetition, preserve evidence and limitations, and mark cuts that require author approval.
-6. For presentation adaptation, derive slides/poster/talk/Q&A only from the manuscript and supplied evidence.
-7. If current literature, baselines, or experiments are missing, hand off to `ccf-literature-searcher` or `ccf-experiment-designer`; do not fill gaps by invention.
-8. Before calling text ready, run a local score-risk check and, when needed, hand off to `ccf-paper-reviewer`.
+1. Identify mode, requested output format, target venue, paper type, draft state, available evidence, and whether idea-scope changes are authorized. Load `references/output-style-policy.md` whenever output format, source-format preservation, or from-scratch LaTeX drafting matters.
+2. If the user supplied existing text, preserve its format and revise in place unless the user asked for a new structure.
+3. If the user supplied only an idea and wants a manuscript, choose the venue LaTeX route: target venue guide first, NeurIPS fallback if absent or unspecified.
+4. Build or update the global story with `references/storyline-blueprint.md`: task -> gap -> root challenge -> insight -> method -> evidence -> limitation. Keep this internal unless the user asked for a plan.
+5. Draft or revise section by section using `references/section-modules.md` and `references/writing-checklists.md`.
+6. For compression, load `references/compression-rules.md`; return compressed text in the same format and include a cut log only when requested or when content was materially removed.
+7. For presentation adaptation, derive slides/poster/talk/Q&A only from the manuscript and supplied evidence, in the user's requested slide/poster/script format.
+8. If current literature, baselines, or experiments are missing, ask a targeted question or hand off to `ccf-literature-searcher` or `ccf-experiment-designer`; do not fill gaps by invention.
+9. Before calling text ready, run a local score-risk check and, when needed, hand off to `ccf-paper-reviewer`.
 
-## Output Contract
+## Adaptive Output Contract
 
-```text
-Mode:
-Target venue and assumptions:
-Global story:
-Section/paragraph plan:
-Draft or revised text:
-Compression or presentation notes:
-Claim-evidence risks:
-Reviewer-facing risks:
-Next CCFA owner:
-Checklist status:
-```
+- Polish/rewrite/compress existing text: output the revised text first, in the same format. Add brief notes only for changed meaning, unsupported claims, or user-requested rationale.
+- Draft from idea: output the requested artifact. For a manuscript request, default to a LaTeX draft with venue assumptions and `TBD` evidence placeholders. If no target venue guide exists, use NeurIPS fallback.
+- Section planning: output the section plan or paragraph roles only when the user asks for planning or the input is too incomplete to draft responsibly.
+- Presentation: output slides, poster copy, talk script, or Q&A in the requested format.
+- Full standard work may include a compact status block: mode, venue assumption, evidence gaps, and next CCFA owner.
 
 ## Reference Files
 
 - `references/venue-guides/index.md` and `references/venue-guides/<venue>.md`: venue writing and format constraints.
+- `references/output-style-policy.md`: user-format priority, edit-format preservation, and NeurIPS fallback behavior.
 - `references/storyline-blueprint.md`: whole-paper story.
 - `references/section-modules.md`: section drafting.
 - `references/writing-checklists.md`: readiness checks.

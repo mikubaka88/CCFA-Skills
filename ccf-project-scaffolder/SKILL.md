@@ -32,16 +32,16 @@ Project name, target venue, output directory, template preference, and optional 
 2. Check `../ccf-common/references/skill-trigger-registry.yaml` for ownership boundaries before absorbing adjacent work.
 3. Read `ccfa.yaml` when it exists. If absent, continue with supplied artifacts and report that project-state tracking is unavailable.
 4. Execute only this skill's owned task. Mark missing evidence, stale venue rules, missing files, or authorization gaps explicitly.
-5. Produce the output contract below and name the next owning skill when handoff is needed.
+5. Produce the requested scaffold result and name the next owning skill when handoff is needed.
 
 ## Quick And Standard Modes
 
 - Quick mode: answer the narrow request with the minimum relevant checklist and a compact risk note.
 - Standard mode: produce the full table/checklist, artifact-state notes, boundary checks, and handoff recommendations.
 
-## Output Contract
+## Adaptive Output Contract
 
-Created directory tree, copied template paths, initialized ccfa.yaml, and next-step handoff.
+If files were created or copied, report the directory tree, template paths, initialized `ccfa.yaml`, and next-step handoff. If the user only asks for a dry-run plan or install subset, return that requested shape instead. Do not force a full checklist for a small scaffold command.
 
 ## Handoff
 

@@ -26,7 +26,7 @@ Treat rough ideas, unpublished method details, draft abstracts, and experiment p
 
 ## Core Rule
 
-Optimize the research idea before optimizing the writing. Do not inflate novelty, invent related work, invent results, or turn weak ideas into confident claims. Make the idea more CCF-A-ready by sharpening the problem, mechanism, contribution, evidence package, and reviewer-facing risk register. For fuzzy ideas, generate diverse but internally consistent candidate concretizations; prefer timely, elegant, non-stale directions and clearly mark novelty uncertainty until searched.
+Optimize the research idea before optimizing the writing. Do not inflate novelty, invent related work, invent results, or turn weak ideas into confident claims. Make the idea more CCF-A-ready by sharpening the problem, mechanism, contribution, evidence package, and reviewer-facing risk register. For fuzzy ideas, generate diverse but internally consistent candidate concretizations; prefer timely, elegant, non-stale directions and clearly mark novelty uncertainty until searched. Follow the user's requested output shape: idea card, alternatives, roadmap, questions, table, Chinese explanation, or handoff-ready brief.
 
 ## Mandatory Checklist
 
@@ -58,7 +58,9 @@ Load `references/idea-intake.md` when inputs are incomplete or several idea draf
 9. Run an internal acceptability pass. Follow the CCFA handoff mode before using `ccf-idea-reviewer` as an optional scoring module; if it is denied or disabled, perform a compact multi-expert risk scan focused only on problem and method.
 10. Produce an optimized idea plan, ranked pivots, and a writing-readiness note. Follow the CCFA handoff mode before offering the viable plan to `ccf-paper-writer`; if writing is denied or not confirmed, stop at the idea plan.
 
-## Output Contracts
+## Adaptive Output Contracts
+
+Return the requested artifact first. If the user asks for options, give options. If they ask for a concise idea card, do not force a full review-style report. Use the following defaults when the user asks for a standard idea-optimization output.
 
 For one idea, return:
 
