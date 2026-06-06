@@ -1,6 +1,6 @@
 ---
 name: ccf-literature-searcher
-description: "Search and screen literature, related work, datasets, benchmarks, and citation evidence for CCF research workflows. Use for ????, related work, prior art, benchmark search. Do not audit only already-cited references or write the manuscript as the main task."
+description: "Search and screen literature, related work, datasets, benchmarks, and citation evidence for CCF research workflows. Use for literature search, related work, prior art, benchmark search, 文献检索, 相关工作, benchmark搜索. Do not audit only already-cited references or write the manuscript as the main task."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -39,7 +39,7 @@ In standard mode, complete this checklist before final output. In quick mode, ru
 7. Paper type is one of `pure benchmark`, `pure method`, `method + benchmark`, `survey`, `system/tool`, `theory/proof`, or `other`.
 8. Every claim about a paper is traceable to the linked source or marked as inferred.
 9. A literature-search folder is written when file access is available.
-10. Optional handoff to `ccf-paper-writer`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-experiment-designer`, `ccf-scientific-reviewer`, or `ccf-writing-reviewer` follows CCFA handoff mode.
+10. Optional handoff to `ccf-paper-writer`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-experiment-designer`, or `ccf-paper-reviewer` follows CCFA handoff mode.
 
 ## Workflow
 

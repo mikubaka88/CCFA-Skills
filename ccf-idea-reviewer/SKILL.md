@@ -1,6 +1,6 @@
 ---
 name: ccf-idea-reviewer
-description: "Strictly score, rank, compare, and triage early CCF research ideas with prior-art awareness and venue-fit risk. Use for idea??, ????, idea review, acceptance-potential triage. Do not polish manuscripts or optimize a single idea unless scoring is explicit."
+description: "Strictly score, rank, compare, and triage early CCF research ideas with prior-art awareness and venue-fit risk. Use for idea scoring, idea ranking, idea review, acceptance-potential triage, idea评分, 选题评分, 选题排名. Do not polish manuscripts or optimize a single idea unless scoring is explicit."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -16,7 +16,7 @@ metadata:
 
 **CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode` and `../ccf-common/references/handoff-modes.md`. Use `../ccf-common/references/routing.md` to keep idea scoring separate from idea optimization, manuscript writing, conference scientific review, paper writing review, and rebuttal tasks.
 
-Use this skill only for explicit idea review/scoring/ranking. If the user asks to optimize, develop, concretize, brainstorm, or reshape an idea without asking for scoring or strict review, route to `ccf-idea-optimizer` or `ccf-workflow-planner` by the shared routing rules.
+Use this skill only for explicit idea review/scoring/ranking. If the user asks to optimize, develop, concretize, brainstorm, or reshape an idea without asking for scoring or strict review, route to `ccf-idea-optimizer` or `ccf-pipeline-orchestrator` by the shared routing rules.
 
 Load `../ccf-common/references/task-modes.md` before deciding quick or standard mode. Use quick mode for a short local triage note or one idea's preliminary risk scan. Use standard mode for numeric scoring, multi-idea ranking, novelty-risk diagnosis, target-venue/journal judgment, or investment decisions.
 
@@ -122,4 +122,4 @@ Load only what is needed:
 - `references/calibration.md`: Use for weighted scores, fatal gates, confidence, recommendations, and multi-idea tournaments.
 - `references/source-notes.md`: Use when explaining provenance, official criteria, or current literature/venue checks.
 
-If the user asks to improve the idea rather than score it, follow the CCFA handoff mode before switching to `ccf-idea-optimizer` unless explicitly named. If the user asks mainly for current related work, route to `ccf-literature-searcher`. If the user provides a full paper draft and asks for scientific paper review, follow the CCFA handoff mode before switching to `ccf-scientific-reviewer`. If the user asks for writing/format review, follow the CCFA handoff mode before switching to `ccf-writing-reviewer`; if not confirmed, provide only idea-stage caveats.
+If the user asks to improve the idea rather than score it, follow the CCFA handoff mode before switching to `ccf-idea-optimizer` unless explicitly named. If the user asks mainly for current related work, route to `ccf-literature-searcher`. If the user provides a full paper draft and asks for paper review, follow the CCFA handoff mode before switching to `ccf-paper-reviewer`; if not confirmed, provide only idea-stage caveats.

@@ -30,7 +30,7 @@ Before running this loop, load `references/writing-checklists.md` and use its sc
    - overclaim,
    - limitations/ethics gap,
    - venue mismatch.
-4. Score the draft. If `ccf-scientific-reviewer` was explicitly requested or confirmed after the optional-module gate, use its scientific review rubric, venue style, and calibration files. Otherwise use the venue adapter plus the scoring table below.
+4. Score the draft. If `ccf-paper-reviewer` was explicitly requested or confirmed after the optional-module gate, use its scientific review rubric, venue style, and calibration files. Otherwise use the venue adapter plus the scoring table below.
 5. Convert every deduction into a fix class:
    - writing-fixable,
    - analysis-fixable,

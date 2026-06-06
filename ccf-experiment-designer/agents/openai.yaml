@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Experiment Designer"
-  short_description: "Design evaluation protocols, datasets, baselines, metrics, ablations, robustness tests, and result-table templates for CCF papers."
-  default_prompt: "Use $ccf-experiment-designer for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."
+  short_description: "Design experiments and build result tables/figures from supplied real values; never invent results."
+  default_prompt: "Use $ccf-experiment-designer for experiment design, baselines, ablations, result templates, and real-result figure/table presentation."

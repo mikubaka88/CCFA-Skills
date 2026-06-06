@@ -1,32 +1,28 @@
 # Changelog
 
-## Unreleased - Naming consistency pass
+## v0.4.3 - 2026-06-06
+
+- Consolidated the runtime surface from 23 skills to 13 clear owner skills.
+- Merged helper skills into owner modes: workflow planning, compression, writing review, citation audit, result figures/tables, artifact packaging, venue format, resubmission, paper presentation, and docs SVG maintenance.
+- Renamed the review owner to `ccf-paper-reviewer` and made it responsible for both scientific and writing/format review modes.
+- Rewrote README EN/zh-CN/zh-TW, routing, trigger registry, catalog, architecture docs, installation matrices, and merge audit docs around the 13-skill family.
+- Rebuilt all 24 CCFA SVG diagrams from `tools/build_ccfa_diagrams.py` using the consolidated family.
+- Reworked `demo/attention-is-all-you-need/` into a NeurIPS-style dry run: original-paper reading, idea document, ordered skill run, writing draft, review/rebuttal, submission check, official data, and result tables.
+- Bumped plugin manifests to `0.4.3`.
+
+## v0.4.2 - 2026-06-06
 
 - Unified runtime skill names to the `ccf-<object>-<role/action>` style.
-- Renamed ambiguous legacy names such as `ccf-paper-writer`, `ccf-scientific-reviewer`, `ccf-writing-reviewer`, `ccf-venue-format-guide`, and `ccf-skill-forger`.
-- Merged `ccf-revision-ledger` into `ccf-rebuttal-writer` as `references/revision-ledger.md`.
-- Rewrote README EN/zh-CN/zh-TW, catalog, routing, architecture, and agent guide around the new names.
-- Added detailed catalog, routing, and artifact SVG diagrams in English, Simplified Chinese, and Traditional Chinese.
-
+- Added installation matrix docs and generated SVG diagrams.
+- Added the Attention demo with official NeurIPS 2017 paper data.
 
 ## v0.4.0 - 2026-06-06
 
 ### Added
 
-- 10 new workflow skills: `ccf-pipeline-orchestrator`, `ccf-project-scaffolder`, `ccf-integrity-auditor`, `ccf-citation-auditor`, `ccf-submission-checker`, `ccf-figure-table-builder`, `ccf-artifact-packager`, `ccf-rebuttal-writer`, `ccf-resubmission-adapter`, and `ccf-paper-presenter`.
-- New `ccf-venue-format-guide` entry skill for venue LaTeX, page limit, anonymity, template, and camera-ready questions.
-- `ccfa.yaml` project-state contract and scaffold template.
-- Artifact contracts, trigger registry, architecture docs, agent guide, and skills catalog.
-- Codex and Claude plugin manifests.
-- GitHub Actions validation for v0.4 routing and structure.
+- v0.4 workflow structure, `ccfa.yaml` project-state contract, artifact contracts, trigger registry, architecture docs, agent guide, skills catalog, plugin manifests, and GitHub Actions validation.
 
 ### Changed
 
-- Renamed `forge-skills` to `ccf-skill-forger`.
 - Migrated 109 legacy venue runtime skills into `ccf-paper-writer/references/venue-guides/`.
-- Updated routing so venue requirements are a writing/reference branch rather than 109 standalone runtime skills.
-
-### Compatibility
-
-- Core research-chain skill names are preserved.
-- Legacy `ccf-conference-skills/<venue>/SKILL.md` no longer exists as installable skills. Use `ccf-venue-format-guide` or the venue guide reference branch.
+- Updated routing so venue requirements are reference material rather than standalone runtime skills.

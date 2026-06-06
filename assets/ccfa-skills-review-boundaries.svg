@@ -1,36 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="900" viewBox="0 0 1800 900">
-<rect width="1800" height="900" fill="#f6f8fb"/>
-<text x="60" y="70" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#17212b" text-anchor="start">Review And Audit Boundaries</text>
-<text x="60" y="105" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="400" fill="#52606d" text-anchor="start">Which skill owns which kind of critique.</text>
-<rect x="60" y="160" width="500" height="270" rx="10" fill="#ffffff" stroke="#1F6F8B" stroke-width="2"/>
-<rect x="60" y="160" width="500" height="44" rx="10" fill="#1F6F8B"/>
-<text x="78" y="189" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Scientific</text>
-<text x="78" y="230" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-scientific-reviewer</text>
-<text x="78" y="253" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Novelty, soundness, evidence, scores</text>
-<rect x="620" y="160" width="500" height="270" rx="10" fill="#ffffff" stroke="#2D8A68" stroke-width="2"/>
-<rect x="620" y="160" width="500" height="44" rx="10" fill="#2D8A68"/>
-<text x="638" y="189" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Writing</text>
-<text x="638" y="230" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-writing-reviewer</text>
-<text x="638" y="253" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Paragraph logic, clarity, LaTeX/format</text>
-<rect x="1180" y="160" width="500" height="270" rx="10" fill="#ffffff" stroke="#B85C38" stroke-width="2"/>
-<rect x="1180" y="160" width="500" height="44" rx="10" fill="#B85C38"/>
-<text x="1198" y="189" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Integrity</text>
-<text x="1198" y="230" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-integrity-auditor</text>
-<text x="1198" y="253" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Claims, numbers, results, figures/tables</text>
-<rect x="60" y="520" width="500" height="270" rx="10" fill="#ffffff" stroke="#6B5B95" stroke-width="2"/>
-<rect x="60" y="520" width="500" height="44" rx="10" fill="#6B5B95"/>
-<text x="78" y="549" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Citation</text>
-<text x="78" y="590" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-citation-auditor</text>
-<text x="78" y="613" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Existing citations, BibTeX, context</text>
-<text x="78" y="631" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">support</text>
-<rect x="620" y="520" width="500" height="270" rx="10" fill="#ffffff" stroke="#3B3F46" stroke-width="2"/>
-<rect x="620" y="520" width="500" height="44" rx="10" fill="#3B3F46"/>
-<text x="638" y="549" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Submission</text>
-<text x="638" y="590" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-submission-checker</text>
-<text x="638" y="613" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">PDF, anonymity, pages, fonts, metadata</text>
-<rect x="1180" y="520" width="500" height="270" rx="10" fill="#ffffff" stroke="#8A6F2D" stroke-width="2"/>
-<rect x="1180" y="520" width="500" height="44" rx="10" fill="#8A6F2D"/>
-<text x="1198" y="549" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Response</text>
-<text x="1198" y="590" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-rebuttal-writer</text>
-<text x="1198" y="613" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Reviewer comments, response prose, ledger</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="850" viewBox="0 0 1800 850">
+<defs>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0B1826" flood-opacity="0.12"/></filter>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#8D9AA8"/></marker>
+</defs>
+<style>text{font-family:Inter, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas,Menlo,monospace}</style>
+<rect x="0" y="0" width="1800" height="850" rx="0" fill="#F3F6F9" stroke="none" stroke-width="2" />
+<rect x="0" y="0" width="1800" height="170" rx="0" fill="#102033" stroke="none" stroke-width="2" />
+<text x="70" y="72" font-size="38" font-weight="820" fill="#FFFFFF" text-anchor="start">Review And Audit Boundaries</text>
+<text x="70" y="112" font-size="18" font-weight="450" fill="#D6E1EC" text-anchor="start">Separate judgment, integrity, submission, and writing actions.</text>
+<rect x="90" y="260" width="480" height="160" rx="26" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="90" y="260" width="480" height="44" rx="22" fill="#A78328" stroke="none" stroke-width="2" />
+<text x="114" y="289" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">Judgment</text>
+<text x="124" y="352" font-size="22" font-weight="820" fill="#17212B" text-anchor="start">ccf-paper-reviewer</text>
+<text x="124" y="386" font-size="16" font-weight="550" fill="#536171" text-anchor="start">novelty · soundness · writing · score</text>
+<rect x="650" y="260" width="480" height="160" rx="26" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="650" y="260" width="480" height="44" rx="22" fill="#854B82" stroke="none" stroke-width="2" />
+<text x="674" y="289" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">Integrity</text>
+<text x="684" y="352" font-size="22" font-weight="820" fill="#17212B" text-anchor="start">ccf-integrity-auditor</text>
+<text x="684" y="386" font-size="16" font-weight="550" fill="#536171" text-anchor="start">claims · numbers · citations</text>
+<rect x="1210" y="260" width="480" height="160" rx="26" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="1210" y="260" width="480" height="44" rx="22" fill="#333B46" stroke="none" stroke-width="2" />
+<text x="1234" y="289" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">Action</text>
+<text x="1244" y="352" font-size="22" font-weight="820" fill="#17212B" text-anchor="start">ccf-paper-writer</text>
+<text x="1244" y="386" font-size="16" font-weight="550" fill="#536171" text-anchor="start">revise · compress · present</text>
+<rect x="90" y="500" width="480" height="160" rx="26" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="90" y="500" width="480" height="44" rx="22" fill="#BA4C5E" stroke="none" stroke-width="2" />
+<text x="114" y="529" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">Package</text>
+<text x="124" y="592" font-size="22" font-weight="820" fill="#17212B" text-anchor="start">ccf-submission-checker</text>
+<text x="124" y="626" font-size="16" font-weight="550" fill="#536171" text-anchor="start">venue · PDF · artifact</text>
+<rect x="650" y="500" width="480" height="160" rx="26" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="650" y="500" width="480" height="44" rx="22" fill="#477AA6" stroke="none" stroke-width="2" />
+<text x="674" y="529" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">Response</text>
+<text x="684" y="592" font-size="22" font-weight="820" fill="#17212B" text-anchor="start">ccf-rebuttal-writer</text>
+<text x="684" y="626" font-size="16" font-weight="550" fill="#536171" text-anchor="start">rebuttal · ledger · resubmit</text>
 </svg>

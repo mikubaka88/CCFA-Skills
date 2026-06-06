@@ -1,4 +1,0 @@
-interface:
-  display_name: "CCF Artifact Packager"
-  short_description: "Prepare artifact and reproducibility packages: code/data/model release plan, environment, seeds, hardware notes, README structure, licenses, and reproducibility appendix."
-  default_prompt: "Use $ccf-artifact-packager for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

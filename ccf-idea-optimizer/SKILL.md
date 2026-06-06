@@ -1,6 +1,6 @@
 ---
 name: ccf-idea-optimizer
-description: "Turn rough CCF research directions into concrete problem, gap, insight, method, novelty, and evidence plans. Use for idea optimization, ???idea, ????, research direction shaping. Do not rank or score multiple ideas as the main output."
+description: "Turn rough CCF research directions into concrete problem, gap, insight, method, novelty, and evidence plans. Use for idea optimization, fuzzy idea concretization, research direction shaping, 优化idea, 具象化idea, 研究思路优化. Do not rank or score multiple ideas as the main output."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -103,4 +103,4 @@ Load only what is needed:
 - `references/research-taste.md`: Use when the user asks what makes research good, elegant, timely, or likely to survive top-conference review.
 - `references/source-notes.md`: Use when provenance, source basis, or current-policy checks matter.
 
-If the user's request is only to score an idea without optimizing it, follow the CCFA handoff mode before switching to `ccf-idea-reviewer` unless the user explicitly named it. If the user's request is mainly to search related literature, route to `ccf-literature-searcher`. If the user already has a manuscript draft, follow the CCFA handoff mode before switching to `ccf-paper-writer`, `ccf-scientific-reviewer`, or `ccf-writing-reviewer`; if not confirmed, provide only a brief scope note.
+If the user's request is only to score an idea without optimizing it, follow the CCFA handoff mode before switching to `ccf-idea-reviewer` unless the user explicitly named it. If the user's request is mainly to search related literature, route to `ccf-literature-searcher`. If the user already has a manuscript draft, follow the CCFA handoff mode before switching to `ccf-paper-writer` or `ccf-paper-reviewer`; if not confirmed, provide only a brief scope note.

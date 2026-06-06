@@ -2,7 +2,7 @@
 
 # CCFA Skills
 
-### A governed `ccf-*` skill family for CCF paper projects.
+### A governed `ccf-*` skill family for CCF/NeurIPS-style paper projects.
 
 <p>
   <strong>English</strong> ·
@@ -14,96 +14,103 @@
 
 ---
 
-CCFA Skills is a local Codex skill family for CCF-style research projects. It covers the full paper lifecycle: project setup, workflow planning, idea shaping, literature search, experiment design, manuscript writing, review, audits, submission checks, rebuttal, resubmission, and presentation.
-
-The current naming pass makes every runtime skill easier to route: names use `ccf-<object>-<role/action>`, with `ccf-common` kept as the governance exception. `ccf-revision-ledger` has been merged into `ccf-rebuttal-writer` so response promises and manuscript actions stay in one post-review workflow.
+CCFA Skills is a local Codex skill family for research-paper projects. v0.4.2 intentionally reduces the runtime surface from many helper skills to 13 clear owners. Helper capabilities such as compression, writing review, citation audit, result figures, artifact packaging, venue format lookup, resubmission, paper talks, and docs SVG generation now live as modes or references inside their owning skills.
 
 ![Architecture](assets/ccfa-skills-architecture.svg)
 
 ## Install
 
+Full install:
+
 ```bash
 git clone https://github.com/mikubaka88/CCFA-Skills.git
-cp -r CCFA-Skills/ccf-* "$CODEX_HOME/skills/"
+mkdir -p "$CODEX_HOME/skills"
+cp -R CCFA-Skills/ccf-* "$CODEX_HOME/skills/"
 ```
 
-For an existing checkout:
+Partial install is supported, but always include `ccf-common`:
 
 ```bash
-git pull origin main
-cp -r ccf-* "$CODEX_HOME/skills/"
+skills=(ccf-common ccf-paper-writer ccf-paper-reviewer ccf-submission-checker)
+mkdir -p "$CODEX_HOME/skills"
+for s in "${skills[@]}"; do cp -R "$s" "$CODEX_HOME/skills/"; done
 ```
 
-Plugin manifests are available at `.codex-plugin/plugin.json` and `.claude-plugin/plugin.json`.
+PowerShell:
 
-## Skill Map
+```powershell
+$skills = @("ccf-common", "ccf-paper-writer", "ccf-paper-reviewer", "ccf-submission-checker")
+New-Item -ItemType Directory -Force "$env:CODEX_HOME\skills" | Out-Null
+foreach ($s in $skills) { Copy-Item -Recurse -Force $s "$env:CODEX_HOME\skills\" }
+```
 
-- `ccf-project-scaffolder`: Creates project folders, copies/selects templates, and initializes ccfa.yaml.
-- `ccf-pipeline-orchestrator`: Coordinates project stages, gates, artifacts, and handoffs.
-- `ccf-workflow-planner`: Clarifies goals, constraints, scope, success criteria, and next skill.
-- `ccf-idea-optimizer`: Turns rough directions into problem-gap-insight-method-evidence plans.
-- `ccf-idea-reviewer`: Scores, ranks, compares, and triages early ideas.
-- `ccf-literature-searcher`: Finds related work, prior art, datasets, benchmarks, and citation evidence.
-- `ccf-experiment-designer`: Designs datasets, baselines, metrics, ablations, robustness tests, and result templates.
-- `ccf-paper-writer`: Plans, drafts, revises, and polishes manuscript text while preserving evidence scope.
-- `ccf-paper-compressor`: Shortens paper text to word/page limits without changing claims or results.
-- `ccf-scientific-reviewer`: Runs full scientific manuscript review, scoring, simulated reviewers, and AC/meta-review.
-- `ccf-writing-reviewer`: Reviews paragraph logic, writing clarity, consistency, LaTeX/format, and presentation risks.
-- `ccf-integrity-auditor`: Audits claim-support, result-to-claim, numeric, terminology, and figure/table consistency.
-- `ccf-citation-auditor`: Verifies existing citations, BibTeX metadata, paper existence, and citation-context support.
-- `ccf-figure-table-builder`: Builds and audits figures, LaTeX tables, captions, SVG/PDF assets from real results.
-- `ccf-artifact-packager`: Prepares artifact and reproducibility package plans, env notes, seeds, licenses, and README.
-- `ccf-venue-format-guide`: Answers venue LaTeX, template, page-limit, anonymity, and camera-ready format questions.
-- `ccf-submission-checker`: Checks LaTeX/PDF builds, page limits, anonymity, fonts, metadata, templates, and policy freshness.
-- `ccf-rebuttal-writer`: Writes rebuttals, author responses, response letters, revision summaries, and revision ledgers.
-- `ccf-resubmission-adapter`: Adapts an existing paper to a new venue under conservative no-new-experiment defaults.
-- `ccf-paper-presenter`: Converts a paper into slides, poster, talk script, figure narration, and Q&A bank.
-- `ccf-common`: Shared routing, trigger registry, handoff modes, source registry, privacy policy, and artifact contracts.
-- `ccf-skill-forger`: Creates, updates, validates, and audits CCFA/Codex skills and family governance.
+See [INSTALLATION_MATRIX.md](docs/INSTALLATION_MATRIX.md) before installing a subset.
 
-## Family Relationship
+## Runtime Skills
+
+- `ccf-project-scaffolder`: creates the project directory, selects/copies templates, and initializes `ccfa.yaml`.
+- `ccf-pipeline-orchestrator`: plans the workflow, decomposes tasks, coordinates gates, and chooses the next owner.
+- `ccf-idea-optimizer`: turns a rough direction into a concrete problem-gap-insight-method-evidence plan.
+- `ccf-idea-reviewer`: scores, compares, ranks, and triages early ideas.
+- `ccf-literature-searcher`: searches related work, prior art, datasets, benchmarks, and citation evidence.
+- `ccf-experiment-designer`: designs experiments and builds real-result tables/figures without inventing numbers.
+- `ccf-paper-writer`: drafts, revises, polishes, compresses, and presentation-adapts manuscript text.
+- `ccf-paper-reviewer`: reviews scientific quality, writing quality, format-facing risks, reviewer scores, and AC/meta-review.
+- `ccf-integrity-auditor`: audits claims, numbers, figures/tables, citations, BibTeX, and citation-context support.
+- `ccf-submission-checker`: checks venue rules, templates, page/anonymity, LaTeX/PDF package, metadata, and artifacts.
+- `ccf-rebuttal-writer`: writes rebuttals, response letters, revision ledgers, and conservative resubmission plans.
+- `ccf-common`: shared routing, privacy/evidence policy, source registry, and artifact contracts.
+- `ccf-skill-forger`: maintains skills, routing, docs, generated SVG diagrams, validation, and releases.
+
+## Family Flow
 
 ```text
-ccf-project-scaffolder -> ccf-pipeline-orchestrator -> ccf-workflow-planner
+ccf-project-scaffolder
+  -> ccf-pipeline-orchestrator
   -> ccf-idea-optimizer -> ccf-idea-reviewer
   -> ccf-literature-searcher -> ccf-experiment-designer
-  -> ccf-paper-writer -> ccf-paper-compressor
-  -> ccf-scientific-reviewer / ccf-writing-reviewer
-  -> ccf-integrity-auditor / ccf-citation-auditor
-  -> ccf-figure-table-builder / ccf-artifact-packager
-  -> ccf-venue-format-guide / ccf-submission-checker
-  -> ccf-rebuttal-writer / ccf-resubmission-adapter / ccf-paper-presenter
+  -> ccf-paper-writer
+  -> ccf-paper-reviewer -> ccf-integrity-auditor
+  -> ccf-submission-checker
+  -> ccf-rebuttal-writer
+
+Governance: ccf-common / ccf-skill-forger
 ```
 
 ![Workflow](assets/ccfa-skills-workflow.svg)
 
-## Venue Branch
+## Merged Helpers
 
-The old per-venue runtime skills remain migrated into:
+Do not install these as standalone runtime skills: `ccf-workflow-planner`, `ccf-paper-compressor`, `ccf-writing-reviewer`, `ccf-citation-auditor`, `ccf-figure-table-builder`, `ccf-artifact-packager`, `ccf-venue-format-guide`, `ccf-resubmission-adapter`, `ccf-paper-presenter`, `ccf-doc-diagram-designer`.
+
+Their capabilities are still present:
+
+- compression and talks -> `ccf-paper-writer`
+- writing review -> `ccf-paper-reviewer`
+- citation audit -> `ccf-integrity-auditor`
+- result figures/tables -> `ccf-experiment-designer`
+- venue format and artifacts -> `ccf-submission-checker`
+- resubmission -> `ccf-rebuttal-writer`
+- docs SVGs -> `ccf-skill-forger`
+
+## Venue Guides
+
+Venue-specific LaTeX/template notes are reference material:
 
 ```text
 ccf-paper-writer/references/venue-guides/index.md
 ccf-paper-writer/references/venue-guides/<venue>.md
 ```
 
-Use `ccf-venue-format-guide` for venue requirements, `ccf-paper-writer` for manuscript content, `ccf-writing-reviewer` for writing/format critique, and `ccf-submission-checker` for actual package checks.
+Use `ccf-paper-writer` for venue-aware manuscript text and `ccf-submission-checker` for venue compliance and package checks.
 
-## Naming Migration
+## Demo
 
-- `ccf-brainstorming` -> `ccf-workflow-planner`: Clearer role name; avoids overlap with generic brainstorming.
-- `ccf-literature-search` -> `ccf-literature-searcher`: Aligns with role/action naming.
-- `ccf-writing-skills` -> `ccf-paper-writer`: Replaces plural family-style name with a single owning role.
-- `ccf-conference-reviewer` -> `ccf-scientific-reviewer`: Names the review type, not the venue layer.
-- `ccf-conference-writing-reviewer` -> `ccf-writing-reviewer`: Keeps writing review distinct from scientific review.
-- `ccf-conference-paper-rebuttal` -> `ccf-rebuttal-writer`: Names the output responsibility.
-- `ccf-conference-guides` -> `ccf-venue-format-guide`: Clarifies it handles venue format only.
-- `ccf-paper-project-scaffold` -> `ccf-project-scaffolder`: Aligns with role/action naming.
-- `ccf-artifact-reproducibility` -> `ccf-artifact-packager`: Clarifies owned artifact output.
-- `ccf-revision-ledger` -> `merged into ccf-rebuttal-writer`: Ledger tracking is part of post-review response accountability.
-- `ccf-paper-talk` -> `ccf-paper-presenter`: Clarifies presentation ownership.
-- `ccf-forge-skills` -> `ccf-skill-forger`: Avoids plural skill-family wording.
+`demo/attention-is-all-you-need/` is a complete NeurIPS-style dry run. It reads the original Transformer paper, extracts the idea, then walks through the CCFA family: idea optimization, literature/evidence grounding, experiment planning, writing, review, integrity audit, submission check, and rebuttal.
 
-## More Diagrams
+![Attention Demo](assets/ccfa-skills-demo-attention.svg)
+
+## Diagrams
 
 ![Catalog](assets/ccfa-skills-catalog.svg)
 
@@ -111,6 +118,8 @@ Use `ccf-venue-format-guide` for venue requirements, `ccf-paper-writer` for manu
 
 ![Artifacts](assets/ccfa-skills-artifacts.svg)
 
+![Installation](assets/ccfa-skills-installation.svg)
+
 ![Review Boundaries](assets/ccfa-skills-review-boundaries.svg)
 
-See `docs/SKILLS_CATALOG.md`, `docs/ARCHITECTURE.md`, and `docs/NAMING_AND_MERGE_AUDIT.md` for the full routing and merge rationale.
+Detailed docs: [SKILLS_CATALOG.md](docs/SKILLS_CATALOG.md), [ARCHITECTURE.md](docs/ARCHITECTURE.md), [INSTALLATION_MATRIX.md](docs/INSTALLATION_MATRIX.md), [NAMING_AND_MERGE_AUDIT.md](docs/NAMING_AND_MERGE_AUDIT.md).

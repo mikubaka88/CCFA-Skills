@@ -1,6 +1,6 @@
 # Venue Guide Index
 
-This index replaces the old runtime `ccf-conference-skills/<venue>/SKILL.md` layer. `ccf-paper-writer` and `ccf-venue-format-guide` load this index first, then the specific venue guide.
+This index replaces the old runtime `ccf-conference-skills/<venue>/SKILL.md` layer. `ccf-paper-writer` and `ccf-submission-checker` load this index first, then the specific venue guide.
 
 | Venue | Family | CCF tier | Template path | Official URL | Page/anonymity summary | Last verified | Source status |
 | --- | --- | --- | --- | --- | --- | --- | --- |

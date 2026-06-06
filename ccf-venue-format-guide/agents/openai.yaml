@@ -1,4 +1,0 @@
-interface:
-  display_name: "CCF Venue Format Guide"
-  short_description: "Look up and summarize CCF conference LaTeX templates, page limits, anonymity rules, author blocks, supplementary rules, rebuttal templates, and camera-ready format requirements."
-  default_prompt: "Use $ccf-venue-format-guide for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

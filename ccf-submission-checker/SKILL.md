@@ -1,6 +1,6 @@
 ---
 name: ccf-submission-checker
-description: "Check CCF conference submission packages for LaTeX compilation, PDF metadata, page limits, anonymity, fonts, template compliance, supplementary files, and policy freshness. Use for submission readiness. Do not polish manuscript content."
+description: "Check CCF conference submission readiness: venue LaTeX/template/page/anonymity/camera-ready rules, LaTeX/PDF build, metadata, fonts, supplementary files, artifact/reproducibility package, code/data/model release plan, licenses, seeds, and policy freshness. Use for submission check, venue format, NeurIPS/CVPR/ICML template/page limit, artifact package, 投稿检查, 会议格式. Do not polish manuscript content."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -12,41 +12,36 @@ metadata:
 
 # CCF Submission Checker
 
-## Invocation Controls
-
-**CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode`, `../ccf-common/references/handoff-modes.md`, `../ccf-common/references/task-modes.md`, and `../ccf-common/references/skill-trigger-registry.yaml`.
-
-Treat private manuscripts, reviews, drafts, results, code, and project state as private user material. Do not browse with private text unless the user authorizes it or the shared privacy/evidence policy allows a safe transformed query.
-
 ## Core Rule
 
-Treat submission as a build-and-policy gate. Load venue guides for expected format, then require current official-policy verification for final decisions.
+Treat submission as a build, venue-policy, and artifact-readiness gate. Use local venue guides for expected rules, then require official-policy freshness for final decisions. Do not rewrite paper content.
 
-## Inputs
+## Modes
 
-Project directory, TeX/PDF files, target venue/year, venue guide, and submission mode.
+- `venue-format`: template, page limit, anonymity, author block, supplementary and camera-ready rules.
+- `package-check`: LaTeX/PDF build, metadata, fonts, page count, file structure, and submission checklist.
+- `artifact`: code/data/model release plan, environment, seeds, hardware, licenses, artifact README, and reproducibility appendix.
+- `full`: venue + package + artifact.
 
 ## Workflow
 
-1. Identify quick or standard mode from the request, available artifacts, and deadline pressure.
-2. Check `../ccf-common/references/skill-trigger-registry.yaml` for ownership boundaries before absorbing adjacent work.
-3. Read `ccfa.yaml` when it exists. If absent, continue with supplied artifacts and report that project-state tracking is unavailable.
-4. Execute only this skill's owned task. Mark missing evidence, stale venue rules, missing files, or authorization gaps explicitly.
-5. Produce the output contract below and name the next owning skill when handoff is needed.
-
-## Quick And Standard Modes
-
-- Quick mode: answer the narrow request with the minimum relevant checklist and a compact risk note.
-- Standard mode: produce the full table/checklist, artifact-state notes, boundary checks, and handoff recommendations.
+1. Identify venue/year/track, submission mode, project directory, TeX/PDF files, supplementary/artifact files, and deadline pressure.
+2. Read `ccfa.yaml` when available. If absent, proceed with supplied files and state that project-state tracking is unavailable.
+3. For venue questions, read `../ccf-paper-writer/references/venue-guides/index.md` and the specific venue guide before checking official freshness.
+4. For package checks, inspect compile status, page count, anonymity, fonts, PDF metadata, template path, references, supplementary files, and required forms.
+5. For artifact checks, build a reproducibility checklist: code, data, models, environment, seeds, hardware, license, access restrictions, and README.
+6. Hand off to `ccf-paper-writer` for text/page rewrites, `ccf-experiment-designer` for missing reproducibility experiments, and `ccf-rebuttal-writer` for post-review response packaging.
 
 ## Output Contract
 
-Pass/fail checklist, commands run, page/anonymity/font/template issues, official-policy freshness, and required fixes.
-
-## Handoff
-
-Use `ccf-venue-format-guide` for requirement lookup, `ccf-paper-compressor` for page overflow, and `ccf-paper-writer` only for content edits.
-
-## Forbidden
-
-Do not rewrite text, change claims, or silently relax official venue policy.
+```text
+Mode:
+Venue and rule freshness:
+Files checked:
+Pass/fail checklist:
+Build/package issues:
+Anonymity/page/font/metadata issues:
+Artifact/reproducibility issues:
+Required fixes:
+Next CCFA owner:
+```

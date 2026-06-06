@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Integrity Auditor"
-  short_description: "Audit claim-support alignment, result-to-claim consistency, numeric consistency, terminology consistency, and figure/table-to-text consistency in CCF papers."
-  default_prompt: "Use $ccf-integrity-auditor for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."
+  short_description: "Audit claims, numbers, tables/figures, citations, BibTeX metadata, and citation-context support."
+  default_prompt: "Use $ccf-integrity-auditor for claim-support, numeric, figure/table, and existing-citation integrity checks."

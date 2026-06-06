@@ -1,0 +1,36 @@
+version: "0.4.3-demo"
+project:
+  title: "Attention-only sequence transduction"
+  source_paper: "Attention Is All You Need"
+  target_venue: "NeurIPS-style demo"
+target_venue:
+  name: "NeurIPS"
+  policy_status: "demo only; current official policy must be rechecked"
+stage: "rebuttal-dry-run"
+artifacts:
+  source_reading: "artifacts/00-original-paper-reading.md"
+  idea_document: "artifacts/01-idea-document.md"
+  skill_run: "artifacts/02-neurips-skill-run.md"
+  writing_draft: "artifacts/03-writing-draft.md"
+  review_rebuttal: "artifacts/04-review-and-rebuttal.md"
+  submission_check: "artifacts/05-submission-check.md"
+  official_data: "artifacts/official-data.md"
+  result_tables: "artifacts/result-tables.md"
+claims:
+  - id: C1
+    text: "A sequence transduction model can rely entirely on attention, without recurrence or convolution."
+    support: "original paper architecture and experiments"
+  - id: C2
+    text: "Self-attention reduces sequential operations and path length compared with recurrent layers."
+    support: "Table 1 complexity comparison"
+  - id: C3
+    text: "Transformer big reaches 28.4 BLEU on WMT 2014 English-German and 41.0 BLEU on WMT 2014 English-French."
+    support: "Abstract, Section 6.1, Table 2"
+experiments:
+  source: "official paper values only"
+  no_new_training: true
+reviews:
+  mode: "simulated demo review"
+revision_ledger: "artifacts/04-review-and-rebuttal.md"
+submission_checks:
+  mode: "demo; no compiled PDF"

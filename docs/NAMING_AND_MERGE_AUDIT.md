@@ -1,49 +1,48 @@
 # Naming And Merge Audit
 
-Date: 2026-06-06
+v0.4.2 reduces CCFA runtime skills from 23 to 13. The goal is not to remove capability, but to remove trigger ambiguity. A user should be able to choose one owner for a request without guessing among small helper skills.
 
-## Naming Rule
+## Current Runtime Surface
 
-Runtime skills now follow a single naming style:
+| Stage | Runtime skill |
+| --- | --- |
+| Setup | `ccf-project-scaffolder` |
+| Planning | `ccf-pipeline-orchestrator` |
+| Idea | `ccf-idea-optimizer`, `ccf-idea-reviewer` |
+| Evidence | `ccf-literature-searcher`, `ccf-experiment-designer` |
+| Manuscript | `ccf-paper-writer` |
+| Review | `ccf-paper-reviewer` |
+| Audit | `ccf-integrity-auditor` |
+| Submission | `ccf-submission-checker` |
+| Post-review | `ccf-rebuttal-writer` |
+| Governance | `ccf-common`, `ccf-skill-forger` |
 
-```text
-ccf-<object>-<role/action>
-```
+## Merge Decisions
 
-Examples: `ccf-paper-writer`, `ccf-scientific-reviewer`, `ccf-citation-auditor`, `ccf-project-scaffolder`.
+| Removed runtime entry | New owner | Reason | Boundary after merge |
+| --- | --- | --- | --- |
+| `ccf-workflow-planner` | `ccf-pipeline-orchestrator` | Both owned task planning, routing, and gate selection. | Orchestrator plans only; it does not perform downstream work. |
+| `ccf-paper-compressor` | `ccf-paper-writer` | Compression edits manuscript text and must share writing evidence safeguards. | Writer may compress, but cannot change claims/results. |
+| `ccf-writing-reviewer` | `ccf-paper-reviewer` | Writing review is a review mode over the same manuscript. | Reviewer diagnoses; writer edits. |
+| `ccf-citation-auditor` | `ccf-integrity-auditor` | Citation verification is part of evidence integrity. | Integrity audits existing citations; literature search finds new papers. |
+| `ccf-figure-table-builder` | `ccf-experiment-designer` | Result figures/tables depend on real experiment values. | Experiment designer can build result visuals, never invented data. |
+| `ccf-artifact-packager` | `ccf-submission-checker` | Artifact readiness is part of submission readiness. | Submission checker audits package/artifact; it does not promise unavailable releases. |
+| `ccf-venue-format-guide` | `ccf-submission-checker` | Venue format lookup is a submission gate. | Paper writer reads venue references for text; submission checker owns compliance. |
+| `ccf-resubmission-adapter` | `ccf-rebuttal-writer` | Resubmission is post-review response and revision planning. | Rebuttal writer defaults to no new experiments/bib changes unless authorized. |
+| `ccf-paper-presenter` | `ccf-paper-writer` | Slides, posters, talk scripts, and Q&A are paper-derived writing outputs. | Presentation output does not replace submission review. |
+| `ccf-doc-diagram-designer` | `ccf-skill-forger` | Repository docs SVGs are maintenance artifacts. | Skill forger updates generator and screenshot-QAs diagrams. |
 
-`ccf-common` is the only exception because it is not a user-facing workflow skill; it is the shared governance module.
+## Install Policy
 
-## Merged Skill
+Install only the 13 current runtime skills. Do not copy merged helper names into `$CODEX_HOME/skills`. If an older local install still has those helper directories, remove them before installing the current family to avoid trigger collisions.
 
-`ccf-revision-ledger` was merged into `ccf-rebuttal-writer`. The reason is practical: a revision ledger is only useful when tied to reviewer comments, response promises, manuscript locations, and post-review status. Keeping it as a separate runtime skill created a likely trigger conflict with rebuttal and response-letter prompts.
+## Demo Policy
 
-The ledger template now lives at:
+The demo must use the current 13 runtime skills. Merged abilities still appear in the demo as modes:
 
-```text
-ccf-rebuttal-writer/references/revision-ledger.md
-```
-
-## Renamed Skills
-
-| Old name | Current name | Decision |
-| --- | --- | --- |
-| `ccf-brainstorming` | `ccf-workflow-planner` | Clearer role name; avoids overlap with generic brainstorming. |
-| `ccf-literature-search` | `ccf-literature-searcher` | Aligns with role/action naming. |
-| `ccf-writing-skills` | `ccf-paper-writer` | Replaces plural family-style name with a single owning role. |
-| `ccf-conference-reviewer` | `ccf-scientific-reviewer` | Names the review type, not the venue layer. |
-| `ccf-conference-writing-reviewer` | `ccf-writing-reviewer` | Keeps writing review distinct from scientific review. |
-| `ccf-conference-paper-rebuttal` | `ccf-rebuttal-writer` | Names the output responsibility. |
-| `ccf-conference-guides` | `ccf-venue-format-guide` | Clarifies it handles venue format only. |
-| `ccf-paper-project-scaffold` | `ccf-project-scaffolder` | Aligns with role/action naming. |
-| `ccf-artifact-reproducibility` | `ccf-artifact-packager` | Clarifies owned artifact output. |
-| `ccf-revision-ledger` | `merged into ccf-rebuttal-writer` | Ledger tracking is part of post-review response accountability. |
-| `ccf-paper-talk` | `ccf-paper-presenter` | Clarifies presentation ownership. |
-| `ccf-forge-skills` | `ccf-skill-forger` | Avoids plural skill-family wording. |
-
-## Non-Merges
-
-- `ccf-venue-format-guide` and `ccf-submission-checker` remain separate: one answers requirements, the other checks real files.
-- `ccf-literature-searcher` and `ccf-citation-auditor` remain separate: one discovers new literature, the other verifies existing citations.
-- `ccf-scientific-reviewer`, `ccf-writing-reviewer`, and `ccf-integrity-auditor` remain separate: they review different evidence surfaces.
-- `ccf-project-scaffolder` and `ccf-pipeline-orchestrator` remain separate: creation and orchestration are different lifecycle responsibilities.
+- compression and talk output inside `ccf-paper-writer`
+- result figures/tables inside `ccf-experiment-designer`
+- citation audit inside `ccf-integrity-auditor`
+- venue and artifact checks inside `ccf-submission-checker`
+- resubmission notes inside `ccf-rebuttal-writer`
+- documentation diagrams inside `ccf-skill-forger`

@@ -1,6 +1,6 @@
 ---
 name: ccf-integrity-auditor
-description: "Audit claim-support alignment, result-to-claim consistency, numeric consistency, terminology consistency, and figure/table-to-text consistency in CCF papers. Use for evidence integrity and consistency checks. Do not perform full scientific review."
+description: "Audit CCF paper integrity: claim-support alignment, result-to-claim consistency, numeric consistency, terminology consistency, figure/table-to-text consistency, existing citation existence, BibTeX metadata, and citation-context support. Use for evidence audit, citation audit, consistency check, 引用核验, claim审计, 数字一致性. Do not perform full scientific review or broad literature search."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -12,41 +12,37 @@ metadata:
 
 # CCF Integrity Auditor
 
-## Invocation Controls
-
-**CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode`, `../ccf-common/references/handoff-modes.md`, `../ccf-common/references/task-modes.md`, and `../ccf-common/references/skill-trigger-registry.yaml`.
-
-Treat private manuscripts, reviews, drafts, results, code, and project state as private user material. Do not browse with private text unless the user authorizes it or the shared privacy/evidence policy allows a safe transformed query.
-
 ## Core Rule
 
-Trace each important claim to supplied evidence and each numerical statement to supplied results. Mark unsupported items instead of fixing by invention.
+Trace each important claim to supplied evidence, each number to supplied results, and each citation to a real cited work and a supported citation context. Mark unsupported items instead of repairing them by invention.
 
-## Inputs
+## Modes
 
-Manuscript text, figures/tables/results, claims list or ccfa.yaml, and optional bibliography.
+- `claim-audit`: claim-support and result-to-claim consistency.
+- `numeric-audit`: numbers, units, table/figure/text agreement, deltas, and metric direction.
+- `citation-audit`: already cited papers, BibTeX metadata, duplicate keys, DOI/arXiv/venue sanity, and citation-context support.
+- `full`: all integrity checks.
 
 ## Workflow
 
-1. Identify quick or standard mode from the request, available artifacts, and deadline pressure.
-2. Check `../ccf-common/references/skill-trigger-registry.yaml` for ownership boundaries before absorbing adjacent work.
-3. Read `ccfa.yaml` when it exists. If absent, continue with supplied artifacts and report that project-state tracking is unavailable.
-4. Execute only this skill's owned task. Mark missing evidence, stale venue rules, missing files, or authorization gaps explicitly.
-5. Produce the output contract below and name the next owning skill when handoff is needed.
-
-## Quick And Standard Modes
-
-- Quick mode: answer the narrow request with the minimum relevant checklist and a compact risk note.
-- Standard mode: produce the full table/checklist, artifact-state notes, boundary checks, and handoff recommendations.
+1. Identify supplied manuscript, figures/tables/results, bibliography, `ccfa.yaml`, and requested audit mode.
+2. Build a claim-evidence matrix and mark each claim as supported, partially supported, unsupported, overstated, or unclear.
+3. Cross-check all reported values across text, tables, figures, captions, abstracts, and conclusions.
+4. For citation audit, verify only existing citations unless the user asks for new literature; broad search belongs to `ccf-literature-searcher`.
+5. For any questionable citation, separate metadata problems from context-support problems.
+6. Hand off to `ccf-paper-reviewer` for full scientific judgment and to `ccf-paper-writer` for safe wording edits.
 
 ## Output Contract
 
-Claim-evidence matrix, numeric consistency findings, risk severity, required owner skill, and suggested safe edits.
-
-## Handoff
-
-Use `ccf-citation-auditor` for bibliography verification and `ccf-scientific-reviewer` for full scientific review.
-
-## Forbidden
-
-Do not score acceptance, invent missing evidence, or claim that an experiment supports a result not supplied.
+```text
+Mode:
+Artifacts checked:
+Claim-evidence matrix:
+Numeric consistency findings:
+Citation metadata findings:
+Citation-context findings:
+Severity:
+Safe edit suggestions:
+Next CCFA owner:
+No-invention status:
+```

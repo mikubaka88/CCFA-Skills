@@ -1,4 +1,0 @@
-interface:
-  display_name: "CCF Resubmission Adapter"
-  short_description: "Adapt an already written CCF paper to a new venue with conservative format, story, page-budget, and reviewer-priority changes."
-  default_prompt: "Use $ccf-resubmission-adapter for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

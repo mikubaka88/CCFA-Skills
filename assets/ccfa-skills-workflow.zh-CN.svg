@@ -1,73 +1,71 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200">
-<rect width="1800" height="1200" fill="#f6f8fb"/>
-<text x="60" y="70" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#17212b" text-anchor="start">CCFA 论文项目流程</text>
-<text x="60" y="105" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="400" fill="#52606d" text-anchor="start">主生命周期与审计、投稿、输出分支。</text>
-<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#53606d"/></marker></defs>
-<rect x="60" y="170" width="250" height="560" rx="10" fill="#ffffff" stroke="#1F6F8B" stroke-width="2"/>
-<rect x="60" y="170" width="250" height="44" rx="10" fill="#1F6F8B"/>
-<text x="78" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Setup</text>
-<text x="78" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-project-scaffolder</text>
-<text x="78" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">脚手架：建目录、选模板、初始化 ccfa.yaml。</text>
-<text x="78" y="288" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-pipeline-orchestrator</text>
-<text x="78" y="311" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">编排阶段、gate、artifact 与 handoff。</text>
-<text x="78" y="336" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-workflow-planner</text>
-<text x="78" y="359" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">澄清目标、范围、成功标准与下一步 skill。</text>
-<line x1="310" y1="300" x2="350" y2="300" stroke="#53606d" stroke-width="3" marker-end="url(#arrow)"/>
-<rect x="350" y="170" width="250" height="700" rx="10" fill="#ffffff" stroke="#2D8A68" stroke-width="2"/>
-<rect x="350" y="170" width="250" height="44" rx="10" fill="#2D8A68"/>
-<text x="368" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Research</text>
-<text x="368" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-idea-optimizer</text>
-<text x="368" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">把粗 idea 具象化成问题、gap、insight、方法和证据计划。</text>
-<text x="368" y="288" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-idea-reviewer</text>
-<text x="368" y="311" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">严格评分、排序、比较早期 idea。</text>
-<text x="368" y="336" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-literature-searcher</text>
-<text x="368" y="359" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">检索相关工作、prior art、数据集和 benchmark。</text>
-<text x="368" y="384" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-experiment-designer</text>
-<text x="368" y="407" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">设计数据集、baseline、指标、消融、鲁棒性和结果表模板。</text>
-<line x1="600" y1="300" x2="640" y2="300" stroke="#53606d" stroke-width="3" marker-end="url(#arrow)"/>
-<rect x="640" y="170" width="250" height="560" rx="10" fill="#ffffff" stroke="#B85C38" stroke-width="2"/>
-<rect x="640" y="170" width="250" height="44" rx="10" fill="#B85C38"/>
-<text x="658" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Manuscript</text>
-<text x="658" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-paper-writer</text>
-<text x="658" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">写作、润色、重组论文正文，并保护既有 idea 和证据边界。</text>
-<text x="658" y="288" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-paper-compressor</text>
-<text x="658" y="311" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">在不改 claims/results 的前提下压缩篇幅。</text>
-<line x1="890" y1="300" x2="930" y2="300" stroke="#53606d" stroke-width="3" marker-end="url(#arrow)"/>
-<rect x="930" y="170" width="250" height="700" rx="10" fill="#ffffff" stroke="#6B5B95" stroke-width="2"/>
-<rect x="930" y="170" width="250" height="44" rx="10" fill="#6B5B95"/>
-<text x="948" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Assurance</text>
-<text x="948" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-scientific-reviewer</text>
-<text x="948" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">做完整科学审稿、评分、模拟 reviewer 和 AC/meta-review。</text>
-<text x="948" y="288" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-writing-reviewer</text>
-<text x="948" y="311" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">评审段落逻辑、表达清晰度、一致性、LaTeX/格式和展示风险。</text>
-<text x="948" y="336" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-integrity-auditor</text>
-<text x="948" y="359" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">审计 claim-support、结果到 claim、数字、术语和图表一致性。</text>
-<text x="948" y="384" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-citation-auditor</text>
-<text x="948" y="407" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">核验已有引用、BibTeX 元数据、文献存在性和引用上下文支撑。</text>
-<line x1="1180" y1="300" x2="1220" y2="300" stroke="#53606d" stroke-width="3" marker-end="url(#arrow)"/>
-<rect x="1220" y="170" width="250" height="700" rx="10" fill="#ffffff" stroke="#3B3F46" stroke-width="2"/>
-<rect x="1220" y="170" width="250" height="44" rx="10" fill="#3B3F46"/>
-<text x="1238" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Outputs</text>
-<text x="1238" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-figure-table-builder</text>
-<text x="1238" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">基于真实结果构建和审计图、表、caption、SVG/PDF。</text>
-<text x="1238" y="288" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-artifact-packager</text>
-<text x="1238" y="311" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">准备 artifact/reproducibility</text>
-<text x="1238" y="329" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">包、环境、seed、license 和 README。</text>
-<text x="1238" y="354" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-venue-format-guide</text>
-<text x="1238" y="377" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">回答会议 LaTeX、template、页数、匿名和 camera-ready</text>
-<text x="1238" y="395" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">格式问题。</text>
-<text x="1238" y="420" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-submission-checker</text>
-<text x="1238" y="443" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">检查 LaTeX/PDF、页数、匿名、字体、metadata、template 和</text>
-<text x="1238" y="461" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">policy freshness。</text>
-<line x1="1470" y1="300" x2="1510" y2="300" stroke="#53606d" stroke-width="3" marker-end="url(#arrow)"/>
-<rect x="1510" y="170" width="250" height="560" rx="10" fill="#ffffff" stroke="#8A6F2D" stroke-width="2"/>
-<rect x="1510" y="170" width="250" height="44" rx="10" fill="#8A6F2D"/>
-<text x="1528" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">After Review</text>
-<text x="1528" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-rebuttal-writer</text>
-<text x="1528" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">写 rebuttal、作者回复、response letter、修改说明和</text>
-<text x="1528" y="281" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">revision ledger。</text>
-<text x="1528" y="306" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-resubmission-adapter</text>
-<text x="1528" y="329" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">把已有论文保守迁移到新 venue，默认不新增实验、不改 bib。</text>
-<text x="1528" y="354" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-paper-presenter</text>
-<text x="1528" y="377" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">把论文转成 slides、poster、talk script、图表讲解和 Q&amp;A。</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="900" viewBox="0 0 1800 900">
+<defs>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0B1826" flood-opacity="0.12"/></filter>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#8D9AA8"/></marker>
+</defs>
+<style>text{font-family:Microsoft YaHei, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas,Menlo,monospace}</style>
+<rect x="0" y="0" width="1800" height="900" rx="0" fill="#F3F6F9" stroke="none" stroke-width="2" />
+<rect x="0" y="0" width="1800" height="170" rx="0" fill="#102033" stroke="none" stroke-width="2" />
+<text x="70" y="72" font-size="38" font-weight="820" fill="#FFFFFF" text-anchor="start">论文项目流程</text>
+<text x="70" y="112" font-size="18" font-weight="450" fill="#D6E1EC" text-anchor="start">从原始 idea 到 NeurIPS 风格 rebuttal 的默认路径。</text>
+<circle cx="90" cy="300" r="46" fill="#1E7894" filter="url(#shadow)"/>
+<text x="90" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">1</text>
+<text x="20" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">搭建</text>
+<text x="20" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">project-scaffolder</text>
+<line x1="145" y1="300" x2="225" y2="300" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="280" cy="300" r="46" fill="#1E7894" filter="url(#shadow)"/>
+<text x="280" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">2</text>
+<text x="210" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">规划</text>
+<text x="210" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">pipeline-orchestrator</text>
+<line x1="335" y1="300" x2="415" y2="300" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="470" cy="300" r="46" fill="#C05C35" filter="url(#shadow)"/>
+<text x="470" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">3</text>
+<text x="400" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">idea</text>
+<text x="400" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">idea-optimizer</text>
+<line x1="525" y1="300" x2="605" y2="300" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="660" cy="300" r="46" fill="#6F5AA6" filter="url(#shadow)"/>
+<text x="660" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">4</text>
+<text x="590" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">文献</text>
+<text x="590" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">literature-searcher</text>
+<line x1="715" y1="300" x2="795" y2="300" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="850" cy="300" r="46" fill="#6F5AA6" filter="url(#shadow)"/>
+<text x="850" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">5</text>
+<text x="780" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">实验</text>
+<text x="780" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">experiment-designer</text>
+<line x1="905" y1="300" x2="985" y2="300" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="1040" cy="300" r="46" fill="#333B46" filter="url(#shadow)"/>
+<text x="1040" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">6</text>
+<text x="970" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">写作</text>
+<text x="970" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">paper-writer</text>
+<line x1="1095" y1="300" x2="1175" y2="300" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="1230" cy="300" r="46" fill="#A78328" filter="url(#shadow)"/>
+<text x="1230" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">7</text>
+<text x="1160" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">审稿</text>
+<text x="1160" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">paper-reviewer</text>
+<line x1="1285" y1="300" x2="1365" y2="300" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="1420" cy="300" r="46" fill="#BA4C5E" filter="url(#shadow)"/>
+<text x="1420" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">8</text>
+<text x="1350" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">投稿</text>
+<text x="1350" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">submission-checker</text>
+<line x1="1475" y1="300" x2="1555" y2="300" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="1610" cy="300" r="46" fill="#477AA6" filter="url(#shadow)"/>
+<text x="1610" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">9</text>
+<text x="1540" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">回复</text>
+<text x="1540" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">rebuttal-writer</text>
+<rect x="360" y="610" width="360" height="64" rx="14" fill="#FFFFFF" stroke="#C05C35" stroke-width="2" filter="url(#shadow)"/>
+<circle cx="384" cy="642" r="7" fill="#C05C35"/>
+<text x="404" y="637" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-idea-reviewer</text>
+<text x="404" y="658" font-size="13" font-weight="500" fill="#536171" text-anchor="start">评分取舍</text>
+<rect x="780" y="610" width="360" height="64" rx="14" fill="#FFFFFF" stroke="#854B82" stroke-width="2" filter="url(#shadow)"/>
+<circle cx="804" cy="642" r="7" fill="#854B82"/>
+<text x="824" y="637" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-integrity-auditor</text>
+<text x="824" y="658" font-size="13" font-weight="500" fill="#536171" text-anchor="start">claim + 引用</text>
+<rect x="1200" y="610" width="360" height="64" rx="14" fill="#FFFFFF" stroke="#5A6672" stroke-width="2" filter="url(#shadow)"/>
+<circle cx="1224" cy="642" r="7" fill="#5A6672"/>
+<text x="1244" y="637" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-common</text>
+<text x="1244" y="658" font-size="13" font-weight="500" fill="#536171" text-anchor="start">共享治理</text>
+<rect x="1200" y="710" width="360" height="64" rx="14" fill="#FFFFFF" stroke="#5A6672" stroke-width="2" filter="url(#shadow)"/>
+<circle cx="1224" cy="742" r="7" fill="#5A6672"/>
+<text x="1244" y="737" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-skill-forger</text>
+<text x="1244" y="758" font-size="13" font-weight="500" fill="#536171" text-anchor="start">skills + 文档 SVG</text>
 </svg>

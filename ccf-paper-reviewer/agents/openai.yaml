@@ -1,0 +1,4 @@
+interface:
+  display_name: "CCF Paper Reviewer"
+  short_description: "Review manuscripts scientifically and stylistically: scores, reviewer panel, AC/meta-review, paragraph logic, and format risks."
+  default_prompt: "Use $ccf-paper-reviewer for full paper review, scientific review, writing review, paragraph review, score-risk diagnosis, and format-facing review. Do not use it for rebuttal drafting or manuscript rewriting."

@@ -29,7 +29,7 @@ sources:
     title: AAAI-26 Main Technical Track Call
     url: https://aaai.org/conference/aaai/aaai-26/main-technical-track-call/
     source_type: official_policy
-    used_by: [ccf-scientific-reviewer]
+    used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 90
@@ -38,7 +38,7 @@ sources:
     title: AAAI-26 Submission Instructions
     url: https://aaai.org/conference/aaai/aaai-26/submission-instructions/
     source_type: official_policy
-    used_by: [ccf-scientific-reviewer]
+    used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 90
@@ -47,7 +47,7 @@ sources:
     title: NeurIPS 2026 Reviewer Guidelines
     url: https://neurips.cc/Conferences/2026/ReviewerGuidelines
     source_type: review_guideline
-    used_by: [ccf-scientific-reviewer, ccf-idea-optimizer, ccf-idea-reviewer]
+    used_by: [ccf-paper-reviewer, ccf-idea-optimizer, ccf-idea-reviewer]
     recorded_at: 2026-06-05
     verified_at: 2026-06-05
     stale_after_days: 180
@@ -74,7 +74,7 @@ sources:
     title: ICLR 2026 Reviewer Guide
     url: https://iclr.cc/Conferences/2026/ReviewerGuide
     source_type: review_guideline
-    used_by: [ccf-scientific-reviewer, ccf-idea-optimizer, ccf-idea-reviewer]
+    used_by: [ccf-paper-reviewer, ccf-idea-optimizer, ccf-idea-reviewer]
     recorded_at: 2026-06-05
     verified_at: 2026-06-05
     stale_after_days: 180
@@ -83,7 +83,7 @@ sources:
     title: CVPR 2026 Reviewer Guidelines
     url: https://cvpr.thecvf.com/Conferences/2026/ReviewerGuidelines
     source_type: review_guideline
-    used_by: [ccf-scientific-reviewer]
+    used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 180
@@ -92,7 +92,7 @@ sources:
     title: CVPR 2026 Reviewer Training Material
     url: https://cvpr.thecvf.com/Conferences/2026/ReviewerTrainingMaterial
     source_type: review_guideline
-    used_by: [ccf-scientific-reviewer]
+    used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 180
@@ -110,7 +110,7 @@ sources:
     title: ACL Rolling Review Review Form
     url: https://aclrollingreview.org/reviewform
     source_type: review_guideline
-    used_by: [ccf-scientific-reviewer]
+    used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 180
@@ -119,7 +119,7 @@ sources:
     title: S. Keshav, How To Read A Paper
     url: https://www.cs.jhu.edu/~huang/cs624/spring22/readings/paper-reading.pdf
     source_type: background_method
-    used_by: [ccf-scientific-reviewer]
+    used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 730
@@ -128,7 +128,7 @@ sources:
     title: How To Review A Technical Paper
     url: https://www.cs.cmu.edu/afs/cs/academic/class/15828-s98/www/review.html
     source_type: background_method
-    used_by: [ccf-scientific-reviewer]
+    used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 730
@@ -137,7 +137,7 @@ sources:
     title: PLOS How To Write A Peer Review
     url: https://plos.org/resource/how-to-write-a-peer-review/
     source_type: background_method
-    used_by: [ccf-scientific-reviewer, ccf-idea-reviewer]
+    used_by: [ccf-paper-reviewer, ccf-idea-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -146,7 +146,7 @@ sources:
     title: Springer Nature How To Peer Review
     url: https://www.springernature.com/gp/reviewers/how-to-peer-review
     source_type: background_method
-    used_by: [ccf-scientific-reviewer, ccf-idea-reviewer]
+    used_by: [ccf-paper-reviewer, ccf-idea-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -155,7 +155,7 @@ sources:
     title: ACM Preparing Your Article With LaTeX
     url: https://authors.acm.org/proceedings/production-information/preparing-your-article-with-latex
     source_type: official_policy
-    used_by: [ccf-writing-reviewer]
+    used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 180
@@ -164,7 +164,7 @@ sources:
     title: IEEE Authoring Tools And Templates
     url: https://journals.ieeeauthorcenter.ieee.org/create-your-ieee-journal-article/authoring-tools-and-templates/
     source_type: official_policy
-    used_by: [ccf-writing-reviewer]
+    used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 180
@@ -173,7 +173,7 @@ sources:
     title: CSPaper Review
     url: https://cspaper.org/op/20260212.0001v1
     source_type: background_method
-    used_by: [ccf-scientific-reviewer]
+    used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
     verified_at: 2026-06-05
     stale_after_days: 365
@@ -182,7 +182,7 @@ sources:
     title: CSPaper Review Rank
     url: https://cspaper.org/articles/introducing-review-rank
     source_type: background_method
-    used_by: [ccf-scientific-reviewer]
+    used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
     verified_at: 2026-06-05
     stale_after_days: 365
@@ -191,7 +191,7 @@ sources:
     title: Stanford Agentic Reviewer Technical Overview
     url: https://paperreview.ai/tech-overview
     source_type: background_method
-    used_by: [ccf-scientific-reviewer]
+    used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
     verified_at: 2026-06-05
     stale_after_days: 365
@@ -200,7 +200,7 @@ sources:
     title: OpenAIReview Automated Paper Review Tool
     url: https://github.com/ChicagoHAI/OpenAIReview
     source_type: background_method
-    used_by: [ccf-scientific-reviewer]
+    used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
     verified_at: 2026-06-05
     stale_after_days: 365
@@ -209,7 +209,7 @@ sources:
     title: AI Peer Review Tool
     url: https://github.com/poldrack/ai-peer-review
     source_type: background_method
-    used_by: [ccf-scientific-reviewer]
+    used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
     verified_at: 2026-06-05
     stale_after_days: 365
@@ -218,7 +218,7 @@ sources:
     title: Local CSPaper Reply Reference Format
     url: local:private-reference/cspaper-reply-format
     source_type: local_reference
-    used_by: [ccf-scientific-reviewer]
+    used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -263,7 +263,7 @@ sources:
     title: Nature Skills
     url: https://github.com/Yuan1z0825/nature-skills
     source_type: background_method
-    used_by: [ccf-common, ccf-paper-writer, ccf-writing-reviewer]
+    used_by: [ccf-common, ccf-paper-writer, ccf-paper-reviewer]
     recorded_at: 2026-06-06
     verified_at: null
     stale_after_days: 365
@@ -610,3 +610,12 @@ sources:
     verified_at: 2026-06-05
     stale_after_days: 365
     notes: Local architecture diagrams for CCFA skill-family routing, workflow, and reviewer-boundary documentation.
+  - id: attention-is-all-you-need-neurips-2017
+    title: Attention Is All You Need
+    url: https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf
+    source_type: paper_or_proceeding
+    used_by: [ccf-paper-writer, ccf-experiment-designer, ccf-integrity-auditor, ccf-skill-forger]
+    recorded_at: 2026-06-06
+    verified_at: 2026-06-06
+    stale_after_days: 3650
+    notes: Official NeurIPS 2017 paper PDF used for demo/attention-is-all-you-need official BLEU, training schedule, model configuration, and complexity table values.

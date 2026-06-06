@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="850" viewBox="0 0 1800 850">
+<defs>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0B1826" flood-opacity="0.12"/></filter>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#8D9AA8"/></marker>
+</defs>
+<style>text{font-family:Microsoft JhengHei, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas,Menlo,monospace}</style>
+<rect x="0" y="0" width="1800" height="850" rx="0" fill="#F3F6F9" stroke="none" stroke-width="2" />
+<rect x="0" y="0" width="1800" height="170" rx="0" fill="#102033" stroke="none" stroke-width="2" />
+<text x="70" y="72" font-size="38" font-weight="820" fill="#FFFFFF" text-anchor="start">安裝組合</text>
+<text x="70" y="112" font-size="18" font-weight="450" fill="#D6E1EC" text-anchor="start">支援部分安裝，但任何組合都必須包含 ccf-common。</text>
+<rect x="90" y="250" width="480" height="165" rx="28" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="90" y="250" width="480" height="44" rx="22" fill="#5A6672" stroke="none" stroke-width="2" />
+<text x="114" y="279" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">必須安裝</text>
+<text x="124" y="342" font-size="22" font-weight="820" fill="#17212B" text-anchor="start">ccf-common</text>
+<text x="124" y="376" font-size="17" font-weight="580" fill="#536171" text-anchor="start">所有子集都需要</text>
+<rect x="650" y="250" width="480" height="165" rx="28" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="650" y="250" width="480" height="44" rx="22" fill="#1E7894" stroke="none" stroke-width="2" />
+<text x="674" y="279" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">全流程</text>
+<text x="684" y="342" font-size="22" font-weight="820" fill="#17212B" text-anchor="start">13 個 runtime skills</text>
+<text x="684" y="376" font-size="17" font-weight="580" fill="#536171" text-anchor="start">端到端論文專案</text>
+<rect x="1210" y="250" width="480" height="165" rx="28" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="1210" y="250" width="480" height="44" rx="22" fill="#333B46" stroke="none" stroke-width="2" />
+<text x="1234" y="279" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">寫作子集</text>
+<text x="1244" y="342" font-size="22" font-weight="820" fill="#17212B" text-anchor="start">writer · reviewer · submission</text>
+<text x="1244" y="376" font-size="17" font-weight="580" fill="#536171" text-anchor="start">再加 ccf-common</text>
+<rect x="90" y="500" width="480" height="165" rx="28" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="90" y="500" width="480" height="44" rx="22" fill="#A78328" stroke="none" stroke-width="2" />
+<text x="114" y="529" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">審稿子集</text>
+<text x="124" y="592" font-size="22" font-weight="820" fill="#17212B" text-anchor="start">paper-reviewer · integrity</text>
+<text x="124" y="626" font-size="17" font-weight="580" fill="#536171" text-anchor="start">診斷，不直接改寫</text>
+<rect x="650" y="500" width="480" height="165" rx="28" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="650" y="500" width="480" height="44" rx="22" fill="#BA4C5E" stroke="none" stroke-width="2" />
+<text x="674" y="529" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">不要安裝</text>
+<text x="684" y="592" font-size="22" font-weight="820" fill="#17212B" text-anchor="start">已合併 helper 名稱</text>
+<text x="684" y="626" font-size="17" font-weight="580" fill="#536171" text-anchor="start">避免觸發衝突</text>
+<rect x="1210" y="500" width="480" height="165" rx="28" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="1210" y="500" width="480" height="44" rx="22" fill="#5A6672" stroke="none" stroke-width="2" />
+<text x="1234" y="529" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">維護</text>
+<text x="1244" y="592" font-size="22" font-weight="820" fill="#17212B" text-anchor="start">ccf-skill-forger</text>
+<text x="1244" y="626" font-size="17" font-weight="580" fill="#536171" text-anchor="start">skills · docs · SVG · release</text>
+</svg>

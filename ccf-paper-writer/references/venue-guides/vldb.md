@@ -1,6 +1,6 @@
 # VLDB Venue Guide
 
-> Migrated from the legacy `ccf-conference-skills/vldb/SKILL.md` runtime skill during v0.4.0. This file is now reference material for `ccf-paper-writer` and `ccf-venue-format-guide`, not a standalone skill.
+> Migrated from the legacy `ccf-conference-skills/vldb/SKILL.md` runtime skill during v0.4.0. This file is now reference material for `ccf-paper-writer` and `ccf-submission-checker`, not a standalone skill.
 
 | Field | Value |
 | --- | --- |
@@ -16,7 +16,7 @@
 
 - Use this file for LaTeX, page limit, anonymity, template, camera-ready, rebuttal-template, and venue-format details.
 - Use `ccf-paper-writer` for actual paper writing and polishing.
-- Use `ccf-writing-reviewer` or `ccf-submission-checker` for format audit, depending on whether the task is manuscript-facing or submission-package-facing.
+- Use `ccf-paper-reviewer` or `ccf-submission-checker` for format audit, depending on whether the task is manuscript-facing or submission-package-facing.
 - Verify current-year official rules before final submission.
 
 ## Migrated Venue Notes

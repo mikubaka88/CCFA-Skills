@@ -1,4 +1,0 @@
-interface:
-  display_name: "CCF Scientific Reviewer"
-  short_description: "Perform full scientific manuscript review for CCF/target venues: novelty, soundness, evidence, desk checks, simulated reviewers, AC/meta-review, scoring, and acceptance-risk diagnosis."
-  default_prompt: "Use $ccf-scientific-reviewer for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

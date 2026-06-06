@@ -1,4 +1,0 @@
-interface:
-  display_name: "CCF Paper Compressor"
-  short_description: "Compress CCF paper drafts, sections, abstracts, related work, methods, experiments, and camera-ready text to fit word or page limits while preserving claims and evidence."
-  default_prompt: "Use $ccf-paper-compressor for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

@@ -1,89 +1,71 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200">
-<rect width="1800" height="1200" fill="#f6f8fb"/>
-<text x="60" y="70" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#17212b" text-anchor="start">CCFA Paper Workflow</text>
-<text x="60" y="105" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="400" fill="#52606d" text-anchor="start">Main lifecycle and optional assurance/output branches.</text>
-<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#53606d"/></marker></defs>
-<rect x="60" y="170" width="250" height="560" rx="10" fill="#ffffff" stroke="#1F6F8B" stroke-width="2"/>
-<rect x="60" y="170" width="250" height="44" rx="10" fill="#1F6F8B"/>
-<text x="78" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Setup</text>
-<text x="78" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-project-scaffolder</text>
-<text x="78" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Creates project folders, copies/selects</text>
-<text x="78" y="281" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">templates, and initializes ccfa.yaml.</text>
-<text x="78" y="306" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-pipeline-orchestrator</text>
-<text x="78" y="329" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Coordinates project stages, gates,</text>
-<text x="78" y="347" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">artifacts, and handoffs.</text>
-<text x="78" y="372" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-workflow-planner</text>
-<text x="78" y="395" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Clarifies goals, constraints, scope,</text>
-<text x="78" y="413" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">success criteria, and next skill.</text>
-<line x1="310" y1="300" x2="350" y2="300" stroke="#53606d" stroke-width="3" marker-end="url(#arrow)"/>
-<rect x="350" y="170" width="250" height="700" rx="10" fill="#ffffff" stroke="#2D8A68" stroke-width="2"/>
-<rect x="350" y="170" width="250" height="44" rx="10" fill="#2D8A68"/>
-<text x="368" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Research</text>
-<text x="368" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-idea-optimizer</text>
-<text x="368" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Turns rough directions into</text>
-<text x="368" y="281" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">problem-gap-insight-method-evidence plans.</text>
-<text x="368" y="306" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-idea-reviewer</text>
-<text x="368" y="329" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Scores, ranks, compares, and triages early</text>
-<text x="368" y="347" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">ideas.</text>
-<text x="368" y="372" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-literature-searcher</text>
-<text x="368" y="395" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Finds related work, prior art, datasets,</text>
-<text x="368" y="413" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">benchmarks, and citation evidence.</text>
-<text x="368" y="438" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-experiment-designer</text>
-<text x="368" y="461" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Designs datasets, baselines, metrics,</text>
-<text x="368" y="479" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">ablations, robustness tests, and result</text>
-<line x1="600" y1="300" x2="640" y2="300" stroke="#53606d" stroke-width="3" marker-end="url(#arrow)"/>
-<rect x="640" y="170" width="250" height="560" rx="10" fill="#ffffff" stroke="#B85C38" stroke-width="2"/>
-<rect x="640" y="170" width="250" height="44" rx="10" fill="#B85C38"/>
-<text x="658" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Manuscript</text>
-<text x="658" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-paper-writer</text>
-<text x="658" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Plans, drafts, revises, and polishes</text>
-<text x="658" y="281" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">manuscript text while preserving evidence</text>
-<text x="658" y="306" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-paper-compressor</text>
-<text x="658" y="329" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Shortens paper text to word/page limits</text>
-<text x="658" y="347" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">without changing claims or results.</text>
-<line x1="890" y1="300" x2="930" y2="300" stroke="#53606d" stroke-width="3" marker-end="url(#arrow)"/>
-<rect x="930" y="170" width="250" height="700" rx="10" fill="#ffffff" stroke="#6B5B95" stroke-width="2"/>
-<rect x="930" y="170" width="250" height="44" rx="10" fill="#6B5B95"/>
-<text x="948" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Assurance</text>
-<text x="948" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-scientific-reviewer</text>
-<text x="948" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Runs full scientific manuscript review,</text>
-<text x="948" y="281" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">scoring, simulated reviewers, and</text>
-<text x="948" y="306" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-writing-reviewer</text>
-<text x="948" y="329" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Reviews paragraph logic, writing clarity,</text>
-<text x="948" y="347" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">consistency, LaTeX/format, and</text>
-<text x="948" y="372" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-integrity-auditor</text>
-<text x="948" y="395" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Audits claim-support, result-to-claim,</text>
-<text x="948" y="413" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">numeric, terminology, and figure/table</text>
-<text x="948" y="438" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-citation-auditor</text>
-<text x="948" y="461" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Verifies existing citations, BibTeX</text>
-<text x="948" y="479" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">metadata, paper existence, and</text>
-<line x1="1180" y1="300" x2="1220" y2="300" stroke="#53606d" stroke-width="3" marker-end="url(#arrow)"/>
-<rect x="1220" y="170" width="250" height="700" rx="10" fill="#ffffff" stroke="#3B3F46" stroke-width="2"/>
-<rect x="1220" y="170" width="250" height="44" rx="10" fill="#3B3F46"/>
-<text x="1238" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Outputs</text>
-<text x="1238" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-figure-table-builder</text>
-<text x="1238" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Builds and audits figures, LaTeX tables,</text>
-<text x="1238" y="281" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">captions, SVG/PDF assets from real</text>
-<text x="1238" y="306" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-artifact-packager</text>
-<text x="1238" y="329" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Prepares artifact and reproducibility</text>
-<text x="1238" y="347" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">package plans, env notes, seeds, licenses,</text>
-<text x="1238" y="372" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-venue-format-guide</text>
-<text x="1238" y="395" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Answers venue LaTeX, template, page-limit,</text>
-<text x="1238" y="413" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">anonymity, and camera-ready format</text>
-<text x="1238" y="438" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-submission-checker</text>
-<text x="1238" y="461" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Checks LaTeX/PDF builds, page limits,</text>
-<text x="1238" y="479" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">anonymity, fonts, metadata, templates, and</text>
-<line x1="1470" y1="300" x2="1510" y2="300" stroke="#53606d" stroke-width="3" marker-end="url(#arrow)"/>
-<rect x="1510" y="170" width="250" height="560" rx="10" fill="#ffffff" stroke="#8A6F2D" stroke-width="2"/>
-<rect x="1510" y="170" width="250" height="44" rx="10" fill="#8A6F2D"/>
-<text x="1528" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">After Review</text>
-<text x="1528" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-rebuttal-writer</text>
-<text x="1528" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Writes rebuttals, author responses,</text>
-<text x="1528" y="281" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">response letters, revision summaries, and</text>
-<text x="1528" y="306" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-resubmission-adapter</text>
-<text x="1528" y="329" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Adapts an existing paper to a new venue</text>
-<text x="1528" y="347" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">under conservative no-new-experiment</text>
-<text x="1528" y="372" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-paper-presenter</text>
-<text x="1528" y="395" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Converts a paper into slides, poster, talk</text>
-<text x="1528" y="413" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">script, figure narration, and Q&amp;A bank.</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="900" viewBox="0 0 1800 900">
+<defs>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0B1826" flood-opacity="0.12"/></filter>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#8D9AA8"/></marker>
+</defs>
+<style>text{font-family:Inter, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas,Menlo,monospace}</style>
+<rect x="0" y="0" width="1800" height="900" rx="0" fill="#F3F6F9" stroke="none" stroke-width="2" />
+<rect x="0" y="0" width="1800" height="170" rx="0" fill="#102033" stroke="none" stroke-width="2" />
+<text x="70" y="72" font-size="38" font-weight="820" fill="#FFFFFF" text-anchor="start">Paper Project Workflow</text>
+<text x="70" y="112" font-size="18" font-weight="450" fill="#D6E1EC" text-anchor="start">Default path from original idea to NeurIPS-style rebuttal.</text>
+<circle cx="90" cy="300" r="46" fill="#1E7894" filter="url(#shadow)"/>
+<text x="90" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">1</text>
+<text x="20" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">setup</text>
+<text x="20" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">project-scaffolder</text>
+<line x1="145" y1="300" x2="225" y2="300" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="280" cy="300" r="46" fill="#1E7894" filter="url(#shadow)"/>
+<text x="280" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">2</text>
+<text x="210" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">plan</text>
+<text x="210" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">pipeline-orchestrator</text>
+<line x1="335" y1="300" x2="415" y2="300" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="470" cy="300" r="46" fill="#C05C35" filter="url(#shadow)"/>
+<text x="470" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">3</text>
+<text x="400" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">idea</text>
+<text x="400" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">idea-optimizer</text>
+<line x1="525" y1="300" x2="605" y2="300" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="660" cy="300" r="46" fill="#6F5AA6" filter="url(#shadow)"/>
+<text x="660" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">4</text>
+<text x="590" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">literature</text>
+<text x="590" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">literature-searcher</text>
+<line x1="715" y1="300" x2="795" y2="300" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="850" cy="300" r="46" fill="#6F5AA6" filter="url(#shadow)"/>
+<text x="850" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">5</text>
+<text x="780" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">experiment</text>
+<text x="780" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">experiment-designer</text>
+<line x1="905" y1="300" x2="985" y2="300" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="1040" cy="300" r="46" fill="#333B46" filter="url(#shadow)"/>
+<text x="1040" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">6</text>
+<text x="970" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">write</text>
+<text x="970" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">paper-writer</text>
+<line x1="1095" y1="300" x2="1175" y2="300" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="1230" cy="300" r="46" fill="#A78328" filter="url(#shadow)"/>
+<text x="1230" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">7</text>
+<text x="1160" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">review</text>
+<text x="1160" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">paper-reviewer</text>
+<line x1="1285" y1="300" x2="1365" y2="300" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="1420" cy="300" r="46" fill="#BA4C5E" filter="url(#shadow)"/>
+<text x="1420" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">8</text>
+<text x="1350" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">submit</text>
+<text x="1350" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">submission-checker</text>
+<line x1="1475" y1="300" x2="1555" y2="300" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="1610" cy="300" r="46" fill="#477AA6" filter="url(#shadow)"/>
+<text x="1610" y="310" font-size="30" font-weight="850" fill="#FFFFFF" text-anchor="middle">9</text>
+<text x="1540" y="385" font-size="20" font-weight="800" fill="#17212B" text-anchor="start">respond</text>
+<text x="1540" y="414" font-size="13" font-weight="600" fill="#536171" text-anchor="start">rebuttal-writer</text>
+<rect x="360" y="610" width="360" height="64" rx="14" fill="#FFFFFF" stroke="#C05C35" stroke-width="2" filter="url(#shadow)"/>
+<circle cx="384" cy="642" r="7" fill="#C05C35"/>
+<text x="404" y="637" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-idea-reviewer</text>
+<text x="404" y="658" font-size="13" font-weight="500" fill="#536171" text-anchor="start">score idea</text>
+<rect x="780" y="610" width="360" height="64" rx="14" fill="#FFFFFF" stroke="#854B82" stroke-width="2" filter="url(#shadow)"/>
+<circle cx="804" cy="642" r="7" fill="#854B82"/>
+<text x="824" y="637" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-integrity-auditor</text>
+<text x="824" y="658" font-size="13" font-weight="500" fill="#536171" text-anchor="start">claims + citations</text>
+<rect x="1200" y="610" width="360" height="64" rx="14" fill="#FFFFFF" stroke="#5A6672" stroke-width="2" filter="url(#shadow)"/>
+<circle cx="1224" cy="642" r="7" fill="#5A6672"/>
+<text x="1244" y="637" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-common</text>
+<text x="1244" y="658" font-size="13" font-weight="500" fill="#536171" text-anchor="start">shared policy</text>
+<rect x="1200" y="710" width="360" height="64" rx="14" fill="#FFFFFF" stroke="#5A6672" stroke-width="2" filter="url(#shadow)"/>
+<circle cx="1224" cy="742" r="7" fill="#5A6672"/>
+<text x="1244" y="737" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-skill-forger</text>
+<text x="1244" y="758" font-size="13" font-weight="500" fill="#536171" text-anchor="start">skills + docs SVG</text>
 </svg>

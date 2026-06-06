@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Rebuttal Writer"
-  short_description: "Write rebuttals, author responses, response letters, revision summaries, and reviewer-comment ledgers for CCF conference reviews."
-  default_prompt: "Use $ccf-rebuttal-writer for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."
+  short_description: "Write rebuttals, response letters, revision ledgers, and conservative resubmission adaptation plans."
+  default_prompt: "Use $ccf-rebuttal-writer for reviewer responses, AC/meta-review replies, revision ledgers, and resubmission adaptation."

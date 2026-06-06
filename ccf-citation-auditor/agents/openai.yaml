@@ -1,4 +1,0 @@
-interface:
-  display_name: "CCF Citation Auditor"
-  short_description: "Verify already cited papers and BibTeX entries: existence, metadata, DOI/arXiv/venue correctness, duplicate keys, and citation-context support."
-  default_prompt: "Use $ccf-citation-auditor for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

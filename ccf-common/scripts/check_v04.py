@@ -10,6 +10,21 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
+EXPECTED_SKILLS = {
+    "ccf-common",
+    "ccf-experiment-designer",
+    "ccf-idea-optimizer",
+    "ccf-idea-reviewer",
+    "ccf-integrity-auditor",
+    "ccf-literature-searcher",
+    "ccf-paper-reviewer",
+    "ccf-paper-writer",
+    "ccf-pipeline-orchestrator",
+    "ccf-project-scaffolder",
+    "ccf-rebuttal-writer",
+    "ccf-skill-forger",
+    "ccf-submission-checker",
+}
 
 
 def read(path: Path) -> str:
@@ -71,6 +86,14 @@ def check_skills(errors: list[str]) -> list[str]:
         seen = set()
         dupes = sorted({name for name in names if name in seen or seen.add(name)})
         fail(errors, f"duplicate skill names: {', '.join(dupes)}")
+    actual = set(names)
+    if actual != EXPECTED_SKILLS:
+        extra = sorted(actual - EXPECTED_SKILLS)
+        missing = sorted(EXPECTED_SKILLS - actual)
+        if extra:
+            fail(errors, "unexpected runtime skills: " + ", ".join(extra))
+        if missing:
+            fail(errors, "missing expected runtime skills: " + ", ".join(missing))
     return names
 
 
@@ -117,8 +140,22 @@ def check_required_files(errors: list[str]) -> None:
     required = [
         "docs/SKILLS_CATALOG.md",
         "docs/ARCHITECTURE.md",
+        "docs/INSTALLATION_MATRIX.md",
+        "docs/INSTALLATION_MATRIX.zh-CN.md",
+        "docs/INSTALLATION_MATRIX.zh-TW.md",
         "AGENT_GUIDE.md",
         "CHANGELOG.md",
+        "demo/attention-is-all-you-need/README.md",
+        "demo/attention-is-all-you-need/ccfa.yaml",
+        "demo/attention-is-all-you-need/skill-self-tests.md",
+        "demo/attention-is-all-you-need/artifacts/00-original-paper-reading.md",
+        "demo/attention-is-all-you-need/artifacts/01-idea-document.md",
+        "demo/attention-is-all-you-need/artifacts/02-neurips-skill-run.md",
+        "demo/attention-is-all-you-need/artifacts/03-writing-draft.md",
+        "demo/attention-is-all-you-need/artifacts/04-review-and-rebuttal.md",
+        "demo/attention-is-all-you-need/artifacts/05-submission-check.md",
+        "demo/attention-is-all-you-need/artifacts/official-data.md",
+        "demo/attention-is-all-you-need/artifacts/result-tables.md",
         "ccf-common/references/artifact-contracts.md",
         "ccf-common/references/ccfa-yaml-contract.md",
         "ccf-project-scaffolder/assets/ccfa.yaml",
@@ -136,7 +173,16 @@ def check_required_files(errors: list[str]) -> None:
                 json.loads(read(path))
             except json.JSONDecodeError as exc:
                 fail(errors, f"{rel}: invalid JSON: {exc}")
-    for key in ("architecture", "workflow", "review-boundaries", "catalog", "routing", "artifacts"):
+    for key in (
+        "architecture",
+        "workflow",
+        "review-boundaries",
+        "catalog",
+        "routing",
+        "artifacts",
+        "installation",
+        "demo-attention",
+    ):
         for suffix in ("", ".zh-CN", ".zh-TW"):
             rel = f"assets/ccfa-skills-{key}{suffix}.svg"
             path = ROOT / rel

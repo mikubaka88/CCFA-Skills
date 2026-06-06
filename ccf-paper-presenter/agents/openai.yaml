@@ -1,4 +1,0 @@
-interface:
-  display_name: "CCF Paper Presenter"
-  short_description: "Convert a completed or near-completed CCF paper into slides, poster, talk script, elevator pitch, figure narration, and Q&A bank."
-  default_prompt: "Use $ccf-paper-presenter for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

@@ -25,7 +25,7 @@ Use `task-modes.md` for quick/standard execution mode. This file controls siblin
 ## Always-On Boundaries
 
 - A user denylist wins in every mode.
-- `ccf-paper-writer` and `ccf-paper-compressor` must preserve topic, core problem, method mechanism, experiment setting, numerical results, and conclusion direction unless the user explicitly authorizes idea-scope changes.
+- `ccf-paper-writer` must preserve topic, core problem, method mechanism, experiment setting, numerical results, and conclusion direction unless the user explicitly authorizes idea-scope changes.
 - `ccf-experiment-designer` must never invent experimental results, benchmark ranks, numerical improvements, statistical significance, or user-study outcomes.
 - `ccf-literature-searcher` must apply source-quality exclusions and mark unsearched novelty as uncertainty.
 - `ccf-rebuttal-writer` is isolated from the default pre-submission loop. Use it only when the user explicitly asks for rebuttal, author response, response letter, resubmission response, or 审稿意见回复.
@@ -42,8 +42,8 @@ Use `task-modes.md` for quick/standard execution mode. This file controls siblin
 | Idea optimization/review -> literature search for current prior art | Ask unless user requested search/latest/current | Ask unless explicitly requested | Auto, using public queries |
 | Literature search -> writing, idea optimization, experiment design, or review | Ask unless user requested the combined workflow | Ask | Auto |
 | Experiment design -> literature search for datasets/baselines | Ask unless user requested search | Ask | Auto, using public queries |
-| Idea/writing -> full scientific paper review (`ccf-scientific-reviewer`) | Ask | Ask | Auto |
-| Full scientific review -> writing-only paragraph/LaTeX review (`ccf-writing-reviewer`) | Ask | Ask | Auto |
+| Idea/writing -> full scientific paper review (`ccf-paper-reviewer`) | Ask | Ask | Auto |
+| Scientific review -> writing/LaTeX review mode inside `ccf-paper-reviewer` | No ask when already in `ccf-paper-reviewer`; otherwise ask | Ask | Auto |
 | Review diagnosis -> manuscript rewrite/compression/experiment design | Ask | Ask | Auto, but preserve idea scope and do not invent results |
 | Any module -> rebuttal | Only if the user explicitly asked for rebuttal/author response/审稿意见回复 | Only if explicitly requested | Only if explicitly requested |
 | Rebuttal -> manuscript rewrite or review-impact analysis | Ask | Ask | Auto, but do not invent results |
