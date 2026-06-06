@@ -1,6 +1,6 @@
 <h1 align="center">CCFA Skills</h1>
 
-<p align="center"><strong>A practical skill family set for CCF-A research workflows.</strong></p>
+<p align="center"><strong>A skill family for shaping the research storyline of CCF-A papers.</strong></p>
 
 <p align="center">
   <a href="README.md">简体中文</a> ·
@@ -14,9 +14,11 @@
 
 ---
 
-CCFA Skills is a local Codex skill family for CCF-A/ICLR/NeurIPS-style research-paper workflows. It is not a loose pile of overlapping writing prompts. It is a governed workflow system with clear owners, artifact contracts, and routing boundaries from idea formation to submission and rebuttal.
+A strong paper is rarely defined by the final PDF alone. What matters is the research storyline behind it: an unstable idea finds its position through literature, earns credibility through experiments, becomes a legible argument through writing, and is refined again through review and rebuttal. The hard part is not only drafting one introduction paragraph. The hard part is keeping the idea, evidence, experiments, narrative, and response aligned around the same research question.
 
-The v0.4.5 runtime surface has 13 `ccf-*` owner skills. Former helper capabilities such as compression, writing review, citation audit, result figures, venue format checks, artifact packaging, resubmission adaptation, paper talks, and documentation SVGs remain available, but they now live inside the appropriate owner skill instead of triggering as separate runtime skills.
+CCFA Skills starts from that observation. It treats a CCF-A paper project as a research storyline that can be maintained, audited, and advanced over time, rather than as a one-shot text generation task. An idea should be shaped before it is defended. Experiments should serve explicit claims rather than merely fill tables. Writing should preserve evidence boundaries. A rebuttal should not be an improvised answer at the end of the process, but a traceable bridge to revision and resubmission.
+
+The central insight is that paper quality comes from the quality of continuous decisions. Writing, review, integrity audit, submission checking, and rebuttal should not replace one another; they should keep separate responsibilities and hand off through the same project state. The v0.4.5 line therefore organizes the family into 13 stage roles, so each stage has a clear responsibility, each artifact has a home, and the system behaves more like a collaboration framework around the research storyline than a loose prompt collection.
 
 ![CCFA skill family logic](assets/ccfa-skills-architecture.svg)
 
@@ -162,6 +164,19 @@ foreach ($s in $skills) { Copy-Item -Recurse -Force $s "$env:CODEX_HOME\skills\"
 ```
 
 ![Installation sets](assets/ccfa-skills-installation.svg)
+
+## Further Reading
+
+To understand why the family is designed this way, read these in order:
+
+| Document | When to read it |
+| --- | --- |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Understand the main chain, governance layer, artifact state, and revision loop. |
+| [docs/SKILLS_CATALOG.md](docs/SKILLS_CATALOG.md) | Check each skill's startup condition, boundary, and common conflict cases. |
+| [docs/INSTALLATION_MATRIX.md](docs/INSTALLATION_MATRIX.md) | Decide which skills are required for partial installation. |
+| [docs/NAMING_AND_MERGE_AUDIT.md](docs/NAMING_AND_MERGE_AUDIT.md) | Understand why helper skills were merged and how naming conflicts were reduced. |
+| [AGENT_GUIDE.md](AGENT_GUIDE.md) | Operational guide for owner selection, artifact handoff, and overwrite avoidance. |
+| [demo/attention-is-all-you-need/](demo/attention-is-all-you-need/) | See a complete ICLR-style closed-loop example. |
 
 ## Demo
 

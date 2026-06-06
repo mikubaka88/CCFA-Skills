@@ -1,6 +1,6 @@
 <h1 align="center">CCFA Skills</h1>
 
-<p align="center"><strong>A practical skill family set for CCF-A research workflows.</strong></p>
+<p align="center"><strong>A skill family for shaping the research storyline of CCF-A papers.</strong></p>
 
 <p align="center">
   <strong>简体中文</strong> ·
@@ -14,9 +14,11 @@
 
 ---
 
-CCFA Skills 是一套本地 Codex skill 家族，用来覆盖 CCF-A/ICLR/NeurIPS 风格论文项目从 idea 到投稿、审稿回复和重投的闭环流程。它不是一堆互相竞争的写作提示词，而是一个有明确 owner、artifact 合约和路由边界的研究工作流系统。
+一篇高水平论文真正重要的，往往不是最后那份 PDF，而是贯穿其后的研究故事线。它从一个尚不稳定的 idea 开始，在文献中寻找位置，在实验中接受检验，在写作中被组织成可被审稿人理解的论证，又在评审和 rebuttal 中继续被修正。真正困难的地方，不只是写出某一段 introduction，而是让 idea、证据、实验、表达和回应始终指向同一个研究问题。
 
-v0.4.5 的核心设计是把运行时入口收敛到 13 个 `ccf-*` owner skills。压缩、写作评审、引用审计、结果图表、会议格式、artifact、重投迁移、论文报告和文档 SVG 这些旧 helper 能力仍然保留，但不再作为独立 runtime skill 触发，避免名称冲突和职责重叠。
+CCFA Skills 正是从这个观察出发。它把 CCF-A 论文项目看作一条可以被维护、审计和反复推进的研究故事线，而不是一次性的文本生成任务。一个 idea 需要先被塑形，再被严格评审；一组实验需要服务于明确 claim，而不是孤立地填满表格；一篇论文的写作需要保留证据边界；一次 rebuttal 也不应只是临时答辩，而应成为下一轮修改和重投的可追踪记录。
+
+这个项目的核心 insight 是：论文质量来自连续决策的质量。写作、评审、审计、投稿检查和 rebuttal 不应该互相替代，而应该各自保持边界，并在同一个项目状态中交接。v0.4.5 因此将家族收敛为 13 个阶段角色，让每个阶段都有清楚的责任，让每个 artifact 都能找到归属，也让整套系统更像一个围绕研究故事线展开的协作框架，而不是松散的 prompt 集合。
 
 ![CCFA 技能家族逻辑](assets/ccfa-skills-architecture.zh-CN.svg)
 
@@ -197,6 +199,19 @@ foreach ($s in $skills) { Copy-Item -Recurse -Force $s "$env:CODEX_HOME\skills\"
 | 维护子集 | `ccf-common`, `ccf-skill-forger` | 维护技能、文档、SVG 和 release。 |
 
 ![安装组合](assets/ccfa-skills-installation.zh-CN.svg)
+
+## 进一步阅读
+
+如果你想理解这个家族为什么这样设计，建议按下面顺序阅读：
+
+| 文档 | 适合什么时候看 |
+| --- | --- |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | 想理解主链路、治理层、artifact 状态和 revision loop。 |
+| [docs/SKILLS_CATALOG.md](docs/SKILLS_CATALOG.md) | 想查每个 skill 的启动条件、边界和容易误触发的场景。 |
+| [docs/INSTALLATION_MATRIX.zh-CN.md](docs/INSTALLATION_MATRIX.zh-CN.md) | 想只安装部分 skills，判断哪些必须装、哪些不能单独装。 |
+| [docs/NAMING_AND_MERGE_AUDIT.md](docs/NAMING_AND_MERGE_AUDIT.md) | 想理解为什么合并 helper skills，以及命名如何减少冲突。 |
+| [AGENT_GUIDE.md](AGENT_GUIDE.md) | 给 agent 使用的操作指南，说明如何选择 owner、交接 artifact、避免覆盖。 |
+| [demo/attention-is-all-you-need/](demo/attention-is-all-you-need/) | 想看一个完整 ICLR 风格闭环示例。 |
 
 ## Demo
 

@@ -1,6 +1,6 @@
 <h1 align="center">CCFA Skills</h1>
 
-<p align="center"><strong>A practical skill family set for CCF-A research workflows.</strong></p>
+<p align="center"><strong>A skill family for shaping the research storyline of CCF-A papers.</strong></p>
 
 <p align="center">
   <a href="README.md">简体中文</a> ·
@@ -14,9 +14,11 @@
 
 ---
 
-CCFA Skills 是一套本地 Codex skill 家族，用來覆蓋 CCF-A/ICLR/NeurIPS 風格論文專案從 idea 到投稿、審稿回覆和重投的閉環流程。它不是一堆互相競爭的寫作提示詞，而是一個有明確 owner、artifact 合約和路由邊界的研究工作流系統。
+一篇高水準論文真正重要的，往往不是最後那份 PDF，而是貫穿其後的研究故事線。它從一個尚不穩定的 idea 開始，在文獻中尋找位置，在實驗中接受檢驗，在寫作中被組織成可被審稿人理解的論證，又在審稿和 rebuttal 中繼續被修正。真正困難的地方，不只是寫出某一段 introduction，而是讓 idea、證據、實驗、表達和回應始終指向同一個研究問題。
 
-v0.4.5 的核心設計是把 runtime 入口收斂到 13 個 `ccf-*` owner skills。壓縮、寫作審稿、引用稽核、結果圖表、會議格式、artifact、重投遷移、論文報告和文件 SVG 這些舊 helper 能力仍然保留，但不再作為獨立 runtime skill 觸發，避免名稱衝突和職責重疊。
+CCFA Skills 正是從這個觀察出發。它把 CCF-A 論文專案看作一條可以被維護、稽核和反覆推進的研究故事線，而不是一次性的文本生成任務。一個 idea 需要先被塑形，再被嚴格審稿；一組實驗需要服務於明確 claim，而不是孤立地填滿表格；一篇論文的寫作需要保留證據邊界；一次 rebuttal 也不應只是臨時答辯，而應成為下一輪修改和重投的可追蹤記錄。
+
+這個專案的核心 insight 是：論文品質來自連續決策的品質。寫作、審稿、稽核、投稿檢查和 rebuttal 不應該互相替代，而應該各自保持邊界，並在同一個專案狀態中交接。v0.4.5 因此將家族收斂為 13 個階段角色，讓每個階段都有清楚的責任，讓每個 artifact 都能找到歸屬，也讓整套系統更像一個圍繞研究故事線展開的協作框架，而不是鬆散的 prompt 集合。
 
 ![CCFA 技能家族邏輯](assets/ccfa-skills-architecture.zh-TW.svg)
 
@@ -190,6 +192,19 @@ foreach ($s in $skills) { Copy-Item -Recurse -Force $s "$env:CODEX_HOME\skills\"
 | 維護子集 | `ccf-common`, `ccf-skill-forger` | 維護技能、文件、SVG 和 release。 |
 
 ![安裝組合](assets/ccfa-skills-installation.zh-TW.svg)
+
+## 進一步閱讀
+
+如果你想理解這個家族為什麼這樣設計，建議按下面順序閱讀：
+
+| 文件 | 適合什麼時候看 |
+| --- | --- |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | 想理解主鏈路、治理層、artifact 狀態和 revision loop。 |
+| [docs/SKILLS_CATALOG.md](docs/SKILLS_CATALOG.md) | 想查每個 skill 的啟動條件、邊界和容易誤觸發的場景。 |
+| [docs/INSTALLATION_MATRIX.zh-TW.md](docs/INSTALLATION_MATRIX.zh-TW.md) | 想只安裝部分 skills，判斷哪些必須裝、哪些不能單獨裝。 |
+| [docs/NAMING_AND_MERGE_AUDIT.md](docs/NAMING_AND_MERGE_AUDIT.md) | 想理解為什麼合併 helper skills，以及命名如何減少衝突。 |
+| [AGENT_GUIDE.md](AGENT_GUIDE.md) | 給 agent 使用的操作指南，說明如何選擇 owner、交接 artifact、避免覆蓋。 |
+| [demo/attention-is-all-you-need/](demo/attention-is-all-you-need/) | 想看一個完整 ICLR 風格閉環示例。 |
 
 ## Demo
 
