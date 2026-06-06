@@ -35,6 +35,8 @@ The visible output should feel like useful writing, not a process report. Use pl
 5. Be flexible outside review tasks. When a choice could improve the paper but changes direction, present it as a concise question or option, for example: "可以把贡献改成 benchmark 视角吗？这会降低方法新颖性风险，但需要补数据集定位。"
 6. Never invent results, citations, baselines, experiments, reviewer impact, or missing evidence. When evidence is absent, use `TBD`, a cautious placeholder, or a clearly marked "needs evidence" sentence.
 7. Do not block drafting because current venue policy is not freshly verified. Use the local venue guide for draft shape, add a freshness note when relevant, and route final compliance to `ccf-submission-checker`.
+8. For full-paper requests, produce a full manuscript-level artifact: Abstract, Introduction, Background/Related Work or Preliminaries, Method, Experiments, Analysis/Ablation, Limitations, Ethics/Reproducibility when relevant, Conclusion, References, and Appendix/checklist placeholders if expected by the venue. Do not answer a full-paper request with only an abstract, outline, or short demo snippet.
+9. Keep outputs information-dense. Avoid boilerplate disclaimers and empty headings; each visible section should contain concrete paper content, evidence status, or actionable revision information.
 
 ## Modes
 
@@ -49,7 +51,7 @@ The visible output should feel like useful writing, not a process report. Use pl
 2. If the user supplied existing text, preserve its format and revise in place unless the user asked for a new structure.
 3. If the user supplied only an idea and wants a manuscript, choose the venue LaTeX route: target venue guide first, NeurIPS fallback if absent or unspecified.
 4. Build or update the global story with `references/storyline-blueprint.md`: task -> gap -> root challenge -> insight -> method -> evidence -> limitation. Keep this internal unless the user asked for a plan.
-5. Draft or revise section by section using `references/section-modules.md` and `references/writing-checklists.md`.
+5. For full-paper, abstract, introduction, method, experiment, conclusion, or exemplar-pattern tasks, load `references/research-writing-patterns.md` and then draft or revise section by section using `references/section-modules.md` and `references/writing-checklists.md`.
 6. For compression, load `references/compression-rules.md`; return compressed text in the same format and include a cut log only when requested or when content was materially removed.
 7. For presentation adaptation, derive slides/poster/talk/Q&A only from the manuscript and supplied evidence, in the user's requested slide/poster/script format.
 8. If current literature, baselines, or experiments are missing, ask a targeted question or hand off to `ccf-literature-searcher` or `ccf-experiment-designer`; do not fill gaps by invention.
@@ -67,6 +69,7 @@ The visible output should feel like useful writing, not a process report. Use pl
 
 - `references/venue-guides/index.md` and `references/venue-guides/<venue>.md`: venue writing and format constraints.
 - `references/output-style-policy.md`: user-format priority, edit-format preservation, and NeurIPS fallback behavior.
+- `references/research-writing-patterns.md`: section-level patterns, dense output rules, and exemplar-mode adaptation.
 - `references/storyline-blueprint.md`: whole-paper story.
 - `references/section-modules.md`: section drafting.
 - `references/writing-checklists.md`: readiness checks.

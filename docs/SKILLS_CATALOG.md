@@ -39,6 +39,7 @@ This catalog is the public trigger-conflict index for the current CCFA family. I
 
 - Non-review workflow skills should follow the user's requested output shape. Their internal checklists are safeguards, not mandatory visible report templates.
 - Review, audit, and submission-gate skills may remain structured because their job is traceable diagnosis and pass/fail risk control.
+- Full-workflow and full-paper prompts should produce dense artifacts, not route summaries. A manuscript request should leave a manuscript; a closed-loop request should leave idea review, writing draft, review, audit, rebuttal, and submission-check artifacts.
 - Idea shaping goes to `ccf-idea-optimizer`; idea scoring/ranking goes to `ccf-idea-reviewer`.
 - New literature discovery goes to `ccf-literature-searcher`; existing citation verification goes to `ccf-integrity-auditor`.
 - Manuscript rewriting, compression, and presentation outputs go to `ccf-paper-writer`; judgment goes to `ccf-paper-reviewer`.

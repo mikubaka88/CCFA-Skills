@@ -1,66 +1,63 @@
-# 03 - Writing Draft
+# 03 - ICLR Writing Draft And Optimization
 
 Owner: `ccf-paper-writer`
 
-This step demonstrates the corrected writer behavior. The input is only an idea document plus official result tables, so the writer should not stop at a checklist. It should search the local venue guide for NeurIPS, use the NeurIPS LaTeX fallback, and create a manuscript draft with unsupported details marked as `TBD` or bounded notes.
+Input: `00-original-paper-reading.md`, `01-idea-document.md`, `03-idea-review.md`, `official-data.md`, `result-tables.md`, and the ICLR venue guide.
 
 ## User-Style Command Simulated
 
 ```text
-基于上面的 idea 和官方数据，假设投稿 NeurIPS，从 0 写一篇 LaTeX 草稿。
-不要编造新结果；缺失的实验和引用用 TBD 标出。
+基于 Attention Is All You Need 的原文思路，假设投稿 ICLR。
+请从 0 写完整 LaTeX 文章：摘要、引言、背景/相关工作、方法、实验、分析、限制、结论、参考文献和 appendix。
+不要编造新结果；只使用官方数据，缺失的 ablation 数值显式标出。
 ```
 
-## Writer Routing
+## Venue And Template Decision
 
-- Mode: `draft`.
-- Target venue: NeurIPS.
-- Venue reference: `ccf-paper-writer/references/venue-guides/neurips.md`.
-- Template fallback used for demo: `ccf-latex-templates/NeurIPS/neurips_2026.tex`.
-- Output artifact: `paper/attention_neurips_demo.tex`.
+| Item | Decision |
+| --- | --- |
+| Target venue | ICLR |
+| Venue guide | `ccf-paper-writer/references/venue-guides/iclr.md` |
+| Official policy note | ICLR 2026 Author Guide says double-blind review; main text 9 pages for submission. |
+| Local style file | `paper/iclr2026_conference.sty` |
+| Main manuscript | `paper/attention_iclr_submission.tex` |
+| Build result | `pdflatex` succeeds; generated PDF is 6 pages in temp build directory. |
 
-## Actual Draft Artifact
+## Source Writing Mode Preserved
 
-The main writing output is not a report. It is the LaTeX file:
+| Original paper mode | ICLR draft implementation |
+| --- | --- |
+| Start from sequence transduction and MT importance | Introduction paragraph 1 defines sequence transduction and MT. |
+| Expose recurrent/convolutional bottleneck | Introduction paragraphs 2-3 explain sequential path and stacked-layer path. |
+| State insight sharply | Introduction paragraph 4: attention moves from auxiliary alignment to backbone. |
+| Make architecture concrete | Method decomposes attention, multi-head attention, encoder/decoder blocks, position encodings. |
+| Support with evidence | Experiments include BLEU table, path-length table, ablation plan, training-cost note. |
+| Bound claim | Limitations discuss quadratic cost, historical WMT scope, missing modern reproducibility package. |
 
-```text
-demo/attention-is-all-you-need/paper/attention_neurips_demo.tex
-```
+## Manuscript Sections
 
-It contains:
+| Section | Purpose | Status |
+| --- | --- | --- |
+| Abstract | Challenge -> insight -> contribution -> evidence | Complete. |
+| Introduction | Motivation, gap, insight, contributions | Complete. |
+| Background and Problem Formulation | Define transduction and prior model families | Complete. |
+| Method | Module-level explanation with equations | Complete. |
+| Experiments | Setup, main results, path-length analysis, ablation plan, training cost | Complete with official values; missing ablation values marked. |
+| Related Work | Recurrent seq2seq, attention NMT, convolutional seq2seq, GNMT | Complete for demo; real submission needs broader current search. |
+| Limitations and Responsible Use | Quadratic cost and scope limits | Complete. |
+| Conclusion | Architectural takeaway | Complete. |
+| Appendix | CCFA trace and submission checklist placeholder | Complete. |
 
-- NeurIPS-style preamble and anonymous author block.
-- Abstract grounded in the original paper's official values.
-- Introduction with task, gap, insight, method, and evidence story.
-- Method section with attention equation and architecture explanation.
-- Experiment section with official BLEU table and complexity/path-length table.
-- Limitation section that clearly says this is not a reproduction.
-- BibTeX-style bibliography entry for the original paper.
+## Optimization Applied After Writing Review
 
-## Draft Abstract
+The writing review found three issues and the writer applied these fixes in the LaTeX draft:
 
-We study whether sequence transduction can be performed without recurrent or convolutional sequence modeling layers. The resulting architecture, the Transformer, uses multi-head self-attention to relate positions directly and position-wise feed-forward networks to transform token representations. This design shortens dependency paths and enables more parallel training than recurrent computation. In the original official report, Transformer big reaches 28.4 BLEU on WMT 2014 English--German and 41.0 BLEU on WMT 2014 English--French as a single model. These results support attention as a complete backbone for machine translation rather than only an auxiliary alignment mechanism.
+| Issue | Fix in manuscript |
+| --- | --- |
+| Novelty could sound like "attention is new." | Related Work and Introduction now say attention existed; the contribution is replacing the backbone. |
+| Efficiency claim could be overbroad. | Path-length section explicitly states quadratic self-attention cost and narrows the claim to path length/parallelism. |
+| Demo status could be confused with reproduction. | Experiments and appendix say values are official and missing ablation values are not invented. |
 
-## Compression Mode Example
+## Dense Output Check
 
-If the user asks to compress the abstract, the writer should preserve the prose format and return the compressed paragraph directly:
-
-Transformer replaces recurrent and convolutional sequence modeling with multi-head self-attention. By directly relating sequence positions and adding positional encodings, it shortens dependency paths while enabling parallel training. The official paper reports 28.4 BLEU on WMT 2014 English--German and 41.0 BLEU on WMT 2014 English--French with Transformer big, supporting attention as a complete sequence transduction backbone.
-
-## Presentation Mode Example
-
-If the user asks for a talk instead of a manuscript, the writer should produce the requested presentation format:
-
-1. Problem: sequence models need long-range dependencies without slow sequential recurrence.
-2. Method: multi-head self-attention replaces recurrence/convolution; positional encodings restore order.
-3. Evidence: official WMT BLEU, constant self-attention path length, ablations, and training-cost report.
-
-## Why This Is Better Than The Previous Demo
-
-The earlier demo made `ccf-paper-writer` look like a checklist generator. The corrected behavior is:
-
-- Draft first, notes second.
-- Preserve requested output format.
-- Use venue LaTeX when starting from an idea.
-- Keep review/audit strictness out of ordinary writing.
-- Mark missing evidence without refusing to write.
+The writing output is not a fragment. It leaves a compilable LaTeX paper with full section coverage, tables, references, and appendix. Process notes are kept in this artifact; the actual writing artifact is the TeX file.

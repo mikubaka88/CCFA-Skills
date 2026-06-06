@@ -79,6 +79,15 @@ sources:
     verified_at: 2026-06-05
     stale_after_days: 180
     notes: Use for ICLR value-to-community and new-knowledge framing.
+  - id: iclr-2026-author-guide
+    title: ICLR 2026 Author Guide
+    url: https://iclr.cc/Conferences/2026/AuthorGuide
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-submission-checker]
+    recorded_at: 2026-06-06
+    verified_at: 2026-06-06
+    stale_after_days: 180
+    notes: Use for ICLR 2026 submission anonymity, page-limit, and author-format basics; recheck before real submission.
   - id: cvpr-2026-reviewer-guidelines
     title: CVPR 2026 Reviewer Guidelines
     url: https://cvpr.thecvf.com/Conferences/2026/ReviewerGuidelines
@@ -277,6 +286,15 @@ sources:
     verified_at: null
     stale_after_days: 365
     notes: Related agent workflow, not an authoritative venue source.
+  - id: research-paper-writing-skills-master-cai
+    title: Research Paper Writing Skills
+    url: https://github.com/Master-cai/Research-Paper-Writing-Skills
+    source_type: background_method
+    used_by: [ccf-common, ccf-paper-writer, ccf-paper-reviewer]
+    recorded_at: 2026-06-06
+    verified_at: 2026-06-06
+    stale_after_days: 365
+    notes: Related writing-skill repository used for feature-gap audit; not an authoritative venue source and not copied as text.
   - id: ai-scientist
     title: The AI Scientist
     url: https://arxiv.org/abs/2408.06292

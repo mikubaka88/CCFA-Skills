@@ -1,46 +1,51 @@
-# 01 - Idea Document
+# 01 - ICLR Idea Brief
 
 Owner: `ccf-idea-optimizer`
 
-Target venue assumption: NeurIPS-style machine learning conference.
+Target venue: ICLR-style machine learning paper.
 
 ## One-Sentence Idea
 
-Build a sequence transduction model whose sequence modeling is handled entirely by attention, eliminating recurrent and convolutional layers while preserving translation quality and improving parallelizable training.
+Replace recurrent and convolutional sequence modeling with multi-head self-attention so that all positions can interact directly while the model remains trainable and competitive on machine translation.
 
-## Problem
+## Problem-Gap-Insight Card
 
-Sequence transduction models need to capture token dependencies across long sequences. Recurrent models process positions sequentially; convolutional models reduce sequential dependency but still need stacked layers to connect distant positions.
+| Field | Content |
+| --- | --- |
+| Problem | Sequence transduction requires modeling local and long-range token dependencies. |
+| Gap | Recurrent backbones create sequential dependencies; convolutional backbones need stacked layers for distant communication. |
+| Root cause | The representation-building operation does not connect all positions directly in one layer. |
+| Insight | Full self-attention gives constant interaction path length between positions. |
+| Method | Transformer encoder-decoder with multi-head attention, positional encodings, feed-forward blocks, residual paths, normalization, and regularization. |
+| Evidence | WMT 2014 En-De and En-Fr BLEU, path-length/complexity table, ablations, training-cost report. |
+| Limitation | Quadratic self-attention cost in sequence length; evidence is historical WMT translation, not universal sequence modeling proof. |
 
-## Gap
+## Optimized Contribution Claims
 
-The core modeling question is whether attention alone can provide enough interaction structure for high-quality machine translation, while reducing sequential operations and long dependency paths.
-
-## Insight
-
-Self-attention can directly connect positions in a sequence, making the maximum path length constant for full self-attention and enabling more parallel computation than recurrence.
-
-## Method Plan
-
-1. Use an encoder-decoder Transformer architecture.
-2. Replace recurrent/convolutional sequence modeling with multi-head self-attention.
-3. Add positional encodings so order information remains available.
-4. Use feed-forward blocks, residual connections, normalization, and regularization to stabilize training.
+1. Attention can serve as the main sequence modeling backbone, not only as a recurrent decoder's alignment module.
+2. Multi-head self-attention plus positional encoding forms a complete encoder-decoder architecture for translation.
+3. The architecture improves direct token interaction and training parallelism while reporting strong official WMT BLEU values.
+4. Complexity/path-length analysis explains why the design is structurally different from recurrent and convolutional alternatives.
 
 ## Evidence Plan
 
-| Claim | Required evidence | Source in demo |
+| Claim | Required artifact | Current demo status |
 | --- | --- | --- |
-| Attention-only modeling is viable for MT. | WMT En-De and En-Fr BLEU. | `official-data.md`, `result-tables.md` |
-| It improves parallelizability/path length. | Complexity and path-length table. | `official-data.md` |
-| Model design choices matter. | Ablation categories. | Original paper Table 3, summarized without extra unverified values. |
+| Architecture-level novelty | Method section with module roles and related-work distinction | Available in `paper/attention_iclr_submission.tex`. |
+| Translation quality | WMT BLEU table | Filled with official values. |
+| Parallelism/path-length argument | Complexity table | Filled with official Table 1 summary. |
+| Component causality | Ablation table over heads, dimensions, dropout, positional encoding, label smoothing | Planned; not fully filled unless copied from official source. |
+| Reproducibility | Data, training schedule, hardware, implementation notes | Partially filled from official values; code/artifact package absent. |
 
-## Risk Register
+## Reviewer Risks Before Writing
 
-- Prior attention mechanisms existed; novelty must be framed as replacing the sequence modeling backbone, not inventing attention.
-- BLEU results are official historical values, not reproduced in this demo.
-- Current NeurIPS policy and benchmark expectations must be rechecked for any real submission.
+| Risk | Why it matters | Planned mitigation |
+| --- | --- | --- |
+| "Attention was already known." | Novelty can be misread as an attention mechanism claim. | Frame contribution as replacing the full sequence modeling backbone. |
+| "Self-attention is not always cheaper." | Quadratic cost can undercut efficiency claims. | State exact path-length and parallelism claim; do not claim universal cost reduction. |
+| "Results are historical official values." | Demo is not a reproduction. | Mark values as official source values and avoid reproduction claims. |
+| "Ablations are incomplete in the demo artifact." | ICLR reviewers expect component causality. | Keep missing ablation values explicit and route to experiment designer/integrity auditor. |
 
-## Next Owner
+## Next Skill
 
-`ccf-idea-reviewer` for idea-level risk scoring, then `ccf-literature-searcher` and `ccf-experiment-designer` for evidence grounding.
+`ccf-idea-reviewer` should judge whether the idea framing is ICLR-worthy before writing. If it passes with conditions, `ccf-paper-writer` should draft a full ICLR LaTeX manuscript rather than an abstract-only sample.

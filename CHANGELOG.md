@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.4.5 - 2026-06-06
+
+- Audited `Master-cai/Research-Paper-Writing-Skills` and added CCFA-native section writing patterns for abstract, introduction, related work, method, experiments, conclusion, exemplar adaptation, and end-of-draft self-review.
+- Strengthened high-information-density output rules: broad/full workflow requests must produce complete artifacts rather than short route summaries or fragmented notes.
+- Fixed ICLR venue guidance for 2026 double-blind review basics, page-limit basics, and local style usage.
+- Rebuilt the Attention demo as an ICLR closed-loop run with idea review, full compiling LaTeX manuscript, writing/scientific review, integrity audit, rebuttal, submission check, and family self-audit.
+
 ## v0.4.4 - 2026-06-06
 
 - Tightened `ccf-paper-writer` output behavior: polish/rewrite/compression preserves the user's original Markdown/LaTeX format, while from-scratch manuscript requests draft the requested artifact instead of a process report.

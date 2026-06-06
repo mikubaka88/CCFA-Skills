@@ -1,45 +1,69 @@
-# 00 - Original Paper Reading
+# 00 - Original Paper Idea Summary
 
 Source: Vaswani et al., *Attention Is All You Need*, NeurIPS 2017.
 
-Purpose: read the original paper first, then derive a project idea and CCFA workflow from the paper itself. This is not a reproduction log.
+This file is the source-reading artifact for the demo. It extracts the paper's research idea before any CCFA skill writes, reviews, or rebuts the manuscript.
 
-## Reading Notes
+## Motivation
 
-### Problem
+Sequence transduction models need to map one sequence to another while preserving long-range dependencies. Machine translation exposes this need clearly: a target token may depend on distant source words, phrase-level alignment, global syntax, and previous target-side decisions. A strong architecture should therefore model distant interactions and train efficiently.
 
-The paper targets sequence transduction, especially machine translation. Before this work, strong systems relied heavily on recurrent or convolutional sequence modeling, which made long-range dependency modeling and parallel training harder.
+## Existing Problem
 
-### Core Insight
+Before the Transformer, strong neural machine translation systems typically used recurrent or convolutional sequence modeling.
 
-Use attention as the main sequence modeling primitive. Instead of recurrence or convolution, the model represents relationships between tokens through self-attention layers, then uses encoder-decoder attention for conditional generation.
+| Existing line | Strength | Remaining problem |
+| --- | --- | --- |
+| Recurrent encoder-decoder models | Natural order-aware sequence modeling | Sequential computation creates long dependency paths and limits parallel training. |
+| Attention over recurrent states | Lets the decoder select relevant source positions | Attention is still auxiliary; the sequence representation backbone remains recurrent. |
+| Convolutional sequence models | More parallel than recurrence | Distant tokens communicate through stacked convolutional layers. |
 
-### Method Skeleton
+The core unresolved issue is architectural: the main sequence modeling operation does not directly connect all positions in a single layer.
 
-- Encoder-decoder architecture.
-- Multi-head self-attention.
-- Position-wise feed-forward networks.
-- Positional encodings because the model has no recurrence.
-- Residual connections, layer normalization, dropout, label smoothing, and Adam schedule.
+## Insight
 
-### Evidence In The Original Paper
+Self-attention can be used as the sequence modeling backbone. Instead of processing tokens sequentially or through local convolutional neighborhoods, a self-attention layer lets each token directly read all other tokens. This gives a constant maximum interaction path under full attention. Multi-head attention lets different heads specialize in different relation patterns, while positional encodings restore order information.
 
-- WMT 2014 English-German and English-French machine translation.
-- BLEU comparison with previous sequence transduction models.
-- Complexity/path-length comparison across self-attention, recurrence, convolution, and restricted self-attention.
-- Ablation table over model size, heads, attention dimensions, dropout, positional encodings, and label smoothing.
-- Training efficiency comparison with one machine using 8 NVIDIA P100 GPUs.
+## Concrete Solution
 
-### Official Values Used In This Demo
+The paper builds an encoder-decoder architecture with:
 
-- Transformer big reaches 28.4 BLEU on WMT 2014 English-German.
-- Transformer big single model reaches 41.0 BLEU on WMT 2014 English-French.
-- Base model trains for about 100K steps / 12 hours.
-- Big model trains for about 300K steps / 3.5 days.
+| Component | Role |
+| --- | --- |
+| Multi-head self-attention | Direct token-to-token interaction inside encoder and decoder. |
+| Masked decoder self-attention | Autoregressive target-side generation without seeing future tokens. |
+| Encoder-decoder attention | Target queries read source-side representations. |
+| Position-wise feed-forward networks | Independent nonlinear transformation at each position. |
+| Positional encodings | Supply order information after removing recurrence/convolution. |
+| Residual connections, layer normalization, dropout, label smoothing | Stabilize and regularize training. |
 
-See `official-data.md` for the source locations.
+## Results Used In This Demo
 
-## Initial CCFA Handoff
+Only official values from the original paper are used:
 
-- Next owner: `ccf-idea-optimizer`.
-- Reason: the paper reading has produced a research direction and evidence basis; the next step is to express it as a reusable idea brief.
+| Claim | Official evidence |
+| --- | --- |
+| Attention-only sequence transduction is viable. | Transformer big reports 28.4 BLEU on WMT 2014 English-German. |
+| The architecture scales to a larger MT dataset. | Transformer big single model reports 41.0 BLEU on WMT 2014 English-French. |
+| It improves interaction path length and parallelism. | Official Table 1 compares self-attention with recurrent and convolutional layers. |
+| Design choices matter. | Original ablations cover model size, heads, attention dimensions, dropout, positional encoding, and label smoothing. |
+
+## Contribution Project Idea
+
+If this idea were prepared as an ICLR-style submission, the project should be framed as:
+
+> A sequence transduction architecture showing that attention can replace recurrence and convolution as the main representation-building primitive.
+
+The strongest contribution type is architecture-level insight plus empirical validation, not the invention of attention itself.
+
+## Source Writing Pattern
+
+The original paper's writing mode is:
+
+1. Start from a widely understood task: sequence transduction / machine translation.
+2. State a structural bottleneck in previous architectures: sequential computation and long paths.
+3. Introduce a concise insight: attention alone can model dependencies.
+4. Present the architecture as a clean replacement, not a small patch.
+5. Support the claim with headline results, complexity/path-length comparison, and ablations.
+
+This source pattern is what `ccf-paper-writer` should preserve in the ICLR draft: task -> bottleneck -> insight -> architecture -> evidence -> bounded limitation.

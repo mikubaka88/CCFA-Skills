@@ -1,19 +1,26 @@
-# CCFA Skill Smoke Tests For This Demo
+# Skill Self-Tests
 
-The current runtime surface has 13 skills. This table shows the expected route for the same Attention/NeurIPS scenario.
+The current runtime surface has 13 skills. These smoke prompts check routing for the Attention/ICLR closed-loop demo.
 
-| Prompt | Expected owner | Demo location | Boundary |
-| --- | --- | --- | --- |
-| Create a NeurIPS-style paper workspace for the Transformer idea. | `ccf-project-scaffolder` | `ccfa.yaml` | Creates state; does not invent content. |
-| Plan the workflow from original paper reading to rebuttal. | `ccf-pipeline-orchestrator` | `02-neurips-skill-run.md` | Routes and gates only. |
-| Turn the original paper's attention-only direction into an idea brief. | `ccf-idea-optimizer` | `01-idea-document.md` | Shapes the idea; does not score alternatives. |
-| Score the idea's likely NeurIPS risk. | `ccf-idea-reviewer` | `02-neurips-skill-run.md` | Scores idea; does not polish the paper. |
-| Search or list related-work targets. | `ccf-literature-searcher` | `02-neurips-skill-run.md` | Finds new work; does not audit fixed citations. |
-| Design WMT experiments and build result tables from official values. | `ccf-experiment-designer` | `result-tables.md` | Uses real values only. |
-| Draft, polish, compress, or make a talk outline. | `ccf-paper-writer` | `03-writing-draft.md` | Writes text; does not review or rebut. |
-| Run scientific and writing review. | `ccf-paper-reviewer` | `04-review-and-rebuttal.md` | Diagnoses; does not rewrite. |
-| Audit claims, numbers, and citations. | `ccf-integrity-auditor` | `04-review-and-rebuttal.md` | Checks support; does not search broadly. |
-| Check NeurIPS format/package/artifact readiness. | `ccf-submission-checker` | `05-submission-check.md` | Checks package; does not polish. |
-| Draft rebuttal and revision ledger. | `ccf-rebuttal-writer` | `04-review-and-rebuttal.md` | Responds to reviews; not ordinary writing. |
-| Check shared routing and artifact contracts. | `ccf-common` | all files | Governance only. |
-| Maintain this demo's docs and SVGs. | `ccf-skill-forger` | `tools/build_ccfa_diagrams.py`, assets | Maintenance only. |
+| Prompt intent | Expected skill | Demo evidence |
+| --- | --- | --- |
+| Create an ICLR-style paper workspace for the Transformer idea. | `ccf-project-scaffolder` | `ccfa.yaml`, `paper/iclr2026_conference.sty`. |
+| Plan the workflow from source reading to rebuttal. | `ccf-pipeline-orchestrator` | `02-iclr-closed-loop-skill-run.md`. |
+| Turn the source paper into a reusable idea brief. | `ccf-idea-optimizer` | `01-idea-document.md`. |
+| Score the idea's ICLR risk before writing. | `ccf-idea-reviewer` | `03-idea-review.md`. |
+| Search or list related-work targets. | `ccf-literature-searcher` | `02-iclr-closed-loop-skill-run.md`, Related Work in TeX. |
+| Design WMT evidence tables and ablation plan. | `ccf-experiment-designer` | `official-data.md`, `result-tables.md`, TeX experiment section. |
+| Draft and optimize the full ICLR manuscript. | `ccf-paper-writer` | `03-writing-draft.md`, `paper/attention_iclr_submission.tex`. |
+| Review writing and scientific quality. | `ccf-paper-reviewer` | `04-review-and-rebuttal.md`. |
+| Check claims, numbers, and citations. | `ccf-integrity-auditor` | `04-review-and-rebuttal.md` integrity table. |
+| Check ICLR format/package/artifact readiness. | `ccf-submission-checker` | `05-submission-check.md`. |
+| Draft response and revision ledger. | `ccf-rebuttal-writer` | `04-review-and-rebuttal.md` rebuttal section. |
+| Check shared routing and artifact contracts. | `ccf-common` | `02-iclr-closed-loop-skill-run.md`, `06-family-self-audit.md`. |
+| Maintain skills/docs/SVG/release quality. | `ccf-skill-forger` | writer policy updates and family self-audit. |
+
+Conflict checks:
+
+- "润色并保持 LaTeX 格式" routes to `ccf-paper-writer`, not `ccf-paper-reviewer`.
+- "完整审稿/评分" routes to `ccf-paper-reviewer`, not `ccf-paper-writer`.
+- "引用是否真实支撑 claim" routes to `ccf-integrity-auditor`, not `ccf-literature-searcher`.
+- "ICLR page limit / anonymity / build" routes to `ccf-submission-checker`, not writer.

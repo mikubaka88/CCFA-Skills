@@ -106,7 +106,7 @@ ccf-paper-writer/references/venue-guides/<venue>.md
 
 ## Demo
 
-`demo/attention-is-all-you-need/` 是完整 NeurIPS 風格 dry run：讀取 Transformer 原文，抽取思路，然後逐步使用 CCFA 家族完成 idea 優化、證據/實驗規劃、寫作、審稿、完整性稽核、投稿檢查和 rebuttal。
+`demo/attention-is-all-you-need/` 是完整 ICLR 風格閉環：讀取 Transformer 原文，抽取思路，進行 idea 評審，寫出可編譯的完整 LaTeX 論文，完成寫作/科學審稿、完整性稽核、投稿檢查、rebuttal，並記錄家族剩餘問題。
 
 ![Attention Demo](assets/ccfa-skills-demo-attention.zh-TW.svg)
 

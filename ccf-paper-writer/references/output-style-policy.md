@@ -29,8 +29,20 @@ When the user has only an idea and asks to write a paper:
 3. Draft a LaTeX manuscript using that venue's template conventions.
 4. If the venue guide is missing or no venue is named, draft with the NeurIPS template path `ccf-latex-templates/NeurIPS/neurips_2026.tex`.
 5. Use `TBD` for missing results, citations, figures, or implementation details.
+6. For "完整文章", "full paper", "from scratch", or "投稿", include all normal paper parts for the target venue: abstract, introduction, background/related work or preliminaries, method, experiments, analysis/ablation, limitations, ethics/reproducibility if relevant, conclusion, references, and appendix/checklist placeholders when expected.
 
 Do not block the draft because final venue policy may be stale. State the freshness risk briefly and route final compliance to `ccf-submission-checker`.
+
+## Information-Dense Writing
+
+Do not use the main answer for generic process narration. The first visible artifact should be the draft, revised text, table, review response, or file path requested by the user. Keep notes short and concrete:
+
+- name the exact unsupported claim,
+- name the missing evidence or file,
+- name the section affected,
+- name the next owner only when a handoff is useful.
+
+For full workflow demos, every skill should leave a concrete artifact rather than a one-line description.
 
 ## Flexible Suggestions
 

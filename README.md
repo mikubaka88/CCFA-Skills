@@ -106,7 +106,7 @@ Use `ccf-paper-writer` for venue-aware manuscript text and `ccf-submission-check
 
 ## Demo
 
-`demo/attention-is-all-you-need/` is a complete NeurIPS-style dry run. It reads the original Transformer paper, extracts the idea, then walks through the CCFA family: idea optimization, literature/evidence grounding, experiment planning, writing, review, integrity audit, submission check, and rebuttal.
+`demo/attention-is-all-you-need/` is a complete ICLR-style closed-loop run. It reads the original Transformer paper, extracts the idea, reviews it, writes a full compiling LaTeX manuscript, runs writing/scientific review, audits integrity, checks submission readiness, drafts rebuttal text, and records remaining CCFA family issues.
 
 ![Attention Demo](assets/ccfa-skills-demo-attention.svg)
 

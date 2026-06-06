@@ -1,43 +1,54 @@
-# 05 - Submission Check
+# 05 - ICLR Submission Check
 
 Owner: `ccf-submission-checker`
 
-Target: NeurIPS-style demo.
+Target: ICLR 2026-style demo.
 
 ## Venue Format Check
 
-This demo does not claim current NeurIPS submission compliance. For a real submission, the checker must browse and verify the current official NeurIPS author instructions, template, page limit, anonymity policy, supplementary policy, and camera-ready rules.
-
-Local reference path:
-
-- `ccf-paper-writer/references/venue-guides/neurips.md`
-- `ccf-latex-templates/NeurIPS/`
-
-## Package Check
-
 | Item | Demo status | Result |
 | --- | --- | --- |
-| Main TeX source | `paper/attention_neurips_demo.tex` | Present as demo draft. |
-| NeurIPS style file | `paper/neurips_2026.sty` | Copied into demo paper folder to mirror scaffold behavior. |
-| Compiled PDF | Builds with `pdflatex` during validation; PDF not committed. | Demo compile passes, but real submission must compile in the project environment. |
-| Page count | 3 pages in validation build | Real submission must re-check after full content and official policy update. |
-| Anonymity | Anonymous author block in TeX | Must still be checked in compiled PDF and metadata. |
-| PDF metadata | Not available | Must be checked after compilation. |
-| Bibliography | Original paper listed in TeX bibliography | Needs full BibTeX and all related work for real submission. |
+| Venue guide | `ccf-paper-writer/references/venue-guides/iclr.md` | Updated to ICLR 2026 Author Guide basics. |
+| Review mode | Double-blind during review | Author block anonymized by ICLR style. |
+| Main text page limit | 9 pages for submission, excluding references and appendix | Demo PDF is 6 pages. |
+| Discussion/camera-ready limit | 10 pages, excluding references and appendix | Not applicable to current demo stage. |
+| Style file | `paper/iclr2026_conference.sty` | Present. |
+| Main TeX | `paper/attention_iclr_submission.tex` | Present. |
 
-## Artifact / Reproducibility Check
+## Build Check
 
-| Item | Demo status | Required for real submission |
+| Check | Result |
+| --- | --- |
+| Command | `pdflatex -interaction=nonstopmode -halt-on-error -output-directory <temp> attention_iclr_submission.tex` run twice. |
+| Build status | Pass. |
+| PDF page count | 6 pages in temporary build. |
+| Known environment warning | MiKTeX reports administrator update warnings; not a manuscript failure. |
+| PDF committed? | No. The demo keeps source files only. |
+
+## Anonymity Check
+
+| Surface | Status |
+| --- | --- |
+| Author block | `Anonymous Authors`; ICLR style prints anonymous review block. |
+| Acknowledgments | None in submission text. |
+| Project URLs | None. |
+| Self-citation | No identifying self-citation in demo. |
+| PDF metadata | Not committed; must be checked on final generated PDF. |
+
+## Artifact And Reproducibility Check
+
+| Artifact | Current status | Required for real submission |
 | --- | --- | --- |
-| Code | Not included | Training/inference code or clear non-release explanation. |
-| Data | WMT tasks named | Dataset access instructions and preprocessing. |
-| Model checkpoints | Not included | Release plan or limitation. |
-| Environment | Not included | Hardware/software versions. |
-| Seeds | Not included | Training/evaluation seeds when available. |
-| License | Not included | Code/data/model license notes. |
+| Code | Absent | Training and inference code or explicit non-release reason. |
+| Data | WMT tasks named | Dataset download/preprocessing instructions. |
+| Model checkpoints | Absent | Release plan or access limitation. |
+| Seeds | Absent | Training/evaluation seeds where available. |
+| Hardware | Official P100 setup stated | Full environment and runtime notes. |
+| Ablations | Planned but incomplete | Full values from official source or reproduction logs. |
+| Appendix | Checklist placeholder present | Expand with implementation, decoding, preprocessing, and artifact details. |
 
 ## Gate Decision
 
-Demo gate: pass as a workflow demonstration.
+Demo gate: pass as a closed-loop CCFA demonstration because the ICLR LaTeX source builds, the manuscript is complete enough to review, and all unsupported evidence is marked.
 
-Real submission gate: fail until PDF compilation, current official policy, artifact package, full related work, and bibliography are checked.
+Real submission gate: fail until current official policy is rechecked, full ablation values are filled, related work is updated, PDF metadata is inspected, and artifact/reproducibility materials are prepared.

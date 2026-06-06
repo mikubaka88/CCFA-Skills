@@ -48,9 +48,15 @@ For non-review skills, the user's requested output shape wins over the skill's d
 
 Review-related skills may keep stricter fixed formats because their value is diagnosis, scoring, and traceable criticism. `ccf-paper-reviewer`, `ccf-idea-reviewer`, and integrity/submission gate checks should remain more structured than writing, search, planning, or experiment-design outputs.
 
+For broad requests such as "完整流程", "完整文章", "详细报告", "用所有 skills", "full paper", "full review", or "closed loop", do not return fragments. Produce complete artifacts with enough concrete content to be useful: full drafts rather than abstract-only samples, filled tables rather than headings only, reviewer comments with evidence rather than generic risks, and handoff packets that name files, claims, blockers, and next actions.
+
 For editing, polishing, compression, and local revision, preserve the user's existing format and markup unless the user explicitly asks for restructuring. Do not convert LaTeX into a checklist report, Markdown into a different outline, or a paragraph into a table just because the skill has a template.
 
 When a non-review task is under-specified, proceed with reasonable assumptions and ask at most a small number of targeted questions as optional suggestions. Do not block ordinary writing or planning work merely because a full checklist cannot be completed.
+
+## Information Density
+
+Visible output should maximize useful information and minimize boilerplate. Avoid long disclaimers, repeated "what this is not" lists, vague praise, generic next steps, and empty section headings. Every paragraph, bullet, or table row should contain at least one of: a concrete claim, a specific edit, an evidence link, a named artifact, a decision, a blocker, a quantified value, or an actionable question.
 
 ## Minimal Status
 

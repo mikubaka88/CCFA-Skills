@@ -7,10 +7,10 @@
 | Venue slug | `iclr` |
 | Venue family | AI |
 | CCF tier | CCF-A |
-| Template path | `ccf-latex-templates/ICLR` |
-| Official URL | https://iclr.cc |
-| Last verified | Legacy migration on 2026-06-06; official policy must be rechecked before submission. |
-| Source status | Migrated local guide; not independently reverified in v0.4.0. |
+| Template path | `ccf-latex-templates/ICLR/iclr2026_conference.sty` |
+| Official URL | https://iclr.cc/Conferences/2026/AuthorGuide |
+| Last verified | 2026-06-06 against ICLR 2026 Author Guide. |
+| Source status | Official author-guide verified for anonymity/page-limit basics; recheck before real submission. |
 
 ## Usage Boundary
 
@@ -25,21 +25,18 @@
 
 **CCF-A | AI | Publisher: OpenReview**
 **Conference:** https://iclr.cc
-**Template:** `ccf-latex-templates/ICLR/main.tex`
+**Template:** `ccf-latex-templates/ICLR/iclr2026_conference.sty`
 
-## IMPORTANT: OpenReview Is NOT Double-Blind
+## IMPORTANT: ICLR 2026 Is Double-Blind During Review
 
-ICLR uses OpenReview, an **open peer review** platform where:
-- Authors are **NOT anonymous** — identities are visible
-- Reviewers may be anonymous (not always)
-- Papers, reviews, and author responses are all public
-- This differs from all other major ML conferences
+ICLR uses OpenReview, but the 2026 author guide states that submissions are double-blind during review.
 
 This means:
-1. Include your name and affiliation in the submission
-2. You CAN reference your own prior work normally
-3. Reviews and your responses are publicly visible
-4. The review process is transparent and interactive
+1. Use the default `iclr2026_conference` style for under-review submissions; add `\iclrfinalcopy` only after acceptance.
+2. Do not include author names, affiliations, acknowledgments, funding details, or identifying project links in the submitted PDF.
+3. Cite prior work, including the authors' own public work, in the third person when needed.
+4. Keep private code, supplementary, and artifact links anonymized until the venue permits de-anonymization.
+5. Verify current official policy before final submission because OpenReview visibility and de-anonymization rules can change by year.
 
 ## Document Setup
 
@@ -47,9 +44,10 @@ This means:
 
 ```latex
 % === MODE SELECTION ===
-\usepackage[submission]{iclr2026_conference}  % For submission/review
+\usepackage{iclr2026_conference}              % For submission/review
 % OR:
-\usepackage[final]{iclr2026_conference}        % Camera-ready
+\usepackage{iclr2026_conference}
+\iclrfinalcopy                                % Camera-ready after acceptance
 
 % Additional packages:
 \usepackage{graphicx}
@@ -64,8 +62,8 @@ This means:
 
 | Mode | Option | Effect |
 |------|--------|--------|
-| Submission | `[submission]` | Line numbers, review mode |
-| Camera-Ready | `[final]` | Removes line numbers, copyright |
+| Submission | default style | Under-review header and anonymous author block |
+| Camera-Ready | `\iclrfinalcopy` | Published header and visible author block |
 
 ### Conditional Content
 
@@ -82,10 +80,10 @@ Use `\ificlrfinal` for content that differs between versions:
 
 ## Page Limits
 
-- **Check official CFP** for current page limits
-- Limits vary by year — verify at https://iclr.cc
-- Appendices typically allowed (check CFP)
-- Supplementary material policies vary
+- ICLR 2026 submission: 9 pages for the main text, excluding references and appendix.
+- Discussion and camera-ready versions: 10 pages for the main text, excluding references and appendix.
+- Appendices and supplementary material are allowed but must follow current official instructions.
+- Always re-check the official Author Guide before real submission.
 
 ## Title and Author Formatting
 
@@ -94,17 +92,7 @@ Use `\ificlrfinal` for content that differs between versions:
 
 % Multi-author with \And and \AND:
 \author{
-  First Author \\
-  Institution \\
-  \texttt{email@example.com}
-  \And
-  Second Author \\
-  Institution \\
-  \texttt{email2@example.com}
-  \AND
-  Third Author \\
-  Institution \\
-  \texttt{email3@example.com}
+  Anonymous Authors
 }
 ```
 
