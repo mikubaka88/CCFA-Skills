@@ -628,6 +628,15 @@ sources:
     verified_at: 2026-06-05
     stale_after_days: 365
     notes: Local architecture diagrams for CCFA skill-family routing, workflow, and reviewer-boundary documentation.
+  - id: gopen-swan-scientific-writing
+    title: The Science of Scientific Writing
+    url: https://www.cs.tufts.edu/comp/150FP/archive/george-gopen/sci.html
+    source_type: background_method
+    used_by: [ccf-common]
+    recorded_at: 2026-06-06
+    verified_at: 2026-06-06
+    stale_after_days: 3650
+    notes: Opening README quote for the research-storyline positioning; use as writing-argument framing, not as venue policy.
   - id: attention-is-all-you-need-neurips-2017
     title: Attention Is All You Need
     url: https://papers.nips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf
