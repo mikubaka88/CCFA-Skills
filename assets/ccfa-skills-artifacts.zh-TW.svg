@@ -6,10 +6,10 @@
 </defs>
 <style>text{font-family:Microsoft JhengHei, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas,Menlo,monospace}</style>
 <rect x="0" y="0" width="1800" height="920" rx="0" fill="#F6F8FB" stroke="none" stroke-width="2" />
-<rect x="0" y="0" width="1800" height="168" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
-<text x="72" y="68" font-size="38" font-weight="850" fill="#FFFFFF" text-anchor="start">Artifact 合約</text>
-<text x="72" y="108" font-size="19" font-weight="500" fill="#D8E6F2" text-anchor="start">ccfa.yaml 與檔案串聯 idea、證據、正文、審稿、投稿包和 rebuttal。</text>
-<text x="1688" y="64" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.4.5 · 13 個 owner skills · 一個論文專案閉環</text>
+<rect x="0" y="0" width="1800" height="158" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
+<text x="72" y="66" font-size="44" font-weight="850" fill="#FFFFFF" text-anchor="start">Artifact 合約</text>
+<text x="72" y="108" font-size="20" font-weight="500" fill="#D8E6F2" text-anchor="start">ccfa.yaml 與檔案串聯 idea、證據、正文、審稿、投稿包和 rebuttal。</text>
+<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.4.5 · 13 個 owner skills · 一個論文專案閉環</text>
 <rect x="570" y="365" width="660" height="150" rx="32" fill="#102033" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <text x="900" y="423" font-size="40" font-weight="860" fill="#FFFFFF" text-anchor="middle">ccfa.yaml</text>
 <text x="900" y="468" font-size="16" font-weight="520" fill="#D8E6F2" text-anchor="middle">version · stage · target_venue · artifacts · claims · reviews · checks</text>

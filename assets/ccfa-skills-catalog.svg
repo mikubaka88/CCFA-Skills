@@ -6,10 +6,10 @@
 </defs>
 <style>text{font-family:Inter, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas,Menlo,monospace}</style>
 <rect x="0" y="0" width="1800" height="1100" rx="0" fill="#F6F8FB" stroke="none" stroke-width="2" />
-<rect x="0" y="0" width="1800" height="168" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
-<text x="72" y="68" font-size="38" font-weight="850" fill="#FFFFFF" text-anchor="start">Installable Runtime Skills</text>
-<text x="72" y="108" font-size="19" font-weight="500" fill="#D8E6F2" text-anchor="start">The consolidated 13-skill surface after helper modes were merged.</text>
-<text x="1688" y="64" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.4.5 · 13 owner skills · one paper-project loop</text>
+<rect x="0" y="0" width="1800" height="158" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
+<text x="72" y="66" font-size="44" font-weight="850" fill="#FFFFFF" text-anchor="start">Installable Runtime Skills</text>
+<text x="72" y="108" font-size="20" font-weight="500" fill="#D8E6F2" text-anchor="start">The consolidated 13-skill surface after helper modes were merged.</text>
+<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.4.5 · 13 owner skills · one paper-project loop</text>
 <rect x="70" y="235" width="380" height="328" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="70" y="235" width="380" height="52" rx="24" fill="#1F7A8C" stroke="none" stroke-width="2" />
 <text x="92" y="269" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">Project Control</text>
@@ -33,8 +33,7 @@
 <rect x="523" y="305" width="344" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="523" y="305" width="8" height="66" rx="18" fill="#D2673D" stroke="none" stroke-width="2" />
 <text x="547" y="339" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-idea-optimizer</text>
-<text x="547" y="364" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">problem, gap, insight,</text>
-<text x="547" y="382" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">method</text>
+<text x="547" y="364" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">problem, gap, insight, method</text>
 <rect x="523" y="387" width="344" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="523" y="387" width="8" height="66" rx="18" fill="#D2673D" stroke="none" stroke-width="2" />
 <text x="547" y="421" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-idea-reviewer</text>
@@ -76,8 +75,7 @@
 <rect x="1393" y="469" width="344" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="1393" y="469" width="8" height="66" rx="18" fill="#477AA6" stroke="none" stroke-width="2" />
 <text x="1417" y="503" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-rebuttal-writer</text>
-<text x="1417" y="528" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">response, ledger,</text>
-<text x="1417" y="546" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">resubmission</text>
+<text x="1417" y="528" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">response, ledger, resubmission</text>
 <rect x="1393" y="551" width="344" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="1393" y="551" width="8" height="66" rx="18" fill="#5D6977" stroke="none" stroke-width="2" />
 <text x="1417" y="585" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-skill-forger</text>

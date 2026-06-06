@@ -191,10 +191,10 @@ def start(height: int, lang: str, key: str) -> list[str]:
         "</defs>",
         f'<style>text{{font-family:{font};dominant-baseline:auto}} .mono{{font-family:Consolas,Menlo,monospace}}</style>',
         rect(0, 0, W, height, BG, "none", 0),
-        rect(0, 0, W, 168, "url(#header)", "none", 0),
-        text(72, 68, title, 38, 850, "#FFFFFF"),
-        text(72, 108, subtitle, 19, 500, "#D8E6F2"),
-        text(1688, 64, LANG[lang]["tag"], 16, 650, "#D8E6F2", "end"),
+        rect(0, 0, W, 158, "url(#header)", "none", 0),
+        text(72, 66, title, 44, 850, "#FFFFFF"),
+        text(72, 108, subtitle, 20, 500, "#D8E6F2"),
+        text(W - 72, 132, LANG[lang]["tag"], 16, 650, "#D8E6F2", "end"),
     ]
 
 
@@ -214,7 +214,8 @@ def skill_card(parts: list[str], x: int, y: int, skill: str, lang: str, w: int =
     parts.append(rect(x, y, w, h, PANEL, "none", 18, 'filter="url(#shadow)"'))
     parts.append(rect(x, y, 8, h, color, "none", 18))
     parts.append(text(x + 24, y + 34, skill, 15, 820, INK))
-    for line_i, line_text in enumerate(wrap_lines(ROLE[lang][skill], 27)):
+    wrap_width = max(27, (w - 72) // 9)
+    for line_i, line_text in enumerate(wrap_lines(ROLE[lang][skill], wrap_width)):
         parts.append(text(x + 24, y + 59 + line_i * 18, line_text, 13, 520, MUTED))
 
 
@@ -228,34 +229,37 @@ def stage_panel(parts: list[str], x: int, y: int, title: str, skills: list[str],
 
 
 def build_architecture(lang: str) -> None:
-    parts = start(1080, lang, "architecture")
+    parts = start(1400, lang, "architecture")
     labels = {
         "en": ["Setup", "Idea Gate", "Evidence", "Manuscript", "Assurance", "Submit / Respond", "Revision loop", "shared project state", "Governance"],
         "zh-CN": ["搭建", "选题 Gate", "证据", "正文", "质量保障", "投稿 / 回应", "修改回路", "共享项目状态", "治理层"],
         "zh-TW": ["搭建", "選題 Gate", "證據", "正文", "品質保障", "投稿 / 回應", "修改回路", "共享專案狀態", "治理層"],
     }[lang]
     groups = [
-        (labels[0], 60, ["ccf-project-scaffolder", "ccf-pipeline-orchestrator"], COLORS["setup"]),
-        (labels[1], 340, ["ccf-idea-optimizer", "ccf-idea-reviewer"], COLORS["idea"]),
-        (labels[2], 620, ["ccf-literature-searcher", "ccf-experiment-designer"], COLORS["evidence"]),
-        (labels[3], 900, ["ccf-paper-writer"], COLORS["writing"]),
-        (labels[4], 1180, ["ccf-paper-reviewer", "ccf-integrity-auditor"], COLORS["review"]),
-        (labels[5], 1460, ["ccf-submission-checker", "ccf-rebuttal-writer"], COLORS["submission"]),
+        (labels[0], 70, 228, ["ccf-project-scaffolder", "ccf-pipeline-orchestrator"], COLORS["setup"]),
+        (labels[1], 650, 228, ["ccf-idea-optimizer", "ccf-idea-reviewer"], COLORS["idea"]),
+        (labels[2], 1230, 228, ["ccf-literature-searcher", "ccf-experiment-designer"], COLORS["evidence"]),
+        (labels[3], 70, 560, ["ccf-paper-writer"], COLORS["writing"]),
+        (labels[4], 650, 560, ["ccf-paper-reviewer", "ccf-integrity-auditor"], COLORS["review"]),
+        (labels[5], 1230, 560, ["ccf-submission-checker", "ccf-rebuttal-writer"], COLORS["submission"]),
     ]
-    for title, x, skills, color in groups:
-        stage_panel(parts, x, 238, title, skills, lang, color)
-    for x in [320, 600, 880, 1160, 1440]:
-        parts.append(line(x, 410, x + 44, 410))
-    parts.append(path("M1615 585 C1590 805 1050 805 1035 585", COLORS["post"], 4))
-    parts.append(text(1260, 760, labels[6], 18, 820, COLORS["post"], "middle"))
+    for title, x, y, skills, color in groups:
+        stage_panel(parts, x, y, title, skills, lang, color, 500)
+    parts.append(line(570, 370, 650, 370))
+    parts.append(line(1150, 370, 1230, 370))
+    parts.append(path("M1480 492 C1480 530 320 530 320 560", "#94A3B8", 3))
+    parts.append(line(570, 680, 650, 680))
+    parts.append(line(1150, 680, 1230, 680))
+    parts.append(path("M1480 828 C1420 910 390 910 320 828", COLORS["post"], 4))
+    parts.append(text(900, 890, labels[6], 20, 820, COLORS["post"], "middle"))
 
-    parts.append(rect(350, 720, 1100, 118, NAVY, "none", 30, 'filter="url(#shadow)"'))
-    parts.append(text(900, 770, "ccfa.yaml", 36, 850, "#FFFFFF", "middle"))
-    parts.append(text(900, 805, labels[7], 18, 500, "#D8E6F2", "middle"))
+    parts.append(rect(350, 930, 1100, 118, NAVY, "none", 30, 'filter="url(#shadow)"'))
+    parts.append(text(900, 980, "ccfa.yaml", 36, 850, "#FFFFFF", "middle"))
+    parts.append(text(900, 1015, labels[7], 18, 500, "#D8E6F2", "middle"))
     for i, item in enumerate(["idea", "literature", "experiments", "manuscript", "reviews", "submission", "ledger"]):
-        chip(parts, 410 + i * 150, 860, item, BLUE, 128)
+        chip(parts, 410 + i * 150, 1068, item, BLUE, 128)
 
-    stage_panel(parts, 420, 920, labels[8], ["ccf-common", "ccf-skill-forger"], lang, COLORS["gov"], 960)
+    stage_panel(parts, 420, 1120, labels[8], ["ccf-common", "ccf-skill-forger"], lang, COLORS["gov"], 960)
     finish(parts, "architecture", lang)
 
 

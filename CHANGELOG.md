@@ -2,6 +2,9 @@
 
 ## v0.4.5 - 2026-06-06
 
+- Made Simplified Chinese the default `README.md` entry, added `README.en.md`, kept `README.zh-CN.md` as a Simplified Chinese compatibility entry, and preserved free switching between Simplified Chinese, English, and Traditional Chinese.
+- Standardized the README top introduction to "A practical skill family set for CCF-A research workflows." and expanded the default README so core skill family logic, routing, artifact contracts, installation sets, and merged helper ownership are explained inline.
+- Reworked the generated architecture SVG layout into a clearer two-row chain with explicit revision loop, `ccfa.yaml`, and governance layer, then regenerated all EN/zh-CN/zh-TW SVGs from `tools/build_ccfa_diagrams.py`.
 - Restored `assets/ccfaskills.png` as the README top visual and rewrote README EN/zh-CN/zh-TW around the 13-owner lifecycle, helper-mode merges, installation sets, venue branch, and demo loop.
 - Rebuilt all generated SVG diagrams with a clearer family-chain layout: architecture, workflow, catalog, routing, artifact contract, review boundaries, installation, and Attention demo in EN/zh-CN/zh-TW.
 - Rewrote `docs/ARCHITECTURE.md` and `docs/SKILLS_CATALOG.md` to explain ownership, artifact state, route boundaries, and merged helper capabilities without ambiguity.

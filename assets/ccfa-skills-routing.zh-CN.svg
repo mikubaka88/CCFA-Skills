@@ -6,10 +6,10 @@
 </defs>
 <style>text{font-family:Microsoft YaHei, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas,Menlo,monospace}</style>
 <rect x="0" y="0" width="1800" height="980" rx="0" fill="#F6F8FB" stroke="none" stroke-width="2" />
-<rect x="0" y="0" width="1800" height="168" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
-<text x="72" y="68" font-size="38" font-weight="850" fill="#FFFFFF" text-anchor="start">路由边界</text>
-<text x="72" y="108" font-size="19" font-weight="500" fill="#D8E6F2" text-anchor="start">相似请求只进入一个 owner skill，避免触发冲突。</text>
-<text x="1688" y="64" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.4.5 · 13 个 owner skills · 一个论文项目闭环</text>
+<rect x="0" y="0" width="1800" height="158" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
+<text x="72" y="66" font-size="44" font-weight="850" fill="#FFFFFF" text-anchor="start">路由边界</text>
+<text x="72" y="108" font-size="20" font-weight="500" fill="#D8E6F2" text-anchor="start">相似请求只进入一个 owner skill，避免触发冲突。</text>
+<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.4.5 · 13 个 owner skills · 一个论文项目闭环</text>
 <rect x="90" y="230" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="114" y="254" width="230" height="38" rx="19" fill="#D2673D" stroke="none" stroke-width="2" />
 <text x="229" y="279" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">优化粗 idea</text>
