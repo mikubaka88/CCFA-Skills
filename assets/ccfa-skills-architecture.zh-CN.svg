@@ -1,80 +1,110 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1040" viewBox="0 0 1800 1040">
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1080" viewBox="0 0 1800 1080">
 <defs>
-<filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0B1826" flood-opacity="0.12"/></filter>
-<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#8D9AA8"/></marker>
+<linearGradient id="header" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#102033"/><stop offset="0.58" stop-color="#1F6F8B"/><stop offset="1" stop-color="#7A4E9B"/></linearGradient>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#0B1826" flood-opacity="0.13"/></filter>
+<marker id="arrow" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto"><path d="M2,2 L11,6.5 L2,11 Z" fill="#7B8794"/></marker>
 </defs>
 <style>text{font-family:Microsoft YaHei, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas,Menlo,monospace}</style>
-<rect x="0" y="0" width="1800" height="1040" rx="0" fill="#F3F6F9" stroke="none" stroke-width="2" />
-<rect x="0" y="0" width="1800" height="170" rx="0" fill="#102033" stroke="none" stroke-width="2" />
-<text x="70" y="72" font-size="38" font-weight="820" fill="#FFFFFF" text-anchor="start">CCFA Skills 架构</text>
-<text x="70" y="112" font-size="18" font-weight="450" fill="#D6E1EC" text-anchor="start">13 个 runtime skills，每个阶段一个 owner，helper 能力并入 mode。</text>
-<rect x="80" y="240" width="340" height="44" rx="22" fill="#1E7894" stroke="none" stroke-width="2" />
-<text x="104" y="269" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">项目</text>
-<rect x="80" y="306" width="390" height="64" rx="14" fill="#FFFFFF" stroke="#1E7894" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="104" cy="338" r="7" fill="#1E7894"/>
-<text x="124" y="333" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-project-scaffolder</text>
-<text x="124" y="354" font-size="13" font-weight="500" fill="#536171" text-anchor="start">项目 + ccfa.yaml</text>
-<rect x="80" y="390" width="390" height="64" rx="14" fill="#FFFFFF" stroke="#1E7894" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="104" cy="422" r="7" fill="#1E7894"/>
-<text x="124" y="417" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-pipeline-orchestrator</text>
-<text x="124" y="438" font-size="13" font-weight="500" fill="#536171" text-anchor="start">流程 + gate</text>
-<rect x="520" y="240" width="340" height="44" rx="22" fill="#C05C35" stroke="none" stroke-width="2" />
-<text x="544" y="269" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">选题</text>
-<rect x="520" y="306" width="390" height="64" rx="14" fill="#FFFFFF" stroke="#C05C35" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="544" cy="338" r="7" fill="#C05C35"/>
-<text x="564" y="333" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-idea-optimizer</text>
-<text x="564" y="354" font-size="13" font-weight="500" fill="#536171" text-anchor="start">优化 idea</text>
-<rect x="520" y="390" width="390" height="64" rx="14" fill="#FFFFFF" stroke="#C05C35" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="544" cy="422" r="7" fill="#C05C35"/>
-<text x="564" y="417" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-idea-reviewer</text>
-<text x="564" y="438" font-size="13" font-weight="500" fill="#536171" text-anchor="start">评分取舍</text>
-<rect x="960" y="240" width="340" height="44" rx="22" fill="#6F5AA6" stroke="none" stroke-width="2" />
-<text x="984" y="269" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">证据</text>
-<rect x="960" y="306" width="390" height="64" rx="14" fill="#FFFFFF" stroke="#6F5AA6" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="984" cy="338" r="7" fill="#6F5AA6"/>
-<text x="1004" y="333" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-literature-searcher</text>
-<text x="1004" y="354" font-size="13" font-weight="500" fill="#536171" text-anchor="start">找文献证据</text>
-<rect x="960" y="390" width="390" height="64" rx="14" fill="#FFFFFF" stroke="#6F5AA6" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="984" cy="422" r="7" fill="#6F5AA6"/>
-<text x="1004" y="417" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-experiment-designer</text>
-<text x="1004" y="438" font-size="13" font-weight="500" fill="#536171" text-anchor="start">实验 + 结果图表</text>
-<rect x="1400" y="240" width="340" height="44" rx="22" fill="#333B46" stroke="none" stroke-width="2" />
-<text x="1424" y="269" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">写作</text>
-<rect x="1400" y="306" width="390" height="64" rx="14" fill="#FFFFFF" stroke="#333B46" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="1424" cy="338" r="7" fill="#333B46"/>
-<text x="1444" y="333" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-paper-writer</text>
-<text x="1444" y="354" font-size="13" font-weight="500" fill="#536171" text-anchor="start">写作 + 压缩 + 展示</text>
-<rect x="300" y="610" width="340" height="44" rx="22" fill="#A78328" stroke="none" stroke-width="2" />
-<text x="324" y="639" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">保障</text>
-<rect x="300" y="676" width="390" height="64" rx="14" fill="#FFFFFF" stroke="#A78328" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="324" cy="708" r="7" fill="#A78328"/>
-<text x="344" y="703" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-paper-reviewer</text>
-<text x="344" y="724" font-size="13" font-weight="500" fill="#536171" text-anchor="start">科学 + 写作评审</text>
-<rect x="300" y="760" width="390" height="64" rx="14" fill="#FFFFFF" stroke="#854B82" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="324" cy="792" r="7" fill="#854B82"/>
-<text x="344" y="787" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-integrity-auditor</text>
-<text x="344" y="808" font-size="13" font-weight="500" fill="#536171" text-anchor="start">claim + 引用</text>
-<rect x="830" y="610" width="340" height="44" rx="22" fill="#BA4C5E" stroke="none" stroke-width="2" />
-<text x="854" y="639" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">投稿</text>
-<rect x="830" y="676" width="390" height="64" rx="14" fill="#FFFFFF" stroke="#BA4C5E" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="854" cy="708" r="7" fill="#BA4C5E"/>
-<text x="874" y="703" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-submission-checker</text>
-<text x="874" y="724" font-size="13" font-weight="500" fill="#536171" text-anchor="start">会议 + 投稿包 + artifact</text>
-<rect x="830" y="760" width="390" height="64" rx="14" fill="#FFFFFF" stroke="#477AA6" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="854" cy="792" r="7" fill="#477AA6"/>
-<text x="874" y="787" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-rebuttal-writer</text>
-<text x="874" y="808" font-size="13" font-weight="500" fill="#536171" text-anchor="start">回复 + 重投</text>
-<rect x="1360" y="610" width="340" height="44" rx="22" fill="#5A6672" stroke="none" stroke-width="2" />
-<text x="1384" y="639" font-size="17" font-weight="820" fill="#FFFFFF" text-anchor="start">治理</text>
-<rect x="1360" y="676" width="390" height="64" rx="14" fill="#FFFFFF" stroke="#5A6672" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="1384" cy="708" r="7" fill="#5A6672"/>
-<text x="1404" y="703" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-common</text>
-<text x="1404" y="724" font-size="13" font-weight="500" fill="#536171" text-anchor="start">共享治理</text>
-<rect x="1360" y="760" width="390" height="64" rx="14" fill="#FFFFFF" stroke="#5A6672" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="1384" cy="792" r="7" fill="#5A6672"/>
-<text x="1404" y="787" font-size="15" font-weight="780" fill="#17212B" text-anchor="start">ccf-skill-forger</text>
-<text x="1404" y="808" font-size="13" font-weight="500" fill="#536171" text-anchor="start">skills + 文档 SVG</text>
-<rect x="650" y="455" width="500" height="125" rx="26" fill="#102033" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<text x="900" y="505" font-size="34" font-weight="850" fill="#FFFFFF" text-anchor="middle">ccfa.yaml</text>
-<text x="900" y="544" font-size="16" font-weight="500" fill="#CFE0EF" text-anchor="middle">state / artifacts / gates / handoffs</text>
+<rect x="0" y="0" width="1800" height="1080" rx="0" fill="#F6F8FB" stroke="none" stroke-width="2" />
+<rect x="0" y="0" width="1800" height="168" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
+<text x="72" y="68" font-size="38" font-weight="850" fill="#FFFFFF" text-anchor="start">CCFA 技能家族逻辑</text>
+<text x="72" y="108" font-size="19" font-weight="500" fill="#D8E6F2" text-anchor="start">主研究链路、共享状态、治理层和修改回路。</text>
+<text x="1688" y="64" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.4.5 · 13 个 owner skills · 一个论文项目闭环</text>
+<rect x="60" y="238" width="260" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="60" y="238" width="260" height="52" rx="24" fill="#1F7A8C" stroke="none" stroke-width="2" />
+<text x="82" y="272" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">搭建</text>
+<rect x="78" y="308" width="224" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="78" y="308" width="8" height="66" rx="18" fill="#1F7A8C" stroke="none" stroke-width="2" />
+<text x="102" y="342" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-project-scaffolder</text>
+<text x="102" y="367" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">目录、模板、ccfa.yaml</text>
+<rect x="78" y="390" width="224" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="78" y="390" width="8" height="66" rx="18" fill="#1F7A8C" stroke="none" stroke-width="2" />
+<text x="102" y="424" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-pipeline-orchestrator</text>
+<text x="102" y="449" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">阶段计划、gate、handoff</text>
+<rect x="340" y="238" width="260" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="340" y="238" width="260" height="52" rx="24" fill="#D2673D" stroke="none" stroke-width="2" />
+<text x="362" y="272" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">选题 Gate</text>
+<rect x="358" y="308" width="224" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="358" y="308" width="8" height="66" rx="18" fill="#D2673D" stroke="none" stroke-width="2" />
+<text x="382" y="342" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-idea-optimizer</text>
+<text x="382" y="367" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">问题、gap、insight、方法</text>
+<rect x="358" y="390" width="224" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="358" y="390" width="8" height="66" rx="18" fill="#D2673D" stroke="none" stroke-width="2" />
+<text x="382" y="424" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-idea-reviewer</text>
+<text x="382" y="449" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">评分、排序、拒稿风险</text>
+<rect x="620" y="238" width="260" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="620" y="238" width="260" height="52" rx="24" fill="#6657A8" stroke="none" stroke-width="2" />
+<text x="642" y="272" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">证据</text>
+<rect x="638" y="308" width="224" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="638" y="308" width="8" height="66" rx="18" fill="#6657A8" stroke="none" stroke-width="2" />
+<text x="662" y="342" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-literature-searcher</text>
+<text x="662" y="367" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">prior art、数据集、benchmark</text>
+<rect x="638" y="390" width="224" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="638" y="390" width="8" height="66" rx="18" fill="#6657A8" stroke="none" stroke-width="2" />
+<text x="662" y="424" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-experiment-designer</text>
+<text x="662" y="449" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">baseline、消融、真实结果表</text>
+<rect x="900" y="238" width="260" height="164" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="900" y="238" width="260" height="52" rx="24" fill="#2D3742" stroke="none" stroke-width="2" />
+<text x="922" y="272" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">正文</text>
+<rect x="918" y="308" width="224" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="918" y="308" width="8" height="66" rx="18" fill="#2D3742" stroke="none" stroke-width="2" />
+<text x="942" y="342" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-writer</text>
+<text x="942" y="367" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">起草、润色、压缩、展示</text>
+<rect x="1180" y="238" width="260" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="1180" y="238" width="260" height="52" rx="24" fill="#B58B2A" stroke="none" stroke-width="2" />
+<text x="1202" y="272" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">质量保障</text>
+<rect x="1198" y="308" width="224" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="1198" y="308" width="8" height="66" rx="18" fill="#B58B2A" stroke="none" stroke-width="2" />
+<text x="1222" y="342" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-reviewer</text>
+<text x="1222" y="367" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">科学评审和写作评审</text>
+<rect x="1198" y="390" width="224" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="1198" y="390" width="8" height="66" rx="18" fill="#8A4F86" stroke="none" stroke-width="2" />
+<text x="1222" y="424" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-integrity-auditor</text>
+<text x="1222" y="449" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">claim、数字、引用</text>
+<rect x="1460" y="238" width="260" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="1460" y="238" width="260" height="52" rx="24" fill="#BA4C5E" stroke="none" stroke-width="2" />
+<text x="1482" y="272" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">投稿 / 回应</text>
+<rect x="1478" y="308" width="224" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="1478" y="308" width="8" height="66" rx="18" fill="#BA4C5E" stroke="none" stroke-width="2" />
+<text x="1502" y="342" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-submission-checker</text>
+<text x="1502" y="367" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">会议、PDF、匿名、artifact</text>
+<rect x="1478" y="390" width="224" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="1478" y="390" width="8" height="66" rx="18" fill="#477AA6" stroke="none" stroke-width="2" />
+<text x="1502" y="424" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-rebuttal-writer</text>
+<text x="1502" y="449" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">回应、ledger、重投</text>
+<line x1="320" y1="410" x2="364" y2="410" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="600" y1="410" x2="644" y2="410" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="880" y1="410" x2="924" y2="410" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="1160" y1="410" x2="1204" y2="410" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="1440" y1="410" x2="1484" y2="410" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<path d="M1615 585 C1590 805 1050 805 1035 585" fill="none" stroke="#477AA6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="1260" y="760" font-size="18" font-weight="820" fill="#477AA6" text-anchor="middle">修改回路</text>
+<rect x="350" y="720" width="1100" height="118" rx="30" fill="#102033" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="900" y="770" font-size="36" font-weight="850" fill="#FFFFFF" text-anchor="middle">ccfa.yaml</text>
+<text x="900" y="805" font-size="18" font-weight="500" fill="#D8E6F2" text-anchor="middle">共享项目状态</text>
+<rect x="410" y="860" width="128" height="38" rx="19" fill="#1F6F8B" stroke="none" stroke-width="2" />
+<text x="474" y="885" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">idea</text>
+<rect x="560" y="860" width="128" height="38" rx="19" fill="#1F6F8B" stroke="none" stroke-width="2" />
+<text x="624" y="885" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">literature</text>
+<rect x="710" y="860" width="128" height="38" rx="19" fill="#1F6F8B" stroke="none" stroke-width="2" />
+<text x="774" y="885" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">experiments</text>
+<rect x="860" y="860" width="128" height="38" rx="19" fill="#1F6F8B" stroke="none" stroke-width="2" />
+<text x="924" y="885" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">manuscript</text>
+<rect x="1010" y="860" width="128" height="38" rx="19" fill="#1F6F8B" stroke="none" stroke-width="2" />
+<text x="1074" y="885" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">reviews</text>
+<rect x="1160" y="860" width="128" height="38" rx="19" fill="#1F6F8B" stroke="none" stroke-width="2" />
+<text x="1224" y="885" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">submission</text>
+<rect x="1310" y="860" width="128" height="38" rx="19" fill="#1F6F8B" stroke="none" stroke-width="2" />
+<text x="1374" y="885" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">ledger</text>
+<rect x="420" y="920" width="960" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="420" y="920" width="960" height="52" rx="24" fill="#5D6977" stroke="none" stroke-width="2" />
+<text x="442" y="954" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">治理层</text>
+<rect x="438" y="990" width="924" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="438" y="990" width="8" height="66" rx="18" fill="#5D6977" stroke="none" stroke-width="2" />
+<text x="462" y="1024" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-common</text>
+<text x="462" y="1049" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">路由、策略、source registry</text>
+<rect x="438" y="1072" width="924" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="438" y="1072" width="8" height="66" rx="18" fill="#5D6977" stroke="none" stroke-width="2" />
+<text x="462" y="1106" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-skill-forger</text>
+<text x="462" y="1131" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">skills、文档、图、release</text>
 </svg>

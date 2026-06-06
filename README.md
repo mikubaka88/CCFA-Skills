@@ -2,7 +2,7 @@
 
 # CCFA Skills
 
-### A governed `ccf-*` skill family for CCF/NeurIPS-style paper projects.
+### A governed `ccf-*` skill family for CCF/ICLR/NeurIPS-style paper projects.
 
 <p>
   <strong>English</strong> ·
@@ -10,13 +10,54 @@
   <a href="README.zh-TW.md">繁體中文</a>
 </p>
 
+<img src="assets/ccfaskills.png" alt="CCFA Skills visual identity" width="100%">
+
 </div>
 
 ---
 
-CCFA Skills is a local Codex skill family for research-paper projects. The current v0.4 line intentionally reduces the runtime surface from many helper skills to 13 clear owners. Helper capabilities such as compression, writing review, citation audit, result figures, artifact packaging, venue format lookup, resubmission, paper talks, and docs SVG generation now live as modes or references inside their owning skills.
+CCFA Skills is a local Codex skill family for research-paper projects. The v0.4.5 line keeps the runtime surface small: 13 owner skills cover the full paper lifecycle, while former helper skills are now modes inside the correct owner. The goal is not to make every request trigger a different skill; the goal is to keep idea, evidence, writing, review, submission, rebuttal, and governance connected without conflicts.
 
-![Architecture](assets/ccfa-skills-architecture.svg)
+![Skill family logic](assets/ccfa-skills-architecture.svg)
+
+## Family Logic
+
+The normal closed loop is:
+
+```text
+project scaffold
+  -> workflow orchestration
+  -> idea optimization and idea review
+  -> literature and experiment evidence
+  -> venue-aware manuscript writing
+  -> scientific/writing review and integrity audit
+  -> submission package check
+  -> rebuttal, revision ledger, and possible resubmission
+```
+
+`ccfa.yaml` is the shared project state. It records the target venue, stage, artifacts, claims, experiments, reviews, submission checks, and revision ledger so skills can hand off without overwriting each other.
+
+![Workflow](assets/ccfa-skills-workflow.svg)
+
+## Runtime Skills
+
+| Stage | Skill | Owns | Usually hands off to |
+| --- | --- | --- | --- |
+| Setup | `ccf-project-scaffolder` | Project folders, LaTeX template, initial `ccfa.yaml`. | `ccf-pipeline-orchestrator`, `ccf-paper-writer` |
+| Planning | `ccf-pipeline-orchestrator` | Stage plan, gates, artifact status, next owner. | Any stage owner |
+| Idea | `ccf-idea-optimizer` | Problem-gap-insight-method-evidence shaping. | `ccf-idea-reviewer`, `ccf-literature-searcher` |
+| Idea gate | `ccf-idea-reviewer` | Strict idea scoring, ranking, reject-risk triage. | `ccf-idea-optimizer`, `ccf-experiment-designer` |
+| Evidence | `ccf-literature-searcher` | Prior art, related work, datasets, benchmarks. | `ccf-experiment-designer`, `ccf-paper-writer` |
+| Evidence | `ccf-experiment-designer` | Baselines, metrics, ablations, real result tables/figures. | `ccf-paper-writer`, `ccf-integrity-auditor` |
+| Manuscript | `ccf-paper-writer` | Drafting, revision, polishing, compression, presentations, venue-aware LaTeX. | `ccf-paper-reviewer`, `ccf-submission-checker` |
+| Review | `ccf-paper-reviewer` | Scientific review, writing review, score/risk report, AC/meta-review. | `ccf-paper-writer`, `ccf-integrity-auditor` |
+| Audit | `ccf-integrity-auditor` | Claim support, numeric consistency, citation/BibTeX/context audit. | `ccf-paper-writer`, `ccf-literature-searcher` |
+| Submission | `ccf-submission-checker` | Venue rules, PDF/LaTeX build, anonymity, metadata, artifacts. | `ccf-paper-writer`, `ccf-rebuttal-writer` |
+| Response | `ccf-rebuttal-writer` | Rebuttal, response letter, revision ledger, conservative resubmission. | `ccf-paper-writer`, `ccf-submission-checker` |
+| Governance | `ccf-common` | Routing, privacy/evidence policy, source registry, artifact contracts. | All CCFA skills |
+| Maintenance | `ccf-skill-forger` | Skill edits, docs, generated SVGs, validation, release work. | `ccf-common` |
+
+![Catalog](assets/ccfa-skills-catalog.svg)
 
 ## Install
 
@@ -46,79 +87,46 @@ foreach ($s in $skills) { Copy-Item -Recurse -Force $s "$env:CODEX_HOME\skills\"
 
 See [INSTALLATION_MATRIX.md](docs/INSTALLATION_MATRIX.md) before installing a subset.
 
-## Runtime Skills
+![Installation](assets/ccfa-skills-installation.svg)
 
-- `ccf-project-scaffolder`: creates the project directory, selects/copies templates, and initializes `ccfa.yaml`.
-- `ccf-pipeline-orchestrator`: plans the workflow, decomposes tasks, coordinates gates, and chooses the next owner.
-- `ccf-idea-optimizer`: turns a rough direction into a concrete problem-gap-insight-method-evidence plan.
-- `ccf-idea-reviewer`: scores, compares, ranks, and triages early ideas.
-- `ccf-literature-searcher`: searches related work, prior art, datasets, benchmarks, and citation evidence.
-- `ccf-experiment-designer`: designs experiments and builds real-result tables/figures without inventing numbers.
-- `ccf-paper-writer`: drafts, revises, polishes, compresses, preserves source format during edits, creates venue-aware LaTeX drafts from ideas, and presentation-adapts manuscript text.
-- `ccf-paper-reviewer`: reviews scientific quality, writing quality, format-facing risks, reviewer scores, and AC/meta-review.
-- `ccf-integrity-auditor`: audits claims, numbers, figures/tables, citations, BibTeX, and citation-context support.
-- `ccf-submission-checker`: checks venue rules, templates, page/anonymity, LaTeX/PDF package, metadata, and artifacts.
-- `ccf-rebuttal-writer`: writes rebuttals, response letters, revision ledgers, and conservative resubmission plans.
-- `ccf-common`: shared routing, privacy/evidence policy, source registry, and artifact contracts.
-- `ccf-skill-forger`: maintains skills, routing, docs, generated SVG diagrams, validation, and releases.
+## Merged Helper Modes
 
-## Family Flow
+Do not install these names as standalone runtime skills: `ccf-workflow-planner`, `ccf-paper-compressor`, `ccf-writing-reviewer`, `ccf-citation-auditor`, `ccf-figure-table-builder`, `ccf-artifact-packager`, `ccf-venue-format-guide`, `ccf-resubmission-adapter`, `ccf-paper-presenter`, `ccf-doc-diagram-designer`.
 
-```text
-ccf-project-scaffolder
-  -> ccf-pipeline-orchestrator
-  -> ccf-idea-optimizer -> ccf-idea-reviewer
-  -> ccf-literature-searcher -> ccf-experiment-designer
-  -> ccf-paper-writer
-  -> ccf-paper-reviewer -> ccf-integrity-auditor
-  -> ccf-submission-checker
-  -> ccf-rebuttal-writer
+Their capabilities still exist:
 
-Governance: ccf-common / ccf-skill-forger
-```
+| Old helper capability | Current owner |
+| --- | --- |
+| Compression, paper talks, poster/slides/Q&A | `ccf-paper-writer` |
+| Writing review | `ccf-paper-reviewer` |
+| Citation audit | `ccf-integrity-auditor` |
+| Result figures/tables | `ccf-experiment-designer` |
+| Artifact package and venue format check | `ccf-submission-checker` |
+| Resubmission adaptation | `ccf-rebuttal-writer` |
+| Documentation SVG maintenance | `ccf-skill-forger` |
 
-![Workflow](assets/ccfa-skills-workflow.svg)
-
-## Merged Helpers
-
-Do not install these as standalone runtime skills: `ccf-workflow-planner`, `ccf-paper-compressor`, `ccf-writing-reviewer`, `ccf-citation-auditor`, `ccf-figure-table-builder`, `ccf-artifact-packager`, `ccf-venue-format-guide`, `ccf-resubmission-adapter`, `ccf-paper-presenter`, `ccf-doc-diagram-designer`.
-
-Their capabilities are still present:
-
-- compression and talks -> `ccf-paper-writer`
-- writing review -> `ccf-paper-reviewer`
-- citation audit -> `ccf-integrity-auditor`
-- result figures/tables -> `ccf-experiment-designer`
-- venue format and artifacts -> `ccf-submission-checker`
-- resubmission -> `ccf-rebuttal-writer`
-- docs SVGs -> `ccf-skill-forger`
+![Routing](assets/ccfa-skills-routing.svg)
 
 ## Venue Guides
 
-Venue-specific LaTeX/template notes are reference material:
+Venue-specific LaTeX/template notes are reference material, not standalone runtime skills:
 
 ```text
 ccf-paper-writer/references/venue-guides/index.md
 ccf-paper-writer/references/venue-guides/<venue>.md
 ```
 
-Use `ccf-paper-writer` for venue-aware manuscript text and `ccf-submission-checker` for venue compliance and package checks. For from-scratch manuscript writing, `ccf-paper-writer` reads the target venue guide first; if the guide is missing or no venue is provided, it drafts with the NeurIPS LaTeX fallback.
+Use `ccf-paper-writer` for venue-aware manuscript text. Use `ccf-submission-checker` for venue compliance, page limits, anonymity, PDF metadata, camera-ready details, and artifact readiness. If a from-scratch writing request names a target venue, the writer reads the venue guide first; if the venue is absent or unspecified, it falls back to the NeurIPS template.
 
 ## Demo
 
-`demo/attention-is-all-you-need/` is a complete ICLR-style closed-loop run. It reads the original Transformer paper, extracts the idea, reviews it, writes a full compiling LaTeX manuscript, runs writing/scientific review, audits integrity, checks submission readiness, drafts rebuttal text, and records remaining CCFA family issues.
+`demo/attention-is-all-you-need/` is a complete ICLR-style closed-loop demo. It reads the original Transformer paper, extracts the idea, reviews the idea, writes a compiling LaTeX manuscript, runs writing/scientific review, audits integrity, checks ICLR submission readiness, drafts rebuttal text, and records remaining CCFA family issues.
 
 ![Attention Demo](assets/ccfa-skills-demo-attention.svg)
 
-## Diagrams
-
-![Catalog](assets/ccfa-skills-catalog.svg)
-
-![Routing](assets/ccfa-skills-routing.svg)
+## Diagrams And Docs
 
 ![Artifacts](assets/ccfa-skills-artifacts.svg)
-
-![Installation](assets/ccfa-skills-installation.svg)
 
 ![Review Boundaries](assets/ccfa-skills-review-boundaries.svg)
 

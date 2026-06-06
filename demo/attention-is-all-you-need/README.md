@@ -25,6 +25,19 @@ Primary sources:
 11. `artifacts/official-data.md` and `artifacts/result-tables.md` - official values and evidence tables.
 12. `skill-self-tests.md` - smoke prompts proving consolidated routing.
 
+## Demo Bibliography Policy
+
+The TeX file contains a clearly marked demo reference list. It includes the original Transformer paper and representative surrounding work so the demo reads like a real paper, but it is not a frozen recommended bibliography. In a real project, run `ccf-literature-searcher` for the target venue and contribution, then replace or expand the references according to the actual related-work scope.
+
+## Build Check
+
+The manuscript is intended to compile with `pdflatex` from `paper/`:
+
+```powershell
+pdflatex -interaction=nonstopmode -halt-on-error attention_iclr_submission.tex
+pdflatex -interaction=nonstopmode -halt-on-error attention_iclr_submission.tex
+```
+
 ## What Changed From The Earlier Demo
 
 The earlier demo was too short and route-oriented. This version produces a full manuscript, compiles the TeX, runs idea review before writing, records writing and scientific review, drafts rebuttal text, and lists remaining family problems. It keeps unsupported evidence explicit instead of filling gaps with invented values.

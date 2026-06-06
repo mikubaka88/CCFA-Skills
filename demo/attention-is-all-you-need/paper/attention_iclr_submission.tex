@@ -84,7 +84,7 @@ This design lets the model attend to different relation types, such as local phr
 
 \subsection{Encoder and Decoder Blocks}
 
-Each encoder layer contains two sublayers: multi-head self-attention and a position-wise feed-forward network. Self-attention lets every source position read from all source positions, while the feed-forward network applies the same nonlinear transformation independently at each position.
+Each encoder layer contains two sublayers: multi-head self-attention and a position-wise feed-forward network. Self-attention lets every source position read from all source positions, while the feed-forward network applies the same nonlinear transformation independently at each position. Residual connections and normalization reuse stabilization ideas that are common in deep architectures \citep{he2016deep,ba2016layer}.
 
 Each decoder layer contains three sublayers. First, masked self-attention lets a target position read previous generated positions without seeing future tokens. Second, encoder--decoder attention uses target-side states as queries and source-side encoder states as keys and values. Third, a position-wise feed-forward network transforms each decoder state. Residual connections and layer normalization stabilize the deep stack.
 
@@ -163,13 +163,13 @@ The official report states that the base model trains for about 100K steps in ab
 Sequence-to-sequence recurrent models established a general encoder--decoder formulation for neural translation \citep{sutskever2014sequence,cho2014learning}. Their main limitation for this paper is not poor modeling capacity in general, but the sequential computation path used to build hidden states.
 
 \paragraph{Attention in neural translation.}
-Attention mechanisms improved recurrent encoder--decoder models by allowing a decoder to select source-side information dynamically \citep{bahdanau2015neural}. The Transformer differs by making attention the primary sequence modeling backbone rather than an auxiliary alignment layer attached to recurrence.
+Attention mechanisms improved recurrent encoder--decoder models by allowing a decoder to select source-side information dynamically \citep{bahdanau2015neural,luong2015effective}. The Transformer differs by making attention the primary sequence modeling backbone rather than an auxiliary alignment layer attached to recurrence.
 
 \paragraph{Convolutional sequence models.}
 Convolutional sequence transduction models increase parallelism and reduce the recurrence bottleneck \citep{gehring2017convolutional}. Their interaction path, however, still depends on kernel size and stack depth. The attention-only approach instead provides direct pairwise interaction within a self-attention layer.
 
 \paragraph{Large-scale neural machine translation.}
-Production-scale neural translation systems such as GNMT demonstrate the strength of recurrent architectures with attention and engineering scale \citep{wu2016gnmt}. The attention-only result is significant because it changes the architectural primitive rather than only improving the training system around a recurrent backbone.
+Production-scale neural translation systems such as GNMT demonstrate the strength of recurrent architectures with attention and engineering scale \citep{wu2016gnmt}. Subword modeling also became important for neural translation systems that need to handle rare words and open vocabularies \citep{sennrich2016rare}. The attention-only result is significant because it changes the architectural primitive rather than only improving the training system around a recurrent backbone.
 
 \section{Limitations and Responsible Use}
 
@@ -179,7 +179,15 @@ The attention-only design has a quadratic self-attention cost in sequence length
 
 This paper develops the idea that attention can be the main sequence modeling primitive for transduction. By replacing recurrence and convolution with multi-head self-attention, adding positional encodings, and retaining an encoder--decoder generation structure, the Transformer shortens dependency paths while preserving strong translation performance in the official WMT results. The main lesson is architectural: attention is not only a mechanism for alignment, but can serve as a complete backbone for learning contextual sequence representations.
 
-\begin{thebibliography}{9}
+\paragraph{Demo reference policy.}
+The following bibliography is intentionally labeled as a demo reference list. It contains the original Transformer paper and representative surrounding work needed to make this ICLR-style demo readable. In a real CCFA run, \texttt{ccf-literature-searcher} should refresh, expand, and replace these entries according to the exact target venue, contribution, baseline set, and related-work scope requested by the user.
+
+\begin{thebibliography}{99}
+
+\bibitem[Ba et~al.(2016)]{ba2016layer}
+Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E. Hinton.
+\newblock Layer normalization.
+\newblock arXiv:1607.06450, 2016.
 
 \bibitem[Bahdanau et~al.(2015)]{bahdanau2015neural}
 Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio.
@@ -195,6 +203,36 @@ Kyunghyun Cho, Bart van Merri{\"e}nboer, Caglar Gulcehre, Dzmitry Bahdanau, Feth
 Jonas Gehring, Michael Auli, David Grangier, Denis Yarats, and Yann N. Dauphin.
 \newblock Convolutional sequence to sequence learning.
 \newblock In \emph{ICML}, 2017.
+
+\bibitem[Graves(2013)]{graves2013generating}
+Alex Graves.
+\newblock Generating sequences with recurrent neural networks.
+\newblock arXiv:1308.0850, 2013.
+
+\bibitem[He et~al.(2016)]{he2016deep}
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
+\newblock Deep residual learning for image recognition.
+\newblock In \emph{CVPR}, 2016.
+
+\bibitem[Jean et~al.(2015)]{jean2015large}
+S{\'e}bastien Jean, Kyunghyun Cho, Roland Memisevic, and Yoshua Bengio.
+\newblock On using very large target vocabulary for neural machine translation.
+\newblock In \emph{ACL}, 2015.
+
+\bibitem[Kalchbrenner et~al.(2016)]{kalchbrenner2016neural}
+Nal Kalchbrenner, Lasse Espeholt, Karen Simonyan, Aaron van den Oord, Alex Graves, and Koray Kavukcuoglu.
+\newblock Neural machine translation in linear time.
+\newblock arXiv:1610.10099, 2016.
+
+\bibitem[Luong et~al.(2015)]{luong2015effective}
+Minh-Thang Luong, Hieu Pham, and Christopher D. Manning.
+\newblock Effective approaches to attention-based neural machine translation.
+\newblock In \emph{EMNLP}, 2015.
+
+\bibitem[Sennrich et~al.(2016)]{sennrich2016rare}
+Rico Sennrich, Barry Haddow, and Alexandra Birch.
+\newblock Neural machine translation of rare words with subword units.
+\newblock In \emph{ACL}, 2016.
 
 \bibitem[Sutskever et~al.(2014)]{sutskever2014sequence}
 Ilya Sutskever, Oriol Vinyals, and Quoc V. Le.

@@ -2,6 +2,10 @@
 
 ## v0.4.5 - 2026-06-06
 
+- Restored `assets/ccfaskills.png` as the README top visual and rewrote README EN/zh-CN/zh-TW around the 13-owner lifecycle, helper-mode merges, installation sets, venue branch, and demo loop.
+- Rebuilt all generated SVG diagrams with a clearer family-chain layout: architecture, workflow, catalog, routing, artifact contract, review boundaries, installation, and Attention demo in EN/zh-CN/zh-TW.
+- Rewrote `docs/ARCHITECTURE.md` and `docs/SKILLS_CATALOG.md` to explain ownership, artifact state, route boundaries, and merged helper capabilities without ambiguity.
+- Expanded the Attention demo TeX bibliography and marked it as a demo reference list that should be refreshed by `ccf-literature-searcher` in real use.
 - Audited `Master-cai/Research-Paper-Writing-Skills` and added CCFA-native section writing patterns for abstract, introduction, related work, method, experiments, conclusion, exemplar adaptation, and end-of-draft self-review.
 - Strengthened high-information-density output rules: broad/full workflow requests must produce complete artifacts rather than short route summaries or fragmented notes.
 - Fixed ICLR venue guidance for 2026 double-blind review basics, page-limit basics, and local style usage.

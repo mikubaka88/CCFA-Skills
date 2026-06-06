@@ -1,38 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="900" viewBox="0 0 1800 900">
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="920" viewBox="0 0 1800 920">
 <defs>
-<filter id="shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0B1826" flood-opacity="0.12"/></filter>
-<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2,2 L10,6 L2,10 Z" fill="#8D9AA8"/></marker>
+<linearGradient id="header" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#102033"/><stop offset="0.58" stop-color="#1F6F8B"/><stop offset="1" stop-color="#7A4E9B"/></linearGradient>
+<filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#0B1826" flood-opacity="0.13"/></filter>
+<marker id="arrow" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto"><path d="M2,2 L11,6.5 L2,11 Z" fill="#7B8794"/></marker>
 </defs>
 <style>text{font-family:Inter, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas,Menlo,monospace}</style>
-<rect x="0" y="0" width="1800" height="900" rx="0" fill="#F3F6F9" stroke="none" stroke-width="2" />
-<rect x="0" y="0" width="1800" height="170" rx="0" fill="#102033" stroke="none" stroke-width="2" />
-<text x="70" y="72" font-size="38" font-weight="820" fill="#FFFFFF" text-anchor="start">Artifact Contract</text>
-<text x="70" y="112" font-size="18" font-weight="450" fill="#D6E1EC" text-anchor="start">Shared state connects idea, evidence, manuscript, review, submission, and rebuttal.</text>
-<rect x="650" y="270" width="330" height="105" rx="22" fill="#102033" stroke="#102033" stroke-width="2" filter="url(#shadow)"/>
-<text x="678" y="312" font-size="24" font-weight="820" fill="#FFFFFF" text-anchor="start">ccfa.yaml</text>
-<text x="678" y="343" font-size="14" font-weight="550" fill="#D6E1EC" text-anchor="start">ccf-project-scaffolder / orchestrator</text>
-<rect x="110" y="500" width="330" height="105" rx="22" fill="#FFFFFF" stroke="#C05C35" stroke-width="2" filter="url(#shadow)"/>
-<text x="138" y="542" font-size="24" font-weight="820" fill="#17212B" text-anchor="start">idea.md</text>
-<text x="138" y="573" font-size="14" font-weight="550" fill="#536171" text-anchor="start">ccf-idea-optimizer</text>
-<rect x="510" y="500" width="330" height="105" rx="22" fill="#FFFFFF" stroke="#6F5AA6" stroke-width="2" filter="url(#shadow)"/>
-<text x="538" y="542" font-size="24" font-weight="820" fill="#17212B" text-anchor="start">evidence.md</text>
-<text x="538" y="573" font-size="14" font-weight="550" fill="#536171" text-anchor="start">ccf-literature-searcher / experiment</text>
-<rect x="910" y="500" width="330" height="105" rx="22" fill="#FFFFFF" stroke="#333B46" stroke-width="2" filter="url(#shadow)"/>
-<text x="938" y="542" font-size="24" font-weight="820" fill="#17212B" text-anchor="start">paper.tex</text>
-<text x="938" y="573" font-size="14" font-weight="550" fill="#536171" text-anchor="start">ccf-paper-writer</text>
-<rect x="1310" y="500" width="330" height="105" rx="22" fill="#FFFFFF" stroke="#A78328" stroke-width="2" filter="url(#shadow)"/>
-<text x="1338" y="542" font-size="24" font-weight="820" fill="#17212B" text-anchor="start">review.md</text>
-<text x="1338" y="573" font-size="14" font-weight="550" fill="#536171" text-anchor="start">ccf-paper-reviewer / integrity</text>
-<rect x="510" y="700" width="330" height="105" rx="22" fill="#FFFFFF" stroke="#BA4C5E" stroke-width="2" filter="url(#shadow)"/>
-<text x="538" y="742" font-size="24" font-weight="820" fill="#17212B" text-anchor="start">submission/</text>
-<text x="538" y="773" font-size="14" font-weight="550" fill="#536171" text-anchor="start">ccf-submission-checker</text>
-<rect x="910" y="700" width="330" height="105" rx="22" fill="#FFFFFF" stroke="#477AA6" stroke-width="2" filter="url(#shadow)"/>
-<text x="938" y="742" font-size="24" font-weight="820" fill="#17212B" text-anchor="start">rebuttal.tex</text>
-<text x="938" y="773" font-size="14" font-weight="550" fill="#536171" text-anchor="start">ccf-rebuttal-writer</text>
-<line x1="815" y1="375" x2="275" y2="500" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<line x1="815" y1="375" x2="675" y2="500" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<line x1="815" y1="375" x2="1075" y2="500" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<line x1="815" y1="375" x2="1475" y2="500" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<line x1="675" y1="605" x2="675" y2="700" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<line x1="1075" y1="605" x2="1075" y2="700" stroke="#CAD4DE" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="0" y="0" width="1800" height="920" rx="0" fill="#F6F8FB" stroke="none" stroke-width="2" />
+<rect x="0" y="0" width="1800" height="168" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
+<text x="72" y="68" font-size="38" font-weight="850" fill="#FFFFFF" text-anchor="start">Artifact Contract</text>
+<text x="72" y="108" font-size="19" font-weight="500" fill="#D8E6F2" text-anchor="start">ccfa.yaml and files connect idea, evidence, manuscript, reviews, package, and rebuttal.</text>
+<text x="1688" y="64" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.4.5 · 13 owner skills · one paper-project loop</text>
+<rect x="570" y="365" width="660" height="150" rx="32" fill="#102033" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="900" y="423" font-size="40" font-weight="860" fill="#FFFFFF" text-anchor="middle">ccfa.yaml</text>
+<text x="900" y="468" font-size="16" font-weight="520" fill="#D8E6F2" text-anchor="middle">version · stage · target_venue · artifacts · claims · reviews · checks</text>
+<rect x="90" y="250" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="118" y="292" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">idea_brief.md</text>
+<text x="118" y="325" font-size="14" font-weight="650" fill="#D2673D" text-anchor="start">ccf-idea-optimizer</text>
+<line x1="900" y1="365" x2="255" y2="304" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="500" y="230" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="528" y="272" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">literature.md</text>
+<text x="528" y="305" font-size="14" font-weight="650" fill="#6657A8" text-anchor="start">ccf-literature-searcher</text>
+<line x1="900" y1="365" x2="665" y2="284" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="1220" y="230" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="1248" y="272" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">experiments.md</text>
+<text x="1248" y="305" font-size="14" font-weight="650" fill="#6657A8" text-anchor="start">ccf-experiment-designer</text>
+<line x1="900" y1="365" x2="1385" y2="284" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="90" y="610" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="118" y="652" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">manuscript.tex</text>
+<text x="118" y="685" font-size="14" font-weight="650" fill="#2D3742" text-anchor="start">ccf-paper-writer</text>
+<line x1="900" y1="515" x2="255" y2="664" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="500" y="640" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="528" y="682" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">review.md</text>
+<text x="528" y="715" font-size="14" font-weight="650" fill="#B58B2A" text-anchor="start">ccf-paper-reviewer</text>
+<line x1="900" y1="515" x2="665" y2="694" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="910" y="640" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="938" y="682" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">submission/</text>
+<text x="938" y="715" font-size="14" font-weight="650" fill="#BA4C5E" text-anchor="start">ccf-submission-checker</text>
+<line x1="900" y1="515" x2="1075" y2="694" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="1320" y="610" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="1348" y="652" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">rebuttal.tex</text>
+<text x="1348" y="685" font-size="14" font-weight="650" fill="#477AA6" text-anchor="start">ccf-rebuttal-writer</text>
+<line x1="900" y1="515" x2="1485" y2="664" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
 </svg>
