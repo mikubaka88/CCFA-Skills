@@ -12,20 +12,20 @@
 <text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.4.5 · 13 个 owner skills · 一个论文项目闭环</text>
 <rect x="90" y="230" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="114" y="254" width="230" height="38" rx="19" fill="#D2673D" stroke="none" stroke-width="2" />
-<text x="229" y="279" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">优化粗 idea</text>
+<text x="229" y="279" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">优化 / 救 idea</text>
 <text x="375" y="277" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-idea-optimizer</text>
-<text x="375" y="306" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">问题、gap、insight、方法</text>
+<text x="375" y="306" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">探索、救援、塑形</text>
 <rect x="1000" y="230" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="1024" y="254" width="230" height="38" rx="19" fill="#D2673D" stroke="none" stroke-width="2" />
 <text x="1139" y="279" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">给 idea 排名评分</text>
 <text x="1285" y="277" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-idea-reviewer</text>
-<text x="1285" y="306" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">评分、排序、拒稿风险</text>
+<text x="1285" y="306" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">评分、排序、阶段风险</text>
 <text x="900" y="292" font-size="28" font-weight="850" fill="#94A3B8" text-anchor="middle">vs</text>
 <rect x="90" y="365" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="114" y="389" width="230" height="38" rx="19" fill="#6657A8" stroke="none" stroke-width="2" />
-<text x="229" y="414" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">找新文献</text>
+<text x="229" y="414" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">找文献 / gap</text>
 <text x="375" y="412" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-literature-searcher</text>
-<text x="375" y="441" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">prior art、数据集、benchmark</text>
+<text x="375" y="441" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">prior art、open gap、benchmark</text>
 <rect x="1000" y="365" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="1024" y="389" width="230" height="38" rx="19" fill="#8A4F86" stroke="none" stroke-width="2" />
 <text x="1139" y="414" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">审计已引用文献</text>

@@ -28,6 +28,7 @@ Source-quality policy: applied
 ## Summary
 
 - Closest-work clusters:
+- Opportunity map:
 - Strongest baselines:
 - Benchmark/dataset candidates:
 - Novelty risks:
@@ -46,7 +47,14 @@ Source-quality policy: applied
 - Representative papers:
 - What this cluster already solves:
 - Remaining gap:
+- Possible rescue or differentiation route:
 - How it affects the user's paper:
+
+## Opportunity Map
+
+| Cluster | Status | Open gap | Possible direction | Evidence needed | Risk |
+| --- | --- | --- | --- | --- | --- |
+|  | crowded but open / covered central claim / benchmark gap / mechanism gap / deployment-system gap / theory-analysis gap / negative-result opportunity |  |  |  |  |
 
 ## Benchmark And Dataset Candidates
 
@@ -98,6 +106,7 @@ For pure benchmark papers, set `numeric_evidence_score` to `N/A benchmark`.
 
 - For writing:
 - For idea optimization:
+- For direction scouting:
 - For experiment design:
 - For review:
 ```

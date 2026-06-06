@@ -8,6 +8,8 @@ Generate diverse candidates first, then filter. High randomness is allowed durin
 
 Do not claim frontier novelty unless a current literature search supports it. If no search is performed, label novelty as `unsearched`.
 
+Do not collapse the search space too early. In exploratory work, keep at least three kinds of options when possible: a conservative repair of the user's seed, a narrower high-precision problem, and a more ambitious reframing. If all candidates look weak, identify the best salvageable ingredient before recommending a pivot.
+
 ## Candidate Axes
 
 Vary 3-5 axes:
@@ -51,7 +53,7 @@ Novelty status: unsearched; needs ccf-literature-searcher before strong novelty 
 
 ## Coherence Audit
 
-Reject or revise candidates when:
+Revise candidates before rejecting them. A candidate should be rejected only after naming the smallest plausible repair and explaining why it fails. Watch for:
 
 - The method requires data the setting cannot provide.
 - The benchmark does not test the claimed mechanism.
@@ -59,6 +61,17 @@ Reject or revise candidates when:
 - The venue audience mismatch is severe.
 - The core insight is only a renamed component.
 - Two modules optimize incompatible objectives.
+
+## Rescue Patterns
+
+Use these before declaring a direction stale or too weak:
+
+- Narrow the target setting until the bottleneck is measurable.
+- Replace "new model" novelty with a benchmark, protocol, diagnostic, or analysis contribution.
+- Keep the problem but simplify the mechanism.
+- Keep the method family but change the claim from SOTA improvement to failure-mode explanation, robustness, cost, or deployment constraint.
+- Switch venue family when the idea is valuable but not a main-track fit for the named venue.
+- Turn a crowded positive-result idea into a negative-result or measurement paper if that would teach the community something.
 
 ## Output Pattern
 
@@ -71,5 +84,6 @@ Why it may be timely:
 Novelty status:
 Evidence package:
 Risks:
+Rescue / narrowing options:
 Next question for the user:
 ```

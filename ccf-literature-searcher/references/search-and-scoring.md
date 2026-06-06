@@ -43,6 +43,29 @@ Prefer a mix of:
 - benchmark/dataset papers,
 - survey or taxonomy papers only when they clarify a field boundary.
 
+## Opportunity Mapping
+
+When the search is for early direction scouting, classify each cluster as one or more of:
+
+- `crowded but open`: many papers exist, but a measurable failure mode, setting, or assumption remains weak.
+- `covered central claim`: the same problem, mechanism, and evidence path are already present; the idea needs a new angle.
+- `benchmark gap`: the field lacks a dataset, protocol, metric, stress test, workload, or evaluation standard.
+- `mechanism gap`: papers report performance but do not explain why the method works or fails.
+- `deployment/system gap`: real constraints, cost, latency, robustness, privacy, security, or user workflow are under-tested.
+- `theory/analysis gap`: empirical results exist but formal understanding, bounds, or diagnostics are missing.
+- `negative-result opportunity`: common assumptions fail, and a careful diagnostic or falsification paper may be valuable.
+
+For every `covered central claim`, still report the best possible rescue route:
+
+```text
+What is covered:
+Why direct novelty is weak:
+Possible rescue route: new problem / new mechanism / new evidence / new venue / stop
+Evidence needed to decide:
+```
+
+Do not conclude "the direction is dead" merely because the topic is popular. A direction is likely dead only when the user's central problem, mechanism, target setting, and evidence path are all already covered and no credible reframing remains.
+
 ## Paper-Type Taxonomy
 
 Classify each included paper:
@@ -58,6 +81,8 @@ Classify each included paper:
 ## Scoring
 
 Use 1-5 anchors unless the user asks for another scale.
+
+Score paper quality separately from idea viability. A high-quality close paper may reduce direct novelty while also revealing a better problem boundary, baseline, benchmark, or unresolved assumption. A low-quality paper should not be used as strong evidence that a direction is solved.
 
 Insight:
 

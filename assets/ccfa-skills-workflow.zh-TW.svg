@@ -28,21 +28,21 @@
 <circle cx="995" cy="280" r="28" fill="#D2673D"/>
 <text x="995" y="290" font-size="24" font-weight="850" fill="#FFFFFF" text-anchor="middle">3</text>
 <text x="1034" y="277" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">優化 idea</text>
-<text x="1034" y="308" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">問題-gap-insight</text>
+<text x="1034" y="308" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">救援 + insight</text>
 <text x="978" y="363" font-size="15" font-weight="760" fill="#D2673D" text-anchor="start">ccf-idea-optimizer</text>
 <line x1="1318" y1="319" x2="1370" y2="319" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
 <rect x="1380" y="235" width="360" height="168" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <circle cx="1425" cy="280" r="28" fill="#D2673D"/>
 <text x="1425" y="290" font-size="24" font-weight="850" fill="#FFFFFF" text-anchor="middle">4</text>
-<text x="1464" y="277" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">壓力測試</text>
-<text x="1464" y="308" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">評分 + 風險</text>
+<text x="1464" y="277" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">階段審稿</text>
+<text x="1464" y="308" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">評分 + 階段風險</text>
 <text x="1408" y="363" font-size="15" font-weight="760" fill="#D2673D" text-anchor="start">ccf-idea-reviewer</text>
 <path d="M1560 413 C1560 455, 180 455, 180 479" fill="none" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
 <rect x="90" y="485" width="360" height="168" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <circle cx="135" cy="530" r="28" fill="#6657A8"/>
 <text x="135" y="540" font-size="24" font-weight="850" fill="#FFFFFF" text-anchor="middle">5</text>
 <text x="174" y="527" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">證據</text>
-<text x="174" y="558" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">prior art + 協議</text>
+<text x="174" y="558" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">prior art + open gap</text>
 <text x="118" y="613" font-size="15" font-weight="760" fill="#6657A8" text-anchor="start">ccf-literature-searcher</text>
 <line x1="458" y1="569" x2="510" y2="569" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
 <rect x="520" y="485" width="360" height="168" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>

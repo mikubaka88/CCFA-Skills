@@ -31,15 +31,15 @@
 <rect x="523" y="305" width="344" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="523" y="305" width="8" height="66" rx="18" fill="#D2673D" stroke="none" stroke-width="2" />
 <text x="547" y="339" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-idea-optimizer</text>
-<text x="547" y="364" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">問題、gap、insight、方法</text>
+<text x="547" y="364" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">探索、救援、塑形</text>
 <rect x="523" y="387" width="344" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="523" y="387" width="8" height="66" rx="18" fill="#D2673D" stroke="none" stroke-width="2" />
 <text x="547" y="421" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-idea-reviewer</text>
-<text x="547" y="446" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">評分、排序、拒稿風險</text>
+<text x="547" y="446" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">評分、排序、階段風險</text>
 <rect x="523" y="469" width="344" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="523" y="469" width="8" height="66" rx="18" fill="#6657A8" stroke="none" stroke-width="2" />
 <text x="547" y="503" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-literature-searcher</text>
-<text x="547" y="528" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">prior art、資料集、benchmark</text>
+<text x="547" y="528" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">prior art、open gap、benchmark</text>
 <rect x="940" y="235" width="380" height="328" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="940" y="235" width="380" height="52" rx="24" fill="#6657A8" stroke="none" stroke-width="2" />
 <text x="962" y="269" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">證據到正文</text>

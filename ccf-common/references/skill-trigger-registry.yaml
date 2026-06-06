@@ -13,16 +13,16 @@ skills:
     exclude: "Does not perform downstream writing, review, search, experiment design, or rebuttal."
     handoff: "All owning workflow skills"
   - name: ccf-idea-optimizer
-    trigger: "Optimize and concretize rough research directions into problem, gap, insight, method, novelty, and evidence plans."
+    trigger: "Explore, rescue, optimize, and concretize rough research directions into problem, gap, insight, method, novelty, and evidence plans."
     exclude: "Does not rank or score multiple ideas as the main task."
     handoff: "ccf-idea-reviewer, ccf-literature-searcher, ccf-experiment-designer, ccf-paper-writer"
   - name: ccf-idea-reviewer
-    trigger: "Score, rank, compare, and triage early research ideas."
-    exclude: "Does not polish manuscripts or optimize a single idea as the main task."
+    trigger: "Score, rank, compare, and triage early research ideas when the user explicitly asks for judgment."
+    exclude: "Does not brainstorm directions, polish manuscripts, or optimize a single idea as the main task."
     handoff: "ccf-idea-optimizer, ccf-literature-searcher"
   - name: ccf-literature-searcher
-    trigger: "Search and screen literature, related work, prior art, datasets, benchmarks, and citation evidence."
-    exclude: "Does not audit only already-cited references."
+    trigger: "Search and screen literature, related work, prior art, datasets, benchmarks, citation evidence, and research opportunity gaps."
+    exclude: "Does not audit only already-cited references or act as a final idea kill gate."
     handoff: "ccf-idea-optimizer, ccf-experiment-designer, ccf-paper-writer, ccf-integrity-auditor"
   - name: ccf-experiment-designer
     trigger: "Design experiments, baselines, metrics, ablations, robustness tests, result templates, and real-result tables/figures."

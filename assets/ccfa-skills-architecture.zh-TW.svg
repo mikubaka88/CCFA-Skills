@@ -23,22 +23,22 @@
 <text x="112" y="439" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">階段計畫、gate、handoff</text>
 <rect x="650" y="228" width="500" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="650" y="228" width="500" height="52" rx="24" fill="#D2673D" stroke="none" stroke-width="2" />
-<text x="672" y="262" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">選題 Gate</text>
+<text x="672" y="262" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">選題成型</text>
 <rect x="668" y="298" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="668" y="298" width="8" height="66" rx="18" fill="#D2673D" stroke="none" stroke-width="2" />
 <text x="692" y="332" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-idea-optimizer</text>
-<text x="692" y="357" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">問題、gap、insight、方法</text>
+<text x="692" y="357" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">探索、救援、塑形</text>
 <rect x="668" y="380" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="668" y="380" width="8" height="66" rx="18" fill="#D2673D" stroke="none" stroke-width="2" />
 <text x="692" y="414" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-idea-reviewer</text>
-<text x="692" y="439" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">評分、排序、拒稿風險</text>
+<text x="692" y="439" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">評分、排序、階段風險</text>
 <rect x="1230" y="228" width="500" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="1230" y="228" width="500" height="52" rx="24" fill="#6657A8" stroke="none" stroke-width="2" />
 <text x="1252" y="262" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">證據</text>
 <rect x="1248" y="298" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="1248" y="298" width="8" height="66" rx="18" fill="#6657A8" stroke="none" stroke-width="2" />
 <text x="1272" y="332" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-literature-searcher</text>
-<text x="1272" y="357" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">prior art、資料集、benchmark</text>
+<text x="1272" y="357" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">prior art、open gap、benchmark</text>
 <rect x="1248" y="380" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="1248" y="380" width="8" height="66" rx="18" fill="#6657A8" stroke="none" stroke-width="2" />
 <text x="1272" y="414" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-experiment-designer</text>

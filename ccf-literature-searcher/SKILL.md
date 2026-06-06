@@ -1,6 +1,6 @@
 ---
 name: ccf-literature-searcher
-description: "Search and screen literature, related work, datasets, benchmarks, and citation evidence for CCF research workflows. Use for literature search, related work, prior art, benchmark search, 文献检索, 相关工作, benchmark搜索. Do not audit only already-cited references or write the manuscript as the main task."
+description: "Search and screen literature, related work, datasets, benchmarks, citation evidence, and research opportunity maps for CCF workflows. Use for literature search, related work, prior art, benchmark search, direction scouting, 文献检索, 相关工作, benchmark搜索, 方向调研. Do not audit only already-cited references or write the manuscript as the main task."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -16,7 +16,7 @@ metadata:
 
 **CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode` and `../ccf-common/references/handoff-modes.md`. Use `../ccf-common/references/routing.md` to keep literature search separate from idea optimization, manuscript writing, experiment design, paper review, and rebuttal.
 
-Load `../ccf-common/references/task-modes.md` before deciding quick or standard mode. Use quick mode for a narrow related-work scan or a small set of candidate citations. Use standard mode for Related Work, Introduction, idea novelty grounding, benchmark discovery, experiment design, or any task that will feed another CCFA module.
+Load `../ccf-common/references/task-modes.md` before deciding exploratory, quick, or standard mode. Use exploratory mode for early direction scouting, "看看还有没有机会", "这个方向是不是被做完了", or literature search meant to feed idea optimization rather than a final novelty verdict. Use quick mode for a narrow related-work scan or a small set of candidate citations. Use standard mode for Related Work, Introduction, mature idea novelty grounding, benchmark discovery, experiment design, or any task that will feed another CCFA module.
 
 Treat user ideas, draft text, unpublished results, and private manuscripts as private material. Load `../ccf-common/references/privacy-and-evidence.md` before browsing. Search with public keywords, public titles, venue names, method names, public abstracts, or user-approved query text. Do not paste private draft sentences into a search query unless the user explicitly authorizes it.
 
@@ -24,7 +24,7 @@ Source-quality exclusion: do not search, cite, recommend, or include policy-excl
 
 ## Core Rule
 
-Ground novelty and positioning using high-quality, inspectable sources. Prefer influential conferences, strong journals, official proceedings pages, archival repositories, and public paper pages. Do not invent papers, citations, venues, links, acceptance status, benchmark status, or numerical results. Separate searched evidence from inference. Follow the user's requested output shape: short list, related-work clusters, BibTeX candidates, benchmark table, search folder, or handoff summary.
+Ground novelty and positioning using high-quality, inspectable sources. Prefer influential conferences, strong journals, official proceedings pages, archival repositories, and public paper pages. Do not invent papers, citations, venues, links, acceptance status, benchmark status, or numerical results. Separate searched evidence from inference. Literature search is not a kill gate: the presence of related work should produce differentiation options, open gaps, benchmark/evidence choices, and caution labels before any "direction is covered" conclusion. Follow the user's requested output shape: short list, related-work clusters, opportunity map, BibTeX candidates, benchmark table, search folder, or handoff summary.
 
 ## Mandatory Search Checklist
 
@@ -38,18 +38,20 @@ In standard mode, complete this checklist before final output. In quick mode, ru
 6. Paper quality is scored on insight, completeness, and experimental numeric evidence. Pure benchmark papers skip the numeric-results score and receive a benchmark-quality note instead.
 7. Paper type is one of `pure benchmark`, `pure method`, `method + benchmark`, `survey`, `system/tool`, `theory/proof`, or `other`.
 8. Every claim about a paper is traceable to the linked source or marked as inferred.
-9. A literature-search folder is written when file access is available.
-10. Optional handoff to `ccf-paper-writer`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-experiment-designer`, or `ccf-paper-reviewer` follows CCFA handoff mode.
+9. For idea-stage searches, each closest-work cluster includes what is already covered, what remains under-tested, and at least one possible differentiation or rescue route.
+10. A literature-search folder is written when file access is available and the user asked for a reusable report or standard workflow.
+11. Optional handoff to `ccf-paper-writer`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-experiment-designer`, or `ccf-paper-reviewer` follows CCFA handoff mode.
 
 ## Workflow
 
-1. Identify the search purpose: Related Work, Introduction support, novelty check, idea optimization, idea review, experiment design, benchmark/dataset discovery, or reviewer-risk diagnosis.
+1. Identify the search purpose: Related Work, Introduction support, novelty check, direction scouting, idea optimization, idea review, experiment design, benchmark/dataset discovery, or reviewer-risk diagnosis.
 2. Create public queries from the user's topic. If the topic is too private or underspecified, ask only for non-sensitive keywords or infer broad keywords with lower confidence.
 3. Load `references/search-and-scoring.md`. Search breadth depends on mode:
+   - Exploratory: 10-20 screened candidates, 5-10 final papers or clusters, plus opportunity gaps.
    - Quick: 6-10 screened candidates, 3-6 final papers.
    - Standard: 15-30 screened candidates, 8-15 final papers unless the user requests another size.
 4. Search discovery indexes first, then verify candidates through stable paper pages or official proceedings when possible. Use broad web search only to find primary links; do not rely on snippets for final claims.
-5. Filter by influence and fit. Prefer CCF-A/B conferences, top-field conferences, strong journals, widely used benchmarks, or recent high-signal preprints from credible groups. Exclude low-quality, predatory, inaccessible, or policy-excluded sources.
+5. Filter by influence and fit. Prefer CCF-A/B conferences, top-field conferences, strong journals, widely used benchmarks, or recent high-signal preprints from credible groups. Exclude low-quality, predatory, inaccessible, or policy-excluded sources. For exploratory searches, include one or two "near miss" or negative-signal clusters if they reveal an open gap, failed assumption, outdated benchmark, missing user group, or neglected system constraint.
 6. Classify each paper with the paper-type taxonomy and score it:
    - `insight`: how clear and non-obvious the central idea is.
    - `completeness`: method/evaluation/proof/dataset/reproducibility coverage.
@@ -65,7 +67,7 @@ literature-search-YYYYMMDD-<topic-slug>/
 
 8. If the search feeds another module, provide a handoff summary:
    - For writing: closest-work groups, novelty gaps, citation cautions.
-   - For idea optimization: stale/overcrowded directions, open gaps, timely pivots.
+   - For idea optimization: stale/overcrowded directions, open gaps, timely pivots, and minimum viable research questions.
    - For idea review: novelty confidence and likely prior-art risks.
    - For experiment design: datasets, baselines, metrics, benchmark protocols.
    - For paper review: missing related work and baseline risks.
@@ -84,6 +86,7 @@ Folder written:
 Top paper table:
 Excluded source notes:
 Closest-work clusters:
+Opportunity map:
 Quality-score rationale:
 Benchmark/dataset candidates:
 Novelty and positioning risks:
@@ -97,6 +100,7 @@ For quick search, return:
 Quick search scope:
 Top candidates:
 High-risk missing literature:
+Opportunity hint:
 Folder written:
 Compact checklist status:
 ```

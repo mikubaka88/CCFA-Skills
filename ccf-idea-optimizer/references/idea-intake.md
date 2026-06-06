@@ -54,6 +54,14 @@ Hard rule: if the root challenge is only "existing methods perform poorly", refi
 
 For fuzzy ideas, produce several normalized cards before choosing one. Do not collapse the search space too early.
 
+For early directions, attach a development label instead of a verdict:
+
+- `seed`: interesting but still missing problem, mechanism, or evidence.
+- `salvageable`: weak in current form, but a clear narrowing or reframing exists.
+- `needs-search`: promising enough to search before judging novelty.
+- `needs-mechanism`: problem may matter, but the mechanism is not yet credible.
+- `near-pivot`: keep only one ingredient unless the user can supply hidden evidence or constraints.
+
 ## Missing-Input Labels
 
 Use these labels instead of guessing:
@@ -73,6 +81,6 @@ For several drafts, normalize all ideas first, then compare optimization routes.
 2. Most defensible novelty after likely prior art.
 3. Best evidence feasibility.
 4. Best CCF-A venue fit.
-5. Lowest fatal-risk count after one realistic iteration.
+5. Lowest serious-risk count after one realistic iteration.
 
-Do not produce numeric scores, investment recommendations, winner labels, or strict rankings here. If the user explicitly asks to score, rank, select, or strictly review ideas, route to `ccf-idea-reviewer`.
+Do not produce numeric scores, investment recommendations, winner labels, or strict rankings here. Prefer "best development route" and "backup route" over "winner/loser" language. If the user explicitly asks to score, rank, select, or strictly review ideas, route to `ccf-idea-reviewer`.

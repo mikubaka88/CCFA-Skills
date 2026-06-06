@@ -2,7 +2,7 @@
 
 Use this file for role-specific idea review. Keep roles independent before aggregating.
 
-Each expert must write as a strict reviewer, not as a coach. Do not use generic praise or generic concern. Every role must name a concrete claim, mechanism, closest-work risk, evidence gap, or venue criterion.
+Each expert must write as a strict reviewer, not as a generic coach. Do not use generic praise or generic concern. Every role must name a concrete claim, mechanism, closest-work risk, evidence gap, or venue criterion. After the strict concern, each role must name the smallest repair or evidence test that would change its judgment; if no repair exists, explain why.
 
 ## Required Roles
 
@@ -79,6 +79,7 @@ Anchor:
 Why this matters:
 Fatal risk if any:
 Most valuable repair or pivot:
+Development-potential note:
 Confidence:
 ```
 

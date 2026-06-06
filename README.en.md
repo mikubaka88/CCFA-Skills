@@ -61,9 +61,9 @@ project scaffold
 | --- | --- | --- | --- | --- |
 | Setup | `ccf-project-scaffolder` | Create a paper project, copy templates, initialize `ccfa.yaml`. | Project tree, template files, initial state. | Research content generation. |
 | Planning | `ccf-pipeline-orchestrator` | Plan stages, gates, artifact status, next owner. | Workflow plan, gates, handoff. | Writing, review, search, experiments, rebuttal. |
-| Idea shaping | `ccf-idea-optimizer` | Concretize a rough idea or vague direction. | Problem-gap-insight-method-evidence brief. | Ranking multiple ideas. |
-| Idea gate | `ccf-idea-reviewer` | Score, rank, stress-test, or triage ideas. | Scores, risks, closest-prior-art concerns. | Developing one idea further. |
-| Evidence | `ccf-literature-searcher` | Search related work, prior art, datasets, benchmarks. | Literature notes, evidence gaps, related-work structure. | Auditing already cited papers only. |
+| Idea shaping | `ccf-idea-optimizer` | Explore, rescue, or concretize a rough idea or vague direction. | Problem-gap-insight-method-evidence brief, rescue routes, minimum testable question. | Ranking multiple ideas. |
+| Idea gate | `ccf-idea-reviewer` | Explicitly score, rank, stress-test, or triage ideas. | Scores, risks, stage-aware development potential. | Brainstorming or developing one rough idea further. |
+| Evidence | `ccf-literature-searcher` | Search related work, prior art, datasets, benchmarks, and open gaps. | Literature notes, opportunity map, evidence gaps, related-work structure. | Auditing already cited papers or treating related work as a final idea kill gate. |
 | Experiments | `ccf-experiment-designer` | Design baselines, metrics, ablations, robustness checks. | Protocols, baseline matrix, result templates, real-result tables. | Inventing results or drawing docs diagrams. |
 | Manuscript | `ccf-paper-writer` | Draft, revise, polish, compress, create venue-aware LaTeX, make presentations. | Manuscript text, format-preserving edits, compressed text, slides/poster/talk. | Full review, integrity audit, submission check, rebuttal. |
 | Review | `ccf-paper-reviewer` | Run scientific review, writing review, scoring, AC/meta-review. | Review report, risk table, revision priorities. | Rewriting the manuscript directly. |
@@ -79,9 +79,9 @@ project scaffold
 
 | User intent | Use | Do not use |
 | --- | --- | --- |
-| Make a rough idea concrete | `ccf-idea-optimizer` | `ccf-idea-reviewer` |
-| Score or rank ideas | `ccf-idea-reviewer` | `ccf-idea-optimizer` |
-| Find new papers, datasets, benchmarks | `ccf-literature-searcher` | `ccf-integrity-auditor` |
+| Make a rough idea concrete or find a rescue route | `ccf-idea-optimizer` | `ccf-idea-reviewer` |
+| Explicitly score, rank, or select ideas | `ccf-idea-reviewer` | `ccf-idea-optimizer` |
+| Find new papers, datasets, benchmarks, or open gaps | `ccf-literature-searcher` | `ccf-integrity-auditor` |
 | Verify already cited papers | `ccf-integrity-auditor` | `ccf-literature-searcher` |
 | Design experiments and tables | `ccf-experiment-designer` | `ccf-paper-writer` |
 | Draft, polish, compress, preserve source format | `ccf-paper-writer` | `ccf-paper-reviewer` |

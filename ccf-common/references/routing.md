@@ -10,9 +10,9 @@ v0.4.3 consolidates helper skills into the owning workflow skills. Runtime surfa
 | --- | --- | --- | --- |
 | Create project folders, copy/select templates, initialize `ccfa.yaml`. | `ccf-project-scaffolder` | scaffold | Does not create research content. |
 | Plan workflow, decompose tasks, coordinate stages/gates/handoffs. | `ccf-pipeline-orchestrator` | planning, status, gate | Does not perform downstream research work. |
-| Turn a rough direction into problem-gap-insight-method-evidence plan. | `ccf-idea-optimizer` | idea shaping | Does not rank multiple ideas as the main task. |
-| Score, compare, rank, and triage early ideas. | `ccf-idea-reviewer` | idea scoring | Does not polish manuscripts. |
-| Search literature, prior art, datasets, benchmarks, and citation evidence. | `ccf-literature-searcher` | search, screening | Does not audit only already cited papers. |
+| Explore, rescue, or turn a rough direction into a problem-gap-insight-method-evidence plan. | `ccf-idea-optimizer` | exploratory idea shaping, rescue routes | Does not rank multiple ideas as the main task. |
+| Score, compare, rank, and triage early ideas when the user explicitly asks for judgment. | `ccf-idea-reviewer` | idea scoring, stage-aware triage | Does not brainstorm directions or optimize a single idea as the main task. |
+| Search literature, prior art, datasets, benchmarks, citation evidence, and opportunity gaps. | `ccf-literature-searcher` | search, screening, opportunity map | Does not audit only already cited papers or act as a final idea kill gate. |
 | Design experiments and real-result tables/figures. | `ccf-experiment-designer` | experiment design, result templates, result figures/tables | Does not invent results. |
 | Draft, revise, polish, compress, and presentation-adapt paper text. | `ccf-paper-writer` | writing, polishing, compression, venue-aware LaTeX drafting, slides/poster/talk/Q&A | Preserves user format for edits; does not run full review or rebuttal. |
 | Review manuscripts scientifically and stylistically. | `ccf-paper-reviewer` | scientific review, writing review, format-facing review, AC/meta-review | Does not rewrite or rebut. |
@@ -70,9 +70,9 @@ For manuscript writing from only an idea, `ccf-paper-writer` checks the venue gu
 | Prompt | Expected route |
 | --- | --- |
 | 先帮我把论文项目流程和下一步拆清楚 | `ccf-pipeline-orchestrator` |
-| 优化一个 NeurIPS idea | `ccf-idea-optimizer` |
-| 给三个 idea 评分排名 | `ccf-idea-reviewer` |
-| 搜索 related work 和 benchmark | `ccf-literature-searcher` |
+| 优化一个 NeurIPS idea / 找几个可做方向 / 这个方向还能怎么救 | `ccf-idea-optimizer` |
+| 给三个 idea 评分排名 / 明确让我严格取舍 | `ccf-idea-reviewer` |
+| 搜索 related work、benchmark 和还有哪些 open gap | `ccf-literature-searcher` |
 | 设计对比实验、消融和结果表 | `ccf-experiment-designer` |
 | 根据真实结果画论文图表 | `ccf-experiment-designer` |
 | 润色 introduction 或压缩到页数限制 | `ccf-paper-writer` |

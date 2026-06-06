@@ -33,15 +33,15 @@
 <rect x="523" y="305" width="344" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="523" y="305" width="8" height="66" rx="18" fill="#D2673D" stroke="none" stroke-width="2" />
 <text x="547" y="339" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-idea-optimizer</text>
-<text x="547" y="364" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">problem, gap, insight, method</text>
+<text x="547" y="364" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">explore, rescue, shape idea</text>
 <rect x="523" y="387" width="344" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="523" y="387" width="8" height="66" rx="18" fill="#D2673D" stroke="none" stroke-width="2" />
 <text x="547" y="421" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-idea-reviewer</text>
-<text x="547" y="446" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">score, rank, reject risk</text>
+<text x="547" y="446" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">score, rank, staged risk</text>
 <rect x="523" y="469" width="344" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="523" y="469" width="8" height="66" rx="18" fill="#6657A8" stroke="none" stroke-width="2" />
 <text x="547" y="503" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-literature-searcher</text>
-<text x="547" y="528" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">prior art, datasets,</text>
+<text x="547" y="528" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">prior art, open gaps,</text>
 <text x="547" y="546" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">benchmarks</text>
 <rect x="940" y="235" width="380" height="328" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="940" y="235" width="380" height="52" rx="24" fill="#6657A8" stroke="none" stroke-width="2" />

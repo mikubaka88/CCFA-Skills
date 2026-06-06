@@ -4,6 +4,8 @@ Use 1-5 scores for each dimension. Score only the problem and method idea, not m
 
 When novelty, insight, or acceptance potential is decision-critical, apply `strict-idea-review.md` first. If closest work was not searched, cap novelty at 3 and mark confidence low unless the user supplies credible prior-art coverage.
 
+Score current readiness, not the user's worth or the absolute future of the direction. For rough seeds, include a separate development-potential label. A score of 2-3 often means "not ready without redesign"; it does not automatically mean "do not pursue."
+
 ## Weighted Dimensions
 
 | Dimension | Weight |
@@ -37,11 +39,11 @@ Borderline. The idea may become publishable only after substantial refinement. T
 
 ### 2
 
-Weak. The idea is likely incremental, under-motivated, poorly grounded, internally inconsistent, or difficult to validate. A strict reviewer would probably reject unless the problem, mechanism, or differentiation is changed.
+Weak in its current form. The idea is likely incremental, under-motivated, poorly grounded, internally inconsistent, or difficult to validate. A strict reviewer would probably reject the current version unless the problem, mechanism, or differentiation is changed. Still name the most plausible repair route if one exists.
 
 ### 1
 
-Fatal at idea stage. The problem is not important for the venue, closest work likely already covers the contribution, the method is unsound, the components conflict, or the central claim is untestable.
+Fatal for the current formulation. The problem is not important for the venue, closest work likely already covers the contribution, the method is unsound, the components conflict, or the central claim is untestable. Use `abandon` only if no credible reformulation remains.
 
 ## Dimension Guidance
 
@@ -66,4 +68,5 @@ Deduction:
 Anchor: closest work / missing mechanism / missing evidence / venue criterion / internal contradiction
 Why it matters:
 Repair condition:
+Development-potential effect:
 ```

@@ -13,3 +13,5 @@ Use this guide when operating the CCFA family as an agent.
 9. Use merged owner modes instead of removed helper skills: compression and talks are `ccf-paper-writer`; writing review is `ccf-paper-reviewer`; citation audit is `ccf-integrity-auditor`; result figures are `ccf-experiment-designer`; venue/artifact checks are `ccf-submission-checker`.
 10. Do not let audit or review skills rewrite content unless the user explicitly asks and routing permits the handoff.
 11. Use `ccf-rebuttal-writer` for response prose, reviewer-comment ledgers, and conservative resubmission planning.
+12. For early idea work, default to exploration before judgment. Route "找方向", "还能怎么做", "这个方向怎么救", and repeated rough-direction discussion to `ccf-idea-optimizer`; use `ccf-idea-reviewer` only when the user explicitly asks for scoring, ranking, or strict selection.
+13. For idea-stage literature search, return an opportunity map. Do not let related work alone kill a direction unless the same problem, mechanism, setting, and evidence path are already covered and no credible rescue route remains.

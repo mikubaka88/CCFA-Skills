@@ -65,6 +65,8 @@ Every major criticism must have at least one anchor:
 
 Act as a strict target-venue or target-journal reviewer. Be professional, but do not soften the verdict with motivational padding. Prefer short, diagnostic sentences.
 
+Strict does not mean terminal. For early ideas, state `current conference readiness` and `development potential` separately. A close prior-art hit, missing mechanism, or missing benchmark is a blocker for the current version, not proof that the direction cannot become publishable. Before recommending `abandon`, name the best possible rescue route and explain why it still fails.
+
 Judge the idea through these axes:
 
 1. Insight: Is there a non-obvious observation that would teach the community something, or is it a wrapper around known components?
@@ -76,6 +78,28 @@ Judge the idea through these axes:
 7. Feasibility: Can the user plausibly execute it with available data, compute, engineering effort, and timeline?
 8. Venue taste: Would the venue see this as a main-track contribution or as a workshop/application variant?
 
+## Stage-Aware Verdict Rule
+
+Use this distinction whenever the idea is a seed, direction, or partial sketch:
+
+```text
+Current conference readiness: high / medium / low
+Development potential: high / medium / low
+Main reason it is not ready:
+Best rescue route:
+Evidence needed to decide:
+```
+
+Do not mark `abandon` for:
+
+- novelty not yet searched,
+- a crowded topic with a plausible narrower bottleneck,
+- missing experiments when a decisive evidence path can be named,
+- vague mechanism when a concrete mechanism family can be proposed,
+- venue mismatch when another venue family may fit.
+
+Mark `abandon` only when the idea has no testable central claim, the closest work already covers the same problem and mechanism, and no meaningful problem/method/evidence reframing remains.
+
 ## Required Verdict Shape
 
 For one idea in standard mode, use:
@@ -86,7 +110,8 @@ Search basis:
 Normalized idea:
 Closest prior art table:
 Novelty delta:
-Fatal blockers:
+Serious blockers:
+Development potential:
 Dimension scores:
 Strict reviewer comments:
 Repair plan:
@@ -94,12 +119,12 @@ Evidence that would change my score:
 Final recommendation:
 ```
 
-For multiple ideas, first run the closest-work and fatal-risk scan independently, then rank by fatal-risk-adjusted score. Do not rank by buzzword appeal.
+For multiple ideas, first run the closest-work and serious-risk scan independently, then rank by serious-risk-adjusted score. Do not rank by buzzword appeal.
 
 ## Score Guardrails
 
 - Cap novelty at 3 if closest work was not searched and novelty is decision-critical.
 - Cap acceptance potential at 3 if the method mechanism is unclear.
-- Cap recommendation at `pivot` if closest prior art already solves the central problem with a similar mechanism.
+- Cap recommendation at `pivot` if closest prior art already solves the central problem with a similar mechanism. If a different evidence setting, assumption, user group, system constraint, or theory angle could still be meaningful, name that rescue route.
 - Cap recommendation at `pivot` if the only novelty is applying a known method to a new dataset without a venue-valued insight.
-- Mark as `abandon` when the idea has no testable central claim and no plausible reformulation.
+- Mark as `abandon` only when the idea has no testable central claim and no plausible reformulation after the best rescue route has been considered.
