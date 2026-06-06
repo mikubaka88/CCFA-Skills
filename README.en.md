@@ -14,8 +14,16 @@
 
 ---
 
-> "The structure of the prose becomes the structure of the scientific argument."
-> — George D. Gopen and Judith A. Swan, [*The Science of Scientific Writing*](https://www.cs.tufts.edu/comp/150FP/archive/george-gopen/sci.html)
+<div align="center">
+  <p>
+    <span style="color:#334155"><em>"The structure of the prose becomes the structure of the scientific argument."</em></span><br>
+    <sub>George D. Gopen and Judith A. Swan, <a href="https://www.cs.tufts.edu/comp/150FP/archive/george-gopen/sci.html"><em>The Science of Scientific Writing</em></a></sub>
+  </p>
+  <p>
+    <span style="color:#2563eb"><em>"The very process of science is centered around communication."</em></span><br>
+    <sub>Yann LeCun and James M. Manyika, <a href="https://www.amacad.org/publication/daedalus/learning-abstractions-conversation-yann-lecun"><em>Learning Abstractions</em></a></sub>
+  </p>
+</div>
 
 A strong paper is rarely defined by the final PDF alone. What matters is the research storyline behind it: an unstable idea finds its position through literature, earns credibility through experiments, becomes a legible argument through writing, and is refined again through review and rebuttal. The hard part is not only drafting one introduction paragraph. The hard part is keeping the idea, evidence, experiments, narrative, and response aligned around the same research question.
 

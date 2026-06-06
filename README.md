@@ -14,8 +14,16 @@
 
 ---
 
-> "The structure of the prose becomes the structure of the scientific argument."
-> — George D. Gopen and Judith A. Swan, [*The Science of Scientific Writing*](https://www.cs.tufts.edu/comp/150FP/archive/george-gopen/sci.html)
+<div align="center">
+  <p>
+    <span style="color:#334155"><em>"The structure of the prose becomes the structure of the scientific argument."</em></span><br>
+    <sub>George D. Gopen and Judith A. Swan, <a href="https://www.cs.tufts.edu/comp/150FP/archive/george-gopen/sci.html"><em>The Science of Scientific Writing</em></a></sub>
+  </p>
+  <p>
+    <span style="color:#2563eb"><em>"The very process of science is centered around communication."</em></span><br>
+    <sub>Yann LeCun and James M. Manyika, <a href="https://www.amacad.org/publication/daedalus/learning-abstractions-conversation-yann-lecun"><em>Learning Abstractions</em></a></sub>
+  </p>
+</div>
 
 一篇高水平论文真正重要的，往往不是最后那份 PDF，而是贯穿其后的研究故事线。它从一个尚不稳定的 idea 开始，在文献中寻找位置，在实验中接受检验，在写作中被组织成可被审稿人理解的论证，又在评审和 rebuttal 中继续被修正。真正困难的地方，不只是写出某一段 introduction，而是让 idea、证据、实验、表达和回应始终指向同一个研究问题。
 
