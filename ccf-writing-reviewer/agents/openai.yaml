@@ -1,0 +1,4 @@
+interface:
+  display_name: "CCF Writing Reviewer"
+  short_description: "Review manuscript writing, paragraph logic, contribution presentation, consistency, LaTeX/format issues, figure/table narration, and reviewer-facing clarity."
+  default_prompt: "Use $ccf-writing-reviewer for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

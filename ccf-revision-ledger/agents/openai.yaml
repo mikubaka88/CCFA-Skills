@@ -1,4 +1,0 @@
-interface:
-  display_name: "CCF Revision Ledger"
-  short_description: "Maintain a reviewer-comment to action to manuscript-location to status ledger for revisions, rebuttals, resubmissions, a"
-  default_prompt: "Use $ccf-revision-ledger for its owned CCFA workflow. Respect routing boundaries, project artifacts, evidence limits, and handoff rules."

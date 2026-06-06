@@ -1,12 +1,12 @@
 {
   "name": "ccfa-skills",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "CCFA CCF paper-project workflow skill family.",
   "skills_root": ".",
   "catalog": "docs/SKILLS_CATALOG.md",
   "entrypoints": [
     "ccf-pipeline-orchestrator",
-    "ccf-writing-skills",
-    "ccf-conference-guides"
+    "ccf-paper-writer",
+    "ccf-venue-format-guide"
   ]
 }

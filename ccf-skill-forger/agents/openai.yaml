@@ -1,0 +1,4 @@
+interface:
+  display_name: "CCF Skill Forger"
+  short_description: "Design, create, update, validate, and audit Codex/CCFA skills, trigger wording, resources, references, scripts, path privacy, and family governance."
+  default_prompt: "Use $ccf-skill-forger for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

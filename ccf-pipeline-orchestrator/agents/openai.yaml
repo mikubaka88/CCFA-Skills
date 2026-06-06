@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Pipeline Orchestrator"
-  short_description: "Coordinate a CCF paper project workflow across CCFA skills, maintain project stage and gates in ccfa"
-  default_prompt: "Use $ccf-pipeline-orchestrator for its owned CCFA workflow. Respect routing boundaries, project artifacts, evidence limits, and handoff rules."
+  short_description: "Coordinate CCF paper-project stages, gates, artifacts, handoffs, and ccfa.yaml status across the CCFA skill family."
+  default_prompt: "Use $ccf-pipeline-orchestrator for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

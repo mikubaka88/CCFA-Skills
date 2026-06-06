@@ -1,4 +1,0 @@
-interface:
-  display_name: "CCF Conference Guides"
-  short_description: "Conference venue LaTeX, page-limit, anonymity, template, camera-ready, and format requirement lookup for CCF paper submi"
-  default_prompt: "Use $ccf-conference-guides for its owned CCFA workflow. Respect routing boundaries, project artifacts, evidence limits, and handoff rules."

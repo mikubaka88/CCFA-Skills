@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Experiment Designer"
-  short_description: "Design CCF-A experiments safely."
-  default_prompt: "Use $ccf-experiment-designer to design datasets, benchmarks, baselines, ablations, robustness tests, and result-fill tables for a CCF-A paper. Do not fabricate any result, score, benchmark rank, or reviewer impact; use placeholders for user-filled results."
+  short_description: "Design evaluation protocols, datasets, baselines, metrics, ablations, robustness tests, and result-table templates for CCF papers."
+  default_prompt: "Use $ccf-experiment-designer for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

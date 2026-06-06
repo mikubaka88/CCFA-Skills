@@ -15,4 +15,4 @@ Required top-level fields:
 - `revision_ledger`
 - `submission_checks`
 
-Only `ccf-paper-project-scaffold` should create it by default. `ccf-pipeline-orchestrator` may update stage and gate state. Other skills may read it and propose updates unless the user explicitly grants write permission.
+Only `ccf-project-scaffolder` should create it by default. `ccf-pipeline-orchestrator` may update stage and gate state. Other skills may read it and propose updates unless the user explicitly grants write permission.

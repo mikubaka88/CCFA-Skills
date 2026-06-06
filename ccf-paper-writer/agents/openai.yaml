@@ -1,0 +1,4 @@
+interface:
+  display_name: "CCF Paper Writer"
+  short_description: "Plan, draft, revise, polish, and reviewer-proof CCF research paper text while preserving user-supplied idea scope and evidence."
+  default_prompt: "Use $ccf-paper-writer for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

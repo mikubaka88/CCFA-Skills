@@ -1,4 +1,0 @@
-interface:
-  display_name: "CCF Paper Talk"
-  short_description: "Convert a completed or near-completed research paper into slides, poster, talk script, elevator pitch, demo narration, Q"
-  default_prompt: "Use $ccf-paper-talk for its owned CCFA workflow. Respect routing boundaries, project artifacts, evidence limits, and handoff rules."

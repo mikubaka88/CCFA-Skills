@@ -1,4 +1,0 @@
-interface:
-  display_name: "CCF Artifact Reproducibility"
-  short_description: "Prepare reproducibility and artifact packages for CCF submissions: artifact checklist, code/data/model release plan, env"
-  default_prompt: "Use $ccf-artifact-reproducibility for its owned CCFA workflow. Respect routing boundaries, project artifacts, evidence limits, and handoff rules."

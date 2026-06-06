@@ -2,7 +2,7 @@
 
 # CCFA Skills
 
-### 面向 CCF 论文项目的 `ccf-*` 技能家族。
+### 面向 CCF 论文项目的 `ccf-*` 技能家族
 
 <p>
   <a href="README.md">English</a> ·
@@ -14,15 +14,13 @@
 
 ---
 
-CCFA Skills 是一组本地 Codex skills，用于 CCF 风格论文项目的构建、审计、投稿、返修、重投和汇报。v0.4.0 将仓库从“写作技能集合”升级为“论文项目工作流家族”：新增路由治理、artifact 合约、venue guide 分支、结构校验、插件清单和发布文档。
+CCFA Skills 是一组本地 Codex skills，用来支撑 CCF 风格论文从立项到投稿后的完整流程：建项目、定路线、打磨 idea、检索文献、设计实验、写作、审稿、审计、检查投稿包、写 rebuttal、重投适配和汇报展示。
 
-设计参考了 ARS、nature-skills 和 ARIS，但 CCFA 更强调职责边界：idea 优化不是完整审稿，引用审计不是文献检索，会议格式查询不是论文写作，投稿检查不是正文润色。
+这次命名整理后，runtime skills 都采用 `ccf-<对象>-<职责>` 的单数风格；`ccf-common` 是唯一例外，因为它是治理模块，不直接处理普通研究任务。`ccf-revision-ledger` 已合并到 `ccf-rebuttal-writer`，这样审稿意见、回复承诺、修改位置和完成状态不会分裂在两个触发入口里。
 
 ![架构](assets/ccfa-skills-architecture.zh-CN.svg)
 
 ## 安装
-
-保留手动安装方式：
 
 ```bash
 git clone https://github.com/mikubaka88/CCFA-Skills.git
@@ -36,111 +34,83 @@ git pull origin main
 cp -r ccf-* "$CODEX_HOME/skills/"
 ```
 
-仓库也提供 `.codex-plugin/plugin.json` 和 `.claude-plugin/plugin.json`，供支持插件安装的客户端使用。手动复制方式仍保留，因为它能清楚显示本地实际安装了哪些 skills。
+仓库同时提供 `.codex-plugin/plugin.json` 和 `.claude-plugin/plugin.json`。
 
-## v0.4 架构
+## 当前 Skills
 
-| 层级 | 作用 | 主要文件 |
-| --- | --- | --- |
-| 治理层 | 路由、触发注册表、隐私与证据策略、source registry、artifact 归属、校验。 | `ccf-common/`, `docs/SKILLS_CATALOG.md`, `AGENT_GUIDE.md` |
-| 项目状态层 | 创建并维护论文项目结构和 `ccfa.yaml`。 | `ccf-paper-project-scaffold`, `ccf-pipeline-orchestrator` |
-| 研究链路层 | idea、文献、实验、写作、压缩、审稿、rebuttal、重投和汇报。 | `ccf-*` skills |
-| Venue 分支 | 会议 LaTeX、template、page limit、匿名和 camera-ready 规则。 | `ccf-conference-guides`, `ccf-writing-skills/references/venue-guides/` |
-| 发布校验层 | 前缀、frontmatter、shared controls、registry、venue index、SVG、source、路径隐私。 | `.github/workflows/validate.yml`, `ccf-common/scripts/` |
+- `ccf-project-scaffolder`：脚手架：建目录、选模板、初始化 ccfa.yaml。
+- `ccf-pipeline-orchestrator`：编排阶段、gate、artifact 与 handoff。
+- `ccf-workflow-planner`：澄清目标、范围、成功标准与下一步 skill。
+- `ccf-idea-optimizer`：把粗 idea 具象化成问题、gap、insight、方法和证据计划。
+- `ccf-idea-reviewer`：严格评分、排序、比较早期 idea。
+- `ccf-literature-searcher`：检索相关工作、prior art、数据集和 benchmark。
+- `ccf-experiment-designer`：设计数据集、baseline、指标、消融、鲁棒性和结果表模板。
+- `ccf-paper-writer`：写作、润色、重组论文正文，并保护既有 idea 和证据边界。
+- `ccf-paper-compressor`：在不改 claims/results 的前提下压缩篇幅。
+- `ccf-scientific-reviewer`：做完整科学审稿、评分、模拟 reviewer 和 AC/meta-review。
+- `ccf-writing-reviewer`：评审段落逻辑、表达清晰度、一致性、LaTeX/格式和展示风险。
+- `ccf-integrity-auditor`：审计 claim-support、结果到 claim、数字、术语和图表一致性。
+- `ccf-citation-auditor`：核验已有引用、BibTeX 元数据、文献存在性和引用上下文支撑。
+- `ccf-figure-table-builder`：基于真实结果构建和审计图、表、caption、SVG/PDF。
+- `ccf-artifact-packager`：准备 artifact/reproducibility 包、环境、seed、license 和 README。
+- `ccf-venue-format-guide`：回答会议 LaTeX、template、页数、匿名和 camera-ready 格式问题。
+- `ccf-submission-checker`：检查 LaTeX/PDF、页数、匿名、字体、metadata、template 和 policy freshness。
+- `ccf-rebuttal-writer`：写 rebuttal、作者回复、response letter、修改说明和 revision ledger。
+- `ccf-resubmission-adapter`：把已有论文保守迁移到新 venue，默认不新增实验、不改 bib。
+- `ccf-paper-presenter`：把论文转成 slides、poster、talk script、图表讲解和 Q&A。
+- `ccf-common`：共享路由、触发注册、handoff、source registry、隐私策略和 artifact 合约。
+- `ccf-skill-forger`：创建、更新、校验和审计 CCFA/Codex skills 及家族治理。
 
-## 核心链路
-
-```text
-ccf-brainstorming
-  -> ccf-idea-optimizer
-  -> ccf-idea-reviewer
-  -> ccf-literature-search
-  -> ccf-experiment-designer
-  -> ccf-writing-skills
-  -> ccf-paper-compressor
-  -> ccf-conference-reviewer
-  -> ccf-conference-writing-reviewer
-  -> ccf-conference-paper-rebuttal
-```
-
-v0.4 新增：
-
-```text
-ccf-pipeline-orchestrator
-ccf-paper-project-scaffold
-ccf-integrity-auditor
-ccf-citation-auditor
-ccf-submission-checker
-ccf-figure-table-builder
-ccf-artifact-reproducibility
-ccf-revision-ledger
-ccf-resubmission-adapter
-ccf-paper-talk
-ccf-conference-guides
-ccf-forge-skills
-```
-
-完整触发条件、排除边界和联动关系见 `docs/SKILLS_CATALOG.md`。
-
-## Venue 分支
-
-`ccf-conference-skills/<venue>/SKILL.md` 不再作为可安装 runtime skill 层存在。原 109 个会议 skill 已迁移到：
+## 家族关系
 
 ```text
-ccf-writing-skills/references/venue-guides/index.md
-ccf-writing-skills/references/venue-guides/<venue>.md
+ccf-project-scaffolder -> ccf-pipeline-orchestrator -> ccf-workflow-planner
+  -> ccf-idea-optimizer -> ccf-idea-reviewer
+  -> ccf-literature-searcher -> ccf-experiment-designer
+  -> ccf-paper-writer -> ccf-paper-compressor
+  -> ccf-scientific-reviewer / ccf-writing-reviewer
+  -> ccf-integrity-auditor / ccf-citation-auditor
+  -> ccf-figure-table-builder / ccf-artifact-packager
+  -> ccf-venue-format-guide / ccf-submission-checker
+  -> ccf-rebuttal-writer / ccf-resubmission-adapter / ccf-paper-presenter
 ```
-
-以下任务使用 `ccf-conference-guides`：
-
-- CVPR page limit
-- NeurIPS LaTeX template
-- SIGMOD 匿名模式
-- camera-ready checklist
-- supplementary material 规则
-
-论文正文写作使用 `ccf-writing-skills`，写作/格式审查使用 `ccf-conference-writing-reviewer`，投稿包构建和合规检查使用 `ccf-submission-checker`。最终投稿前仍必须核对当年官方 venue policy。
 
 ![流程](assets/ccfa-skills-workflow.zh-CN.svg)
 
-## `ccfa.yaml`
+## Venue 分支
 
-v0.4 引入共享项目状态文件，固定顶层字段为：
+旧的逐会议 runtime skills 已迁移为参考资料：
 
 ```text
-version
-project
-target_venue
-stage
-artifacts
-claims
-experiments
-reviews
-revision_ledger
-submission_checks
+ccf-paper-writer/references/venue-guides/index.md
+ccf-paper-writer/references/venue-guides/<venue>.md
 ```
 
-`ccf-paper-project-scaffold` 负责创建，`ccf-pipeline-orchestrator` 可以更新阶段和 gate，其他 skills 按 `ccf-common/references/artifact-contracts.md` 读取或提出更新建议。
+会议格式问题交给 `ccf-venue-format-guide`；正文写作交给 `ccf-paper-writer`；写作/格式评审交给 `ccf-writing-reviewer`；真实投稿包检查交给 `ccf-submission-checker`。
 
-## 校验
+## 重命名与合并
 
-发布前运行：
+- `ccf-brainstorming` -> `ccf-workflow-planner`：突出“规划与路由”职责，避免和通用 brainstorming 混在一起。
+- `ccf-literature-search` -> `ccf-literature-searcher`：从动作名改为职责名，和 auditor/designer/writer 的风格一致。
+- `ccf-writing-skills` -> `ccf-paper-writer`：去掉泛化的 `skills` 尾缀，明确它是论文正文写作入口。
+- `ccf-conference-reviewer` -> `ccf-scientific-reviewer`：强调这是科学审稿，不再把 venue 层误认为审稿边界。
+- `ccf-conference-writing-reviewer` -> `ccf-writing-reviewer`：保留写作评审职责，并与科学审稿分开。
+- `ccf-conference-paper-rebuttal` -> `ccf-rebuttal-writer`：直接命名为 rebuttal/author response 的产出职责。
+- `ccf-conference-guides` -> `ccf-venue-format-guide`：明确它只处理会议格式、模板、匿名和页数规则。
+- `ccf-paper-project-scaffold` -> `ccf-project-scaffolder`：改为清晰的项目脚手架职责名。
+- `ccf-artifact-reproducibility` -> `ccf-artifact-packager`：突出 artifact/reproducibility 包的准备与交付。
+- `ccf-revision-ledger` -> `merged into ccf-rebuttal-writer`：ledger 属于审后回复追踪，合并后能避免 rebuttal 触发冲突。
+- `ccf-paper-talk` -> `ccf-paper-presenter`：突出 slides、poster、talk 和 Q&A 的展示产出。
+- `ccf-forge-skills` -> `ccf-skill-forger`：避免 `skills` 尾缀造成“技能家族本身”的歧义。
 
-```bash
-python ccf-common/scripts/check_v04.py
-python ccf-common/scripts/check_path_privacy.py .
-python ccf-common/scripts/check_sources.py
-rg -nP "^name: (?!ccf-)" -g "SKILL.md"
-```
+## 图谱
 
-GitHub Actions 会在 push 和 pull request 上运行同类结构校验。
+![目录](assets/ccfa-skills-catalog.zh-CN.svg)
+
+![路由](assets/ccfa-skills-routing.zh-CN.svg)
+
+![Artifact](assets/ccfa-skills-artifacts.zh-CN.svg)
 
 ![评审边界](assets/ccfa-skills-review-boundaries.zh-CN.svg)
 
-## 兼容变化
-
-- 所有可安装 skill 名称均使用 `ccf-` 前缀。
-- `forge-skills` 已重命名为 `ccf-forge-skills`。
-- 核心研究链路名称保持稳定。
-- 旧 venue runtime skills 已移除；使用 `ccf-conference-guides` 和 venue-guide reference 分支。
-- `SKILL.md` 是最高优先级。如果文档、catalog 或 routing 与 skill body 冲突，应修正文档索引。
+更完整的触发边界、架构关系和合并理由见 `docs/SKILLS_CATALOG.md`、`docs/ARCHITECTURE.md`、`docs/NAMING_AND_MERGE_AUDIT.md`。

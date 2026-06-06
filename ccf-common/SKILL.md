@@ -1,6 +1,6 @@
 ---
 name: ccf-common
-description: "Shared controls, routing, task modes, handoff modes, source registry, and privacy/evidence policy for the CCFA Skills family. Use only when maintaining or auditing CCFA skills, CCFA联动, 路由冲突, quick/standard模式, source registry, 隐私与证据策略, not for ordinary research-writing, idea-review, paper-review, literature-search, experiment-design, compression, or rebuttal tasks."
+description: "Shared governance for the CCFA family: routing, trigger registry, task modes, handoff modes, source registry, privacy/evidence policy, ccfa.yaml, and artifact contracts. Use only when maintaining or auditing CCFA skills; not for ordinary research tasks."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -14,7 +14,7 @@ metadata:
 
 ## Core Rule
 
-This is the shared control module for the CCFA Skills family. Do not use it as a user-facing research assistant module. Use it to keep routing, handoff behavior, source provenance, private-material handling, and score-risk language consistent across `ccf-*` skills and `ccf-forge-skills`.
+This is the shared control module for the CCFA Skills family. Do not use it as a user-facing research assistant module. Use it to keep routing, handoff behavior, source provenance, private-material handling, and score-risk language consistent across `ccf-*` skills and `ccf-skill-forger`.
 
 ## Invocation Controls
 
@@ -29,7 +29,7 @@ Load only the file needed for the current maintenance task:
 - `references/handoff-modes.md`: Use to interpret `metadata.ccf_skill_controls.handoff_question_mode`.
 - `references/privacy-and-evidence.md`: Use when handling manuscripts, reviews, rebuttals, private drafts, literature searches, or evidence claims.
 - `references/source-registry.yaml`: Use as the shared source inventory for venue rules, review methods, exemplar records, and research-workflow references.
-- `references/ccf-a-venue-map.md`: Use when a non-writing skill needs venue-family mapping without depending on `ccf-writing-skills`.
+- `references/ccf-a-venue-map.md`: Use when a non-writing skill needs venue-family mapping without depending on `ccf-paper-writer`.
 - `references/skill-trigger-registry.yaml`: Use as the v0.4 public trigger registry for routing conflict audits.
 - `references/artifact-contracts.md`: Use to decide which skill may read or write each project artifact.
 - `references/ccfa-yaml-contract.md`: Use for the shared `ccfa.yaml` project-state schema.

@@ -1,4 +1,0 @@
-interface:
-  display_name: "CCF Conference Reviewer"
-  short_description: "Run complete CCF-A scientific paper reviews with desk checks, related-work search, reviewer panel, AC/meta-review, scores, and fixed Markdown reports."
-  default_prompt: "Use $ccf-conference-reviewer for 完整审稿, 模拟审稿, 论文评分, AC评审, meta-review, scientific paper review, full manuscript review, or acceptance-risk diagnosis. In standard mode, run desk checks, public-safe related-work search, claim-evidence and experiment audits, multi-reviewer panel, AC/meta-review, calibrated scores, concerns table, and write a fixed-format Markdown report. For writing-only or LaTeX-only review, route to $ccf-conference-writing-reviewer. Do not invent citations, missing related work, results, benchmark ranks, score changes, reviewer consensus, or acceptance probability."

@@ -1,6 +1,6 @@
 ---
 name: ccf-pipeline-orchestrator
-description: "Coordinate a CCF paper project workflow across CCFA skills, maintain project stage and gates in ccfa.yaml, choose handoff targets, and produce next-action plans. Use for pipeline orchestration, project status, stage gates, family linkage, multi-skill workflow planning, ccfa.yaml updates, and conflict-free routing. Do not use for writing, reviewing, searching literature, designing experiments, or generating research content."
+description: "Coordinate CCF paper-project stages, gates, artifacts, handoffs, and ccfa.yaml status across the CCFA skill family. Use for project status, pipeline orchestration, gate decisions. Do not perform downstream writing, review, search, or experiment design itself."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial

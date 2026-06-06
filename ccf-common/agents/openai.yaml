@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Common"
-  short_description: "Shared controls for the CCFA Skills family."
-  default_prompt: "Use $ccf-common only when maintaining, auditing, or explaining CCFA shared routing, quick/standard task modes, handoff modes, source registry, and privacy/evidence controls."
+  short_description: "Shared governance for the CCFA family: routing, trigger registry, task modes, handoff modes, source registry, privacy/evidence policy, ccfa.yaml, and artifact contracts."
+  default_prompt: "Use $ccf-common for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

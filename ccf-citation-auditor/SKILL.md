@@ -1,6 +1,6 @@
 ---
 name: ccf-citation-auditor
-description: "Verify already cited papers and BibTeX entries: existence, metadata, DOI/arXiv/venue correctness, citation-context support, duplicate keys, stale references, and suspicious unsupported citations. Use for bibliography and citation-context audit. Do not use for broad literature search or finding many new related papers."
+description: "Verify already cited papers and BibTeX entries: existence, metadata, DOI/arXiv/venue correctness, duplicate keys, and citation-context support. Use for citation audit and bibliography verification. Do not perform broad literature discovery."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -45,7 +45,7 @@ Citation issue table, metadata fixes, unsupported-context warnings, and handoff 
 
 ## Handoff
 
-Use `ccf-literature-search` when the task requires new papers or prior-art discovery.
+Use `ccf-literature-searcher` when the task requires new papers or prior-art discovery.
 
 ## Forbidden
 

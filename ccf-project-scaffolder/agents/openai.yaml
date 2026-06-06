@@ -1,0 +1,4 @@
+interface:
+  display_name: "CCF Project Scaffolder"
+  short_description: "Create CCF paper project folders, select or copy LaTeX templates, initialize ccfa.yaml, and prepare artifact directories."
+  default_prompt: "Use $ccf-project-scaffolder for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

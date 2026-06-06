@@ -11,7 +11,7 @@ sources:
     title: CCF Recommended International Academic Conference And Journal Directory
     url: https://www.ccf.org.cn/Academic_Evaluation/By_category/
     source_type: official_policy
-    used_by: [ccf-common, ccf-writing-skills]
+    used_by: [ccf-common, ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 90
@@ -20,7 +20,7 @@ sources:
     title: Searchable CCF 2026 Directory Mirror
     url: https://ccf.atom.im/
     source_type: background_method
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 180
@@ -29,7 +29,7 @@ sources:
     title: AAAI-26 Main Technical Track Call
     url: https://aaai.org/conference/aaai/aaai-26/main-technical-track-call/
     source_type: official_policy
-    used_by: [ccf-conference-reviewer]
+    used_by: [ccf-scientific-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 90
@@ -38,7 +38,7 @@ sources:
     title: AAAI-26 Submission Instructions
     url: https://aaai.org/conference/aaai/aaai-26/submission-instructions/
     source_type: official_policy
-    used_by: [ccf-conference-reviewer]
+    used_by: [ccf-scientific-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 90
@@ -47,7 +47,7 @@ sources:
     title: NeurIPS 2026 Reviewer Guidelines
     url: https://neurips.cc/Conferences/2026/ReviewerGuidelines
     source_type: review_guideline
-    used_by: [ccf-conference-reviewer, ccf-idea-optimizer, ccf-idea-reviewer]
+    used_by: [ccf-scientific-reviewer, ccf-idea-optimizer, ccf-idea-reviewer]
     recorded_at: 2026-06-05
     verified_at: 2026-06-05
     stale_after_days: 180
@@ -56,7 +56,7 @@ sources:
     title: NeurIPS 2024 Reviewer Guidelines
     url: https://neurips.cc/Conferences/2024/ReviewerGuidelines
     source_type: review_guideline
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -65,7 +65,7 @@ sources:
     title: ICML 2024 Reviewer Instructions
     url: https://icml.cc/Conferences/2024/ReviewerInstructions
     source_type: review_guideline
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -74,7 +74,7 @@ sources:
     title: ICLR 2026 Reviewer Guide
     url: https://iclr.cc/Conferences/2026/ReviewerGuide
     source_type: review_guideline
-    used_by: [ccf-conference-reviewer, ccf-idea-optimizer, ccf-idea-reviewer]
+    used_by: [ccf-scientific-reviewer, ccf-idea-optimizer, ccf-idea-reviewer]
     recorded_at: 2026-06-05
     verified_at: 2026-06-05
     stale_after_days: 180
@@ -83,7 +83,7 @@ sources:
     title: CVPR 2026 Reviewer Guidelines
     url: https://cvpr.thecvf.com/Conferences/2026/ReviewerGuidelines
     source_type: review_guideline
-    used_by: [ccf-conference-reviewer]
+    used_by: [ccf-scientific-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 180
@@ -92,7 +92,7 @@ sources:
     title: CVPR 2026 Reviewer Training Material
     url: https://cvpr.thecvf.com/Conferences/2026/ReviewerTrainingMaterial
     source_type: review_guideline
-    used_by: [ccf-conference-reviewer]
+    used_by: [ccf-scientific-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 180
@@ -101,7 +101,7 @@ sources:
     title: CVPR 2025 Reviewer Guidelines
     url: https://cvpr.thecvf.com/Conferences/2025/ReviewerGuidelines
     source_type: review_guideline
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -110,7 +110,7 @@ sources:
     title: ACL Rolling Review Review Form
     url: https://aclrollingreview.org/reviewform
     source_type: review_guideline
-    used_by: [ccf-conference-reviewer]
+    used_by: [ccf-scientific-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 180
@@ -119,7 +119,7 @@ sources:
     title: S. Keshav, How To Read A Paper
     url: https://www.cs.jhu.edu/~huang/cs624/spring22/readings/paper-reading.pdf
     source_type: background_method
-    used_by: [ccf-conference-reviewer]
+    used_by: [ccf-scientific-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 730
@@ -128,7 +128,7 @@ sources:
     title: How To Review A Technical Paper
     url: https://www.cs.cmu.edu/afs/cs/academic/class/15828-s98/www/review.html
     source_type: background_method
-    used_by: [ccf-conference-reviewer]
+    used_by: [ccf-scientific-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 730
@@ -137,7 +137,7 @@ sources:
     title: PLOS How To Write A Peer Review
     url: https://plos.org/resource/how-to-write-a-peer-review/
     source_type: background_method
-    used_by: [ccf-conference-reviewer, ccf-idea-reviewer]
+    used_by: [ccf-scientific-reviewer, ccf-idea-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -146,7 +146,7 @@ sources:
     title: Springer Nature How To Peer Review
     url: https://www.springernature.com/gp/reviewers/how-to-peer-review
     source_type: background_method
-    used_by: [ccf-conference-reviewer, ccf-idea-reviewer]
+    used_by: [ccf-scientific-reviewer, ccf-idea-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -155,7 +155,7 @@ sources:
     title: ACM Preparing Your Article With LaTeX
     url: https://authors.acm.org/proceedings/production-information/preparing-your-article-with-latex
     source_type: official_policy
-    used_by: [ccf-conference-writing-reviewer]
+    used_by: [ccf-writing-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 180
@@ -164,7 +164,7 @@ sources:
     title: IEEE Authoring Tools And Templates
     url: https://journals.ieeeauthorcenter.ieee.org/create-your-ieee-journal-article/authoring-tools-and-templates/
     source_type: official_policy
-    used_by: [ccf-conference-writing-reviewer]
+    used_by: [ccf-writing-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 180
@@ -173,7 +173,7 @@ sources:
     title: CSPaper Review
     url: https://cspaper.org/op/20260212.0001v1
     source_type: background_method
-    used_by: [ccf-conference-reviewer]
+    used_by: [ccf-scientific-reviewer]
     recorded_at: 2026-06-05
     verified_at: 2026-06-05
     stale_after_days: 365
@@ -182,7 +182,7 @@ sources:
     title: CSPaper Review Rank
     url: https://cspaper.org/articles/introducing-review-rank
     source_type: background_method
-    used_by: [ccf-conference-reviewer]
+    used_by: [ccf-scientific-reviewer]
     recorded_at: 2026-06-05
     verified_at: 2026-06-05
     stale_after_days: 365
@@ -191,7 +191,7 @@ sources:
     title: Stanford Agentic Reviewer Technical Overview
     url: https://paperreview.ai/tech-overview
     source_type: background_method
-    used_by: [ccf-conference-reviewer]
+    used_by: [ccf-scientific-reviewer]
     recorded_at: 2026-06-05
     verified_at: 2026-06-05
     stale_after_days: 365
@@ -200,7 +200,7 @@ sources:
     title: OpenAIReview Automated Paper Review Tool
     url: https://github.com/ChicagoHAI/OpenAIReview
     source_type: background_method
-    used_by: [ccf-conference-reviewer]
+    used_by: [ccf-scientific-reviewer]
     recorded_at: 2026-06-05
     verified_at: 2026-06-05
     stale_after_days: 365
@@ -209,7 +209,7 @@ sources:
     title: AI Peer Review Tool
     url: https://github.com/poldrack/ai-peer-review
     source_type: background_method
-    used_by: [ccf-conference-reviewer]
+    used_by: [ccf-scientific-reviewer]
     recorded_at: 2026-06-05
     verified_at: 2026-06-05
     stale_after_days: 365
@@ -218,7 +218,7 @@ sources:
     title: Local CSPaper Reply Reference Format
     url: local:private-reference/cspaper-reply-format
     source_type: local_reference
-    used_by: [ccf-conference-reviewer]
+    used_by: [ccf-scientific-reviewer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -254,7 +254,7 @@ sources:
     title: Academic Research Skills
     url: https://github.com/Imbad0202/academic-research-skills
     source_type: background_method
-    used_by: [ccf-common, ccf-idea-optimizer, ccf-idea-reviewer, ccf-writing-skills]
+    used_by: [ccf-common, ccf-idea-optimizer, ccf-idea-reviewer, ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -263,7 +263,7 @@ sources:
     title: Nature Skills
     url: https://github.com/Yuan1z0825/nature-skills
     source_type: background_method
-    used_by: [ccf-common, ccf-writing-skills, ccf-conference-writing-reviewer]
+    used_by: [ccf-common, ccf-paper-writer, ccf-writing-reviewer]
     recorded_at: 2026-06-06
     verified_at: null
     stale_after_days: 365
@@ -299,7 +299,7 @@ sources:
     title: LLaVA-4D OpenReview
     url: https://openreview.net/forum?id=URpbmVEsqB
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -308,7 +308,7 @@ sources:
     title: LLaVA-4D arXiv
     url: https://arxiv.org/abs/2505.12253
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -317,7 +317,7 @@ sources:
     title: VGGT CVPR 2025 Open Access
     url: https://openaccess.thecvf.com/content/CVPR2025/html/Wang_VGGT_Visual_Geometry_Grounded_Transformer_CVPR_2025_paper.html
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -326,7 +326,7 @@ sources:
     title: ICLR 2026 Outstanding Papers Blog
     url: https://blog.iclr.cc/2026/04/23/announcing-the-iclr-2026-outstanding-papers/
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -335,7 +335,7 @@ sources:
     title: ICLR 2025 Outstanding Papers Blog
     url: https://blog.iclr.cc/2025/04/22/announcing-the-outstanding-paper-awards-at-iclr-2025/
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -344,7 +344,7 @@ sources:
     title: ICLR 2024 Outstanding Papers Blog
     url: https://blog.iclr.cc/2024/05/06/iclr-2024-outstanding-paper-awards/
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -353,7 +353,7 @@ sources:
     title: CVPR 2025 Best Papers And Demos
     url: https://cvpr.thecvf.com/Conferences/2025/BestPapersDemos
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -362,7 +362,7 @@ sources:
     title: CVPR 2024 Awards News
     url: https://cvpr.thecvf.com/Conferences/2024/News/Awards
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -371,7 +371,7 @@ sources:
     title: CVF Awards List
     url: https://www.thecvf.com/?page_id=413
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -380,7 +380,7 @@ sources:
     title: Every Bit Helps, AAAI 2025
     url: https://ojs.aaai.org/index.php/AAAI/article/view/33507
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -389,7 +389,7 @@ sources:
     title: GxVAEs, AAAI 2024
     url: https://ojs.aaai.org/index.php/AAAI/article/view/29248
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -398,7 +398,7 @@ sources:
     title: CollabLLM, ICML 2025
     url: https://proceedings.mlr.press/v267/wu25i.html
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -407,7 +407,7 @@ sources:
     title: VideoPoet, ICML 2024
     url: https://proceedings.mlr.press/v235/kondratyuk24a.html
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -416,7 +416,7 @@ sources:
     title: BrickGPT, ICCV 2025
     url: https://openaccess.thecvf.com/content/ICCV2025/html/Pun_Generating_Physically_Stable_and_Buildable_Brick_Structures_from_Text_ICCV_2025_paper.html
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -425,7 +425,7 @@ sources:
     title: Passive Ultra-Wideband Single-Photon Imaging, ICCV 2023
     url: https://openaccess.thecvf.com/content/ICCV2023/html/Wei_Passive_Ultra-Wideband_Single-Photon_Imaging_ICCV_2023_paper.html
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -434,7 +434,7 @@ sources:
     title: Minimalist Vision With Freeform Pixels, ECCV 2024
     url: https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/8113_ECCV_2024_paper.php
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -443,7 +443,7 @@ sources:
     title: Partial Distance Correlation In Deep Learning, ECCV 2022
     url: https://www.ecva.net/papers/eccv_2022/papers_ECCV/papers/136860318.pdf
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -452,7 +452,7 @@ sources:
     title: Open-Vocabulary 3D Affordance Understanding, ACM MM 2025
     url: https://eprints.gla.ac.uk/360521/
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -461,7 +461,7 @@ sources:
     title: From Speaker To Dubber, ACM MM 2024
     url: https://openreview.net/pdf/c1a849c12d7b851fa543b7af787bbc8fc9a945b7.pdf
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -470,7 +470,7 @@ sources:
     title: MiniLongBench, ACL 2025
     url: https://aclanthology.org/2025.acl-long.560/
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -479,7 +479,7 @@ sources:
     title: Mission Impossible Language Models, ACL 2024
     url: https://aclanthology.org/2024.acl-long.787/
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -488,7 +488,7 @@ sources:
     title: 1000 Layer Networks For Self-Supervised RL, NeurIPS 2025
     url: https://proceedings.neurips.cc/paper_files/paper/2025/hash/e74ee34cc0f2d0780f34ee77d8fba25b-Abstract-Conference.html
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -497,7 +497,7 @@ sources:
     title: Visual Autoregressive Modeling, NeurIPS 2024
     url: https://proceedings.neurips.cc/paper_files/paper/2024/hash/9a24e284b187f662681440ba15c416fb-Abstract-Conference.html
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -506,7 +506,7 @@ sources:
     title: Semantic Scholar API Documentation
     url: https://api.semanticscholar.org/api-docs/
     source_type: background_method
-    used_by: [ccf-literature-search]
+    used_by: [ccf-literature-searcher]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -515,7 +515,7 @@ sources:
     title: OpenAlex Works API Documentation
     url: https://docs.openalex.org/api-entities/works
     source_type: background_method
-    used_by: [ccf-literature-search]
+    used_by: [ccf-literature-searcher]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -524,7 +524,7 @@ sources:
     title: DBLP Search API FAQ
     url: https://dblp.org/faq/How+to+use+the+dblp+search+API.html
     source_type: background_method
-    used_by: [ccf-literature-search]
+    used_by: [ccf-literature-searcher]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -533,7 +533,7 @@ sources:
     title: Crossref REST API Documentation
     url: https://www.crossref.org/documentation/retrieve-metadata/rest-api/
     source_type: background_method
-    used_by: [ccf-literature-search]
+    used_by: [ccf-literature-searcher]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -551,7 +551,7 @@ sources:
     title: Machine Learning Reproducibility Checklist
     url: https://arxiv.org/abs/2003.12206
     source_type: paper_or_proceeding
-    used_by: [ccf-experiment-designer, ccf-writing-skills]
+    used_by: [ccf-experiment-designer, ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -560,7 +560,7 @@ sources:
     title: ACM Best Paper Awards
     url: https://awards.acm.org/best-paper
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -569,7 +569,7 @@ sources:
     title: SIGCOMM 2024 Program
     url: https://conferences.sigcomm.org/sigcomm/2024/program/
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -578,7 +578,7 @@ sources:
     title: USENIX Security 2024 Technical Sessions
     url: https://www.usenix.org/conference/usenixsecurity24/technical-sessions
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -587,7 +587,7 @@ sources:
     title: SIGACT Best Paper Prize List
     url: https://sigact.org/prizes/best_paper.html
     source_type: paper_or_proceeding
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -596,7 +596,7 @@ sources:
     title: Local Research Paper Writing Skill
     url: local-skill:research-paper-writing
     source_type: local_reference
-    used_by: [ccf-writing-skills]
+    used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -605,7 +605,7 @@ sources:
     title: Local CCFA Architecture SVG Assets
     url: repo:assets/
     source_type: local_reference
-    used_by: [ccf-common, ccf-forge-skills]
+    used_by: [ccf-common, ccf-skill-forger]
     recorded_at: 2026-06-05
     verified_at: 2026-06-05
     stale_after_days: 365

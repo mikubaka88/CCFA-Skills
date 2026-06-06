@@ -1,0 +1,4 @@
+interface:
+  display_name: "CCF Workflow Planner"
+  short_description: "Clarify complex CCF research goals, constraints, success criteria, project stages, and next-skill routing before downstream work."
+  default_prompt: "Use $ccf-workflow-planner for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

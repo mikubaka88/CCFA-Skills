@@ -1,96 +1,93 @@
-schema_version: 1
+schema_version: 2
 generated_at: 2026-06-06
 authority: SKILL.md wins if this registry conflicts with a skill body.
+naming_policy: canonical names use ccf-<object>-<role/action>; ccf-common is the governance exception.
 skills:
-  - name: ccf-brainstorming
-    trigger: "Complex research workflow clarification, task decomposition, and skill-routing planning."
-    exclude: "Do not optimize ideas, search literature, write, review, or rebut as the primary output."
-    handoff: "Most CCFA skills through partial handoff."
-  - name: ccf-idea-optimizer
-    trigger: "Make rough research directions concrete: problem, method, novelty, and evidence plan."
-    exclude: "Do not rank or score ideas as the main job."
-    handoff: "ccf-literature-search, ccf-experiment-designer, ccf-writing-skills."
-  - name: ccf-idea-reviewer
-    trigger: "Strictly score, rank, compare, and triage early research ideas."
-    exclude: "Do not polish manuscripts or optimize a single fuzzy idea unless scoring is explicit."
-    handoff: "ccf-literature-search, ccf-idea-optimizer."
-  - name: ccf-literature-search
-    trigger: "Find prior art, related work, datasets, benchmarks, and citation evidence online."
-    exclude: "Do not write the paper or audit an already fixed bibliography as the main task."
-    handoff: "ccf-idea-optimizer, ccf-idea-reviewer, ccf-experiment-designer, ccf-writing-skills."
-  - name: ccf-experiment-designer
-    trigger: "Design evaluation protocols, baselines, ablations, metrics, and result table templates."
-    exclude: "Do not invent experimental results."
-    handoff: "ccf-literature-search, ccf-writing-skills, ccf-figure-table-builder."
-  - name: ccf-writing-skills
-    trigger: "Plan, draft, revise, polish, and reviewer-proof manuscript text."
-    exclude: "Do not change idea scope without confirmation; do not replace full scientific review or rebuttal."
-    handoff: "ccf-conference-guides, ccf-paper-compressor, ccf-conference-writing-reviewer, ccf-conference-reviewer."
-  - name: ccf-paper-compressor
-    trigger: "Reduce paper, section, abstract, related-work, method, or experiment length."
-    exclude: "Do not change claims, evidence, results, or limitations."
-    handoff: "ccf-writing-skills, ccf-submission-checker."
-  - name: ccf-conference-reviewer
-    trigger: "Full scientific manuscript review, simulated reviewers, AC/meta-review, scoring, and acceptance-risk diagnosis."
-    exclude: "Do not rewrite prose or perform venue-format-only checks."
-    handoff: "ccf-writing-skills, ccf-conference-writing-reviewer, ccf-experiment-designer."
-  - name: ccf-conference-writing-reviewer
-    trigger: "Writing-only review, paragraph logic, consistency, LaTeX/format audit, and presentation risks."
-    exclude: "Do not score scientific acceptance as a full reviewer."
-    handoff: "ccf-writing-skills, ccf-conference-guides, ccf-submission-checker."
-  - name: ccf-conference-paper-rebuttal
-    trigger: "Draft rebuttal, author response, response letter, and revision summary after real reviews."
-    exclude: "Do not trigger for ordinary manuscript writing."
-    handoff: "ccf-revision-ledger, ccf-writing-skills."
-  - name: ccf-conference-guides
-    trigger: "Query conference LaTeX, template, anonymity, page limit, camera-ready, and venue-format requirements."
-    exclude: "Do not write, polish, review, or rebut paper content."
-    handoff: "ccf-writing-skills, ccf-conference-writing-reviewer, ccf-submission-checker."
+  - name: ccf-project-scaffolder
+    trigger: "Creates project folders, copies/selects templates, and initializes ccfa.yaml."
+    exclude: "Does not create research content."
+    handoff: "ccf-pipeline-orchestrator, ccf-paper-writer, ccf-submission-checker"
   - name: ccf-pipeline-orchestrator
-    trigger: "Coordinate project stages, gates, handoffs, and ccfa.yaml state."
-    exclude: "Do not write, review, search, or design experiments itself."
-    handoff: "All stage-owning CCFA skills."
-  - name: ccf-paper-project-scaffold
-    trigger: "Create a paper-project directory, copy templates, and initialize ccfa.yaml."
-    exclude: "Do not generate research content."
-    handoff: "ccf-pipeline-orchestrator, ccf-writing-skills, ccf-submission-checker."
+    trigger: "Coordinates project stages, gates, artifacts, and handoffs."
+    exclude: "Does not do downstream work itself."
+    handoff: "All owning skills"
+  - name: ccf-workflow-planner
+    trigger: "Clarifies goals, constraints, scope, success criteria, and next skill."
+    exclude: "Does not optimize, search, write, review, or rebut."
+    handoff: "Most CCFA skills"
+  - name: ccf-idea-optimizer
+    trigger: "Turns rough directions into problem-gap-insight-method-evidence plans."
+    exclude: "Does not rank ideas as the main task."
+    handoff: "ccf-literature-searcher, ccf-experiment-designer, ccf-paper-writer"
+  - name: ccf-idea-reviewer
+    trigger: "Scores, ranks, compares, and triages early ideas."
+    exclude: "Does not polish manuscripts."
+    handoff: "ccf-literature-searcher, ccf-idea-optimizer"
+  - name: ccf-literature-searcher
+    trigger: "Finds related work, prior art, datasets, benchmarks, and citation evidence."
+    exclude: "Does not audit only fixed citations."
+    handoff: "ccf-idea-optimizer, ccf-experiment-designer, ccf-paper-writer"
+  - name: ccf-experiment-designer
+    trigger: "Designs datasets, baselines, metrics, ablations, robustness tests, and result templates."
+    exclude: "Does not invent results."
+    handoff: "ccf-literature-searcher, ccf-figure-table-builder, ccf-paper-writer"
+  - name: ccf-paper-writer
+    trigger: "Plans, drafts, revises, and polishes manuscript text while preserving evidence scope."
+    exclude: "Does not perform full review or rebuttal."
+    handoff: "ccf-venue-format-guide, ccf-paper-compressor, ccf-writing-reviewer"
+  - name: ccf-paper-compressor
+    trigger: "Shortens paper text to word/page limits without changing claims or results."
+    exclude: "Does not change evidence or limitations."
+    handoff: "ccf-paper-writer, ccf-submission-checker"
+  - name: ccf-scientific-reviewer
+    trigger: "Runs full scientific manuscript review, scoring, simulated reviewers, and AC/meta-review."
+    exclude: "Does not rewrite prose or do format-only checks."
+    handoff: "ccf-paper-writer, ccf-writing-reviewer, ccf-experiment-designer"
+  - name: ccf-writing-reviewer
+    trigger: "Reviews paragraph logic, writing clarity, consistency, LaTeX/format, and presentation risks."
+    exclude: "Does not score scientific acceptance."
+    handoff: "ccf-paper-writer, ccf-venue-format-guide, ccf-submission-checker"
   - name: ccf-integrity-auditor
-    trigger: "Audit claim-support, result-to-claim alignment, numbers, terminology, and evidence consistency."
-    exclude: "Do not perform full scientific acceptance review."
-    handoff: "ccf-writing-skills, ccf-conference-reviewer, ccf-citation-auditor."
+    trigger: "Audits claim-support, result-to-claim, numeric, terminology, and figure/table consistency."
+    exclude: "Does not replace scientific review."
+    handoff: "ccf-paper-writer, ccf-scientific-reviewer, ccf-citation-auditor"
   - name: ccf-citation-auditor
-    trigger: "Verify existing citations, BibTeX metadata, existence, and citation-context support."
-    exclude: "Do not perform broad literature search for new papers."
-    handoff: "ccf-literature-search, ccf-writing-skills."
-  - name: ccf-submission-checker
-    trigger: "Check LaTeX/PDF build, page limit, anonymity, metadata, fonts, templates, and policy freshness."
-    exclude: "Do not polish or rewrite manuscript content."
-    handoff: "ccf-conference-guides, ccf-paper-compressor, ccf-writing-skills."
+    trigger: "Verifies existing citations, BibTeX metadata, paper existence, and citation-context support."
+    exclude: "Does not search broadly for new papers."
+    handoff: "ccf-literature-searcher, ccf-paper-writer"
   - name: ccf-figure-table-builder
-    trigger: "Generate or audit figures, LaTeX tables, SVG/PDF outputs, and QA from real supplied results."
-    exclude: "Do not invent data."
-    handoff: "ccf-experiment-designer, ccf-writing-skills, ccf-integrity-auditor."
-  - name: ccf-artifact-reproducibility
-    trigger: "Prepare artifact checklist, code/data/model release plan, seed/env notes, and reproducibility appendix."
-    exclude: "Do not claim reproducibility without evidence."
-    handoff: "ccf-experiment-designer, ccf-submission-checker, ccf-writing-skills."
-  - name: ccf-revision-ledger
-    trigger: "Maintain reviewer-comment to action to manuscript-location to status tracking."
-    exclude: "Do not replace rebuttal wording."
-    handoff: "ccf-conference-paper-rebuttal, ccf-writing-skills."
+    trigger: "Builds and audits figures, LaTeX tables, captions, SVG/PDF assets from real results."
+    exclude: "Does not invent numbers."
+    handoff: "ccf-experiment-designer, ccf-paper-writer, ccf-integrity-auditor"
+  - name: ccf-artifact-packager
+    trigger: "Prepares artifact and reproducibility package plans, env notes, seeds, licenses, and README."
+    exclude: "Does not promise unavailable releases."
+    handoff: "ccf-experiment-designer, ccf-submission-checker, ccf-paper-writer"
+  - name: ccf-venue-format-guide
+    trigger: "Answers venue LaTeX, template, page-limit, anonymity, and camera-ready format questions."
+    exclude: "Does not handle manuscript content."
+    handoff: "ccf-paper-writer, ccf-writing-reviewer, ccf-submission-checker"
+  - name: ccf-submission-checker
+    trigger: "Checks LaTeX/PDF builds, page limits, anonymity, fonts, metadata, templates, and policy freshness."
+    exclude: "Does not polish content."
+    handoff: "ccf-venue-format-guide, ccf-paper-compressor, ccf-paper-writer"
+  - name: ccf-rebuttal-writer
+    trigger: "Writes rebuttals, author responses, response letters, revision summaries, and revision ledgers."
+    exclude: "Does not trigger for ordinary writing."
+    handoff: "ccf-paper-writer, ccf-experiment-designer, ccf-submission-checker"
   - name: ccf-resubmission-adapter
-    trigger: "Adapt an existing manuscript to a new venue under conservative default constraints."
-    exclude: "Do not add experiments or edit bibliography unless authorized."
-    handoff: "ccf-conference-guides, ccf-writing-skills, ccf-submission-checker."
-  - name: ccf-paper-talk
-    trigger: "Convert a paper into slides, poster, talk script, Q&A, or presentation plan."
-    exclude: "Do not perform pre-submission scientific review."
-    handoff: "ccf-writing-skills."
+    trigger: "Adapts an existing paper to a new venue under conservative no-new-experiment defaults."
+    exclude: "Does not add experiments or bibliography changes unless authorized."
+    handoff: "ccf-venue-format-guide, ccf-paper-writer, ccf-submission-checker"
+  - name: ccf-paper-presenter
+    trigger: "Converts a paper into slides, poster, talk script, figure narration, and Q&A bank."
+    exclude: "Does not perform pre-submission review."
+    handoff: "ccf-paper-writer"
   - name: ccf-common
-    trigger: "Shared routing, handoff, task modes, source registry, privacy/evidence, and artifact governance."
+    trigger: "Shared routing, trigger registry, handoff modes, source registry, privacy policy, and artifact contracts."
     exclude: "Not an ordinary research task skill."
-    handoff: "All CCFA skills."
-  - name: ccf-forge-skills
-    trigger: "Create, update, validate, or audit CCFA/Codex skills and shared controls."
-    exclude: "Do not perform research writing or review work."
-    handoff: "ccf-common."
+    handoff: "All CCFA skills"
+  - name: ccf-skill-forger
+    trigger: "Creates, updates, validates, and audits CCFA/Codex skills and family governance."
+    exclude: "Does not do research writing or review."
+    handoff: "ccf-common"

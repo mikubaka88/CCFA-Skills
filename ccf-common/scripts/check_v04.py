@@ -90,7 +90,7 @@ def check_venue_guides(errors: list[str]) -> None:
     legacy = ROOT / "ccf-conference-skills"
     if legacy.exists() and list(legacy.rglob("SKILL.md")):
         fail(errors, "legacy ccf-conference-skills/**/SKILL.md still exists")
-    guide_root = ROOT / "ccf-writing-skills" / "references" / "venue-guides"
+    guide_root = ROOT / "ccf-paper-writer" / "references" / "venue-guides"
     index = guide_root / "index.md"
     if not index.is_file():
         fail(errors, "missing venue-guides/index.md")
@@ -121,7 +121,7 @@ def check_required_files(errors: list[str]) -> None:
         "CHANGELOG.md",
         "ccf-common/references/artifact-contracts.md",
         "ccf-common/references/ccfa-yaml-contract.md",
-        "ccf-paper-project-scaffold/assets/ccfa.yaml",
+        "ccf-project-scaffolder/assets/ccfa.yaml",
         ".codex-plugin/plugin.json",
         ".claude-plugin/plugin.json",
         ".github/workflows/validate.yml",
@@ -136,7 +136,7 @@ def check_required_files(errors: list[str]) -> None:
                 json.loads(read(path))
             except json.JSONDecodeError as exc:
                 fail(errors, f"{rel}: invalid JSON: {exc}")
-    for key in ("architecture", "workflow", "review-boundaries"):
+    for key in ("architecture", "workflow", "review-boundaries", "catalog", "routing", "artifacts"):
         for suffix in ("", ".zh-CN", ".zh-TW"):
             rel = f"assets/ccfa-skills-{key}{suffix}.svg"
             path = ROOT / rel

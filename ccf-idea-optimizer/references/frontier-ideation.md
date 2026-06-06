@@ -46,7 +46,7 @@ Ask or search:
 If current search is not available, state:
 
 ```text
-Novelty status: unsearched; needs ccf-literature-search before strong novelty claims.
+Novelty status: unsearched; needs ccf-literature-searcher before strong novelty claims.
 ```
 
 ## Coherence Audit

@@ -21,4 +21,4 @@ Use this compact map when a non-writing CCFA skill needs venue-family routing. I
 1. Map the venue to a family before selecting idea, literature-search, experiment-design, writing, compression, review, or explicitly requested rebuttal priorities.
 2. If the target track has a special call, treat that call as stronger than this generic map.
 3. Verify current-year official pages for rules, deadlines, page limits, anonymity, artifacts, ethics, and review forms.
-4. Keep detailed writing priorities in the owning skill. This map only prevents cross-skill dependency on `ccf-writing-skills`.
+4. Keep detailed writing priorities in the owning skill. This map only prevents cross-skill dependency on `ccf-paper-writer`.

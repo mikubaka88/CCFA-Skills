@@ -1,15 +1,89 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520">
-<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#59616b"/></marker></defs>
-<rect width="1200" height="520" fill="#f7f8fa"/>
-<text x="60" y="62" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#1f2933">CCFA Paper Project Workflow</text>
-<rect x="60" y="120" width="300" height="82" rx="8" fill="#1F6F8B"/><text x="210" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">Scaffold</text>
-<line x1="360" y1="161" x2="430" y2="161" stroke="#59616b" stroke-width="3" marker-end="url(#arrow)"/>
-<rect x="430" y="120" width="300" height="82" rx="8" fill="#2D8A68"/><text x="580" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">Idea</text>
-<line x1="730" y1="161" x2="800" y2="161" stroke="#59616b" stroke-width="3" marker-end="url(#arrow)"/>
-<rect x="800" y="120" width="300" height="82" rx="8" fill="#B85C38"/><text x="950" y="168" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">Search</text>
-<rect x="60" y="270" width="300" height="82" rx="8" fill="#6B5B95"/><text x="210" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">Experiment</text>
-<line x1="360" y1="311" x2="430" y2="311" stroke="#59616b" stroke-width="3" marker-end="url(#arrow)"/>
-<rect x="430" y="270" width="300" height="82" rx="8" fill="#3B3F46"/><text x="580" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">Write</text>
-<line x1="730" y1="311" x2="800" y2="311" stroke="#59616b" stroke-width="3" marker-end="url(#arrow)"/>
-<rect x="800" y="270" width="300" height="82" rx="8" fill="#B08D57"/><text x="950" y="318" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#ffffff">Submit</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200">
+<rect width="1800" height="1200" fill="#f6f8fb"/>
+<text x="60" y="70" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#17212b" text-anchor="start">CCFA Paper Workflow</text>
+<text x="60" y="105" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="400" fill="#52606d" text-anchor="start">Main lifecycle and optional assurance/output branches.</text>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#53606d"/></marker></defs>
+<rect x="60" y="170" width="250" height="560" rx="10" fill="#ffffff" stroke="#1F6F8B" stroke-width="2"/>
+<rect x="60" y="170" width="250" height="44" rx="10" fill="#1F6F8B"/>
+<text x="78" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Setup</text>
+<text x="78" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-project-scaffolder</text>
+<text x="78" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Creates project folders, copies/selects</text>
+<text x="78" y="281" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">templates, and initializes ccfa.yaml.</text>
+<text x="78" y="306" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-pipeline-orchestrator</text>
+<text x="78" y="329" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Coordinates project stages, gates,</text>
+<text x="78" y="347" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">artifacts, and handoffs.</text>
+<text x="78" y="372" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-workflow-planner</text>
+<text x="78" y="395" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Clarifies goals, constraints, scope,</text>
+<text x="78" y="413" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">success criteria, and next skill.</text>
+<line x1="310" y1="300" x2="350" y2="300" stroke="#53606d" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="350" y="170" width="250" height="700" rx="10" fill="#ffffff" stroke="#2D8A68" stroke-width="2"/>
+<rect x="350" y="170" width="250" height="44" rx="10" fill="#2D8A68"/>
+<text x="368" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Research</text>
+<text x="368" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-idea-optimizer</text>
+<text x="368" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Turns rough directions into</text>
+<text x="368" y="281" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">problem-gap-insight-method-evidence plans.</text>
+<text x="368" y="306" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-idea-reviewer</text>
+<text x="368" y="329" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Scores, ranks, compares, and triages early</text>
+<text x="368" y="347" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">ideas.</text>
+<text x="368" y="372" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-literature-searcher</text>
+<text x="368" y="395" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Finds related work, prior art, datasets,</text>
+<text x="368" y="413" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">benchmarks, and citation evidence.</text>
+<text x="368" y="438" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-experiment-designer</text>
+<text x="368" y="461" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Designs datasets, baselines, metrics,</text>
+<text x="368" y="479" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">ablations, robustness tests, and result</text>
+<line x1="600" y1="300" x2="640" y2="300" stroke="#53606d" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="640" y="170" width="250" height="560" rx="10" fill="#ffffff" stroke="#B85C38" stroke-width="2"/>
+<rect x="640" y="170" width="250" height="44" rx="10" fill="#B85C38"/>
+<text x="658" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Manuscript</text>
+<text x="658" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-paper-writer</text>
+<text x="658" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Plans, drafts, revises, and polishes</text>
+<text x="658" y="281" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">manuscript text while preserving evidence</text>
+<text x="658" y="306" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-paper-compressor</text>
+<text x="658" y="329" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Shortens paper text to word/page limits</text>
+<text x="658" y="347" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">without changing claims or results.</text>
+<line x1="890" y1="300" x2="930" y2="300" stroke="#53606d" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="930" y="170" width="250" height="700" rx="10" fill="#ffffff" stroke="#6B5B95" stroke-width="2"/>
+<rect x="930" y="170" width="250" height="44" rx="10" fill="#6B5B95"/>
+<text x="948" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Assurance</text>
+<text x="948" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-scientific-reviewer</text>
+<text x="948" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Runs full scientific manuscript review,</text>
+<text x="948" y="281" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">scoring, simulated reviewers, and</text>
+<text x="948" y="306" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-writing-reviewer</text>
+<text x="948" y="329" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Reviews paragraph logic, writing clarity,</text>
+<text x="948" y="347" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">consistency, LaTeX/format, and</text>
+<text x="948" y="372" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-integrity-auditor</text>
+<text x="948" y="395" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Audits claim-support, result-to-claim,</text>
+<text x="948" y="413" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">numeric, terminology, and figure/table</text>
+<text x="948" y="438" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-citation-auditor</text>
+<text x="948" y="461" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Verifies existing citations, BibTeX</text>
+<text x="948" y="479" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">metadata, paper existence, and</text>
+<line x1="1180" y1="300" x2="1220" y2="300" stroke="#53606d" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="1220" y="170" width="250" height="700" rx="10" fill="#ffffff" stroke="#3B3F46" stroke-width="2"/>
+<rect x="1220" y="170" width="250" height="44" rx="10" fill="#3B3F46"/>
+<text x="1238" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">Outputs</text>
+<text x="1238" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-figure-table-builder</text>
+<text x="1238" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Builds and audits figures, LaTeX tables,</text>
+<text x="1238" y="281" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">captions, SVG/PDF assets from real</text>
+<text x="1238" y="306" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-artifact-packager</text>
+<text x="1238" y="329" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Prepares artifact and reproducibility</text>
+<text x="1238" y="347" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">package plans, env notes, seeds, licenses,</text>
+<text x="1238" y="372" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-venue-format-guide</text>
+<text x="1238" y="395" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Answers venue LaTeX, template, page-limit,</text>
+<text x="1238" y="413" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">anonymity, and camera-ready format</text>
+<text x="1238" y="438" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-submission-checker</text>
+<text x="1238" y="461" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Checks LaTeX/PDF builds, page limits,</text>
+<text x="1238" y="479" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">anonymity, fonts, metadata, templates, and</text>
+<line x1="1470" y1="300" x2="1510" y2="300" stroke="#53606d" stroke-width="3" marker-end="url(#arrow)"/>
+<rect x="1510" y="170" width="250" height="560" rx="10" fill="#ffffff" stroke="#8A6F2D" stroke-width="2"/>
+<rect x="1510" y="170" width="250" height="44" rx="10" fill="#8A6F2D"/>
+<text x="1528" y="199" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">After Review</text>
+<text x="1528" y="240" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-rebuttal-writer</text>
+<text x="1528" y="263" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Writes rebuttals, author responses,</text>
+<text x="1528" y="281" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">response letters, revision summaries, and</text>
+<text x="1528" y="306" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-resubmission-adapter</text>
+<text x="1528" y="329" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Adapts an existing paper to a new venue</text>
+<text x="1528" y="347" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">under conservative no-new-experiment</text>
+<text x="1528" y="372" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-paper-presenter</text>
+<text x="1528" y="395" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">Converts a paper into slides, poster, talk</text>
+<text x="1528" y="413" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">script, figure narration, and Q&amp;A bank.</text>
 </svg>

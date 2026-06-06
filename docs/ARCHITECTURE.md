@@ -1,29 +1,56 @@
-# CCFA v0.4 Architecture
+# CCFA Architecture
 
-CCFA is now a paper-project workflow family rather than a loose writing-skill set. The architecture has four layers:
+CCFA is a CCF paper-project workflow family. Its job is not to make one large all-purpose skill, but to keep each research stage explicit enough that another agent can route, audit, and hand off without ambiguity.
 
-1. Governance: `ccf-common`, `ccf-forge-skills`, trigger registry, artifact contracts, and validation scripts.
-2. Project state: `ccf-paper-project-scaffold`, `ccf-pipeline-orchestrator`, and `ccfa.yaml`.
-3. Research pipeline: idea, literature, experiments, writing, compression, review, rebuttal, resubmission, and talk skills.
-4. Venue branch: `ccf-conference-guides` plus `109` migrated venue guides under `ccf-writing-skills/references/venue-guides/`.
+## Layers
+
+| Layer | Skills |
+| --- | --- |
+| Project | `ccf-project-scaffolder`, `ccf-pipeline-orchestrator` |
+| Planning | `ccf-workflow-planner` |
+| Ideation | `ccf-idea-optimizer`, `ccf-idea-reviewer` |
+| Evidence | `ccf-literature-searcher`, `ccf-experiment-designer` |
+| Manuscript | `ccf-paper-writer`, `ccf-paper-compressor` |
+| Review | `ccf-scientific-reviewer`, `ccf-writing-reviewer` |
+| Audit | `ccf-integrity-auditor`, `ccf-citation-auditor` |
+| Output | `ccf-figure-table-builder`, `ccf-artifact-packager` |
+| Submission | `ccf-venue-format-guide`, `ccf-submission-checker` |
+| Post-review | `ccf-rebuttal-writer`, `ccf-resubmission-adapter`, `ccf-paper-presenter` |
+| Governance | `ccf-common`, `ccf-skill-forger` |
+
+## Relationship Model
+
+The family has three linked tracks:
+
+1. Project track: `ccf-project-scaffolder` creates the workspace, and `ccf-pipeline-orchestrator` maintains stage/gate state in `ccfa.yaml`.
+2. Research track: planning -> idea -> literature -> experiments -> writing -> compression -> review.
+3. Assurance and output track: integrity/citation audits, figures/tables, artifacts, venue format, submission checks, rebuttal, resubmission, and presentation.
 
 ## Design References
 
-v0.4 uses ARS, nature-skills, and ARIS as workflow references, not as authoritative venue or review sources. The adopted lessons are:
+ARS, nature-skills, and ARIS are workflow references, not authoritative venue or review sources. CCFA adopts their useful decomposition and automation ideas, but keeps stricter boundaries:
 
-- ARS-style research workflow decomposition is useful, but CCFA keeps stronger routing boundaries and a public trigger catalog.
-- nature-skills-style high-standard writing guidance is useful, but CCFA separates writing, writing review, full scientific review, and submission checks.
-- ARIS-style automation/orchestration is useful, but CCFA keeps generated content, project state, and evidence claims auditable through `ccfa.yaml` and artifact contracts.
+- Discovery and verification are separate: `ccf-literature-searcher` finds new work, while `ccf-citation-auditor` verifies existing citations.
+- Review types are separate: `ccf-scientific-reviewer`, `ccf-writing-reviewer`, and `ccf-integrity-auditor` answer different questions.
+- Venue rules are separate from content: `ccf-venue-format-guide` handles format requirements, while `ccf-paper-writer` handles manuscript text.
+- Post-review tracking is merged: `ccf-rebuttal-writer` owns both response wording and revision ledger tracking.
 
-The result should avoid three common conflicts: citation audit versus literature search, integrity audit versus scientific review, and venue-format lookup versus manuscript writing.
+## Naming Migration
 
-## Conflict Policy
-
-- Route by the user's current primary intent.
-- Keep venue-format lookup separate from paper-content writing.
-- Use `ccf-citation-auditor` for already-cited-paper verification and `ccf-literature-search` for discovering new papers.
-- Use `ccf-integrity-auditor` for evidence/number/claim consistency and `ccf-conference-reviewer` for full scientific review.
-- Use `ccf-submission-checker` for package compliance and `ccf-conference-writing-reviewer` for manuscript-facing format/writing review.
+| Old name | Current name | Reason |
+| --- | --- | --- |
+| `ccf-brainstorming` | `ccf-workflow-planner` | Clearer role name; avoids overlap with generic brainstorming. |
+| `ccf-literature-search` | `ccf-literature-searcher` | Aligns with role/action naming. |
+| `ccf-writing-skills` | `ccf-paper-writer` | Replaces plural family-style name with a single owning role. |
+| `ccf-conference-reviewer` | `ccf-scientific-reviewer` | Names the review type, not the venue layer. |
+| `ccf-conference-writing-reviewer` | `ccf-writing-reviewer` | Keeps writing review distinct from scientific review. |
+| `ccf-conference-paper-rebuttal` | `ccf-rebuttal-writer` | Names the output responsibility. |
+| `ccf-conference-guides` | `ccf-venue-format-guide` | Clarifies it handles venue format only. |
+| `ccf-paper-project-scaffold` | `ccf-project-scaffolder` | Aligns with role/action naming. |
+| `ccf-artifact-reproducibility` | `ccf-artifact-packager` | Clarifies owned artifact output. |
+| `ccf-revision-ledger` | `merged into ccf-rebuttal-writer` | Ledger tracking is part of post-review response accountability. |
+| `ccf-paper-talk` | `ccf-paper-presenter` | Clarifies presentation ownership. |
+| `ccf-forge-skills` | `ccf-skill-forger` | Avoids plural skill-family wording. |
 
 ## Source Of Truth
 

@@ -1,4 +1,0 @@
-interface:
-  display_name: "CCF Literature Search"
-  short_description: "Search and score high-quality literature for CCFA workflows."
-  default_prompt: "Use $ccf-literature-search to 联网检索文献, search high-quality related work, exclude MDPI, score paper quality, classify paper type, find datasets/benchmarks, and write a literature-search folder with titles, links, scores, paper types, and notes."

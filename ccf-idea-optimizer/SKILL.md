@@ -1,6 +1,6 @@
 ---
 name: ccf-idea-optimizer
-description: "Optimize and concretize early research idea drafts into CCF A-class conference problem, method, innovation, and evidence plans. Use when the user asks to improve, reshape, develop, broaden, or make concrete fuzzy ideas, vague directions, problem statements, methods, novelty claims, contribution framing, or acceptance-oriented experiment plans for NeurIPS, ICML, ICLR, AAAI, ACL, CVPR, ICCV, SIGMOD, KDD, SIGCOMM, CCS, CHI, or similar CCF-A venues; 中文触发: 优化idea, 具象化idea, 模糊idea, 选题优化, 前沿idea, 优雅方法, 研究思路. Do not use for scoring, ranking, selecting, or strict comparative review of multiple ideas; route those to ccf-idea-reviewer."
+description: "Turn rough CCF research directions into concrete problem, gap, insight, method, novelty, and evidence plans. Use for idea optimization, ???idea, ????, research direction shaping. Do not rank or score multiple ideas as the main output."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -41,7 +41,7 @@ In standard mode, complete this checklist before final output. In quick mode, ru
 7. The experiment plan tests the central claim and includes baselines, ablations, robustness, and failure analysis as needed by the venue.
 8. Reviewer risks are labeled as writing-fixable, design-fixable, evidence-fixable, requires-new-result, venue-mismatch, or likely-pivot.
 9. Diverse variants are checked for internal contradictions, mutually incompatible assumptions, and theme drift.
-10. Any optional module transition to `ccf-literature-search`, `ccf-idea-reviewer`, `ccf-experiment-designer`, or `ccf-writing-skills` follows the CCFA handoff mode; if denied or disabled, output a local risk scan or next-step note only.
+10. Any optional module transition to `ccf-literature-searcher`, `ccf-idea-reviewer`, `ccf-experiment-designer`, or `ccf-paper-writer` follows the CCFA handoff mode; if denied or disabled, output a local risk scan or next-step note only.
 
 Load `references/idea-intake.md` when inputs are incomplete or several idea drafts must be normalized.
 
@@ -49,14 +49,14 @@ Load `references/idea-intake.md` when inputs are incomplete or several idea draf
 
 1. Identify the target venue, track, field, idea maturity, user's decision goal, constraints, and available evidence. If no venue is named, assume a generic CCF-A target and label the assumption.
 2. Map the target to a CCF-A family. Use `../ccf-common/references/ccf-a-venue-map.md` for shared venue-family routing; then load `references/venue-idea-adapters.md` for idea-stage priorities.
-3. Ground novelty and timeliness. If the user asks for current prior art, latest trends, frontiers, non-stale ideas, or venue-specific policy, follow CCFA handoff mode before using `ccf-literature-search`; if searching directly, browse primary sources: official venue pages, papers, proceedings, arXiv pages, project pages, and credible scholar sources. Mark unsearched novelty as uncertain.
+3. Ground novelty and timeliness. If the user asks for current prior art, latest trends, frontiers, non-stale ideas, or venue-specific policy, follow CCFA handoff mode before using `ccf-literature-searcher`; if searching directly, browse primary sources: official venue pages, papers, proceedings, arXiv pages, project pages, and credible scholar sources. Mark unsearched novelty as uncertain.
 4. Normalize the raw idea. Load `references/idea-intake.md` and produce an idea card with task, audience, gap, root challenge, insight, method, expected evidence, and constraints.
 5. For fuzzy or underdetermined ideas, load `references/frontier-ideation.md` and produce 3-5 candidate concretizations with high diversity across problem angle, mechanism, evidence type, and venue fit. Randomness is allowed in exploration, but final candidates must be coherent and non-conflicting.
 6. Sharpen the problem and method. Load `references/problem-method-blueprint.md`; convert vague motivation into a decision-relevant problem and convert method names into mechanisms, assumptions, failure modes, and alternatives.
 7. Shape the innovation. Decide the strongest honest contribution type and remove unsupported or diluted claims.
 8. Design the minimum convincing evidence package. Load `references/experiment-design.md`; specify datasets, baselines, ablations, metrics, stress tests, efficiency, user study, proof, or systems evaluation as required by the venue family. Follow CCFA handoff mode before using `ccf-experiment-designer` for a full experiment plan.
 9. Run an internal acceptability pass. Follow the CCFA handoff mode before using `ccf-idea-reviewer` as an optional scoring module; if it is denied or disabled, perform a compact multi-expert risk scan focused only on problem and method.
-10. Produce an optimized idea plan, ranked pivots, and a writing-readiness note. Follow the CCFA handoff mode before offering the viable plan to `ccf-writing-skills`; if writing is denied or not confirmed, stop at the idea plan.
+10. Produce an optimized idea plan, ranked pivots, and a writing-readiness note. Follow the CCFA handoff mode before offering the viable plan to `ccf-paper-writer`; if writing is denied or not confirmed, stop at the idea plan.
 
 ## Output Contracts
 
@@ -103,4 +103,4 @@ Load only what is needed:
 - `references/research-taste.md`: Use when the user asks what makes research good, elegant, timely, or likely to survive top-conference review.
 - `references/source-notes.md`: Use when provenance, source basis, or current-policy checks matter.
 
-If the user's request is only to score an idea without optimizing it, follow the CCFA handoff mode before switching to `ccf-idea-reviewer` unless the user explicitly named it. If the user's request is mainly to search related literature, route to `ccf-literature-search`. If the user already has a manuscript draft, follow the CCFA handoff mode before switching to `ccf-writing-skills`, `ccf-conference-reviewer`, or `ccf-conference-writing-reviewer`; if not confirmed, provide only a brief scope note.
+If the user's request is only to score an idea without optimizing it, follow the CCFA handoff mode before switching to `ccf-idea-reviewer` unless the user explicitly named it. If the user's request is mainly to search related literature, route to `ccf-literature-searcher`. If the user already has a manuscript draft, follow the CCFA handoff mode before switching to `ccf-paper-writer`, `ccf-scientific-reviewer`, or `ccf-writing-reviewer`; if not confirmed, provide only a brief scope note.

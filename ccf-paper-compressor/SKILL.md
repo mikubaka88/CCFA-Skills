@@ -1,6 +1,6 @@
 ---
 name: ccf-paper-compressor
-description: "Compress CCF-A paper drafts, sections, abstracts, introductions, related work, methods, experiments, rebuttal-independent manuscripts, and camera-ready text by story importance and venue style. Use for shortening, page-limit reduction, word-limit reduction, appendix/delete decisions, concise rewriting, 篇幅压缩, 缩短论文, 减页, 精简引言, 压缩related work, 压缩方法, camera-ready压缩."
+description: "Compress CCF paper drafts, sections, abstracts, related work, methods, experiments, and camera-ready text to fit word or page limits while preserving claims and evidence. Use for ????, ??, shorten paper. Do not change results, claims, or limitations."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -37,7 +37,7 @@ In standard mode, complete this checklist before final output. In quick mode, ru
 5. Appendix/delete candidates are separated from mandatory main-text content.
 6. One user decision is requested for appendix-vs-delete when that choice affects content ownership or paper strategy.
 7. The compressed version keeps terminology stable and does not create unsupported stronger claims.
-8. Any optional handoff to `ccf-writing-skills`, `ccf-conference-reviewer`, `ccf-conference-writing-reviewer`, or `ccf-experiment-designer` follows CCFA handoff mode.
+8. Any optional handoff to `ccf-paper-writer`, `ccf-scientific-reviewer`, `ccf-writing-reviewer`, or `ccf-experiment-designer` follows CCFA handoff mode.
 
 ## Workflow
 
@@ -45,7 +45,7 @@ In standard mode, complete this checklist before final output. In quick mode, ru
    - Quick: one paragraph/subsection, local shortening, no full checklist.
    - Standard: full section or manuscript-level compression with a content decision table.
 2. Identify constraints: target venue, page/word limit, target percentage reduction, must-keep items, appendix allowed, citation policy, and whether technical details can be moved.
-3. Load `references/compression-rules.md` and, if needed, `../ccf-writing-skills/references/storyline-blueprint.md` to preserve the paper story.
+3. Load `references/compression-rules.md` and, if needed, `../ccf-paper-writer/references/storyline-blueprint.md` to preserve the paper story.
 4. Build a content inventory:
 
 ```text
@@ -59,7 +59,7 @@ Risk if removed:
 5. Ask once before moving material to appendix or deleting nontrivial content when the user's preference is unknown. Recommended default: move reproducibility detail, extra derivations, extended tables, and secondary analyses to appendix; delete repeated motivation, generic claims, and unsupported filler.
 6. Rewrite at the requested granularity. Preserve facts and numbers exactly. If a claim becomes unsupported after compression, either keep the support, weaken the claim, or flag the risk.
 7. Produce a before/after compression report with word or page estimates when possible.
-8. If compression reveals a structural writing issue, follow CCFA handoff mode before using `ccf-writing-skills` or `ccf-conference-writing-reviewer`. If it reveals missing evidence or experiment overload, follow CCFA handoff mode before using `ccf-experiment-designer` or `ccf-conference-reviewer`.
+8. If compression reveals a structural writing issue, follow CCFA handoff mode before using `ccf-paper-writer` or `ccf-writing-reviewer`. If it reveals missing evidence or experiment overload, follow CCFA handoff mode before using `ccf-experiment-designer` or `ccf-scientific-reviewer`.
 
 ## Output Contracts
 

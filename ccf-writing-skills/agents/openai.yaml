@@ -1,4 +1,0 @@
-interface:
-  display_name: "CCF Writing Skills"
-  short_description: "Write, checklist-audit, score-lift, and reviewer-proof CCF A papers."
-  default_prompt: "Use $ccf-writing-skills to plan, draft, polish, 润色引言, checklist-audit, score-risk-audit, and reviewer-proof my CCF A paper. Use quick mode for one-paragraph polish and standard mode for full sections. Default to writing-only mode; do not change idea scope, method, experiments, results, or conclusions unless I explicitly confirm. Use literature, experiment, compression, review, or rebuttal modules only through CCFA handoff rules; never invent evidence or reviewer impact."

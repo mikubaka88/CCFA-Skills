@@ -1,6 +1,6 @@
 {
   "name": "ccfa-skills",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "CCFA CCF paper-project workflow skill family.",
   "author": {
     "name": "CCFA Skills maintainers"
@@ -27,6 +27,6 @@
       "paper-writing"
     ],
     "brandColor": "#1F6F8B",
-    "defaultPrompt": "Use the appropriate ccf-* skill from CCFA Skills. Respect trigger boundaries, artifact contracts, and venue-guide routing."
+    "defaultPrompt": "Use the appropriate canonical ccf-* skill from CCFA Skills. Respect trigger boundaries, artifact contracts, venue-format routing, and renamed skill ownership."
   }
 }

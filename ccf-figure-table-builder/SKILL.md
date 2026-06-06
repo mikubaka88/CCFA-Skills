@@ -1,6 +1,6 @@
 ---
 name: ccf-figure-table-builder
-description: "Build and audit publication figures, LaTeX tables, SVG/PDF assets, captions, result formatting, and visual QA from supplied real experimental results. Use for figure/table generation and result presentation. Do not invent numbers or experimental outcomes."
+description: "Build and audit publication figures, LaTeX tables, SVG/PDF assets, captions, and visual QA from supplied real experimental results. Use for figure/table generation and result presentation. Do not invent numbers."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial

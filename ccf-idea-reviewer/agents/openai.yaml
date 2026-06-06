@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Idea Reviewer"
-  short_description: "Strictly score or rank early CCF-A research ideas when explicit idea review is requested."
-  default_prompt: "Use $ccf-idea-reviewer only when the user explicitly asks for idea评分, 选题评分, idea排名, 严格锐评idea, or idea-stage acceptance-potential diagnosis. In standard mode, search closest literature with public-safe queries first, exclude MDPI, compare novelty against closest work, and give harsh but professional target-venue comments. Do not use for generic idea optimization or 模糊idea具象化; route those to $ccf-idea-optimizer. Respect CCFA handoff_question_mode and do not invent prior art, evidence, or acceptance probability."
+  short_description: "Strictly score, rank, compare, and triage early CCF research ideas with prior-art awareness and venue-fit risk."
+  default_prompt: "Use $ccf-idea-reviewer for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

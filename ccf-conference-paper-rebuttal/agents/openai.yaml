@@ -1,4 +1,0 @@
-interface:
-  display_name: "CCF Conference Paper Rebuttal"
-  short_description: "Write TeX rebuttals and author responses for CCF-A conference reviews."
-  default_prompt: "Use $ccf-conference-paper-rebuttal only when I explicitly ask for rebuttal, 审稿意见回复, author response, response letter, AC/meta-review response, or revision summary. Follow CCFA handoff_question_mode for writing, literature, experiment, or reviewer skills; respect disabled skills and do not invent results, paper changes, reviewer concessions, or review-risk effects."

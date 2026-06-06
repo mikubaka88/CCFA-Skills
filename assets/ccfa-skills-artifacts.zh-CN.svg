@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1180" viewBox="0 0 1800 1180">
+<rect width="1800" height="1180" fill="#f6f8fb"/>
+<text x="60" y="70" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#17212b" text-anchor="start">Artifact 归属</text>
+<text x="60" y="105" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="400" fill="#52606d" text-anchor="start">各 skill 如何读写论文项目 artifact。</text>
+<circle cx="900" cy="170" r="82" fill="#1F6F8B"/><text x="900" y="165" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" fill="#ffffff" text-anchor="middle">ccfa.yaml</text><text x="900" y="195" font-family="Inter, Arial, sans-serif" font-size="15" font-weight="500" fill="#ffffff" text-anchor="middle">project state</text>
+<rect x="70" y="310" width="330" height="220" rx="10" fill="#ffffff" stroke="#1F6F8B" stroke-width="2"/>
+<rect x="70" y="310" width="330" height="44" rx="10" fill="#1F6F8B"/>
+<text x="88" y="339" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">ccfa.yaml</text>
+<text x="88" y="380" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-project-scaffolder</text>
+<text x="88" y="410" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-pipeline-orchestrator</text>
+<rect x="460" y="310" width="330" height="220" rx="10" fill="#ffffff" stroke="#2D8A68" stroke-width="2"/>
+<rect x="460" y="310" width="330" height="44" rx="10" fill="#2D8A68"/>
+<text x="478" y="339" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">manuscript/*.tex</text>
+<text x="478" y="380" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-paper-writer</text>
+<text x="478" y="410" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-paper-compressor</text>
+<text x="478" y="440" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-writing-reviewer</text>
+<rect x="850" y="310" width="330" height="220" rx="10" fill="#ffffff" stroke="#B85C38" stroke-width="2"/>
+<rect x="850" y="310" width="330" height="44" rx="10" fill="#B85C38"/>
+<text x="868" y="339" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">references/*.bib</text>
+<text x="868" y="380" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-citation-auditor</text>
+<text x="868" y="410" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-literature-searcher</text>
+<rect x="1240" y="310" width="330" height="220" rx="10" fill="#ffffff" stroke="#6B5B95" stroke-width="2"/>
+<rect x="1240" y="310" width="330" height="44" rx="10" fill="#6B5B95"/>
+<text x="1258" y="339" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">experiments/results</text>
+<text x="1258" y="380" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-experiment-designer</text>
+<text x="1258" y="410" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-figure-table-builder</text>
+<text x="1258" y="440" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-integrity-auditor</text>
+<rect x="70" y="610" width="330" height="220" rx="10" fill="#ffffff" stroke="#3B3F46" stroke-width="2"/>
+<rect x="70" y="610" width="330" height="44" rx="10" fill="#3B3F46"/>
+<text x="88" y="639" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">submission/</text>
+<text x="88" y="680" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-venue-format-guide</text>
+<text x="88" y="710" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-submission-checker</text>
+<rect x="460" y="610" width="330" height="220" rx="10" fill="#ffffff" stroke="#8A6F2D" stroke-width="2"/>
+<rect x="460" y="610" width="330" height="44" rx="10" fill="#8A6F2D"/>
+<text x="478" y="639" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">reviews/</text>
+<text x="478" y="680" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-scientific-reviewer</text>
+<text x="478" y="710" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-rebuttal-writer</text>
+<text x="478" y="740" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-resubmission-adapter</text>
+<rect x="850" y="610" width="330" height="220" rx="10" fill="#ffffff" stroke="#7A4F7A" stroke-width="2"/>
+<rect x="850" y="610" width="330" height="44" rx="10" fill="#7A4F7A"/>
+<text x="868" y="639" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">artifact/</text>
+<text x="868" y="680" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-artifact-packager</text>
+<rect x="1240" y="610" width="330" height="220" rx="10" fill="#ffffff" stroke="#2F7D7E" stroke-width="2"/>
+<rect x="1240" y="610" width="330" height="44" rx="10" fill="#2F7D7E"/>
+<text x="1258" y="639" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">talk/</text>
+<text x="1258" y="680" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-paper-presenter</text>
+<rect x="460" y="900" width="330" height="220" rx="10" fill="#ffffff" stroke="#B04A5A" stroke-width="2"/>
+<rect x="460" y="900" width="330" height="44" rx="10" fill="#B04A5A"/>
+<text x="478" y="929" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">governance</text>
+<text x="478" y="970" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-common</text>
+<text x="478" y="1000" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-skill-forger</text>
+</svg>

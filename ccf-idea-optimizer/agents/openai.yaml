@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Idea Optimizer"
-  short_description: "Optimize early CCF-A research ideas."
-  default_prompt: "Use $ccf-idea-optimizer to optimize, 具象化, and broaden my early or fuzzy research idea for a CCF-A conference. Prefer timely, elegant, coherent directions; mark novelty as unsearched until literature-grounded. Follow CCFA handoff_question_mode for literature search, idea review, experiment design, or writing; never invent literature, results, experiments, or reviewer impact."
+  short_description: "Turn rough CCF research directions into concrete problem, gap, insight, method, novelty, and evidence plans."
+  default_prompt: "Use $ccf-idea-optimizer for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

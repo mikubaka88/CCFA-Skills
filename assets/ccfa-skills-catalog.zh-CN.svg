@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200">
+<rect width="1800" height="1200" fill="#f6f8fb"/>
+<text x="60" y="70" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#17212b" text-anchor="start">Skill 总览</text>
+<text x="60" y="105" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="400" fill="#52606d" text-anchor="start">统一命名后的所有 canonical skills。</text>
+<rect x="60" y="150" width="370" height="250" rx="10" fill="#ffffff" stroke="#1F6F8B" stroke-width="2"/>
+<rect x="60" y="150" width="370" height="44" rx="10" fill="#1F6F8B"/>
+<text x="78" y="179" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">项目</text>
+<text x="78" y="220" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-project-scaffolder</text>
+<text x="78" y="243" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">脚手架：建目录、选模板、初始化 ccfa.yaml。</text>
+<text x="78" y="268" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-pipeline-orchestrator</text>
+<text x="78" y="291" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">编排阶段、gate、artifact 与 handoff。</text>
+<rect x="485" y="150" width="370" height="250" rx="10" fill="#ffffff" stroke="#2D8A68" stroke-width="2"/>
+<rect x="485" y="150" width="370" height="44" rx="10" fill="#2D8A68"/>
+<text x="503" y="179" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">规划</text>
+<text x="503" y="220" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-workflow-planner</text>
+<text x="503" y="243" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">澄清目标、范围、成功标准与下一步 skill。</text>
+<rect x="910" y="150" width="370" height="250" rx="10" fill="#ffffff" stroke="#B85C38" stroke-width="2"/>
+<rect x="910" y="150" width="370" height="44" rx="10" fill="#B85C38"/>
+<text x="928" y="179" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">选题</text>
+<text x="928" y="220" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-idea-optimizer</text>
+<text x="928" y="243" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">把粗 idea 具象化成问题、gap、insight、方法和证据计划。</text>
+<text x="928" y="268" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-idea-reviewer</text>
+<text x="928" y="291" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">严格评分、排序、比较早期 idea。</text>
+<rect x="1335" y="150" width="370" height="250" rx="10" fill="#ffffff" stroke="#6B5B95" stroke-width="2"/>
+<rect x="1335" y="150" width="370" height="44" rx="10" fill="#6B5B95"/>
+<text x="1353" y="179" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">证据</text>
+<text x="1353" y="220" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-literature-searcher</text>
+<text x="1353" y="243" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">检索相关工作、prior art、数据集和 benchmark。</text>
+<text x="1353" y="268" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-experiment-designer</text>
+<text x="1353" y="291" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">设计数据集、baseline、指标、消融、鲁棒性和结果表模板。</text>
+<rect x="60" y="470" width="370" height="250" rx="10" fill="#ffffff" stroke="#3B3F46" stroke-width="2"/>
+<rect x="60" y="470" width="370" height="44" rx="10" fill="#3B3F46"/>
+<text x="78" y="499" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">写作</text>
+<text x="78" y="540" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-paper-writer</text>
+<text x="78" y="563" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">写作、润色、重组论文正文，并保护既有 idea 和证据边界。</text>
+<text x="78" y="588" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-paper-compressor</text>
+<text x="78" y="611" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">在不改 claims/results 的前提下压缩篇幅。</text>
+<rect x="485" y="470" width="370" height="250" rx="10" fill="#ffffff" stroke="#8A6F2D" stroke-width="2"/>
+<rect x="485" y="470" width="370" height="44" rx="10" fill="#8A6F2D"/>
+<text x="503" y="499" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">评审</text>
+<text x="503" y="540" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-scientific-reviewer</text>
+<text x="503" y="563" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">做完整科学审稿、评分、模拟 reviewer 和 AC/meta-review。</text>
+<text x="503" y="588" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-writing-reviewer</text>
+<text x="503" y="611" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">评审段落逻辑、表达清晰度、一致性、LaTeX/格式和展示风险。</text>
+<rect x="910" y="470" width="370" height="250" rx="10" fill="#ffffff" stroke="#7A4F7A" stroke-width="2"/>
+<rect x="910" y="470" width="370" height="44" rx="10" fill="#7A4F7A"/>
+<text x="928" y="499" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">审计</text>
+<text x="928" y="540" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-integrity-auditor</text>
+<text x="928" y="563" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">审计 claim-support、结果到 claim、数字、术语和图表一致性。</text>
+<text x="928" y="588" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-citation-auditor</text>
+<text x="928" y="611" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">核验已有引用、BibTeX 元数据、文献存在性和引用上下文支撑。</text>
+<rect x="1335" y="470" width="370" height="250" rx="10" fill="#ffffff" stroke="#2F7D7E" stroke-width="2"/>
+<rect x="1335" y="470" width="370" height="44" rx="10" fill="#2F7D7E"/>
+<text x="1353" y="499" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">输出</text>
+<text x="1353" y="540" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-figure-table-builder</text>
+<text x="1353" y="563" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">基于真实结果构建和审计图、表、caption、SVG/PDF。</text>
+<text x="1353" y="588" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-artifact-packager</text>
+<text x="1353" y="611" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">准备 artifact/reproducibility</text>
+<text x="1353" y="629" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">包、环境、seed、license 和 README。</text>
+<rect x="60" y="790" width="370" height="250" rx="10" fill="#ffffff" stroke="#B04A5A" stroke-width="2"/>
+<rect x="60" y="790" width="370" height="44" rx="10" fill="#B04A5A"/>
+<text x="78" y="819" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">投稿</text>
+<text x="78" y="860" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-venue-format-guide</text>
+<text x="78" y="883" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">回答会议 LaTeX、template、页数、匿名和 camera-ready</text>
+<text x="78" y="901" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">格式问题。</text>
+<text x="78" y="926" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-submission-checker</text>
+<text x="78" y="949" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">检查 LaTeX/PDF、页数、匿名、字体、metadata、template 和</text>
+<text x="78" y="967" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">policy freshness。</text>
+<rect x="485" y="790" width="370" height="250" rx="10" fill="#ffffff" stroke="#4B6C8B" stroke-width="2"/>
+<rect x="485" y="790" width="370" height="44" rx="10" fill="#4B6C8B"/>
+<text x="503" y="819" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">审后</text>
+<text x="503" y="860" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-rebuttal-writer</text>
+<text x="503" y="883" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">写 rebuttal、作者回复、response letter、修改说明和</text>
+<text x="503" y="901" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">revision ledger。</text>
+<text x="503" y="926" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-resubmission-adapter</text>
+<text x="503" y="949" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">把已有论文保守迁移到新 venue，默认不新增实验、不改 bib。</text>
+<text x="503" y="974" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-paper-presenter</text>
+<text x="503" y="997" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">把论文转成 slides、poster、talk script、图表讲解和 Q&amp;A。</text>
+<rect x="910" y="790" width="370" height="250" rx="10" fill="#ffffff" stroke="#59616B" stroke-width="2"/>
+<rect x="910" y="790" width="370" height="44" rx="10" fill="#59616B"/>
+<text x="928" y="819" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="start">治理</text>
+<text x="928" y="860" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-common</text>
+<text x="928" y="883" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">共享路由、触发注册、handoff、source registry、隐私策略和</text>
+<text x="928" y="901" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">artifact 合约。</text>
+<text x="928" y="926" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700" fill="#17212b" text-anchor="start">ccf-skill-forger</text>
+<text x="928" y="949" font-family="Inter, Arial, sans-serif" font-size="13" font-weight="400" fill="#4e5b68" text-anchor="start">创建、更新、校验和审计 CCFA/Codex skills 及家族治理。</text>
+</svg>

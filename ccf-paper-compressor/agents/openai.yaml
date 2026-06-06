@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Paper Compressor"
-  short_description: "Compress CCF-A papers by story."
-  default_prompt: "Use $ccf-paper-compressor to compress a CCF-A paper section or manuscript to a target length. Preserve claims, evidence, results, and story; ask once before moving material to appendix or deleting it unless I already specified the policy."
+  short_description: "Compress CCF paper drafts, sections, abstracts, related work, methods, experiments, and camera-ready text to fit word or page limits while preserving claims and evidence."
+  default_prompt: "Use $ccf-paper-compressor for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."

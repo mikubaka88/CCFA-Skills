@@ -1,6 +1,6 @@
 ---
 name: ccf-resubmission-adapter
-description: "Adapt an already written paper to a new CCF venue, including format mapping, story reframing, reviewer-priority shifts, page-budget planning, and conservative change tracking. Default mode is no-new-experiment and no-bib-edit unless the user explicitly authorizes those changes."
+description: "Adapt an already written CCF paper to a new venue with conservative format, story, page-budget, and reviewer-priority changes. Default to no-new-experiment and no-bib-edit unless authorized."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -45,7 +45,7 @@ Venue adaptation plan, safe text/structure edits, page-budget risks, forbidden c
 
 ## Handoff
 
-Use `ccf-conference-guides`, `ccf-writing-skills`, `ccf-paper-compressor`, and `ccf-submission-checker` as needed.
+Use `ccf-venue-format-guide`, `ccf-paper-writer`, `ccf-paper-compressor`, and `ccf-submission-checker` as needed.
 
 ## Forbidden
 

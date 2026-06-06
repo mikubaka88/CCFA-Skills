@@ -1,6 +1,6 @@
 ---
 name: ccf-submission-checker
-description: "Check CCF conference submission packages for LaTeX compilation, PDF metadata, page limit, anonymity, fonts, template compliance, supplementary files, camera-ready requirements, and official venue policy freshness. Use for submission readiness and format gates. Do not polish or rewrite manuscript content."
+description: "Check CCF conference submission packages for LaTeX compilation, PDF metadata, page limits, anonymity, fonts, template compliance, supplementary files, and policy freshness. Use for submission readiness. Do not polish manuscript content."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -45,7 +45,7 @@ Pass/fail checklist, commands run, page/anonymity/font/template issues, official
 
 ## Handoff
 
-Use `ccf-conference-guides` for requirement lookup, `ccf-paper-compressor` for page overflow, and `ccf-writing-skills` only for content edits.
+Use `ccf-venue-format-guide` for requirement lookup, `ccf-paper-compressor` for page overflow, and `ccf-paper-writer` only for content edits.
 
 ## Forbidden
 

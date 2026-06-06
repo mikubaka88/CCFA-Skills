@@ -1,4 +1,0 @@
-interface:
-  display_name: "CCF Brainstorming"
-  short_description: "Clarify CCFA research goals, constraints, workflow options, and next-skill routing before complex work."
-  default_prompt: "Use $ccf-brainstorming to do 头脑风暴, 需求澄清, 任务拆解, 方案共识, research brief, or design brief for a complex CCF-A research workflow. Keep it as an on-demand upstream planning skill, not a global hard gate. Compare 2-3 routes when useful, recommend the next CCFA skill, respect handoff_question_mode, and do not perform downstream idea optimization, literature search, experiment design, writing, compression, review, or rebuttal unless routed or explicitly requested."

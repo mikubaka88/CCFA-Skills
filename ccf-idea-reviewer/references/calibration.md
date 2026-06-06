@@ -53,7 +53,7 @@ Fix class:
 Can fix before writing? yes / partly / no
 Required evidence or design change:
 Risk-reduction condition:
-Owner skill: ccf-literature-search / ccf-idea-optimizer / ccf-experiment-designer / ccf-writing-skills / ccf-conference-reviewer / ccf-conference-writing-reviewer
+Owner skill: ccf-literature-searcher / ccf-idea-optimizer / ccf-experiment-designer / ccf-paper-writer / ccf-scientific-reviewer / ccf-writing-reviewer
 ```
 
 ## Multi-Idea Tournament

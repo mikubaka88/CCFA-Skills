@@ -30,7 +30,7 @@ The safety level is moderate by default:
 
 ## Literature Source Policy
 
-- `ccf-literature-search` must exclude MDPI sources from search, citation, scoring, and final outputs.
+- `ccf-literature-searcher` must exclude MDPI sources from search, citation, scoring, and final outputs.
 - Prefer primary and high-confidence sources: official proceedings pages, ACM, IEEE, USENIX, ACL Anthology, CVF, PMLR, OpenReview, AAAI/OJS, DBLP, Semantic Scholar, OpenAlex, Crossref, arXiv, project pages, and benchmark/dataset pages.
 - Use discovery indexes to find papers, then verify important claims through stable paper pages.
 - Do not treat citation count alone as quality. Use venue fit, source credibility, insight, completeness, and evidence alignment.

@@ -1,6 +1,6 @@
 ---
 name: ccf-idea-reviewer
-description: "Strictly score, rank, and triage early research ideas with CCF-A/target-venue rubrics, active literature search, closest-prior-art comparison, and harsh but professional reviewer comments. Use only when the user explicitly asks to score, rank, compare, select, judge acceptance potential, stress-test, or strictly review rough research ideas before manuscript writing; 中文触发: idea评分, 选题评分, 选题排名, idea评审, 模拟专家评审, 严格锐评idea, 判断创新性, insight评审, 选题是否值得做. Do not use for generic idea optimization, 模糊idea具象化, 研究思路优化, manuscript review, writing review, or full paper review."
+description: "Strictly score, rank, compare, and triage early CCF research ideas with prior-art awareness and venue-fit risk. Use for idea??, ????, idea review, acceptance-potential triage. Do not polish manuscripts or optimize a single idea unless scoring is explicit."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -16,7 +16,7 @@ metadata:
 
 **CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode` and `../ccf-common/references/handoff-modes.md`. Use `../ccf-common/references/routing.md` to keep idea scoring separate from idea optimization, manuscript writing, conference scientific review, paper writing review, and rebuttal tasks.
 
-Use this skill only for explicit idea review/scoring/ranking. If the user asks to optimize, develop, concretize, brainstorm, or reshape an idea without asking for scoring or strict review, route to `ccf-idea-optimizer` or `ccf-brainstorming` by the shared routing rules.
+Use this skill only for explicit idea review/scoring/ranking. If the user asks to optimize, develop, concretize, brainstorm, or reshape an idea without asking for scoring or strict review, route to `ccf-idea-optimizer` or `ccf-workflow-planner` by the shared routing rules.
 
 Load `../ccf-common/references/task-modes.md` before deciding quick or standard mode. Use quick mode for a short local triage note or one idea's preliminary risk scan. Use standard mode for numeric scoring, multi-idea ranking, novelty-risk diagnosis, target-venue/journal judgment, or investment decisions.
 
@@ -45,7 +45,7 @@ In standard mode, complete this checklist before any idea score, ranking, or rec
 7. Fatal risks are separated from fixable weaknesses and local refinements.
 8. Confidence is reported separately from score.
 9. The final recommendation is one of: accept-to-develop, revise, pivot, abandon, or needs-literature-search.
-10. Any optional module transition to `ccf-literature-search`, `ccf-idea-optimizer`, `ccf-experiment-designer`, or `ccf-writing-skills` follows the CCFA handoff mode; if denied or disabled, output upgrade actions only.
+10. Any optional module transition to `ccf-literature-searcher`, `ccf-idea-optimizer`, `ccf-experiment-designer`, or `ccf-paper-writer` follows the CCFA handoff mode; if denied or disabled, output upgrade actions only.
 
 Load `references/strict-idea-review.md` in standard mode or whenever the user asks for strict review, novelty diagnosis, or literature-backed scoring. Load `references/rubric.md` whenever producing numeric scores.
 
@@ -54,7 +54,7 @@ Load `references/strict-idea-review.md` in standard mode or whenever the user as
 1. Identify the user's decision: score one idea, rank several ideas, choose a venue, diagnose rejection risk, check whether the idea is stale, or decide whether to invest.
 2. Normalize each idea into a problem-method card. If the idea is too vague to score, infer only fields that are obvious from context and mark the rest as assumptions; ask only when the missing field would change the verdict.
 3. Map the venue family and review lens. If the user names a current venue policy, page rule, review form, or target-year criterion, verify the official source before applying it.
-4. In standard mode, load `references/strict-idea-review.md` and search closest literature with public-safe queries. Prefer `ccf-literature-search` when allowed by handoff mode; otherwise use local browsing and the shared source policy. Apply source-quality exclusions. If not searched, cap novelty confidence and state the exact uncertainty.
+4. In standard mode, load `references/strict-idea-review.md` and search closest literature with public-safe queries. Prefer `ccf-literature-searcher` when allowed by handoff mode; otherwise use local browsing and the shared source policy. Apply source-quality exclusions. If not searched, cap novelty confidence and state the exact uncertainty.
 5. Build the closest-work table and novelty delta before scoring. A novelty claim must say what remains after subtracting the nearest prior work.
 6. Load `references/expert-panel.md` and produce independent notes from the required expert roles. Each role must include at least one concrete rejection-grade concern or a reason no such concern exists.
 7. Load `references/rubric.md` and score the 10 dimensions. Use `references/calibration.md` to aggregate, calibrate confidence, apply fatal gates, and choose a recommendation.
@@ -122,4 +122,4 @@ Load only what is needed:
 - `references/calibration.md`: Use for weighted scores, fatal gates, confidence, recommendations, and multi-idea tournaments.
 - `references/source-notes.md`: Use when explaining provenance, official criteria, or current literature/venue checks.
 
-If the user asks to improve the idea rather than score it, follow the CCFA handoff mode before switching to `ccf-idea-optimizer` unless explicitly named. If the user asks mainly for current related work, route to `ccf-literature-search`. If the user provides a full paper draft and asks for scientific paper review, follow the CCFA handoff mode before switching to `ccf-conference-reviewer`. If the user asks for writing/format review, follow the CCFA handoff mode before switching to `ccf-conference-writing-reviewer`; if not confirmed, provide only idea-stage caveats.
+If the user asks to improve the idea rather than score it, follow the CCFA handoff mode before switching to `ccf-idea-optimizer` unless explicitly named. If the user asks mainly for current related work, route to `ccf-literature-searcher`. If the user provides a full paper draft and asks for scientific paper review, follow the CCFA handoff mode before switching to `ccf-scientific-reviewer`. If the user asks for writing/format review, follow the CCFA handoff mode before switching to `ccf-writing-reviewer`; if not confirmed, provide only idea-stage caveats.

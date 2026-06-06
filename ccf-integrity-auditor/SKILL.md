@@ -1,6 +1,6 @@
 ---
 name: ccf-integrity-auditor
-description: "Audit manuscript integrity: claim-support alignment, result-to-claim consistency, numeric consistency, citation-context support, terminology consistency, figure/table-to-text consistency, and unsupported overclaims. Use for evidence audits and internal consistency before submission. Do not use for full scientific review or broad literature search."
+description: "Audit claim-support alignment, result-to-claim consistency, numeric consistency, terminology consistency, and figure/table-to-text consistency in CCF papers. Use for evidence integrity and consistency checks. Do not perform full scientific review."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -45,7 +45,7 @@ Claim-evidence matrix, numeric consistency findings, risk severity, required own
 
 ## Handoff
 
-Use `ccf-citation-auditor` for bibliography verification and `ccf-conference-reviewer` for full scientific review.
+Use `ccf-citation-auditor` for bibliography verification and `ccf-scientific-reviewer` for full scientific review.
 
 ## Forbidden
 

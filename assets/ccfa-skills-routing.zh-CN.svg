@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1050" viewBox="0 0 1800 1050">
+<rect width="1800" height="1050" fill="#f6f8fb"/>
+<text x="60" y="70" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800" fill="#17212b" text-anchor="start">路由与冲突图</text>
+<text x="60" y="105" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="400" fill="#52606d" text-anchor="start">常见歧义任务应该进入哪个 skill。</text>
+<rect x="70" y="160" width="720" height="105" rx="8" fill="#ffffff" stroke="#1F6F8B" stroke-width="2"/>
+<text x="95" y="194" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#17212b" text-anchor="start">Improve idea</text>
+<text x="95" y="230" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" fill="#1F6F8B" text-anchor="start">ccf-idea-optimizer</text>
+<text x="875" y="218" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800" fill="#6b7280" text-anchor="middle">vs</text>
+<rect x="950" y="160" width="720" height="105" rx="8" fill="#ffffff" stroke="#B85C38" stroke-width="2"/>
+<text x="975" y="194" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#17212b" text-anchor="start">Score/rank ideas</text>
+<text x="975" y="230" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" fill="#B85C38" text-anchor="start">ccf-idea-reviewer</text>
+<rect x="70" y="305" width="720" height="105" rx="8" fill="#ffffff" stroke="#1F6F8B" stroke-width="2"/>
+<text x="95" y="339" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#17212b" text-anchor="start">Find new papers</text>
+<text x="95" y="375" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" fill="#1F6F8B" text-anchor="start">ccf-literature-searcher</text>
+<text x="875" y="363" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800" fill="#6b7280" text-anchor="middle">vs</text>
+<rect x="950" y="305" width="720" height="105" rx="8" fill="#ffffff" stroke="#B85C38" stroke-width="2"/>
+<text x="975" y="339" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#17212b" text-anchor="start">Verify cited papers</text>
+<text x="975" y="375" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" fill="#B85C38" text-anchor="start">ccf-citation-auditor</text>
+<rect x="70" y="450" width="720" height="105" rx="8" fill="#ffffff" stroke="#1F6F8B" stroke-width="2"/>
+<text x="95" y="484" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#17212b" text-anchor="start">Scientific review</text>
+<text x="95" y="520" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" fill="#1F6F8B" text-anchor="start">ccf-scientific-reviewer</text>
+<text x="875" y="508" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800" fill="#6b7280" text-anchor="middle">vs</text>
+<rect x="950" y="450" width="720" height="105" rx="8" fill="#ffffff" stroke="#B85C38" stroke-width="2"/>
+<text x="975" y="484" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#17212b" text-anchor="start">Writing/format review</text>
+<text x="975" y="520" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" fill="#B85C38" text-anchor="start">ccf-writing-reviewer</text>
+<rect x="70" y="595" width="720" height="105" rx="8" fill="#ffffff" stroke="#1F6F8B" stroke-width="2"/>
+<text x="95" y="629" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#17212b" text-anchor="start">Venue rule lookup</text>
+<text x="95" y="665" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" fill="#1F6F8B" text-anchor="start">ccf-venue-format-guide</text>
+<text x="875" y="653" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800" fill="#6b7280" text-anchor="middle">vs</text>
+<rect x="950" y="595" width="720" height="105" rx="8" fill="#ffffff" stroke="#B85C38" stroke-width="2"/>
+<text x="975" y="629" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#17212b" text-anchor="start">Submission package check</text>
+<text x="975" y="665" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" fill="#B85C38" text-anchor="start">ccf-submission-checker</text>
+<rect x="70" y="740" width="720" height="105" rx="8" fill="#ffffff" stroke="#1F6F8B" stroke-width="2"/>
+<text x="95" y="774" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#17212b" text-anchor="start">Write paper text</text>
+<text x="95" y="810" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" fill="#1F6F8B" text-anchor="start">ccf-paper-writer</text>
+<text x="875" y="798" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800" fill="#6b7280" text-anchor="middle">vs</text>
+<rect x="950" y="740" width="720" height="105" rx="8" fill="#ffffff" stroke="#B85C38" stroke-width="2"/>
+<text x="975" y="774" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#17212b" text-anchor="start">Answer reviewers</text>
+<text x="975" y="810" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" fill="#B85C38" text-anchor="start">ccf-rebuttal-writer</text>
+<rect x="70" y="885" width="720" height="105" rx="8" fill="#ffffff" stroke="#1F6F8B" stroke-width="2"/>
+<text x="95" y="919" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#17212b" text-anchor="start">Build project</text>
+<text x="95" y="955" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" fill="#1F6F8B" text-anchor="start">ccf-project-scaffolder</text>
+<text x="875" y="943" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800" fill="#6b7280" text-anchor="middle">vs</text>
+<rect x="950" y="885" width="720" height="105" rx="8" fill="#ffffff" stroke="#B85C38" stroke-width="2"/>
+<text x="975" y="919" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700" fill="#17212b" text-anchor="start">Coordinate stages</text>
+<text x="975" y="955" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800" fill="#B85C38" text-anchor="start">ccf-pipeline-orchestrator</text>
+</svg>

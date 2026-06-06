@@ -1,6 +1,6 @@
 ---
 name: ccf-experiment-designer
-description: "Design CCF-A experiment plans, benchmark protocols, dataset searches, baseline matrices, ablations, metrics, robustness tests, and result-fill tables without inventing results. Use for experiment design, evaluation plan, baseline selection, dataset/benchmark search, ablation planning, result table templates, story-evidence alignment, 设计实验, 对比实验, 消融实验, 数据集选择, benchmark设计, 实验表格, 结果填写模板."
+description: "Design evaluation protocols, datasets, baselines, metrics, ablations, robustness tests, and result-table templates for CCF papers. Use for ????, benchmark, baseline, ablation planning. Do not invent results."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -34,7 +34,7 @@ In standard mode, complete this checklist before final output. In quick mode, ru
 2. Storyline is summarized as task -> gap -> root challenge -> insight -> method -> evidence -> limitation.
 3. Every major claim maps to one required evidence item.
 4. Datasets, benchmarks, workloads, metrics, and baselines are named or marked as needing literature search.
-5. If current datasets or baselines are unknown, follow CCFA handoff mode before using `ccf-literature-search`; if denied, mark the uncertainty.
+5. If current datasets or baselines are unknown, follow CCFA handoff mode before using `ccf-literature-searcher`; if denied, mark the uncertainty.
 6. Baselines include strongest close prior work, simple sanity baselines, and venue-specific standard baselines where feasible.
 7. Ablations test mechanisms, not only performance drops.
 8. Robustness, failure analysis, efficiency, reproducibility, ethics, or statistical tests are included when relevant to the venue.
@@ -44,7 +44,7 @@ In standard mode, complete this checklist before final output. In quick mode, ru
 ## Workflow
 
 1. Identify the user's input state: rough idea, method sketch, paper draft, experiment section, review concern, or target venue requirement.
-2. If a draft or idea is provided, extract the story and contribution claims. If needed, load `../ccf-writing-skills/references/storyline-blueprint.md` for story fields without invoking writing as a sibling skill.
+2. If a draft or idea is provided, extract the story and contribution claims. If needed, load `../ccf-paper-writer/references/storyline-blueprint.md` for story fields without invoking writing as a sibling skill.
 3. Map venue-family expectations with `../ccf-common/references/ccf-a-venue-map.md` and `references/evidence-design.md`.
 4. Build the claim-evidence matrix:
 
@@ -60,11 +60,11 @@ Robustness / failure tests:
 Result placeholder:
 ```
 
-5. Search or request datasets and baselines. Use public queries and high-quality sources; follow CCFA handoff mode before using `ccf-literature-search` for a full search.
+5. Search or request datasets and baselines. Use public queries and high-quality sources; follow CCFA handoff mode before using `ccf-literature-searcher` for a full search.
 6. Design the main comparison, ablations, diagnostic analysis, robustness tests, efficiency analysis, qualitative examples, and failure cases appropriate to the venue.
 7. Load `references/result-templates.md` and create fill-in tables. Use `TBD`, blank cells, or bracketed placeholders, never fabricated numbers.
 8. Produce an execution plan: priority, estimated difficulty, required artifacts, expected reviewer concern answered, and what can be moved to appendix.
-9. If the experiment plan exposes idea-level problems, follow CCFA handoff mode before using `ccf-idea-optimizer` or `ccf-idea-reviewer`. If the manuscript section needs writing after design, follow CCFA handoff mode before using `ccf-writing-skills`.
+9. If the experiment plan exposes idea-level problems, follow CCFA handoff mode before using `ccf-idea-optimizer` or `ccf-idea-reviewer`. If the manuscript section needs writing after design, follow CCFA handoff mode before using `ccf-paper-writer`.
 
 ## Output Contracts
 
