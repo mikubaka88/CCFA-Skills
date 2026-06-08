@@ -8,7 +8,12 @@ skills:
     trigger: "Create project folders, copy/select templates, initialize ccfa.yaml."
     exclude: "Does not create research content."
     handoff: "ccf-pipeline-orchestrator, ccf-paper-writer, ccf-submission-checker"
-  - name: ccf-pipeline-orchestrator
+  
+- name: ccf-paper-to-exemplar
+ trigger: "Convert PDF to exemplar, distill paper writing patterns, add custom writing templates."
+ exclude: "Does not write papers or perform review."
+ handoff: ccf-paper-writer
+- name: ccf-pipeline-orchestrator
     trigger: "Plan workflow, decompose tasks, coordinate stages, gates, artifacts, handoffs, and ccfa.yaml state."
     exclude: "Does not perform downstream writing, review, search, experiment design, or rebuttal."
     handoff: "All owning workflow skills"

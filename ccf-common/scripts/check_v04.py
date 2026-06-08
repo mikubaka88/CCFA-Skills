@@ -24,6 +24,7 @@ EXPECTED_SKILLS = {
     "ccf-rebuttal-writer",
     "ccf-skill-forger",
     "ccf-submission-checker",
+    "ccf-paper-to-exemplar",
 }
 
 

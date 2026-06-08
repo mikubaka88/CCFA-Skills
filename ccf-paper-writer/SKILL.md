@@ -1,4 +1,4 @@
-﻿---
+---
 name: ccf-paper-writer
 description: "Plan, draft, revise, polish, compress, and presentation-adapt CCF research paper text while preserving user-supplied idea scope and evidence. Use for paper writing, abstract/introduction/related work/method/experiment writing, polishing, page/word compression, slides/poster/talk/Q&A preparation, 润色论文, 写作, 压缩论文, 报告展示. Do not perform full review, evidence audit, submission-package checks, or rebuttal as the main task."
 metadata:
