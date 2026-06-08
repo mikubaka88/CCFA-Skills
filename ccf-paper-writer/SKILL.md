@@ -18,7 +18,8 @@ metadata:
 
 This is the manuscript text owner. It also owns local compression and presentation adaptation because both change paper wording or paper-derived communication. Keep idea scope, method mechanism, experiments, numbers, and conclusions unchanged unless the user explicitly authorizes a research-scope change. Follow `../ccf-common/references/task-modes.md`, especially the output-flexibility rule: user-requested output format comes before this skill's internal checklist shape.
 
-Do not invent results, baselines, experiments, reviewer impact, or missing evidence. For citations, never guess bib entries: search for the correct paper and obtain its bib entry before citing per eferences/citation-workflow.md. Unsupported claims must be weakened, marked as needing evidence, or left unchanged with a risk note.
+Do not invent results, baselines, experiments, reviewer impact, or missing evidence. For citations, never guess bib entries: search for the correct paper and obtain its bib entry before citing per 
+eferences/citation-workflow.md. Unsupported claims must be weakened, marked as needing evidence, or left unchanged with a risk note.
 
 ## Core Rule
 

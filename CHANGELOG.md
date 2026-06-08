@@ -1,4 +1,4 @@
-# Changelog
+﻿# Changelog
 
 ## v0.4.5 - 2026-06-06
 
@@ -29,7 +29,7 @@
 - Consolidated the runtime surface from 23 skills to 13 clear owner skills.
 - Merged helper skills into owner modes: workflow planning, compression, writing review, citation audit, result figures/tables, artifact packaging, venue format, resubmission, paper presentation, and docs SVG maintenance.
 - Renamed the review owner to `ccf-paper-reviewer` and made it responsible for both scientific and writing/format review modes.
-- Rewrote README EN/zh-CN/zh-TW, routing, trigger registry, catalog, architecture docs, installation matrices, and merge audit docs around the 13-skill family.
+- Rewrote README EN/zh-CN/zh-TW, routing, trigger registry, catalog, architecture docs, installation matrices, and merge audit docs around the 14-skill family.
 - Rebuilt all 24 CCFA SVG diagrams from `tools/build_ccfa_diagrams.py` using the consolidated family.
 - Reworked `demo/attention-is-all-you-need/` into a NeurIPS-style dry run: original-paper reading, idea document, ordered skill run, writing draft, review/rebuttal, submission check, official data, and result tables.
 - Bumped plugin manifests to `0.4.3`.

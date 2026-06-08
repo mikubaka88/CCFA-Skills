@@ -1,4 +1,4 @@
-<h1 align="center">CCFA Skills</h1>
+﻿<h1 align="center">CCFA Skills</h1>
 
 <p align="center"><strong>A skill family for shaping the research storyline of CCF-A papers.</strong></p>
 
@@ -29,7 +29,7 @@
 
 CCFA Skills 正是從這個觀察出發。它把 CCF-A 論文專案看作一條可以被維護、稽核和反覆推進的研究故事線，而不是一次性的文本生成任務。一個 idea 需要先被塑形，在真正需要取捨時再接受嚴格審稿；一組實驗需要服務於明確 claim，而不是孤立地填滿表格；一篇論文的寫作需要保留證據邊界；一次 rebuttal 也不應只是臨時答辯，而應成為下一輪修改和重投的可追蹤記錄。
 
-這個專案的核心 insight 是：論文品質來自連續決策的品質。寫作、審稿、稽核、投稿檢查和 rebuttal 不應該互相替代，而應該各自保持邊界，並在同一個專案狀態中交接。v0.4.5 因此將家族收斂為 13 個階段角色，讓每個階段都有清楚的責任，讓每個 artifact 都能找到歸屬，也讓整套系統更像一個圍繞研究故事線展開的協作框架，而不是鬆散的 prompt 集合。
+這個專案的核心 insight 是：論文品質來自連續決策的品質。寫作、審稿、稽核、投稿檢查和 rebuttal 不應該互相替代，而應該各自保持邊界，並在同一個專案狀態中交接。v0.5 因此將家族收斂為 13 個階段角色，讓每個階段都有清楚的責任，讓每個 artifact 都能找到歸屬，也讓整套系統更像一個圍繞研究故事線展開的協作框架，而不是鬆散的 prompt 集合。
 
 ![CCFA 技能家族邏輯](assets/ccfa-skills-architecture.zh-TW.svg)
 

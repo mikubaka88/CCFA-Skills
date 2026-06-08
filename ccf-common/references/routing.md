@@ -1,8 +1,8 @@
-# CCFA Routing
+﻿# CCFA Routing
 
 Route by the user's primary intent. Do not activate every downstream skill just because it may become useful later.
 
-v0.4.3 consolidates helper skills into the owning workflow skills. Runtime surface is intentionally small: 13 installable `ccf-*` skills plus the LaTeX/template reference tree. Removed helper names must not be installed as standalone skills.
+v0.5 consolidates helper skills into the owning workflow skills. Runtime surface is intentionally small: 14 installable `ccf-*` skills plus the LaTeX/template reference tree. Removed helper names must not be installed as standalone skills.
 
 ## Canonical Runtime Skills
 

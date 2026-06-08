@@ -1,4 +1,4 @@
-# CCFA Skills Catalog
+﻿# CCFA Skills Catalog
 
 This catalog is the public trigger-conflict index for the current CCFA family. If this document conflicts with a skill's `SKILL.md`, `SKILL.md` is authoritative.
 

@@ -1,4 +1,4 @@
-version: "0.4.5-demo"
+﻿version: "0.4.5-demo"
 project:
   title: "Attention-only sequence transduction"
   source_paper: "Attention Is All You Need"

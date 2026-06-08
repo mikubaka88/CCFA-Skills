@@ -1,6 +1,6 @@
-# CCFA Architecture
+﻿# CCFA Architecture
 
-CCFA is a paper-project workflow family, not a loose collection of unrelated writing prompts. The v0.4.5 architecture has one owner skill per responsibility area and uses `ccfa.yaml` plus explicit artifact contracts to keep stages connected.
+CCFA is a paper-project workflow family, not a loose collection of unrelated writing prompts. The v0.5 architecture has one owner skill per responsibility area and uses `ccfa.yaml` plus explicit artifact contracts to keep stages connected.
 
 ![Architecture](../assets/ccfa-skills-architecture.svg)
 

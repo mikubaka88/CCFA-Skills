@@ -1,4 +1,4 @@
-<h1 align="center">CCFA Skills</h1>
+﻿<h1 align="center">CCFA Skills</h1>
 
 <p align="center"><strong>A skill family for shaping the research storyline of CCF-A papers.</strong></p>
 
@@ -29,7 +29,7 @@ A strong paper is rarely defined by the final PDF alone. What matters is the res
 
 CCFA Skills starts from that observation. It treats a CCF-A paper project as a research storyline that can be maintained, audited, and advanced over time, rather than as a one-shot text generation task. An idea should be shaped before it is defended. Experiments should serve explicit claims rather than merely fill tables. Writing should preserve evidence boundaries. A rebuttal should not be an improvised answer at the end of the process, but a traceable bridge to revision and resubmission.
 
-The central insight is that paper quality comes from the quality of continuous decisions. Writing, review, integrity audit, submission checking, and rebuttal should not replace one another; they should keep separate responsibilities and hand off through the same project state. The v0.4.5 line therefore organizes the family into 13 stage roles, so each stage has a clear responsibility, each artifact has a home, and the system behaves more like a collaboration framework around the research storyline than a loose prompt collection.
+The central insight is that paper quality comes from the quality of continuous decisions. Writing, review, integrity audit, submission checking, and rebuttal should not replace one another; they should keep separate responsibilities and hand off through the same project state. The v0.5 line therefore organizes the family into 13 stage roles, so each stage has a clear responsibility, each artifact has a home, and the system behaves more like a collaboration framework around the research storyline than a loose prompt collection.
 
 ![CCFA skill family logic](assets/ccfa-skills-architecture.svg)
 
