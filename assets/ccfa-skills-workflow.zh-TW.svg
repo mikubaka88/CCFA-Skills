@@ -9,7 +9,7 @@
 <rect x="0" y="0" width="1800" height="158" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
 <text x="72" y="66" font-size="44" font-weight="850" fill="#FFFFFF" text-anchor="start">端到端論文流程</text>
 <text x="72" y="108" font-size="20" font-weight="500" fill="#D8E6F2" text-anchor="start">每個階段都留下具體 artifact，並交給唯一 owner。</text>
-<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.4.5 · 13 個 owner skills · 一個論文專案閉環</text>
+<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.5 · 14 個 owner skills · 一個論文專案閉環</text>
 <rect x="90" y="235" width="360" height="168" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <circle cx="135" cy="280" r="28" fill="#1F7A8C"/>
 <text x="135" y="290" font-size="24" font-weight="850" fill="#FFFFFF" text-anchor="middle">1</text>
