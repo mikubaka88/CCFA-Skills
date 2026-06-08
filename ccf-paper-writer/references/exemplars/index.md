@@ -1,4 +1,4 @@
-# Exemplar Index
+﻿# Exemplar Index
 
 Use this index when the user asks for CCF A-level paper writing, best-paper style, venue-specific adaptation, default user-custom writing, or examples from strong papers. Load only the cards that match the target paper. Do not load every card by default.
 
@@ -86,6 +86,16 @@ Use these cards when the target venue is outside the dominant AI/CV/NLP cluster.
 - Security paper: `usenix-security-2024-inspectre-gadget.md` plus a threat-model or artifact-evaluation source.
 - HCI paper: `chi-2024-constrained-highlighting.md` plus the user's target population/study-method reference.
 - PL/theory paper: `popl-2024-megalibm.md` or `stoc-2024-theory-best-paper.md` depending on whether the contribution is tool/proof or theorem/barrier.
+
+## Style And Citation Guides
+
+When loading exemplar cards, also follow the writing style and citation rules established in the main skill references:
+
+- `references/research-writing-patterns.md` (Natural Writing Style section): prose flow, forbidden patterns (no bold labels, no citation dumps), citation weaving.
+- `references/citation-workflow.md`: search-bib-cite workflow, citation density per section, natural citation patterns.
+- `references/output-style-policy.md` (Citation Format Rules): claim-first citation style, no author-name subjects, bib file as source of truth.
+
+The exemplar cards provide structural patterns. The style guides provide execution rules. Use both.
 
 ## Output Reminder
 

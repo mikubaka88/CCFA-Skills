@@ -1,4 +1,4 @@
-# Research Writing Patterns
+﻿# Research Writing Patterns
 
 Use this file for full-paper drafting, section-specific rewriting, and exemplar-mode adaptation. It consolidates section-level writing patterns for CCFA while keeping venue routing, evidence policy, and artifact contracts in CCFA.
 
@@ -17,6 +17,50 @@ For broad writing tasks, produce the artifact first and make it substantial:
 Avoid empty "next steps" and generic warnings. A warning is useful only if it names the unsupported claim, missing evidence, affected section, and concrete fix.
 
 For underfilled full drafts, add substantive paper content before finishing: deeper problem setup, closest-work contrast, method mechanism, experiment protocol, analysis scaffolds, limitations, and reproducibility notes. Use `TBD` for missing evidence; do not pad with generic background.
+
+## Natural Writing Style
+
+CCF-A papers read as continuous prose arguments, not as annotated outlines. The best papers in CVPR, ICLR, NeurIPS, and ICML share these traits:
+
+### What Best Papers Do
+
+- Each paragraph opens with a claim or observation, then supports it with evidence, reasoning, or citations.
+- Citations appear inside sentences as part of the argument, not as parenthetical interruptions.
+- Technical terms are defined once, used consistently, and never bolded in running text unless the venue template requires it.
+- Method descriptions follow a logical flow: problem, design rationale, mechanism, justification.
+- Experiments are narrated to answer reviewer questions, not to list results.
+
+### What To Avoid
+
+- **Bold-label paragraphs:** Do not write paragraphs where every sentence starts with `\textbf{Key:}` or `\textit{Label:}`. Example of forbidden pattern:
+ ```
+ \textbf{Input:} The model takes images as input. \textbf{Architecture:} We use a transformer. \textbf{Training:} We train with Adam.
+ ```
+ Instead, write flowing prose: "The model processes images through a transformer backbone, trained end-to-end with Adam optimization."
+
+- **Citation dumps:** Do not list five citations in one bracket with no narrative. Group related work with a shared observation: "Contrastive objectives [9,10,11] share the goal of learning invariant representations, but differ in how negative pairs are constructed."
+
+- **Empty transitions:** Do not use "Recently, ..." or "In recent years, ..." as a paragraph opener more than once per paper. Start with the specific development that matters.
+
+- **Repeated motivation:** State the paper's core motivation once in the introduction and once in the conclusion. Do not re-motivate in every section.
+
+- **Over-bolded terms:** Do not bold every technical term. Use italics sparingly for the first definition only. Reserve bold for venue-mandated formatting (e.g., NeurIPS checklist headings).
+
+### Citation Weaving
+
+Load `references/citation-workflow.md` for the full workflow. In the writing itself, citations must feel woven into the argument:
+
+**Good:**
+- "The shift from recurrent to self-attentive architectures [1] eliminated the sequential dependency that limited training parallelism."
+- "Residual connections [2] address vanishing gradients by providing identity shortcuts through deep networks."
+- "Several works have since extended this idea to dense prediction [3,4], video understanding [5], and multimodal fusion [6]."
+
+**Bad:**
+- "Vaswani et al. [1] proposed the Transformer. He et al. [2] proposed ResNet."
+- "Many methods have been proposed [1,2,3,4,5,6,7,8]."
+- "In [1], the authors show that attention improves translation quality."
+
+The claim comes first, then the citation. The sentence should make sense without the brackets. See `references/citation-workflow.md` for the complete rules.
 
 ## Exemplar And Source-Paper Mode
 
@@ -93,22 +137,24 @@ Use backward reasoning before drafting:
 
 Then write forward:
 
-1. Task/application/value.
-2. Prior methods and their progress.
-3. Remaining technical challenge with root reason.
-4. Insight and method preview.
-5. Contributions and evidence preview.
+1. **Task/application/value** (cite2-4 field-defining works): Open with what the field can now do and why it matters. Do not use "Recently" or "In recent years" as the first words.
+2. **Prior methods and their progress** (cite3-6 works): Show the ladder of progress, not a flat list. Each sentence should name a capability gained, then cite the works that contributed it.
+3. **Remaining technical challenge with root reason** (cite1-2 closest works): Identify the gap and explain why it persists. The root reason must be technical, not just "nobody has tried this."
+4. **Insight and method preview** (0-1 citation if building on a known architecture): State the key observation that makes the solution possible. Preview the method in2-3 sentences.
+5. **Contributions and evidence preview:** Map each contribution to the experiment or analysis that validates it.
+
+An introduction should carry12-20 citations total. A well-cited introduction signals that the authors understand the field and have positioned their work honestly.
 
 Task-opening variants:
 
-- Niche task: define the task, then name applications.
-- Familiar task: start from application or scientific importance.
-- New setting: start broad, then narrow to the exact input/output setting.
-- Challenge-first opening: expose the failure case in the first paragraph when it makes the paper more compelling.
+- Niche task: define the task, then name applications. Cite the works that established the task.
+- Familiar task: start from application or scientific importance. Cite the breakthrough papers that created the current momentum.
+- New setting: start broad, then narrow to the exact input/output setting. Cite the closest related settings.
+- Challenge-first opening: expose the failure case in the first paragraph. Cite the work that reveals the failure or the standard method that fails.
 
 Challenge-chain variants:
 
-- Existing task: general challenge -> traditional line -> recent line -> remaining challenge.
+- Existing task: general challenge -> traditional line -> recent line -> remaining challenge. Each line gets1-3 citations.
 - Existing task with historical insight: modern limitation -> classical insight -> why old line is insufficient -> new method.
 - Novel task: define the challenge and decompose it into two or three concrete obstacles.
 
@@ -116,14 +162,21 @@ Avoid naive-baseline framing. Do not make the paper sound like "we tried an obvi
 
 ## Related Work Pattern
 
-Use 2-4 focused topic groups:
+Use2-4 focused topic groups. Each group cites3-8 distinct works. The total related-work section should carry20-35 citations for a typical CCF-A paper.
 
-1. Topic scope.
-2. Representative methods and shared assumptions.
-3. Limitation tied to this paper's exact challenge.
-4. Technical distinction.
+For each topic group:
 
-Do not hide the closest competitor. If the closest work is unknown, route to `ccf-literature-searcher` or mark the gap as unsearched.
+1. **Topic scope:** Name the research thread and why it is relevant to this paper.
+2. **Representative methods:** Cite3-6 works with a shared observation about what they achieve. Do not list papers one-by-one: "A et al. [1] did X. B et al. [2] did Y." Instead: "Prior work has explored supervised pretraining [1,2], self-supervised objectives [3,4], and hybrid approaches [5,6] to improve feature quality."
+3. **Limitation tied to this paper exact challenge:** Explain what the group as a whole does not address, not what each individual paper fails at. The limitation must connect to the gap this paper fills.
+4. **Technical distinction:** State how this paper differs, using technical terms, not marketing language. "In contrast, our method eliminates the need for paired data by..." not "Unlike previous work, our method is superior."
+
+**Citation integration rules for Related Work:**
+
+- Every named paradigm or thread gets at least3 citations.
+- The closest competitor must be cited and discussed explicitly, not hidden in a list.
+- If any claim about prior work cannot be verified, route to `ccf-literature-searcher` before writing.
+- Do not cite a paper only because it is famous; every citation must serve the argument.
 
 ## Method Pattern
 

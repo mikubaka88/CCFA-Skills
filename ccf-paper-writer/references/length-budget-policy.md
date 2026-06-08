@@ -6,6 +6,8 @@ Use this file whenever drafting, expanding, compressing, or submission-preparing
 
 A venue-aware paper draft should target the venue's usable main-body budget, not merely compile. A short idea is not permission to produce a short paper when the user asked for a submission manuscript. Expand with evidence-bound content, `TBD` placeholders, and concrete experiment/analysis scaffolds rather than inventing results.
 
+**Critical: "page limit" in most AI conferences (ICLR, NeurIPS, ICML, CVPR) means main text only. References, appendix, acknowledgements, and standalone limitations sections are EXCLUDED from the count.** Your main text should fill the full budget. Do not leave1-2 pages of unused budget "to be safe"---reviewers will notice an underfilled paper.
+
 ## Budget Setup
 
 Before full-manuscript drafting, establish:
@@ -83,6 +85,19 @@ Forbidden expansion content:
 - Invented citations or baselines.
 - Unsupported claims of novelty, superiority, or reviewer reaction.
 - Padding, generic field background, or repeated motivation.
+
+## Expansion Content Order
+
+When a manuscript is under target, expand in this priority order---each step adds substantive content, not filler:
+
+1. **Introduction bottleneck exposition:** explain why existing methods fail structurally, not just empirically. Add concrete path-length, complexity, or capability arguments.
+2. **Background/Preliminaries:** add formal problem definition, notation, and structural analysis (e.g., complexity tables, dependency path arguments).
+3. **Method detail:** add per-component motivation (why this module, what gap it fills), forward equations, and connection to the global insight.
+4. **Experiment setup:** add dataset statistics, preprocessing details, baselines with rationale, metric definitions, implementation notes.
+5. **Results and analysis:** add result tables, complexity comparisons, ablation motivations (why each test matters), and caveat notes.
+6. **Discussion:** add architecture-level analysis (why it works, regime of applicability, failure modes).
+7. **Limitations and ethics:** add concrete scope boundaries, failure-mode analysis, and domain-specific impact notes.
+8. **References:** ensure all cited works appear in the bibliography with complete metadata.
 
 ## Compile And Adjust Loop
 
