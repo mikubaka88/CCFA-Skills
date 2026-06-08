@@ -5,16 +5,16 @@
 > **Source:** <https://openaccess.thecvf.com/content/CVPR2023/html/Hu_Planning-oriented_Autonomous_Driving_CVPR_2023_paper.html>
 
 ---
-
-Yihan Hu1,2∗, Jiazhi Yang1∗, Li Chen1∗†, Keyu Li1∗, Chonghao Sima1, Xizhou Zhu3,1
+Yihan Hu1,2, Jiazhi Yang1, Li Chen1, Keyu Li1, Chonghao Sima1, Xizhou Zhu3,1
 Siqi Chai2, Senyao Du2, Tianwei Lin2, Wenhai Wang1, Lewei Lu3, Xiaosong Jia1
-Qiang Liu2, Jifeng Dai1, Yu Qiao1, Hongyang Li1†
+Qiang Liu2, Jifeng Dai1, Yu Qiao1, Hongyang Li1
 1 OpenDriveLab and OpenGVLab, Shanghai AI Laboratory
 2 Wuhan University
 3 SenseTime Research
-∗Equal contribution
-†Project lead
+Equal contribution
+Project lead
 https://github.com/OpenDriveLab/UniAD
+
 
 ## Abstract
 
@@ -77,9 +77,9 @@ detection, depth, flow, etc. This kind of literature is out of scope.
 This CVPR paper is the Open Access version, provided by the Computer Vision Foundation.
 Except for this watermark, it is identical to the accepted version;
 the final published version of the proceedings is available on IEEE Xplore.
-17853
 
 Design
+
 
 ## Approach
 
@@ -93,56 +93,22 @@ Motion
 Occ.
 (b)
 NMP [57]
-✓
-✓
-✓
 NEAT [12]
-✓
-✓
 BEVerse [59]
-✓
-✓
-✓
 (c.1)
-[7,9,45,54]
-✓
 (c.2)
-PnPNet† [32]
-✓
-✓
-✓
-ViP3D† [18]
-✓
-✓
-✓
+PnPNet [32]
+ViP3D [18]
 P3 [47]
-✓
-✓
 MP3 [6]
-✓
-✓
-✓
 ST-P3 [23]
-✓
-✓
-✓
 LAV [8]
-✓
-✓
-✓
-✓
 (c.3)
 UniAD (ours)
-✓
-✓
-✓
-✓
-✓
-✓
-Table 1. Tasks comparison and taxonomy. “Design” column is
-classified as in Fig. 1. “Det.” denotes 3D object detection, “Map”
-stands for online mapping, and “Occ.” is occupancy map predic-
-tion. †: these works are not proposed directly for planning, yet
+Table 1. Tasks comparison and taxonomy. Design column is
+classified as in Fig. 1. Det. denotes 3D object detection, Map
+stands for online mapping, and Occ. is occupancy map predic-
+tion. : these works are not proposed directly for planning, yet
 they still share the spirit of joint perception and prediction. UniAD
 conducts five essential driving tasks to facilitate planning.
 erse [59], and industrialized products, e.g., Mobileye [38],
@@ -150,7 +116,7 @@ Tesla [49], Nvidia [41], etc. In MTL, the co-training strat-
 egy across tasks could leverage feature abstraction; it could
 effortlessly extend to additional tasks, and save computa-
 tion cost for onboard chips. However, such a scheme may
-cause undesirable “negative transfer” [16,36].
+cause undesirable negative transfer [16,36].
 By contrast, the emergence of end-to-end autonomous
 driving [6, 8, 12, 23, 54] unites all nodes from perception,
 prediction and planning as a whole. The choice and priority
@@ -160,7 +126,7 @@ designed with certain components involved, such that there
 are few accumulative error as in the standalone option or
 negative transfer as in the MTL scheme. Table 1 describes
 the task taxonomy of different framework designs.
-Following the end-to-end paradigm, one “tabula-rasa”
+Following the end-to-end paradigm, one tabula-rasa
 practice is to directly predict the planned trajectory, with-
 out any explicit supervision of perception and prediction as
 shown in Fig. 1(c.1). Pioneering works [7,9, 14,15,45, 53,
@@ -224,17 +190,16 @@ of connecting the pipeline to model different interactions of
 entities in the driving scenario. Specifically, a sequence of
 multi-camera images is fed into the feature extractor, and
 the resulting perspective-view features are transformed into
-a unified bird’s-eye-view (BEV) feature B by an off-the-
+a unified birds-eye-view (BEV) feature B by an off-the-
 shelf BEV encoder in BEVFormer [30]. Note that UniAD
 is not confined to a specific BEV encoder, and one can uti-
 lize other alternatives to extract richer BEV representations
 with long-term temporal fusion [19, 43] or multi-modality
 fusion [33,36]. In TrackFormer, the learnable embeddings
-that we refer to as track queries inquire about the agents’ in-
+that we refer to as track queries inquire about the agents in-
 formation from B to detect and track agents. MapFormer
 takes map queries as semantic abstractions of road ele-
 ments (e.g., lanes and dividers) and performs panoptic seg-
-17854
 
 Figure 2. Pipeline of Unified Autonomous Driving (UniAD). It is exquisitely devised following planning-oriented philosophy. Instead of
 a simple stack of tasks, we investigate the effect of each module in perception and prediction, leveraging the benefits of joint optimization
@@ -297,41 +262,38 @@ former structure on the motion task [24,25,35,39,40,48,55],
 inspired by which we propose MotionFormer in the end-to-
 end setting. With highly abstract queries for dynamic agents
 QA and static map QM from TrackFormer and MapFormer
-respectively, MotionFormer predicts all agents’ multimodal
+respectively, MotionFormer predicts all agents multimodal
 future movements, i.e., top-k possible trajectories, in a
 scene-centric manner. This paradigm produces multi-agent
 trajectories in the frame with a single forward pass, which
 greatly saves the computational cost of aligning the whole
-scene to each agent’s coordinate [27]. Meanwhile, we pass
+scene to each agents coordinate [27]. Meanwhile, we pass
 the ego-vehicle query from TrackFormer through Motion-
 Former to engage ego-vehicle to interact with other agents,
 considering the future dynamics. Formally, the output mo-
-tion is formulated as {ˆxi,k ∈RT×2|i = 1, . . . , Na; k =
+tion is formulated as {ˆxi,k ∈RT2|i = 1, . . . , Na; k =
 1, . . . , K} , where i indexes the agent, k indexes the modal-
 ity of trajectories and T is the length of prediction horizon.
 MotionFormer.
 It is composed of N layers, and each
 layer captures three types of interactions:
 agent-agent,
-17855
 
 agent-map and agent-goal point. For each motion query
 Qi,k (defined later, and we omit subscripts i, k in the follow-
 ing context for simplicity), its interactions between other
 agents QA or map elements QM could be formulated as:
-  \l a bel {eq:agent -agent} Q_{a/m} = \texttt {MHCA}(\texttt {MHSA}(Q), Q_A/Q_M),
+\l a bel {eq:agent -agent} Q_{a/m} = \texttt {MHCA}(\texttt {MHSA}(Q), Q_A/Q_M),
 (1)
 where MHCA, MHSA denote multi-head cross-attention and
 multi-head self-attention [50] respectively. As it is also im-
 portant to focus on the intended position, i.e., goal point,
 to refine the predicted trajectory, we devise an agent-goal
 point attention via deformable attention [62] as follows:
-  \ label {eq:age nt-be
-v
-}  Q_{g} = \texttt {DeformAttn}(Q, \hat {\mathbf {x}}_{T}^{l-1}, B),
+\ label {eq:age nt-be
+} Q_{g} = \texttt {DeformAttn}(Q, \hat {\mathbf {x}}_{T}^{l-1}, B),
 (2)
 where ˆxl−1
-T
 is the endpoint of the predicted trajectory of
 previous layer. DeformAttn(q,r,x), a deformable atten-
 tion module [62], takes in the query q, reference point r and
@@ -352,7 +314,7 @@ Specifically, Qpos integrates the positional knowledge in
 four-folds as in Eq. (3): (1) the position of scene-level an-
 chors Is; (2) the position of agent-level anchors Ia; (3) cur-
 rent location of the agent i and (4) the predicted goal point.
-  \l a bel {eq:qpo s } \begin {a
+\l a bel {eq:qpo s } \begin {a
 l igned} Q_{\t e xt {pos} =\
 
 &\text {MLP}(\text {PE}(I^s)) + \text {MLP}(\text {PE}(I^a)) \\ +\ &\text {MLP}(\text {PE}(\hat {\mathbf {x}}_0)) + \text {MLP}(\text {PE}(\hat {\mathbf {x}}_T^{l-1})). \end {aligned}
@@ -373,7 +335,7 @@ timized layer-by-layer in a coarse-to-fine fashion.
 Non-linear Optimization.
 Different from conventional
 motion forecasting works which have direct access to
-ground truth perceptual results, i.e., agents’ location and
+ground truth perceptual results, i.e., agents location and
 corresponding tracks, we consider the prediction uncer-
 tainty from the prior module in our end-to-end paradigm.
 Brutally regressing the ground-truth waypoints from an
@@ -384,17 +346,16 @@ To tackle this, we adopt a non-linear
 smoother [4] to adjust the target trajectories and make them
 physically feasible given an imprecise starting point pre-
 dicted by the upstream module. The process is:
- \ l abe l {
+\ l abe l {
 e q:no n-linear-argmin} \tilde {\mathbf {x}}^* = \arg \min _{\mathbf {x}} c(\mathbf {x}, \tilde {\mathbf {x}} ),
 (4)
-where ˜x and ˜x∗denote the ground-truth and smoothed tra-
+where ˜x and ˜xdenote the ground-truth and smoothed tra-
 jectory, x is generated by multiple-shooting [2], and the cost
 function is as follows:
-  \l abe l  {eq:n on-l i near-cos t } c (\ m
-a
+\l abe l {eq:n on-l i near-cos t } c (\ m
 thb
 f {x}, \tilde {\mathbf {x}} ) = \lambda _{\text {xy}} \lVert \mathbf {x}, \tilde {\mathbf {x}}\rVert _2 + \lambda _{\text {goal}} \lVert \mathbf {x}_{T}, \tilde {\mathbf {x}}_{T}\rVert _2 + \sum _{\phi \in \Phi } \phi (\mathbf {x}), (5)
-where λxy and λgoal are hyperparameters, the kinematic
+where xy and goal are hyperparameters, the kinematic
 function set Φ has five terms including jerk, curvature, cur-
 vature rate, acceleration and lateral acceleration. The cost
 function regularizes the target trajectory to obey kinematic
@@ -427,16 +388,15 @@ smaller than T in the motion task, due to the high compu-
 tation cost of densely represented occupancy. Each block
 takes as input the rich agent features Gt and the state (dense
 feature) F t−1 from the previous layer, and generates F t for
-17856
 
 timestep t considering both instance- and scene-level infor-
 mation. To get agent feature Gt with dynamics and spatial
 priors, we max-pool motion queries from MotionFormer in
-the modality dimension denoted as QX ∈RNa×D, with D
+the modality dimension denoted as QX ∈RNaD, with D
 as the feature dimension. Then we fuse it with the upstream
 track query QA and current position embedding PA via a
 temporal-specific MLP:
-  \ label {eq :qu ery f u s e}  G ^ t  = \text {MLP}_{t}([Q_{A}, P_{A}, Q_{X}]),\ t={1,\dots ,T_o},
+\ label {eq :qu ery f u s e} G ^ t = \text {MLP}_{t}([Q_{A}, P_{A}, Q_{X}]),\ t={1,\dots ,T_o},
 (6)
 where [·] indicates concatenation.
 For the scene-level
@@ -464,7 +424,7 @@ agent occupying it at timestep t, inspired by [10]. The up-
 date process of the dense feature is formulated as:
 
 \l a bel {eq:mas k
- att ent ion}  D_{ \ te
+att ent ion} D_{ \ te
 xt {ds}}^t = \texttt {MHCA}( \texttt {MHSA}(F_{\text {ds}}^t), G^t, \text {attn\_mask} = O_m^t).
 (7)
 The attention mask Ot
@@ -481,22 +441,21 @@ a residual connection, and the resulting feature F t is passed
 to the next block.
 Instance-level occupancy.
 It represents the occupancy
-with each agent’s identity preserved. It could be simply
+with each agents identity preserved. It could be simply
 drawn via matrix multiplication, as in recent query-based
 segmentation works [11, 29].
 Formally, in order to get
-an occupancy prediction of original size H × W of BEV
+an occupancy prediction of original size H W of BEV
 feature B, the scene-level features F t are upsampled to
 F t
-dec ∈RC×H×W by a convolutional decoder, where C is
+dec ∈RCHW by a convolutional decoder, where C is
 the channel dimension. For the agent-level feature, we fur-
 ther update the coarse mask feature M t to the occupancy
-feature U t ∈RNa×C by another MLP. We empirically find
+feature U t ∈RNaC by another MLP. We empirically find
 that generating U t from mask feature M t instead of orig-
 inal agent feature Gt leads to superior performance. The
 final instance-level occupancy of timestep t is:
-  \
-h a t  { O }
+h a t { O }
 _A^t = U^t \cdot F_{\text {dec}}^t.
 (8)
 2.4. Planning
@@ -507,38 +466,30 @@ vert the raw navigation signals (i.e., turn left, turn right
 and keep forward) into three learnable embeddings, named
 command embeddings. As the ego-vehicle query from Mo-
 tionFormer already expresses its multimodal intentions, we
-equip it with command embeddings to form a “plan query”.
+equip it with command embeddings to form a plan query.
 We attend plan query to BEV features B to make it aware
 of surroundings, and then decode it to future waypoints ˆτ.
 To further avoid collisions, we optimize ˆτ based on New-
-ton’s method in inference only by the following:
-  \ lab el
-{
+tons method in inference only by the following:
+\ lab el
 eq:p lan -argmin} \tau ^* = \arg \min _{\tau } f(\tau , \hat {\tau }, \hat {O} ),
 (9)
-where ˆτ is the original planning prediction, τ ∗denotes
+where ˆτ is the original planning prediction, τ denotes
 the optimized planning, which is selected from multiple-
 shooting [2] trajectories τ as to minimize cost function f(·).
 ˆO is a classical binary occupancy map merged from the
 instance-wise occupancy prediction from OccFormer. The
 cost function f(·) is calculated by:
-  \l abe l { e q:col-cos t} f ( \tau
+\l abe l { e q:col-cos t} f ( \tau
 
-,
- \hat  {\tau }, \hat {O} ) = \lambda _{\text {coord}} \lVert \tau , \hat {\tau }\rVert _2 + \lambda _{\text {obs}} \sum _{t} \mathcal {D}(\tau _{t}, \hat {O}^{t}),
+\hat {\tau }, \hat {O} ) = \lambda _{\text {coord}} \lVert \tau , \hat {\tau }\rVert _2 + \lambda _{\text {obs}} \sum _{t} \mathcal {D}(\tau _{t}, \hat {O}^{t}),
 (10)
-  \la bel {
-e
+\la bel {
 q:col-d
-i
-s
-t
-} \mathcal  {D} (\ta
-u
- _{
+} \mathcal {D} (\ta
 t}, \hat {O}^{t}) = \sum _{(x, y) \in \mathcal {S}} \frac {1}{\sigma \sqrt {2\pi }} \text {exp} (-\frac {\lVert \tau _{t} - (x, y) \rVert _2^2}{2\sigma ^2}).
 (11)
-Here λcoord, λobs, and σ are hyperparameters, and t indexes
+Here coord, obs, and are hyperparameters, and t indexes
 a timestep of future horizons. The l2 cost pulls the trajectory
 toward the original predicted one, while the collision term
 D pushes it away from occupied grids, considering sur-
@@ -564,13 +515,12 @@ candidates from detection queries are paired with newborn
 ground truth objects, and predictions from track queries in-
 herit the assignment from previous frames. The matching
 
+
 ## Results
 
 cupancy nodes to consistently model agents from historical
 tracks to future motions in the end-to-end framework.
-17857
 
-ID
 Modules
 Tracking
 Mapping
@@ -582,251 +532,28 @@ Map
 Motion
 Occ.
 Plan
-AMOTA↑
-AMOTP↓
-IDS↓
-IoU-lane↑
-IoU-road↑
-minADE↓
-minFDE↓
-MR↓
-IoU-n.↑
-IoU-f.↑
-VPQ-n.↑
-VPQ-f.↑
-avg.L2↓
-avg.Col.↓
-0∗
-✓
-✓
-✓
-✓
-✓
-0.356
-1.328
-893
-0.302
-0.675
-0.858
-1.270
-0.186
-55.9
-34.6
-47.8
-26.4
-1.154
-0.941
-1
-✓
-0.348
-1.333
-791
--
--
--
--
--
--
--
--
--
--
--
-2
-✓
--
--
--
-0.305
-0.674
--
--
--
--
--
--
--
--
--
-3
-✓
-✓
-0.355
-1.336
-785
-0.301
-0.671
--
--
--
--
--
--
--
--
--
-4
-✓
--
--
--
--
--
-0.815
-1.224
-0.182
--
--
--
--
--
--
-5
-✓
-✓
-0.360
-1.350
-919
--
--
-0.751
-1.109
-0.162
--
--
--
--
--
--
-6
-✓
-✓
-✓
-0.354
-1.339
-820
-0.303
-0.672
+AMOTA
+AMOTP
+IDS
+IoU-lane
+IoU-road
+minADE
+minFDE
+IoU-n.
+IoU-f.
+VPQ-n.
+VPQ-f.
+avg.L2
+avg.Col.
 0.736(-9.7%)
 1.066(-12.9%)
-0.158
--
--
--
--
--
--
-7
-✓
--
--
--
--
--
--
--
--
-60.5
-37.0
-52.4
-29.8
--
--
-8
-✓
-✓
-0.360
-1.322
-809
--
--
--
--
--
-62.1
-38.4
-52.2
-32.1
--
--
-9
-✓
-✓
-✓
-✓
-0.359
-1.359
-1057
-0.304
-0.675
 0.710(-3.5%)
 1.005(-5.8%)
-0.146
-62.3
-39.4
-53.1
-32.2
--
--
-10
-✓
--
--
--
--
--
--
--
--
--
--
--
-1.131
-0.773
-11
-✓
-✓
-✓
-✓
-0.366
-1.337
-889
-0.303
-0.672
-0.741
-1.077
-0.157
--
--
--
--
-1.014
-0.717
-12
-✓
-✓
-✓
-✓
-✓
-0.358
-1.334
-641
-0.302
-0.672
-0.728
-1.054
-0.154
-62.3
-39.5
-52.8
-32.3
-1.004
-0.430
 Table 2. Detailed ablations on the effectiveness of each task. We can conclude that two perception sub-tasks greatly help motion
 forecasting, and prediction performance also benefits from unifying the two prediction modules. With all prior representations, our goal-
 planning boosts significantly to ensure safety. UniAD outperforms naive MTL solution by a large margin for prediction and planning tasks,
-and it also owns the superiority that no substantial perceptual performance drop occurs. Only main metrics are shown for brevity. “avg.L2”
-and “avg.Col” are the average values across the planning horizon. ∗: ID-0 is the MTL scheme with separate heads for each task.
+and it also owns the superiority that no substantial perceptual performance drop occurs. Only main metrics are shown for brevity. avg.L2
+and avg.Col are the average values across the planning horizon. : ID-0 is the MTL scheme with separate heads for each task.
 3. Experiments
 We conduct experiments on the challenging nuScenes
 dataset [3]. In this section, we validate the effectiveness
@@ -901,114 +628,52 @@ previous perception-oriented methods on specific classes.
 We argue that UniAD is to benefit final planning with per-
 ceived information rather than optimizing perception with
 full model capacity.
-17858
 
 
 ## Method
 
-AMOTA↑
-AMOTP↓
-Recall↑
-IDS↓
-Immortal Tracker† [52]
-0.378
-1.119
-0.478
-936
+AMOTA
+AMOTP
+Recall
+IDS
+Immortal Tracker [52]
 ViP3D [18]
-0.217
-1.625
-0.363
--
 QD3DT [21]
-0.242
-1.518
-0.399
--
 MUTR3D [58]
-0.294
-1.498
-0.427
-3822
 UniAD
-0.359
-1.320
-0.467
-906
 Table 3.
 Multi-object tracking.
 UniAD outperforms previ-
 ous end-to-end MOT techniques (with image inputs only) on all
-metrics. †: Tracking-by-detection method with post-association,
+metrics. : Tracking-by-detection method with post-association,
 reimplemented with BEVFormer for a fair comparison.
 Method
-Lanes↑
-Drivable↑
-Divider↑
-Crossing↑
+Lanes
+Drivable
+Divider
+Crossing
 VPN [42]
-18.0
-76.0
--
--
 LSS [44]
-18.3
-73.9
--
--
 BEVFormer [30]
-23.9
-77.5
--
--
-BEVerse† [59]
--
--
-30.6
-17.2
+BEVerse [59]
 UniAD
-31.3
-69.1
-25.7
-13.8
 Table 4. Online mapping. UniAD achieves competitive perfor-
 mance against state-of-the-art perception-oriented methods, with
 comprehensive road semantics. We report segmentation IoU (%).
-†: Reimplemented with BEVFormer.
+: Reimplemented with BEVFormer.
 Method
-minADE(m)↓
-minFDE(m)↓
-MR↓
-EPA↑
-PnPNet† [32]
-1.15
-1.95
-0.226
-0.222
+minADE(m)
+minFDE(m)
+EPA
+PnPNet [32]
 ViP3D [18]
-2.05
-2.84
-0.246
-0.226
 Constant Pos.
-5.80
-10.27
-0.347
--
 Constant Vel.
-2.13
-4.01
-0.318
--
 UniAD
-0.71
-1.02
-0.151
-0.456
 Table 5. Motion forecasting. UniAD remarkably outperforms
 previous vision-based end-to-end methods. We also report two
 settings of modeling vehicles with constant positions or velocities
-as comparisons. †: Reimplemented with BEVFormer.
+as comparisons. : Reimplemented with BEVFormer.
 Prediction results.
 Motion forecasting results are shown
 in Table 5, where UniAD remarkably outperforms previ-
@@ -1032,161 +697,50 @@ which is often deemed challenging for perception tasks.
 Fig. 3 visualizes the results of all tasks for one complex
 scene. The ego vehicle drives with notice to the potential
 Method
-IoU-n.↑
-IoU-f.↑
-VPQ-n.↑
-VPQ-f.↑
+IoU-n.
+IoU-f.
+VPQ-n.
+VPQ-f.
 FIERY [20]
-59.4
-36.7
-50.2
-29.9
 StretchBEV [1]
-55.5
-37.1
-46.0
-29.0
 ST-P3 [23]
--
-38.9
--
-32.1
-BEVerse† [59]
-61.4
-40.9
-54.3
-36.1
+BEVerse [59]
 UniAD
-63.4
-40.2
-54.7
-33.5
 Table 6. Occupancy prediction. UniAD gets significant improve-
-ment in nearby areas, which are more critical for planning. “n.”
-and “f.” indicates near (30×30m) and far (50×50m) evaluation
-ranges respectively. †: Trained with heavy augmentations.
+ment in nearby areas, which are more critical for planning. n.
+and f. indicates near (3030m) and far (5050m) evaluation
+ranges respectively. : Trained with heavy augmentations.
 Method
-L2(m)↓
-Col. Rate(%)↓
-1s
-2s
-3s
+L2(m)
+Col. Rate(%)
 Avg.
-1s
-2s
-3s
 Avg.
-NMP† [57]
--
--
-2.31
--
--
--
-1.92
--
-SA-NMP† [57]
--
--
-2.05
--
--
--
-1.59
--
-FF† [22]
-0.55
-1.20
-2.54
-1.43
-0.06
-0.17
-1.07
-0.43
-EO† [26]
-0.67
-1.36
-2.78
-1.60
-0.04
-0.09
-0.88
-0.33
+NMP [57]
+SA-NMP [57]
+FF [22]
+EO [26]
 ST-P3 [23]
-1.33
-2.11
-2.90
-2.11
-0.23
-0.62
-1.27
-0.71
 UniAD
-0.48
-0.96
-1.65
-1.03
-0.05
-0.17
-0.71
-0.31
 Table 7. Planning. UniAD achieves the lowest L2 error and colli-
 sion rate in all time intervals and even outperforms LiDAR-based
-methods (†) in most cases, verifying the safety of our system.
-ID
+methods () in most cases, verifying the safety of our system.
 Scene-l.
 Anch.
 Goal
 Inter.
 Ego Q
 NLO.
-minADE↓
-minFDE↓
-MR↓
+minADE
 minFDE
--mAP∗↑
-1
-0.844
-1.336
-0.177
-0.246
-2
-✓
-0.768
-1.159
-0.164
-0.267
-3
-✓
-✓
-0.755
-1.130
-0.168
-0.264
-4
-✓
-✓
-✓
-0.747
-1.096
-0.156
-0.266
-5
-✓
-✓
-✓
-✓
-0.710
-1.004
-0.146
-0.273
+minFDE
+-mAP
 Table 8. Ablation for designs in the motion forecasting module.
-All components contribute to the ultimate performance. “Scene-
-l. Anch.” denotes rotated scene-level anchors. “Goal Inter.” means
+All components contribute to the ultimate performance. Scene-
+l. Anch. denotes rotated scene-level anchors. Goal Inter. means
 the agent-goal point interaction.
-“Ego Q” represents the ego-
-vehicle query and “NLO.” is the non-linear optimization strategy.
-∗: A metric considering detection and forecasting accuracy simul-
+Ego Q represents the ego-
+vehicle query and NLO. is the non-linear optimization strategy.
+: A metric considering detection and forecasting accuracy simul-
 taneously, and we put details in the Supplementary.
 movement of a front vehicle and lane. In the Supplemen-
 tary, we show more visualizations of challenging scenarios
@@ -1206,7 +760,6 @@ tribute to final performance regarding minADE, minFDE,
 Miss Rate and minFDE-mAP metrics. Notably, the rotated
 scene-level anchor shows a significant performance boost (-
 15.8% minADE, -11.2% minFDE, +1.9 minFDE-mAP(%)),
-17859
 
 Plan
 Track
@@ -1225,108 +778,39 @@ BEV (TOP VIEW)
 Figure 3. Visualization results. We show results for all tasks in surround-view images and BEV. Predictions from motion and occupancy
 modules are consistent, and the ego vehicle is yielding to the front black car in this case. Each agent is illustrated with a unique color. Only
 top-1 and top-3 trajectories from motion forecasting are selected for visualization on image-view and BEV respectively.
-ID
 Cross.
 Attn.
 Attn.
 Mask
 Mask
 Feat.
-IoU-n.↑
-IoU-f.↑
-VPQ-n.↑
-VPQ-f.↑
-1
-61.2
-39.7
-51.5
-31.8
-2
-✓
-61.3
-39.4
-51.0
-31.8
-3
-✓
-✓
-62.3
-39.7
-52.4
-32.5
-4
-✓
-✓
-✓
-62.6
-39.5
-53.2
-32.8
+IoU-n.
+IoU-f.
+VPQ-n.
+VPQ-f.
 Table 9. Ablation for designs in the occupancy prediction mod-
 ule. Cross-attention with masks and the reuse of mask feature
-helps improve the prediction. “Cross. Attn.” and “Attn. Mask”
+helps improve the prediction. Cross. Attn. and Attn. Mask
 represent cross-attention and the attention mask in the pixel-agent
-interaction respectively. “Mask Feat.” denotes the reuse of the
+interaction respectively. Mask Feat. denotes the reuse of the
 mask feature for instance-level occupancy.
-ID
 BEV
 Col.
 Occ.
-L2↓
-Col. Rate↓
+Col. Rate
 Att.
 Loss
 Optim.
-1s
-2s
-3s
-1s
-2s
-3s
-1
-0.44
-0.99
-1.71
-0.56
-0.88
-1.64
-2
-✓
-0.44
-1.04
-1.81
-0.35
-0.71
-1.58
-3
-✓
-✓
-0.44
-1.02
-1.76
-0.30
-0.51
-1.39
-4
-✓
-✓
-✓
-0.54
-1.09
-1.81
-0.13
-0.42
-1.05
 Table 10. Ablation for designs in the planning module. Results
-demonstrate the necessity of each preceding task. “BEV Att.” in-
-dicates attending to BEV feature. “Col. Loss” denotes collision
-loss. “Occ. Optim.” is the optimization strategy with occupancy.
+demonstrate the necessity of each preceding task. BEV Att. in-
+dicates attending to BEV feature. Col. Loss denotes collision
+loss. Occ. Optim. is the optimization strategy with occupancy.
 indicating that it is essential to do motion forecasting in
 the scene-centric manner.
 The agent-goal point interac-
 tion enhances the motion query with the planning-oriented
 visual feature, and surrounding agents can further benefit
-from considering the ego vehicle’s intention.
+from considering the ego vehicles intention.
 Moreover,
 the non-linear optimization strategy improves the perfor-
 mance (-5.0% minADE, -8.4% minFDE, -1.0 MR(%), +0.7
@@ -1372,12 +856,10 @@ Acknowledgements. This work is partially supported by
 National Key R&D Program of China (2022ZD0160100),
 and in part by Shanghai Committee of Science and Tech-
 nology (21DZ1100100), and NSFC (62206172).
-17860
 
 References
 [1] Adil Kaan Akan and Fatma G¨uney. StretchBEV: Stretching
 future instance prediction spatially and temporally. In ECCV,
-2022. 7
 [2] Hans Georg Bock and Karl-Josef Plitt. A multiple shoot-
 ing algorithm for direct solution of optimal control problems.
 IFAC Proceedings Volumes, 1984. 4, 5
@@ -1395,7 +877,6 @@ arXiv:2106.11810, 2021. 4
 [5] Nicolas Carion, Francisco Massa, Gabriel Synnaeve, Nicolas
 Usunier, Alexander Kirillov, and Sergey Zagoruyko. End-to-
 end object detection with transformers. In ECCV, 2020. 3,
-5
 [6] Sergio Casas, Abbas Sadat, and Raquel Urtasun. Mp3: A
 unified model to map, perceive, predict and plan. In CVPR,
 2021. 2, 5
@@ -1410,7 +891,6 @@ der Kirillov, and Rohit Girdhar.
 Masked-attention mask
 transformer for universal image segmentation.
 In CVPR,
-2022. 5
 [11] Bowen Cheng, Alex Schwing, and Alexander Kirillov. Per-
 pixel classification is not all you need for semantic segmen-
 tation. In NeurIPS, 2021. 5
@@ -1432,7 +912,6 @@ cloning for autonomous driving. In ICCV, 2019. 2
 [16] Michael Crawshaw.
 Multi-task learning with deep neural
 networks: A survey. arXiv preprint arXiv:2009.09796, 2020.
-2
 [17] Alexey Dosovitskiy, German Ros, Felipe Codevilla, Antonio
 Lopez, and Vladlen Koltun. CARLA: An open urban driving
 simulator. In CoRL, 2017. 2
@@ -1449,7 +928,7 @@ arXiv preprint
 arXiv:2303.05970, 2023. 2
 [20] Anthony Hu, Zak Murez, Nikhil Mohan, Sof´ıa Dudas, Jef-
 frey Hawke, Vijay Badrinarayanan, Roberto Cipolla, and
-Alex Kendall. FIERY: Future instance prediction in bird’s-
+Alex Kendall. FIERY: Future instance prediction in birds-
 eye view from surround monocular cameras. In ICCV, 2021.
 4, 7
 [21] Hou-Ning Hu, Yung-Hsu Yang, Tobias Fischer, Trevor Dar-
@@ -1474,15 +953,12 @@ ing. arXiv preprint arXiv:2205.09753, 2022. 3
 [26] Tarasha Khurana, Peiyun Hu, Achal Dave, Jason Ziglar,
 David Held, and Deva Ramanan. Differentiable raycasting
 for self-supervised occupancy forecasting. In ECCV, 2022.
-7
 [27] Jinkyu Kim, Reza Mahjourian, Scott Ettinger, Mayank
 Bansal, Brandyn White, Ben Sapp, and Dragomir Anguelov.
 Stopnet: Scalable trajectory and occupancy prediction for ur-
 ban autonomous driving. arXiv preprint arXiv:2206.00991,
-2022. 3
 [28] Alexander Kirillov, Kaiming He, Ross Girshick, Carsten
 Rother, and Piotr Doll´ar. Panoptic segmentation. In CVPR,
-2019. 3
 [29] Feng Li, Hao Zhang, Shilong Liu, Lei Zhang, Lionel M Ni,
 and Heung-Yeung Shum.
 Mask dino: Towards a unified
@@ -1490,14 +966,12 @@ transformer-based framework for object detection and seg-
 mentation. In CVPR, 2023. 5
 [30] Zhiqi Li, Wenhai Wang, Hongyang Li, Enze Xie, Chong-
 hao Sima, Tong Lu, Qiao Yu, and Jifeng Dai. BEVFormer:
-Learning bird’s-eye-view representation from multi-camera
+Learning birds-eye-view representation from multi-camera
 images via spatiotemporal transformers. In ECCV, 2022. 2,
-7
 [31] Zhiqi Li, Wenhai Wang, Enze Xie, Zhiding Yu, Anima
 Anandkumar, Jose M Alvarez, Ping Luo, and Tong Lu.
 Panoptic segformer: Delving deeper into panoptic segmen-
 tation with transformers. In CVPR, 2022. 3, 5
-17861
 
 [32] Ming Liang, Bin Yang, Wenyuan Zeng, Yun Chen, Rui Hu,
 Sergio Casas, and Raquel Urtasun. Pnpnet: End-to-end per-
@@ -1510,18 +984,16 @@ framework. In NeurIPS, 2022. 2
 [34] Xiwen Liang, Yangxin Wu, Jianhua Han, Hang Xu, Chun-
 jing Xu, and Xiaodan Liang. Effective adaptation in multi-
 task co-training for unified autonomous driving. In NeurIPS,
-2022. 1
 [35] Yicheng Liu, Jinghuai Zhang, Liangji Fang, Qinhong Jiang,
 and Bolei Zhou. Multimodal motion prediction with stacked
 transformers. In CVPR, 2021. 3
 [36] Zhijian Liu, Haotian Tang, Alexander Amini, Xingyu Yang,
 Huizi Mao, Daniela Rus, and Song Han. BEVFusion: Multi-
-task multi-sensor fusion with unified bird’s-eye view repre-
+task multi-sensor fusion with unified birds-eye view repre-
 sentation. In ICRA, 2023. 2
 [37] Wenjie Luo, Bin Yang, and Raquel Urtasun. Fast and furi-
 ous: Real time end-to-end 3d detection, tracking and motion
 forecasting with a single convolutional net. In CVPR, 2018.
-1
 [38] Mobileye.
 Mobileye under the hood.
 https://www.
@@ -1587,7 +1059,6 @@ arXiv preprint arXiv:2111.13672, 2021. 6, 7
 [53] Penghao Wu, Li Chen, Hongyang Li, Xiaosong Jia, Junchi
 Yan, and Yu Qiao. Policy pre-training for autonomous driv-
 ing via self-supervised geometric modeling. In ICLR, 2023.
-2
 [54] Penghao Wu, Xiaosong Jia, Li Chen, Junchi Yan, Hongyang
 Li, and Yu Qiao. Trajectory-guided control prediction for
 end-to-end autonomous driving: A simple yet strong base-
@@ -1624,4 +1095,4 @@ ditional moes. In NeurIPS, 2022. 1
 [62] Xizhou Zhu, Weijie Su, Lewei Lu, Bin Li, Xiaogang Wang,
 and Jifeng Dai. Deformable detr: Deformable transformers
 for end-to-end object detection. In ICLR, 2020. 3, 4
-17862
+

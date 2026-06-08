@@ -4,7 +4,6 @@
 > **Source:** <https://openaccess.thecvf.com/content/ICCV2025/html/Pun_Generating_Physically_Stable_and_Buildable_Brick_Structures_from_Text_ICCV_2025_paper.html>
 
 ---
-
 Generating Physically Stable and Buildable Brick Structures from Text
 Ava Pun*
 Kangle Deng*
@@ -19,13 +18,10 @@ Manual Assembly
 following the steps
 Automated Assembly
 by Robot Arms
-Input Text Prompt: “A streamlined vessel with a long, narrow hull.”
+Input Text Prompt: A streamlined vessel with a long, narrow hull.
 Intermediate Steps
-…
-…
-…
 A backless bench with
- armrest
+armrest
 A bookshelf with
 horizontal tiers
 A rectangular table with
@@ -62,6 +58,7 @@ hand and by automated robots. (c) We show example results with corresponding tex
 can generate colored (bottom right) and textured (bottom left) models with appearance descriptions. We highly recommend the reader to
 check our website for step-by-step videos.
 
+
 ## Abstract
 
 We introduce BRICKGPT, the ﬁrst approach for generat-
@@ -97,7 +94,6 @@ and manipulating the shape and appearance of existing 3D
 This ICCV paper is the Open Access version, provided by the Computer Vision Foundation.
 Except for this watermark, it is identical to the accepted version;
 the final published version of the proceedings is available on IEEE Xplore.
-14798
 
 objects and scenes [20, 41].
 However, creating real-world objects with existing meth-
@@ -125,9 +121,9 @@ Our goal is to generate brick assembly structures directly
 from freeform text prompts while ensuring physical stability
 and buildability. Speciﬁcally, we aim to train a generative
 model that produces designs that are:
-• Physically stable: Built on a baseplate with strong struc-
+Physically stable: Built on a baseplate with strong struc-
 tural integrity, without ﬂoating or collapsing bricks.
-• Buildable: Compatible with standard toy brick pieces and
+Buildable: Compatible with standard toy brick pieces and
 able to be assembled brick-by-brick by humans or robots.
 In this work, we introduce BRICKGPT with the key in-
 sight of repurposing autoregressive large language models,
@@ -167,21 +163,21 @@ tive direction trains generative models directly on 3D asset
 datasets, with various backbones including diffusion mod-
 els [21, 33, 35, 55, 62, 65, 88, 89, 92], large reconstruction
 models [22, 32, 75, 84], U-Nets [37, 70], and autoregressive
-models [4–6, 19, 56, 66, 69, 82]. However, these existing
+models [46, 19, 56, 66, 69, 82]. However, these existing
 methods cannot be directly applied to generating brick struc-
 tures as they do not account for the unique physical and as-
 sembly constraints of real-world designs [47]. We bridge this
 gap by introducing a method for generating physically stable
 and buildable brick structures directly from text prompts.
 Autoregressive 3D Modeling. Recent research has success-
-fully used autoregressive models to generate 3D meshes [4–
+fully used autoregressive models to generate 3D meshes [4
 6, 9, 19, 56, 66, 69, 82], often conditioned on input text or
 images. Most recently, LLaMA-Mesh [81] demonstrates that
 large language models (LLMs) can be ﬁne-tuned to output
 3D shapes in plain-text format, given a text prompt. However,
 most existing autoregressive methods focus on mesh gener-
 ation. In contrast, we focus on generating brick structures
-from text prompts, leveraging LLMs’ reasoning capabilities.
+from text prompts, leveraging LLMs reasoning capabilities.
 Brick Assembly and Design Generation. Creating brick
 structures given a reference 3D shape has been widely stud-
 ied [29]. Existing works [58, 71, 91] formulate the gener-
@@ -205,11 +201,8 @@ et al. [14] use a diffusion model to predict a semantic volume,
 which is then translated into a high-quality micro building.
 Their method produces impressive results for a single cate-
 gory. Zhou et al. [90] and Ge et al. [13] generate compelling
-14799
 
-…
-…
-Figure 2. StableText2Brick Dataset. (a) From a ShapeNetCore [2] mesh, we generate a brick structure by voxelizing it onto a 20 →20 →20
+Figure 2. StableText2Brick Dataset. (a) From a ShapeNetCore [2] mesh, we generate a brick structure by voxelizing it onto a 20 20 20
 grid, then constructing its brick layout with a delete-and-rebuild algorithm. (b) We augment each shape with multiple structural variations
 by randomizing the brick layout while preserving the overall shape. (c) Stability analysis [38] is performed on each variation to ﬁlter out
 physically unstable designs. (d) To obtain captions for each shape, we render the brick structure from 24 different viewpoints and use
@@ -217,6 +210,7 @@ GPT-4o [1] to generate detailed geometric descriptions. (e) Data samples from 5 
 ﬁgurine designs given an input portrait, selecting compo-
 nents from a pre-made set that best match an input photo.
 Although effective for faces, extending this selection-based
+
 
 ## Approach
 
@@ -259,18 +253,18 @@ which is given in Figure 2.
 Brick Representation. We consider brick structures built
 on a ﬁxed baseplate. Each structure in StableText2Brick is
 represented as B = [b1, b2, . . . , bN] with N bricks, and each
-element denotes a brick’s state as bi = [hi, wi, xi, yi, zi].
+element denotes a bricks state as bi = [hi, wi, xi, yi, zi].
 Here, hi and wi indicate the brick length in the X and Y
 directions, respectively, and xi, yi, and zi denote the po-
 sition of the stud closest to the origin. The position has
-xi →[0, 1, . . . , H ↑1], yi →[0, 1, . . . , W ↑1], zi →
-[0, 1, . . . , D ↑1], where H, W, and D represent the dimen-
+xi [0, 1, . . . , H 1], yi [0, 1, . . . , W 1], zi
+[0, 1, . . . , D 1], where H, W, and D represent the dimen-
 sions of the discretized grid world.
 Shape-to-Brick.
 We construct the dataset by converting
 3D shapes from ShapeNetCore [2] into brick structures as
 shown in Figure 2(a). Given a 3D mesh, we voxelize and
-downsample it into a 20 ↓20 ↓20 grid world to ensure
+downsample it into a 20 20 20 grid world to ensure
 a consistent scale, i.e., H = W = D = 20. The brick
 layout is generated by a delete-and-rebuild algorithm similar
 to [46]. To improve data quality and diversity, we introduce
@@ -282,85 +276,30 @@ Stability Score.
 We assess the physical stability of each
 structure, as illustrated in Figure 2(c), using the analysis
 
+
 ## Method
 
-bility score S →RN assigns each brick bi a value si →[0, 1]
+bility score S RN assigns each brick bi a value si [0, 1]
 that quantiﬁes the internal stress at its connections. Higher
-14800
 
 LLaMA-3.2-Instruct-1B
 Create a LEGO model of the input.
 Format your response as a list of
 bricks ……
 <Input>
-“A chair with …… legs.”
+A chair with …… legs.
 Create
-legs.”
-…
-1
-x
-1
-(
-7
-,
-8
-,
-0
-)
-……
-…
-4
-x
-2
-(
-1
-,
-7
-,
-)
-17
-…
-…
-…
-1
-x
-1
-(
-7
-,
-8
-,
-0
-)
-x
-2
-(
-1
-,
-7
-,
-)
-1
-……
+legs.
 EOS
 SEP
-17
 Create a LEGO model of the input description:
-“A rectangular sofa with a high backrest extending to form side armrests, featuring a spacious seating area and a supportive box-like base.”
+A rectangular sofa with a high backrest extending to form side armrests, featuring a spacious seating area and a supportive box-like base.
 Validity
 Check
--
 Valid Brick type
--
 Collision free
-…
-…
 Resample
 Collision
-…
-…
-…
-…
 Resample
 4x6 Brick out
 of library
@@ -370,19 +309,12 @@ of library
 1x1 (7,8,0)
 1x2 (7,6,0)
 1x1 (7,2,0)
-…
 1x2 (5,7,17)
 4x2 (1,7,17)
 Each brick hxw (x,y,z) corresponds to 10 tokens.
-1
-2
-3
-…
-125
-126
 Caption:
-“A chair with a high, rounded backrest and a flat,
-rectangular seat supported by four solid, straight legs.”
+A chair with a high, rounded backrest and a flat,
+rectangular seat supported by four solid, straight legs.
 Brick Structure:
 Brick Sequence:
 Final
@@ -434,7 +366,7 @@ are discussed in Appendix A.
 4. Method
 Here, we introduce BRICKGPT, a method for generating
 physically stable interconnecting toy brick assembly struc-
-tures from text prompts. Leveraging LLMs’ ability to model
+tures from text prompts. Leveraging LLMs ability to model
 sequences and understand text, we ﬁne-tune a pre-trained
 LLM for the brick structure generation task (Section 4.1). To
 increase the stability and buildability of our designs, we use
@@ -461,10 +393,9 @@ unstable and unbuildable. To address these issues, we further
 ﬁne-tune the pre-trained model using our StableText2Brick.
 Instruction Fine-tuning Dataset. For each stable structure
 and its corresponding captions, we construct an instruction
-in the following format: “(user) Create a LEGO model of
-{caption}. (assistant) {brick-structure}.” To simplify training
-and reuse LLaMA’s tokenizer, we represent brick structures
-14801
+in the following format: (user) Create a LEGO model of
+{caption}. (assistant) {brick-structure}. To simplify training
+and reuse LLaMAs tokenizer, we represent brick structures
 
 Figure 4. Force Model. (a) We consider all forces exerted on a
 single brick, including gravity (black), vertical forces with the top
@@ -472,7 +403,7 @@ brick (red/blue) and bottom brick (green/purple), and horizontal
 (shear) forces due to knob connections (cyan), and adjacent bricks
 (yellow). (b) The structural force model F extends the individual
 force model to multiple bricks. Solving for static equilibrium in F
-determines each brick’s stability score.
+determines each bricks stability score.
 in plain text. But what format should we use? The standard
 format LDraw [30] has two main drawbacks. First, it does
 not directly include brick dimensions, which are crucial
@@ -482,10 +413,10 @@ brick orientation and scale, which are redundant since all
 bricks are axis-aligned in our setting.
 Instead of using LDraw, we introduce a custom format
 to represent each brick structure. Each line of our format
-represents one brick as “{h}↓{w} ({x},{y},{z})”, where
-h ↓w are brick dimensions and (x, y, z) are its coordinates.
+represents one brick as {h}{w} ({x},{y},{z}), where
+h w are brick dimensions and (x, y, z) are its coordinates.
 All bricks are 1-unit-tall, axis-aligned cuboids, and the order
-of h and w encodes the brick’s orientation about the ver-
+of h and w encodes the bricks orientation about the ver-
 tical axis. This format signiﬁcantly reduces the number of
 tokens required to represent a design, while including brick
 dimension information essential for 3D reasoning. Bricks
@@ -493,10 +424,8 @@ are ordered in a raster-scan manner from bottom to top.
 With our ﬁne-tuned BRICKGPT model ω, we predict the
 bricks b1, b2, ..., bN in an autoregressive manner:
 p(b1, b2, ..., bN|ω) =
-N
-!
 i=1
-p(bi|b1, ..., bi→1, ω).
+p(bi|b1, ..., bi1, ω).
 (1)
 4.2. Integrating Physical Stability
 Although trained on physically stable data, our model some-
@@ -513,23 +442,12 @@ the structural force model F, which consists of a set of can-
 didate forces as shown in Figure 4(b). For a brick structure
 B = [b1, b2, . . . , bN], each brick bi has Mi candidate forces
 F j
-i →Fi, j →[1, Mi]. A structure is stable if all bricks can
+i Fi, j [1, Mi]. A structure is stable if all bricks can
 reach static equilibrium, i.e.,
-Mi
-"
-j
 F j
 i = 0,
-Mi
-"
-j
-ε j
 i ˙=
-Mi
-"
-j
-Lj
-i ↓F j
+i F j
 i = 0,
 (2)
 where Lj
@@ -537,36 +455,18 @@ i denotes the force lever corresponding to F j
 i . The
 stability analysis is formulated into a nonlinear program as
 arg min
-F
-N
-"
-i
 #$$$$
-Mi
-"
-j
 F j
-i
 $$$$ +
 $$$$
-Mi
-"
-j
-ε j
-i
 $$$$ + ϑDmax
-i
 + ϖ
-"
-Di
-%
-,
 (3)
 subject to three constraints: 1) all force candidates in F
 should take non-negative values; 2) certain forces exerted on
 the same brick cannot coexist, e.g., the pulling (red arrow)
 and pressing (blue arrow), the dragging (green arrow) and
-supporting (purple arrow); 3) Newton’s third law, e.g., at a
+supporting (purple arrow); 3) Newtons third law, e.g., at a
 given connection point, the supporting force on the upper
 brick should be equal to the pressing force on the bottom
 brick. Di ↗Fi is the set of candidate dragging forces (green
@@ -576,36 +476,17 @@ Gurobi [18] ﬁnds a force distribution F that drives the struc-
 ture to static equilibrium with the minimum required internal
 stress, suppressing the overall friction (i.e., & Di) as well as
 avoiding extreme values (i.e., Dmax
-i
 ). From the force distri-
 bution F, we obtain the per-brick stability score as
 si =
-
-
-
-
-
-
-
-
-
-0
 &Mi
-j
 F j
 i ↘= 0
-≃
 &Mi
-j
-ε j
 i ↘= 0
-≃
 Dmax
-i
 > FT ,
-FT →Dmax
-i
-FT
+FT Dmax
 otherwise,
 (4)
 where FT is a measured constant friction capacity between
@@ -613,61 +494,40 @@ brick connections. Higher scores si indicate greater stability,
 while si = 0 indicates an unstable brick that will cause
 structural failure: either F cannot reach static equilibrium
 (&Mi
-j
 F j
-i
 ↘= 0 ≃&Mi
-j
-ε j
-i
 ↘= 0) or the required friction
 exceeds the friction capacity of the material (Dmax
-i
 > FT ).
-Due to the equality constraints imposed by Newton’s third
+Due to the equality constraints imposed by Newtons third
 law, Eqn. 3 includes only the dragging forces and excludes
 pulling forces. For a physically stable structure, we need
-si > 0, ⇐i →[1, N].
+si > 0, i [1, N].
 When to apply stability analysis? A straightforward ap-
 proach to ensuring physical stability is to apply stability
 analysis after each generated brick and resample a brick
 that would cause a collapse. However, this step-by-step val-
 idation could be time-consuming. More importantly, many
-14802
 
 ALGORITHM 1: BRICKGPT inference algorithm.
 Input: Text prompt c; Autoregressive model ω
 Output: Brick structure following the text prompt
-1 B →empty brick structure;
+1 B empty brick structure;
 2 loop
 /* Predict next brick w/ rejection sampling */
-3
 for k = 1, . . . , max_rejections do
-4
-context →T ↑B.to_text_format();
-5
-b →ω.predict_tokens(context) (Eqn. 1);
-6
+context T B.to_text_format();
+b ω.predict_tokens(context) (Eqn. 1);
 if b is valid then break;
-7
 end
-8
 B.add_brick(b);
-9
 if b contains EOF then // Structure complete
-10
 if B is stable or max rollbacks exceeded then return B;
-11
 while B is unstable do // Rollback if unstable
-12
-I →indices of unstable bricks in B;
-13
-i →min I; // idx of 1st unstable brick
-14
-B →[b1, . . . , bi→1];
-15
+I indices of unstable bricks in B;
+i min I; // idx of 1st unstable brick
+B [b1, . . . , bi1];
 end
-16
 end
 17 end
 structures are unstable during construction yet become stable
@@ -684,7 +544,7 @@ generates a brick and its position, the brick should be well-
 formatted (e.g., available in the inventory) and lie within
 the world space. Second, the brick should not collide with
 the existing structure. Formally, for each generated brick bt,
-we have Vt ⇒Vi = ⊋, ⇐i →[1, t ↑1], where Vi denotes the
+we have Vt Vi = ⊋, i [1, t 1], where Vi denotes the
 voxels occupied by bi. These heuristics allow us to efﬁciently
 generate well-formatted structures without explicitly consid-
 ering complex physical stability. To integrate these heuristics,
@@ -696,12 +556,12 @@ Physics-Aware Rollback.
 To ensure that the ﬁnal de-
 sign B = [b1, b2, . . . , bN] is physically stable, we calcu-
 late the stability score S. If the resulting design is unsta-
-ble, i.e., si = 0, i →I, we roll back the design to the
+ble, i.e., si = 0, i I, we roll back the design to the
 state before the ﬁrst unstable brick was generated, i.e.,
-B↑= [b1, b2, . . . , bmin I→1]. Here, I is the set of the indices
+B= [b1, b2, . . . , bmin I1]. Here, I is the set of the indices
 of all the unstable bricks. We repeat this process iteratively
-until we reach a stable structure B↑, and continue gener-
-ation from the partial structure B↑. Note that we can use
+until we reach a stable structure B, and continue gener-
+ation from the partial structure B. Note that we can use
 the per-brick stability score to efﬁciently ﬁnd the collapsing
 bricks and their corresponding indices in the sequence. We
 summarize our inference sampling in Algorithm 1.
@@ -728,7 +588,7 @@ Uniform Brick Color Assignment.
 We can also assign
 each brick a uniform color from a standard color library [30].
 Given a structure B, we convert it to a voxel grid V and then
-to a UV-unwrapped mesh MV. For every voxel v →V, let
+to a UV-unwrapped mesh MV. For every voxel v V, let
 f v
 i , i = 1, . . . , Nv be its visible faces where 0 ⇑Nv ⇑6.
 Each face f v
@@ -738,23 +598,18 @@ i , creating a mesh MV with UV map UVV. We
 apply FlashTex [8] to generate a texture Itexture:
 Itexture = FlashTex(MV, UVV, c).
 (6)
-The color of each voxel C(v) →R3 is computed as:
+The color of each voxel C(v) R3 is computed as:
 C(v) = 1
-Nv
-Nv
-"
 i=1
 C(f v
 i ),
-⇐v →V,
+v V,
 (7)
 where C(f v
 i ) =
-1
 |Sv
 i |
-&
-(x,y)↓Sv
+(x,y)Sv
 i Itexture(x, y) is the color of
 each visible face f v
 i , and |Sv
@@ -762,10 +617,8 @@ i | represents the number of
 pixels in region Sv
 i in the UV map. For each brick bt and its
 constituent voxels Vt, we compute the brick color C(bt) =
-1
 |Vt|
-&
-v↓Vt C(v). Finally, we ﬁnd the closest color in the
+vVt C(v). Finally, we ﬁnd the closest color in the
 color set. While UV texturing offers higher-ﬁdelity details,
 uniform coloring allows us to use standard toy bricks.
 5. Experiments
@@ -777,11 +630,10 @@ samples only up to 4096 tokens long. Training details are
 provided in Appendix A.
 Inference. To evaluate our method, we generate one brick
 structure for each of 250 prompts randomly selected from
-14803
 
 Table 1. Quantitative Results. We evaluate our method against several baselines on validity (no out-of-library, out-of-bounds, or colliding
 bricks), stability, CLIP-based text similarity, and DINOv2-based image similarity. Stability, CLIP, and DINO are computed over valid
-structures only. For LLaMA-Mesh [81], validity requires a well-formed OBJ ﬁle. Results marked “+ our stability analysis” are augmented by
+structures only. For LLaMA-Mesh [81], validity requires a well-formed OBJ ﬁle. Results marked + our stability analysis are augmented by
 generating multiple structures and choosing the ﬁrst stable one found (if any). Our method outperforms all baselines as well as the ablated
 setups on validity and stability using our proposed rejection sampling and rollback, while maintaining high text similarity.
 Method
@@ -801,97 +653,41 @@ N/A
 In-context learning (5-shot)
 2.4%
 1.2%
-0.675
-0.479
-0.284
-0.814
 LLaMA-Mesh [81]
 94.8%
 50.8%
-0.894
-0.499
-0.317
-0.851
 LGM [70]
-100%
 25.2%
-0.942
-0.231
-0.300
-0.851
 XCube [62]
-100%
 75.2%
-0.964
-0.686
-0.322
-0.859
 Hunyuan3D-2 [89]
-100%
 75.2%
-0.973
-0.704
-0.324
-0.868
 LLaMA-Mesh [81] + our stability analysis
 94.8%
 58.0%
-0.896
-0.564
-0.317
-0.851
 LGM [70] + our stability analysis
-100%
 32.5%
-0.941
-0.285
-0.300
-0.851
 XCube [62] + our stability analysis
-100%
 83.6%
-0.963
-0.754
-0.322
-0.859
 Hunyuan3D-2 [89] + our stability analysis
-100%
 88.4%
-0.976
-0.813
-0.324
-0.868
 Ours w/o rejection sampling or rollback
 37.2%
 12.8%
-0.956
-0.325
-0.329
-0.888
 Ours w/o rollback
-100%
 24.0%
-0.947
-0.228
-0.322
-0.882
 Ours (BRICKGPT)
-100%
 98.8%
-0.996
-0.915
-0.324
-0.880
-“Small car featuring a
+Small car featuring a
 rectangular body, flat
 top, and stepped
-edges.”
-“Compact sofa with a
-geometric design.”
-“Table featuring a flat
+edges.
+Compact sofa with a
+geometric design.
+Table featuring a flat
 rectangular surface
 over four evenly
-spaced legs.”
+spaced legs.
 Input prompt
 Ours
 LLaMA-Mesh
@@ -902,12 +698,12 @@ Pre-trained LLaMA
 (no training, zero-shot)
 LGM
 + mesh-to-brick
-“Train with rectangular
+Train with rectangular
 body and geometric
-components.”
-“Compact chair with a
+components.
+Compact chair with a
 tall backrest and
-serrated seat.”
+serrated seat.
 Xcube
 + mesh-to-brick
 Hunyuan3D-2
@@ -952,24 +748,23 @@ Unstable
 Figure 5. Result Gallery and Baseline Comparisons. Our method generates high-quality, diverse, and novel brick structures aligned with
 the given text prompts. Black bricks are colliding. For LLaMA-Mesh [81], LGM [70], XCube [62], and Hunyuan3D-2 [89], an inset of the
 generated mesh is shown in the top-left corner.
-14804
 
 Ours w/o rollback
 Ours w/o rejec0on
 sampling or rollback
 Ours
 Invalid (colliding bricks)
-“Square-seated
+Square-seated
 chair featuring
 an upright,
 rectangular
 backrest and
-straight legs.”
-“Boxy vehicle
+straight legs.
+Boxy vehicle
 featuring a
 Bered facade
 and angular
-structure.”
+structure.
 Input text
 prompt
 Unstable
@@ -980,36 +775,36 @@ Stable
 Figure 6. Ablation Study. Brick-by-brick rejection sampling and
 physics-informed rollback help to ensure that the generated struc-
 ture is both valid and stable. Black indicates colliding bricks.
-“Victorian library shelving
-with carved moldings […]”
-“Japanese sliding bookcase
+Victorian library shelving
+with carved moldings […]
+Japanese sliding bookcase
 with shoji screens,
-traditional design […]”
-“Gothic cathedral
+traditional design […]
+Gothic cathedral
 bookshelf with arch details,
-medieval style […]”
+medieval style […]
 Generated Brick Structure
 Generated Textured Brick Models
-“Comfortable lounge chair
+Comfortable lounge chair
 wrapped in Japanese
-shibori fabric […]”
-“Cyberpunk holographic
+shibori fabric […]
+Cyberpunk holographic
 material with neon purple
-and blue gradients […]”
-“Rustic farmhouse
+and blue gradients […]
+Rustic farmhouse
 armchair built from
-reclaimed wood […]”
-“A layered bookshelf […]”
-“A sofa with a rectangular
-base […]”
-“Sunburst Les Paul with
-amber finish […]”
-“Steel resonator with
-engraved body […]”
-“Electric guitar in metallic
-purple […]”
-“An asymmetrical six-string
-guitar […]”
+reclaimed wood […]
+A layered bookshelf […]
+A sofa with a rectangular
+base […]
+Sunburst Les Paul with
+amber finish […]
+Steel resonator with
+engraved body […]
+Electric guitar in metallic
+purple […]
+An asymmetrical six-string
+guitar […]
 Generated Brick Structure
 Generated Colored Brick Models
 Figure 7. Brick Texture and Color Generation. Our method can
@@ -1017,7 +812,7 @@ generate diverse textured (top two rows) and colored (bottom) struc-
 tures based on the same shape with different appearance prompts.
 the validation dataset. The nonlinear optimization in Eqn. 3
 is solved using Gurobi [18]. We set FT = 0.98N with ϑ =
-10→3 and ϖ = 10→6. We allow up to 100 physics-aware
+103 and ϖ = 106. We allow up to 100 physics-aware
 rollbacks before accepting the brick structure. The median
 number of required rollbacks is 2, and the median time to
 generate one structure is 40.8 seconds.
@@ -1042,7 +837,7 @@ valid structures among the generated designs. Additionally,
 for each valid structure, we compute its mean and minimum
 brick stability scores. To evaluate prompt alignment, we com-
 pute the CLIP score [61] between a rendered image of each
-valid structure and the text “A LEGO model of {prompt}”.
+valid structure and the text A LEGO model of {prompt}.
 We also calculate the alignment between rendered images of
 the generated structure and the ground-truth structure for the
 same prompt, as measured by the cosine similarity between
@@ -1070,7 +865,7 @@ valid and can be hand-assembled. See Appendix C.
 Brick Texture and Color Generation.
 Figure 7 shows
 both UV texturing and uniform coloring results of brick
-structures, demonstrating our method’s ability to generate
+structures, demonstrating our methods ability to generate
 diverse styles while preserving the underlying geometry.
 6. Conclusion
 In this work, we have introduced BRICKGPT, an autoregres-
@@ -1079,7 +874,6 @@ tures from text prompts. Our method predicts the next brick
 sequentially while ensuring physical stability and buildabil-
 ity. We have shown that our method outperforms LLM back-
 bone models and recent text-to-3D generation methods.
-14805
 
 Acknowledgments
 We thank Minchen Li, Ken Goldberg, Nupur Kumari, Rui-
@@ -1102,7 +896,7 @@ Hanrahan, Qixing Huang, Zimo Li, Silvio Savarese, Mano-
 lis Savva, Shuran Song, Hao Su, Jianxiong Xiao, Li Yi, and
 Fisher Yu. ShapeNet: An Information-Rich 3D Model Repos-
 itory. Technical Report arXiv:1512.03012 [cs.GR], Stanford
-University — Princeton University — Toyota Technological
+University Princeton University Toyota Technological
 Institute at Chicago, 2015. 3, 13
 [3] Rui Chen, Yongwei Chen, Ningxin Jiao, and Kui Jia. Fan-
 tasia3D: Disentangling geometry and appearance for high-
@@ -1128,7 +922,7 @@ Vikram Voleti, Samir Yitzhak Gadre, Eli VanderBilt, Anirud-
 dha Kembhavi, Carl Vondrick, Georgia Gkioxari, Kiana
 Ehsani, Ludwig Schmidt, and Ali Farhadi. Objaverse-XL: A
 universe of 10M+ 3D objects. In Advances in Neural Infor-
-mation Processing Systems (NeurIPS), pages 35799–35813.
+mation Processing Systems (NeurIPS), pages 3579935813.
 Curran Associates, Inc., 2023. 14
 [8] Kangle Deng, Timothy Omernick, Alexander Weiss, Deva Ra-
 manan, Jun-Yan Zhu, Tinghui Zhou, and Maneesh Agrawala.
@@ -1145,22 +939,18 @@ Zhao, Zilong Dong, Liefeng Bo, and Qixing Huang.
 GPLD3D: Latent diffusion of 3D shape generative models by
 enforcing geometric and physical priors. In IEEE Conference
 on Computer Vision and Pattern Recognition (CVPR), 2024.
-3
 [11] Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Ab-
 hishek Kadian, Ahmad Al-Dahle, Aiesha Letman, Akhil
 Mathur, Alan Schelten, Amy Yang, Angela Fan, et al. The
 Llama 3 herd of models. arXiv preprint arXiv:2407.21783,
-2024. 4, 14
 [12] Pablo Funes and Jordan Pollack. Evolutionary body building:
 Adaptive physical designs for robots. Artiﬁcial Life, 4(4):
-337–357, 1998. 3
 [13] Jiahao Ge, Mingjun Zhou, Wenrui Bao, Hao Xu, and Chi-
 Wing Fu. Creating LEGO ﬁgurines from single images. ACM
-Transactions on Graphics (TOG), 43(4):153:1–153:16, 2024.
-2
+Transactions on Graphics (TOG), 43(4):153:1153:16, 2024.
 [14] Jiahao Ge, Mingjun Zhou, and Chi-Wing Fu. Learn to cre-
 ate simple LEGO micro buildings. ACM Transactions on
-Graphics (TOG), 43(6):249:1–249:13, 2024. 2
+Graphics (TOG), 43(6):249:1249:13, 2024. 2
 [15] Andrew Goldberg, Kavish Kondap, Tianshuang Qiu, Zehan
 Ma, Letian Fu, Justin Kerr, Huang Huang, Kaiyuan Chen,
 Kuan Fang, and Ken Goldberg. Blox-Net: Generative design-
@@ -1171,7 +961,6 @@ Robotics and Automation (ICRA). IEEE, 2025. 3
 Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, and
 Yoshua Bengio. Generative adversarial networks. In Advances
 in Neural Information Processing Systems (NeurIPS), 2014.
-1
 [17] Minghao Guo, Bohan Wang, Pingchuan Ma, Tianyuan Zhang,
 Crystal Elaine Owens, Chuang Gan, Joshua B. Tenenbaum,
 Kaiming He, and Wojciech Matusik. Physically compatible
@@ -1191,10 +980,8 @@ Conference on Computer Vision (ICCV), 2023. 2
 Wu, Zhaoxi Chen, Tengfei Wang, Liang Pan, Dahua Lin, and
 Ziwei Liu. 3DTopia: Large text-to-3D generation model with
 hybrid diffusion priors. arXiv preprint arXiv:2403.02234,
-2024. 2
 [22] Yicong Hong, Kai Zhang, Jiuxiang Gu, Sai Bi, Yang Zhou,
 Difan Liu, Feng Liu, Kalyan Sunkavalli, Trung Bui, and Hao
-14806
 
 Tan. LRM: Large reconstruction model for single image to
 3D. In International Conference on Learning Representations
@@ -1203,7 +990,6 @@ Tan. LRM: Large reconstruction model for single image to
 Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen. LoRA:
 Low-rank adaptation of large language models. In Interna-
 tional Conference on Learning Representations (ICLR), 2022.
-14
 [24] Philip Huang, Ruixuan Liu, Shobhit Aggarwal, Changliu Liu,
 and Jiaoyang Li. Apex-mr: Multi-robot asynchronous plan-
 ning and execution for cooperative assembly. In Robotics:
@@ -1226,25 +1012,21 @@ tial assembly. arXiv preprint arXiv:2004.07414, 2020. 2
 [29] Jae Woo Kim. Survey on automated LEGO assembly con-
 struction. 2014. 2
 [30] LDraw.org. Ldraw.org homepage, 2025. 5, 6
-[31] Kyle Lennon, Katharina Fransen, Alexander O’Brien, Yu-
+[31] Kyle Lennon, Katharina Fransen, Alexander OBrien, Yu-
 meng Cao, Matthew Beveridge, Yamin Arefeen, Nikhil Singh,
 and Iddo Drori. Image2Lego: Customized LEGO set gener-
 ation from images. arXiv preprint arXiv:2108.08477, 2021.
-3
 [32] Jiahao Li, Hao Tan, Kai Zhang, Zexiang Xu, Fujun
 Luan, Yinghao Xu, Yicong Hong, Kalyan Sunkavalli, Greg
 Shakhnarovich, and Sai Bi. Instant3D: Fast text-to-3D with
 sparse-view generation and large reconstruction model. In In-
 ternational Conference on Learning Representations (ICLR),
-2024. 2
 [33] Muheng Li, Yueqi Duan, Jie Zhou, and Jiwen Lu. Diffusion-
 SDF: Text-to-shape via voxelized diffusion. In IEEE Confer-
 ence on Computer Vision and Pattern Recognition (CVPR),
-2023. 2
 [34] Weiyu Li, Rui Chen, Xuelin Chen, and Ping Tan. Sweet-
 Dreamer: Aligning geometric priors in 2D diffusion for con-
 sistent text-to-3D. arXiv preprint arXiv:2310.02596, 2023.
-2
 [35] Weiyu Li, Jiarui Liu, Rui Chen, Yixun Liang, Xuelin Chen,
 Ping Tan, and Xiaoxiao Long. CraftsMan: High-ﬁdelity mesh
 generation with 3D native generation and interactive geometry
@@ -1259,23 +1041,21 @@ Chen, Chao Xu, Mengqi Zhang, Zhaoning Wang, Xiaoshuai
 Zhang, Isabella Liu, et al. MeshFormer: High-quality mesh
 generation with 3D-guided reconstruction model. Advances
 in Neural Information Processing Systems (NeurIPS), 37:
-59314–59341, 2025. 2
 [38] Ruixuan Liu, Kangle Deng, Ziwei Wang, and Changliu Liu.
 StableLego: Stability analysis of block stacking assembly.
-IEEE Robotics and Automation Letters, 9(11):9383–9390,
+IEEE Robotics and Automation Letters, 9(11):93839390,
 2024. 3, 5, 13
 [39] Ruixuan Liu, Yifan Sun, and Changliu Liu. A lightweight
 and transferable design for robust LEGO manipulation.
 International Symposium on Flexible Automation, page
-V001T07A004, 2024. 8, 14
 [40] Ruixuan Liu, Alan Chen, Weiye Zhao, and Changliu Liu.
 Physics-aware combinatorial assembly sequence planning us-
 ing data-free action masking. IEEE Robotics and Automation
-Letters, 10(5):4882–4889, 2025. 2, 14
+Letters, 10(5):48824889, 2025. 2, 14
 [41] Steven Liu, Xiuming Zhang, Zhoutong Zhang, Richard Zhang,
 Jun-Yan Zhu, and Bryan Russell. Editing conditional radiance
 ﬁelds. In IEEE International Conference on Computer Vision
-(ICCV), pages 5773–5783, 2021. 2
+(ICCV), pages 57735783, 2021. 2
 [42] Xueyi Liu, Bin Wang, He Wang, and Li Yi.
 Few-shot
 physically-aware articulated mesh generation via hierarchical
@@ -1286,7 +1066,6 @@ Zhiyang Dou, Lingjie Liu, Yuexin Ma, Song-Hai Zhang, Marc
 Habermann, Christian Theobalt, et al. Wonder3D: Single im-
 age to 3D using cross-domain diffusion. In IEEE Conference
 on Computer Vision and Pattern Recognition (CVPR), 2024.
-2
 [44] Ilya Loshchilov and Frank Hutter. Decoupled weight de-
 cay regularization. In International Conference on Learning
 Representations (ICLR), 2019. 14
@@ -1304,7 +1083,6 @@ Lein, Pingchuan Ma, Bolei Deng, Megan Tjandrasuwita, An-
 drew Spielberg, Crystal Elaine Owens, Peter Yichen Chen,
 et al. How can large language models help humans in design
 and manufacturing? arXiv preprint arXiv:2307.14377, 2023.
-2
 [48] David McAllister, Songwei Ge, Jia-Bin Huang, David W.
 Jacobs, Alexei A. Efros, Aleksander Holynski, and Angjoo
 Kanazawa. Rethinking score distillation as a bridge between
@@ -1312,7 +1090,6 @@ image distributions. In Advances in Neural Information Pro-
 cessing Systems (NeurIPS), 2024. 2
 [49] Gal Metzer, Elad Richardson, Or Patashnik, Raja Giryes, and
 Daniel Cohen-Or. Latent-NeRF for shape-guided generation
-14807
 
 of 3d shapes and textures. In IEEE Conference on Computer
 Vision and Pattern Recognition (CVPR), 2023. 2
@@ -1349,7 +1126,7 @@ arXiv preprint arXiv:2212.00842, 2022. 2
 [56] Charlie Nash, Yaroslav Ganin, S. M. Ali Eslami, and Peter
 Battaglia. PolyGen: An autoregressive generative model of
 3D meshes. In International Conference on Machine Learn-
-ing (ICML), pages 7220–7229. PMLR, 2020. 2
+ing (ICML), pages 72207229. PMLR, 2020. 2
 [57] Junfeng Ni, Yixin Chen, Bohan Jing, Nan Jiang, Bin Wang,
 Bo Dai, Puhao Li, Yixin Zhu, Song-Chun Zhu, and Siyuan
 Huang. PhyRecon: Physically plausible neural scene recon-
@@ -1358,7 +1135,7 @@ Systems (NeurIPS), 2024. 3
 [58] Sumiaki Ono, Alexis Andre, Youngha Chang, and Masayuki
 Nakajima. LEGO builder: Automatic generation of LEGO
 assembly manual from 3D polygon model. ITE Transactions
-on Media Technology and Applications, 1:354–360, 2013. 2
+on Media Technology and Applications, 1:354360, 2013. 2
 [59] Maxime Oquab, Timothée Darcet, Théo Moutakanni, Huy V.
 Vo, Marc Szafraniec, Vasil Khalidov, Pierre Fernandez, Daniel
 HAZIZA, Francisco Massa, Alaaeldin El-Nouby, Mido As-
@@ -1378,13 +1155,12 @@ Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sastry,
 Amanda Askell, Pamela Mishkin, Jack Clark, et al. Learning
 transferable visual models from natural language supervision.
 In International Conference on Machine Learning (ICML),
-2021. 8
 [62] Xuanchi Ren, Jiahui Huang, Xiaohui Zeng, Ken Museth,
 Sanja Fidler, and Francis Williams.
 XCube: Large-scale
 3D generative modeling using sparse voxel hierarchies. In
 IEEE Conference on Computer Vision and Pattern Recogni-
-tion (CVPR), pages 4209–4219, 2024. 2, 7, 8
+tion (CVPR), pages 42094219, 2024. 2, 7, 8
 [63] Elad Richardson, Gal Metzer, Yuval Alaluf, Raja Giryes,
 and Daniel Cohen-Or. Texture: Text-guided texturing of 3D
 shapes. In ACM SIGGRAPH, 2023. 1
@@ -1393,7 +1169,6 @@ Patrick Esser, and Björn Ommer.
 High-resolution image
 synthesis with latent diffusion models. In IEEE Conference
 on Computer Vision and Pattern Recognition (CVPR), 2022.
-2
 [65] J Ryan Shue, Eric Ryan Chan, Ryan Po, Zachary Ankner,
 Jiajun Wu, and Gordon Wetzstein. 3D neural ﬁeld generation
 using triplane diffusion. In IEEE Conference on Computer
@@ -1404,7 +1179,6 @@ and Matthias Nießner. MeshGPT: Generating triangle meshes
 with decoder-only transformers.
 In IEEE Conference on
 Computer Vision and Pattern Recognition (CVPR), pages
-19615–19625, 2024. 2
 [67] Jascha Sohl-Dickstein, Eric Weiss, Niru Maheswaranathain,
 and Surya Ganguli.
 Deep unsupervised learning using
@@ -1421,12 +1195,11 @@ preprint arXiv:2409.18114, 2024. 2
 [70] Jiaxiang Tang, Zhaoxi Chen, Xiaokang Chen, Tengfei Wang,
 Gang Zeng, and Ziwei Liu. LGM: Large multi-view gaussian
 model for high-resolution 3D content creation. In European
-Conference on Computer Vision (ECCV), pages 1–18, Cham,
+Conference on Computer Vision (ECCV), pages 118, Cham,
 2025. Springer Nature Switzerland. 2, 7, 8
 [71] Romain Pierre Testuz, Yuliy Schwartzburg, and Mark Pauly.
 Automatic generation of constructable brick sculptures. Tech-
 nical report, École Polytechnique Fédérale de Lausanne, 2013.
-2
 [72] Rylee Thompson, Elahe Ghalebi, Terrance DeVries, and Gra-
 ham W. Taylor. Building LEGO using deep generative models
 of graphs. arXiv preprint arXiv:2012.11543, 2020. 2
@@ -1439,10 +1212,8 @@ assembly by disassembly. ACM Transactions on Graphics
 ImportLDraw - blender add-on for im-
 porting LDraw models.
 https://github.com/
-14808
 
 TobyLobster/ImportLDraw, 2025. Accessed: 2025-
-03-07. 6
 [75] Dmitry Tochilkin, David Pankratz, Zexiang Liu, Zixuan
 Huang, Adam Letts, Yangguang Li, Ding Liang, Christian
 Laforte, Varun Jampani, and Yan-Pei Cao. TripoSR: Fast 3D
@@ -1459,7 +1230,6 @@ splatting. arXiv preprint arXiv:2311.17907, 2023. 3
 Greg Shakhnarovich. Score Jacobian chaining: Lifting pre-
 trained 2D diffusion models for 3D generation. In IEEE Con-
 ference on Computer Vision and Pattern Recognition (CVPR),
-2023. 2
 [79] Ruocheng Wang, Yunzhi Zhang, Jiayuan Mao, Chin-Yi
 Cheng, and Jiajun Wu. Translating a visual lego manual
 to a machine-executable plan. In European Conference on
@@ -1501,7 +1271,6 @@ Recognition (CVPR), 2023. 3
 Pang, Haoran Jiang, Wei Yang, Lan Xu, and Jingyi Yu. CLAY:
 A controllable large-scale generative model for creating high-
 quality 3D assets. In ACM Transactions on Graphics (TOG),
-2024. 2
 [89] Zibo Zhao, Zeqiang Lai, Qingxiang Lin, Yunfei Zhao, Haolin
 Liu, Shuhui Yang, Yifei Feng, Mingxin Yang, Sheng Zhang,
 Xianghui Yang, et al. Hunyuan3D 2.0: Scaling diffusion
@@ -1510,15 +1279,12 @@ arXiv preprint arXiv:2501.12202, 2025. 2, 7, 8
 [90] Guyue Zhou, Liyi Luo, Hao Xu, Xinliang Zhang, Haole Guo,
 and Hao Zhao. Brick yourself within 3 minutes. In Interna-
 tional Conference on Robotics and Automation (ICRA), pages
-6261–6267, 2022. 2
 [91] J. Zhou, X. Chen, and Y. Xu. Automatic generation of vivid
 LEGO architectural sculptures. Computer Graphics Forum,
-2019. 2
 [92] Linqi Zhou, Yilun Du, and Jiajun Wu. 3D shape generation
 and completion through point-voxel diffusion. In IEEE In-
 ternational Conference on Computer Vision (ICCV), 2021.
-2
 [93] Mingjun Zhou, Jiahao Ge, Hao Xu, and Chi-Wing Fu. Com-
 putational design of LEGO® sketch art. ACM Transactions
 on Graphics (TOG), 42(6), 2023. 3
-14809
+

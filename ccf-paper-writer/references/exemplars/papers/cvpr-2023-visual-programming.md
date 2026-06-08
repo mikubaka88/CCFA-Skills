@@ -5,18 +5,17 @@
 > **Source:** <https://openaccess.thecvf.com/content/CVPR2023/html/Gupta_Visual_Programming_Compositional_Visual_Reasoning_Without_Training_CVPR_2023_paper.html>
 
 ---
-
 Visual Programming: Compositional visual reasoning without training
 Tanmay Gupta, Aniruddha Kembhavi
 PRIOR @ Allen Institute for AI
 https://prior.allenai.org/projects/visprog
 Question: Are there both ties and glasses in the picture?
 Program:
-BOX0=Loc(image=IMAGE, object=‘ties’)
+BOX0=Loc(image=IMAGE, object=ties)
 ANSWER0=Count(box=BOX0)
-BOX1=Loc(image=IMAGE, object=‘glasses’)
+BOX1=Loc(image=IMAGE, object=glasses)
 ANSWER1=Count(box=BOX1)
-ANSWER2=Eval(“‘yes’ if {ANSWER0} > 0 and {ANSWER1} > 0 else ‘no’”)
+ANSWER2=Eval(yes if {ANSWER0} > 0 and {ANSWER1} > 0 else no)
 RESULT=ANSWER2
 Prediction: no
 IMAGE:
@@ -25,11 +24,11 @@ LEFT:
 RIGHT:
 Statement: The left and right image contains a total of six people and two boats.
 Program:
-ANSWER0=Vqa(image=LEFT, question=‘How many people are in the image?’)
-ANSWER1=Vqa(image=RIGHT, question=‘How many people are in the image?’)
-ANSWER2=Vqa(image=LEFT, question=‘How many boats are in the image?’)
-ANSWER3=Vqa(image=RIGHT, question=‘How many boats are in the image?’)
-ANSWER4=Eval(‘{ANSWER0} + {ANSWER1} == 6 and {ANSWER2} + {ANSWER3} == 2’)
+ANSWER0=Vqa(image=LEFT, question=How many people are in the image?)
+ANSWER1=Vqa(image=RIGHT, question=How many people are in the image?)
+ANSWER2=Vqa(image=LEFT, question=How many boats are in the image?)
+ANSWER3=Vqa(image=RIGHT, question=How many boats are in the image?)
+ANSWER4=Eval({ANSWER0} + {ANSWER1} == 6 and {ANSWER2} + {ANSWER3} == 2)
 RESULT=ANSWER4
 Prediction: False
 Natural Language Visual Reasoning
@@ -38,7 +37,7 @@ Prediction: IMAGE0
 Instruction: Tag the 7 main characters on the TV show Big Bang Theory
 Program:
 OBJ0=FaceDet(image=IMAGE)
-LIST0=List(query=‘main characters on the TV show Big Bang Theory’, max=7)
+LIST0=List(query=main characters on the TV show Big Bang Theory, max=7)
 OBJ1=Classify(image=IMAGE, object=OBJ0, categories=LIST0)
 IMAGE0=Tag(image=IMAGE, object=OBJ1)
 RESULT=IMAGE0
@@ -48,10 +47,10 @@ Prediction: IMAGE1
 Instruction: Hide Daniel Craig with 8) and Sean Connery with ;)
 Program:
 OBJ0=FaceDet(image=IMAGE)
-OBJ1=Select(image=IMAGE, object=OBJ0, query=‘Daniel Craig’, category=None)
-IMAGE0=Emoji(image=IMAGE, object=OBJ1, emoji=‘smiling_face_with_sunglasses’)
-OBJ2=Select(image=IMAGE, object=OBJ0, query=‘Sean Connery’, category: None)
-IMAGE1=Emoji(image=IMAGE0, object=OBJ2, emoji=‘winking_face’)
+OBJ1=Select(image=IMAGE, object=OBJ0, query=Daniel Craig, category=None)
+IMAGE0=Emoji(image=IMAGE, object=OBJ1, emoji=smiling_face_with_sunglasses)
+OBJ2=Select(image=IMAGE, object=OBJ0, query=Sean Connery, category: None)
+IMAGE1=Emoji(image=IMAGE0, object=OBJ2, emoji=winking_face)
 RESULT=IMAGE1
 Natural Language Image Editing
 IMAGE:
@@ -59,15 +58,15 @@ Prediction: IMAGE0
 Instruction: Replace desert with lush green grass
 Program:
 OBJ0=Seg(image=IMAGE)
-OBJ1=Select(image=IMAGE, object=OBJ0, query=‘desert’, category=None)
-IMAGE0=Replace(image=IMAGE, object=OBJ1, prompt=‘lush green grass’)
+OBJ1=Select(image=IMAGE, object=OBJ0, query=desert, category=None)
+IMAGE0=Replace(image=IMAGE, object=OBJ1, prompt=lush green grass)
 RESULT=IMAGE0
 IMAGE:
 Prediction: IMAGE0
 Instruction: Create a color pop of Barack Obama (person)
 Program:
 OBJ0=Seg(image=IMAGE)
-OBJ1=Select(image=IMAGE, object=OBJ0, query=‘Barack Obama’, category=‘person’)
+OBJ1=Select(image=IMAGE, object=OBJ0, query=Barack Obama, category=person)
 IMAGE0=ColorPop(image=IMAGE, object=OBJ1)
 RESULT=IMAGE0
 High-level
@@ -93,6 +92,7 @@ of natural language instructions and the desired high-level programs, VISPROG ge
 context learning in GPT-3 and then executes the program on the input image(s) to obtain the prediction. VISPROG also summarizes the
 intermediate outputs into an interpretable visual rationale (Fig. 4). We demonstrate VISPROG on tasks that require composing a diverse
 set of modules for image understanding and manipulation, knowledge retrieval, and arithmetic and logical operations.
+
 
 ## Abstract
 
@@ -120,7 +120,6 @@ that people may wish to perform.
 This CVPR paper is the Open Access version, provided by the Computer Vision Foundation.
 Except for this watermark, it is identical to the accepted version;
 the final published version of the proceedings is available on IEEE Xplore.
-14953
 
 1. Introduction
 The pursuit of general purpose AI systems has lead to
@@ -132,6 +131,7 @@ The predominant approach to building these
 systems has been massive-scale unsupervised pretraining
 followed by supervised multitask training. However, this
 
+
 ## Approach
 
 makes it challenging to scale to the infinitely long tail of
@@ -141,14 +141,14 @@ models to tackle the long tail of complex tasks by decom-
 posing these tasks described in natural language into sim-
 pler steps that may be handled by specialized end-to-end
 trained models or other programs.
-Imagine instructing a vision system to “Tag the 7 main
-characters on the TV show Big Bang Theory in this image.”
+Imagine instructing a vision system to Tag the 7 main
+characters on the TV show Big Bang Theory in this image.
 To perform this task, the system first needs to understand
 the intent of the instruction and then perform a sequence
 of steps - detect the faces, retrieve list of main characters
 on Big Bang Theory from a knowledge base, classify faces
 using the list of characters, and tag the image with recog-
-nized character’s faces and names. While different vision
+nized characters faces and names. While different vision
 and language systems exist to perform each of these steps,
 executing this task described in natural language is beyond
 the scope of end-to-end trained systems.
@@ -186,7 +186,7 @@ modules use neural models (OWL-ViT [19], DSFD [16], Mask-
 Former [6], CLIP [20], ViLT [15], and Stable Diffusion [25]).
 Blue modules use image processing and other python subroutines.
 These modules are invoked in programs generated from natural
-language instructions. Adding new modules to extend VISPROG’s
+language instructions. Adding new modules to extend VISPROGs
 capabilities is straightforward (Code. 1).
 and a small number of in-context examples to create com-
 plex programs without requiring any training1. Programs
@@ -224,9 +224,8 @@ base VQA model on the compositional VQA task, strong
 zero-shot accuracy of 62.4% on NLVR without ever train-
 ing on image pairs, and delightful qualitative and quantita-
 tive results on knowledge tagging and image editing tasks.
-1We use “training” to refer to gradient-based learning to differentiate it
+1We use training to refer to gradient-based learning to differentiate it
 from in-context learning which only involves a feedforward pass.
-14954
 
 Our key contributions include - (i) VISPROG - a sys-
 tem that uses the in-context learning ability of a language
@@ -238,7 +237,7 @@ guage guided image editing (Secs. 4.3 and 4.4) that have
 eluded or seen limited success with a single end-to-end
 model; and (iii) producing visual rationales for these tasks
 and showing their utility for error analysis and user-driven
-instruction tuning to improve VISPROG’s performance sig-
+instruction tuning to improve VISPROGs performance sig-
 nificantly (Sec. 5.3).
 2. Related Work
 Neuro-symbolic approaches have seen renewed momen-
@@ -285,7 +284,7 @@ to-text retrieval, and robot planning. However, in SMs the
 composition is pre-determined and fixed for each task. In
 contrast, VISPROG determines how to compose models for
 each instance by generating programs based on the instruc-
-tion, question, or statement. We demonstrate VISPROG’s
+tion, question, or statement. We demonstrate VISPROGs
 ability to handle complex instructions that involve diverse
 capabilities (20 modules) and varied input (text, image, and
 image pairs), intermediate (text, image, bounding boxes,
@@ -294,7 +293,7 @@ ages). Similar to VISPROG, ProgPrompt [26] is a concur-
 rent work that demonstrates the ability of LLMs to gener-
 ate python-like situated robot action plans from natural lan-
 guage instructions. While ProgPrompt modules (such as
-“find” or “grab”) take strings (typically object names) as in-
+find or grab) take strings (typically object names) as in-
 put, VISPROG programs are more general. In each step in
 a VISPROG program, a module could accept multiple ar-
 guments including strings, numbers, arithmetic and logical
@@ -333,7 +332,6 @@ only requires programming expertise but is also slow, la-
 bor intensive, and ultimately insufficient to cover the space
 of all tasks. What if, we could describe the task in natural
 language and have an AI system generate and execute the
-14955
 
 Figure 3. Program generation in VISPROG.
 corresponding visual program without any training?
@@ -346,7 +344,7 @@ to-French translation examples and a new English phrase
 good morning -> bonjour
 good day -> bonne journ´ee
 good evening ->
-produces the French translation “bonsoir”. Note that we did
+produces the French translation bonsoir. Note that we did
 not have to finetune GPT-3 to perform the task of trans-
 lation on the thrid phrase. VISPROG uses this in-context
 learning ability of GPT-3 to output visual programs for nat-
@@ -358,16 +356,16 @@ prompt for an image editing task. The programs in the in-
 context examples are manually written and can typically be
 constructed without an accompanying image. Each line of
 a VISPROG program, or a program step, consists of the
-name of a module, module’s input argument names and
+name of a module, modules input argument names and
 their values, and an output variable name. VISPROG pro-
 grams often use output variables from past steps as inputs
-to future steps. We use descriptive module names (e.g. “Se-
-lect”, “ColorPop”, “Replace”), argument names (e.g. “im-
-age”, “object”, “query”), and variable names (e.g. “IM-
-AGE”, “OBJ”) to allow GPT-3 to understand the input and
+to future steps. We use descriptive module names (e.g. Se-
+lect, ColorPop, Replace), argument names (e.g. im-
+age, object, query), and variable names (e.g. IM-
+AGE, OBJ) to allow GPT-3 to understand the input and
 output type, and function of each module. During execu-
 tion the output variables may be used to store arbitrary data
-types. For instance “OBJ”s are list of objects in the image,
+types. For instance OBJs are list of objects in the image,
 with mask, bounding box, and text (e.g. category name) as-
 sociated with each object.
 These in-context examples are fed into GPT-3 along
@@ -406,7 +404,7 @@ tract the input argument names and values, and the out-
 put variable name; (ii) execute the necessary computation
 that may involve trained neural models and update the pro-
 gram state with the output variable name and value; and (iii)
-summarize the step’s computation visually using html (used
+summarize the steps computation visually using html (used
 later to create a visual rationale). Adding new modules to
 VISPROG simply requires implementing and registering a
 module class, while the execution of the programs using
@@ -418,7 +416,7 @@ an interpreter. The interpreter initializes the program state
 the inputs, and steps through the program line-by-line while
 invoking the correct module with the inputs specified in that
 line. After executing each step, the program state is updated
-with the name and value of the step’s output.
+with the name and value of the steps output.
 Visual Rationale. In addition to performing the necessary
 computation, each module class also implements a method
 called html() to visually summarize the inputs and outputs
@@ -426,55 +424,45 @@ of the module in an HTML snippet. The interpreter sim-
 ply stitches the HTML summary of all program steps into
 a visual rationale (Fig. 4) that can be used to analyze the
 logical correctness of the program as well as inspect the in-
-14956
 
-ß
 IMAGE
-ß
 OBJ0=Seg(
 image=IMAGE)
-ß
 OBJ1=Select(
 image=IMAGE,
 object=OBJ0,
-query=‘ground’)
-ß
+query=ground)
 IMAGE0=Replace(
 image=IMAGE,
 object=OBJ1,
-prompt=‘white snow’)
-ß
+prompt=white snow)
 OBJ2=Seg(
 image=IMAGE0)
-ß
 OBJ3=Select(
 image=IMAGE0,
 object=OBJ2,
-query=‘bear’)
-ß
+query=bear)
 IMAGE1=Replace(
 image=IMAGE0,
 object=OBJ3,
-prompt=‘white polar bear’)
+prompt=white polar bear)
 Instruction: Replace the ground
 with white snow and the bear
 with a white polar bear
 Prediction:
 ß LEFT
 ß RIGHT
-2
 ß ANSWER0=Vqa(
 image=LEFT,
-question=‘How many animals
-are in the flowered field?’)
-1
+question=How many animals
+are in the flowered field?)
 ß ANSWER1=Vqa(
 image=RIGHT,
-question=‘How many animals
-are in the flowered field?’)
+question=How many animals
+are in the flowered field?)
 True
-ß ANSWER2=Eval(expr=‘{ANSWER0} + {ANSWER1} >= 3?’)
-=Eval(expr=‘2 + 1 >= 3?’)
+ß ANSWER2=Eval(expr={ANSWER0} + {ANSWER1} >= 3?)
+=Eval(expr=2 + 1 >= 3?)
 Statement: At least three
 animals are in a flowered field
 Prediction: True
@@ -497,6 +485,7 @@ knowledge retrieval, and image generation and manipula-
 tion. Fig. 5 summarizes the inputs, outputs, and modules
 used for these tasks. We now describe these tasks, their
 
+
 ## Evaluation
 
 4.1. Compositional Visual Question Answering
@@ -511,11 +500,11 @@ Python expressions. For example, consider the question:
 Figure 5. We evaluate VISPROG on a diverse set of tasks. The
 tasks span a variety of inputs and outputs and reuse modules (Loc,
 FaceDet, VQA) whenever possible.
-“Is the small truck to the left or to the right of the people
-that are wearing helmets?”. VISPROG first localizes “peo-
-ple wearing helmets”, crops the region to the left (or right)
-of these people, checks if there is a “small truck” on that
-side, and return “left” if so and “right” otherwise. VISPROG
+Is the small truck to the left or to the right of the people
+that are wearing helmets?. VISPROG first localizes peo-
+ple wearing helmets, crops the region to the left (or right)
+of these people, checks if there is a small truck on that
+side, and return left if so and right otherwise. VISPROG
 uses the question answering module based on VILT [15],
 but instead of simply passing the complex original question
 to VILT, VISPROG invokes it for simpler tasks like identi-
@@ -544,19 +533,18 @@ VQA models are trained to answer questions about a sin-
 gle image. In practice, one might require a system to an-
 swer questions about a collection of images. For example,
 a user may ask a system to parse their vacation photo album
-and answer the question: “Which landmark did we visit, the
-day after we saw the Eiffel Tower?”. Instead of assembling
+and answer the question: Which landmark did we visit, the
+day after we saw the Eiffel Tower?. Instead of assembling
 an expensive dataset and training a multi-image model, we
 demonstrate the ability of VISPROG to use a single-image
 VQA system to solve a task involving multiple images with-
 out training on multi-image examples.
 We showcase this ability on the NLVRV2 [27] bench-
 mark, which involves verifying statements about image
-14957
 
 pairs. Typically, tackling the NLVRV2 challenge requires
 training custom architectures that take image pairs as input
-on NLVRV2’s train set. Instead, VISPROG achieves this by
+on NLVRV2s train set. Instead, VISPROG achieves this by
 decomposing a complex statement into simpler questions
 about individual images and a python expression involving
 arithmetic and logical operators and answers to the image-
@@ -565,7 +553,7 @@ image-level answers, and the python expression is evaluated
 to verify the statement.
 Evaluation. We create a small validation set by sampling
 250 random samples from the NLVRV2 dev set to guide
-prompt selection, and test generalization on NLVRV2’s full
+prompt selection, and test generalization on NLVRV2s full
 public test set.
 Prompts. We sample and annotate VISPROG programs for
 16 random statements in the NLVRV2 train set. Since some
@@ -586,19 +574,19 @@ show. We refer to this task as Factual Knowledge Object
 Tagging or Knowledge Tagging for short.
 For solving Knowledge Tagging, VISPROG uses GPT-3
 as an implicit knowledge base that can be queried with nat-
-ural language prompts such as “List the main characters on
-the TV show Big Bang Theory separated by commas.” This
+ural language prompts such as List the main characters on
+the TV show Big Bang Theory separated by commas. This
 generated category list can then be used by a CLIP image
 classification module that classifies image regions produced
 by localization and face detection modules.
-VISPROG’s
+VISPROGs
 program generator automatically determines whether to use
 a face detector or an open-vocabulary localizer depending
 on the context in the natural language instruction. VISPROG
 also estimates the maximum size of the category list re-
-trieved. For instance, “Tag the logos of the top 5 german
-car companies” generates a list of 5 categories, while “Tag
-the logos of german car companies” produces a list of arbi-
+trieved. For instance, Tag the logos of the top 5 german
+car companies generates a list of 5 categories, while Tag
+the logos of german car companies produces a list of arbi-
 trary length determined by GPT-3 with a cut-off at 20. This
 allows users to easily control the noise in the classification
 process by tweaking their instructions.
@@ -625,14 +613,14 @@ Text to image generation has made impressive strides
 over the last few years with models like DALL-E [23],
 Parti [32], and Stable Diffusion [25]. However, it is still be-
 yond the capability of these models to handle prompts like
-”Hide the face of Daniel Craig with :p” (de-identification
-or privacy preservation), or ”Create a color pop of Daniel
-Craig and blur the background” (object highlighting) even
+Hide the face of Daniel Craig with :p (de-identification
+or privacy preservation), or Create a color pop of Daniel
+Craig and blur the background (object highlighting) even
 though these are relatively simple to achieve programmat-
 ically using a combination of face detection, segmentation
 and image processing modules. Achieving a sophisticated
-edit such as ”Replace Barack Obama with Barack Obama
-wearing sunglasses” (object replacement), first requires
+edit such as Replace Barack Obama with Barack Obama
+wearing sunglasses (object replacement), first requires
 identifying the object of interest, generating a mask of the
 object to be replaced and then invoking an image inpaint-
 ing model (we use Stable Diffusion) with the original im-
@@ -655,9 +643,8 @@ prompts on GQA and NLVR performance (Sec. 5.1), gen-
 eralization of VISPROG on the four tasks comparing vari-
 ous prompting strategies (Sec. 5.2), analyze the sources of
 error for each task (Fig. 9), and study the utility of visual
-rationales for diagnosing errors and improving VISPROG’s
+rationales for diagnosing errors and improving VISPROGs
 performance through instruction tuning (Sec. 5.3).
-14958
 
 Accuracy
 # context examples
@@ -686,12 +673,12 @@ using those modules than GQA.
 GQA. In Tab. 1 we evaluate different prompting strategies
 on the GQA testdev set. For the largest prompt size evalu-
 ated on the val set (24 in-context examples), we compare the
-random strategy consisting of the VISPROG’s best prompt
+random strategy consisting of the VISPROGs best prompt
 chosen amongst 5 runs on the validation set (each run ran-
 domly samples in-context examples from 31 annotated ex-
 amples) and the majority voting strategy which takes max-
 imum consensus predictions for each question across 5
-runs. While “random” prompts only slightly outperform
+runs. While random prompts only slightly outperform
 VILT-VQA, voting leads to a significant gain of 2.7 points.
 This is because voting across multiple runs, each with a dif-
 ferent set of in-context examples, effectively increases the
@@ -701,12 +688,13 @@ ing of 20 examples - 16 from the 31 annotated examples,
 and 4 additional hallucinated examples meant to provide a
 better coverage for failure cases observed in the validation
 set. The curated prompt performs just as well as the vot-
-ing strategy while using 5× less compute, highlighting the
+ing strategy while using 5 less compute, highlighting the
 promise of prompt engineering.
 NLVR. Tab. 2 shows performance of VISPROG on the
 NLVRV2 test set and compares random, voting, and
 curated prompting strategies as done with GQA. While
 VISPROG performs the NLVR task zero-shot without ever
+
 
 ## Method
 
@@ -717,25 +705,12 @@ Context examples
 per run
 Accuracy
 VILT-VQA
--
-1
--
-47.8
 VISPROG
 curated
-1
-20
-50.0
 VISPROG
 random
-1
-24
-48.2
 VISPROG
 voting
-5
-24
-50.5
 Table 1. GQA testdev results. We report performance on a subset
 of the original GQA testdev set as described in Sec. 4.1.
 Method
@@ -747,29 +722,12 @@ Context examples
 per run
 Accuracy
 VILT-NLVR
--
-✓
-1
--
-76.3
 VISPROG
 curated
-✗
-1
-12
-61.8
 VISPROG
 random
-✗
-1
-16
-61.3
 VISPROG
 voting
-✗
-5
-16
-62.4
 Table 2. NLVRV2 test results. VISPROG performs NLVR zero-
 shot i.e. without training any module on image pairs. VILT-NLVR,
 a VILT model finetuned on NLVRV2, serves as an upper bound.
@@ -778,24 +736,10 @@ Tagging
 Localization
 precision
 recall
-F1
 precision
 recall
-F1
 Original
-69.0
-59.1
-63.7
-87.2
-74.9
-80.6
 Modified
-77.6
-73.9
-75.7
-87.4
-82.5
-84.9
 Table 3. Knowledge tagging results. The table shows perfor-
 mance on original instructions as well as modified instructions
 created after inspecting visual rationales to understand instance-
@@ -803,8 +747,6 @@ specific sources of errors.
 Original
 Modified
 Accuracy
-59.8
-66.4
 Table 4. Image editing results. We manually evaluate each pre-
 diction for semantic correctness.
 training on image pairs, we report VILT-NLVR, a VILT
@@ -832,7 +774,6 @@ Tab. 4 shows the performance on the
 language-guided image editing task. Fig. 7 shows the wide
 range of manipulations possible with the current set of mod-
 ules in VISPROG including face manipulations, highlight-
-14959
 
 Replace Leonardo DiCaprio
 with Leonardo DiCaprio
@@ -878,7 +819,7 @@ implement the high-error modules to more performant ones.
 For example, replacing the VILT-VQA model with a better
 VQA model for NLVR could improve performance by up
 to 24% (Fig. 9). Similarly, improving models used to im-
-plement “List” and “Select” modules, the major sources of
+plement List and Select modules, the major sources of
 error for knowledge tagging and image editing tasks, could
 significantly reduce errors.
 Instruction tuning. To be useful, a visual rationale must ul-
@@ -913,7 +854,6 @@ ways of incorporating user feedback to improve the per-
 formance of neuro-symbolic systems such as VISPROG is
 an exciting direction for building the next generation of
 general-purpose vision systems.
-14960
 
 References
 [1] Jean-Baptiste Alayrac, Jeff Donahue, Pauline Luc, An-
@@ -931,14 +871,13 @@ Klein.
 Neural module networks.
 2016 IEEE Conference
 on Computer Vision and Pattern Recognition (CVPR), pages
-39–48, 2016. 2, 3
+3948, 2016. 2, 3
 [3] Ankur Bapna, Colin Cherry, Yu Zhang, Ye Jia, Melvin John-
 son, Yong Cheng, Simran Khanuja, Jason Riesa, and Alexis
 Conneau. mslam: Massively multilingual joint pre-training
 for speech and text. ArXiv, abs/2202.01374, 2022. 3
-[4] Gary Bradski. The opencv library. Dr. Dobb’s Journal: Soft-
-ware Tools for the Professional Programmer, 25(11):120–
-123, 2000. 2
+[4] Gary Bradski. The opencv library. Dr. Dobbs Journal: Soft-
+ware Tools for the Professional Programmer, 25(11):120
 [5] Tom B. Brown, Benjamin Mann, Nick Ryder, Melanie Sub-
 biah, Jared Kaplan, Prafulla Dhariwal, Arvind Neelakan-
 tan, Pranav Shyam, Girish Sastry, Amanda Askell, Sand-
@@ -955,7 +894,6 @@ segmentation. In NeurIPS, 2021. 2
 [7] Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina
 Toutanova. Bert: Pre-training of deep bidirectional trans-
 formers for language understanding. ArXiv, abs/1810.04805,
-2019. 3
 [8] Tanmay Gupta, Amita Kamath, Aniruddha Kembhavi, and
 Derek Hoiem.
 Towards general purpose vision systems.
@@ -968,17 +906,15 @@ module networks. In ECCV, 2018. 2, 3
 Darrell, and Kate Saenko. Learning to reason: End-to-end
 module networks for visual question answering. 2017 IEEE
 International Conference on Computer Vision (ICCV), pages
-804–813, 2017. 2, 3
 [11] Drew A. Hudson and Christopher D. Manning. Gqa: A new
 dataset for real-world visual reasoning and compositional
 question answering. 2019 IEEE/CVF Conference on Com-
-puter Vision and Pattern Recognition (CVPR), pages 6693–
-6702, 2019. 5
+puter Vision and Pattern Recognition (CVPR), pages 6693
 [12] Justin Johnson, Bharath Hariharan, Laurens van der Maaten,
 Judy Hoffman, Li Fei-Fei, C. Lawrence Zitnick, and Ross B.
 Girshick. Inferring and executing programs for visual rea-
 soning. 2017 IEEE International Conference on Computer
-Vision (ICCV), pages 3008–3017, 2017. 2, 3
+Vision (ICCV), pages 30083017, 2017. 2, 3
 [13] Amita Kamath, Christopher Clark, Tanmay Gupta, Eric
 Kolve, Derek Hoiem, and Aniruddha Kembhavi. Webly su-
 pervised concept expansion for general purpose vision mod-
@@ -995,17 +931,15 @@ pervision. In ICML, 2021. 2, 5
 Qian, Jian Yang, Chengjie Wang, Jilin Li, and Feiyue Huang.
 Dsfd: Dual shot face detector. 2019 IEEE/CVF Conference
 on Computer Vision and Pattern Recognition (CVPR), pages
-5055–5064, 2019. 2
 [17] Jiasen Lu, Christopher Clark, Rowan Zellers, Roozbeh Mot-
 taghi, and Aniruddha Kembhavi.
 Unified-io: A unified
 model for vision, language, and multi-modal tasks. ArXiv,
-abs/2206.08916, 2022. 2
 [18] Kenneth Marino, Mohammad Rastegari, Ali Farhadi, and
 Roozbeh Mottaghi. Ok-vqa: A visual question answering
 benchmark requiring external knowledge. 2019 IEEE/CVF
 Conference on Computer Vision and Pattern Recognition
-(CVPR), pages 3190–3199, 2019. 3
+(CVPR), pages 31903199, 2019. 3
 [19] Matthias Minderer, Alexey A. Gritsenko, Austin Stone,
 Maxim Neumann, Dirk Weissenborn, Alexey Dosovitskiy,
 Aravindh Mahendran, Anurag Arnab, Mostafa Dehghani,
@@ -1017,7 +951,7 @@ Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sastry,
 Amanda Askell, Pamela Mishkin, Jack Clark, et al. Learn-
 ing transferable visual models from natural language super-
 vision. In International Conference on Machine Learning,
-pages 8748–8763. PMLR, 2021. 2, 3
+pages 87488763. PMLR, 2021. 2, 3
 [21] Alec Radford, Jeff Wu, Rewon Child, David Luan, Dario
 Amodei, and Ilya Sutskever. Language models are unsuper-
 vised multitask learners. 2019. 3
@@ -1026,17 +960,14 @@ ine Lee, Sharan Narang, Michael Matena, Yanqi Zhou,
 Wei Li, and Peter J. Liu.
 Exploring the limits of trans-
 fer learning with a unified text-to-text transformer. ArXiv,
-abs/1910.10683, 2020. 2
 [23] Aditya Ramesh, Mikhail Pavlov, Gabriel Goh, Scott Gray,
 Chelsea Voss, Alec Radford, Mark Chen, and Ilya Sutskever.
 Zero-shot text-to-image generation. ArXiv, abs/2102.12092,
-2021. 6
 [24] Scott Reed, Konrad Zolna, Emilio Parisotto, Sergio Gomez
 Colmenarejo, Alexander Novikov, Gabriel Barth-Maron,
 Mai Gimenez, Yury Sulsky, Jackie Kay, Jost Tobias Sprin-
 genberg, Tom Eccles, Jake Bruce, Ali Razavi, Ashley D. Ed-
 wards, Nicolas Manfred Otto Heess, Yutian Chen, Raia Had-
-14961
 
 sell, Oriol Vinyals, Mahyar Bordbar, and Nando de Freitas.
 A generalist agent. ArXiv, abs/2205.06175, 2022. 2
@@ -1044,13 +975,11 @@ A generalist agent. ArXiv, abs/2205.06175, 2022. 2
 Esser, and Bj¨orn Ommer. High-resolution image synthesis
 with latent diffusion models. 2022 IEEE/CVF Conference
 on Computer Vision and Pattern Recognition (CVPR), pages
-10674–10685, 2022. 2, 6
 [26] Ishika Singh, Valts Blukis, Arsalan Mousavian, Ankit Goyal,
 Danfei Xu, Jonathan Tremblay, Dieter Fox, Jesse Thoma-
 son, and Animesh Garg.
 Progprompt: Generating situ-
 ated robot task plans using large language models. ArXiv,
-abs/2209.11302, 2022. 3
 [27] Alane Suhr, Stephanie Zhou, Iris Zhang, Huajun Bai, and
 Yoav Artzi. A corpus for reasoning about natural language
 grounded in photographs. ArXiv, abs/1811.00491, 2019. 5
@@ -1059,29 +988,26 @@ Ed Chi, and Denny Zhou.
 Self-consistency improves
 chain of thought reasoning in language models.
 ArXiv,
-abs/2203.11171, 2022. 7
 [29] Jason Wei, Xuezhi Wang, Dale Schuurmans, Maarten
 Bosma, Ed Chi, Quoc Le, and Denny Zhou. Chain of thought
 prompting elicits reasoning in large language models. ArXiv,
 abs/2201.11903, 2022. 3, 7
 [30] Ronald J Williams. Simple statistical gradient-following al-
 gorithms for connectionist reinforcement learning. Machine
-learning, 8(3):229–256, 1992. 2, 3
+learning, 8(3):229256, 1992. 2, 3
 [31] Zhengyuan Yang, Zhe Gan, Jianfeng Wang, Xiaowei Hu, Yu-
 mao Lu, Zicheng Liu, and Lijuan Wang. An empirical study
 of gpt-3 for few-shot knowledge-based vqa. In AAAI, 2022.
-3
 [32] Jiahui Yu, Yuanzhong Xu, Jing Yu Koh, Thang Luong, Gun-
 jan Baid, Zirui Wang, Vijay Vasudevan, Alexander Ku, Yin-
 fei Yang, Burcu Karagol Ayan, Benton C. Hutchinson, Wei
 Han, Zarana Parekh, Xin Li, Han Zhang, Jason Baldridge,
 and Yonghui Wu. Scaling autoregressive models for content-
 rich text-to-image generation. ArXiv, abs/2206.10789, 2022.
-6
 [33] Andy Zeng, Maria Attarian, Brian Ichter, Krzysztof Choro-
 manski, Adrian Wong, Stefan Welker, Federico Tombari,
 Aveek Purohit, Michael Ryoo, Vikas Sindhwani, Johnny
 Lee, Vincent Vanhoucke, and Pete Florence. Socratic mod-
 els: Composing zero-shot multimodal reasoning with lan-
 guage. arXiv, 2022. 3
-14962
+

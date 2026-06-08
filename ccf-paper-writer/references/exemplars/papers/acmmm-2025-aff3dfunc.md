@@ -4,56 +4,30 @@
 > **Source:** <https://eprints.gla.ac.uk/360521/2/360521.pdf>
 
 ---
-
-.
-.
 Latest updates: hps://dl.acm.org/doi/10.1145/3746027.3755239
-.
-.
 RESEARCH-ARTICLE
 Open-Vocabulary 3D Aﬀordance Understanding via Functional Text
 Enhancement and Multilevel Representation Alignment
 LIN WU, University of Glasgow, Glasgow, Scotland, U.K.
-.
 WEI WEI, University of Glasgow, Glasgow, Scotland, U.K.
-.
 PEIZHUO YU, University of Glasgow, Glasgow, Scotland, U.K.
-.
 JIANGLIN LAN, University of Glasgow, Glasgow, Scotland, U.K.
-.
-.
-.
 Open Access Support provided by:
-.
 University of Glasgow
-.
 PDF Download
-3746027.3755239.pdf
 17 February 2026
 Total Citations: 0
 Total Downloads: 934
-.
-.
-.
-.
 Published: 27 October 2025
-.
-.
 Citation in BibTeX format
-.
-.
 MM '25: The 33rd ACM International
 Conference on Multimedia
 October 27 - 31, 2025
 Dublin, Ireland
-.
-.
 Conference Sponsors:
 SIGMM
 MM '25: Proceedings of the 33rd ACM International Conference on Multimedia (October 2025)
 hps://doi.org/10.1145/3746027.3755239
-ISBN: 9798400720352
-.
 
 Open-Vocabulary 3D Affordance Understanding via Functional
 Text Enhancement and Multilevel Representation Alignment
@@ -69,10 +43,11 @@ Peizhuo Yu
 James Watt School of Engineering, University of Glasgow
 Glasgow, United Kingdom
 2831853Y@student.gla.ac.uk
-Jianglin Lan∗
+Jianglin Lan
 James Watt School of Engineering, University of Glasgow
 Glasgow, United Kingdom
 Jianglin.Lan@glasgow.ac.uk
+
 
 ## Abstract
 
@@ -83,7 +58,7 @@ port open-vocabulary queries through label-based language de-
 scriptions but often suffer from limited generalization and weak
 discriminative ability in their representations. However, affordance
 understanding requires constructing a coherent semantic landscape
-from fragmented linguistic expressions—one that preserves intra-
+from fragmented linguistic expressionsone that preserves intra-
 class diversity while minimizing inter-class overlap. To address
 these challenges, we introduce Aff3DFunc, a framework designed
 to enhance the alignment between affordance and 3D geometry.
@@ -94,7 +69,7 @@ diversity. A dual-encoder architecture is then employed to extract
 embeddings from both point clouds and text. To bridge the modality
 gap, we further propose a multilevel representation alignment strat-
 egy that incorporates supervised contrastive learning, reinforcing
-semantic–geometric correspondence in a part-to-whole manner.
+semanticgeometric correspondence in a part-to-whole manner.
 Extensive experiments demonstrate that our approach significantly
 enhances the understanding of affordance complexity. The learned
 representations exhibit high adaptability to diverse text queries,
@@ -102,13 +77,13 @@ particularly in zero-shot settings. Furthermore, the real-world robot
 validation confirms that our method improves affordance under-
 standing, enabling more fine-grained manipulation tasks.
 CCS Concepts
-• Computing methodologies →Appearance and texture represen-
+Computing methodologies Appearance and texture represen-
 tations; Vision for robotics; 3D imaging.
 Keywords
 Open-vocabulary 3D affordance detection, robotic manipulation
-∗Corresponding author.
+Corresponding author.
 This work is licensed under a Creative Commons Attribution 4.0 International License.
-MM ’25, Dublin, Ireland
+MM 25, Dublin, Ireland
 © 2025 Copyright held by the owner/author(s).
 ACM ISBN 979-8-4007-2035-2/2025/10
 https://doi.org/10.1145/3746027.3755239
@@ -116,21 +91,21 @@ ACM Reference Format:
 Lin Wu, Wei Wei, Peizhuo Yu, Jianglin Lan. 2025. Open-Vocabulary 3D
 Affordance Understanding via Functional Text Enhancement and Multilevel
 Representation Alignment. In Proceedings of the 33rd ACM International
-Conference on Multimedia (MM ’25), October 27–31, 2025, Dublin, Ireland.
+Conference on Multimedia (MM 25), October 2731, 2025, Dublin, Ireland.
 ACM, New York, NY, USA, 10 pages. https://doi.org/10.1145/3746027.3755239
 Figure 1: Affordance understanding: Highlight relevant
 points on a 3D object based on query text, enabling the agent
 to perform fine-grained and context-specific operations.
-1
+
 
 ## Introduction
 
 Affordance is a fundamental concept in both perception and robot-
 ics, referring to the potential interactions between an agent and
 its environment [16, 17]. Objects provide opportunities for action
-based on the agent’s capabilities and goals. Given that the real world
+based on the agents capabilities and goals. Given that the real world
 is inherently three-dimensional, we focus on 3D open-vocabulary
-affordance understanding—specifically, grounding the regions of
+affordance understandingspecifically, grounding the regions of
 point cloud objects to corresponding textual descriptions of affor-
 dances, as illustrated in Fig 1. This understanding is crucial for
 applications in robot manipulation [19, 33, 43] and navigation [30],
@@ -147,12 +122,12 @@ interest in leveraging their semantic capabilities for affordance un-
 derstanding, with the expectation of improving generalization to
 unseen scenarios [40]. Recent advances in affordance detection
 have shown significant progress, exemplified by OpenAD [34],
-7988
 
-MM ’25, October 27–31, 2025, Dublin, Ireland
+MM 25, October 2731, 2025, Dublin, Ireland
 Lin Wu et al.
 which integrates the CLIP text encoder [37] with PointNet++ [36]
 to enhance affordance understanding in point cloud objects. This
+
 
 ## Approach
 
@@ -167,8 +142,8 @@ lenge for open-vocabulary detection. While recent work seeks to
 align multimodal representations, the limited availability of labeled
 data makes direct learning of affordance semantics difficult. A key
 step toward robust alignment is to first characterize the seman-
-tic space of affordances more systematically—beyond raw la-
-bels—through principled textual construction.
+tic space of affordances more systematicallybeyond raw la-
+belsthrough principled textual construction.
 To address these challenges, we introduce Functional Text En-
 hancement (FTE), an information bottleneck-based strategy that en-
 riches description perspectives and affordance content. Furthermore,
@@ -178,25 +153,24 @@ attention mechanism to distinguish similar affordance categories
 and navigate complex semantic relationships within 3D point clouds
 in a coarse-to-fine manner. The main contributions of this paper
 are summarized as follows:
-• We propose Aff3DFunc, a lightweight open-vocabulary frame-
+We propose Aff3DFunc, a lightweight open-vocabulary frame-
 work for 3D affordance understanding that jointly models
 affordance semantics and object geometry, enabling general-
 ization to unseen affordances.
-• We introduce a Functional Text Enhancement (FTE) strat-
+We introduce a Functional Text Enhancement (FTE) strat-
 egy based on the information bottleneck principle that sys-
 tematically characterizes the semantic space by modulating
 intra-class diversity and inter-class separability.
-• We develop a multilevel representation learning scheme that
+We develop a multilevel representation learning scheme that
 integrates cross-entropy and supervised contrastive losses
 to establish consistent correspondences between modalities.
-• Extensive evaluations, including real-world robotic trials,
+Extensive evaluations, including real-world robotic trials,
 demonstrate the effectiveness and generalization capability
 of Aff3DFunc, particularly in zero-shot scenarios.
-2
+
 
 ## Related Work
 
-2.1
 Affordance Detection in Point Cloud
 Building on the progress in 2D affordance detection [21, 31, 44],
 the introduction of 3D AffordanceNet[11] marked a pivotal step
@@ -221,7 +195,6 @@ geometry alone. Our method addresses these challenges by explic-
 itly modeling the relationship between affordance semantics and
 point cloud geometry through functional text enhancement and
 multi-level representation alignment.
-2.2
 Contrastive Representation Learning
 Representation learning has been widely explored across super-
 vised, unsupervised, and contrastive learning frameworks [5, 13, 35,
@@ -237,10 +210,9 @@ vised contrastive learning, which incorporates label supervision to
 enhance representation discrimination. In the context of 3D affor-
 dance understanding, we adopt similar principles to capture the
 relationship between affordance semantics and point cloud geom-
-etry—pulling together point clusters from the same class while
-pushing apart those from different classes—to learn discriminative
+etrypulling together point clusters from the same class while
+pushing apart those from different classesto learn discriminative
 and generalizable features.
-2.3
 Textual Characterization of Affordance
 Common approaches to describing object functionalities include
 labels, questions, and images, each with inherent limitations. Luo
@@ -263,16 +235,13 @@ sues, we propose a more robust affordance characterization strategy
 based on the information bottleneck principle, which systematically
 identifies semantically salient and discriminative descriptions while
 filtering out redundancy and noise.
-3
 Problem Description and Methodology
-3.1
 Problem Description
 In 3D open-vocabulary affordance understanding, given an input
 point cloud 𝑃= {𝑝1, 𝑝2, . . . , 𝑝𝑛} comprising 𝑛unordered points,
-7989
 
 Aff3DFunc: 3D Affordance Understanding via Functional Text Enhancement and Multilevel Representation Alignment
-MM ’25, October 27–31, 2025, Dublin, Ireland
+MM 25, October 2731, 2025, Dublin, Ireland
 Figure 2: The proposed framework Aff3DFunc includes: (a) Point Cloud Encoder, extracting geometric features from input point
 clouds; (b) Text Encoder, where the FTE module enriches affordance semantics via fine-grained descriptions; (c) Representation
 Alignment, aligning multimodal embeddings with cross-entropy and supervised contrastive losses across multiple levels; (d)
@@ -290,7 +259,6 @@ we introduce a novel multilevel representation alignment approach
 and a cross-attention module to connect the comprehensive geo-
 metric information with the proposed functional text description.
 The overall framework of our method is illustrated in Fig. 2.
-3.2
 Functional Text Enhancement
 3.2.1
 Mutual Information-guided Description Selection. Text labels
@@ -301,15 +269,11 @@ dance descriptions by leveraging the Information Bottleneck
 (IB) principle [9, 25]. The IB seeks a compressed representation
 that retains maximal information about a target variable [18]. In
 our context, for a given affordance A with label 𝑐, we aim to select
-a subset of descriptions S∗⊆S that maximizes the mutual infor-
+a subset of descriptions S⊆S that maximizes the mutual infor-
 mation with A, while minimizing redundancy with the full concept
 set S. Formally, we define the optimization problem as follows:
-S∗= arg max
-S′⊆S
-
+S= arg max
 𝐼(A, S′) −𝛽𝐼(S′; S)
-
-,
 (1)
 where 𝛽is a Lagrange multiplier that balances relevance and re-
 dundancy.
@@ -320,36 +284,31 @@ dance descriptions D = {𝑑1,𝑑2, . . . ,𝑑𝑛}, where each 𝑑𝑖captur
 some aspects of the affordance. By controlling the prompting, we
 generate D to approximate the true affordance content A. Under
 the assumptions of conditional independence and convergence, as
-𝑛→∞, the mutual information 𝐼(D; S) converges to 𝐼(A; S), i.e.,
-lim𝑛→∞𝐼(D; S) = 𝐼(A; S) [38]. With the set D, the IB objective
+𝑛, the mutual information 𝐼(D; S) converges to 𝐼(A; S), i.e.,
+lim𝑛𝐼(D; S) = 𝐼(A; S) [38]. With the set D, the IB objective
 (1) can be reformulated as:
-S∗= arg max
-S′⊆S
-
+S= arg max
 𝐼(D, S′) −𝛽𝐼(S′; S)
-
-.
 (2)
 To select effective affordance descriptions, we approximate the
 mutual information using two complementary metrics: intra-class
 variance (V) and inter-class separability (U).
 Maximizing V encourages a broad semantic coverage within
 each affordance category, aligning with the goal of increasing the
-mutual information between descriptions and affordances, 𝐼(D; S∗).
+mutual information between descriptions and affordances, 𝐼(D; S).
 Conversely, maximizing U enhances the distinctiveness between af-
 fordance categories, effectively reducing redundancy and lowering
 the mutual information between sampled and original description
-sets, 𝐼(S∗; S). Formally, these relations can be understood as:
-𝐼(D; S∗) ≥𝐻(S∗)−𝐻(S∗|D), 𝐼(S∗; S) ≤𝐻(S∗)−𝐻(S∗|S), (3)
-where 𝐻(·) denotes entropy. Maximizing V increases 𝐻(S∗), while
+sets, 𝐼(S; S). Formally, these relations can be understood as:
+𝐼(D; S) 𝐻(S)−𝐻(S|D), 𝐼(S; S) 𝐻(S)−𝐻(S|S), (3)
+where 𝐻(·) denotes entropy. Maximizing V increases 𝐻(S), while
 maximizing U decreases the corresponding conditional entropy
 terms. Therefore, jointly optimizing V and U approximates maxi-
-mizing 𝐼(D; S∗) −𝛽𝐼(S∗; S), providing an effective and tractable
+mizing 𝐼(D; S) −𝛽𝐼(S; S), providing an effective and tractable
 surrogate for mutual information optimization in high-dimensional
 semantic spaces, with a principled grounding in the IB framework.
-7990
 
-MM ’25, October 27–31, 2025, Dublin, Ireland
+MM 25, October 2731, 2025, Dublin, Ireland
 Lin Wu et al.
 3.2.2
 Scoring and Sampling Strategy. Several candidate metrics
@@ -395,7 +354,6 @@ Section 4.4.3 demonstrate that our approach effectively balances
 intra-class variance and inter-class separability, enhancing the di-
 versity and distinctiveness of the generated descriptions while pre-
 serving their high relevance to the target affordance.
-3.3
 Feature Extraction Network
 3.3.1
 Point Cloud Geometric Network. Following the existing 3D
@@ -409,46 +367,27 @@ PointNet. We denote these operations as an encoder layer in Fig.2
 (a). One step further, inspired by Point-BERT [50], we introduce a
 cross-attention mechanism to model the relationship between sets
 of points, resulting in the refined extraction of geometric features.
-For the input point cloud 𝑃∈R𝑛×3, the encoder layer first divides
+For the input point cloud 𝑃∈R𝑛3, the encoder layer first divides
 𝑛points into 𝑘sets using the furthest distance sampling (FPS) and
 k-nearest-neighbor algorithm (kNN). Thus the position embedding
 for each set could also be learned from its FPS coordinate through
 a multilayer perceptron (MLP) layer, denoted as 𝑋= {𝑥𝑖}𝑘
 𝑖=1. We
 then extract the set-wise embeddings via mini-PointNet, denoted as
-𝐹= {𝑓𝑖}𝑘
 𝑖=1. These positions and embeddings are added element-
-wisely to form 𝑍= 𝑋⊕𝐹, where 𝑍∈R𝑘×𝑑, and then fed into the
+wisely to form 𝑍= 𝑋⊕𝐹, where 𝑍∈R𝑘𝑑, and then fed into the
 𝐿-block Transformer encoder as shown in Fig.2 (d). The process of
 each block 𝜙(𝑙) is composed as follows:
-˜𝑧(𝑙),𝑖
-𝐼
 = MSA𝑙
-
-𝑧(𝑙−1),𝑖
-𝐼
-
 + 𝑧(𝑙−1),𝑖
-𝐼
 (6)
-𝑧(𝑙),𝑖
-𝐼
 = MLP𝑙
-
-LN
-
-˜𝑧(𝑙),𝑖
-𝐼
-
-+ ˜𝑧(𝑙),𝑖
-𝐼
 (7)
 where MSA𝑙(·) is the multi-head self-attention mechanism at the
 𝑙-th block, calculated by the softmax-weighted interactions among
 the input query, key, and value tokens, obtained by three different
 learnable linear projection weights. Specifically, the self-attention
 is computed as Attn(𝑄, 𝐾,𝑉) = Softmax(𝑄𝐾⊤/
-√
 𝑑)𝑉, where 𝑄=
 𝑍𝑊𝑄, 𝐾= 𝑍𝑊𝐾, and 𝑉= 𝑍𝑊𝑉. MLP𝑙(·) is the multi-layer percep-
 tron at the 𝑙-th block, and LN(·) is Layer Normalization.
@@ -483,7 +422,6 @@ the phrase (even for phrase combinations), we extract the whole
 semantics of the concatenated string through the pretrained text
 encoder of the CLIP model [37] due to its powerful capability in
 textual comprehension.
-3.4
 Contrastive Representation Alignment
 Since the geometric network and text encoder have prepared em-
 beddings of point cloud and affordance description respectively, we
@@ -495,28 +433,18 @@ Fig.2 (c), 𝑔𝑙,𝑖represents the embedding of the 𝑖-th set of points at
 the 𝑙-th level. After the deep layer, point-wise embedding should be
 extracted, while for the intermediate and shallow layer, the grow-
 ing region or set-wise embedding could be obtained, denoted as
-7991
 
 Aff3DFunc: 3D Affordance Understanding via Functional Text Enhancement and Multilevel Representation Alignment
-MM ’25, October 27–31, 2025, Dublin, Ireland
+MM 25, October 2731, 2025, Dublin, Ireland
 {𝑔1,𝑖}𝑛1
 𝑖=1, {𝑔2,𝑖}𝑛2
 𝑖=1, and {𝑔3,𝑖}𝑛3
 𝑖=1, where 𝑛1 > 𝑛2 > 𝑛3. For each
 level, we first apply the following Weighted Cross-Entropy Loss:
-L𝑙
-𝑐𝑒=
-1
-𝐵𝑁
-𝐵𝑁
-∑︁
 𝑖=1
-(
 −𝑤yi log
 exp (𝑠(𝑔𝑖,𝑡yi)/𝜏1)
-Í𝑀
 𝑘=1 exp(𝑠(𝑔𝑖,𝑡𝑘)/𝜏1)
-)
 (8)
 For brevity, here we use𝑔𝑖and𝑡𝑖to denote the geometric embedding
 of the 𝑖-th point (or set) at the 𝑙-th level, and the text embedding
@@ -524,7 +452,7 @@ produced by the proposed FTE, respectively. 𝑠(·, ·) is the cosine
 similarity. 𝑦𝑖represents the affordance of GT reference and 𝑤yi
 is the weighting coefficient for mitigating affordance imbalance
 during training. 𝐵is the batch size and 𝜏is a learnable temperature
-parameter for controlling the model’s certainty and exploration.
+parameter for controlling the models certainty and exploration.
 To capture the relationships between samples and learn dis-
 criminative, generalizable representations, we introduce Supervised
 Contrastive Loss to affordance detection. Specifically, for each avail-
@@ -533,24 +461,11 @@ positive and negative samples, and then minimize the semantic dis-
 tance from the positive samples to the reference affordance while
 pushing negative samples away from the reference affordance. This
 formulation is as follows:
-L𝑙
-𝑠𝑐=
-1
 |M|
-∑︁
-𝑡𝑖∈M
-
-
-−1
 |X𝑖|
-∑︁
-𝑔𝑗∈X𝑖
 log
 exp (𝑠(𝑡𝑖,𝑔𝑗)/𝜏2)
-Í𝐵𝑁
 𝑘=1 exp(𝑠(𝑡𝑖,𝑔𝑘)/𝜏2)
-
-
 (9)
 where X𝑖denotes the positive samples set for the 𝑖-th available
 affordance and |X𝑖| is its cardinality. For a specific Batch with 𝐵·
@@ -566,14 +481,9 @@ allows our design to seamlessly adapt to different levels of abstrac-
 tion. The final loss function considers the alignment of region-wise
 and point-wise representations and is formulated as follows:
 L =
-∑︁
-𝑙
 (L𝑙
-𝑐𝑒+ 𝜆· L𝑙
-𝑠𝑐)
 (10)
 where 𝜆is a coefficient to balance the two different losses.
-4
 Experimental Evaluation
 This section presents a series of experiments to evaluate the effec-
 tiveness of our model.We assess its zero-shot detection capabilities
@@ -582,7 +492,6 @@ ally, we conduct ablation studies to investigate other key aspects of
 the proposed model. Finally, we validate the significance of accurate
 affordance understanding for safe operation through real-world
 robotic experiments.
-4.1
 Dataset and Baselines
 Our experiments are conducted on the 3D AffordanceNet dataset [11],
 the largest dataset designed for affordance understanding with 3D
@@ -590,7 +499,7 @@ point cloud data. It consists of 22,949 instances distributed across
 23 object categories and 18 affordance labels. We evaluates our
 methods on the Label-as-Query and Question-as-Query tasks, with
 the related test datasets provided by OpenAD [34] and LASO [23].
-Label-as-Query is designed to evaluate the model’s zero-shot de-
+Label-as-Query is designed to evaluate the models zero-shot de-
 tection ability for multiple extra labels. Question-as-Query is to
 evaluate the zero-shot performance for 3D objects guided by situ-
 ational questions. We adapt this dataset by determining whether
@@ -610,7 +519,6 @@ we use these metrics: For label-as-query task: mIoU (mean Inter-
 section over Union), Acc (Accuracy), and mAcc (mean Accuracy).
 For question-as-query task: mIoU, AUC (Area Under Curve), SIM
 (Cosine Similarity), and MAE (Mean Absolute Error).
-4.2
 Implementation Details
 We adopt three encoder-decoder layers in PointNet++, with the
 alignment module operating at three hierarchical levels using 𝑛1 =
@@ -623,7 +531,6 @@ branch is optimized using the Adam optimizer with a learning rate
 of 0.001 and a batch size of 16. All experiments are conducted on an
 NVIDIA RTX A4500 GPU (20GB). The implementation is available
 at https://github.com/wulin97/Aff3DFunc.
-4.3
 Main Results
 4.3.1
 Qualitative Results.
@@ -636,7 +543,7 @@ particularly in local regions such as the body of a vase and the
 screen of a display. While certain challenges remain in extremely
 small areas (e.g., the tip of a knife), the primary affordance regions
 are accurately identified.
-Question as query. Fig. 4 highlights our model’s ability to localize
+Question as query. Fig. 4 highlights our models ability to localize
 affordance regions in response to diverse functional queries. For
 example, in (a), when prompted to identify the point from which
 water would flow out of the vase as opposed to non-functional points,
@@ -645,9 +552,8 @@ derscores the importance of functional text descriptions in enabling
 effective zero-shot inference.
 4.3.2
 Quantitative Results.
-7992
 
-MM ’25, October 27–31, 2025, Dublin, Ireland
+MM 25, October 2731, 2025, Dublin, Ireland
 Lin Wu et al.
 Figure 3: Qualitative comparison of affordance detection results across different methods under the label-as-query setting.
 Figure 4: Qualitative comparison of affordance detection results across different methods under the question-as-query setting.
@@ -667,136 +573,61 @@ and demonstrating effective generalization to incomplete observa-
 tions. Here, results for 3DGenZ [29] and ZSLPC [6] are taken from
 KD-TPC [40], while all other baselines are re-implemented under
 the same settings.
-7993
 
 Aff3DFunc: 3D Affordance Understanding via Functional Text Enhancement and Multilevel Representation Alignment
-MM ’25, October 27–31, 2025, Dublin, Ireland
+MM 25, October 2731, 2025, Dublin, Ireland
 Table 1: Label as query: zero-shot detection results
 Task
 
+
 ## Method
 
-mIoU ↑
-Acc ↑
-mAcc ↑
+mIoU
+Acc
+mAcc
 Params (M)
 Full-view
 3DGenZ
-0.0646
-0.4547
-0.1833
-1.79
 ZSLPC
-0.0997
-0.4013
-0.1870
-1.96
 OpenAD
-0.1437
-0.4631
-0.1951
-1.80
 KD-TPC
-0.2233
-0.4972
-0.3429
-0.78
 Ours (w/o CA)
-0.2653
-0.5941
-0.4501
-0.92
 Ours
-0.2942
-0.6078
-0.4829
-3.20
 Partial-view
 3DGenZ
-0.0603
-0.4524
-0.1586
-1.79
 ZSLPC
-0.0952
-0.4091
-0.1716
-1.96
 OpenAD
-0.1250
-0.4525
-0.1737
-1.80
 KD-TPC
-0.2048
-0.4872
-0.3286
-0.78
 Ours
-0.2615
-0.6020
-0.4105
-3.20
 Table 2: Question as query: zero-shot detection results
 Method
-mIoU ↑
-AUC ↑
-SIM ↑
-MAE ↓
+mIoU
+AUC
+SIM
+MAE
 Params (M)
-LASO∗(closed-set)
-0.1995
-0.8527
-0.6080
-0.1023
-9.10
+LASO(closed-set)
 OpenAD
-0.1026
-0.5968
-0.2251
-0.1827
-1.80
 KD-TPC
-0.1083
-0.6066
-0.3372
-0.2563
-0.78
 Ours (w/o CA)
-0.1218
-0.6153
-0.3467
-0.2760
-0.92
 Ours
-0.1315
-0.6216
-0.3558
-0.2716
-3.20
-Ours∗(linear probe)
-0.1756
-0.8438
-0.6129
-0.1078
-3.20
+Ours(linear probe)
 Question as query. Table 2 demonstrates that our method achieves
 the best performance on most metrics under the zero-shot setting.
 Specifically, it obtains the highest mIoU, surpassing OpenAD by
 2.91% and KD-TPC by 2.35%. It also outperforms all baselines in
 AUC and SIM, indicating superior localization quality and region-
 level consistency. For reference, we include the performance of
-LASO∗(closed-set), a language-aware affordance detection model
+LASO(closed-set), a language-aware affordance detection model
 trained with full supervision and evaluated in a closed-set setting.
 As such, its performance serves as an upper bound.
 To assess the generalizability of our point cloud encoder, we
 freeze its parameters and attach a classification head trained in the
-closed set, denoted as Ours∗(linear probe). Compared to LASO∗,
+closed set, denoted as Ours(linear probe). Compared to LASO,
 our model achieves comparable AUC and SIM scores despite using
 only one-third of the parameters, with a moderate drop in mIoU.
 This highlights the strong representational capacity and efficiency
 of our learned features.
-4.4
 Ablation Studies
 4.4.1
 Effect of Proposed Components. Table 3 shows the progres-
@@ -817,61 +648,19 @@ Table 3: Effect of the proposed components
 Variants
 Label as Query
 Question as Query
-mIoU ↑
-Acc ↑
-mAcc ↑
-mIoU ↑
-AUC ↑
-SIM ↑
-MAE ↓
+mIoU
+Acc
+mAcc
+mIoU
+AUC
+SIM
+MAE
 Baseline
-0.1531
-0.4619
-0.2354
-0.1033
-0.5915
-0.2124
-0.1802
 +SC
-0.1963
-0.4963
-0.3402
-0.1088
-0.6084
-0.3709
-0.3374
 +FTE
-0.2504
-0.5760
-0.3829
-0.1168
-0.6150
-0.3638
-0.2961
 +SC+FTE
-0.2523
-0.5818
-0.4377
-0.1183
-0.6131
-0.3671
-0.3073
 +SC+FTE+ML
-0.2653
-0.5941
-0.4501
-0.1218
-0.6153
-0.3467
-0.2760
 +SC+FTE+ML+CA
-0.2942
-0.6078
-0.4829
-0.1315
-0.6216
-0.3558
-0.2716
 Figure 5: t-SNE visualizations for geometric embeddings.
 Figure 6: Further analysis of functional text strategies.
 clearer comparison, we compute the class centers and use the 𝑘NN
@@ -895,9 +684,8 @@ Prompting Strategy. FTE outperforms alternatives relying on raw
 labels or simple prompts, producing richer and more discrimina-
 tive semantics. (c) Sampling and Composition. We compare six
 variants based on different semantic perspectives and sampling
-7994
 
-MM ’25, October 27–31, 2025, Dublin, Ireland
+MM 25, October 2731, 2025, Dublin, Ireland
 Lin Wu et al.
 granularities (see Fig.6 (a) for details). The optimal configuration
 (M5) achieves a favorable balance between intra-class variance and
@@ -926,157 +714,48 @@ Category
 Method
 Label as Query
 Question as Query
-mIoU ↑
-Acc ↑
-mAcc ↑
-mIoU ↑
-AUC ↑
-MAE ↓
+mIoU
+Acc
+mAcc
+mIoU
+AUC
+MAE
 LLM
 GPT 3.5
-0.2942
-0.6078
-0.4829
-0.1315
-0.6216
-0.2716
 GPT 4o
-0.2895
-0.6103
-0.4648
-0.1313
-0.6360
-0.3508
 DeepSeek R1
-0.2795
-0.6260
-0.5085
-0.1264
-0.6255
-0.2983
 Prompting
 Label Only
-0.1741
-0.4874
-0.2997
-0.1137
-0.6054
-0.1917
 Simple Prompt
-0.2145
-0.4852
-0.3422
-0.1207
-0.6187
-0.2559
 Proposed FTE
-0.2942
-0.6078
-0.4829
-0.1315
-0.6216
-0.2716
 Sampling
-M0
-0.1812
-0.4871
-0.3202
-0.1229
-0.6104
-0.1999
-M1
-0.1953
-0.3650
-0.3946
-0.1055
-0.6056
-0.4486
-M2
-0.2302
-0.4113
-0.4926
-0.0889
-0.5894
-0.3037
-M3
-0.2482
-0.5396
-0.4305
-0.1265
-0.6362
-0.3398
-M4
-0.2797
-0.5899
-0.4879
-0.1179
-0.6210
-0.3274
-M5
-0.2942
-0.6078
-0.4829
-0.1315
-0.6216
-0.2716
 Phrase Fusion
 Fusion
-0.2747
-0.5637
-0.4452
-0.1226
-0.6375
-0.3808
 Concat
-0.2942
-0.6078
-0.4829
-0.1315
-0.6216
-0.2716
 Table 5: Pool size
 Pool Size
 Variance
 Separability
-4
-0.2889
-0.1339
-64
-0.3463
-0.1331
-100
-0.3537
-0.1329
 Table 6: Inference efficiency
 Config
 FLOPs (G)
 Params (M)
 Latency (ms)
 Ours
-5.37
-3.20
-104.4
 Ours w/o CA
-4.83
-0.92
-102.8
 Ours w/o ML
-5.33
-3.07
-104.1
-4.5
 Robotics Application
 To validate the proposed affordance detection method in robotic
 applications, we conducted real-world experiments using a Unitree
 GO2 mobile platform equipped with a 6-DoF D1 robotic arm and a
 parallel gripper. We focus on safety-critical manipulation tasks [4]
 that require precise affordance understanding, such as distinguish-
-ing between a knife’s handle (graspable) and blade (hazardous). A
+ing between a knifes handle (graspable) and blade (hazardous). A
 diverse set of household objects was used for evaluation.
 As illustrated in Fig.7 (1) and (3), our method successfully identi-
 fied functional regions, enabling reliable pick-and-place operations.
 Figure 7: Robotics manipulation validation.
-In contrast, OpenAD’s predictions (Fig.7 (2) and (4)) often targeted
+In contrast, OpenADs predictions (Fig.7 (2) and (4)) often targeted
 non-functional or unsafe regions (e.g., knife blades, headphone
 earcups), triggering emergency stops during execution. These ex-
 periments demonstrate the effectiveness of our method in real-
@@ -1091,7 +770,7 @@ of our proposed approach. All evaluations were conducted on an
 NVIDIA RTX A4500 GPU (20GB), demonstrating that our method
 supports real-time inference with minimal computational cost and
 is readily deployable in latency-sensitive settings.
-5
+
 
 ## Conclusion
 
@@ -1108,16 +787,15 @@ Although 3DAffFunc shows notable improvements, 3D affor-
 dance understanding remains a challenging problem, with current
 state-of-the-art mIoU still below 0.3. Our model can reliably identify
 primary affordances but struggles with fine-grained regions, such
-as the tip of a knife in the “jab” affordance (Fig. 3). In addition, the
+as the tip of a knife in the jab affordance (Fig. 3). In addition, the
 CLIP-based text encoder is constrained by limited context length,
 and our robotic experiments are currently qualitative. Future work
 will explore incorporating priors from foundation models [1, 28, 51],
 investigating more flexible language encoders [2, 24, 32], and de-
 veloping comprehensive benchmarks for real-world evaluation.
-7995
 
 Aff3DFunc: 3D Affordance Understanding via Functional Text Enhancement and Multilevel Representation Alignment
-MM ’25, October 27–31, 2025, Dublin, Ireland
+MM 25, October 2731, 2025, Dublin, Ireland
 Acknowledgments
 This work was supported by the Graduate School Scholarship from
 the College of Science and Engineering, University of Glasgow.
@@ -1125,13 +803,12 @@ References
 [1] Zhaochong An, Guolei Sun, Yun Liu, Runjia Li, Junlin Han, Ender Konukoglu,
 and Serge Belongie. 2025. Generalized Few-shot 3D Point Cloud Segmentation
 with Vision-Language Model. arXiv preprint arXiv:2503.16282 (2025).
-[2] Mothilal Asokan, Kebin Wu, and Fatima Albreiki. 2025. FineLIP: Extending CLIP’s
+[2] Mothilal Asokan, Kebin Wu, and Fatima Albreiki. 2025. FineLIP: Extending CLIPs
 Reach via Fine-Grained Alignment with Longer Text Inputs. In Proceedings of the
-Computer Vision and Pattern Recognition Conference. 14495–14504.
+Computer Vision and Pattern Recognition Conference. 1449514504.
 [3] Shikhar Bahl, Russell Mendonca, Lili Chen, Unnat Jain, and Deepak Pathak. 2023.
 Affordances from human videos as a versatile representation for robotics. In
 Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition.
-13778–13790.
 [4] Lukas Brunke, Yanni Zhang, Ralf Römer, Jack Naimer, Nikola Staykov, Siqi Zhou,
 and Angela P Schoellig. 2025. Semantically safe robot manipulation: From se-
 mantic scene understanding to motion safeguards. IEEE Robotics and Automation
@@ -1139,9 +816,8 @@ Letters (2025).
 [5] Kai Chen, Zhili Liu, Lanqing Hong, Hang Xu, Zhenguo Li, and Dit-Yan Yeung.
 2023. Mixed autoencoder for self-supervised visual representation learning. In
 Proceedings of the IEEE/CVF conference on computer vision and pattern recognition.
-22742–22751.
 [6] Ali Cheraghian et al. 2019. Zero-shot learning of 3D point cloud objects. In Int.
-Conf. on Machine Vision Applications (MVA). 1–6.
+Conf. on Machine Vision Applications (MVA). 16.
 [7] Hengshuo Chu, Xiang Deng, Xiaoyang Chen, Yinchuan Li, Jianye Hao, and
 Liqiang Nie. 2025.
 3D-AffordanceLLM: Harnessing Large Language Mod-
@@ -1154,76 +830,73 @@ International Conference on Learning Representations.
 [9] Shiyao Cui, Jiangxia Cao, Xin Cong, Jiawei Sheng, Quangang Li, Tingwen Liu,
 and Jinqiao Shi. 2024. Enhancing multimodal entity and relation extraction with
 variational information bottleneck. IEEE/ACM Transactions on Audio, Speech, and
-Language Processing 32 (2024), 1274–1285.
+Language Processing 32 (2024), 12741285.
 [10] Alexandros Delitzas, Ayca Takmaz, Federico Tombari, Robert Sumner, Marc
 Pollefeys, and Francis Engelmann. 2024. SceneFun3D: Fine-Grained Functionality
 and Affordance Understanding in 3D Scenes. In Proceedings of the IEEE/CVF
-Conference on Computer Vision and Pattern Recognition (CVPR). 14531–14542.
+Conference on Computer Vision and Pattern Recognition (CVPR). 1453114542.
 [11] Shengheng Deng, Xun Xu, Chaozheng Wu, Ke Chen, and Kui Jia. 2021. 3d affor-
 dancenet: A benchmark for visual object affordance understanding. In proceedings
-of the IEEE/CVF conference on computer vision and pattern recognition. 1778–1787.
+of the IEEE/CVF conference on computer vision and pattern recognition. 17781787.
 [12] Hazel Doughty, Ivan Laptev, Walterio Mayol-Cuevas, and Dima Damen. 2020.
 Action Modifiers: Learning From Adverbs in Instructional Videos. In Proceedings
 of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR).
 [13] Hazel Doughty, Fida Mohammad Thoker, and Cees GM Snoek. 2024. Locomotion:
 Learning motion-focused video-language representations. In Proceedings of the
-Asian Conference on Computer Vision. 50–70.
+Asian Conference on Computer Vision. 5070.
 [14] Xianqiang Gao, Pingrui Zhang, Delin Qu, Dong Wang, Zhigang Wang, Yan Ding,
 and Bin Zhao. 2024. Learning 2d invariant affordance knowledge for 3d affordance
 grounding. arXiv preprint arXiv:2408.13024 (2024).
 [15] Haoran Geng, Helin Xu, Chengyang Zhao, Chao Xu, Li Yi, Siyuan Huang, and He
 Wang. 2023. Gapartnet: Cross-category domain-generalizable object perception
 and manipulation via generalizable and actionable parts. In Proceedings of the
-IEEE/CVF Conference on Computer Vision and Pattern Recognition. 7081–7091.
+IEEE/CVF Conference on Computer Vision and Pattern Recognition. 70817091.
 [16] James Jerome Gibson. 1966. The senses considered as perceptual systems. (1966).
 [17] Mohammed et al. Hassanin. 2021. Visual affordance and function understanding:
-A survey. Comput. Surveys 54, 3 (2021), 1–35.
+A survey. Comput. Surveys 54, 3 (2021), 135.
 [18] Shizhe Hu, Zhengzheng Lou, Xiaoqiang Yan, and Yangdong Ye. 2024. A survey
 on information bottleneck. IEEE Transactions on Pattern Analysis and Machine
 Intelligence (2024).
 [19] Yuanchen Ju, Kaizhe Hu, Guowei Zhang, Gu Zhang, Mingrun Jiang, and Huazhe
 Xu. 2024. Robo-abc: Affordance generalization beyond categories via semantic
 correspondence for robot manipulation. In European Conference on Computer
-Vision. Springer, 222–239.
+Vision. Springer, 222239.
 [20] Prannay Khosla, Piotr Teterwak, Chen Wang, Aaron Sarna, Yonglong Tian, Phillip
 Isola, Aaron Maschinot, Ce Liu, and Dilip Krishnan. 2020. Supervised contrastive
-learning. Advances in neural information processing systems 33 (2020), 18661–
-18673.
+learning. Advances in neural information processing systems 33 (2020), 18661
 [21] Gen Li, Deqing Sun, Laura Sevilla-Lara, and Varun Jampani. 2024. One-shot
 open affordance learning with foundation models. In Proceedings of the IEEE/CVF
-Conference on Computer Vision and Pattern Recognition. 3086–3096.
+Conference on Computer Vision and Pattern Recognition. 30863096.
 [22] Junnan Li, Dongxu Li, Caiming Xiong, and Steven Hoi. 2022. Blip: Bootstrapping
 language-image pre-training for unified vision-language understanding and
-generation. In International conference on machine learning. PMLR, 12888–12900.
+generation. In International conference on machine learning. PMLR, 1288812900.
 [23] Yicong Li, Na Zhao, Junbin Xiao, Chun Feng, Xiang Wang, and Tat-seng Chua.
 2024. LASO: Language-guided Affordance Segmentation on 3D Object. In Pro-
 ceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition
-(CVPR). 14251–14260.
+(CVPR). 1425114260.
 [24] Xiaoran Liu, Ruixiao Li, Mianqiu Huang, Zhigeng Liu, Yuerong Song, Qipeng Guo,
 Siyang He, Qiqi Wang, Linlin Li, Qun Liu, et al. 2025. Thus spake long-context
 large language model. arXiv preprint arXiv:2502.17129 (2025).
 [25] Zichuan Liu, Zefan Wang, Linjie Xu, Jinyu Wang, Lei Song, Tianchun Wang,
 Chunlin Chen, Wei Cheng, and Jiang Bian. 2024. Protecting your llms with
 information bottleneck. Advances in Neural Information Processing Systems 37
-(2024), 29723–29753.
 [26] Liangsheng Lu, Wei Zhai, Hongchen Luo, Yu Kang, and Yang Cao. 2022. Phrase-
 based affordance detection via cyclic bilateral interaction. IEEE Transactions on
-Artificial Intelligence 4, 5 (2022), 1186–1198.
+Artificial Intelligence 4, 5 (2022), 11861198.
 [27] Hongchen Luo, Wei Zhai, Jing Zhang, Yang Cao, and Dacheng Tao. 2022. Learning
 affordance grounding from exocentric images. In Proceedings of the IEEE/CVF
-conference on computer vision and pattern recognition. 2252–2261.
+conference on computer vision and pattern recognition. 22522261.
 [28] Yunze Man, Shuhong Zheng, Zhipeng Bao, Martial Hebert, Liangyan Gui, and
 Yu-Xiong Wang. 2024. Lexicon3d: Probing visual foundation models for complex
 3d scene understanding. Advances in Neural Information Processing Systems 37
-(2024), 76819–76847.
 [29] Björn et al. Michele. 2021. Generative zero-shot learning for semantic segmenta-
-tion of 3D point clouds. In Int. Conf. on 3D Vision (3DV). 992–1002.
+tion of 3D point clouds. In Int. Conf. on 3D Vision (3DV). 9921002.
 [30] Lorenzo Mur-Labadia, Jose J. Guerrero, and Ruben Martinez-Cantin. 2023. Multi-
 label Affordance Mapping from Egocentric Vision. In Proceedings of the IEEE/CVF
-International Conference on Computer Vision (ICCV). 5238–5249.
+International Conference on Computer Vision (ICCV). 52385249.
 [31] Austin Myers, Ching L Teo, Cornelia Fermüller, and Yiannis Aloimonos. 2015.
 Affordance detection of tool parts from geometric features. In 2015 IEEE Interna-
-tional Conference on Robotics and Automation (ICRA). IEEE, 1374–1381.
+tional Conference on Robotics and Automation (ICRA). IEEE, 13741381.
 [32] Ivona Najdenkoska, Mohammad Mahdi Derakhshani, Yuki M Asano, Nanne
 Van Noord, Marcel Worring, and Cees GM Snoek. [n. d.]. TULIP: Token-length
 Upgraded CLIP. In The Thirteenth International Conference on Learning Represen-
@@ -1236,73 +909,69 @@ arXiv:2411.02704 (2024).
 [34] Toan Nguyen, Minh Nhat Vu, An Vuong, Dzung Nguyen, Thieu Vo, Ngan Le, and
 Anh Nguyen. 2023. Open-vocabulary affordance detection in 3d point clouds. In
 2023 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS).
-IEEE, 5692–5698.
+IEEE, 56925698.
 [35] Pengxiang Ouyang, Jianan Chen, Qing Ma, Zheng Wang, and Cong Bai. 2024.
 Distinguishing Visually Similar Images: Triplet Contrastive Learning Framework
 for Image-text Retrieval. In 2024 IEEE International Conference on Multimedia and
-Expo (ICME). IEEE, 1–6.
+Expo (ICME). IEEE, 16.
 [36] Charles Ruizhongtai Qi, Li Yi, Hao Su, and Leonidas J Guibas. 2017. Pointnet++:
 Deep hierarchical feature learning on point sets in a metric space. Advances in
 neural information processing systems 30 (2017).
 [37] Alec Radford, Jong Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh,
 Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark,
 et al. 2021. Learning transferable visual models from natural language supervision.
-In International conference on machine learning. PMLR, 8748–8763.
+In International conference on machine learning. PMLR, 87488763.
 [38] Yucheng Shi, Quanzheng Li, Jin Sun, Xiang Li, and Ninghao Liu. 2025. En-
 hancing Cognition and Explainability of Multimodal Foundation Models with
 Self-Synthesized Data. arXiv preprint arXiv:2502.14044 (2025).
 [39] Ramesh Ashok Tabib, Dikshit Hegde, and Uma Mudenagudi. 2024. LGAfford-Net:
 A Local Geometry Aware Affordance Detection Network for 3D Point Clouds. In
 Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition.
-5261–5270.
 [40] Tuan Van Vo, Minh Nhat Vu, Baoru Huang, Toan Nguyen, Ngan Le, Thieu Vo,
 and Anh Nguyen. 2024. Open-vocabulary affordance detection using knowledge
 distillation and text-point correlation. In 2024 IEEE International Conference on
-Robotics and Automation (ICRA). IEEE, 13968–13975.
+Robotics and Automation (ICRA). IEEE, 1396813975.
 [41] Xin Wang, Hong Chen, Zihao Wu, Wenwu Zhu, et al. 2024. Disentangled repre-
 sentation learning. IEEE Transactions on Pattern Analysis and Machine Intelligence
 (2024).
 [42] Shuhuan Wen, Tao Wang, and Sheng Tao. 2022. Hybrid CNN-LSTM architecture
 for LiDAR point clouds semantic segmentation. IEEE Robotics and Automation
-Letters 7, 3 (2022), 5811–5818.
+Letters 7, 3 (2022), 58115818.
 [43] Ruihai Wu, Kai Cheng, Yan Zhao, Chuanruo Ning, Guanqi Zhan, and Hao Dong.
 2024. Learning environment-aware affordance for 3d articulated object manipu-
 lation under occlusions. Advances in Neural Information Processing Systems 36
 (2024).
 [44] Lingjing Xu, Yang Gao, Wenfeng Song, and Aimin Hao. 2024. Weakly Supervised
 Multimodal Affordance Grounding for Egocentric Images. In Proceedings of the
-AAAI Conference on Artificial Intelligence, Vol. 38. 6324–6332.
-7996
+AAAI Conference on Artificial Intelligence, Vol. 38. 63246332.
 
-MM ’25, October 27–31, 2025, Dublin, Ireland
+MM 25, October 2731, 2025, Dublin, Ireland
 Lin Wu et al.
 [45] Yuhang Yang, Wei Zhai, Hongchen Luo, Yang Cao, Jiebo Luo, and Zheng-Jun
 Zha. 2023. Grounding 3D Object Affordance from 2D Interactions in Images. In
 Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV).
-10905–10915.
 [46] Yuhang Yang, Wei Zhai, Hongchen Luo, Yang Cao, and Zheng-Jun Zha. 2024.
 LEMON: Learning 3D Human-Object Interaction Relation from 2D Images. In
 Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition.
-16284–16295.
 [47] Yuhang Yang, Wei Zhai, Chengfeng Wang, Chengjun Yu, Yang Cao, and Zheng-
 Jun Zha. 2024. EgoChoir: Capturing 3D Human-Object Interaction Regions from
 Egocentric Views. arXiv preprint arXiv:2405.13659 (2024).
 [48] Luo Yiyang, Ke Lin, and Chao Gu. 2024. Context-Aware Indoor Point Cloud
 Object Generation through User Instructions. In Proceedings of the 32nd ACM
-International Conference on Multimedia. 10182–10190.
+International Conference on Multimedia. 1018210190.
 [49] Chunlin Yu, Hanqing Wang, Ye Shi, Haoyang Luo, Sibei Yang, Jingyi Yu, and
 Jingya Wang. 2025. Seqafford: Sequential 3d affordance reasoning via multi-
 modal large language model. In Proceedings of the Computer Vision and Pattern
-Recognition Conference. 1691–1701.
+Recognition Conference. 16911701.
 [50] Xumin Yu, Lulu Tang, Yongming Rao, Tiejun Huang, Jie Zhou, and Jiwen Lu.
 2022. Point-BERT: Pre-training 3D Point Cloud Transformers with Masked
 Point Modeling. In 2022 IEEE/CVF Conference on Computer Vision and Pattern
-Recognition (CVPR). 19291–19300.
+Recognition (CVPR). 1929119300.
 [51] Junyi Zhang, Charles Herrmann, Junhwa Hur, Luisa Polania Cabrera, Varun
 Jampani, Deqing Sun, and Ming-Hsuan Yang. 2023. A tale of two features: Stable
 diffusion complements dino for zero-shot semantic correspondence. Advances in
-Neural Information Processing Systems 36 (2023), 45533–45547.
+Neural Information Processing Systems 36 (2023), 4553345547.
 [52] Huiming Zheng, Wei Gao, Zhuozhen Yu, Tiesong Zhao, and Ge Li. 2024. Viewpcgc:
 view-guided learned point cloud geometry compression. In Proceedings of the
-32nd ACM International Conference on Multimedia. 7152–7161.
-7997
+32nd ACM International Conference on Multimedia. 71527161.
+

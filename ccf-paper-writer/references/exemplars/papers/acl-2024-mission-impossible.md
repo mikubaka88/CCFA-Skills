@@ -5,13 +5,13 @@
 > **Source:** <https://aclanthology.org/2024.acl-long.787/>
 
 ---
-
-Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 14691–14714
+Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 1469114714
 August 11-16, 2024 ©2024 Association for Computational Linguistics
 Julie Kallini1, Isabel Papadimitriou1, Richard Futrell2,
 Kyle Mahowald3, Christopher Potts1
 1Stanford University; 2University of California, Irvine; 3University of Texas, Austin
 kallini@stanford.edu
+
 
 ## Abstract
 
@@ -47,7 +47,7 @@ ent LLM architectures are tested on a variety of
 impossible languages in an effort to learn more
 about how LLMs can be used as tools for these
 cognitive and typological investigations.
-1
+
 
 ## Introduction
 
@@ -78,7 +78,6 @@ Shuffles
 Local Shuffles
 Count-based
 Grammar Rules
-?
 Possible
 Reversed Strings
 Attested
@@ -92,21 +91,20 @@ viability of LLMs as the basis for robust language
 capabilities.
 These authors state this claim in absolute terms.
 For example, Chomsky et al. (2023) flatly assert
-that LLMs “are incapable of distinguishing the pos-
-sible from the impossible,” Chomsky (2023) says
-this property “can’t be modified,” and Moro et al.
-(2023) write that “the distinction between possible
+that LLMs are incapable of distinguishing the pos-
+sible from the impossible, Chomsky (2023) says
+this property cant be modified, and Moro et al.
+(2023) write that the distinction between possible
 versus impossible languages cannot be formulated
-by definition for LLM.” Bolhuis et al. (2024) go so
-far as to claim that “LLMs can produce ‘impossible’
+by definition for LLM. Bolhuis et al. (2024) go so
+far as to claim that LLMs can produce impossible
 languages [...] just as well as (if not better than)
-natural language output.” One might expect such
+natural language output. One might expect such
 strong claims to be supported by extensive formal
 analysis and/or experimental evidence. However,
 as far as we are aware, this is not the case. The
 sole experimental paper cited by the above authors
-is Mitchell and Bowers 2020—an important and
-14691
+is Mitchell and Bowers 2020an important and
 
 inspiring paper but not one that can resolve these
 questions on its own. In addition, linguists them-
@@ -150,14 +148,14 @@ which we modify in various ways to implement
 our impossible languages. What we find is that
 these models indeed struggle to learn impossible
 languages, shown through three core experiments:
-• In Experiment 1, we train GPT-2 models on our
+In Experiment 1, we train GPT-2 models on our
 set of defined possible and impossible languages,
 measuring their learning efficiency through test
 set perplexities. We find that models trained on
 possible languages learn more efficiently, evi-
 dent from lower perplexities achieved in fewer
 training steps.
-• In Experiment 2, we more closely examine a
+In Experiment 2, we more closely examine a
 set of languages that exhibit count-based verb
 marking rules, using surprisal comparisons to
 target the relevant patterns. We find that GPT-2s
@@ -165,7 +163,7 @@ trained on possible languages are more sur-
 prised by ungrammatical constructions, indicat-
 ing that models disprefer agreement rules involv-
 ing counting.
-• In Experiment 3, we dive deeper into the in-
+In Experiment 3, we dive deeper into the in-
 ternal mechanisms that models may develop
 to learn such count-based grammar rules using
 causal abstraction analysis. We find that models
@@ -185,18 +183,17 @@ hope this paper initiates a new line of work that
 explores how different model architectures can dis-
 tinguish between the possible and impossible lan-
 guages.1
-2
+
 
 ## Background
 
-2.1
 Impossible Human Languages and
 Language Universals
 The notion of an impossible human language is
 elusive and difficult to define, in part due to a lack
 of consensus on which properties are universal in
-human language and which properties are “impos-
-sible” (Comrie, 1989; Evans and Levinson, 2009;
+human language and which properties are impos-
+sible (Comrie, 1989; Evans and Levinson, 2009;
 Nefdt, 2024). For instance, recursion, or the prin-
 ciple that all languages produce hierarchical syn-
 tactic structures via recursive procedures, has been
@@ -212,10 +209,9 @@ that possible languages are defined by hierarchi-
 cal, recursive rules, what defines the impossible
 1The code for this paper is available at https://github.
 com/jkallini/mission-impossible-language-models.
-14692
 
 languages? Moro et al. (2023) claim that the class
-of impossible languages would use the “opposite”
+of impossible languages would use the opposite
 type of rules: those based on the linear order of
 words. Musso et al. (2003) provide a few concrete
 examples that involve counting word positions to
@@ -225,9 +221,9 @@ tested impossible languages.
 It is important to also distinguish what is impos-
 sible from what is merely typologically marked,
 such as the word order patterns listed in Green-
-berg’s (1963) language universals. Previous work
+bergs (1963) language universals. Previous work
 has shown that such word order universals can arise
-through a language’s optimization of communica-
+through a languages optimization of communica-
 tion efficiency, achieved by balancing complexity
 and ambiguity (Hahn et al., 2020; Futrell and Hahn,
 2022). While our current exploration does not en-
@@ -235,16 +231,15 @@ compass attested languages, various impossible
 languages can similarly differ in their information-
 theoretic complexity, informing the patterns that lie
 at the boundary between possible and impossible.
-2.2
 Training Language Models with
 Unnatural Word Orders
 The only work cited by Chomsky that investigates
-neural language models’ ability to learn impossi-
+neural language models ability to learn impossi-
 ble languages is Mitchell and Bowers 2020, which
 finds that recurrent neural networks (RNNs; Elman,
 1990) trained on various unnatural language con-
 structs, such as reversed sentences and randomized
-vocabularies, achieve high accuracy on a subject–
+vocabularies, achieve high accuracy on a subject
 verb number agreement task. Other work turns to
 more recent Transformer-based language models
 (Vaswani et al., 2017), observing their sensitivity
@@ -256,13 +251,11 @@ and Abdou et al. (2022) debate the impact of tok-
 enization, pretraining adjustments, and positional
 encodings in recovering word order information
 from shuffled languages. Further investigations
-into BERT’s (Devlin et al., 2019) reliance on word
+into BERTs (Devlin et al., 2019) reliance on word
 order for grammatical role classification suggest
 that lexical cues alone may not always be sufficient
 for good performance (Papadimitriou et al., 2022;
 see also Hessel and Schofield, 2021; Pham et al.,
-2021).
-2.3
 Language Models and Formal Languages
 A related line of research examines the abilities
 of neural language models to express formal lan-
@@ -296,7 +289,6 @@ tures through architecture changes, like the addition
 of a stack component (Hao et al., 2018; Murty et al.,
 2023), or data-centered approaches, like structural
 pretraining (Papadimitriou and Jurafsky, 2023).
-3
 Impossible Languages
 Core to our experiments are the set of impossible
 languages we synthesize. In constructing these ar-
@@ -318,7 +310,6 @@ represents unaltered English, or a pattern that is
 very similar to English. Table 1 provides examples
 2Though counter and DYCK languages are context-free,
 some of the variants in the cited work are regular.
-14693
 
 Class
 Language
@@ -372,10 +363,9 @@ They clean his very messy books P he lf .
 WORDHOP
 He clean his very messy books he lf S .
 They clean his very messy books he lf P .
-Table 1: List of impossible languages with examples. Control (‘NO*’) languages have patterns that resemble
+Table 1: List of impossible languages with examples. Control (NO*) languages have patterns that resemble
 English. Differently colored blocks represent different GPT-2 tokens.
 of perturbed sentences in each language.
-3.1
 *SHUFFLE Languages.
 The first set of impossible languages, which we call
 the *SHUFFLE languages, involve different shuffles
@@ -407,14 +397,14 @@ odd-indexed tokens.
 The random shuffling function that generates the
 NONDETERMINISTICSHUFFLE language is irre-
 versible, resulting in sentences that are purely bags
-of words—any structural information in the orig-
+of wordsany structural information in the orig-
 inal linguistic signal is irretrievable. While the
 DETERMINISTICSHUFFLE languages are created
 using a reversible perturbation function, this func-
 tion operates in an entirely non-linguistic manner;
 words are ordered based solely on the random seed
 and sentence length, without considerations for lin-
-guistic features or information locality—the prop-
+guistic features or information localitythe prop-
 erty that, when parts of text predict each other, they
 are often close together (Futrell, 2019; Mansfield
 and Kemp, 2023). This method is arguably even
@@ -437,10 +427,8 @@ freedom would be totally insensitive to any clause bound-
 aries while the language otherwise looks morphologically like
 English does. It thus seems very safe to assume that our NON-
 DETERMINISTICSHUFFLE language counts as impossible.
-14694
 
 introducing new long-distance dependencies.
-3.2
 *REVERSE Languages.
 The *REVERSE impossible languages involve re-
 versals of all or part of input sentences.
@@ -469,7 +457,6 @@ anaphora would be highly disrupted. The R tokens
 are placed at the same positions across the data in
 all *REVERSE languages to control for the entropy
 introduced by their random placement.
-3.3
 *HOP Languages.
 The *HOP languages perturb verb inflection with
 counting rules.
@@ -477,7 +464,7 @@ counting rules.
 in the input sentence are lemmatized, and the
 sentence is tokenized. For each 3rd-person
 present tense verb, a special marker represent-
-ing the verb’s number and tense is placed right
+ing the verbs number and tense is placed right
 after the lemmatized verb. Singular verbs are
 marked with a special token S, and plural
 verbs are marked with P. Like the other con-
@@ -490,14 +477,14 @@ are placed 4 tokens after the verb.
 HOP and TOKENHOP, but the special num-
 ber/tense markers are placed 4 words after the
 verb, skipping punctuation.
-These languages specifically investigate GPT-2’s
+These languages specifically investigate GPT-2s
 ability to learn grammar rules that involve counting
 the positions of words or tokens.
-4
 Experiments
-We run several experiments to assess GPT-2’s learn-
+We run several experiments to assess GPT-2s learn-
 ing of our impossible languages. Our first exper-
 iment (Section 4.2) uses perplexities as a general
+
 
 ## Evaluation
 
@@ -517,7 +504,6 @@ abstraction analysis (Section 4.4). For all evalua-
 tions, we run tests on several model checkpoints
 to observe the learning process over intervals of
 training steps.4
-4.1
 Implementation Details
 For each impossible language, we apply its pertur-
 bation function to each sentence of the BabyLM
@@ -537,23 +523,9 @@ choices are detailed in Appendix B. The primary
 set of GPT-2 models we train have absolute posi-
 tional encodings. We also train a set of GPT-2 small
 4We also conduct a constituency probing experiment to test
-effects on GPT-2’s implicit understanding of syntax, with min-
+effects on GPT-2s implicit understanding of syntax, with min-
 imal observed differences among models (see Appendix D).
-14695
 
-500
-1000
-1500
-2000
-2500
-3000
-0
-200
-400
-600
-800
-1000
-1200
 Geometric Mean Perplexity
 *Shuffle
 NoShuffle
@@ -565,35 +537,10 @@ LocalShuffle(w = 3)
 LocalShuffle(w = 5)
 LocalShuffle(w = 10)
 EvenOddShuffle
-500
-1000
-1500
-2000
-2500
-3000
-50
-100
-150
-200
-250
-300
-350
-400
 *Reverse
 NoReverse
 PartialReverse
 FullReverse
-500
-1000
-1500
-2000
-2500
-3000
-50
-100
-150
-200
-250
 *Hop
 NoHop
 TokenHop
@@ -603,20 +550,20 @@ Figure 2: Perplexities on a sample of 10K test sentences for each impossible lan
 Error bars indicate 95% confidence intervals across 5 training runs initialized with different random seeds and
 evaluated on different test samples.
 models with an architecture in which the positional
-encodings are removed, so that the models’ only no-
-tion of word order is derived from GPT-2’s causal
+encodings are removed, so that the models only no-
+tion of word order is derived from GPT-2s causal
 language modeling learning objective (Kazemnejad
 et al., 2023). Results for these additional experi-
 ments supported our main findings on the unaltered
 GPT-2 architecture. These results are provided in
 Appendix C.
-4.2
+
 
 ## Experiments
 
 the Impossibility Continuum
 We train GPT-2 models on all of the languages
-described in Table 1, and evaluate each model’s
+described in Table 1, and evaluate each models
 perplexities on a test set over the course of training.
 Test perplexities provide a general metric for the
 extent to which a model has learned a language.
@@ -630,6 +577,7 @@ Hypothesis. Models trained on possible languages
 will achieve lower average perplexities more
 quickly (as measured in training steps) than those
 trained on impossible languages.
+
 
 ## Results
 
@@ -665,7 +613,7 @@ control model again has the lowest perplexities,
 although differences among the models are quite
 minimal. This warrants our deep-dive into the par-
 ticular verb marking patterns for this set of models.
-4.3
+
 
 ## Experiments
 
@@ -678,19 +626,10 @@ learning, and the question remains: do language
 each DETERMINISTICSHUFFLE model on test data from other
 shuffles (see Appendix E). Each model has lower perplexities
 on its own deterministic shuffle.
-14696
 
-0
-2
-4
-6
 300 Steps
 600 Steps
 900 Steps
-0
-2
-4
-6
 1200 Steps
 1500 Steps
 3000 Steps
@@ -700,17 +639,9 @@ TokenHop
 WordHop
 (a) Test 1: mean surprisals of the verb marker token ( S or P )
 for each *HOP model.
-0
-5
-10
-15
 300 Steps
 600 Steps
 900 Steps
-0
-5
-10
-15
 1200 Steps
 1500 Steps
 3000 Steps
@@ -740,7 +671,7 @@ et al., 2018; Futrell et al., 2019; Hu et al., 2020;
 Wilcox et al., 2023) and have been shown to cor-
 relate with human sentence processing difficulty
 (Hale, 2001; Levy, 2008).
-Setup. To test the *HOP models’ sensitivity to
+Setup. To test the *HOP models sensitivity to
 marker placement, we conduct two tests on a sam-
 ple of 10K sentences extracted from the BabyLM
 dataset containing the verb marker tokens (S or
@@ -781,6 +712,7 @@ the second test, our hypothesis is that the mean sur-
 prisal difference across all test pairs will be larger
 for possible languages than for impossible ones.
 
+
 ## Results
 
 NOHOP model, which has the verb marking pattern
@@ -788,7 +720,6 @@ most similar to English, consistently has the low-
 est mean marker surprisal across training steps in
 test 1 (Figure 3a). The NOHOP model also has the
 highest mean surprisal difference across training
-14697
 
 steps in test 2 (Figure 3b). Both of these results in-
 dicate that GPT-2 has learned to expect the marker
@@ -803,7 +734,7 @@ difference compared to WORDHOP across training
 steps, indicating that GPT-2 is better at learning the
 verb marking rule when the units being counted are
 tokens instead of words.
-4.4
+
 
 ## Experiments
 
@@ -834,7 +765,7 @@ standing of how the model processes inputs.
 Setup. We use interchange interventions to iden-
 tify representations in our *HOP models that
 have causal effects on their output behaviors on
-a subject–verb agreement task. In our experimental
+a subjectverb agreement task. In our experimental
 setup, b is a sentence prefix with a singular subject
 and s is an identical prefix with the plural form of
 the subject. These prefixes include all tokens up to
@@ -845,10 +776,8 @@ observe whether the probability of plural marker P
 is higher than the probability of singular marker S
 The
 man
-be
 The
 men
-be
 base
 source
 Figure 4: An interchange intervention on the NOHOP
@@ -863,7 +792,7 @@ and token position to see which parts of the model
 cause a change in the marker prediction. We run
 all of these interventions over several test exam-
 ples and report the interchange intervention ac-
-curacy (IIA), a metric that represents the subject–
+curacy (IIA), a metric that represents the subject
 verb agreement accuracy if the counterfactual (i.e.
 plural) were the ground truth. The test examples
 for each *HOP model are extracted from their
@@ -874,6 +803,7 @@ subjects. To ensure that interventions on different
 examples are analogous, we use regular expres-
 sions to locate examples that follow the same struc-
 ture (i.e. subjects and verbs at the same positions).
+
 
 ## Results
 
@@ -890,104 +820,43 @@ the relevant positions, but the NOHOP model ob-
 tains nearly 100% IIA earlier during training, at
 about 1,500 training steps, supporting the previous
 surprisal results.
-14698
 
-11
-9
-7
-5
-3
-1
 300 Steps
 600 Steps
 900 Steps
-td
-ts
-tv
-11
-9
-7
-5
-3
-1
 1200 Steps
-td
-ts
-tv
 1500 Steps
-td
-ts
-tv
 3000 Steps
-0
-25
-50
-75
-100
 IIA
 NoHop
-11
-9
-7
-5
-3
-1
 300 Steps
 600 Steps
 900 Steps
 td ts tv t1 t2 t3 t4
-11
-9
-7
-5
-3
-1
 1200 Steps
 td ts tv t1 t2 t3 t4
 1500 Steps
 td ts tv t1 t2 t3 t4
 3000 Steps
-0
-25
-50
-75
-100
 IIA
 TokenHop
-11
-9
-7
-5
-3
-1
 300 Steps
 600 Steps
 900 Steps
 td ts tv t1 t2 t3 t4
-11
-9
-7
-5
-3
-1
 1200 Steps
 td ts tv t1 t2 t3 t4
 1500 Steps
 td ts tv t1 t2 t3 t4
 3000 Steps
-0
-25
-50
-75
-100
 IIA
 WordHop
-Figure 5: Subject–verb agreement interchange intervention accuracies (IIA) for each *HOP model over training
+Figure 5: Subjectverb agreement interchange intervention accuracies (IIA) for each *HOP model over training
 steps. Vertical axes denote the GPT-2 layer of the intervention, and horizontal axes denote the token position of the
 intervention. td, ts, and tv represent the tokens for the determiner, subject, and verb, respectively. t1 . . . t4 represent
 the four tokens/words between the verb and its marker for TOKENHOP and WORDHOP. IIA values are averaged
 over results from 5 models initialized on different random seeds. See Appendix F for confidence intervals.
-5
+
 
 ## Discussion
 
@@ -1016,9 +885,10 @@ possible and impossible languages, as shown in
 our hypothesized continuum in Figure 1. We be-
 lieve that the *HOP languages we propose closely
 
+
 ## Approach
 
-At the same time, conclusions about LLMs’ lin-
+At the same time, conclusions about LLMs lin-
 guistic competence and preferences for natural lan-
 guages should be informed by an understanding
 of the ways that models fundamentally differ from
@@ -1060,13 +930,11 @@ erence for learning such structures over unnatural
 counterfactuals, it follows that they are clearly rel-
 evant to investigations and claims about the nec-
 essary innate priors for language learning. Argu-
-ments that they are “by design, unlimited in what
-they can ‘learn”’ and “incapable of distinguishing
-the possible from the impossible” (Chomsky et al.,
+ments that they are by design, unlimited in what
+they can learn and incapable of distinguishing
+the possible from the impossible (Chomsky et al.,
 2023) do not offer convincing evidence otherwise.
-14699
 
-6
 Acknowledgments
 The authors would like to thank Aryaman Arora,
 Christiane Fellbaum, Roger Levy, Tristan Thrush,
@@ -1077,7 +945,6 @@ cholinguistics Lab, and the anonymous reviewers
 for useful discussions. Julie Kallini is supported by
 a National Science Foundation Graduate Research
 Fellowship under grant number DGE-2146755.
-7
 Limitations
 Due to resource constraints, we exclusively use the
 GPT-2 architecture to train models on our various
@@ -1103,7 +970,6 @@ but attested. However, future work might involve
 deriving impossible languages from base languages
 other than English and include more morphological
 manipulations.
-8
 Ethics Statement
 While this work makes the case for language mod-
 els as useful tools for cognitive science and lin-
@@ -1124,7 +990,7 @@ Anders Søgaard. 2022. Word order does matter and
 shuffled language models know it. In Proceedings
 of the 60th Annual Meeting of the Association for
 Computational Linguistics (Volume 1: Long Papers),
-pages 6907–6919, Dublin, Ireland. Association for
+pages 69076919, Dublin, Ireland. Association for
 Computational Linguistics.
 Matteo Alleman, Jonathan Mamou, Miguel A Del Rio,
 Hanlin Tang, Yoon Kim, and SueYeon Chung. 2021.
@@ -1132,20 +998,19 @@ Syntactic perturbations reveal representational corre-
 lates of hierarchical phrase structure in pretrained lan-
 guage models. In Proceedings of the 6th Workshop
 on Representation Learning for NLP (RepL4NLP-
-2021), pages 263–276, Online. Association for Com-
+2021), pages 263276, Online. Association for Com-
 putational Linguistics.
 Johan J. Bolhuis, Stephen Crain, Sandiway Fong, and
-Andrea Moro. 2024. Three reasons why AI doesn’t
-model human language. Nature, 627(8004):489–489.
+Andrea Moro. 2024. Three reasons why AI doesnt
+model human language. Nature, 627(8004):489489.
 Noam Chomsky. 1956. Three models for the descrip-
 tion of language. IRE Transactions on Information
-Theory, 2(3):113–124.
+Theory, 2(3):113124.
 Noam Chomsky. 1957.
 Syntactic Structures.
-De
 Gruyter Mouton, Berlin, Boston.
 Noam Chomsky. 1959. On certain formal properties of
-grammars. Information and Control, 2(2):137–167.
+grammars. Information and Control, 2(2):137167.
 Noam Chomsky. 1965. Aspects of the Theory of Syntax.
 The MIT Press.
 Noam Chomsky. 2002. On Nature and Language. Cam-
@@ -1173,29 +1038,28 @@ standing. In Proceedings of the 2019 Conference of
 the North American Chapter of the Association for
 Computational Linguistics: Human Language Tech-
 nologies, Volume 1 (Long and Short Papers), pages
-4171–4186, Minneapolis, Minnesota. Association for
+41714186, Minneapolis, Minnesota. Association for
 Computational Linguistics.
-14700
 
 Javid Ebrahimi, Dhruv Gelda, and Wei Zhang. 2020.
 How can self-attention networks recognize Dyck-n
 languages? In Findings of the Association for Com-
-putational Linguistics: EMNLP 2020, pages 4301–
+putational Linguistics: EMNLP 2020, pages 4301
 4306, Online. Association for Computational Lin-
 guistics.
 Jeffrey L. Elman. 1990. Finding structure in time. Cog-
-nitive Science, 14(2):179–211.
+nitive Science, 14(2):179211.
 Nicholas Evans and Stephen C Levinson. 2009. The
 myth of language universals: Language diversity and
 its importance for cognitive science. Behavioral and
-brain sciences, 32(5):429–448.
+brain sciences, 32(5):429448.
 Daniel L. Everett. 2012. What does Pirahã grammar
 have to teach us about human language and the mind?
-WIREs Cognitive Science, 3(6):555–563.
+WIREs Cognitive Science, 3(6):555563.
 Richard Futrell. 2019. Information-theoretic locality
 properties of natural language. In Proceedings of the
 First Workshop on Quantitative Syntax (Quasy, Syn-
-taxFest 2019), pages 2–15, Paris, France. Association
+taxFest 2019), pages 215, Paris, France. Association
 for Computational Linguistics.
 Richard Futrell and Michael Hahn. 2022. Information
 theory as a bridge between language function and
@@ -1207,22 +1071,21 @@ Representations of syntactic state. In Proceedings of
 the 2019 Conference of the North American Chap-
 ter of the Association for Computational Linguistics:
 Human Language Technologies, Volume 1 (Long and
-Short Papers), pages 32–42, Minneapolis, Minnesota.
+Short Papers), pages 3242, Minneapolis, Minnesota.
 Association for Computational Linguistics.
 Lukas Galke, Yoav Ram, and Limor Raviv. 2023. What
 makes a language easy to deep-learn?
 Atticus Geiger, Hanson Lu, Thomas Icard, and Christo-
 pher Potts. 2021. Causal abstractions of neural net-
 works. In Advances in Neural Information Process-
-ing Systems, volume 34, pages 9574–9586. Curran
+ing Systems, volume 34, pages 95749586. Curran
 Associates, Inc.
 Atticus Geiger, Kyle Richardson, and Christopher Potts.
-2020.
 Neural natural language inference models
 partially embed theories of lexical entailment and
 negation. In Proceedings of the Third BlackboxNLP
 Workshop on Analyzing and Interpreting Neural Net-
-works for NLP, pages 163–173, Online. Association
+works for NLP, pages 163173, Online. Association
 for Computational Linguistics.
 Atticus Geiger, Zhengxuan Wu, Christopher Potts,
 Thomas Icard, and Noah D. Goodman. 2023. Find-
@@ -1231,19 +1094,18 @@ and distributed neural representations. In Proceed-
 ings of Causal Learning and Reasoning 2024.
 Joseph Greenberg. 1963. Some universals of grammar
 with particular reference to the order of meaningful
-elements. Universals of Language, pages 73–113.
+elements. Universals of Language, pages 73113.
 Michael Hahn. 2020. Theoretical limitations of self-
 attention in neural sequence models. Transactions of
-the Association for Computational Linguistics, 8:156–
-171.
+the Association for Computational Linguistics, 8:156
 Michael Hahn, Judith Degen, and Richard Futrell. 2021.
 Modeling word and morpheme order in natural lan-
 guage as an efficient trade-off of memory and sur-
-prisal. Psychological Review, 128(4):726–756.
+prisal. Psychological Review, 128(4):726756.
 Michael Hahn, Dan Jurafsky, and Richard Futrell. 2020.
 Universals of word order reflect optimization of gram-
 mars for efficient communication. Proceedings of the
-National Academy of Sciences, 117(5):2347–2353.
+National Academy of Sciences, 117(5):23472353.
 John Hale. 2001. A probabilistic Earley parser as a psy-
 cholinguistic model. In Second Meeting of the North
 American Chapter of the Association for Computa-
@@ -1253,35 +1115,34 @@ Frank, Noah Amsel, Andrew Benz, and Simon
 Mendelsohn. 2018. Context-free transductions with
 neural stacks. In Proceedings of the 2018 EMNLP
 Workshop BlackboxNLP: Analyzing and Interpreting
-Neural Networks for NLP, pages 306–315, Brussels,
+Neural Networks for NLP, pages 306315, Brussels,
 Belgium. Association for Computational Linguistics.
 Marc D. Hauser, Noam Chomsky, and W. Tecumseh
 Fitch. 2002.
 The faculty of language: What is
 it, who has it, and how did it evolve?
 Science,
-298(5598):1569–1579.
 Jack Hessel and Alexandra Schofield. 2021. How effec-
 tive is BERT without word ordering? implications for
 language understanding and data privacy. In Proceed-
 ings of the 59th Annual Meeting of the Association for
 Computational Linguistics and the 11th International
 Joint Conference on Natural Language Processing
-(Volume 2: Short Papers), pages 204–211, Online.
+(Volume 2: Short Papers), pages 204211, Online.
 Association for Computational Linguistics.
 John Hewitt, Michael Hahn, Surya Ganguli, Percy
 Liang, and Christopher D. Manning. 2020. RNNs
 can generate bounded hierarchical languages with
 optimal memory. In Proceedings of the 2020 Con-
 ference on Empirical Methods in Natural Language
-Processing (EMNLP), pages 1978–2010, Online. As-
+Processing (EMNLP), pages 19782010, Online. As-
 sociation for Computational Linguistics.
 Jennifer Hu, Jon Gauthier, Peng Qian, Ethan Wilcox,
 and Roger Levy. 2020. A systematic assessment
 of syntactic generalization in neural language mod-
 els. In Proceedings of the 58th Annual Meeting of
 the Association for Computational Linguistics, pages
-1725–1744, Online. Association for Computational
+17251744, Online. Association for Computational
 Linguistics.
 Qian Huang, Eric Zelikman, Sarah Li Chen, Yuhuai Wu,
 Gregory Valiant, and Percy Liang. 2023. Lexinvari-
@@ -1290,15 +1151,14 @@ Lifeng Jin, Finale Doshi-Velez, Timothy Miller, William
 Schuler, and Lane Schwartz. 2018. Depth-bounding
 is effective: Improvements and evaluation of unsu-
 pervised PCFG induction. In Proceedings of the
-14701
 
 2018 Conference on Empirical Methods in Natural
-Language Processing, pages 2721–2731, Brussels,
+Language Processing, pages 27212731, Brussels,
 Belgium. Association for Computational Linguistics.
 Aravind K. Joshi. 1985. Tree adjoining grammars: How
 much context-sensitivity is required to provide rea-
 sonable structural descriptions?, Studies in Natu-
-ral Language Processing, page 206–250. Cambridge
+ral Language Processing, page 206250. Cambridge
 University Press.
 Siddharth* Karamcheti, Laurel* Orr, Jason Bolton,
 Tianyi Zhang, Karan Goel, Avanika Narayan,
@@ -1310,7 +1170,6 @@ guage model training.
 Fred Karlsson. 2007. Constraints on multiple center-
 embedding of clauses.
 Journal of Linguistics,
-43(2):365–392.
 Amirhossein
 Kazemnejad,
 Inkit
@@ -1322,7 +1181,7 @@ The impact of positional
 encoding on length generalization in transformers.
 arXiv preprint arXiv:2305.19466.
 Roger Levy. 2008. Expectation-based syntactic compre-
-hension. Cognition, 106(3):1126–1177.
+hension. Cognition, 106(3):11261177.
 John Mansfield and Charles Kemp. 2023.
 The
 emergence of grammatical structure from inter-
@@ -1330,48 +1189,47 @@ predictability.
 Rebecca Marvin and Tal Linzen. 2018. Targeted syn-
 tactic evaluation of language models. In Proceed-
 ings of the 2018 Conference on Empirical Methods
-in Natural Language Processing, pages 1192–1202,
+in Natural Language Processing, pages 11921202,
 Brussels, Belgium. Association for Computational
 Linguistics.
 William Merrill. 2019. Sequential neural networks as
 automata. In Proceedings of the Workshop on Deep
 Learning and Formal Languages: Building Bridges,
-pages 1–13, Florence. Association for Computational
+pages 113, Florence. Association for Computational
 Linguistics.
 William Merrill, Gail Weiss, Yoav Goldberg, Roy
 Schwartz, Noah A. Smith, and Eran Yahav. 2020.
 A formal hierarchy of RNN architectures. In Pro-
 ceedings of the 58th Annual Meeting of the Associa-
-tion for Computational Linguistics, pages 443–459,
+tion for Computational Linguistics, pages 443459,
 Online. Association for Computational Linguistics.
 Jeff Mitchell and Jeffrey Bowers. 2020. Priorless re-
 current networks learn curiously. In Proceedings of
 the 28th International Conference on Computational
-Linguistics, pages 5147–5158, Barcelona, Spain (On-
+Linguistics, pages 51475158, Barcelona, Spain (On-
 line). International Committee on Computational Lin-
 guistics.
 Andrea Moro, Matteo Greco, and Stefano F. Cappa.
 2023. Large languages, impossible languages and
-human brains. Cortex, 167:82–85.
+human brains. Cortex, 167:8285.
 Shikhar Murty, Pratyusha Sharma, Jacob Andreas, and
 Christopher D. Manning. 2023. Pushdown layers:
 Encoding recursive structure in transformer language
 models.
 Mariacristina Musso, Andrea Moro, Volkmar Glauche,
 Michel Rijntjes, Jürgen Reichenbach, Christian
-Büchel, and Cornelius Weiller. 2003. Broca’s area
+Büchel, and Cornelius Weiller. 2003. Brocas area
 and the language instinct.
 Nature Neuroscience,
-6(7):774–781.
 Ryan M. Nefdt. 2024. The Philosophy of Theoretical
 Linguistics: A Contemporary Outlook. Cambridge
 University Press.
 Isabel Papadimitriou, Richard Futrell, and Kyle Ma-
 howald. 2022. When classifying grammatical role,
-BERT doesn’t care about word order... except when
+BERT doesnt care about word order... except when
 it matters. In Proceedings of the 60th Annual Meet-
 ing of the Association for Computational Linguistics
-(Volume 2: Short Papers), pages 636–643, Dublin,
+(Volume 2: Short Papers), pages 636643, Dublin,
 Ireland. Association for Computational Linguistics.
 Isabel Papadimitriou and Dan Jurafsky. 2023. Inject-
 ing structural hints: Using language models to study
@@ -1381,18 +1239,18 @@ Thang Pham, Trung Bui, Long Mai, and Anh Nguyen.
 tial order of words in a sentence in natural language
 understanding tasks? In Findings of the Association
 for Computational Linguistics: ACL-IJCNLP 2021,
-pages 1145–1160, Online. Association for Computa-
+pages 11451160, Online. Association for Computa-
 tional Linguistics.
 Grusha Prasad, Marten van Schijndel, and Tal Linzen.
 2019. Using priming to uncover the organization of
 syntactic representations in neural language models.
 In Proceedings of the 23rd Conference on Computa-
 tional Natural Language Learning (CoNLL), pages
-66–76, Hong Kong, China. Association for Computa-
+6676, Hong Kong, China. Association for Computa-
 tional Linguistics.
 Jorge Pérez, Pablo Barceló, and Javier Marinkovic.
 2021. Attention is Turing-complete. Journal of Ma-
-chine Learning Research, 22(75):1–35.
+chine Learning Research, 22(75):135.
 Peng Qi, Yuhao Zhang, Yuhui Zhang, Jason Bolton, and
 Christopher D. Manning. 2020. Stanza: A Python
 natural language processing toolkit for many human
@@ -1409,8 +1267,7 @@ Ms,
 OpenAI.
 Stuart M. Shieber. 1985. Evidence against the context-
 freeness of natural language. Linguistics and Philos-
-ophy, 8(3):333–343.
-14702
+ophy, 8(3):333343.
 
 Koustuv Sinha, Robin Jia, Dieuwke Hupkes, Joelle
 Pineau, Adina Williams, and Douwe Kiela. 2021.
@@ -1418,7 +1275,7 @@ Masked language modeling and the distributional hy-
 pothesis: Order word matters pre-training for little.
 In Proceedings of the 2021 Conference on Empiri-
 cal Methods in Natural Language Processing, pages
-2888–2913, Online and Punta Cana, Dominican Re-
+28882913, Online and Punta Cana, Dominican Re-
 public. Association for Computational Linguistics.
 Ian Tenney, Patrick Xia, Berlin Chen, Alex Wang,
 Adam Poliak, R. Thomas McCoy, Najoung Kim, Ben-
@@ -1434,7 +1291,7 @@ you need. In Advances in Neural Information Pro-
 cessing Systems, volume 30. Curran Associates, Inc.
 Alex Warstadt, Leshem Choshen, Aaron Mueller, Adina
 Williams, Ethan Wilcox, and Chengxu Zhuang. 2023.
-Call for papers – the BabyLM challenge: Sample-
+Call for papers the BabyLM challenge: Sample-
 efficient pretraining on a developmentally plausible
 corpus.
 Gail Weiss, Yoav Goldberg, and Eran Yahav. 2018. On
@@ -1443,31 +1300,31 @@ RNNs for language recognition.
 In Proceedings
 of the 56th Annual Meeting of the Association for
 Computational Linguistics (Volume 2: Short Papers),
-pages 740–745, Melbourne, Australia. Association
+pages 740745, Melbourne, Australia. Association
 for Computational Linguistics.
 Ethan Wilcox, Roger Levy, Takashi Morita, and Richard
 Futrell. 2018. What do RNN language models learn
-about filler–gap dependencies? In Proceedings of
+about fillergap dependencies? In Proceedings of
 the 2018 EMNLP Workshop BlackboxNLP: Analyz-
 ing and Interpreting Neural Networks for NLP, pages
-211–221, Brussels, Belgium. Association for Com-
+211221, Brussels, Belgium. Association for Com-
 putational Linguistics.
 Ethan Gotlieb Wilcox, Richard Futrell, and Roger Levy.
 2023. Using computational models to test syntactic
-learnability. Linguistic Inquiry, pages 1–44.
-Zhengxuan Wu, Karel D’Oosterlinck, Atticus Geiger,
+learnability. Linguistic Inquiry, pages 144.
+Zhengxuan Wu, Karel DOosterlinck, Atticus Geiger,
 Amir Zur, and Christopher Potts. 2023a.
 Causal
 proxy models for concept-based model explanations.
 In Proceedings of the 40th International Conference
 on Machine Learning, volume 202 of Proceedings
-of Machine Learning Research, pages 37313–37334.
+of Machine Learning Research, pages 3731337334.
 PMLR.
 Zhengxuan Wu, Atticus Geiger, Thomas Icard, Christo-
 pher Potts, and Noah Goodman. 2023b. Interpretabil-
 ity at scale: Identifying causal mechanisms in Alpaca.
 In Advances in Neural Information Processing Sys-
-tems, volume 36, pages 78205–78226. Curran Asso-
+tems, volume 36, pages 7820578226. Curran Asso-
 ciates, Inc.
 Zhengxuan Wu, Atticus Geiger, Joshua Rozner, Elisa
 Kreiss, Hanson Lu, Thomas Icard, Christopher Potts,
@@ -1475,13 +1332,11 @@ and Noah Goodman. 2022. Causal distillation for
 language models. In Proceedings of the 2022 Con-
 ference of the North American Chapter of the As-
 sociation for Computational Linguistics: Human
-Language Technologies, pages 4288–4295, Seattle,
+Language Technologies, pages 42884295, Seattle,
 United States. Association for Computational Lin-
 guistics.
-14703
 
 Supplementary Materials
-A
 Dataset Filters
 The BabyLM dataset (Warstadt et al., 2023) is
 an English-language dataset of about 100 million
@@ -1495,7 +1350,7 @@ of-speech (POS) and morphological feature tags
 for all the sentences, which are required for the
 *HOP transformations. We transform each tagged
 sentence in the original BabyLM dataset using the
-impossible language’s rule-based perturbation func-
+impossible languages rule-based perturbation func-
 tion, as described in Section 3. Depending on the
 class of the impossible language and the specific
 features of the input sentence, perturbed sentences
@@ -1532,7 +1387,6 @@ We again filter out these sentences from all pertur-
 bations, so TOKENHOP, WORDHOP, and NOHOP
 are comprised of the same subset of original sen-
 tences from the BabyLM dataset.
-B
 GPT-2 Training Details and
 Hyperparameters
 We train GPT-2 small models with a standard train-
@@ -1570,9 +1424,9 @@ NVIDIA RTX A6000 (48GB) GPUs. The runtime
 for each pretraining experiment was ∼24 hours
 (for one language and one random seed), for a total
 
+
 ## Experiments
 
-C
 
 ## Results
 
@@ -1585,10 +1439,8 @@ guage datasets and training hyperparameters. We
 again train 5 sets of models initialized using differ-
 ent random seeds. Figure 6 presents the perplexity
 results; Figure 7 presents the surprisal results; and
-14704
 
 Figure 8 presents the causal intervention results.
-D
 Constituency Probing Evaluation
 We also test how perturbations might influence la-
 tent linguistic properties in sentences that are seem-
@@ -1599,9 +1451,9 @@ erated by different models are effective in classi-
 fying a sequence of tokens with an appropriate
 constituent label, similar to the edge probing ex-
 periments of Tenney et al. 2019. For example, if
-the input sentence is “I enjoy strawberry ice cream”
+the input sentence is I enjoy strawberry ice cream
 and the span of tokens in question represents the
-constituent “strawberry ice cream,” the span should
+constituent strawberry ice cream, the span should
 be labeled as a noun phrase (NP).
 Setup. We conduct these experiments for *RE-
 VERSE and *HOP languages, since these languages
@@ -1615,7 +1467,7 @@ BabyLM test sentences that are unaffected by the
 perturbation, which are sentences that do not con-
 tain 3rd-person present tense verbs. To extract con-
 stituents for testing, we parse the sample sentences
-using Stanza’s BERT-based consituency parser. We
+using Stanzas BERT-based consituency parser. We
 include noun phrases (NP), verb phrases (VP), ad-
 jective phrases (ADJP), adverb phrases (ADVP),
 and prepositional phrases (PP), and we stratify the
@@ -1656,13 +1508,12 @@ the other models up until 2K training steps. We
 found similar results when using different layers for
 span representations, as shown in Figure 10. These
 results might indicate that the *HOP perturbations
-were too weak to fundamentally affect the models’
+were too weak to fundamentally affect the models
 representations of latent linguistic structure, but
 quite unnatural reversal rule of the PARTIALRE-
 VERSE language disturbed consituency boundaries
 in a way that could not be recovered by GPT-2
 models without positional encodings.
-E
 Additional DETERMINISTICSHUFFLE
 Results
 In addition to perplexities of each impossible lan-
@@ -1674,7 +1525,6 @@ test samples. This measures whether these models
 have learned to distinguish their own shuffles from
 other shuffles. We found that this was indeed the
 case, as shown in the results in Figure 11.
-F
 Confidence Intervals for Interchange
 Intervention Accuracies
 We present the same results of our causal abstrac-
@@ -1686,21 +1536,7 @@ sults for TOKENHOP; and Figure 14 presents the
 results for WORDHOP. Figures 15, 16, and 17
 show the same plots for each *HOP model trained
 without positional encodings, respectively.
-14705
 
-500
-1000
-1500
-2000
-2500
-3000
-0
-200
-400
-600
-800
-1000
-1200
 Geometric Mean Perplexity
 *Shuffle
 NoShuffle
@@ -1712,36 +1548,10 @@ LocalShuffle(w = 3)
 LocalShuffle(w = 5)
 LocalShuffle(w = 10)
 EvenOddShuffle
-500
-1000
-1500
-2000
-2500
-3000
-50
-100
-150
-200
-250
-300
-350
-400
 *Reverse
 NoReverse
 PartialReverse
 FullReverse
-500
-1000
-1500
-2000
-2500
-3000
-50
-100
-150
-200
-250
-300
 *Hop
 NoHop
 TokenHop
@@ -1750,17 +1560,9 @@ Training Steps
 Figure 6: Perplexities on a sample of 10K test sentences for each impossible language model trained without
 positional encodings. Error bars indicate 95% confidence intervals across 5 training runs initialized with different
 random seeds and evaluated on different test samples.
-0
-2
-4
-6
 300 Steps
 600 Steps
 900 Steps
-0
-2
-4
-6
 1200 Steps
 1500 Steps
 3000 Steps
@@ -1770,17 +1572,9 @@ TokenHop
 WordHop
 (a) Mean surprisals of the verb marker token ( S or P ) for each
 *HOP model.
-0
-5
-10
-15
 300 Steps
 600 Steps
 900 Steps
-0
-5
-10
-15
 1200 Steps
 1500 Steps
 3000 Steps
@@ -1793,162 +1587,59 @@ WordHop
 Figure 7: Surprisal tests for each *HOP model over training steps (trained without positional encodings). Error bars
 indicate 95% confidence intervals across 5 training runs initialized with different random seeds and evaluated on
 different test samples.
-11
-9
-7
-5
-3
-1
 300 Steps
 600 Steps
 900 Steps
-td
-ts
-tv
-11
-9
-7
-5
-3
-1
 1200 Steps
-td
-ts
-tv
 1500 Steps
-td
-ts
-tv
 3000 Steps
-0
-25
-50
-75
-100
 IIA
 NoHop
-11
-9
-7
-5
-3
-1
 300 Steps
 600 Steps
 900 Steps
 td ts tv t1 t2 t3 t4
-11
-9
-7
-5
-3
-1
 1200 Steps
 td ts tv t1 t2 t3 t4
 1500 Steps
 td ts tv t1 t2 t3 t4
 3000 Steps
-0
-25
-50
-75
-100
 IIA
 TokenHop
-11
-9
-7
-5
-3
-1
 300 Steps
 600 Steps
 900 Steps
 td ts tv t1 t2 t3 t4
-11
-9
-7
-5
-3
-1
 1200 Steps
 td ts tv t1 t2 t3 t4
 1500 Steps
 td ts tv t1 t2 t3 t4
 3000 Steps
-0
-25
-50
-75
-100
 IIA
 WordHop
-Figure 8: Subject–verb agreement interchange intervention accuracies (IIA) for each *HOP model trained without
+Figure 8: Subjectverb agreement interchange intervention accuracies (IIA) for each *HOP model trained without
 positional encodings. Vertical axes denote the GPT-2 layer of the intervention, and horizontal axes denote the token
 position of the intervention. td, ts, and tv represent the tokens for the determiner, subject, and verb, respectively.
 t1 . . . t4 represent the four tokens/words between the verb and its marker for TOKENHOP and WORDHOP. IIA
 values are averaged over results from 5 models initialized on different random seeds. See Figures 15, 16, and 17 for
 confidence intervals.
-14706
 
-1000
-2000
-3000
-57.5
-60.0
-62.5
-65.0
-67.5
-70.0
-72.5
-75.0
 Probe Accuracy
 *Reverse
 NoReverse
 PartialReverse
 FullReverse
-1000
-2000
-3000
-62
-64
-66
-68
-70
-72
-74
 *Hop
 NoHop
 TokenHop
 WordHop
 Training Steps
 (a) Probe accuracy for *REVERSE and *HOP models.
-1000
-2000
-3000
-60.0
-62.5
-65.0
-67.5
-70.0
-72.5
-75.0
-77.5
 Probe Accuracy
 *Reverse
 NoReverse
 PartialReverse
 FullReverse
-1000
-2000
-3000
-62.5
-65.0
-67.5
-70.0
-72.5
-75.0
-77.5
 *Hop
 NoHop
 TokenHop
@@ -1958,189 +1649,44 @@ Training Steps
 Figure 9: Constituency probe accuracy for *REVERSE and *HOP models over training steps. Span representations
 were extracted by averaging the last four hidden layers of GPT-2. Error bars indicate 95% confidence intervals
 across 5 training runs initialized with different random seeds and evaluated on different test samples.
-500
-1000
-1500
-2000
-2500
-3000
-50
-55
-60
-65
-70
-75
 Probe Accuracy
 Layer 1
-500
-1000
-1500
-2000
-2500
-3000
 Layer 3
-500
-1000
-1500
-2000
-2500
-3000
 Layer 6
-500
-1000
-1500
-2000
-2500
-3000
 Layer 9
-500
-1000
-1500
-2000
-2500
-3000
 Layer 12
 NoReverse
 PartialReverse
 FullReverse
 Training Steps
 (a) Probe accuracy for *REVERSE models.
-500
-1000
-1500
-2000
-2500
-3000
-55.0
-57.5
-60.0
-62.5
-65.0
-67.5
-70.0
-72.5
-75.0
 Probe Accuracy
 Layer 1
-500
-1000
-1500
-2000
-2500
-3000
 Layer 3
-500
-1000
-1500
-2000
-2500
-3000
 Layer 6
-500
-1000
-1500
-2000
-2500
-3000
 Layer 9
-500
-1000
-1500
-2000
-2500
-3000
 Layer 12
 NoHop
 TokenHop
 WordHop
 Training Steps
 (b) Probe accuracy for *HOP models.
-500
-1000
-1500
-2000
-2500
-3000
-55
-60
-65
-70
-75
 Probe Accuracy
 Layer 1
-500
-1000
-1500
-2000
-2500
-3000
 Layer 3
-500
-1000
-1500
-2000
-2500
-3000
 Layer 6
-500
-1000
-1500
-2000
-2500
-3000
 Layer 9
-500
-1000
-1500
-2000
-2500
-3000
 Layer 12
 NoReverse
 PartialReverse
 FullReverse
 Training Steps
 (c) Probe accuracy for *REVERSE models without positional encodings.
-500
-1000
-1500
-2000
-2500
-3000
-55
-60
-65
-70
-75
 Probe Accuracy
 Layer 1
-500
-1000
-1500
-2000
-2500
-3000
 Layer 3
-500
-1000
-1500
-2000
-2500
-3000
 Layer 6
-500
-1000
-1500
-2000
-2500
-3000
 Layer 9
-500
-1000
-1500
-2000
-2500
-3000
 Layer 12
 NoHop
 TokenHop
@@ -2150,52 +1696,18 @@ Training Steps
 Figure 10: Constituency probe accuracy for *REVERSE and *HOP models using span representations extracted
 from different GPT-2 layers (1, 3, 6, 9, 12) over training steps. Error bars indicate 95% confidence intervals across 5
 training runs initialized with different random seeds and evaluated on different test samples.
-14707
 
-500
-1000
-1500
-2000
-2500
-3000
-400
-600
-800
-1000
-1200
 Geometric Mean Perplexity
 DeterministicShuffle(s = 21) Model
 DeterministicShuffle(s = 21) Test Set
 DeterministicShuffle(s = 57) Test Set
 DeterministicShuffle(s = 84) Test Set
 NondeterministicShuffle Test Set
-500
-1000
-1500
-2000
-2500
-3000
-400
-600
-800
-1000
-1200
 DeterministicShuffle(s = 57) Model
 DeterministicShuffle(s = 21) Test Set
 DeterministicShuffle(s = 57) Test Set
 DeterministicShuffle(s = 84) Test Set
 NondeterministicShuffle Test Set
-500
-1000
-1500
-2000
-2500
-3000
-400
-600
-800
-1000
-1200
 DeterministicShuffle(s = 84) Model
 DeterministicShuffle(s = 21) Test Set
 DeterministicShuffle(s = 57) Test Set
@@ -2203,53 +1715,17 @@ DeterministicShuffle(s = 84) Test Set
 NondeterministicShuffle Test Set
 Training Steps
 (a) Test perplexities for models with positional encodings.
-500
-1000
-1500
-2000
-2500
-3000
-600
-800
-1000
-1200
 Geometric Mean Perplexity
 DeterministicShuffle(s = 21) Model
 DeterministicShuffle(s = 21) Test Set
 DeterministicShuffle(s = 57) Test Set
 DeterministicShuffle(s = 84) Test Set
 NondeterministicShuffle Test Set
-500
-1000
-1500
-2000
-2500
-3000
-400
-600
-800
-1000
-1200
 DeterministicShuffle(s = 57) Model
 DeterministicShuffle(s = 21) Test Set
 DeterministicShuffle(s = 57) Test Set
 DeterministicShuffle(s = 84) Test Set
 NondeterministicShuffle Test Set
-500
-1000
-1500
-2000
-2500
-3000
-500
-600
-700
-800
-900
-1000
-1100
-1200
-1300
 DeterministicShuffle(s = 84) Model
 DeterministicShuffle(s = 21) Test Set
 DeterministicShuffle(s = 57) Test Set
@@ -2261,3162 +1737,2092 @@ Figure 11: Test perplexities for each DETERMINISTICSHUFFLE model (s = 21 left, s
 the NONDETERMINISTICSHUFFLE test sample and all other DETERMINISTICSHUFFLE test samples. Perplexities
 were taken on a sample of 10K test sentences from each shuffled test set. Error bars indicate 95% confidence
 intervals across 5 training runs initialized with different random seeds and evaluated on different test samples.
-14708
 
-td
-ts
-tv
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-2.6±3.0
-2.6±3.0
-20.2±21.0
-2.6±3.0
-2.7±3.2
-19.5±20.4
-2.6±3.0
-2.7±3.3
-18.7±19.6
-2.6±3.0
-2.9±3.4
-17.6±18.5
-2.6±3.0
-3.0±3.6
-17.1±17.9
-2.6±3.0
-3.3±4.2
-16.8±17.6
-2.6±3.0
-3.5±4.4
-16.4±17.4
-2.6±3.0
-3.5±4.4
-16.1±17.1
-2.6±3.0
-3.5±4.4
-15.9±17.1
-2.6±3.0
-3.3±4.1
-16.2±17.0
-2.6±3.0
-3.2±4.0
-17.3±18.4
-2.6±3.0
-2.3±3.3
-21.1±21.8
+2.63.0
+2.63.0
+2.63.0
+2.73.2
+2.63.0
+2.73.3
+2.63.0
+2.93.4
+2.63.0
+3.03.6
+2.63.0
+3.34.2
+2.63.0
+3.54.4
+2.63.0
+3.54.4
+2.63.0
+3.54.4
+2.63.0
+3.34.1
+2.63.0
+3.24.0
+2.63.0
+2.33.3
 (a) 300 Training Steps.
-td
-ts
-tv
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-1.4±1.0
-1.4±1.0
-91.6±4.2
-1.4±1.0
-1.4±1.0
-91.4±4.3
-1.4±1.0
-1.6±0.9
-91.0±4.6
-1.4±1.0
-1.6±0.9
-90.1±5.4
-1.4±1.0
-1.7±0.9
-89.6±6.0
-1.4±1.0
-1.9±1.1
-89.3±6.0
-1.4±1.0
-2.2±1.8
-89.0±6.3
-1.4±1.0
-2.3±1.9
-88.8±6.3
-1.4±1.0
-3.0±1.9
-86.3±7.2
-1.4±1.0
-3.3±2.0
-84.7±7.2
-1.4±1.0
-4.9±3.7
-80.3±11.1
-1.4±1.0
-16.4±16.6
-62.0±15.5
+1.41.0
+1.41.0
+1.41.0
+1.41.0
+1.41.0
+1.60.9
+1.41.0
+1.60.9
+1.41.0
+1.70.9
+1.41.0
+1.91.1
+1.41.0
+2.21.8
+1.41.0
+2.31.9
+1.41.0
+3.01.9
+1.41.0
+3.32.0
+1.41.0
+4.93.7
+1.41.0
 (b) 600 Training Steps.
-td
-ts
-tv
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-1.1±2.0
-1.1±2.0
-95.6±2.8
-1.1±2.0
-1.1±2.0
-95.4±2.9
-1.1±2.0
-1.2±2.2
-95.1±3.1
-1.1±2.0
-1.5±2.5
-94.8±3.5
-1.1±2.0
-1.7±2.6
-94.4±3.6
-1.1±2.0
-1.7±2.6
-94.2±3.8
-1.1±2.0
-2.1±2.8
-93.7±3.8
-1.1±2.0
-2.2±2.8
-93.3±3.6
-1.1±2.0
-5.1±5.6
-85.2±13.5
-1.1±2.0
-10.5±8.9
-74.6±17.4
-1.1±2.0
-21.5±20.5
-62.9±19.8
-1.1±2.0
-45.4±26.4
-34.6±32.7
+1.12.0
+1.12.0
+1.12.0
+1.12.0
+1.12.0
+1.22.2
+1.12.0
+1.52.5
+1.12.0
+1.72.6
+1.12.0
+1.72.6
+1.12.0
+2.12.8
+1.12.0
+2.22.8
+1.12.0
+5.15.6
+1.12.0
+1.12.0
+1.12.0
 (c) 900 Training Steps.
-td
-ts
-tv
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-0.5±0.2
-0.5±0.2
-96.4±2.0
-0.5±0.2
-0.6±0.4
-96.4±1.8
-0.5±0.2
-0.7±0.4
-96.1±2.0
-0.5±0.2
-0.8±0.4
-96.0±2.0
-0.5±0.2
-0.9±0.5
-95.6±2.3
-0.5±0.2
-0.9±0.5
-95.3±2.2
-0.5±0.2
-1.3±0.9
-94.9±2.0
-0.5±0.2
-1.6±1.1
-94.5±2.2
-0.5±0.2
-6.0±9.4
-86.7±13.6
-0.5±0.2
-20.7±12.4
-69.5±11.8
-0.5±0.2
-37.3±19.7
-48.2±16.2
-0.5±0.2
-60.9±12.5
-22.0±8.1
+0.50.2
+0.50.2
+0.50.2
+0.60.4
+0.50.2
+0.70.4
+0.50.2
+0.80.4
+0.50.2
+0.90.5
+0.50.2
+0.90.5
+0.50.2
+1.30.9
+0.50.2
+1.61.1
+0.50.2
+6.09.4
+0.50.2
+0.50.2
+0.50.2
 (d) 1200 Training Steps.
-td
-ts
-tv
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-0.5±0.3
-0.5±0.3
-97.5±1.2
-0.5±0.3
-0.5±0.3
-97.5±1.3
-0.5±0.3
-0.6±0.4
-97.1±1.5
-0.5±0.3
-0.6±0.4
-97.0±1.6
-0.5±0.3
-0.6±0.4
-96.5±2.0
-0.5±0.3
-0.6±0.3
-96.4±2.1
-0.5±0.3
-0.9±0.9
-95.8±2.7
-0.5±0.3
-1.3±1.3
-95.4±2.6
-0.5±0.3
-9.4±13.4
-84.1±19.7
-0.5±0.3
-27.1±18.0
-64.2±22.1
-0.5±0.3
-47.9±26.6
-38.5±13.3
-0.5±0.3
-70.7±15.5
-15.5±12.8
+0.50.3
+0.50.3
+0.50.3
+0.50.3
+0.50.3
+0.60.4
+0.50.3
+0.60.4
+0.50.3
+0.60.4
+0.50.3
+0.60.3
+0.50.3
+0.90.9
+0.50.3
+1.31.3
+0.50.3
+0.50.3
+0.50.3
+0.50.3
 (e) 1500 Training Steps.
-td
-ts
-tv
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-0.8±0.5
-0.8±0.5
-98.8±0.5
-0.8±0.5
-0.9±0.6
-98.8±0.5
-0.8±0.5
-1.0±0.5
-98.8±0.5
-0.8±0.5
-1.0±0.6
-98.6±0.6
-0.8±0.5
-1.3±0.7
-98.4±0.7
-0.8±0.5
-1.4±0.5
-98.3±0.8
-0.8±0.5
-1.8±1.0
-97.8±1.2
-0.8±0.5
-2.6±1.4
-97.5±1.3
-0.8±0.5
-15.3±15.8
-88.4±12.6
-0.8±0.5
-43.6±19.9
-65.0±13.0
-0.8±0.5
-69.4±25.5
-36.3±7.1
-0.8±0.5
-87.8±2.7
-12.8±9.9
+0.80.5
+0.80.5
+0.80.5
+0.90.6
+0.80.5
+1.00.5
+0.80.5
+1.00.6
+0.80.5
+1.30.7
+0.80.5
+1.40.5
+0.80.5
+1.81.0
+0.80.5
+2.61.4
+0.80.5
+0.80.5
+0.80.5
+0.80.5
 (f) 3000 Training Steps.
-Figure 12: Subject–verb agreement interchange intervention accuracies (IIA) for NOHOP, with confidence intervals
+Figure 12: Subjectverb agreement interchange intervention accuracies (IIA) for NOHOP, with confidence intervals
 across models trained on 5 different random seeds. Vertical axes denote the GPT-2 layer of the intervention, and
 horizontal axes denote the token position of the intervention. td, ts, and tv represent the tokens for the determiner,
 subject, and verb, respectively.
-14709
 
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-7.0±4.3
-7.0±4.3
-7.0±4.3
-7.0±4.3
-7.0±4.3
-7.0±4.3
-10.6±6.3
-7.0±4.3
-7.1±4.3
-7.0±4.3
-6.9±4.2
-7.0±4.3
-7.0±4.3
-10.2±6.0
-7.0±4.3
-7.1±4.3
-7.0±4.3
-6.9±4.2
-6.9±4.2
-7.0±4.3
-10.0±6.2
-7.0±4.3
-7.3±4.0
-7.0±4.3
-6.9±4.2
-6.9±4.2
-7.0±4.3
-9.6±5.7
-7.0±4.3
-7.4±4.2
-7.0±4.3
-7.0±4.3
-6.9±4.2
-7.0±4.3
-9.6±5.9
-7.0±4.3
-7.5±4.1
-7.0±4.3
-7.0±4.3
-6.9±4.2
-7.0±4.2
-9.1±5.6
-7.0±4.3
-7.7±4.1
-7.0±4.3
-7.0±4.3
-6.9±4.2
-7.0±4.3
-9.0±5.9
-7.0±4.3
-7.8±4.1
-7.0±4.2
-7.0±4.3
-6.9±4.2
-7.0±4.3
-8.9±6.0
-7.0±4.3
-7.8±4.2
-7.0±4.2
-7.0±4.3
-7.0±4.3
-6.9±4.2
-8.8±6.2
-7.0±4.3
-7.7±4.0
-7.0±4.2
-7.0±4.3
-7.0±4.3
-6.9±4.2
-9.4±6.6
-7.0±4.3
-7.5±4.1
-7.0±4.1
-6.8±4.3
-7.0±4.2
-6.8±4.2
-9.8±6.5
-7.0±4.3
-7.2±4.0
-6.6±4.3
-6.4±4.1
-6.8±4.2
-6.5±4.0
-11.6±7.2
+7.04.3
+7.04.3
+7.04.3
+7.04.3
+7.04.3
+7.04.3
+7.04.3
+7.14.3
+7.04.3
+6.94.2
+7.04.3
+7.04.3
+7.04.3
+7.14.3
+7.04.3
+6.94.2
+6.94.2
+7.04.3
+7.04.3
+7.34.0
+7.04.3
+6.94.2
+6.94.2
+7.04.3
+9.65.7
+7.04.3
+7.44.2
+7.04.3
+7.04.3
+6.94.2
+7.04.3
+9.65.9
+7.04.3
+7.54.1
+7.04.3
+7.04.3
+6.94.2
+7.04.2
+9.15.6
+7.04.3
+7.74.1
+7.04.3
+7.04.3
+6.94.2
+7.04.3
+9.05.9
+7.04.3
+7.84.1
+7.04.2
+7.04.3
+6.94.2
+7.04.3
+8.96.0
+7.04.3
+7.84.2
+7.04.2
+7.04.3
+7.04.3
+6.94.2
+8.86.2
+7.04.3
+7.74.0
+7.04.2
+7.04.3
+7.04.3
+6.94.2
+9.46.6
+7.04.3
+7.54.1
+7.04.1
+6.84.3
+7.04.2
+6.84.2
+9.86.5
+7.04.3
+7.24.0
+6.64.3
+6.44.1
+6.84.2
+6.54.0
 (a) 300 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-0.8±0.4
-0.8±0.4
-0.8±0.4
-0.8±0.4
-0.8±0.4
-0.8±0.4
-48.7±11.3
-0.8±0.4
-0.8±0.4
-0.8±0.4
-0.8±0.4
-0.8±0.4
-0.8±0.4
-49.5±11.6
-0.8±0.4
-0.8±0.2
-0.8±0.4
-0.8±0.4
-0.8±0.4
-0.7±0.3
-50.4±12.0
-0.8±0.4
-0.8±0.2
-0.8±0.4
-0.7±0.3
-0.7±0.3
-0.7±0.3
-50.5±11.8
-0.8±0.4
-0.9±0.1
-0.8±0.4
-0.7±0.3
-0.7±0.3
-0.7±0.3
-51.3±12.1
-0.8±0.4
-0.9±0.1
-0.8±0.4
-0.7±0.3
-0.7±0.3
-0.7±0.3
-52.0±12.3
-0.8±0.4
-1.1±0.6
-0.8±0.4
-0.7±0.3
-0.7±0.3
-0.7±0.3
-49.6±13.0
-0.8±0.4
-1.1±0.6
-0.8±0.4
-0.7±0.3
-0.7±0.3
-0.7±0.3
-49.5±12.7
-0.8±0.4
-1.7±1.0
-0.8±0.4
-0.7±0.3
-0.7±0.3
-0.7±0.3
-43.8±9.3
-0.8±0.4
-2.3±2.6
-0.9±0.3
-0.7±0.3
-0.7±0.3
-0.7±0.3
-35.5±9.0
-0.8±0.4
-3.2±2.8
-1.1±0.3
-0.7±0.3
-0.7±0.3
-0.7±0.3
-21.7±13.2
-0.8±0.4
-7.4±6.4
-4.7±2.8
-0.8±0.4
-0.9±0.5
-0.8±0.4
-1.2±0.5
+0.80.4
+0.80.4
+0.80.4
+0.80.4
+0.80.4
+0.80.4
+0.80.4
+0.80.4
+0.80.4
+0.80.4
+0.80.4
+0.80.4
+0.80.4
+0.80.2
+0.80.4
+0.80.4
+0.80.4
+0.70.3
+0.80.4
+0.80.2
+0.80.4
+0.70.3
+0.70.3
+0.70.3
+0.80.4
+0.90.1
+0.80.4
+0.70.3
+0.70.3
+0.70.3
+0.80.4
+0.90.1
+0.80.4
+0.70.3
+0.70.3
+0.70.3
+0.80.4
+1.10.6
+0.80.4
+0.70.3
+0.70.3
+0.70.3
+0.80.4
+1.10.6
+0.80.4
+0.70.3
+0.70.3
+0.70.3
+0.80.4
+1.71.0
+0.80.4
+0.70.3
+0.70.3
+0.70.3
+0.80.4
+2.32.6
+0.90.3
+0.70.3
+0.70.3
+0.70.3
+0.80.4
+3.22.8
+1.10.3
+0.70.3
+0.70.3
+0.70.3
+0.80.4
+7.46.4
+4.72.8
+0.80.4
+0.90.5
+0.80.4
+1.20.5
 (b) 600 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-0.4±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-66.6±18.0
-0.4±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-67.0±18.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-67.2±18.4
-0.4±0.6
-0.4±0.5
-0.4±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-67.0±19.0
-0.4±0.6
-0.5±0.5
-0.4±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-66.4±19.1
-0.4±0.6
-0.5±0.5
-0.4±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-66.7±19.2
-0.4±0.6
-0.8±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-63.1±18.7
-0.4±0.6
-0.8±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-62.1±18.1
-0.4±0.6
-3.3±3.5
-0.4±0.6
-0.4±0.6
-0.3±0.5
-0.4±0.6
-42.8±19.3
-0.4±0.6
-7.5±8.9
-0.9±0.7
-0.4±0.6
-0.4±0.6
-0.4±0.6
-10.9±8.1
-0.4±0.6
-12.8±10.9
-1.8±1.3
-0.4±0.6
-0.4±0.6
-0.4±0.6
-2.3±3.0
-0.4±0.6
-20.1±13.0
-3.8±1.8
-0.4±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.5
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.5
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.50.5
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.50.5
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.80.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.80.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+3.33.5
+0.40.6
+0.40.6
+0.30.5
+0.40.6
+0.40.6
+7.58.9
+0.90.7
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+1.81.3
+0.40.6
+0.40.6
+0.40.6
+2.33.0
+0.40.6
+3.81.8
+0.40.6
+0.40.6
+0.40.6
+0.40.5
 (c) 900 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-0.6±0.6
-0.6±0.6
-0.6±0.6
-0.6±0.6
-0.6±0.6
-0.6±0.6
-78.8±11.1
-0.6±0.6
-0.6±0.6
-0.6±0.6
-0.6±0.6
-0.6±0.5
-0.6±0.5
-78.9±11.7
-0.6±0.6
-0.7±0.6
-0.6±0.6
-0.6±0.6
-0.6±0.5
-0.6±0.5
-79.2±11.9
-0.6±0.6
-0.9±0.8
-0.6±0.6
-0.6±0.5
-0.6±0.5
-0.6±0.5
-78.2±11.5
-0.6±0.6
-0.9±0.8
-0.6±0.6
-0.6±0.5
-0.6±0.5
-0.6±0.5
-77.6±11.6
-0.6±0.6
-1.1±0.9
-0.6±0.6
-0.6±0.5
-0.6±0.5
-0.6±0.5
-77.8±11.4
-0.6±0.6
-2.3±3.2
-0.6±0.6
-0.6±0.5
-0.6±0.5
-0.6±0.5
-72.7±10.1
-0.6±0.6
-2.3±3.2
-0.7±0.7
-0.6±0.5
-0.6±0.5
-0.6±0.5
-71.4±11.7
-0.6±0.6
-7.2±5.1
-0.9±0.9
-0.6±0.5
-0.6±0.5
-0.6±0.5
-48.0±25.6
-0.6±0.6
-16.5±11.5
-3.0±2.6
-0.8±0.7
-0.6±0.5
-0.6±0.5
-10.9±6.2
-0.6±0.6
-27.7±19.2
-4.7±3.9
-0.9±0.8
-0.7±0.7
-0.7±0.7
-2.3±1.8
-0.6±0.6
-39.1±22.7
-6.3±3.7
-0.6±0.6
-0.7±0.7
-0.9±0.9
-1.0±0.9
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.5
+0.60.5
+0.60.6
+0.70.6
+0.60.6
+0.60.6
+0.60.5
+0.60.5
+0.60.6
+0.90.8
+0.60.6
+0.60.5
+0.60.5
+0.60.5
+0.60.6
+0.90.8
+0.60.6
+0.60.5
+0.60.5
+0.60.5
+0.60.6
+1.10.9
+0.60.6
+0.60.5
+0.60.5
+0.60.5
+0.60.6
+2.33.2
+0.60.6
+0.60.5
+0.60.5
+0.60.5
+0.60.6
+2.33.2
+0.70.7
+0.60.5
+0.60.5
+0.60.5
+0.60.6
+7.25.1
+0.90.9
+0.60.5
+0.60.5
+0.60.5
+0.60.6
+3.02.6
+0.80.7
+0.60.5
+0.60.5
+0.60.6
+4.73.9
+0.90.8
+0.70.7
+0.70.7
+2.31.8
+0.60.6
+6.33.7
+0.60.6
+0.70.7
+0.90.9
+1.00.9
 (d) 1200 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-0.9±1.1
-0.9±1.1
-0.9±1.1
-0.9±1.1
-0.9±1.1
-0.9±1.1
-81.0±13.6
-0.9±1.1
-1.1±1.3
-0.9±1.1
-0.9±1.2
-0.9±1.1
-0.9±1.2
-81.0±13.3
-0.9±1.1
-1.2±1.5
-0.9±1.1
-0.9±1.2
-0.9±1.2
-0.9±1.2
-80.9±13.6
-0.9±1.1
-1.3±1.6
-1.0±1.2
-0.9±1.2
-0.9±1.2
-0.9±1.2
-80.5±13.2
-0.9±1.1
-1.4±1.4
-1.0±1.2
-0.9±1.2
-0.9±1.2
-0.9±1.2
-80.1±13.8
-0.9±1.1
-1.6±1.8
-1.0±1.2
-0.9±1.2
-0.8±1.2
-0.9±1.2
-79.5±14.1
-0.9±1.1
-4.4±8.3
-1.0±1.3
-0.9±1.1
-0.8±1.2
-0.9±1.2
-75.0±12.7
-0.9±1.1
-4.9±9.6
-1.3±1.8
-0.9±1.1
-0.8±1.2
-0.9±1.2
-73.3±11.3
-0.9±1.1
-8.8±10.9
-1.8±1.6
-0.9±1.1
-0.8±1.2
-0.9±1.2
-47.1±33.5
-0.9±1.1
-22.0±24.4
-4.4±3.6
-1.3±2.1
-1.1±1.3
-0.9±1.3
-9.9±11.1
-0.9±1.1
-32.4±24.8
-8.1±8.8
-1.5±2.1
-1.1±1.5
-1.0±1.2
-2.6±2.8
-0.9±1.1
-46.7±25.4
-7.7±8.0
-1.1±1.6
-1.0±1.3
-1.0±1.4
-1.2±1.5
+0.91.1
+0.91.1
+0.91.1
+0.91.1
+0.91.1
+0.91.1
+0.91.1
+1.11.3
+0.91.1
+0.91.2
+0.91.1
+0.91.2
+0.91.1
+1.21.5
+0.91.1
+0.91.2
+0.91.2
+0.91.2
+0.91.1
+1.31.6
+1.01.2
+0.91.2
+0.91.2
+0.91.2
+0.91.1
+1.41.4
+1.01.2
+0.91.2
+0.91.2
+0.91.2
+0.91.1
+1.61.8
+1.01.2
+0.91.2
+0.81.2
+0.91.2
+0.91.1
+4.48.3
+1.01.3
+0.91.1
+0.81.2
+0.91.2
+0.91.1
+4.99.6
+1.31.8
+0.91.1
+0.81.2
+0.91.2
+0.91.1
+1.81.6
+0.91.1
+0.81.2
+0.91.2
+0.91.1
+4.43.6
+1.32.1
+1.11.3
+0.91.3
+0.91.1
+8.18.8
+1.52.1
+1.11.5
+1.01.2
+2.62.8
+0.91.1
+7.78.0
+1.11.6
+1.01.3
+1.01.4
+1.21.5
 (e) 1500 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-0.8±0.6
-0.8±0.6
-0.8±0.6
-0.8±0.6
-0.8±0.6
-0.8±0.6
-87.4±3.2
-0.8±0.6
-0.8±0.6
-0.8±0.6
-0.8±0.6
-0.8±0.6
-0.8±0.6
-87.5±2.8
-0.8±0.6
-0.9±0.6
-0.8±0.6
-0.8±0.6
-0.8±0.6
-0.8±0.6
-87.6±2.7
-0.8±0.6
-1.2±0.7
-0.8±0.6
-0.8±0.6
-0.8±0.6
-0.8±0.6
-86.5±3.9
-0.8±0.6
-1.2±0.7
-0.8±0.6
-0.8±0.6
-0.8±0.6
-0.8±0.6
-85.4±3.6
-0.8±0.6
-1.6±0.8
-0.8±0.6
-0.8±0.6
-0.8±0.6
-0.8±0.6
-84.4±3.7
-0.8±0.6
-3.1±3.1
-0.9±0.7
-0.8±0.6
-0.8±0.6
-0.8±0.6
-77.8±13.4
-0.8±0.6
-3.5±3.6
-1.8±1.6
-0.8±0.6
-0.8±0.6
-0.8±0.6
-73.2±14.1
-0.8±0.6
-10.0±6.0
-3.6±1.8
-0.9±0.6
-0.8±0.6
-0.8±0.6
-39.2±24.9
-0.8±0.6
-22.0±13.0
-10.3±8.7
-1.3±1.0
-0.9±0.6
-0.8±0.6
-6.1±2.9
-0.8±0.6
-39.4±17.1
-12.4±6.8
-1.3±0.8
-0.9±0.6
-0.8±0.6
-1.6±0.9
-0.8±0.6
-60.8±7.0
-9.3±3.8
-0.9±0.5
-0.8±0.6
-0.8±0.6
-1.0±0.8
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+0.90.6
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+1.20.7
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+1.20.7
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+1.60.8
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+3.13.1
+0.90.7
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+3.53.6
+1.81.6
+0.80.6
+0.80.6
+0.80.6
+0.80.6
+3.61.8
+0.90.6
+0.80.6
+0.80.6
+0.80.6
+1.31.0
+0.90.6
+0.80.6
+6.12.9
+0.80.6
+1.30.8
+0.90.6
+0.80.6
+1.60.9
+0.80.6
+9.33.8
+0.90.5
+0.80.6
+0.80.6
+1.00.8
 (f) 3000 Training Steps.
-Figure 13: Subject–verb agreement interchange intervention accuracies (IIA) for TOKENHOP, with confidence
+Figure 13: Subjectverb agreement interchange intervention accuracies (IIA) for TOKENHOP, with confidence
 intervals across models trained on 5 different random seeds. Vertical axes denote the GPT-2 layer of the intervention,
 and horizontal axes denote the token position of the intervention. td, ts, and tv represent the tokens for the
 determiner, subject, and verb. t1 . . . t4 represent the four tokens/words between the verb.
-14710
 
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-5.8±4.8
-5.8±4.8
-5.8±4.8
-5.8±4.8
-5.8±4.8
-5.8±4.8
-7.9±4.5
-5.8±4.8
-5.9±4.8
-5.8±4.9
-5.8±4.9
-5.8±4.8
-5.8±4.9
-7.8±4.5
-5.8±4.8
-5.9±4.8
-5.8±4.9
-5.8±4.9
-5.8±4.9
-5.8±4.9
-7.5±4.3
-5.8±4.8
-6.0±4.7
-5.7±4.9
-5.8±4.9
-5.8±4.9
-5.8±4.8
-7.4±4.2
-5.8±4.8
-6.2±4.8
-5.7±4.9
-5.8±4.9
-5.8±4.9
-5.8±4.8
-7.4±4.3
-5.8±4.8
-6.3±4.8
-5.7±4.9
-5.8±4.9
-5.8±4.9
-5.8±4.8
-7.2±4.3
-5.8±4.8
-6.3±4.8
-5.7±4.9
-5.8±4.9
-5.8±4.9
-5.8±4.8
-7.0±4.3
-5.8±4.8
-6.3±4.8
-5.7±4.9
-5.8±4.9
-5.8±4.9
-5.8±4.8
-6.8±4.2
-5.8±4.8
-6.3±4.8
-5.7±4.9
-5.8±4.9
-5.7±4.9
-5.9±4.8
-6.9±4.4
-5.8±4.8
-6.2±4.8
-5.6±4.5
-5.7±4.7
-5.6±4.6
-5.9±4.8
-7.2±4.3
-5.8±4.8
-6.0±4.8
-5.4±4.2
-5.6±4.8
-5.6±4.6
-5.7±4.7
-7.7±4.5
-5.8±4.8
-5.8±4.5
-5.1±3.7
-5.2±4.0
-5.3±3.9
-5.3±4.5
-9.8±4.5
+5.84.8
+5.84.8
+5.84.8
+5.84.8
+5.84.8
+5.84.8
+7.94.5
+5.84.8
+5.94.8
+5.84.9
+5.84.9
+5.84.8
+5.84.9
+7.84.5
+5.84.8
+5.94.8
+5.84.9
+5.84.9
+5.84.9
+5.84.9
+7.54.3
+5.84.8
+6.04.7
+5.74.9
+5.84.9
+5.84.9
+5.84.8
+7.44.2
+5.84.8
+6.24.8
+5.74.9
+5.84.9
+5.84.9
+5.84.8
+7.44.3
+5.84.8
+6.34.8
+5.74.9
+5.84.9
+5.84.9
+5.84.8
+7.24.3
+5.84.8
+6.34.8
+5.74.9
+5.84.9
+5.84.9
+5.84.8
+7.04.3
+5.84.8
+6.34.8
+5.74.9
+5.84.9
+5.84.9
+5.84.8
+6.84.2
+5.84.8
+6.34.8
+5.74.9
+5.84.9
+5.74.9
+5.94.8
+6.94.4
+5.84.8
+6.24.8
+5.64.5
+5.74.7
+5.64.6
+5.94.8
+7.24.3
+5.84.8
+6.04.8
+5.44.2
+5.64.8
+5.64.6
+5.74.7
+7.74.5
+5.84.8
+5.84.5
+5.13.7
+5.24.0
+5.33.9
+5.34.5
+9.84.5
 (a) 300 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-0.5±0.4
-0.5±0.4
-0.5±0.4
-0.5±0.4
-0.5±0.4
-0.5±0.4
-40.2±12.2
-0.5±0.4
-0.6±0.4
-0.5±0.4
-0.5±0.5
-0.5±0.5
-0.5±0.5
-40.6±12.0
-0.5±0.4
-0.6±0.4
-0.5±0.5
-0.5±0.5
-0.5±0.5
-0.5±0.5
-41.1±11.7
-0.5±0.4
-0.7±0.5
-0.5±0.5
-0.5±0.5
-0.5±0.5
-0.5±0.5
-41.1±11.7
-0.5±0.4
-0.7±0.5
-0.5±0.5
-0.5±0.5
-0.5±0.5
-0.5±0.5
-41.6±11.5
-0.5±0.4
-0.7±0.5
-0.5±0.5
-0.5±0.5
-0.4±0.6
-0.5±0.5
-42.2±11.3
-0.5±0.4
-0.9±0.5
-0.4±0.6
-0.5±0.5
-0.4±0.6
-0.5±0.5
-41.6±11.1
-0.5±0.4
-1.0±0.8
-0.4±0.6
-0.4±0.6
-0.4±0.6
-0.4±0.6
-41.2±10.5
-0.5±0.4
-1.8±1.1
-0.5±0.5
-0.5±0.5
-0.4±0.6
-0.5±0.5
-29.5±18.1
-0.5±0.4
-2.3±2.1
-0.9±0.9
-0.5±0.5
-0.4±0.6
-0.5±0.5
-22.0±21.2
-0.5±0.4
-4.3±2.7
-1.2±1.0
-0.5±0.4
-0.4±0.6
-0.5±0.5
-8.5±8.0
-0.5±0.4
-6.3±4.0
-2.7±1.9
-0.6±0.4
-0.6±0.4
-0.6±0.5
-1.3±0.9
+0.50.4
+0.50.4
+0.50.4
+0.50.4
+0.50.4
+0.50.4
+0.50.4
+0.60.4
+0.50.4
+0.50.5
+0.50.5
+0.50.5
+0.50.4
+0.60.4
+0.50.5
+0.50.5
+0.50.5
+0.50.5
+0.50.4
+0.70.5
+0.50.5
+0.50.5
+0.50.5
+0.50.5
+0.50.4
+0.70.5
+0.50.5
+0.50.5
+0.50.5
+0.50.5
+0.50.4
+0.70.5
+0.50.5
+0.50.5
+0.40.6
+0.50.5
+0.50.4
+0.90.5
+0.40.6
+0.50.5
+0.40.6
+0.50.5
+0.50.4
+1.00.8
+0.40.6
+0.40.6
+0.40.6
+0.40.6
+0.50.4
+1.81.1
+0.50.5
+0.50.5
+0.40.6
+0.50.5
+0.50.4
+2.32.1
+0.90.9
+0.50.5
+0.40.6
+0.50.5
+0.50.4
+4.32.7
+1.21.0
+0.50.4
+0.40.6
+0.50.5
+8.58.0
+0.50.4
+6.34.0
+2.71.9
+0.60.4
+0.60.4
+0.60.5
+1.30.9
 (b) 600 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-0.8±0.7
-0.8±0.7
-0.8±0.7
-0.8±0.7
-0.8±0.7
-0.8±0.7
-70.0±16.4
-0.8±0.7
-0.8±0.7
-0.8±0.7
-0.8±0.7
-0.8±0.7
-0.8±0.7
-70.1±15.4
-0.8±0.7
-0.8±0.7
-0.8±0.7
-0.8±0.7
-0.8±0.7
-0.8±0.7
-70.4±16.0
-0.8±0.7
-0.8±0.7
-0.8±0.7
-0.8±0.7
-0.8±0.7
-0.8±0.7
-70.5±17.0
-0.8±0.7
-0.9±0.8
-0.8±0.7
-0.8±0.7
-0.8±0.7
-0.8±0.7
-69.9±17.6
-0.8±0.7
-1.0±1.0
-0.8±0.7
-0.8±0.7
-0.8±0.7
-0.8±0.7
-69.3±17.2
-0.8±0.7
-1.2±1.3
-0.8±0.7
-0.8±0.7
-0.8±0.7
-0.8±0.7
-67.4±17.9
-0.8±0.7
-1.4±1.0
-0.8±0.7
-0.8±0.7
-0.8±0.7
-0.8±0.7
-66.3±18.3
-0.8±0.7
-6.0±5.7
-0.9±1.1
-0.8±0.7
-0.8±0.7
-0.8±0.7
-34.8±23.7
-0.8±0.7
-7.3±6.0
-2.2±2.1
-0.8±0.7
-0.8±0.7
-0.8±0.7
-15.8±13.2
-0.8±0.7
-14.7±7.6
-2.5±2.3
-0.8±0.7
-0.8±0.7
-0.8±0.7
-4.0±3.3
-0.8±0.7
-22.1±11.5
-5.1±4.3
-0.8±0.7
-0.8±0.7
-0.8±0.7
-1.0±0.8
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.90.8
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+1.01.0
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+1.21.3
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+1.41.0
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+6.05.7
+0.91.1
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+7.36.0
+2.22.1
+0.80.7
+0.80.7
+0.80.7
+0.80.7
+2.52.3
+0.80.7
+0.80.7
+0.80.7
+4.03.3
+0.80.7
+5.14.3
+0.80.7
+0.80.7
+0.80.7
+1.00.8
 (c) 900 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-1.0±1.0
-1.0±1.0
-1.0±1.0
-1.0±1.0
-1.0±1.0
-1.0±1.0
-70.9±25.7
-1.0±1.0
-1.1±1.0
-1.0±1.0
-1.0±1.0
-1.0±1.0
-1.0±1.0
-70.9±26.3
-1.0±1.0
-1.2±1.1
-1.0±1.0
-1.0±1.0
-1.0±1.0
-1.0±1.0
-70.9±26.5
-1.0±1.0
-1.3±1.2
-1.0±1.0
-1.0±1.0
-1.0±1.0
-1.0±1.0
-70.0±27.6
-1.0±1.0
-1.4±1.4
-1.0±1.0
-0.9±1.0
-0.9±1.0
-1.0±1.0
-68.5±28.0
-1.0±1.0
-1.7±1.8
-1.0±1.0
-0.9±1.0
-0.9±1.0
-0.9±1.0
-67.7±27.1
-1.0±1.0
-2.0±2.2
-1.0±1.0
-0.9±1.0
-0.9±1.0
-0.9±1.0
-64.9±27.3
-1.0±1.0
-2.3±2.5
-1.0±1.0
-0.9±1.0
-0.9±1.0
-0.9±1.0
-63.1±28.0
-1.0±1.0
-8.8±9.9
-1.7±1.8
-1.0±1.0
-1.0±1.1
-0.9±1.0
-30.8±36.4
-1.0±1.0
-12.0±11.4
-3.0±3.6
-1.3±1.5
-1.2±1.2
-1.0±1.2
-11.7±14.4
-1.0±1.0
-23.5±18.1
-3.8±4.2
-1.4±1.5
-1.1±1.1
-1.2±1.2
-2.6±2.7
-1.0±1.0
-31.3±21.6
-5.2±5.5
-1.2±1.3
-1.1±1.1
-1.2±1.2
-1.4±1.4
+1.01.0
+1.01.0
+1.01.0
+1.01.0
+1.01.0
+1.01.0
+1.01.0
+1.11.0
+1.01.0
+1.01.0
+1.01.0
+1.01.0
+1.01.0
+1.21.1
+1.01.0
+1.01.0
+1.01.0
+1.01.0
+1.01.0
+1.31.2
+1.01.0
+1.01.0
+1.01.0
+1.01.0
+1.01.0
+1.41.4
+1.01.0
+0.91.0
+0.91.0
+1.01.0
+1.01.0
+1.71.8
+1.01.0
+0.91.0
+0.91.0
+0.91.0
+1.01.0
+2.02.2
+1.01.0
+0.91.0
+0.91.0
+0.91.0
+1.01.0
+2.32.5
+1.01.0
+0.91.0
+0.91.0
+0.91.0
+1.01.0
+8.89.9
+1.71.8
+1.01.0
+1.01.1
+0.91.0
+1.01.0
+3.03.6
+1.31.5
+1.21.2
+1.01.2
+1.01.0
+3.84.2
+1.41.5
+1.11.1
+1.21.2
+2.62.7
+1.01.0
+5.25.5
+1.21.3
+1.11.1
+1.21.2
+1.41.4
 (d) 1200 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-0.6±0.6
-0.6±0.6
-0.6±0.6
-0.6±0.6
-0.6±0.6
-0.6±0.6
-67.7±25.9
-0.6±0.6
-0.6±0.8
-0.6±0.6
-0.6±0.6
-0.6±0.6
-0.6±0.6
-67.5±24.8
-0.6±0.6
-0.6±0.8
-0.6±0.6
-0.6±0.6
-0.6±0.6
-0.6±0.6
-67.4±24.9
-0.6±0.6
-0.9±0.9
-0.6±0.6
-0.6±0.6
-0.6±0.6
-0.6±0.6
-66.8±25.2
-0.6±0.6
-0.9±0.9
-0.6±0.6
-0.6±0.6
-0.6±0.6
-0.6±0.6
-64.3±26.2
-0.6±0.6
-1.0±1.1
-0.6±0.6
-0.6±0.6
-0.6±0.6
-0.6±0.6
-61.2±26.3
-0.6±0.6
-1.4±1.6
-0.6±0.6
-0.6±0.6
-0.6±0.6
-0.6±0.6
-58.0±27.3
-0.6±0.6
-1.6±1.7
-0.7±0.8
-0.6±0.7
-0.6±0.7
-0.6±0.6
-55.0±25.1
-0.6±0.6
-7.5±10.7
-1.0±1.5
-0.6±0.7
-0.6±0.6
-0.6±0.6
-20.3±19.8
-0.6±0.6
-8.9±11.5
-2.6±2.7
-0.8±0.8
-0.6±0.7
-0.6±0.7
-3.2±2.7
-0.6±0.6
-20.6±17.0
-2.3±2.5
-0.8±0.8
-0.7±0.7
-0.6±0.7
-1.3±1.3
-0.6±0.6
-30.3±22.0
-3.0±3.5
-0.7±0.7
-0.7±0.7
-0.6±0.7
-0.7±0.8
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.8
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.8
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.90.9
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.90.9
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+1.01.1
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+1.41.6
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+0.60.6
+1.61.7
+0.70.8
+0.60.7
+0.60.7
+0.60.6
+0.60.6
+1.01.5
+0.60.7
+0.60.6
+0.60.6
+0.60.6
+2.62.7
+0.80.8
+0.60.7
+0.60.7
+3.22.7
+0.60.6
+2.32.5
+0.80.8
+0.70.7
+0.60.7
+1.31.3
+0.60.6
+3.03.5
+0.70.7
+0.70.7
+0.60.7
+0.70.8
 (e) 1500 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.5
-84.6±8.5
-1.0±0.5
-1.0±0.6
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.5
-84.4±8.2
-1.0±0.5
-1.1±0.6
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.5
-84.3±7.8
-1.0±0.5
-1.4±0.8
-1.0±0.6
-1.0±0.5
-1.0±0.5
-1.0±0.5
-83.6±8.5
-1.0±0.5
-1.5±0.9
-1.1±0.6
-1.0±0.6
-1.1±0.7
-1.0±0.5
-81.7±6.9
-1.0±0.5
-2.0±1.8
-1.1±0.7
-1.0±0.6
-1.1±0.7
-1.0±0.5
-77.9±9.9
-1.0±0.5
-2.4±2.0
-1.2±0.9
-1.0±0.6
-1.0±0.6
-1.0±0.5
-73.2±15.9
-1.0±0.5
-2.9±2.1
-1.3±0.7
-1.0±0.6
-1.1±0.8
-1.0±0.6
-64.8±19.5
-1.0±0.5
-8.8±4.1
-2.7±2.7
-1.0±0.6
-1.1±0.7
-1.0±0.5
-26.0±20.4
-1.0±0.5
-13.0±5.8
-6.7±3.8
-1.6±1.1
-1.2±0.8
-1.0±0.5
-5.0±3.2
-1.0±0.5
-33.2±16.2
-7.2±2.8
-1.2±0.9
-1.2±0.8
-1.1±0.7
-1.9±1.3
-1.0±0.5
-52.3±16.1
-6.2±2.4
-1.1±0.6
-1.1±0.6
-1.1±0.6
-1.2±0.9
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.6
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.10.6
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.40.8
+1.00.6
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.50.9
+1.10.6
+1.00.6
+1.10.7
+1.00.5
+1.00.5
+2.01.8
+1.10.7
+1.00.6
+1.10.7
+1.00.5
+1.00.5
+2.42.0
+1.20.9
+1.00.6
+1.00.6
+1.00.5
+1.00.5
+2.92.1
+1.30.7
+1.00.6
+1.10.8
+1.00.6
+1.00.5
+8.84.1
+2.72.7
+1.00.6
+1.10.7
+1.00.5
+1.00.5
+6.73.8
+1.61.1
+1.20.8
+1.00.5
+5.03.2
+1.00.5
+7.22.8
+1.20.9
+1.20.8
+1.10.7
+1.91.3
+1.00.5
+6.22.4
+1.10.6
+1.10.6
+1.10.6
+1.20.9
 (f) 3000 Training Steps.
-Figure 14: Subject–verb agreement interchange intervention accuracies (IIA) for WORDHOP, with confidence
+Figure 14: Subjectverb agreement interchange intervention accuracies (IIA) for WORDHOP, with confidence
 intervals across models trained on 5 different random seeds. Vertical axes denote the GPT-2 layer of the intervention,
 and horizontal axes denote the token position of the intervention. td, ts, and tv represent the tokens for the
 determiner, subject, and verb. t1 . . . t4 represent the four tokens/words between the verb.
-14711
 
-td
-ts
-tv
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-2.3±4.5
-2.3±4.5
-25.1±30.6
-2.3±4.5
-2.7±5.3
-23.2±28.6
-2.3±4.5
-3.6±6.4
-20.4±25.3
-2.3±4.5
-3.8±6.6
-18.0±22.6
-2.3±4.5
-5.0±8.0
-15.1±19.3
-2.3±4.5
-6.1±10.0
-14.0±18.0
-2.3±4.5
-7.3±11.5
-12.7±16.0
-2.3±4.5
-8.4±13.3
-11.4±13.9
-2.3±4.5
-9.2±15.0
-10.8±13.3
-2.3±4.5
-8.5±14.1
-11.5±14.4
-2.3±4.5
-7.0±12.6
-12.9±16.6
-2.3±4.5
-5.8±10.0
-15.5±20.0
+2.34.5
+2.34.5
+2.34.5
+2.75.3
+2.34.5
+3.66.4
+2.34.5
+3.86.6
+2.34.5
+5.08.0
+2.34.5
+2.34.5
+2.34.5
+2.34.5
+2.34.5
+2.34.5
+2.34.5
 (a) 300 Training Steps.
-td
-ts
-tv
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-1.7±1.8
-1.7±1.8
-58.3±37.7
-1.7±1.8
-1.6±1.5
-58.3±37.6
-1.7±1.8
-1.7±1.5
-56.4±39.9
-1.7±1.8
-2.0±2.0
-54.3±43.3
-1.7±1.8
-2.6±2.4
-46.8±46.6
-1.7±1.8
-8.8±11.6
-34.7±40.2
-1.7±1.8
-22.4±27.2
-21.1±28.6
-1.7±1.8
-33.7±38.9
-8.3±12.1
-1.7±1.8
-45.0±43.5
-3.2±4.5
-1.7±1.8
-48.6±43.6
-2.7±3.4
-1.7±1.8
-48.8±43.4
-2.6±3.3
-1.7±1.8
-47.7±44.0
-2.6±3.3
+1.71.8
+1.71.8
+1.71.8
+1.61.5
+1.71.8
+1.71.5
+1.71.8
+2.02.0
+1.71.8
+2.62.4
+1.71.8
+1.71.8
+1.71.8
+1.71.8
+3.24.5
+1.71.8
+2.73.4
+1.71.8
+2.63.3
+1.71.8
+2.63.3
 (b) 600 Training Steps.
-td
-ts
-tv
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-1.0±0.7
-1.0±0.7
-95.3±6.4
-1.0±0.7
-1.1±0.9
-95.3±6.2
-1.0±0.7
-1.2±0.8
-95.3±5.8
-1.0±0.7
-1.8±1.5
-94.6±5.1
-1.0±0.7
-19.7±35.1
-76.2±26.2
-1.0±0.7
-58.9±30.3
-24.8±20.1
-1.0±0.7
-85.3±15.6
-4.7±2.0
-1.0±0.7
-91.6±10.1
-2.3±1.3
-1.0±0.7
-93.9±7.1
-1.6±1.1
-1.0±0.7
-94.8±6.6
-1.3±1.1
-1.0±0.7
-94.8±6.9
-1.2±0.9
-1.0±0.7
-94.5±7.3
-1.2±0.9
+1.00.7
+1.00.7
+1.00.7
+1.10.9
+1.00.7
+1.20.8
+1.00.7
+1.81.5
+1.00.7
+1.00.7
+1.00.7
+4.72.0
+1.00.7
+2.31.3
+1.00.7
+1.61.1
+1.00.7
+1.31.1
+1.00.7
+1.20.9
+1.00.7
+1.20.9
 (c) 900 Training Steps.
-td
-ts
-tv
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-0.6±0.5
-0.6±0.5
-98.5±1.0
-0.6±0.5
-0.7±0.7
-98.4±1.0
-0.6±0.5
-0.8±0.6
-98.3±0.8
-0.6±0.5
-1.2±0.7
-97.9±1.0
-0.6±0.5
-31.1±42.6
-66.5±42.9
-0.6±0.5
-80.4±16.1
-14.1±21.0
-0.6±0.5
-96.1±2.2
-2.5±1.7
-0.6±0.5
-97.5±1.0
-1.6±1.1
-0.6±0.5
-98.0±0.8
-1.0±1.2
-0.6±0.5
-98.2±0.7
-0.8±1.0
-0.6±0.5
-98.4±0.9
-0.8±1.0
-0.6±0.5
-98.3±0.8
-0.8±1.0
+0.60.5
+0.60.5
+0.60.5
+0.70.7
+0.60.5
+0.80.6
+0.60.5
+1.20.7
+0.60.5
+0.60.5
+0.60.5
+2.51.7
+0.60.5
+1.61.1
+0.60.5
+1.01.2
+0.60.5
+0.81.0
+0.60.5
+0.81.0
+0.60.5
+0.81.0
 (d) 1200 Training Steps.
-td
-ts
-tv
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-0.6±0.9
-0.6±0.9
-98.5±0.4
-0.6±0.9
-0.6±0.9
-98.5±0.5
-0.6±0.9
-0.8±0.8
-98.3±0.6
-0.6±0.9
-1.1±1.1
-98.1±0.8
-0.6±0.9
-31.1±41.1
-65.4±42.8
-0.6±0.9
-84.0±14.5
-13.3±16.8
-0.6±0.9
-97.0±0.6
-2.6±2.2
-0.6±0.9
-97.7±0.4
-1.1±1.1
-0.6±0.9
-98.0±0.4
-0.9±0.9
-0.6±0.9
-98.2±0.6
-0.7±0.8
-0.6±0.9
-98.3±0.4
-0.8±0.8
-0.6±0.9
-98.4±0.5
-0.7±0.8
+0.60.9
+0.60.9
+0.60.9
+0.60.9
+0.60.9
+0.80.8
+0.60.9
+1.11.1
+0.60.9
+0.60.9
+0.60.9
+2.62.2
+0.60.9
+1.11.1
+0.60.9
+0.90.9
+0.60.9
+0.70.8
+0.60.9
+0.80.8
+0.60.9
+0.70.8
 (e) 1500 Training Steps.
-td
-ts
-tv
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-0.4±0.3
-0.4±0.3
-98.9±0.4
-0.4±0.3
-0.3±0.3
-98.9±0.4
-0.4±0.3
-0.3±0.3
-98.9±0.4
-0.4±0.3
-0.8±0.8
-98.7±0.8
-0.4±0.3
-28.0±34.1
-72.2±38.3
-0.4±0.3
-89.3±6.9
-16.3±11.3
-0.4±0.3
-97.5±1.0
-2.7±1.6
-0.4±0.3
-98.4±0.7
-1.1±0.8
-0.4±0.3
-98.5±0.7
-0.5±0.3
-0.4±0.3
-98.9±0.6
-0.4±0.3
-0.4±0.3
-98.9±0.5
-0.4±0.3
-0.4±0.3
-98.9±0.4
-0.4±0.3
+0.40.3
+0.40.3
+0.40.3
+0.30.3
+0.40.3
+0.30.3
+0.40.3
+0.80.8
+0.40.3
+0.40.3
+0.40.3
+2.71.6
+0.40.3
+1.10.8
+0.40.3
+0.50.3
+0.40.3
+0.40.3
+0.40.3
+0.40.3
+0.40.3
+0.40.3
 (f) 3000 Training Steps.
-Figure 15: Subject–verb agreement interchange intervention accuracies (IIA) for the NOHOP model trained without
+Figure 15: Subjectverb agreement interchange intervention accuracies (IIA) for the NOHOP model trained without
 positional encodings, with confidence intervals across models trained on 5 different random seeds. Vertical axes
 denote the GPT-2 layer of the intervention, and horizontal axes denote the token position of the intervention. td, ts,
 and tv represent the tokens for the determiner, subject, and verb, respectively.
-14712
 
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-3.3±2.4
-3.3±2.4
-3.3±2.4
-3.3±2.4
-3.3±2.4
-3.3±2.4
-6.1±4.6
-3.3±2.4
-3.4±2.5
-3.3±2.4
-3.3±2.4
-3.3±2.4
-3.3±2.4
-5.8±4.1
-3.3±2.4
-3.6±2.4
-3.2±2.4
-3.3±2.6
-3.2±2.3
-3.3±2.4
-5.5±3.7
-3.3±2.4
-3.8±2.3
-3.2±2.4
-3.3±2.6
-3.3±2.4
-3.3±2.4
-5.5±3.7
-3.3±2.4
-3.8±2.3
-3.2±2.4
-3.3±2.6
-3.2±2.4
-3.3±2.4
-5.4±3.6
-3.3±2.4
-3.9±2.3
-3.2±2.4
-3.3±2.6
-3.2±2.4
-3.3±2.4
-5.3±3.7
-3.3±2.4
-3.9±2.4
-3.3±2.4
-3.3±2.6
-3.2±2.4
-3.3±2.4
-5.0±3.7
-3.3±2.4
-4.0±2.4
-3.3±2.4
-3.4±2.3
-3.3±2.4
-3.3±2.4
-5.0±3.9
-3.3±2.4
-4.0±2.4
-3.3±2.4
-3.4±2.3
-3.4±2.3
-3.3±2.2
-5.0±3.9
-3.3±2.4
-3.9±2.2
-3.3±2.4
-3.4±2.5
-3.4±2.3
-3.3±2.2
-5.0±3.9
-3.3±2.4
-3.8±2.3
-3.3±2.4
-3.3±2.4
-3.3±2.4
-3.3±2.2
-5.2±4.5
-3.3±2.4
-3.5±2.4
-3.1±2.3
-3.2±2.5
-3.3±2.4
-3.2±2.3
-6.6±5.2
+3.32.4
+3.32.4
+3.32.4
+3.32.4
+3.32.4
+3.32.4
+6.14.6
+3.32.4
+3.42.5
+3.32.4
+3.32.4
+3.32.4
+3.32.4
+5.84.1
+3.32.4
+3.62.4
+3.22.4
+3.32.6
+3.22.3
+3.32.4
+5.53.7
+3.32.4
+3.82.3
+3.22.4
+3.32.6
+3.32.4
+3.32.4
+5.53.7
+3.32.4
+3.82.3
+3.22.4
+3.32.6
+3.22.4
+3.32.4
+5.43.6
+3.32.4
+3.92.3
+3.22.4
+3.32.6
+3.22.4
+3.32.4
+5.33.7
+3.32.4
+3.92.4
+3.32.4
+3.32.6
+3.22.4
+3.32.4
+5.03.7
+3.32.4
+4.02.4
+3.32.4
+3.42.3
+3.32.4
+3.32.4
+5.03.9
+3.32.4
+4.02.4
+3.32.4
+3.42.3
+3.42.3
+3.32.2
+5.03.9
+3.32.4
+3.92.2
+3.32.4
+3.42.5
+3.42.3
+3.32.2
+5.03.9
+3.32.4
+3.82.3
+3.32.4
+3.32.4
+3.32.4
+3.32.2
+5.24.5
+3.32.4
+3.52.4
+3.12.3
+3.22.5
+3.32.4
+3.22.3
+6.65.2
 (a) 300 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-4.1±1.1
-4.1±1.1
-4.1±1.1
-4.1±1.1
-4.1±1.1
-4.1±1.1
-12.8±7.3
-4.1±1.1
-4.0±1.0
-4.0±1.0
-4.1±1.1
-4.0±1.0
-4.0±1.0
-14.6±8.6
-4.1±1.1
-4.2±1.3
-3.9±1.1
-4.0±1.0
-4.0±1.0
-4.0±1.0
-15.7±9.6
-4.1±1.1
-4.9±2.1
-3.9±1.1
-4.0±1.0
-4.0±1.0
-4.0±1.0
-14.4±8.2
-4.1±1.1
-5.8±3.6
-3.8±1.2
-3.8±1.2
-3.9±0.9
-3.9±1.1
-13.5±6.1
-4.1±1.1
-6.6±3.2
-3.8±1.2
-4.0±1.2
-3.9±0.9
-3.9±1.1
-9.2±3.4
-4.1±1.1
-7.7±4.5
-3.9±1.1
-4.2±1.3
-4.0±1.1
-3.9±1.1
-7.3±2.5
-4.1±1.1
-8.0±4.7
-4.0±1.0
-4.3±1.1
-4.3±1.1
-4.0±1.2
-6.4±2.1
-4.1±1.1
-8.5±5.3
-4.0±1.1
-4.3±1.2
-4.4±1.2
-4.3±1.4
-5.4±1.6
-4.1±1.1
-8.5±5.0
-4.2±1.2
-4.4±1.2
-4.5±1.4
-4.4±1.5
-4.7±1.6
-4.1±1.1
-8.2±4.9
-4.3±1.1
-4.5±1.3
-4.9±1.7
-4.9±1.2
-4.8±1.6
-4.1±1.1
-7.5±4.4
-4.0±1.0
-4.5±1.4
-5.1±1.7
-5.1±1.6
-4.8±1.7
+4.11.1
+4.11.1
+4.11.1
+4.11.1
+4.11.1
+4.11.1
+4.11.1
+4.01.0
+4.01.0
+4.11.1
+4.01.0
+4.01.0
+4.11.1
+4.21.3
+3.91.1
+4.01.0
+4.01.0
+4.01.0
+4.11.1
+4.92.1
+3.91.1
+4.01.0
+4.01.0
+4.01.0
+4.11.1
+5.83.6
+3.81.2
+3.81.2
+3.90.9
+3.91.1
+4.11.1
+6.63.2
+3.81.2
+4.01.2
+3.90.9
+3.91.1
+9.23.4
+4.11.1
+7.74.5
+3.91.1
+4.21.3
+4.01.1
+3.91.1
+7.32.5
+4.11.1
+8.04.7
+4.01.0
+4.31.1
+4.31.1
+4.01.2
+6.42.1
+4.11.1
+8.55.3
+4.01.1
+4.31.2
+4.41.2
+4.31.4
+5.41.6
+4.11.1
+8.55.0
+4.21.2
+4.41.2
+4.51.4
+4.41.5
+4.71.6
+4.11.1
+8.24.9
+4.31.1
+4.51.3
+4.91.7
+4.91.2
+4.81.6
+4.11.1
+7.54.4
+4.01.0
+4.51.4
+5.11.7
+5.11.6
+4.81.7
 (b) 600 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-3.8±2.5
-3.8±2.5
-3.8±2.5
-3.8±2.5
-3.8±2.5
-3.8±2.5
-85.6±6.8
-3.8±2.5
-3.9±2.4
-3.8±2.3
-3.8±2.3
-3.8±2.3
-3.7±2.4
-87.3±5.4
-3.8±2.5
-3.9±2.4
-3.6±2.3
-3.6±2.3
-3.6±2.1
-3.6±2.2
-88.5±4.7
-3.8±2.5
-6.3±5.0
-3.8±2.5
-3.6±2.2
-3.6±2.1
-3.6±2.2
-82.1±15.2
-3.8±2.5
-21.9±25.6
-6.2±3.6
-3.5±1.9
-3.6±2.2
-3.7±2.1
-43.0±39.0
-3.8±2.5
-50.5±14.3
-7.5±3.4
-3.7±2.1
-3.7±2.3
-3.7±2.2
-8.9±5.9
-3.8±2.5
-69.6±16.6
-5.2±2.6
-3.8±2.2
-3.7±2.4
-3.8±2.3
-6.8±3.6
-3.8±2.5
-77.4±10.6
-4.4±2.8
-3.9±2.2
-3.9±2.4
-3.9±2.3
-5.3±2.9
-3.8±2.5
-83.9±7.7
-4.1±2.5
-4.2±2.4
-4.0±2.6
-3.9±2.4
-4.4±2.3
-3.8±2.5
-85.5±7.2
-3.9±2.5
-4.2±2.4
-4.3±2.6
-3.9±2.4
-3.9±2.2
-3.8±2.5
-84.9±7.3
-4.0±2.4
-4.3±2.3
-4.2±2.4
-3.9±2.4
-3.9±2.3
-3.8±2.5
-84.0±7.8
-4.0±2.4
-4.3±2.3
-4.3±2.4
-3.8±2.3
-3.9±2.2
+3.82.5
+3.82.5
+3.82.5
+3.82.5
+3.82.5
+3.82.5
+3.82.5
+3.92.4
+3.82.3
+3.82.3
+3.82.3
+3.72.4
+3.82.5
+3.92.4
+3.62.3
+3.62.3
+3.62.1
+3.62.2
+3.82.5
+6.35.0
+3.82.5
+3.62.2
+3.62.1
+3.62.2
+3.82.5
+6.23.6
+3.51.9
+3.62.2
+3.72.1
+3.82.5
+7.53.4
+3.72.1
+3.72.3
+3.72.2
+8.95.9
+3.82.5
+5.22.6
+3.82.2
+3.72.4
+3.82.3
+6.83.6
+3.82.5
+4.42.8
+3.92.2
+3.92.4
+3.92.3
+5.32.9
+3.82.5
+4.12.5
+4.22.4
+4.02.6
+3.92.4
+4.42.3
+3.82.5
+3.92.5
+4.22.4
+4.32.6
+3.92.4
+3.92.2
+3.82.5
+4.02.4
+4.32.3
+4.22.4
+3.92.4
+3.92.3
+3.82.5
+4.02.4
+4.32.3
+4.32.4
+3.82.3
+3.92.2
 (c) 900 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-1.6±0.9
-1.6±0.9
-1.6±0.9
-1.6±0.9
-1.6±0.9
-1.6±0.9
-91.2±4.1
-1.6±0.9
-1.6±0.9
-1.6±0.9
-1.6±0.9
-1.6±0.9
-1.6±0.9
-92.2±4.0
-1.6±0.9
-1.7±0.9
-1.6±0.9
-1.6±0.9
-1.6±0.9
-1.6±0.9
-92.8±4.0
-1.6±0.9
-3.3±2.1
-1.8±0.5
-1.6±0.9
-1.6±0.9
-1.6±0.9
-83.5±19.0
-1.6±0.9
-18.5±22.7
-4.4±2.7
-1.7±0.9
-1.7±0.6
-1.7±0.8
-26.3±27.7
-1.6±0.9
-51.6±12.0
-4.1±1.9
-1.7±0.9
-1.6±0.9
-1.6±0.9
-3.0±1.2
-1.6±0.9
-78.1±7.0
-2.3±0.9
-1.7±0.9
-1.6±0.9
-1.7±0.9
-2.4±0.9
-1.6±0.9
-85.6±4.9
-1.9±0.7
-1.6±0.9
-1.6±0.9
-1.7±0.9
-2.1±0.7
-1.6±0.9
-88.9±4.0
-1.8±0.8
-1.6±0.9
-1.6±0.9
-1.7±0.9
-1.7±1.0
-1.6±0.9
-90.8±4.4
-1.7±0.9
-1.6±0.9
-1.6±0.9
-1.7±0.9
-1.6±0.9
-1.6±0.9
-90.5±4.5
-1.7±1.0
-1.7±1.0
-1.7±0.9
-1.7±0.9
-1.6±0.9
-1.6±0.9
-90.5±4.0
-1.7±1.0
-1.7±1.0
-1.7±0.9
-1.7±0.9
-1.6±0.9
+1.60.9
+1.60.9
+1.60.9
+1.60.9
+1.60.9
+1.60.9
+1.60.9
+1.60.9
+1.60.9
+1.60.9
+1.60.9
+1.60.9
+1.60.9
+1.70.9
+1.60.9
+1.60.9
+1.60.9
+1.60.9
+1.60.9
+3.32.1
+1.80.5
+1.60.9
+1.60.9
+1.60.9
+1.60.9
+4.42.7
+1.70.9
+1.70.6
+1.70.8
+1.60.9
+4.11.9
+1.70.9
+1.60.9
+1.60.9
+3.01.2
+1.60.9
+2.30.9
+1.70.9
+1.60.9
+1.70.9
+2.40.9
+1.60.9
+1.90.7
+1.60.9
+1.60.9
+1.70.9
+2.10.7
+1.60.9
+1.80.8
+1.60.9
+1.60.9
+1.70.9
+1.71.0
+1.60.9
+1.70.9
+1.60.9
+1.60.9
+1.70.9
+1.60.9
+1.60.9
+1.71.0
+1.71.0
+1.70.9
+1.70.9
+1.60.9
+1.60.9
+1.71.0
+1.71.0
+1.70.9
+1.70.9
+1.60.9
 (d) 1200 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-1.3±0.9
-1.3±0.9
-1.3±0.9
-1.3±0.9
-1.3±0.9
-1.3±0.9
-94.0±1.8
-1.3±0.9
-1.3±0.9
-1.3±0.9
-1.3±0.9
-1.3±0.9
-1.3±0.9
-94.5±1.8
-1.3±0.9
-1.4±0.9
-1.3±0.9
-1.3±0.9
-1.3±0.9
-1.3±0.9
-94.8±2.1
-1.3±0.9
-3.2±2.4
-1.4±0.8
-1.3±0.9
-1.3±0.9
-1.3±0.9
-84.2±18.2
-1.3±0.9
-17.0±20.4
-4.0±1.7
-1.4±1.0
-1.5±0.8
-1.3±0.9
-23.5±29.1
-1.3±0.9
-51.9±13.4
-3.9±2.1
-1.3±0.8
-1.4±0.9
-1.3±0.9
-2.6±1.4
-1.3±0.9
-82.7±4.3
-2.3±1.0
-1.3±0.9
-1.3±0.9
-1.3±0.9
-2.2±1.0
-1.3±0.9
-90.5±2.0
-1.6±0.8
-1.3±0.9
-1.3±0.9
-1.3±0.9
-1.9±1.0
-1.3±0.9
-93.3±2.0
-1.4±0.8
-1.3±0.9
-1.3±0.9
-1.3±0.9
-1.4±0.9
-1.3±0.9
-94.0±2.4
-1.3±0.9
-1.3±0.9
-1.3±0.9
-1.3±0.9
-1.3±0.9
-1.3±0.9
-94.2±2.3
-1.3±0.9
-1.4±0.9
-1.3±0.9
-1.3±0.9
-1.3±0.9
-1.3±0.9
-94.0±2.4
-1.3±0.9
-1.4±0.9
-1.3±0.9
-1.3±0.9
-1.3±0.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.40.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+3.22.4
+1.40.8
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+4.01.7
+1.41.0
+1.50.8
+1.30.9
+1.30.9
+3.92.1
+1.30.8
+1.40.9
+1.30.9
+2.61.4
+1.30.9
+2.31.0
+1.30.9
+1.30.9
+1.30.9
+2.21.0
+1.30.9
+1.60.8
+1.30.9
+1.30.9
+1.30.9
+1.91.0
+1.30.9
+1.40.8
+1.30.9
+1.30.9
+1.30.9
+1.40.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.40.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.30.9
+1.40.9
+1.30.9
+1.30.9
+1.30.9
 (e) 1500 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-0.9±0.4
-0.9±0.4
-0.9±0.4
-0.9±0.4
-0.9±0.4
-0.9±0.4
-96.0±1.6
-0.9±0.4
-0.9±0.4
-0.9±0.4
-0.9±0.4
-0.9±0.4
-0.9±0.4
-96.3±1.2
-0.9±0.4
-1.0±0.6
-0.9±0.4
-0.9±0.4
-0.9±0.4
-0.9±0.4
-96.6±1.3
-0.9±0.4
-2.9±2.7
-1.1±0.5
-0.9±0.4
-0.9±0.4
-0.9±0.6
-83.7±21.0
-0.9±0.4
-12.7±15.2
-4.0±2.2
-1.0±0.8
-1.0±0.3
-1.0±0.4
-15.1±15.4
-0.9±0.4
-47.8±17.9
-4.5±2.3
-0.9±0.4
-0.9±0.4
-0.9±0.4
-1.9±1.3
-0.9±0.4
-83.4±7.3
-2.0±1.0
-0.9±0.4
-0.9±0.4
-0.9±0.5
-1.7±1.0
-0.9±0.4
-92.4±3.2
-1.3±1.0
-0.9±0.4
-0.9±0.4
-0.9±0.4
-1.3±0.9
-0.9±0.4
-94.8±2.6
-1.0±0.7
-0.9±0.4
-0.9±0.4
-0.9±0.4
-1.0±0.7
-0.9±0.4
-95.7±1.9
-0.9±0.4
-0.9±0.5
-0.9±0.4
-0.9±0.4
-0.9±0.4
-0.9±0.4
-96.0±1.8
-0.9±0.5
-0.9±0.5
-0.9±0.4
-0.9±0.4
-0.9±0.4
-0.9±0.4
-96.0±1.8
-0.9±0.5
-0.9±0.5
-0.9±0.4
-0.9±0.4
-0.9±0.4
+0.90.4
+0.90.4
+0.90.4
+0.90.4
+0.90.4
+0.90.4
+0.90.4
+0.90.4
+0.90.4
+0.90.4
+0.90.4
+0.90.4
+0.90.4
+1.00.6
+0.90.4
+0.90.4
+0.90.4
+0.90.4
+0.90.4
+2.92.7
+1.10.5
+0.90.4
+0.90.4
+0.90.6
+0.90.4
+4.02.2
+1.00.8
+1.00.3
+1.00.4
+0.90.4
+4.52.3
+0.90.4
+0.90.4
+0.90.4
+1.91.3
+0.90.4
+2.01.0
+0.90.4
+0.90.4
+0.90.5
+1.71.0
+0.90.4
+1.31.0
+0.90.4
+0.90.4
+0.90.4
+1.30.9
+0.90.4
+1.00.7
+0.90.4
+0.90.4
+0.90.4
+1.00.7
+0.90.4
+0.90.4
+0.90.5
+0.90.4
+0.90.4
+0.90.4
+0.90.4
+0.90.5
+0.90.5
+0.90.4
+0.90.4
+0.90.4
+0.90.4
+0.90.5
+0.90.5
+0.90.4
+0.90.4
+0.90.4
 (f) 3000 Training Steps.
-Figure 16: Subject–verb agreement interchange intervention accuracies (IIA) for the TOKENHOP model trained
+Figure 16: Subjectverb agreement interchange intervention accuracies (IIA) for the TOKENHOP model trained
 without positional encodings, with confidence intervals across models trained on 5 different random seeds. Vertical
 axes denote the GPT-2 layer of the intervention, and horizontal axes denote the token position of the intervention.
 td, ts, and tv represent the tokens for the determiner, subject, and verb. t1 . . . t4 represent the four tokens/words
 between the verb.
-14713
 
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-3.1±3.9
-3.1±3.9
-3.1±3.9
-3.1±3.9
-3.1±3.9
-3.1±3.9
-5.7±7.7
-3.1±3.9
-3.2±4.0
-3.1±3.9
-3.1±3.9
-3.2±3.9
-3.1±3.9
-5.6±7.9
-3.1±3.9
-3.3±3.9
-3.1±3.9
-3.1±3.9
-3.2±3.9
-3.1±3.9
-5.6±7.7
-3.1±3.9
-3.5±4.0
-3.1±3.9
-3.1±3.9
-3.2±3.9
-3.1±3.9
-5.3±7.2
-3.1±3.9
-3.7±4.3
-3.1±3.9
-3.1±3.9
-3.1±3.9
-3.2±3.9
-5.0±6.6
-3.1±3.9
-3.8±4.4
-3.1±3.9
-3.1±3.9
-3.1±3.9
-3.2±3.9
-4.9±6.7
-3.1±3.9
-4.2±4.7
-3.2±4.0
-3.1±3.9
-3.1±3.8
-3.2±3.9
-4.6±6.0
-3.1±3.9
-4.2±4.8
-3.2±4.0
-3.1±3.9
-3.1±3.8
-3.2±3.9
-4.5±5.8
-3.1±3.9
-4.2±4.8
-3.2±4.0
-3.1±3.9
-3.1±3.8
-3.2±3.9
-4.4±5.7
-3.1±3.9
-4.1±4.8
-3.2±4.0
-3.1±3.9
-3.1±3.9
-3.1±3.7
-4.5±5.8
-3.1±3.9
-3.6±4.5
-3.1±3.7
-3.1±3.7
-3.1±3.7
-3.1±3.9
-5.0±6.6
-3.1±3.9
-3.3±4.0
-3.0±3.6
-3.0±3.6
-3.0±3.6
-3.0±3.6
-6.3±8.4
+3.13.9
+3.13.9
+3.13.9
+3.13.9
+3.13.9
+3.13.9
+5.77.7
+3.13.9
+3.24.0
+3.13.9
+3.13.9
+3.23.9
+3.13.9
+5.67.9
+3.13.9
+3.33.9
+3.13.9
+3.13.9
+3.23.9
+3.13.9
+5.67.7
+3.13.9
+3.54.0
+3.13.9
+3.13.9
+3.23.9
+3.13.9
+5.37.2
+3.13.9
+3.74.3
+3.13.9
+3.13.9
+3.13.9
+3.23.9
+5.06.6
+3.13.9
+3.84.4
+3.13.9
+3.13.9
+3.13.9
+3.23.9
+4.96.7
+3.13.9
+4.24.7
+3.24.0
+3.13.9
+3.13.8
+3.23.9
+4.66.0
+3.13.9
+4.24.8
+3.24.0
+3.13.9
+3.13.8
+3.23.9
+4.55.8
+3.13.9
+4.24.8
+3.24.0
+3.13.9
+3.13.8
+3.23.9
+4.45.7
+3.13.9
+4.14.8
+3.24.0
+3.13.9
+3.13.9
+3.13.7
+4.55.8
+3.13.9
+3.64.5
+3.13.7
+3.13.7
+3.13.7
+3.13.9
+5.06.6
+3.13.9
+3.34.0
+3.03.6
+3.03.6
+3.03.6
+3.03.6
+6.38.4
 (a) 300 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-6.2±3.6
-6.2±3.6
-6.2±3.6
-6.2±3.6
-6.2±3.6
-6.2±3.6
-24.1±8.1
-6.2±3.6
-6.1±3.5
-6.1±3.5
-6.1±3.5
-6.1±3.5
-6.1±3.5
-25.9±8.4
-6.2±3.6
-6.1±3.5
-6.0±3.4
-6.1±3.5
-6.1±3.5
-6.1±3.5
-28.6±9.4
-6.2±3.6
-6.8±2.7
-5.8±3.2
-6.0±3.4
-6.0±3.4
-6.0±3.4
-28.6±14.5
-6.2±3.6
-8.7±5.3
-5.8±3.5
-5.8±3.5
-5.9±3.3
-5.9±3.5
-24.8±8.3
-6.2±3.6
-10.7±5.7
-5.8±3.5
-5.9±3.7
-6.0±3.5
-6.0±3.6
-19.1±7.0
-6.2±3.6
-13.4±5.3
-6.0±3.4
-6.1±3.5
-6.3±3.5
-6.2±3.7
-13.6±9.1
-6.2±3.6
-14.7±5.7
-6.1±3.4
-6.4±3.8
-6.5±3.7
-6.4±3.8
-11.5±8.4
-6.2±3.6
-15.8±5.0
-6.2±3.6
-6.5±3.7
-6.6±3.7
-6.6±4.0
-9.3±7.0
-6.2±3.6
-16.7±5.6
-6.4±3.9
-6.7±3.8
-7.0±3.9
-6.9±4.0
-7.4±4.3
-6.2±3.6
-15.8±5.0
-6.3±3.8
-6.8±3.9
-7.1±3.8
-7.1±4.1
-7.2±4.2
-6.2±3.6
-14.6±4.4
-6.1±3.5
-6.9±3.8
-7.3±3.8
-7.6±4.6
-7.4±4.1
+6.23.6
+6.23.6
+6.23.6
+6.23.6
+6.23.6
+6.23.6
+6.23.6
+6.13.5
+6.13.5
+6.13.5
+6.13.5
+6.13.5
+6.23.6
+6.13.5
+6.03.4
+6.13.5
+6.13.5
+6.13.5
+6.23.6
+6.82.7
+5.83.2
+6.03.4
+6.03.4
+6.03.4
+6.23.6
+8.75.3
+5.83.5
+5.83.5
+5.93.3
+5.93.5
+6.23.6
+5.83.5
+5.93.7
+6.03.5
+6.03.6
+6.23.6
+6.03.4
+6.13.5
+6.33.5
+6.23.7
+6.23.6
+6.13.4
+6.43.8
+6.53.7
+6.43.8
+6.23.6
+6.23.6
+6.53.7
+6.63.7
+6.64.0
+9.37.0
+6.23.6
+6.43.9
+6.73.8
+7.03.9
+6.94.0
+7.44.3
+6.23.6
+6.33.8
+6.83.9
+7.13.8
+7.14.1
+7.24.2
+6.23.6
+6.13.5
+6.93.8
+7.33.8
+7.64.6
+7.44.1
 (b) 600 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-4.5±0.6
-4.5±0.6
-4.5±0.6
-4.5±0.6
-4.5±0.6
-4.5±0.6
-81.8±15.6
-4.5±0.6
-4.5±0.6
-4.5±0.7
-4.5±0.7
-4.5±0.7
-4.4±0.8
-83.6±13.8
-4.5±0.6
-4.6±0.7
-4.3±0.5
-4.2±0.6
-4.3±0.7
-4.4±0.7
-84.1±14.9
-4.5±0.6
-5.8±2.3
-4.2±0.4
-3.9±0.5
-3.9±0.6
-4.2±0.8
-81.8±11.3
-4.5±0.6
-19.2±21.2
-5.9±3.5
-3.8±1.1
-4.0±0.7
-4.2±0.8
-48.9±26.1
-4.5±0.6
-48.0±24.5
-6.1±1.7
-4.4±1.0
-4.3±0.9
-4.4±0.8
-9.2±5.0
-4.5±0.6
-62.3±21.2
-5.3±1.2
-4.5±0.7
-4.5±0.8
-4.5±0.7
-6.4±2.0
-4.5±0.6
-70.5±20.8
-4.9±0.9
-4.5±0.6
-4.5±0.8
-4.5±0.7
-5.7±1.3
-4.5±0.6
-77.4±18.0
-4.6±0.8
-4.5±0.6
-4.5±0.8
-4.5±0.8
-4.7±1.1
-4.5±0.6
-80.6±16.2
-4.4±0.8
-4.5±0.6
-4.5±0.6
-4.6±0.8
-4.4±1.1
-4.5±0.6
-80.6±15.7
-4.4±0.8
-4.7±0.9
-4.6±0.6
-4.6±0.8
-4.2±1.0
-4.5±0.6
-80.1±16.0
-4.5±0.8
-4.8±0.7
-4.6±0.6
-4.6±0.8
-4.0±0.8
+4.50.6
+4.50.6
+4.50.6
+4.50.6
+4.50.6
+4.50.6
+4.50.6
+4.50.6
+4.50.7
+4.50.7
+4.50.7
+4.40.8
+4.50.6
+4.60.7
+4.30.5
+4.20.6
+4.30.7
+4.40.7
+4.50.6
+5.82.3
+4.20.4
+3.90.5
+3.90.6
+4.20.8
+4.50.6
+5.93.5
+3.81.1
+4.00.7
+4.20.8
+4.50.6
+6.11.7
+4.41.0
+4.30.9
+4.40.8
+9.25.0
+4.50.6
+5.31.2
+4.50.7
+4.50.8
+4.50.7
+6.42.0
+4.50.6
+4.90.9
+4.50.6
+4.50.8
+4.50.7
+5.71.3
+4.50.6
+4.60.8
+4.50.6
+4.50.8
+4.50.8
+4.71.1
+4.50.6
+4.40.8
+4.50.6
+4.50.6
+4.60.8
+4.41.1
+4.50.6
+4.40.8
+4.70.9
+4.60.6
+4.60.8
+4.21.0
+4.50.6
+4.50.8
+4.80.7
+4.60.6
+4.60.8
+4.00.8
 (c) 900 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-1.9±0.5
-1.9±0.5
-1.9±0.5
-1.9±0.5
-1.9±0.5
-1.9±0.5
-85.7±18.0
-1.9±0.5
-1.9±0.5
-1.9±0.5
-1.9±0.5
-1.9±0.5
-1.8±0.5
-86.4±17.3
-1.9±0.5
-2.0±0.7
-1.8±0.4
-1.8±0.4
-1.8±0.4
-1.8±0.4
-87.7±17.3
-1.9±0.5
-3.1±1.4
-1.9±0.5
-1.7±0.3
-1.8±0.4
-1.7±0.4
-80.9±22.9
-1.9±0.5
-9.7±12.0
-3.9±3.1
-1.7±0.4
-1.9±0.4
-1.8±0.4
-41.2±50.2
-1.9±0.5
-45.5±21.8
-4.2±1.0
-1.9±0.4
-1.8±0.4
-1.9±0.4
-4.4±2.2
-1.9±0.5
-66.6±25.1
-3.2±1.0
-1.9±0.5
-1.9±0.4
-1.8±0.4
-3.1±1.0
-1.9±0.5
-77.0±21.8
-2.4±0.9
-1.9±0.5
-1.9±0.5
-1.9±0.5
-2.5±1.2
-1.9±0.5
-82.3±20.9
-2.0±0.6
-1.9±0.4
-1.9±0.5
-1.9±0.5
-2.2±0.6
-1.9±0.5
-85.0±19.9
-1.8±0.4
-2.1±0.9
-1.9±0.5
-1.9±0.5
-1.9±0.5
-1.9±0.5
-84.9±19.3
-1.8±0.4
-2.1±0.7
-1.9±0.5
-1.8±0.5
-1.9±0.5
-1.9±0.5
-84.8±19.2
-1.8±0.5
-2.2±0.7
-1.9±0.5
-1.8±0.5
-1.9±0.5
+1.90.5
+1.90.5
+1.90.5
+1.90.5
+1.90.5
+1.90.5
+1.90.5
+1.90.5
+1.90.5
+1.90.5
+1.90.5
+1.80.5
+1.90.5
+2.00.7
+1.80.4
+1.80.4
+1.80.4
+1.80.4
+1.90.5
+3.11.4
+1.90.5
+1.70.3
+1.80.4
+1.70.4
+1.90.5
+3.93.1
+1.70.4
+1.90.4
+1.80.4
+1.90.5
+4.21.0
+1.90.4
+1.80.4
+1.90.4
+4.42.2
+1.90.5
+3.21.0
+1.90.5
+1.90.4
+1.80.4
+3.11.0
+1.90.5
+2.40.9
+1.90.5
+1.90.5
+1.90.5
+2.51.2
+1.90.5
+2.00.6
+1.90.4
+1.90.5
+1.90.5
+2.20.6
+1.90.5
+1.80.4
+2.10.9
+1.90.5
+1.90.5
+1.90.5
+1.90.5
+1.80.4
+2.10.7
+1.90.5
+1.80.5
+1.90.5
+1.90.5
+1.80.5
+2.20.7
+1.90.5
+1.80.5
+1.90.5
 (d) 1200 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.5
-92.9±2.7
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.5
-93.2±2.2
-1.0±0.5
-1.0±0.5
-1.0±0.5
-0.9±0.5
-0.9±0.5
-0.9±0.5
-93.4±2.2
-1.0±0.5
-1.8±0.8
-1.0±0.5
-0.9±0.5
-0.9±0.4
-0.9±0.5
-87.8±10.9
-1.0±0.5
-7.1±8.4
-2.9±2.5
-0.9±0.5
-1.0±0.6
-1.0±0.6
-32.9±34.7
-1.0±0.5
-42.3±14.6
-3.1±1.3
-1.0±0.5
-1.0±0.5
-1.0±0.5
-2.6±1.6
-1.0±0.5
-72.7±5.1
-2.2±0.6
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.4±0.6
-1.0±0.5
-84.7±2.3
-1.2±0.4
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.1±0.5
-1.0±0.5
-91.1±2.6
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.5
-92.6±2.6
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.6
-1.0±0.5
-92.9±2.6
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.5
-1.0±0.6
-1.0±0.5
-92.7±2.5
-1.0±0.5
-1.1±0.6
-1.0±0.5
-1.0±0.5
-1.0±0.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+0.90.5
+0.90.5
+0.90.5
+1.00.5
+1.80.8
+1.00.5
+0.90.5
+0.90.4
+0.90.5
+1.00.5
+7.18.4
+2.92.5
+0.90.5
+1.00.6
+1.00.6
+1.00.5
+3.11.3
+1.00.5
+1.00.5
+1.00.5
+2.61.6
+1.00.5
+2.20.6
+1.00.5
+1.00.5
+1.00.5
+1.40.6
+1.00.5
+1.20.4
+1.00.5
+1.00.5
+1.00.5
+1.10.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.6
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.5
+1.00.6
+1.00.5
+1.00.5
+1.10.6
+1.00.5
+1.00.5
+1.00.5
 (e) 1500 Training Steps.
-td
-ts
-tv
-t1
-t2
-t3
-t4
-11
-10
-9
-8
-7
-6
-5
-4
-3
-2
-1
-0
-1.0±0.4
-1.0±0.4
-1.0±0.4
-1.0±0.4
-1.0±0.4
-1.0±0.4
-95.7±1.4
-1.0±0.4
-1.0±0.4
-1.0±0.4
-1.0±0.4
-1.0±0.4
-1.0±0.4
-95.9±1.0
-1.0±0.4
-1.0±0.4
-1.0±0.4
-1.0±0.4
-1.0±0.4
-1.0±0.4
-96.0±1.4
-1.0±0.4
-1.7±1.0
-1.0±0.4
-0.9±0.4
-1.0±0.4
-1.0±0.4
-90.0±10.7
-1.0±0.4
-7.0±8.3
-3.2±2.5
-1.0±0.4
-1.0±0.5
-1.0±0.4
-25.9±28.6
-1.0±0.4
-49.9±12.7
-3.3±1.1
-0.9±0.4
-1.0±0.4
-1.0±0.4
-2.5±1.7
-1.0±0.4
-77.7±6.9
-2.3±1.2
-1.0±0.4
-1.0±0.4
-1.0±0.4
-1.2±0.4
-1.0±0.4
-90.5±3.4
-1.3±0.7
-1.0±0.4
-1.0±0.4
-1.0±0.4
-1.1±0.5
-1.0±0.4
-93.9±2.0
-1.0±0.5
-1.0±0.4
-0.9±0.4
-1.0±0.4
-1.0±0.6
-1.0±0.4
-95.7±1.1
-1.0±0.4
-1.0±0.4
-0.9±0.4
-1.0±0.4
-1.0±0.4
-1.0±0.4
-96.0±0.8
-1.0±0.4
-1.0±0.4
-0.9±0.4
-1.0±0.4
-1.0±0.4
-1.0±0.4
-96.1±0.9
-1.0±0.4
-1.0±0.4
-1.0±0.4
-1.0±0.4
-1.0±0.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.71.0
+1.00.4
+0.90.4
+1.00.4
+1.00.4
+1.00.4
+7.08.3
+3.22.5
+1.00.4
+1.00.5
+1.00.4
+1.00.4
+3.31.1
+0.90.4
+1.00.4
+1.00.4
+2.51.7
+1.00.4
+2.31.2
+1.00.4
+1.00.4
+1.00.4
+1.20.4
+1.00.4
+1.30.7
+1.00.4
+1.00.4
+1.00.4
+1.10.5
+1.00.4
+1.00.5
+1.00.4
+0.90.4
+1.00.4
+1.00.6
+1.00.4
+1.00.4
+1.00.4
+0.90.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+0.90.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
+1.00.4
 (f) 3000 Training Steps.
-Figure 17: Subject–verb agreement interchange intervention accuracies (IIA) for the WORDHOP model trained
+Figure 17: Subjectverb agreement interchange intervention accuracies (IIA) for the WORDHOP model trained
 without positional encodings, with confidence intervals across models trained on 5 different random seeds. Vertical
 axes denote the GPT-2 layer of the intervention, and horizontal axes denote the token position of the intervention.
 td, ts, and tv represent the tokens for the determiner, subject, and verb. t1 . . . t4 represent the four tokens/words
 between the verb.
-14714
+

@@ -5,16 +5,16 @@
 > **Source:** <https://openreview.net/forum?id=PdaPky8MUn>
 
 ---
-
 Published as a conference paper at ICLR 2024
 Never Train from Scratch: FAIR COMPARISON OF LONG-
 SEQUENCE MODELS REQUIRES DATA-DRIVEN PRIORS
 Ido Amos
-Tel Aviv University∗
+Tel Aviv University
 Jonathan Berant
 Tel Aviv University
 Ankit Gupta
 IBM Research
+
 
 ## Abstract
 
@@ -36,20 +36,20 @@ they become mostly redundant in the presence of data-driven initialization obtai
 through pretraining. Our work shows that, when evaluating different architectures
 on supervised tasks, incorporation of data-driven priors via pretraining is essential
 for reliable performance estimation, and can be done efficiently.
-1
+
 
 ## Introduction
 
 Self-supervised pretraining is now widespread across most areas of machine learning, including
 NLP, speech, and vision (Touvron et al., 2023; Baevski et al., 2020; Reed et al., 2022). Given a
-downstream task, it is standard to finetune a pretrained model rather than train “from scratch”, to
+downstream task, it is standard to finetune a pretrained model rather than train from scratch, to
 achieve better performance (Raffel et al., 2019). Conversely, when developing new architectures
 with better inductive biases for particular skills, for example, for capturing long-range dependencies
 or for better algorithmic reasoning, it is still common to train on the task data from scratch with
-random initialization (Tay et al., 2020a; Del´etang et al., 2022; Velivckovi’c et al., 2022; Dwivedi
+random initialization (Tay et al., 2020a; Del´etang et al., 2022; Velivckovic et al., 2022; Dwivedi
 et al., 2022). This difference in practice stems not only from the computational overhead required
 for pretraining on massive datasets, but also to decouple the effects of the pretraining data and allow
-an apples-to-apples comparison, which would otherwise require a “standard” pretraining corpus for
+an apples-to-apples comparison, which would otherwise require a standard pretraining corpus for
 each scenario.
 A prime example of the latter scenario is estimating capabilities in modeling long range dependencies
 in sequences, a setting where Transformers have reported inadequate performance on benchmarks
@@ -58,34 +58,15 @@ of Transformers has led to a line of new architectures, suggesting changes to RN
 Transformers themselves, biasing them towards capturing long range dependencies, and achieving
 impressive performance on LRA, when trained from scratch (Gu et al., 2022a; Gupta et al., 2022a; Li
 et al., 2022; Ma et al., 2022). However, these results do not align with performance of pretrained
-Transformers (“foundation models”), that have displayed remarkable performance on tasks involving
+Transformers (foundation models), that have displayed remarkable performance on tasks involving
 modeling long range dependencies, such as text summarization, code completion and protein folding,
 (Touvron et al., 2023; Jumper et al., 2021). Despite the significant progress in long sequence modeling,
 the reasons for sub-par performance of Transformers on long sequence benchmarks, such as LRA,
-∗{idoamos@mail.tau.ac.il, joberant@cs.tau.ac.il, ankitgupta.iitkanpur@gmail.com}.
-1
+{idoamos@mail.tau.ac.il, joberant@cs.tau.ac.il, ankitgupta.iitkanpur@gmail.com}.
 
 Published as a conference paper at ICLR 2024
 Mean performance - LRA
 PathX-256
-40
-45
-50
-55
-60
-65
-70
-75
-80
-85
-90
-95
-100
-53.60
-86.21 86.09 86.75
-67.82
-87.11
-S4
 Transformer
 Self Pretrained
 Trained from Scratch
@@ -94,6 +75,7 @@ when self pretrained.
 remains unexplored, while methods achieving competitive performance resort to tailored changes to
 the architecture (Ma et al., 2022; Zuo et al., 2022).
 In this work, we shed light on this discrepancy, showing it stems from inadequate training and
+
 
 ## Evaluation
 
@@ -131,7 +113,6 @@ Our findings show that priors beneficial for capturing distant dependencies can 
 from the task data via standard denoising objectives without any intrusive changes to the model.
 We examine the benefits of SPT across multiple data scales showing them to become even more
 pronounced as data becomes relatively scarce. Last, for SSMs, we analyze the convolution kernels
-2
 
 Published as a conference paper at ICLR 2024
 learned via SPT to shed light on the learned priors for capturing long-range dependencies. We
@@ -144,7 +125,7 @@ grossly underestimated, and suggest an inexpensive data-driven approach to enabl
 evaluation without requiring any additional data.
 (ii) We report large empirical gains over the previously-reported performances on LRA across
 a range of architectures and, in particular, improve upon the best reported accuracy on the
-challenging PathX-256 task by 20 absolute points (67 →87).
+challenging PathX-256 task by 20 absolute points (67 87).
 (iii) We demonstrate how manually-designed biases become increasingly redundant with pretraining
 and that, with modern training and evaluation practices, simpler models can often match the
 performance of sophisticated architectures. We are the first to provide competitive performance
@@ -154,7 +135,6 @@ advocate the inclusion of a pretraining stage while evaluating models in general
 designing architectures for multidimensional inputs (Nguyen et al., 2022), algorithmic reasoning
 (Diao & Loynd, 2023) or graphs (Shirzad et al., 2023).
 Our code & data are available at https://github.com/IdoAmos/not-from-scratch.
-2
 EXPERIMENTAL SETUP
 Our experiments center around the evaluation of Transformers and SSMs on the Long Range Arena
 (LRA) benchmark which was proposed for examining the ability of sequence models to capture
@@ -183,12 +163,12 @@ We perform SPT with a causal/autoregressive sequence modeling objective
 for unidirectional models, and a masked sequence modeling objective for bidirectional models, using
 only the downstream task training set. For the visual tasks (Image, Pathfinder, Path-X) the masking
 ratio for masked sequence modeling is set to 50% following He et al. (2022), to 15% for language
-3
 
 Published as a conference paper at ICLR 2024
 Table 1: Long Range Arena. (top) performance of models trained from scratch as reported in Tay
 et al. (2020a), (bottom) performance of self pretrained (SPT) Transformers of sizes comparable to
 the ones on top. ✗denotes chance accuracy.
+
 
 ## Approach
 
@@ -200,85 +180,15 @@ Pathfinder
 PathX
 Avg.
 Transformer
-36.37
-64.27
-57.46
-42.44
-71.40
-✗
-53.66
 Local Attention
-15.82
-52.98
-53.39
-41.46
-66.63
-✗
-46.71
 Longformer
-35.63
-62.85
-56.89
-42.22
-69.71
-✗
-52.88
 Linformer
-35.70
-53.94
-52.27
-38.56
-76.34
-✗
-51.14
 Reformer
-37.27
-56.10
-53.40
-38.07
-68.50
-✗
-50.56
 BigBird
-36.05
-64.02
-59.29
-40.83
-74.87
-✗
-54.17
 Linear Trans.
-16.13
-65.90
-53.09
-42.34
-75.30
-✗
-50.46
 Performer
-18.01
-65.40
-53.82
-42.77
-77.05
-✗
-51.18
 Transformers + Masked SPT
-59.75
-89.27
-88.64
-74.22
-88.45
-87.73
-81.34
 Transformers + Causal SPT
-59.15
-88.81
-90.38
-76.00
-88.49
-88.05
-81.81
 tasks (Text, Retrieval) following Liu et al. (2019), and to 10% for ListOps. For Transformers, we use
 full attention as default with the hardware-optimized FLASH implementation (Dao et al., 2022). Due
 to computational constraints, for tasks with sequence length at least 16K we split the input to the
@@ -286,7 +196,7 @@ attention layer into non-overlapping blocks of size 4096 and allow each block to
 its neighbour(s).
 Our codebase is built on the original S4 repository.1 For additional experimental details, such as
 computational resources for SPT and finetuning, please refer to Appendix C.1.
-3
+
 
 ## Results
 
@@ -296,7 +206,6 @@ SSMs in the context of SPT. Section 3.4 examines the utility of SPT across data 
 3.5 examines the utility of PT on a large text corpus. Section 3.6 provides an analysis of pretrained
 SSM kernels and how they relate to current initialization schemes. Section 3.7 contains additional
 experiments on distinct modalities.
-3.1
 UNDERESTIMATION OF LONG-RANGE ABILITIES OF TRANSFORMERS
 We start by investigating the reliability of the historically-reported model performances on LRA, in
 the more modern setting of pretraining. Concretely, we repeat the Transformer experiments performed
@@ -316,13 +225,13 @@ As the experiments are performed with no architectural changes or additional dat
 performances can be attributed to the priors learned during SPT, clearly demonstrating its importance
 for a reliable performance evaluation.
 1https://github.com/HazyResearch/state-spaces
-4
 
 Published as a conference paper at ICLR 2024
 Table 2: Long Range Arena. Self pretrained (SPT) Transformers and S4 compared to existing
-trained from scratch models. Average performance (“Avg.”) is reported without PathX-256 to align
+trained from scratch models. Average performance (Avg.) is reported without PathX-256 to align
 with prior work. Results for MEGA, SPADE & S4 are taken from original papers with exceptions
-denoted by †. ✗denotes computationally infeasible, ❑denotes unreported results.
+denoted by . ✗denotes computationally infeasible, ❑denotes unreported results.
+
 
 ## Approach
 
@@ -331,78 +240,13 @@ Text
 Retrieval Image Pathfinder PathX PathX-256
 Avg.
 Transformers + Rotary
-47.90
-79.08
-82.31
-75.04
-76.64
-84.72
-✗
-74.28
 Transformers + Rotary + Masked SPT
-61.49
-91.02
-91.57
-86.04
-94.16
-92.98
-✗
-86.21
 S4 (Gu et al., 2022a)
-59.60
-86.82
-90.90
-88.65
-94.20
-96.35
-67.82†
-86.09
 S4 + Masked SPT
-61.25
-90.34
-88.74
-89.36
-94.92
-96.94
-87.11
-86.75
 SPADE (Zuo et al., 2022)
-60.50
-90.69
-91.17
-88.22
-96.23
-97.60
-❑
-87.40
 MEGA (Ma et al., 2022)
-63.14
-90.43
-91.25
-90.44
-96.01
-97.98
-❑
-88.21
 Pythia 70M (Rand Init)
-41.20
-69.29
-76.45
-52.55
-74.31
-✗
-✗
-62.76
 Pythia 70M
-43.05
-83.41
-84.29
-67.41
-80.05
-✗
-✗
-68.04
-3.2
 COMPARING S4 AND TRANSFORMERS
 In the above set-up we strictly adhered to the model sizes used by Tay et al. (2020a) and consequently
 the absolute performances are still low compared to the current state-of-the-art on LRA. In this
@@ -436,45 +280,19 @@ had converged and did not improve for several consecutive epochs. We examine the
 computational overhead of SPT in detail Appendix D, where we show that SPT leads to significant
 gains, even in the setting where the same amount of compute is used for SPT models and the ones
 that are trained from scratch.
-3.3
 THE ROLE OF EXPLICIT PRIORS
 We have established that SPT allows for a more reliable evaluation of the actual capabilities of
 architectures and further improves the performance of SSMs such as S4. Despite its high performance,
 S4 has a complex design guided by principled theoretical considerations to enable long range signal
-5
 
 Published as a conference paper at ICLR 2024
-S4
 Random Init
-S4
 Structured Init
 DLR
 Random Init
 DLR
 Structured Init
-40
-45
-50
-55
-60
-65
-70
-75
-80
-85
-90
-95
-100
 Avg. Accuracy (%)
-80.47
-55.00
-83.37
-77.33
-82.75
-74.33
-84.47
-82.85
-S4
 DLR
 Self Pretrained
 Trained from Scratch
@@ -488,15 +306,15 @@ We first provide a brief overview of SSMs below and refer to Gu et al. (2022a) f
 description. Given an input scalar sequence2 u, SSMs follow a linear recurrence generating a hidden
 state vector ⃗xn at timestep n, and produce a scalar output sequence y as
 ⃗xn = A⃗xn−1 + Bun
-A ∈CN×N, B ∈CN×1
+A ∈CNN, B ∈CN1
 yn = C ⃗xn
-C ∈C1×N
+C ∈C1N
 (1)
 By unrolling the recurrence across the timesteps, it can be shown that y can be equivalently computed
 by convolving u with the kernel defined by Kk = C T AkB. Instead of directly using A, B, C as
 learnable parameters, S4 uses an alternate parameterization inspired by a theory in continuous time,
 motivating the transformations:
-A = Λ −PQ∗
+A = Λ −PQ
 (2.1)
 ¯A = (I −∆/2 · A)−1(I + ∆/2 · A)
 (2.2)
@@ -507,15 +325,15 @@ K k = ¯C
 T ¯A
 k ¯B
 (2.4)
-where Λ, P, Q, B, C, ∆are learnable parameters and Λ ∈Diag(CN×N), P, Q ∈CN×1. In
+where Λ, P, Q, B, C, ∆are learnable parameters and Λ ∈Diag(CNN), P, Q ∈CN1. In
 addition to this parameterization, S4 uses a principled initialization method aimed towards a slow
 decay of the kernel (w.r.t. timestep k) in order to facilitate capturing long-range dependencies.
 Inspired by the success of S4, Gupta et al. (2022b) proposed a simplification to S4 called Diagonal
 Linear RNN (DLR) defined as
 ⃗xn = Λ⃗xn−1 + 1un
-Λ ∈diag(CN×N)
+Λ ∈diag(CNN)
 yn = C ⃗xn
-C ∈C1×N
+C ∈C1N
 (3)
 where 1 is the all-ones vector. DLR is significantly simpler to compute compared to S4 and the
 authors reported it to be as performant as state-of-the-art SSMs on a wide variety of token-level tasks.
@@ -526,59 +344,31 @@ For each model, we experiment with two sets of initializations: (1) random initi
 state space parameters are initialized from a normal distribution with a small standard deviation, and
 2When the input is a sequence of vectors, the model is applied to each channel separately and is commonly
 followed by a FFN to exchange information across channels.
-6
 
 Published as a conference paper at ICLR 2024
-10
-2
-10
-1
-10
-0
 Ratio of training data (log)
-20
-30
-40
-50
-60
-70
-80
-90
-100
 Accuracy - %
 Image
 Text
 Self Pretrained
 Trained from Scratch
-10
-2
-10
-1
-10
-0
 Ratio of training data (log)
-0
-5
-10
-15
-20
-25
-30
 Relative gain - %
 Image
 Text
 Figure 3: Trained from scratch and self pretrained (SPT) versions of S4 evaluated on multiple data
 scales for Image and Text tasks from LRA, originally containing 45K and 25K samples respectively.
 (left) absolute performances and (right) relative gains due to SPT over training from scratch.
-(2) “structured” initialization recommended by the respective authors aimed at capturing long-range
+(2) structured initialization recommended by the respective authors aimed at capturing long-range
 dependencies.
 The results are summarized in Figure 2 and per-task results are provided in Table 7. We find that,
 when trained from scratch, with both random and structured initializations, DLR lags behind S4 in
 terms of average performance (77 vs 83) demonstrating that biases incorporated through the specific
 initialization and parameterization used in S4 are indeed critical to performance. However, the picture
-radically changes under SPT – with SPT, DLR outperforms a trained from scratch S4 (83.4 vs 82.8)
+radically changes under SPT with SPT, DLR outperforms a trained from scratch S4 (83.4 vs 82.8)
 and is only slightly behind SPT S4 (83.4 vs 84.5). This suggests that the data-driven priors learned
 through pretraining are almost as effective as the manual biases incorporated in S4.
+
 
 ## Results
 
@@ -591,7 +381,6 @@ via interpolation, which induces smoothness and can be viewed as a normalization
 Fu et al. (2023) applied a global convolution layer that is transformed by a deterministic function to
 explicitly induce a smoother kernel. Yet our results suggest that these explicit steps are less significant
 when models are self pretrained.
-3.4
 SELF PRETRAINING IS EFFECTIVE ACROSS DATA SCALES
 As the priors learned via SPT are data-driven, their efficacy is dependent on the training set itself,
 which leads us to examine the performance gains as a function of the dataset size. To this end, given
@@ -606,64 +395,24 @@ sections, implies that the incorporation of the pretraining stage is important f
 regardless of dataset size. In Appendix E, we provide a complementary study on the effectiveness of
 SPT across model sizes, demonstrating that indeed SPT is effective across multiple model scales for
 both S4 and Transformers.
-3.5
 PRETRAINING ON TEXT CORPORA
 Given the widespread success of pretrained language models and the large gains due to SPT on the
 LRA tasks (Table 2), it is natural to ask if similar gains could be achieved by finetuning a language
-7
 
 Published as a conference paper at ICLR 2024
-0
-100 200 300 400 500 600 700 800 900 1000
 Shift
-0.00
-0.02
-0.04
-0.06
-0.08
-0.10
 maxc|K|
 (a) Text
-0
-128
-256
-384
-512
-640
-768
-896
 Shift
-0.00
-0.02
-0.04
-0.06
-0.08
-0.10
 Baseline
 PT - Layer 1
 PT - Layer 3
 PT - Layer 5
 (b) PathX
-0
-100 200 300 400 500 600 700 800 900 1000
 Shift
-0.00
-0.02
-0.04
-0.06
-0.08
-0.10
 maxc|K|
 (c) Image
-0
-100 200 300 400 500 600 700 800 900 1000
 Shift
-0.00
-0.02
-0.04
-0.06
-0.08
-0.10
 Baseline
 PT - Layer 1
 PT - Layer 3
@@ -675,7 +424,7 @@ Figure 4: Maximal absolute values of kernels across channels in S4 learned via s
 visualization.
 model pretrained on a large text corpus. To answer this, we consider Pythia 70M (Biderman et al.,
 2023), an autoregressive Transformer pretrained on the Pile (Gao et al., 2020) as well as a randomly
-initialized version with the same architecture, denoted as “Pythia 70M (RandInit)” in Table 2. To be
+initialized version with the same architecture, denoted as Pythia 70M (RandInit) in Table 2. To be
 comparable to existing results and due to the formal requirements of the LRA benchmark, we use
 character/pixel-level tokenization instead of the original BPE tokenizer and the model is required to
 adapt to the new tokenization during finetuning.
@@ -685,7 +434,6 @@ downstream tasks. This further highlights the importance of SPT as it allows the
 learn and adapt to the structure and modality of the given task data. However, the performance
 of Pythia 70M is significantly better that its randomly initialized version Pythia 70M (Rand init)
 suggesting that pretraining on large text corpora can be beneficial across modalities.
-3.6
 THEORETICALLY-DERIVED VS DATA-DRIVEN KERNELS
 Many high performing models such as SSMs incorporate manually-crafted priors to bias the model
 towards learning long range dependencies. For example, the initializations used in SSMs such as S4,
@@ -698,87 +446,50 @@ In this section, we analyze the structure of the convolutional kernels learned v
 them to the HiPPO-based kernels used to initialize existing SSMs such as S4. The convolution
 operation in S4 has the form
 yc,k =
-k
-X
 l=0
-¯C
-T
 c ¯A
-l
 c ¯Bcxc,k−l =
-k
-X
 l=0
 Kc,l · xc,k−l
 (4)
 where c is the channel and k is the timestep. Based on this structure, we can estimate the degree
 of dependence between sequence elements at channel c, l positions apart as |Kc,l|. For easier
-8
 
 Published as a conference paper at ICLR 2024
 Table 3: Additional Experiments. Performance on Speech Commands (SC), sCIFAR (accuracy)
 and BIDMC (R2) tasks. Results for trained from scratch S4 taken from Gu et al. (2022a), except for
-BIDMC (denoted by †) that are reproduced for the more interpretable R2 score.
+BIDMC (denoted by ) that are reproduced for the more interpretable R2 score.
+
 
 ## Approach
 
-SC
 sCIFAR
 BIDMC
 Causal
 Bi.
-HR
-RR
 SpO2
-S4
-93.60
-96.08
-91.13
-0.999†
-0.994†
-0.999†
 Transformers
-84.55
-86.93
-79.41
-0.998
-0.981
-0.998
 S4 + SPT
-95.09
-96.52
-91.67
-0.999
-0.990
-0.997
 Transformers + SPT
-86.13
-91.49
-90.29
-0.992
-0.956
-0.993
 interpretation, we take the maximal absolute value over the channels3 as Kmax,l = maxc |Kc,l|. For
 a shift l, Kmax,l bounds the norm of the derivative of yc,k w.r.t xc,k−l for all positions k and channels
-c.
 We generate kernels for the pretrained S4 models from Section 3.2 (before finetuning) and compare
 with the ones used in standard S4. Figure 4 plots Kmax for the Image, Text, PathX and ListOps,
 all entailing better performance with the pretrained model (Table 2). We observe that the learned
 kernels exhibit variable decay rates across the tasks and model layers, in contrast to the fixed decay
 rate of the data-agnostic HiPPO kernels. In particular, on the Text task the learned kernels are more
 local compared to HiPPO. For PathX, the vertical grid lines are aligned with the image resolution
-(128 × 128) showing high correlation between the underlying 2D structure of the data and the kernel
+(128 128) showing high correlation between the underlying 2D structure of the data and the kernel
 peaks. Overall, Figure 4 further highlights the utility of SPT over data-agnostic initializations that
 cannot adapt to a local or global structure in a task distribution.
-3.7
 ADDITIONAL EXPERIMENTS
 In addition to LRA, we also tested the utility of SPT on 3 additional datasets, encompassing 2
 additional natural data modalities, described as follows:
-• Speech Commands (SC) Raw speech waveforms of length 16K used in a 35-way classification
+Speech Commands (SC) Raw speech waveforms of length 16K used in a 35-way classification
 task (Warden, 2018). We test both causal and bidirectional models following Gu et al. (2022b).
-• sCIFAR Sequential CIFAR-10 dataset using RGB channels as features. This is similar to the
+sCIFAR Sequential CIFAR-10 dataset using RGB channels as features. This is similar to the
 Image task from LRA that uses grayscale images, except that here richer features are used.
-• BIDMC A suite of 3 regression tasks, requiring to predict respiratory rate (RR), heart rate (HR)
+BIDMC A suite of 3 regression tasks, requiring to predict respiratory rate (RR), heart rate (HR)
 and blood oxygen saturation (SpO2) from EKG and PPG signals of length 4K each.
 The results shown in Table 3, with additional details in Appendix C.3, further strengthen the claims
 made throughout this work. On both SC and sCIFAR tasks, SPT leads to large performance gains
@@ -793,13 +504,11 @@ only training from scratch. On BIDMC, the performances of both Transformer and S
 already close to perfect and it is hard to observe any meaningful improvements due to SPT.
 In general, our results suggest that similar under-estimation of model performances might also
 be prevalent in other scenarios where training from scratch is standard (Del´etang et al., 2022;
-Velivckovi’c et al., 2022; Dwivedi et al., 2022).
+Velivckovic et al., 2022; Dwivedi et al., 2022).
 3since the model is bidirectional there are two sets of kernels, left to right, and right to left. We take the
 maximum over both.
-9
 
 Published as a conference paper at ICLR 2024
-4
 ACKNOWLEDGMENTS
 We thank Amir Globerson for insightful discussions and his support throughout the course of this
 work. This research was partially supported by The Yandex Initiative for Machine Learning, and the
@@ -809,24 +518,23 @@ REFERENCES
 Mahmoud Assran, Quentin Duval, Ishan Misra, Piotr Bojanowski, Pascal Vincent, Michael Rabbat,
 Yann LeCun, and Nicolas Ballas. Self-supervised learning from images with a joint-embedding
 predictive architecture. In 2023 IEEE/CVF Conference on Computer Vision and Pattern Recog-
-nition (CVPR), pp. 15619–15629. IEEE, 6 2023. doi: 10.1109/cvpr52729.2023.01499. URL
+nition (CVPR), pp. 1561915629. IEEE, 6 2023. doi: 10.1109/cvpr52729.2023.01499. URL
 https://arxiv.org/pdf/2301.08243.
 Alexei Baevski, Henry Zhou, Abdel-rahman Mohamed, and Michael Auli.
 wav2vec 2.0:
 A framework for self-supervised learning of speech representations.
 In Hugo Larochelle,
-Marc’Aurelio Ranzato, Raia Hadsell, Maria-Florina Balcan, and Hsuan-Tien Lin (eds.), Ad-
+MarcAurelio Ranzato, Raia Hadsell, Maria-Florina Balcan, and Hsuan-Tien Lin (eds.), Ad-
 vances in Neural Information Processing Systems 33:
 Annual Conference on Neural In-
 formation Processing Systems 2020, NeurIPS 2020, December 6-12, 2020, virtual, volume
-abs/2006.11477, 6 2020.
 URL https://proceedings.neurips.cc/paper/2020/
 hash/92d1e1eb1cd6f9fba3227870bb6d7f07-Abstract.html.
-Stella Biderman, Hailey Schoelkopf, Quentin Anthony, Herbie Bradley, Kyle O’Brien, Eric Hallahan,
+Stella Biderman, Hailey Schoelkopf, Quentin Anthony, Herbie Bradley, Kyle OBrien, Eric Hallahan,
 Mohammad Aflah Khan, Shivanshu Purohit, USVSN Sai Prashanth, Edward Raff, Aviya Skowron,
 Lintang Sutawika, and Oskar van der Wal. Pythia: A suite for analyzing large language models
 across training and scaling. In International Conference on Machine Learning, ICML 2023, 23-29
-July 2023, Honolulu, Hawaii, USA, volume abs/2304.01373, pp. 2397–2430. PMLR, 4 2023. URL
+July 2023, Honolulu, Hawaii, USA, volume abs/2304.01373, pp. 23972430. PMLR, 4 2023. URL
 https://proceedings.mlr.press/v202/biderman23a.html.
 Tri Dao, Daniel Y. Fu, Stefano Ermon, Atri Rudra, and Christopher R´e. Flashattention: Fast and
 memory-efficient exact attention with io-awareness. In Sanmi Koyejo, S. Mohamed, A. Agarwal,
@@ -849,21 +557,19 @@ and Dominique Beaini. Long range graph benchmark. In Sanmi Koyejo, S. Mohamed, A
 Danielle Belgrave, K. Cho, and A. Oh (eds.), Advances in Neural Information Processing Systems
 35: Annual Conference on Neural Information Processing Systems 2022, NeurIPS 2022, New
 Orleans, LA, USA, November 28 - December 9, 2022, volume abs/2206.08164, 6 2022. doi:
-10.48550/arxiv.2206.08164.
 URL http://papers.nips.cc/paper_files/paper/
 2022/hash/8c3c666820ea055a77726d66fc7d447f-Abstract-Datasets_
 and_Benchmarks.html.
 Alaaeldin El-Nouby, Gautier Izacard, Hugo Touvron, Ivan Laptev, Herv´e Jegou, and Edouard Grave.
 Are large-scale datasets necessary for self-supervised pre-training? arXiv.org, abs/2112.10740, 12
 2021. ISSN 2331-8422. URL https://arxiv.org/abs/2112.10740.
-10
 
 Published as a conference paper at ICLR 2024
 Daniel Y. Fu, Elliot L. Epstein, Eric Nguyen, Armin W. Thomas, Michael Zhang, Tri Dao, Atri
 Rudra, and Christopher R´e. Simple hardware-efficient long convolutions for sequence modeling.
 In Andreas Krause 0001, Emma Brunskill, KyungHyun Cho, Barbara Engelhardt, Sivan Sabato,
 and Jonathan Scarlett (eds.), International Conference on Machine Learning, ICML 2023, 23-
-29 July 2023, Honolulu, Hawaii, USA, volume abs/2302.06646, pp. 10373–10391. PMLR, 2
+29 July 2023, Honolulu, Hawaii, USA, volume abs/2302.06646, pp. 1037310391. PMLR, 2
 2023. doi: 10.48550/arxiv.2302.06646. URL https://proceedings.mlr.press/v202/
 fu23a.html.
 Leo Gao, Stella Biderman, Sid Black, Laurence Golding, Travis Hoppe, Charles Foster, Jason Phang,
@@ -874,7 +580,7 @@ Albert Gu, Tri Dao, Stefano Ermon, Atri Rudra, and Christopher Re.
 Hippo:
 Recur-
 rent memory with optimal polynomial projections.
-In Hugo Larochelle, Marc’Aurelio
+In Hugo Larochelle, MarcAurelio
 Ranzato,
 Raia Hadsell,
 Maria-Florina Balcan,
@@ -883,7 +589,6 @@ Advances
 in Neural Information Processing Systems 33:
 Annual Conference on Neural Informa-
 tion Processing Systems 2020, NeurIPS 2020, December 6-12, 2020, virtual, volume
-abs/2008.07669, 8 2020.
 URL https://proceedings.neurips.cc/paper/2020/
 hash/102f0bb6efb3a6128a3c750dd16729be-Abstract.html.
 Albert Gu, Karan Goel, and Christopher R´e. Efficiently modeling long sequences with structured
@@ -896,7 +601,6 @@ K. Cho, and A. Oh (eds.), Advances in Neural Information Processing Systems 35: 
 ference on Neural Information Processing Systems 2022, NeurIPS 2022, New Orleans, LA, USA,
 November 28 - December 9, 2022, volume abs/2206.11893, 6 2022b.
 doi: 10.48550/arxiv.
-2206.11893.
 URL http://papers.nips.cc/paper_files/paper/2022/hash/
 e9a32fade47b906de908431991440f7c-Abstract-Conference.html.
 Ankit Gupta, Albert Gu, and Jonathan Berant. Diagonal state spaces are as effective as struc-
@@ -905,7 +609,6 @@ and A. Oh (eds.), Advances in Neural Information Processing Systems 35: Annual C
 ence on Neural Information Processing Systems 2022, NeurIPS 2022, New Orleans, LA, USA,
 November 28 - December 9, 2022, volume abs/2203.14343, 3 2022a.
 doi: 10.48550/arxiv.
-2203.14343.
 URL http://papers.nips.cc/paper_files/paper/2022/hash/
 9156b0f6dfa9bbd18c79cc459ef5d61c-Abstract-Conference.html.
 Ankit Gupta, Harsh Mehta, and Jonathan Berant. Simplifying and understanding state space models
@@ -913,7 +616,7 @@ with diagonal linear rnns. arXiv.org, abs/2212.00768, 12 2022b. ISSN 2331-8422. 
 arxiv.2212.00768. URL https://doi.org/10.48550/arXiv.2212.00768.
 Kaiming He, Xinlei Chen, Saining Xie, Yanghao Li, Piotr Dollar, and Ross Girshick. Masked
 autoencoders are scalable vision learners. In 2022 IEEE/CVF Conference on Computer Vision
-and Pattern Recognition (CVPR), pp. 15979–15988. IEEE, 6 2022. doi: 10.1109/cvpr52688.2022.
+and Pattern Recognition (CVPR), pp. 1597915988. IEEE, 6 2022. doi: 10.1109/cvpr52688.2022.
 01553. URL https://arxiv.org/pdf/2111.06377.
 John Jumper, Richard Evans, Alexander Pritzel, Tim Green, Michael Figurnov, Olaf Ronneberger,
 Kathryn Tunyasuvunakool, Russ Bates, Augustin ˇZ´ıdek, Anna Potapenko, Alex Bridgland,
@@ -922,9 +625,8 @@ Paredes, Stanislav Nikolov, Rishub Jain, Jonas Adler, Trevor Back, Stig Petersen
 Ellen Clancy, Michal Zielinski, Martin Steinegger, Michalina Pacholska, Tamas Berghammer,
 Sebastian Bodenstein, David Silver, Oriol Vinyals, Andrew W. Senior, Koray Kavukcuoglu, Push-
 meet Kohli, and Demis Hassabis. Highly accurate protein structure prediction with alphafold.
-Nature, 596(7873):583–589, 8 2021. ISSN 0028-0836. doi: 10.1038/s41586-021-03819-2. URL
+Nature, 596(7873):583589, 8 2021. ISSN 0028-0836. doi: 10.1038/s41586-021-03819-2. URL
 https://www.nature.com/articles/s41586-021-03819-2.pdf.
-11
 
 Published as a conference paper at ICLR 2024
 Junkyung Kim, Drew Linsley, Kalpit Thakkar, and Thomas Serre. Disentangling neural mechanisms
@@ -934,13 +636,13 @@ openreview.net/forum?id=HJxrVA4FDS.
 Kundan Krishna, Saurabh Garg, Jeffrey Bigham, and Zachary Lipton. Downstream datasets make
 surprisingly good pretraining corpora. In Anna Rogers, Jordan L. Boyd-Graber, and Naoaki
 Okazaki (eds.), Proceedings of the 61st Annual Meeting of the Association for Computational
-Linguistics (Volume 1: Long Papers), volume abs/2209.14389, pp. 12207–12222. Association
+Linguistics (Volume 1: Long Papers), volume abs/2209.14389, pp. 1220712222. Association
 for Computational Linguistics, 9 2023. doi: 10.18653/v1/2023.acl-long.682. URL https:
 //doi.org/10.18653/v1/2023.acl-long.682.
 Mike Lewis, Yinhan Liu, Naman Goyal, Marjan Ghazvininejad, Abdelrahman Mohamed, Omer
 Levy, Veselin Stoyanov, and Luke Zettlemoyer. BART: Denoising sequence-to-sequence pre-
 training for natural language generation, translation, and comprehension. In Proceedings of the
-58th Annual Meeting of the Association for Computational Linguistics, pp. 7871–7880, Online,
+58th Annual Meeting of the Association for Computational Linguistics, pp. 78717880, Online,
 July 2020. Association for Computational Linguistics. URL https://aclanthology.org/
 2020.acl-main.703.
 Yuhong Li, Tianle Cai, Yi Zhang, Deming Chen, and Debadeepta Dey.
@@ -955,7 +657,7 @@ ing long-range spatial dependencies with horizontal gated recurrent units. In Sa
 Hanna M. Wallach, Hugo Larochelle, Kristen Grauman, Nicol`o Cesa-Bianchi, and Roman Garnett
 (eds.), Advances in Neural Information Processing Systems 31: Annual Conference on Neural
 Information Processing Systems 2018, NeurIPS 2018, December 3-8, 2018, Montr´eal, Canada,
-pp. 152–164, 2018. URL https://proceedings.neurips.cc/paper/2018/hash/
+pp. 152164, 2018. URL https://proceedings.neurips.cc/paper/2018/hash/
 ec8956637a99787bd197eacd77acce5e-Abstract.html.
 Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer Levy, Mike
 Lewis, Luke Zettlemoyer, and Veselin Stoyanov. Roberta: A robustly optimized bert pretraining
@@ -968,33 +670,31 @@ International Conference on Learning Representations, ICLR 2023, Kigali, Rwanda,
 https://openreview.net/pdf?id=qNLe3iq2El.
 Andrew L. Maas, Raymond E. Daly, Peter T. Pham, Dan Huang, Andrew Y. Ng, and Christopher
 Potts. Learning word vectors for sentiment analysis. In Proceedings of the 49th Annual Meeting
-of the Association for Computational Linguistics: Human Language Technologies, pp. 142–
+of the Association for Computational Linguistics: Human Language Technologies, pp. 142
 150. Association for Computational Linguistics, 2011. URL https://www.aclweb.org/
 anthology/P11-1015.
 Nikita Nangia and Samuel Bowman. ListOps: A diagnostic dataset for latent tree learning. In Proceed-
 ings of the 2018 Conference of the North American Chapter of the Association for Computational
-Linguistics: Student Research Workshop, pp. 92–99. Association for Computational Linguis-
+Linguistics: Student Research Workshop, pp. 9299. Association for Computational Linguis-
 tics, 2018. doi: 10.18653/v1/N18-4013. URL https://www.aclweb.org/anthology/
-N18-4013.
 Eric Nguyen, Karan Goel, Albert Gu, Gordon Downs, Preey Shah, Tri Dao, Stephen Baccus, and
 Christopher R´e. S4nd: Modeling images and videos as multidimensional signals with state spaces.
-Advances in neural information processing systems, 35:2846–2861, 2022.
+Advances in neural information processing systems, 35:28462861, 2022.
 Antonio Orvieto, Samuel L Smith, Albert Gu, Anushan Fernando, Caglar Gulcehre, Razvan Pascanu,
 and Soham De. Resurrecting recurrent neural networks for long sequences. In Andreas Krause 0001,
-12
 
 Published as a conference paper at ICLR 2024
 Emma Brunskill, KyungHyun Cho, Barbara Engelhardt, Sivan Sabato, and Jonathan Scarlett (eds.),
 International Conference on Machine Learning, ICML 2023, 23-29 July 2023, Honolulu, Hawaii,
-USA, volume abs/2303.06349, pp. 26670–26698. PMLR, 3 2023. doi: 10.48550/arxiv.2303.06349.
+USA, volume abs/2303.06349, pp. 2667026698. PMLR, 3 2023. doi: 10.48550/arxiv.2303.06349.
 URL https://proceedings.mlr.press/v202/orvieto23a.html.
 Dragomir R. Radev, Pradeep Muthukrishnan, Vahed Qazvinian, and Amjad Abu-Jbara. The ACL
-anthology network corpus. Language Resources and Evaluation, 47:919–944, 2013.
+anthology network corpus. Language Resources and Evaluation, 47:919944, 2013.
 Alec Radford, Jeff Wu, Rewon Child, David Luan, Dario Amodei, and Ilya Sutskever. Language
 models are unsupervised multitask learners. 2019.
 Colin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael Matena, Yanqi
 Zhou, Wei Li, and Peter J. Liu. Exploring the limits of transfer learning with a unified text-to-text
-transformer. Journal of machine learning research, abs/1910.10683:140:1–140:67, 10 2019. ISSN
+transformer. Journal of machine learning research, abs/1910.10683:140:1140:67, 10 2019. ISSN
 1532-4435. URL http://jmlr.org/papers/v21/20-074.html.
 Scott Reed, Konrad Zolna, Emilio Parisotto, Sergio Gomez Colmenarejo, Alexander Novikov, Gabriel
 Barth-Maron, Mai Gimenez, Yury Sulsky, Jackie Kay, Jost Tobias Springenberg, Tom Eccles, Jake
@@ -1003,7 +703,6 @@ Oriol Vinyals, Mahyar Bordbar, and Nando de Freitas. A generalist agent. Trans. 
 Res., 2022, 2022.
 Hamed Shirzad, Ameya Velingker, B. Venkatachalam, Danica J. Sutherland, and Ali Kemal Sinop.
 Exphormer: Sparse transformers for graphs. In International Conference on Machine Learning,
-2023.
 Jimmy T.H. Smith, Andrew Warrington, and Scott Linderman. Simplified state space layers for
 sequence modeling. In The Eleventh International Conference on Learning Representations, 2023.
 URL https://openreview.net/forum?id=Ai8Hw3AXqks.
@@ -1016,7 +715,7 @@ transformers. In 9th International Conference on Learning Representations, ICLR 
 Event, Austria, May 3-7, 2021, volume abs/2011.04006. OpenReview.net, 11 2020a. URL https:
 //openreview.net/forum?id=qVyeW-grC2k.
 Yi Tay, Mostafa Dehghani, Dara Bahri, and Donald Metzler. Efficient transformers: A survey. ACM
-Computing Surveys, 55:1 – 28, 2020b.
+Computing Surveys, 55:1 28, 2020b.
 Hugo Touvron, Louis Martin, Kevin Stone, Peter Albert, Amjad Almahairi, Yasmine Babaei, Nikolay
 Bashlykov, Soumya Batra, Prajjwal Bhargava, Shruti Bhosale, Dan Bikel, Lukas Blecher, Cris-
 tian Canton Ferrer, Moya Chen, Guillem Cucurull, David Esiobu, Jude Fernandes, Jeremy Fu,
@@ -1031,29 +730,28 @@ Zhang, Angela Fan, Melanie Kambadur, Sharan Narang, Aurelien Rodriguez, Robert S
 Sergey Edunov, and Thomas Scialom. Llama 2: Open foundation and fine-tuned chat models.
 arXiv.org, abs/2307.09288, 7 2023. ISSN 2331-8422. doi: 10.48550/arxiv.2307.09288. URL
 https://doi.org/10.48550/arXiv.2307.09288.
-Petar Velivckovi’c, Adri`a Puigdom`enech Badia, David Budden, Razvan Pascanu, Andrea Ban-
+Petar Velivckovic, Adri`a Puigdom`enech Badia, David Budden, Razvan Pascanu, Andrea Ban-
 ino, Mikhail Dashevskiy, Raia Hadsell, and Charles Blundell.
 The clrs algorithmic reason-
 ing benchmark.
 In International Conference on Machine Learning, 2022.
 URL https:
 //api.semanticscholar.org/CorpusID:249210177.
-13
 
 Published as a conference paper at ICLR 2024
 Pete Warden. Speech commands: A dataset for limited-vocabulary speech recognition. ArXiv,
-abs/1804.03209, 2018.
 Simiao Zuo, Xiaodong Liu, Jian Jiao, Denis Charles, Eren Manavoglu, Tuo Zhao, and Jianfeng
 Gao.
 Efficient long sequence modeling via state space augmented transformer.
 arXiv.org,
 abs/2212.08136, 12 2022. ISSN 2331-8422. doi: 10.48550/arxiv.2212.08136. URL https:
 //doi.org/10.48550/arXiv.2212.08136.
-A
+
 
 ## Related Work
 
 Modeling Long Range Dependencies
+
 
 ## Evaluation
 
@@ -1079,16 +777,14 @@ of supervised ImageNet pretraining, for object detection and segmentation tasks.
 (2023), the authors provide a similar study on NLP tasks, showing multiple instances in which
 pretraining on the task data performs comparably to off-the-shelf models pretrained on large text
 corpora.
-B
 CONCLUSIONS
 In this work, we argued against the common practice of training models from scratch to evaluate
 their performance on long range tasks and suggested an efficient and effective solution to mitigate
-this issue – self-supervised pretraining on the task data itself. Through a comprehensive array of
+this issue self-supervised pretraining on the task data itself. Through a comprehensive array of
 experiments, we showed that our method consistently leads to dramatically improved performance
 for multiple architectures across data scales, and allows simpler models to match the performance of
 complex ones. Our work stresses the need to account for the pretraining stage while designing and
 evaluating novel architectures in the future.
-C
 APPENDIX
 C.1
 ADDITIONAL EXPERIMENT DETAILS & HYPER-PARAMETERS
@@ -1099,7 +795,6 @@ When finetuning a pretrained model we use the checkpoint matching highest valida
 R2 score for CE / L1 loss respectively, and perform a search over a small grid of learning rates and
 batch sizes with log spacing, e.g. (1e-3 5e-4 1e-4) and (8 32 128), with values for best performance
 reported in Table C.1.
-14
 
 Published as a conference paper at ICLR 2024
 Our experiments were performed on NVIDIA 3090 and V100 GPUs. All models were trained for
@@ -1130,7 +825,7 @@ S4 models we refer to Gu et al. (2022a) - Appendix D.2 Table 11, and Table 5 for
 searches. Hyper-parameters of Transformers can be found in Table 4. For the PathX-256 task we
 use the same configuration as PathX, changing the pooling method again from Mean to Max. For
 pretraining we use learning rate 1e-3, batch size 8 and batch size 64 for fine tuning with the same
-learning rate, the trained from scratch model’s learning rate is 1e-4 with batch size 16.
+learning rate, the trained from scratch models learning rate is 1e-4 with batch size 16.
 C.1.3
 THE ROLE OF EXPLICIT PRIORS
 S4 models follow the setup described in C.1.2 for structured and random initialization, with results
@@ -1144,7 +839,7 @@ helpful for optimization.
 C.1.4
 SELF PRETRAINING IS EFFECTIVE ACROSS DATA SCALES
 Experiments in this section use similar hyper-parameters to Table 5. For data restriction, we use
-fractions of the entire training set: (Num. Train Samples) × {0.005, 0.01, 0.05, 0.1, 0.5, 1.0}.
+fractions of the entire training set: (Num. Train Samples) {0.005, 0.01, 0.05, 0.1, 0.5, 1.0}.
 The subsets are inclusive, meaning smaller fractions are contained in bigger ones, to avoid biases
 from difficult sampled subsets. For experiments on Text we pretrain all models for 40K pretraining
 steps and finetune the checkpoint with best performance on the validation set until convergence. For
@@ -1155,10 +850,9 @@ learning rates 1e-3, 5e-4 and use the model with best performance on the validat
 we use batch size 50 for all experiments, learning rate 1e-2 for pretraining, and learning rate to 2e-3
 for finetuning and training from scratch.
 4https://github.com/ag1988/dlr
-15
 
 Published as a conference paper at ICLR 2024
-Table 4: hyper-parameters for Transformers in all sections, section 3.1 (denoted by †), where 2 values
+Table 4: hyper-parameters for Transformers in all sections, section 3.1 (denoted by ), where 2 values
 are listed the 2nd value was used for pretraining, e.g. (FT, PT). LR - Learning Rate, BSZ - Batch
 Size, WD - Weight Decay
 ListOps
@@ -1167,313 +861,136 @@ Depth
 Num Attn. Heads
 FF size
 Pooling
-LR
 BSZ
-WD
 PT Loss
-Transformer + Masked SPT†
-512
-6
-8
-1024
+Transformer + Masked SPT
 Mean
 1e-4,1e-3
-64,128
-0.1
-CE
-Transformer + Causal SPT†
-512
-6
-8
-1024
+Transformer + Causal SPT
 Last
 5e-4, 5e-4
-128,32
-0.1
-CE
 Transformer + Rotary + Masked SPT
-512
-6
-8
-1024
 Mean
 1e-4, 1e-3
-64,256
-0.05
-CE
 Text
 Features
 Depth
 Num Attn. Heads
 FF size
 Pooling
-LR
 BSZ
-WD
 PT Loss
-Transformer + Masked SPT†
-512
-6
-8
-1024
+Transformer + Masked SPT
 Mean
 1e-4,5e-4
-64,32
-0.1
-CE
-Transformer + Causal SPT†
-512
-6
-8
-1024
+Transformer + Causal SPT
 Mean
 1e-4,1e-3
-64,32
-0.1
-CE
 Transformer + Rotary + Masked SPT
-512
-6
-8
-1024
 Mean
 5e-4,5e-4
-64,8
-0.1
-CE
 Retrieval
 Features
 Depth
 Num Attn. Heads
 FF size
 Pooling
-LR
 BSZ
-WD
 PT Loss
-Transformer + Masked SPT†
-128
-4
-4
-512
+Transformer + Masked SPT
 Mean
 5e-4,5e-3
-16,32
-0
-CE
-Transformer + Causal SPT†
-128
-4
-4
-512
+Transformer + Causal SPT
 Mean
 1e-3,5e-3
-48,32
-0
-CE
 Transformer + Rotary + Masked SPT
-128
-6
-4
-512
 Mean
 5e-4,5e-3
-16,32
-0
-CE
 Image
 Features
 Depth
 Num Attn. Heads
 FF size
 Pooling
-LR
 BSZ
-WD
 PT Loss
-Transformer + Masked SPT†
-64
-3
-4
-128
+Transformer + Masked SPT
 Max
 1e-3,1e03
-16,32
-0
-L1
-Transformer + Causal SPT†
-64
-3
-4
-128
+Transformer + Causal SPT
 Max
 1e-3,5e-3
-32,32
-0
-L1
 Transformer + Rotary + Masked SPT
-256
-6
-4
-512
 Mean
 1e-3,1e-3
-64,32
-0
-L1
 Pathfinder
 Features
 Depth
 Num Attn. Heads
 FF size
 Pooling
-LR
 BSZ
-WD
 PT Loss
-Transformer + Masked SPT†
-128
-4
-8
-128
+Transformer + Masked SPT
 Mean
 5e-4,1e-3
-16,16
-0
-CE
-Transformer + Masked SPT†
-128
-4
-8
-128
+Transformer + Masked SPT
 Mean
 1e-3,1e-3
-256,128
-0
-CE
 Transformer + Rotary + Masked SPT
-128
-6
-4
-512
 Mean
 5e-4,1e-3
-64,32
-0
-CE
 PathX
 Features
 Depth
 Num Attn. Heads
 FF size
 Pooling
-LR
 BSZ
-WD
 PT Loss
-Transformer + Masked SPT†
-128
-4
-8
-128
+Transformer + Masked SPT
 Max
 5e-4,5e-4
-32,8
-0
-CE
-Transformer + Masked SPT†
-128
-4
-8
-128
+Transformer + Masked SPT
 Max
 5e-4,1e-3
-256,8
-0
-CE
 Transformer + Rotary + Masked SPT
-128
-5
-4
-512
 Max
 5e-4,1e-3
-32,8
-0
-CE
-SC
 Features
 Depth
 Num Attn. Heads
 FF size
 Pooling
-LR
 BSZ
-WD
 PT Loss
 Transformer + Rotary + Masked SPT
-128
-4
-4
-128
 Max
 1e-3,1e-3
-256,8
-0
-L1
 Transformer + Rotary + Causal SPT
-128
-4
-4
-128
 Max
 1e-3,1e-3
-256,32
-0
-L1
 BIDMC
 Features
 Depth
 Num Attn. Heads
 FF size
 Pooling
-LR
 BSZ
-WD
 PT Loss
 Transformer - HR + Rotary + Masked SPT
-128
-4
-4
-128
 Max
 5e-4,5e-4
-32,16
-0
-L1
 Transformer - RR + Rotary + Masked SPT
-128
-4
-4
-128
 Max
 5e-4,5e-4
-32,16
-0
-L1
 Transformer - SpO2 + Rotary + Masked SPT
-128
-4
-4
-128
 Max
 1e-4,5e-4
-8,16
-0
-L1
 Table 5: Hyper-parameters for SSMs and Pythia in Sections 3.2, 3.3, 3.5. ✗denotes no evaluation is
 reported. Values are reported in format (FT - LR, FT - BSZ, PT - LR, PT - BSZ), FT - Fine Tuning
 (or training on downstream), PT - Pre Training, LR - Learning Rate, BSZ- Batch Size.
+
 
 ## Approach
 
@@ -1486,59 +1003,42 @@ PathX
 S4 + Rand Init + SPT
 1e-3,16,1e-3,32
 1e-3,16,32
-✗
 5e-4,64,1e-3,32
-✗
 5e-4,16,1e-3,4
 S4 + Rand Init
 5e-4,16
 1e-3,16
-✗
-1e-4,128
-✗
 5e-4,16
 S4 + SPT
 1e-3,16,1e-3,128 5e-4,16,5e-4,8 5e-4,256,5e-4,8 1e-3,512,1e-3,32 1e-3,64,1e-3,8 1e-3,64,1e-3,8
 DLR + Rand Init + SPT
 5e-4,64,5e-4,32
 5e-4,16,5e-4,8
-✗
 1e-3,64,32
-✗
 5e-4,16,5e-4,8
 DLR + Rand Init
 1e-4,16
 1e-3,16
-✗
 1e-3,16
-✗
 5e-4,64
 DLR + SPT
 5e-4,16,1e-3,128 1e-3,16,5e-4,8
-✗
 1e-3,64,1e-3,32
-✗
 5e-4,64,5e-4,8
 DLR
 5e-4,16
 5e-4,16
-✗
 5e-4,64
-✗
 5e-4,64
 Pythia
 5e-5,64
 5e-4,16
-1e-4,256
 7e-5,64
-1e-4,1024
-✗
 C.1.5
 PRETRAINING ON TEXT CORPORA
 We use the pretrained Pythia model available at: https://huggingface.co/EleutherAI/
 pythia-70m-deduped, and finetune without any regularization. We perform grid search over
 learning rates and batch sizes, similar to previous sections, with best values listed in Table 6.
-16
 
 Published as a conference paper at ICLR 2024
 C.1.6
@@ -1547,7 +1047,7 @@ For S4, both trained from scratch and pretrained, we follow the hyper-parameters
 (2022a), performing a small grid search similar to previous sections. All Transformers in this section
 use the Rotary PE method, and use hyper-parameters to match the size of S4, reported in Table 4. On
 the sCIFAR task Transformers use the same setup as the Image task.
-Table 6: hyper-parameters for SSMs in section 3.7. †denotes results are cited from Gu et al. (2022a)
+Table 6: hyper-parameters for SSMs in section 3.7. denotes results are cited from Gu et al. (2022a)
 Approach
 SC-Causal
 SC-Bi.
@@ -1558,7 +1058,6 @@ BIDMC-SpO2
 S4 + SPT
 5e-4,16,1e-3,32
 5e-3,16,1e-3,32 5e-4,64,1e-3,32 1e-3,64,1e-3,64 1e-3,64,1e-3,64 1e-3,64,1e-3,64
-S4
 1e-3,16,1e-3,128
 5e-4,16,5e-4,8
 5e-4,256,5e-4,8
@@ -1577,53 +1076,12 @@ Image
 PathX
 Avg.
 S4 + Rand Init + SPT
-61.5
-90.5
-87.25
-91.05
-82.75
 S4 + Rand Init
-59.85
-88.34
-75.56
-73.57
-74.33
 S4 + SPT
-61.25
-90.34
-89.36
-96.94
-84.47
-S4
-59.60
-86.82
-88.65
-96.35
-82.85
 DLR + Rand Init + SPT
-56.75
-89.13
-81.83
-94.59
-80.47
 DLR + Rand Init
-39.55
-73.72
-56.70
-50.04
-55.00
 DLR + SPT
-60.45
-89.94
-87.12
-96.38
-83.37
 DLR
-57.50
-79.65
-79.83
-92.33
-77.33
 C.3
 ADDITIONAL EXPERIMENTS - DETAILS
 For experiments in this section we follow the scheme described in Section 2 for the experimental
@@ -1636,7 +1094,6 @@ In BIDMC, we observed that naive finetuning of pretrained models results in very
 which is an artifact of the label and data scales being very different, e.g. common label values for the
 HR task are ∼80 while input is normalized to [−1, 1]. The reported performance is after normalizing
 the labels to lie in [−1, 1], which does not entail any additional information on the label itself.
-D
 COMPUTE REQUIREMENTS OF SELF PRETRAINING
 In sections 3.1, 3.2 and 3.7 we observed large empirical gains using SPT compared to simply training
 models from scratch. However, as SPT requires additional compute, it is important to ensure that the
@@ -1644,12 +1101,11 @@ reported gains are not an artifact of additional resources and that training lon
 not result in similar gains.
 In each of our trained from scratch (TFS) baseline experiments, we ensured that either (1) the training
 accuracy is almost perfect and validation performance stopped improving for multiple epochs, or
-17
 
 Published as a conference paper at ICLR 2024
 (2) the training loss stopped reducing. E.g. TFS Transformer on PathX fail to exceed 52% training
 accuracy after 8 epochs (equivalent to 2 days on 4 V100 GPUs), while SPT for 1 day and finetuning
-for 1 day achieved training accuracy ≥78%. Across our experiments, we observed case (2) to occur
+for 1 day achieved training accuracy 78%. Across our experiments, we observed case (2) to occur
 on a small number of runs and case (1) to be the dominant paradigm.
 This implies that the gains due to SPT cannot be simply explained by the use of additional compute
 and possible underfitting of TFS models, but rather by improved generalization as a consequence of
@@ -1665,29 +1121,10 @@ SPT Epochs
 Image
 Text
 Transformer
-S4
 Transformer
-S4
 0% (TFS)
-75.04
-87.83
-79.08
-87.51
-20%
-84.45
-87.15
-90.20
-89.50
 40 %
-84.95
-87.72
-90.56
-89.10
 60 %
-84.32
-87.63
-90.65
-88.87
 Despite the efficiency of SPT presented in Table 8, the performance still lags behind the unrestricted
 setting suggesting. However, in our experiments we observed that the SPT phase reaches close to the
 peak performance relatively early in the run, and leads to optimization benefits during finetuning,
@@ -1695,39 +1132,10 @@ compared to the trained from scratch model. In Figure 5 we provide the training 
 for trained from scratch and SPT models, demonstrating the above claims. This suggests that the
 computational requirements of our evaluation scheme can be potentially reduced, which we leave for
 future work.
-20%
-40%
-60%
-80%
-100%
 Training Progression
-80.0
-82.5
-85.0
-87.5
-90.0
-92.5
-95.0
-97.5
-100.0
 Train Accuracy - %
 (a) Image
-20%
-40%
-60%
-80%
-100%
 Training Progression
-55.0
-60.0
-65.0
-70.0
-75.0
-80.0
-85.0
-90.0
-95.0
-100.0
 Finetuning
 Training from Scratch
 Self Pretraining
@@ -1738,41 +1146,13 @@ that finetuned models optimize faster (solid vs dashed blue curves). Training bu
 epochs for Text and 150 epochs for Image.
 5The performance of S4 shown here is for the model we retrained using the specified number of epochs -
 different from Table 2 which is cited from the original work.
-18
 
 Published as a conference paper at ICLR 2024
 Table 9: Performance on Image task across model sizes with SPT & trained from scratch.
 Approach
-100K
-300K
-1M
-3M
-10M
 Transformer+Rotary
-68.51
-68.51
-71.50
-75.04
-77.88
 Transformer+Rotary + Masked SPT
-74.43
-76.36
-84.83
-86.04
-86.54
-S4
-81.36
-83.63
-84.81
-88.65
-85.73
 S4 + Masked SPT
-83.45
-86.39
-88.67
-89.36
-88.72
-E
 SELF PRETRAINING IS EFFECTIVE ACROSS MODEL SCALES
 In section 3.4, we demonstrated the effectiveness of SPT across data scales. We now demonstrate
 that SPT is effective across model sizes as well. We focus on the Image task, which exhibits the
@@ -1784,4 +1164,4 @@ in Table 9 show that the utility of SPT is maintained across model scales, consi
 the trained from scratch variants.
 6along with model width and depth, state space models have an additional hyperparameter; the state
 dimension. We found it difficult to scale up the model size without increasing the state size.
-19
+

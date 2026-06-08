@@ -4,7 +4,6 @@
 > **Source:** <https://proceedings.mlr.press/v267/wu25i.html>
 
 ---
-
 COLLABLLM: From Passive Responders to Active Collaborators
 Shirley Wu 1 Michel Galley 2 Baolin Peng 2 Hao Cheng 2 Gavin Li 1 Yao Dou 3 Weixin Cai 1
 James Zou 1 Jure Leskovec 1 Jianfeng Gao 2
@@ -15,13 +14,9 @@ Reward
 Real-world or
 Simulated User
 Policy
-𝝅𝜽𝒚𝒙
 ③Collaborative Simulation
 Forward Sampling
 Reward Computation
-#1
-#2
-#3
 ①Context state (𝒙)
 I need to write about how optimism
 can improve our well-being.
@@ -29,11 +24,6 @@ To get us started, what kind
 of tone are you aiming for?
 Online generation
 RL finetuning
-#1
-#2
-#3
-…
-…
 (𝒙, 𝒚)
 Extrinsic Reward
 e.g., Performance
@@ -43,6 +33,7 @@ Efficiency
 Figure 1: COLLABLLM Framework: Given a context 1 , the model generates a response 2 to maximize long-term collab-
 oration gains, termed Multiturn-aware Rewards (MR). During training, MRs are estimated via 3 collaborative simulation,
 which forward-samples conversations with simulated users. Finally, 4 reinforcement fine-tuning is applied using the MRs.
+
 
 ## Abstract
 
@@ -64,7 +55,7 @@ using Multiturn-aware Rewards. By reinforce-
 ment fine-tuning these rewards, COLLABLLM
 goes beyond responding to user requests, and ac-
 tively uncovers user intent and offers insightful
-suggestions—a key step towards more human-
+suggestionsa key step towards more human-
 centered AI. We also devise a multiturn interac-
 tion benchmark with three challenging tasks such
 as document creation.
@@ -76,7 +67,6 @@ dence to: <shirwu@stanford.edu>, <mgalley@microsoft.com>.
 Proceedings of the 42 nd International Conference on Machine
 Learning, Vancouver, Canada. PMLR 267, 2025. Copyright 2025
 by the author(s).
-—–
 improved interactivity by LLM judges. Finally, we conduct
 a large user study with 201 judges, where COLLABLLM
 increases user satisfaction by 17.6% and reduces user spent
@@ -96,7 +86,7 @@ et al., 2024). Therefore, an open problem is to train mod-
 els that actively guide users in clarifying and refining their
 intents, and helps them achieve their goals. This key chal-
 lenge would improve user satisfaction and efficiency and
-streamline human-LLM interactions—especially as LLMs
+streamline human-LLM interactionsespecially as LLMs
 are being applied to real-world tasks that are increasingly
 complex and open-ended.
 A notable limitation of established fine-tuning techniques,
@@ -104,17 +94,14 @@ such as Reinforcement Learning from Human Feedback
 (RLHF) (Ouyang et al., 2022), is that they primarily re-
 ward LLMs for immediate, single-turn responses, reducing
 their incentive to seek clarification or assist users in refin-
-1
 
 COLLABLLM: From Passive Responders to Active Collaborators
 Single-turn
-a
 Rewards
 (a) Non-collaborative LLM
 Preference / Reward Dataset
 Policy Model
-𝝅𝜽𝒚𝒙
-Here‘s a piece for you:
+Heres a piece for you:
 The Power of Optimism: Unlocking a Brighter You
 (Many tokens)
 I need to write about how optimism can improve our well-being
@@ -124,42 +111,27 @@ Hey there, friend! Are you ready to join the optimism revolution?
 (Many tokens)
 (Many back-and-forth turns)
 Ineffective Collab.
-𝒙
-𝒚
 Next-turn
+
 
 ## Evaluation
 
 To get us started, what kind of tone are you aiming for?
 A. Uplifting B. Inspiring C. Heartfelt and personal
 Also, do you want to highlight its role in resilience or relationships?
-I‘m aiming for (B). Touching on resilience and how it helps in relationships would be great!
-I‘d like to propose an opening paragraph to set the tone:
+Im aiming for (B). Touching on resilience and how it helps in relationships would be great!
+Id like to propose an opening paragraph to set the tone:
 (Short paragraph)
 Perhaps we can add anecdotes or personal experience to make it more impactful.
 Effective Collab.
 Future turns
 I need to write about how optimism can improve our well-being
 (Reach user satisfaction quickly)
-𝒕𝟏:𝒌−𝟏
-…
-…
-…
 Current user turn
-𝒖𝒌
-𝒎𝒌
 Current model turn
 History
-…
-𝒖𝒌+𝟏
-𝑹(
-|
-)
-,
-…
 Collaborative
 Simulation
-RL
 Finetuning
 : Frustrating
 : Low Efficiency (1.39k tokens read)
@@ -177,7 +149,7 @@ Real-world
 Deployment
 Evaluation
 Figure 2: Real examples from COLLABLLM and non-collaborative LLMs. (a) Non-collaborative LLM fine-tuing relies
-single-turn rewards on immediate responses, which exhibits passive behaviors that follow the user’s requests, leading to
+single-turn rewards on immediate responses, which exhibits passive behaviors that follow the users requests, leading to
 user frustration, less efficient process, and less satisfactory results. (b) COLLABLLM incorporates Multiturn-aware Re-
 wards from collaborative simulation, enabling forward-looking strategies. This results in more high-performing, efficient,
 and interactive conversations that anticipate future needs, propose timely clarification, and provide insightful suggestions.
@@ -189,9 +161,8 @@ Here we introduce COLLABLLM, a novel and general
 training framework that improves the ability of LLMs to
 effectively collaborate with humans in multiturn scenar-
 ios (Gao et al., 2019; Balog & Zhai, 2023; Rahmani et al.,
-2023).
 The key innovation of COLLABLLM is to pro-
-mote LLMs’ forward-looking behavior that leads to long-
+mote LLMs forward-looking behavior that leads to long-
 term collaboration gains (Figure 1). We introduce a col-
 laborative simulation module that samples future conversa-
 tions with users to estimate the long-term impact of model
@@ -205,7 +176,7 @@ tion 3). By fine-tuning with RL algorithms (Rafailov et al.,
 motes responses that lead to better task completion and effi-
 ciency in later conversation stages. As shown in Figure 2b,
 the fine-tuned model goes beyond simply responding to
-user requests in Figure 2a—it actively collaborates by ask-
+user requests in Figure 2ait actively collaborates by ask-
 ing follow-up questions about the writing tone, generating
 targeted content about the role of optimism, and offering
 insightful suggestions such as adding anecdotes.
@@ -235,17 +206,16 @@ ful questions and suggestions to guide writing processes.
 In contrast to many existing tasks that are single-turn and
 require no human involvement beyond the initial query, our
 problem formulation reflects a real-world setting in which
-a user’s underlying (implicit) goal is defined as g in a mul-
+a users underlying (implicit) goal is defined as g in a mul-
 titurn conversational task. The conversation unfolds over
 multiple turns tj = {uj, mj}, where uj is the user input
-and mj is the model’s response at each turn j = 1, . . . , K,
+and mj is the models response at each turn j = 1, . . . , K,
 where K is the number of turns in the conversation.
 At the j-th turn, the model generates its response based
 on the previous conversation turns t1:j−1 = {t1, . . . , tj−1}
 and the current user response uj. For simplicity, we define
 historical conversation at j-th turn as th
 j = t1:j−1 ∪{uj},
-2
 
 COLLABLLM: From Passive Responders to Active Collaborators
 therefore, mj = M(th
@@ -256,7 +226,7 @@ efficiently achieve for goal g, e.g., answering a math ques-
 tion, where goal achievement is assessed based on user sat-
 isfaction or an external evaluation function, such as accu-
 racy by LLM judge. Formally, we define the objective as
-R∗(t1:K | g), where R∗incorporate the achievement of
+R(t1:K | g), where Rincorporate the achievement of
 task success and user experience factors such as time cost.
 3. Unified Collaborative LLM Training
 Key Motivations. Established LLM training frameworks,
@@ -264,28 +234,28 @@ such as Reinforcement Learning from Human Feedback
 (RLHF) (Ouyang et al., 2022), focus on maximizing imme-
 diate rewards for single-turn tasks. This cause a misalign-
 ment between their single-turn objective and real-world
-multiturn objective R∗(t1:K | g). Precisely, the model’s
+multiturn objective R(t1:K | g). Precisely, the models
 accumulative single-turn reward Pj=K
 j=1 R(mj | th
 j ) may
-not imply a higher final reward R∗(t1:K | g).
+not imply a higher final reward R(t1:K | g).
 In fact,
 achieving high single-turn rewards at each turn may not
 imply a higher final reward. For example, consider a task
-where the user’s goal g is to write an engaging article. A
+where the users goal g is to write an engaging article. A
 model trained with traditional RLHF might generate iso-
 lated responses, like drafting an introduction or listing con-
 clusions. While these responses are helpful in isolation,
 they fail to consider how the sections flow together, result-
 ing in an article that might not be cohesive and aligned with
-the user’s goal.
+the users goal.
 Instead, effective multiturn collaboration requires model
 responses that optimally contribute to the final reward. The
-model should aim to align its responses with the user’s goal
+model should aim to align its responses with the users goal
 g by considering their impact on the entire conversation tra-
 jectory t1:K. In the previous example, instead of generating
-a conclusion, asking, “Should I maintain an engaging tone
-in the conclusion like the introduction?” offers better long-
+a conclusion, asking, Should I maintain an engaging tone
+in the conclusion like the introduction? offers better long-
 term alignment with the goal.
 3.1. Multiturn-aware Rewards
 In Figure 1, our key insight is that effective multiturn col-
@@ -303,6 +273,7 @@ uates the interventional effects of an action in sequential
 decision-making. Appendix A provides further discussion
 on the connection between causal effect estimation and our
 
+
 ## Approach
 
 Reward:
@@ -312,12 +283,12 @@ MR(mj | th
 j , g)
 = Etf
 j ∼P (tj+1:K|th
-j ∪{mj})R∗(th
+j ∪{mj})R(th
 j ∪{mj} ∪tf
 j | g)
 = Etf
 j ∼P (tf
-j |t1:j)R∗(t1:j ∪tf
+j |t1:j)R(t1:j ∪tf
 j | g),
 (1)
 where t1:j denotes the conversation history up to and in-
@@ -329,22 +300,22 @@ j | t1:j) models the possible forward conversa-
 tions conditioned on the prior conversation history.
 However, computing Equation 1 remains challenging as it
 requires the following components: (a) A conversation-
-level reward function, R∗(t | g), for evaluating an arbi-
+level reward function, R(t | g), for evaluating an arbi-
 trary multiturn conversation t, and (b) a sampling strategy
 for obtaining forward conversations P(tf
 j | t1:j), which
 represents the forward conversation distribution. We elab-
 orate on the two components in Section 3.1.1 and 3.1.2.
 3.1.1. CONVERSATION-LEVEL REWARD FUNCTION
-We approximate the conversation-level reward R∗(t | g)
+We approximate the conversation-level reward R(t | g)
 with a combination of extrinsic (goal-specific) and intrinsic
 (goal-agnostic) metrics:
-R∗(t | g) ≃Rext(t, g) + Rint(t),
+R(t | g) ≃Rext(t, g) + Rint(t),
 (2)
 where Rext(t, g) focuses on task success, and Rint(t) evalu-
 ates user experience including efficiency and engagement.
-• Extrinsic Reward Rext(t, g) measures how well the
-conversation achieves the user’s goal g. Formally:
+Extrinsic Reward Rext(t, g) measures how well the
+conversation achieves the users goal g. Formally:
 Rext(t, g) = S(Extract(t), yg),
 (3)
 where Extract(t) extracts the final solution or response
@@ -354,18 +325,17 @@ lution for the goal g, e.g., the ground truth solution for
 a math problem. And S(·, ·) evaluates task-specific met-
 rics like accuracy or similarity. This ensures the conver-
 sation contributes directly to achieving the desired goal.
-• Intrinsic Reward Rint(t) prioritizes conversations that
+Intrinsic Reward Rint(t) prioritizes conversations that
 enhance user experience, defined as:
-Rint(t) = −min[λ · TokenCount(t), 1] + RLLM(t), (4)
+Rint(t) = −min[ · TokenCount(t), 1] + RLLM(t), (4)
 where we encourage conversational efficiency by penal-
-izing excessive tokens that users read and write, with λ
+izing excessive tokens that users read and write, with
 controlling the penalty severity. This efficiency measure
 is bounded by 1 to maintain balance with other metrics.
-3
 
 COLLABLLM: From Passive Responders to Active Collaborators
 The second term, RLLM(t), is assigned by an LLM-based
-judge (Zheng et al., 2023) on a 0–1 scale, evaluating
+judge (Zheng et al., 2023) on a 01 scale, evaluating
 user-valued objectives such as engagement / interactiv-
 ity. Notably, additional conversational aspects, such as
 clarity, can be further integrated into the objective.
@@ -390,7 +360,7 @@ gathered from human participants, sampling multiple for-
 ward conversations during training is costly and impracti-
 cal. To further reduce cost and ensure scalability, we intro-
 duce a user simulator U.
-User Simulator:. A user simulator U : T →U is a func-
+User Simulator:. A user simulator U : T U is a func-
 tion that maps a given conversation history t ∈T to a user
 response u ∈U. Specifically, U generates a probabilistic
 distribution P(u | t) over possible user responses condi-
@@ -425,7 +395,7 @@ fine-tuning (SFT) and DPO. For SFT, it iteratively selects
 top-ranked responses to build realistic, goal-directed con-
 versation histories. For DPO, it constructs pairwise com-
 parisons by ranking responses at each turn, distinguishing
-“chosen” and “rejected” pairs based on MR scores. The
+chosen and rejected pairs based on MR scores. The
 generated synthetic data aligns with multiturn objectives.
 Overall, COLLABLLM enables scalable dataset generation
 and online RL training without human annotation, mak-
@@ -462,19 +432,11 @@ to the user simulator. For evaluation, we compute the aver-
 age Pass Rate (PR) of code at the end of the interactions.
 *Dataset and training details in Appendix B; all prompts (e.g.,
 prompts of user simulator and LLM judges) in Appendix D.
-4
 
 COLLABLLM: From Passive Responders to Active Collaborators
-c
-c
-c
-c
-c
-c
 User Simulator
 You are tasked with role-
 playing as a user.
-…
 Given information:
 <Target problem>
 <Current chat history>
@@ -501,8 +463,6 @@ Can you explain how I can find the
 rectangular coordinates when I
 have the spherical ones?
 What happens when I double ϕ?
-…
-…
 Sure I can give you a specific example:
 (2,−1,−2). Also, will the new z decreases?
 Target problem:
@@ -517,8 +477,6 @@ that takes a DataFrame and a
 dictionary to replace certain values
 Yes, I have pandas installed and I want
 the function name to be task_func.
-…
-…
 I also prefer using a 'ValueError' when
 the input isn't a DataFrame.
 Target problem:
@@ -532,8 +490,6 @@ Can you help me write something
 on how optimism can make you
 feel better?
 I'm aiming for an inspirational tone.
-…
-…
 Good start! Can we include more on
 how optimism affects physical health?
 Mathematics Problem solving
@@ -604,17 +560,16 @@ decreases token count per conversation by 1.03k compared
 to the base model.
 5.1. Ablations on Reward Mechanisms (Figure 9)
 To investigate how components contribute to COL-
-LABLLM’s superior performance, we conduct an ablation
+LABLLMs superior performance, we conduct an ablation
 study focusing on the reward mechanisms used during fine-
 tuning. We evaluate the following reward mechanisms:
-• Variants of Multiturn-aware Reward: We vary the
+Variants of Multiturn-aware Reward: We vary the
 forward sampling window size w = 1, 2, 3 to assess
 their ability to capture long-term conversational effects
 through simulated collaborations.
-• Immediate Rewards evaluate the model’s immediate
+Immediate Rewards evaluate the models immediate
 response based on: 1) Helpfulness: Assessed by an LLM
 judge; 2) Extrinsic Reward: Focuses on task-specific
-5
 
 COLLABLLM: From Passive Responders to Active Collaborators
 Table 1: Evaluation results on our multiturn datasets. Green zone: Baselines; Orange zone: Variants of COLLABLLMs.
@@ -622,75 +577,20 @@ Rel. Improv. indicates the relative improvements of CollabLLMs trained with Onli
 MediumDocEdit-Chat
 BigCodeBench-Chat
 MATH-Chat
-BLEU ↑
-#Tokens(k) ↓
-ITR ↑
-PR ↑
-#Tokens(k) ↓
-ITR ↑
-ACC ↑
-#Tokens(k) ↓
-ITR ↑
+BLEU
+#Tokens(k)
+ITR
+#Tokens(k)
+ITR
+ACC
+#Tokens(k)
+ITR
 Base
-32.2
-2.49
-46.0
-9.3
-1.59
-22.0
-11.0
-3.40
-44.0
 Proactive Base
-35.0
-2.18
-62.0
-11.0
-1.51
-33.7
-12.5
-2.90
-46.0
 SFT
-35.2
-2.21
-68.0
-11.7
-1.35
-42.0
-13.5
-2.88
-58.0
 PPO
-38.5
-2.00
-78.0
-14.0
-1.35
-40.7
-13.0
-2.59
-52.0
 Offline DPO
-36.4
-2.15
-82.0
-12.3
-1.35
-46.7
-15.5
-2.40
-50.0
 Online DPO
-36.8
-2.00
-92.0
-13.0
-1.31
-52.0
-16.5
-2.37
-60.0
 Rel. Improv.
 5.14%
 8.25%
@@ -704,39 +604,16 @@ Rel. Improv.
 BLEU
 ITR
 #Token (k)
-0.360
-0.5
-0.7
-0.6
-1.8
-2.2
 Helpfulness
 Extrinsic
 Extrinsic + Intrinsic
 Immediate Reward
- Mechanisms
+Mechanisms
 Multiturn-aware
 Reward Mechanisms
 MR (𝑤= 1)
 MR (𝑤= 2)
 MR (𝑤= 3)
-2.19
-0.68
-0.64
-0.70
-0.54
-0.60
-0.373
-0.365
-0.367
-0.369
-0.370
-0.373 0.373
-2.0
-2.11
-2.0
-2.0
-1.851.84
 Figure 4: Selected Ablation Study of Reward Mechanisms on MediumDocEdit-Chat. This figure compares three
 immediate reward mechanisms with three MR variants. MR consistently improves task-specific performance (BLEU),
 conversational efficiency (# Tokens), and interactivity (ITR). See Appendix B.3 for the full results.
@@ -756,7 +633,7 @@ sic components, fall short as they ignore long-term impact.
 These findings validate the positive impact of the forward
 sampling strategy in MRs.
 5.2. Case Study (Figure 5 & 6)
-We now offer a deeper insight into COLLABLLM’s behav-
+We now offer a deeper insight into COLLABLLMs behav-
 ior as shown in Figure 5. In this example, the user request
 to tokenize a text file is inherently open-ended due to un-
 specified factors, such as the NLTK environment, tokenizer
@@ -792,12 +669,11 @@ Abg-CoQA (Guo et al., 2021), a question-answering (QA)
 benchmark where questions are labeled as ambiguous or
 non-ambiguous (cf.
 Appendix E). We categorize the
-model’s responses into two actions—asking a clarifying
-question or providing a direct answer—and evaluate action-
+models responses into two actionsasking a clarifying
+question or providing a direct answerand evaluate action-
 level accuracy within each question type. As shown in Ta-
 ble 2, GPT-4o and Llama-3.1-8B rarely ask clarifying ques-
 tions regardless of ambiguity. In contrast, COLLABLLM
-6
 
 COLLABLLM: From Passive Responders to Active Collaborators
 Hi, I need help writing a function that tokenizes a text file using NLTK.
@@ -812,73 +688,62 @@ from nltk.corpus import stopwords
 import string
 def task_func(file_path):
 
-  # Initialize the NLTK data needed for processing text
-  nltk.download('punkt')
-  nltk.download('stopwords')
-  # Open the file in read mode
-  with open(file_path, 'r') as file:
-      # Read the content of the file
-      text = file.read()
-  # Convert the text to lowercase
-  text = text.lower()
-  # Remove punctuation
-  text = text.translate(str.maketrans('', '', string.punctuation))
-  # Tokenize the text
-  tokens = word_tokenize(text)
-  # Remove stopwords
-  stop_words = set(stopwords.words('english'))
-  tokens = [token for token in tokens if token not in stop_words]
-  return tokens
+# Initialize the NLTK data needed for processing text
+nltk.download('punkt')
+nltk.download('stopwords')
+# Open the file in read mode
+with open(file_path, 'r') as file:
+# Read the content of the file
+text = file.read()
+# Convert the text to lowercase
+text = text.lower()
+# Remove punctuation
+text = text.translate(str.maketrans('', '', string.punctuation))
+# Tokenize the text
+tokens = word_tokenize(text)
+# Remove stopwords
+stop_words = set(stopwords.words('english'))
+tokens = [token for token in tokens if token not in stop_words]
+return tokens
 This is a basic example of tokenization. You may need to adjust the function
 based on your specific requirements.
 I'd be happy to help with your function! Could you provide the following:
-1.
 The NLTK library's version you're using (or the version you've installed).
 2. The specific NLTK tokenizer you'd like to use (e.g., WordTokenizer, RegexpTokenizer, etc.).
 3. Confirm if you want me to the function to handle any potential errors (e.g., file not found,
 incorrect file path, etc.)
-Also, I assume I don’t need remove any punctuations in the text. Please let me know otherwise.
+Also, I assume I dont need remove any punctuations in the text. Please let me know otherwise.
 Here's a simple implementation of the `task_func` function that uses NLTK's basic word tokenization:
 import nltk
 from nltk.tokenize import word_tokenize
 def task_func(file_path):
-    try:
-        with open(file_path, 'r') as file:
-            text = file.read()
-            tokens = word_tokenize(text)
-            return tokens
-    except FileNotFoundError:
-        print(f"Error: The file '{file_path}' was not found.")
-        return None
-If you're using NLTK for the first time, you might need to run nltk.download('punkt’).
+try:
+with open(file_path, 'r') as file:
+text = file.read()
+tokens = word_tokenize(text)
+return tokens
+except FileNotFoundError:
+print(f"Error: The file '{file_path}' was not found.")
+return None
+If you're using NLTK for the first time, you might need to run nltk.download('punkt).
 Do you need further assistance on that?
 I haven't noticed what version of the NLTK I have, but I installed it recently if that helps.
-I would like to use the basic word tokenization. The error handling part doesn‘t have to
+I would like to use the basic word tokenization. The error handling part doesnt have to
 be extensive, maybe just something simple if you have suggestions. Finally, you can
 keep the punctuations as they are.
 Non-collaborative LLM
 Ours: CollabLLM
-A
-B
 Figure 5: Case study on BigCodeBench-Chat. The non-collaborative LLM assumes user needs, adding unnecessary
 steps like punctuation and stopword removal. In contrast, COLLABLLM clarifies tokenizer preferences, error handling,
 and package installation, leading to a solution that precisely aligns with user intent.
 R(B)
 R(A)
-0.67
-0.20
-0.16
-0.96
-0.80
-0.35
-0.90
-0.79
 Extrinsic
 Helpfulness
 Extrinsic
 + Intrinsic
 Immediate Reward
- Mechanisms
+Mechanisms
 Multiturn-aware
 Reward Mechanisms
 MR (𝑤= 1)
@@ -891,21 +756,8 @@ Macro Metric
 Ambiguous
 Non-Ambiguous
 Accuracy
-F1
 GPT-4o
-15.44%
-95.60%
-55.52%
-56.62%
 Base (Llama-3.1-8B)
-16.26%
-90.40%
-53.33%
-53.31%
-52.84%
-72.32%
-62.58%
-55.08%
 Table 2: Zero-shot generalization to Abg-CoQA, a conversational QA
 benchmark to identify ambiguity.
 We assess action-level accuracy,
@@ -922,8 +774,8 @@ orative strategies beyond its training domain.
 6. Real-world User Study
 Setup. We conduct a large-scale user study using Ama-
 zon Mechanical Turk with 201 participants. Each partici-
-pant is assigned a document type—randomly selected to be
-either blog post, creative writing, or personal statement—
+pant is assigned a document typerandomly selected to be
+either blog post, creative writing, or personal statement
 and chooses a topic from a predefined set. To simulate
 real-world scenarios where users have only a rough idea
 of the task, they are first asked to provide brief responses to
@@ -939,16 +791,15 @@ tailed user study setup is provided in Appendix F.
 Quantitative Results (Figure 7). Across multiple met-
 rics, COLLABLLM consistently outperforms the baselines.
 It achieves an average document quality score of 8.50.
-Specifically, 91.4% of participants rate COLLABLLM’s
-document quality as “good” (score 8–9), and 56.9% as
-“very good” (score 9–10), compared to 88.5% and 39.3%
-7
+Specifically, 91.4% of participants rate COLLABLLMs
+document quality as good (score 89), and 56.9% as
+very good (score 910), compared to 88.5% and 39.3%
 
 COLLABLLM: From Passive Responders to Active Collaborators
-(a) Document Quality Rating ↑
-(b) Interaction Rating ↑
-(c) Time Spent (s) ↓
-(d) Multiturn Interaction Rating ↑
+(a) Document Quality Rating
+(b) Interaction Rating
+(c) Time Spent (s)
+(d) Multiturn Interaction Rating
 Figure 7: Our real-world user study includes 201 participants interacting with an anonymized AI assistant randomly
 sampled from Base, Proactive Base, and COLLABLLM. Participants rate (a) document quality and (b) overall interaction
 experience, with additional assessments (d) every three turns. We also measure (c) user spent time to evaluate efficiency.
@@ -957,34 +808,34 @@ Model
 Strengths
 Weaknesses
 Base
-“Follows great instruction and does exactly what
-I’m asking it to do.”, “It can create a nice form of
-an outline to work with.”
-“The AI just agreed with me on pretty much every-
-thing. There was no discussion”, “I didn’t really
-like that it kept coming up with different options”
+Follows great instruction and does exactly what
+Im asking it to do., It can create a nice form of
+an outline to work with.
+The AI just agreed with me on pretty much every-
+thing. There was no discussion, I didnt really
+like that it kept coming up with different options
 Proactive
 Base
-“It is very organized and it actually asks you for
-feedback after writing the revision.”
-“The AI seemed to be very redundant and asked me
-the same questions over and over.”
+It is very organized and it actually asks you for
+feedback after writing the revision.
+The AI seemed to be very redundant and asked me
+the same questions over and over.
 COLLAB
 LLM
-“Asking questions and making you think of things
-you never thought of”, “The AI really helped me
-with focusing on one part of the story at a time.”,
-“It helped really well to navigate what to say and
-what information is needed”
-“The AI assistant was not up to date enough to help
+Asking questions and making you think of things
+you never thought of, The AI really helped me
+with focusing on one part of the story at a time.,
+It helped really well to navigate what to say and
+what information is needed
+The AI assistant was not up to date enough to help
 with this recent sporting event. The AI assistant
 also asked me to repeat information I had already
-given it.”
+given it.
 for Base (Llama-3.1-8B), respectively. Similarly, 63.8%
 of participants find COLLABLLM highly engaging, while
 only 42.6% report the same for Llama-3.1-8B.
 Interestingly, for multiturn interaction, the Base model
-shows a declining trend in ratings from turns 6–9, indi-
+shows a declining trend in ratings from turns 69, indi-
 cating reduced user experience in longer conversations. In
 contrast, both COLLABLLM and Proactive Base exhibit in-
 creasing ratings over time, with COLLABLLM consistently
@@ -1000,7 +851,7 @@ COLLABLLM strikes a more streamlined user experience.
 Qualitative Results (Table 3). We collected a total of 180
 strengths and 180 weaknesses across the three models. Ta-
 ble 3 presents representative feedback, while we summa-
-rize here the mddels’ strengths and weaknesses: The base
+rize here the mddels strengths and weaknesses: The base
 model generates coherent content while effectively follow
 user instructions, but it sometimes struggles with main-
 taining context in long texts, and can be overly verbose
@@ -1028,7 +879,6 @@ Standard RL methods such as Proximal Policy Optimiza-
 tion (PPO) (Schulman et al., 2017) apply rewards to indi-
 vidual model responses without accounting for their long-
 term impact on conversation trajectories. While effective
-8
 
 COLLABLLM: From Passive Responders to Active Collaborators
 Table 4: Compare COLLABLLM with Selected Works. (1) Task-Agnostic, assessing whether the approach applies across
@@ -1041,24 +891,8 @@ Versatile Interaction
 User-Centric
 Causal & Objective-Aligned Reward
 ClarifyGPT (Mu et al., 2023)
-✗
-✗
-✗
--
 STaR-GATE (Andukuri et al., 2024)
-✔
-✗
-✗
--
 MTPO (Shani et al., 2024)
-✔
-✔
-✗
-✗
-✔
-✔
-✔
-✔
 for single-turn objectives, these approaches fail to capture
 how responses influence user intent discovery and long-
 term task success (Amershi et al., 2019; Zamfirescu-Pereira
@@ -1079,7 +913,7 @@ liance on fixed prompts reduces generalization, as demon-
 strated in our experiments where proactive prompting fails
 to match the effectiveness of our fine-tuned models.
 Learning-based methods for multiturn interaction.
-• LLMs for generating clarification questions: Beyond
+LLMs for generating clarification questions: Beyond
 prompting, prior studies have explored supervised fine-
 tuning (Andukuri et al., 2024), RL fine-tuning (Chen
 et al., 2024; Zamani et al., 2020; Erbacher & Soulier,
@@ -1090,14 +924,14 @@ to encourage models to request clarifications. However,
 like prompting approaches, these methods primarily fo-
 cus on clarification questions and do not generalize to
 broader multiturn collaboration strategies.
-• Multiturn
+Multiturn
 training
 for
 LLMs:
 Recent
 bench-
 marks (Abdulhai et al., 2023; Kwan et al., 2024) evalu-
-ate LLMs’ performance in multiturn settings, measuring
+ate LLMs performance in multiturn settings, measuring
 the goal orientation and planning capabilities of mod-
 els across interactions.
 Several studies extend RLHF
@@ -1137,7 +971,7 @@ Multiturn human-LLM collaborations are increasingly
 prevalent in real-world applications. Foundation models
 should act as collaborators rather than passive responders,
 actively uncovering user intents in open-ended and com-
-plex tasks—an area where current LLMs fall short. The key
+plex tasksan area where current LLMs fall short. The key
 insight of COLLABLLM is making LLMs more multiturn-
 aware by using forward sampling to estimate the long-term
 impact of responses. Through extensive simulated and real-
@@ -1145,7 +979,6 @@ world evaluations, we demonstrate that COLLABLLM is
 highly effective, efficient, and engaging, while also gener-
 alizing well to new tasks and interactions, advancing the
 frontiers of human-centered LLMs.
-9
 
 COLLABLLM: From Passive Responders to Active Collaborators
 Acknowledgments
@@ -1155,7 +988,7 @@ Desney Tan and Chenglong Wang, as well as members
 of the Deep Learning and Health Futures groups at Mi-
 crosoft Research for helpful discussions.
 We thank lab
-members in Leskovec and Zou’s labs for discussions and
+members in Leskovec and Zous labs for discussions and
 for providing feedback. We also gratefully acknowledge
 the support of NSF under Nos. OAC-1835598 (CINES),
 CCF-1918940 (Expeditions), DMS-2327709 (IHBEM),
@@ -1184,13 +1017,13 @@ the adoption of AI in safety-critical scenarios, such as med-
 ical decision-making tasks (Liu et al., 2024), in which we
 believe AI models should be inclined to seek confirmation
 or verification (Gero et al., 2023) from an expert in case
-of uncertainty—a behavior that is mostly absent in current
+of uncertaintya behavior that is mostly absent in current
 state-of-the-art LLMs.
 Since the models in this work are trained collaboratively
 and aim to better align with user intent, concerns may arise
 regarding users with malevolent goals. However, we ar-
 gue that COLLABLLM can help mitigate safety risks in
-such cases—at least when used with LLMs that have been
+such casesat least when used with LLMs that have been
 aligned for safety (as is the case for all models used in this
 work). Safety-aligned LLMs generally refuse to respond
 to unsafe queries, which often leads malicious users to ob-
@@ -1200,7 +1033,7 @@ LABLLM often seeks to clarify user intent, creating ad-
 ditional opportunities to detect misuse. For example, mali-
 cious users might unintentionally reveal their actual goals,
 or their vagueness and refusal to disclose motivations could
-raise red flags—potentially providing the LLM with fur-
+raise red flagspotentially providing the LLM with fur-
 ther cues for identifying unsafe behavior. As presented in
 Appendix C, we conducted various safety experiments and
 show that COLLABLLM performs no worse than an equiv-
@@ -1221,7 +1054,7 @@ other safety issues (e.g., offensive language) exist in the
 data. Mechanical Turk workers were paid $10 per conver-
 sation. Given that conversations averaged 28.4 minutes,
 including break times, this means workers were paid more
-than $20 per hour on average—above the minimum wage
+than $20 per hour on averageabove the minimum wage
 in the country where the data was collected.
 This work presents one of the first attempts to train LLMs
 in such human-centric environments. To promote future
@@ -1237,7 +1070,6 @@ Amershi, S., Weld, D. S., Vorvoreanu, M., Fourney, A.,
 Nushi, B., Collisson, P., Suh, J., Iqbal, S. T., Bennett,
 P. N., Inkpen, K., Teevan, J., Kikin-Gil, R., and Horvitz,
 E. Guidelines for human-ai interaction. In CHI. ACM,
-2019.
 Andukuri, C., Fränken, J., Gerstenberg, T., and Goodman,
 N. D. Star-gate: Teaching language models to ask clari-
 fying questions. CoRR, abs/2403.19154, 2024.
@@ -1248,7 +1080,6 @@ Chen, M., Yu, X., Shi, W., Awasthi, U., and Yu, Z. Con-
 trollable mixed-initiative dialogue generation through
 prompting. In ACL, 2023.
 Chen, M., Sun, R., Arik, S. Ö., and Pfister, T. Learning to
-10
 
 COLLABLLM: From Passive Responders to Active Collaborators
 clarify: Multi-turn conversations with action-based con-
@@ -1257,7 +1088,6 @@ Chi, Y., Lin, J., Lin, K., and Klein, D. CLARINET: aug-
 menting language models to ask clarification questions
 for retrieval. CoRR, abs/2405.15784, 2024.
 Chiusano,
-F.
 Medium articles dataset.
 https:
 //huggingface.co/datasets/fabiochiu/
@@ -1281,7 +1111,6 @@ Erbacher, P. and Soulier, L.
 CIRCLE: multi-turn query
 clarifications with reinforcement learning.
 CoRR,
-abs/2311.02737, 2023.
 Faltings, F., Galley, M., Brantley, K., Peng, B., Cai, W.,
 Zhang, Y., Gao, J., and Dolan, B. Interactive text gener-
 ation. In EMNLP, 2023.
@@ -1290,7 +1119,6 @@ Kim, S., Dernoncourt, F., Yu, T., Zhang, R., and Ahmed,
 N. K. Bias and fairness in large language models: A
 survey, 2024.
 URL https://arxiv.org/abs/
-2309.00770.
 Gao, J., Galley, M., and Li, L. Neural approaches to con-
 versational AI. Found. Trends Inf. Retr., 13, 2019.
 Gao, Z., Zhan, W., Chang, J. D., Swamy, G., Brantley, K.,
@@ -1324,7 +1152,7 @@ Huang, L., Yu, W., Ma, W., Zhong, W., Feng, Z., Wang,
 H., Chen, Q., Peng, W., Feng, X., Qin, B., and Liu, T. A
 survey on hallucination in large language models: Prin-
 ciples, taxonomy, challenges, and open questions. ACM
-Transactions on Information Systems, 43(2):1–55, Jan-
+Transactions on Information Systems, 43(2):155, Jan-
 uary 2025. ISSN 1558-2868. doi: 10.1145/3703155.
 URL http://dx.doi.org/10.1145/3703155.
 Jiang, Y., Shao, Y., Ma, D., Semnani, S. J., and Lam, M. S.
@@ -1336,15 +1164,13 @@ questions for grounded retrieval. In FNAACL, 2024.
 Kim, G., Kim, S., Jeon, B., Park, J., and Kang, J. Tree
 of clarifications: Answering ambiguous questions with
 retrieval-augmented large language models. In EMNLP,
-2023.
 Kim, Y., Lee, J., Kim, S., Park, J., and Kim, J. Understand-
-ing users’ dissatisfaction with chatgpt responses: Types,
+ing users dissatisfaction with chatgpt responses: Types,
 resolving tactics, and the effect of knowledge level. In
 IUI. ACM, 2024.
 Kwan, W., Zeng, X., Jiang, Y., Wang, Y., Li, L., Shang,
 L., Jiang, X., Liu, Q., and Wong, K.
 Mt-eval:
-A
 multi-turn capabilities evaluation benchmark for large
 language models. In EMNLP, 2024.
 Lee, H., Phatale, S., Mansoor, H., Mesnard, T., Ferret, J.,
@@ -1355,7 +1181,6 @@ ment learning from human feedback with AI feedback.
 In ICML, 2024.
 Liao, L., Yang, G. H., and Shah, C. Proactive conversa-
 tional agents in the post-chatgpt world. In SIGIR, 2023.
-11
 
 COLLABLLM: From Passive Responders to Active Collaborators
 Liu, L., Yang, X., Lei, J., Shen, Y., Wang, J., Wei, P.,
@@ -1383,7 +1208,6 @@ Conference on Neural Information Processing Systems
 Pang, J., Fan, H., Wang, P., Xiao, J., Tang, N., Yang, S., Jia,
 C., Huang, S., and Yu, Y. Empowering language mod-
 els with active inquiry for deeper understanding. CoRR,
-abs/2402.03719, 2024.
 Park, J. S., Zou, C. Q., Shaw, A., Hill, B. M., Cai, C., Mor-
 ris, M. R., Willer, R., Liang, P., and Bernstein, M. S.
 Generative agent simulations of 1,000 people, 2024.
@@ -1414,21 +1238,17 @@ Liu, C., Wu, X., Guo, Z., Yu, L., Shi, L., Jiang, B.,
 and Xiong, D. Large language model safety: A holistic
 survey, 2024a.
 URL https://arxiv.org/abs/
-2412.17686.
 Shi, W., Qian, K., Wang, X., and Yu, Z.
 How to build
 user simulators to train rl-based dialog systems.
-In
 EMNLP-IJCNLP. Association for Computational Lin-
 guistics, 2019.
 Shi, W., Yuan, M., Wu, J., Wang, Q., and Feng, F. Direct
 multi-turn preference optimization for language agents.
 In EMNLP. Association for Computational Linguistics,
-2024b.
 Taylor, R. S. Question-negotiation and information seeking
 in libraries.
-College & research libraries, 29(3):178–
-194, 1968.
+College & research libraries, 29(3):178
 Tseng, B., Dai, Y., Kreyssig, F., and Byrne, B. Transferable
 dialogue systems and user simulators. In ACL/IJCNLP.
 Association for Computational Linguistics, 2021.
@@ -1442,9 +1262,8 @@ Zamani, H., Dumais, S. T., Craswell, N., Bennett, P. N.,
 and Lueck, G. Generating clarifying questions for infor-
 mation retrieval. In WWW, 2020.
 Zamfirescu-Pereira, J. D., Wong, R. Y., Hartmann, B., and
-Yang, Q. Why johnny can’t prompt: How non-ai experts
+Yang, Q. Why johnny cant prompt: How non-ai experts
 try (and fail) to design LLM prompts. In CHI. ACM,
-2023.
 Zhang, C., Dai, X., Wu, Y., Yang, Q., Wang, Y., Tang,
 R., and Liu, Y.
 A survey on multi-turn interaction
@@ -1453,14 +1272,12 @@ arXiv preprint
 arXiv:2501.09959, 2025.
 Zhang, M. J. Q. and Choi, E. Clarify when necessary: Re-
 solving ambiguity through interaction with lms. CoRR,
-abs/2311.09469, 2023.
 Zhao, Z. and Dou, Z. Generating multi-turn clarification
 for web information seeking. In WWW, 2024.
 Zheng, L., Chiang, W., Sheng, Y., Zhuang, S., Wu, Z.,
 Zhuang, Y., Lin, Z., Li, Z., Li, D., Xing, E. P., Zhang,
 H., Gonzalez, J. E., and Stoica, I. Judging llm-as-a-judge
 with mt-bench and chatbot arena. In NeurIPS, 2023.
-12
 
 COLLABLLM: From Passive Responders to Active Collaborators
 Zhou, Y., Zanette, A., Pan, J., Levine, S., and Kumar, A.
@@ -1471,33 +1288,30 @@ R., Yusuf, I. N. B., Zhan, H., He, J., Paul, I., et al. Big-
 codebench: Benchmarking code generation with diverse
 function calls and complex instructions. arXiv preprint
 arXiv:2406.15877, 2024.
-13
 
 COLLABLLM: From Passive Responders to Active Collaborators
 A. Supplementary Discussion
 A.1. Connection Between Multiturn-aware Reward and Causal Inference
-Our approach naturally aligns with causal inference principles, as it aims to quantify how a model’s response influences
+Our approach naturally aligns with causal inference principles, as it aims to quantify how a models response influences
 the future trajectory of a conversation. This aligns with the fundamental goal of causal effect estimation, which seeks to
-isolate the impact of an intervention—in this case, a model response—on long-term outcomes.
+isolate the impact of an interventionin this case, a model responseon long-term outcomes.
 From a causal perspective, given a conversation history th
 j at turn j, the causal effect of a model response mj on the final
 conversation trajectory can be expressed using front-door adjustment (Pearl, 2009; Pearl et al., 2016):
-X
-R∗(t1:K | g)P(t1:K | th
+R(t1:K | g)P(t1:K | th
 j )P(th
 j ) =
-X
-R∗(t1:K | g)P(t1:K | th
+R(t1:K | g)P(t1:K | th
 j ) = Et1:K∼P (t1:K|th
-j )R∗(t1:K | g).
+j )R(t1:K | g).
 (5)
-This equation captures the expected long-term reward of a conversation conditioned on the model’s response at turn j. It
+This equation captures the expected long-term reward of a conversation conditioned on the models response at turn j. It
 explicitly accounts for how mj intervenes in the conversation, influencing future turns and, ultimately, task success.
 A.2. Distinction from Other Multiturn Training Frameworks
 Existing multiturn trajectory-based training frameworks (Shani et al., 2024; Zhou et al., 2024; Gao et al., 2024) primarily
 rely on learning from observed trajectory-level rewards. These methods estimate the utility of responses by assigning
 rewards post hoc to completed conversations, typically training models to prefer higher-rated conversations over lower-
-rated ones. However, this approach is fundamentally observational—it captures statistical associations between responses
+rated ones. However, this approach is fundamentally observationalit captures statistical associations between responses
 and final outcomes, without disentangling how individual responses causally influence future turns. For example, in
 MTPO (Shani et al., 2024), the learning signal remains coarse-grained: rewards are assigned at the trajectory level, and the
 influence of specific turns within a conversation remains confounded and indirect.
@@ -1519,62 +1333,42 @@ Chosen
 Rejected
 MR = 1.7
 MR = 4.5
-…
 Figure 8: Generating high-quality conversation data with Multiturn-aware Rewards (MR).
 The Multiturn-aware Reward (MR) function enables the generation of high-quality synthetic conversation datasets for
 training. Given a user query, multiple LLM responses are sampled and ranked based on their MR scores, with higher-
 ranked responses designated as Chosen and lower-ranked as Rejected. To simulate natural conversational flow, the first turn
-from the chosen response’s forward interaction window is appended to the prompt for the next turn, iteratively extending
+from the chosen responses forward interaction window is appended to the prompt for the next turn, iteratively extending
 the conversation until completion. Solid red arrows denote data collection for Supervised Fine-Tuning (SFT), while dashed
 blue arrows indicate preference data construction for Direct Preference Optimization (DPO). This approach systematically
 curates multiturn conversations that enhance both response quality and collaborative efficiency, both of which are explicitly
 captured by MR.
-14
 
 COLLABLLM: From Passive Responders to Active Collaborators
 Given (1) a user simulator LLM, e.g., GPT-4o-mini, (2) an assistant LLM, GPT-4o, and (3) arbitrary tasks with defined
 task-specific metric, we can simulated and generate high-quality conversations following Figure 8. We create the following
 training datasets in this simulated environments.
 Table 5: Statistics of conversational datasets created from MR. Chosen/Rejected MR indicates the mean and standard
-deviation (mean ± std) of MRs for chosen and rejected responses (cf. Figure 8).
+deviation (mean std) of MRs for chosen and rejected responses (cf. Figure 8).
 # Train
 # Turns
 Average # Turns
 Chosen MR
 Rejected MR
 MediumDocEdit-Chat
-500
-2,303
-4.61
-0.312 ±0.104
-0.246 ±0.113
 BigCodeBench-Chat
-500
-2,627
-5.25
-0.494 ±0.621
-0.207 ±0.763
 MATH-Chat
-500
-2,527
-5.05
-0.863 ±0.524
-0.547 ±0.502
 B.2. Training Details
 Hyperparameters (Table 6). We provide the hyperparameters for COLLABLLM fine-tuning.
 Notably, COLLABLLM relies on a minimal set of hyperparameters, using the same window size and sample size for
-computing MRs across multiple datasets. The penalty factor on token count, λ, is set lower for MediumDocEdit-Chat
+computing MRs across multiple datasets. The penalty factor on token count, , is set lower for MediumDocEdit-Chat
 compared to BigCodeBench-Chat and MATH-Chat, as document lengths in MediumDocEdit-Chat can vary
-significantly and may be easily bounded by 1 in Eq. 4 if λ is too large.
+significantly and may be easily bounded by 1 in Eq. 4 if is too large.
 Training Cost (Table 7). We compute average
 Table 6: Hyperparameters for LoRA configuration, different stages of fine-tuning, and COLLABLLM-specific fine-tuning.
 LoRA Configuration
 Rank r
-32
-Scaling factor α
-16
+Scaling factor
 Dropout
-0.1
 Bias
 False
 Fine-Tuning Hyperparameters
@@ -1588,28 +1382,14 @@ Learning rate
 5e-6
 2e-6
 Total batch size
-64
-64
-32
-64
 Number of epochs
-3
-8
-1
-5
 COLLABLLM-specific Hyperparameters
 MediumDocEdit-Chat
 BigCodeBench-Chat
 MATH-Chat
 Window size w
-2
-2
-2
 Sample size for MR
-3
-3
-3
-Penalty λ
+Penalty
 1e-4
 5e-4
 5e-4
@@ -1617,7 +1397,7 @@ statistics over 100 future conversations on MediumDocEdit-Chat, the document edi
 computational overhead among the three tasks. The table shows that even at the largest window size (w = 3), the total
 per-sample cost remains low, suggesting that our multi-turn training setup is financially practical. To further reduce the
 cost of simulating users, one could use an open-source model to role-play as users. Unfortunately, at the current stage,
-we find that open-source models generally perform poorly, often getting “confused” and starting to solve problems
+we find that open-source models generally perform poorly, often getting confused and starting to solve problems
 as an assistant rather than acting as a user. This raises an interesting research problem: while we have increasingly
 capable LLM assistants trained to solve problems, we lack user models that learn from real-world user behavior. Building
 better user models could be valuable for running simulations in real-world applications.
@@ -1634,29 +1414,10 @@ Output Tokens (k)
 User Simulator
 Cost ($)
 w = 1
-0.89
-0.42
-7.41
-1.85
-0.26
-0.00174
 w = 2
-2.55
-0.91
-15.84
-4.55
-0.69
-0.00439
 w = 3
-4.13
-1.22
-21.72
-7.18
-1.06
-0.00685
-Table 7: Comparison of policy model and user simulator’s compute (per forward sample) across different window sizes.
+Table 7: Comparison of policy model and user simulators compute (per forward sample) across different window sizes.
 We use GPT-4o-mini as the user simulator. The results are averaged over 100 forward sampled conversations.
-15
 
 COLLABLLM: From Passive Responders to Active Collaborators
 B.3. Full Ablation Results
@@ -1664,378 +1425,258 @@ Figure 9: Full ablation study showing the impact of different reward types (Help
 window sizes (w) on BLEU, token count (in thousands), and Interactivity Rate (ITR). The CollabLLM setting combines
 intrinsic and extrinsic rewards using the multiturn-aware reward formulation.
 To further understand the source of performance improvements, we conduct a full ablation by training models with isolated
-reward signals—Helpfulness, Extrinsic Only, and Intrinsic Only—across window sizes w ∈{0, 1, 2, 3}. The resulting
+reward signalsHelpfulness, Extrinsic Only, and Intrinsic Onlyacross window sizes w ∈{0, 1, 2, 3}. The resulting
 BLEU, token usage, and ITR scores are reported in Figure 9.
 We make three key observations:
-• Helpfulness alone leads to marginal improvements in BLEU and ITR, but significantly increases token usage, especially
+Helpfulness alone leads to marginal improvements in BLEU and ITR, but significantly increases token usage, especially
 at larger window sizes, suggesting verbosity rather than improved efficiency or interactivity.
-• Extrinsic-only reward achieves strong BLEU scores (e.g., 0.377 at w = 1), indicating good task alignment. However,
+Extrinsic-only reward achieves strong BLEU scores (e.g., 0.377 at w = 1), indicating good task alignment. However,
 it underperforms in ITR and often generates longer responses.
-• Intrinsic-only reward improves ITR at w = 1 (e.g., 0.74), but offers lower BLEU and comparable or slightly lower
+Intrinsic-only reward improves ITR at w = 1 (e.g., 0.74), but offers lower BLEU and comparable or slightly lower
 token efficiency, indicating better interactivity at the expense of task success.
 The CollabLLM configuration, which combines both intrinsic and extrinsic rewards using a multiturn-aware framework,
 achieves strong and balanced performances.
 Note that the choice of reward type (intrinsic or extrinsic) is independent of the multiturn-aware reward design. In practice,
-one can flexibly plug in different reward signals, which are then used to evaluate the responses’ long-term impact through
+one can flexibly plug in different reward signals, which are then used to evaluate the responses long-term impact through
 forward sampling.
 C. Safety Evaluation
-As the models in this work are collaboratively trained and designed to be more aligned with the user’s intent, concerns
+As the models in this work are collaboratively trained and designed to be more aligned with the users intent, concerns
 may arise if a user happens to have malevolent intentions. However, we note that COLLABLLM models were finetuned
-from Llama-3.1-8B, which has been aligned for safety—so jailbreaking COLLABLLM still poses a significant challenge.
+from Llama-3.1-8B, which has been aligned for safetyso jailbreaking COLLABLLM still poses a significant challenge.
 To determine whether collaborative training weakens the safety features inherent to a model (Llama-3.1-8B) that has
 undergone significant alignment steps for safety, we performed an adversarial evaluation using the Azure AI Evaluation
-SDK† and prompted both the baseline and COLLABLLM with various offensive queries intended to elicit unsafe responses.
+SDK and prompted both the baseline and COLLABLLM with various offensive queries intended to elicit unsafe responses.
 Specifically, we performed the following steps:
-• Adversarial query selection:
-We used the SDK’s AdversarialSimulator to generate adversarial queries
+Adversarial query selection:
+We used the SDKs AdversarialSimulator to generate adversarial queries
 (e.g., queries encouraging the LLM to produce hateful comments).
-We then used the SDK’s harm evaluators
+We then used the SDKs harm evaluators
 (ViolenceEvaluator, SexualEvaluator, SelfHarmEvaluator, HateUnfairnessEvaluator) to
 categorize each query into one of four harm types: violence, sexual, self-harm, and hate. For each query, we used
 the highest score among the four evaluators to determine its harm category. We randomly selected 20 adversarial queries
 per harm category, resulting in a total of 80 queries.
-†https://learn.microsoft.com/en-us/python/api/overview/azure/ai-evaluation-readme
-16
+https://learn.microsoft.com/en-us/python/api/overview/azure/ai-evaluation-readme
 
 COLLABLLM: From Passive Responders to Active Collaborators
 Model
-Harm score (0–7 range, ↓)
+Harm score (07 range, )
 Violence
 Sexual
 Self-harm
 Hate
 Llama-3.1-8B
-0.88
-0.96
-0.89
-1.01
-0.95
-0.94
-1.00
-0.99
 Table 8: Harm scores of responses generated by the two models under adversarial prompting. Scores range from 0 to 7,
-with values between 0 and 1 indicating “very low” harm.
-• Response generation: We generated responses to these 80 adversarial queries using both the Llama-3.1-8B baseline
+with values between 0 and 1 indicating very low harm.
+Response generation: We generated responses to these 80 adversarial queries using both the Llama-3.1-8B baseline
 model and COLLABLLM.
-• Harm scoring: We evaluated each model-generated response using all four harm evaluators to ensure comprehensive
+Harm scoring: We evaluated each model-generated response using all four harm evaluators to ensure comprehensive
 assessment.
 The main safety results are shown in Table 8, which presents the average harm scores across the four categories. Although
-all queries were adversarial and received high harm scores (typically between 4 and 7 on a 0–7 scale), both the Llama-3.1-
-8B baseline and COLLABLLM produced responses that were, on average, very safe. Most scores are in the 0–1 range,
-which corresponds to “very low” harm. COLLABLLM shows slightly lower harm in the Sexual and Hate categories and
+all queries were adversarial and received high harm scores (typically between 4 and 7 on a 07 scale), both the Llama-3.1-
+8B baseline and COLLABLLM produced responses that were, on average, very safe. Most scores are in the 01 range,
+which corresponds to very low harm. COLLABLLM shows slightly lower harm in the Sexual and Hate categories and
 slightly higher harm in the other two. In terms of defect rate, COLLABLLM produced only one response deemed unsafe
-by the SDK (out of 80 queries × 4 categories = 320 evaluations), resulting in a pass rate of 99.7%. Coincidentally, this is
+by the SDK (out of 80 queries 4 categories = 320 evaluations), resulting in a pass rate of 99.7%. Coincidentally, this is
 the same pass rate as Llama-3.1-8B, which also had one failed evaluation.
-Overall, these results are encouraging. They suggest that COLLABLLM’s training did not degrade the safety capabilities
-of the original LLM, even though no additional safety alignment was performed during COLLABLLM’s training.
+Overall, these results are encouraging. They suggest that COLLABLLMs training did not degrade the safety capabilities
+of the original LLM, even though no additional safety alignment was performed during COLLABLLMs training.
 D. Prompts
 D.1. User Simulator
-1
 You are role-playing as a human USER interacting with an AI collaborator to complete a
 specific task. Your goal is to generate realistic, natural responses that a user
 might give in this scenario.
-2
-3
+
 ## Input Information:
-4
+
 You will be provided with:
-5
 - Task Description: The type of task you are trying to accomplish.
-6
 - Complete Prompt or Reference Goal: This field may include the complete user request/
 query or a reference answer to user's request. Use this field to understand the user
 's intent, requirements, or what would count as a satisfactory outcome.
-7
 - Chat History: The ongoing conversation between you (as the user) and the AI
-8
-9
 Inputs:
-10
 <|The Start of Task Description (Not visible to the AI)|>
-11
 {task_desc}
-12
 <|The End of Task Description|>
-13
-14
 <|The Start of Complete Prompt or Reference Goal (Not visible to the AI)|>
-15
 {single_turn_prompt}
-16
 <|The End of Complete Prompt or Reference Goal|>
-17
-18
 <|The Start of Chat History|>
-19
 {chat_history}
-20
 <|The End of Chat History|>
-21
-22
-23
+
 ## Guidelines:
-24
+
 - Stay in Character: Role-play as a human USER. You are NOT an AI. Maintain a consistent
 personality throughout the chat.
-25
 - Minimize Effort: IMPORTANT! As a user, avoid being too detailed in your responses.
 Provide vague or incomplete demands in the early stages of the conversation to
 minimize your effort. Let the AI ask for clarification rather than providing
-17
 
 COLLABLLM: From Passive Responders to Active Collaborators
 everything upfront.
-26
 - Knowledge Background: Reflect the user's knowledge level in the role-playing. If the
 user is less knowledgeable about a task, they might not notice incorrect statements.
 Ask questions that demonstrate your current understanding and areas of confusion.
-27
 - Occasionally Make Mistakes: Real-world users might misspell words, provide incorrect
 dates, give wrong information, or ask unclear questions. Simulate this behavior to
 reflect natural interactions.
-28
 - Mention Personal Preferences: Include preferences or constraints that might influence
 your requests or responses. For example, "I prefer short answers," "I need this done
 quickly," or "I like detailed comments in code."
-29
 - Goal-Oriented: Keep the chat focused on your intent. Avoid small talk or digressions.
 Redirect the chat back to the main objective if it starts to stray.
-30
-31
+
 ## Output Format:
-32
+
 You should output a JSON object with three entries:
-33
 - "current_answer" (str): Briefly summerize the AI's current solution to the task.
-34
 - "thought" (str): Output your thought process as a user deciding what to say next.
 Consider:
-35
 1. Have you obtained a satisfactory solution from the AI? If yes, you can terminate
 this chat.
-36
 2. If not, what specific part of the problem or solution are you struggling with?
-37
 3. Has the AI asked you to perform a task or answer a question? If so, how should you
 approach it?
-38
 4. Are you noticing any patterns or potential misunderstandings that need
 clarification?
-39
 5. If you're stuck, how can you phrase your question to get the most helpful response
 while demonstrating your current understanding?
-40
 - "response" (str): Based on your thought process, respond to the AI as the user you are
 role-playing. Stop immediately when the user's response is completed.
-41
-42
+
 ## Important Notes:
-43
+
 - Respond Based on Previous Messages: Your responses should be based on the context of
 the current chat history. Carefully read the previous messages to maintain coherence
 in the conversation.
-44
 - Conversation Flow: If "Current Chat History" is empty, start the conversation from
 scratch with an initial request. Otherwise, continue based on the existing
 conversation.
-45
 - Don't Copy Input Directly: Use the provided information for understanding context only
 . Avoid copying target queries or any provided information directly in your
 responses.
-46
 - Completion Signal: Use "{terminal_signal}" as your response when you believe your goal
 has been solved or if you determine the AI cannot help further.
-47
 - Double check if the JSON object is formatted correctly. Ensure that all fields are
 present and properly structured.
-48
-49
 Remember to stay in character as a user throughout your response, and follow the
 instructions and guidelines carefully.
 D.2. Prompt for Proactive Base
-1
 You are an AI assistant interacting with a user to perform tasks such as writing,
 analysis, question answering, math, coding. Your goal is to generate a response to
 the user's last message in a conversation. You should be helpful, collaborative, and
 highly interactive.
-2
-3
 I will provide you with the following information:
-4
 - Conversation History: This is the complete chat history where you need to respond to
 the last user message.
-5
 - Additional Information (Optional): This may include reference knowledge with a
 question and answer to give you relevant context.
-6
-7
 <|The Start of Conversation History|>
-8
 {chat_history}
-18
 
 COLLABLLM: From Passive Responders to Active Collaborators
-9
 <|The End of Conversation History|>
-10
-11
 <|The Start of Additional Information|>
-12
 {additional_info}
-13
 <|The End of Additional Information|>
-14
-15
 # Guidelines:
-16
 1. Understanding and Engagement
-17
 - Accurately interpret the user's intent throughout the conversation.
-18
 - Acknowledge previous interactions to maintain context and continuity in the
 conversation.
-19
-20
 2. Interactivity (Important!)
-21
 - Ask clarifying questions if the user's request lacks detail or is ambiguous. Such
 as the length of an essay, specific function format for a coding task, or the
 context of a question.
-22
 - Ask specific follow-up questions to assist the user based on their intent. Avoid
 general questions like "Do you have any further questions? Let me know." Instead,
 focus on specifics like, "Would you like more information on X?" or "Can you
 clarify your requirements for Y?"
-23
 - When seeking feedback, avoid generic requests like "Let me know if this is helpful
 ." Instead, ask for feedback on specific aspects, such as "Does this solution
 meet your needs about X?"
-24
 - Collaboratively offer guidance, especially in complex or tricky situations. Provide
 specific suggestions on potential next steps.
-25
 - Focus on the long-term goal, prioritize responses that not only solve the immediate
 problem but also contribute to the user's long-term objectives. Foresee how your
 response can shape the next few turns of the conversation by aligning with the
 user's overarching goals.
-26
-27
 3. Efficiency and User Consideration
-28
 - Be mindful of how much the user needs to read or type, keeping the interaction
 concise and focused.
-29
 - When asking for feedback or presenting options, provide multiple-choice suggestions
 or specific prompts to make it easier for the user to respond quickly.
-30
 - Avoid repeating information from earlier in the conversation unless it's necessary
 for clarity. Ensure your responses are not redundant.
-31
-32
 4. Communication Style
-33
 - Be honest in your responses. If you are unsure of something, say, "I don't know,"
 and suggest ways the user could find the information.
-34
 - Align your tone and responses with the user's emotional state, adapting your style
 to suit their mood or urgency.
-35
 - Ensure your responses are clear, well-structured, and free from grammatical errors.
-36
-37
 # Output Format:
-38
 You should output a JSON object with three entries:
-39
 - "current_problem" (str): What is the current problem the user is facing, and what are
 they confused about?
-40
 - "thought" (str): Output your thought process deciding what to say next. You may
 consider the following:
-41
 1. If reference knowledge is provided, how do you make sure you don't overly use it
 and simply assume the user's question is the same as the reference question?
-42
 2. What information is missing from the user's input? Does the user's message lack
 any necessary details?
-43
 3. Is there a need to ask a clarifying question to better understand the user's
 intent?
-44
 4. Does the user seem confused or unclear on a particular topic? How can you address
 that confusion?
-45
 5. What follow-up can you suggest to help the user move forward with their task?
-46
 6. How can you ensure that your response is helpful, concise yet thorough, and
 collaborative?
-47
 7. Whether your response can guide the conversation toward the user's long-term
 objectives beyond the immediate problem?
-19
 
 COLLABLLM: From Passive Responders to Active Collaborators
-48
 - "response" (str): Based on your thought process and chat history, provide your
 response following the guidelines to the user. Keep your response within {
 max_new_tokens} tokens to avoid being cut off.
-49
-50
 # Notes:
-51
 - Clarifying Questions: If the user's message is unclear or lacks necessary details,
 always ask for clarification rather than making assumptions. Ensure you have enough
 information to provide an accurate and relevant response. For example, if the user
 asks, "Can you solve this equation?" but doesn't provide the equation, respond with:
 "Could you provide the equation you'd like me to solve?"
-52
 - Reference Knowledge Usage: If reference knowledge is provided in the additional
 information, use it as context but do not assume that the user's question will
 exactly match the reference question. Always adapt your response to the specific
 context provided by the user in the conversation history.
-53
 - Ensuring Interactivity: Encourage more interaction with the user by engaging in at
 least three conversational turns. This will help refine the conversation and ensure
 the user's needs are fully addressed.
-54
 - Double check if the JSON object is formatted correctly. Ensure that all fields are
 present and properly structured.
-55
-56
 Take a deep breath and carefully follow the instructions and guidelines provided.
 D.3. System Prompt
-1
 The assistant is designed to be helpful, proactive, and highly interactive.
-2
-3
 The assistant strives to accurately interpret the user's intent throughout the
 conversation, acknowledging previous interactions to maintain context and continuity
 . If the user's message is unclear or lacks necessary details, the assistant always
 asks for clarification rather than making assumptions. For example, if the user's
 request is incomplete, the assistant responds with: "Could you provide more details
 so I can assist you better?"
-4
-5
 The assistant asks specific follow-up questions and offers suggestions based on the user
 's needs, avoiding vague or generic prompts. It proactively provides guidance and
 potential next steps, especially in complex tasks such as writing, analysis, coding,
 and question answering.
-6
-7
 The assistant is mindful of how much content the user needs to read or type, keeping
 interactions concise and efficient. It reduces unnecessary repetition and ensures
 responses are relevant, well-structured, and free from errors. When presenting
 options or asking for feedback, the assistant simplifies interactions by offering
 multiple-choice answers or specific suggestions to make it easier for the user to
 respond quickly.
-8
-9
 The assistant adapts its tone to align with the user's emotional state and style,
 adjusting its approach as needed. If uncertain about something, the assistant
 honestly says, "I don't know," and suggests ways for the user to find the
 information.
-10
-11
 The assistant provides factually accurate, coherent, and relevant responses, using
 proper grammar and structure. It remains interactive and proactive across all tasks,
 continually seeking feedback to refine and improve interactions.
@@ -2044,186 +1685,104 @@ For the prompt template below, the ITR results reported in Table 1 use weights A
 final score S rescaled as S′ = 2 · (S −2.5), as all methods achieve an average ITR score above 2.5. Please use the same
 configuration to reproduce the results shown in Table 1. Note that the absolute values of A, B, and C do not affect the
 overall conclusions. In our most recent codebase, we adopt A = 1, B = 0.5, and C = 0 to eliminate the need for rescaling.
-20
 
 COLLABLLM: From Passive Responders to Active Collaborators
-1
 You are a helpful and meticulous conversation evaluator. \
-2
 Your task is to evaluate the *interactivity* of the responses provided by an AI
 assistant \
-3
 to user questions in a given conversation:
-4
-5
 <|The Start of the Conversation to be Evaluated|>
-6
 {chat_history}
-7
 <|The End of the Conversation to be Evaluated|>
-8
-9
 You should assess the assistant's engagement, clarity, and ability to understand the
 user's needs. \
-10
 Give a float number between {C} and {A}, where:
-11
 {A} = Highly interactive: The assistant is very engaging, asks all relevant
 questions, and significantly enhances understanding and problem-solving.
-12
 - Example: The assistant thoroughly understands the user's question, asks for
 necessary clarifications, such as "It sounds like you're asking about the
 causes of climate change. Are you looking for specific examples or a general
 overview?"
-13
 {B} = Moderately interactive: The assistant is engaging, asks some relevant
 questions, but can be substantially improved.
-14
 - Example: The assistant asks some relevant questions about the user's inquiry but
 misses key details, such as "Are you asking about the effects of climate change
 ?" but does not probe further for clarification.
-15
 {C} = Low interactivity: The assistant shows low engagement, asks few relevant
 questions, and barely try to understand the user's needs.
-16
 - Example: The assistant provides a vague or incomplete response without fully
 understanding the user's intent, such as "Climate change is bad," without
 asking any follow-up questions or providing detailed information.
-17
-18
-19
 Output format (JSON):
-20
-{{
-21
 "thought": "<How interactive is the assistant?>",
-22
 "interactivity": <score>
-23
-}}
-24
-25
 Double check if the JSON object is formatted correctly. Ensure that all fields are
 present and properly structured. Use " or """ to wrap up the thought content and use
 single quotes inside the "thought" field to avoid JSON escape issues.
-26
-27
 Your evaluation:
 D.5. Helpfulness Reward by LLM Judge
-1
 You are a helpful and meticulous conversation evaluator. Your task is to assess the
 helpfulness of an LLM-generated response in the context of the user intent and the
 provided chat history. Focus on how effectively the response fulfills the user's
 needs and intent.
-2
-3
 Provided Information:
-4
-5
 <|The Start of The User Intent|>
-6
 {question}
-7
 <|The End of The User Intent|>
-8
-9
 <|The Start of The Historical Conversation|>
-10
 {chat_history}
-11
 <|The End of The Historical Conversation|>
-12
-13
 <|The Start of The Response to be Evaluated|>
-14
 {chat}
-15
 <|The End of The Response to be Evaluated|>
-21
 
 COLLABLLM: From Passive Responders to Active Collaborators
-16
-17
 You should evaluate the follow-up conversation based on the following criteria:
-18
 Evaluate the response using the provided information below. Your evaluation should
 consider the following aspects of helpfulness:
-19
 1. Alignment with Intent: Does the response address the user's question or request as
 understood from the chat history?
-20
 2. Usefulness: Does the response provide actionable, relevant, and sufficient
 information to assist the user effectively?
-21
 3. Clarity: Is the response expressed clearly and in a way that is easy for the user to
 understand?
-22
-23
 Scoring Criteria:
-24
 - 0.0: The response is completely unhelpful. It does not address the user's intent,
 lacks useful information to solve the problem, and/or is entirely unclear.
-25
 - 0.2: The response is minimally helpful. It barely addresses the user's intent, lacks
 key information to solve the problem, or is very unclear.
-26
 - 0.4: The response is somewhat helpful. It partially addresses the user's intent but
 has notable inaccuracies, omissions, or clarity issues.
-27
 - 0.6: The response is moderately helpful. It addresses the user's intent with some
 issues in completeness, accuracy, or clarity.
-28
 - 0.8: The response is quite helpful. It aligns well with the user's intent, provides
 relevant and sufficient information to solve the problem, and is mostly clear.
-29
 - 1.0: The response is very helpful. It fully aligns with the user's intent, provides
 thorough and accurate information to solve the problem, and is expressed clearly and
 effectively.
-30
-31
 Output Format:
-32
-{{
-33
 "helpfulness": {{"thought": "<How helpful is the assistant in the conversation?>", "
 score": <score>}}
-34
-}}
-35
-36
 Important Notes:
-37
 - The "User Intent" and "Historical Conversation" is provided only for reference to help
 you understand the context of the response. You should focus your evaluation solely
 on the "Response" provided above.
-38
 - Inside of the content of "thought", replace all double quotes (") with single quotes
 (') to prevent JSON formatting issues. For example, you can output "thought": "'
 Hello' is a common phrase."
-39
-40
 Your evaluation:
 E. Question Template and Example on Abg-CoQA
 We use the following prompt format for the LLMs to answer the question given a story.
-1
 Can you help me answer a question about the following story?
-2
-3
 {story}
-4
-5
 My question is: {question}
 For example:
-1
 Can you help me answer a question about the following story?
-2
-3
 I spent last weekend with my grandma and grandpa. I love them very much! I always look
 forward to visiting them! They always do fun things with me. Last weekend, we went
 to the zoo together. I saw a great big elephant. It had a long nose. My grandpa and
 I played a game to see who could be the most like an elephant. We stomped around a
 lot and made trumpeting noises. I won! Grandma looked on and laughed. I saw a
-22
 
 COLLABLLM: From Passive Responders to Active Collaborators
 monkeys too! The monkeys swung through the trees. They even made monkey noises!
@@ -2232,16 +1791,15 @@ pretending I was monkey to stand still. After we left the zoo, I went home. We h
 dinner together. Then, my grandma read me a story and tucked me into bed. I had a
 great time with my grandparents. I love them a lot. I always look forward to
 visiting them.
-4
-5
 My question is: Where did they go when they left?
-The label of the above question is ambiguous since the user’s query about “Where did they go when
-they left?” could mean “Where did they go when they left the zoo?” or “Where did the
-grandparents go when they left me?”.
+The label of the above question is ambiguous since the users query about Where did they go when
+they left? could mean Where did they go when they left the zoo? or Where did the
+grandparents go when they left me?.
 F. User Study
 F.1. User Study Platform
 We provide screenshots of the interface used for human participants to interact with the AI assistants. The task consists
 of three sequential steps, requiring users to complete periodic evaluations throughout the interaction, followed by a final
+
 
 ## Evaluation
 
@@ -2251,7 +1809,6 @@ Figure 10: Overall interface and Step 1 view.
 (a) Step 2
 (b) Step 3
 Figure 11: Step 2 and Step 3 interfaces.
-23
 
 COLLABLLM: From Passive Responders to Active Collaborators
 (a) Multiturn evaluation view
@@ -2268,24 +1825,23 @@ Similarities
 1) Real users tend to use shorter, fragmented sen-
 tences with grammatical errors; simulators produce
 more complete and polished responses.
-1)
 Both
 exhibit
 iterative
 content
 develop-
-ment—progressively
+mentprogressively
 revealing
 information
 rather
 than specifying everything upfront.
 2) Real users often shift direction mid-conversation and
-introduce specific personal details (e.g., “eight dogs”);
+introduce specific personal details (e.g., eight dogs);
 simulated users remain more predictable and generic.
-2) Both emphasize accessibility—frequently request-
+2) Both emphasize accessibilityfrequently request-
 ing simplifications, examples, and actionable guidance.
 3) Real users express emotion more bluntly (e.g.,
-“that’s awful”) and use informal language, abbrevia-
+thats awful) and use informal language, abbrevia-
 tions, or incomplete thoughts; simulators respond in a
 more neutral and formal tone.
 3) Both articulate preferences about content structure
@@ -2294,4 +1850,4 @@ met or unmet.
 Although our models were trained using simulated users, the user study demonstrates that they generalize effectively to real
 users. This supports the feasibility of simulator-based training for scalable optimization, while also revealing opportunities
 to enhance the realism and diversity of user simulators.
-24
+

@@ -5,7 +5,6 @@
 > **Source:** <https://openreview.net/forum?id=2dnO3LLiJ1>
 
 ---
-
 Published as a conference paper at ICLR 2024
 Timoth´ee Darcet1,2
 Maxime Oquab1
@@ -13,6 +12,7 @@ Julien Mairal2
 Piotr Bojanowski1
 1 FAIR, Meta
 2 Univ. Grenoble Alpes, Inria, CNRS, Grenoble INP, LJK, 38000 Grenoble, France
+
 
 ## Abstract
 
@@ -39,7 +39,7 @@ DINOv2
 Figure 1: Register tokens enable interpretable attention maps in all vision transformers, similar to
 the original DINO method (Caron et al., 2021). Attention maps are calculated in high resolution for
 better visualisation. More qualitative results are available in appendix H.
-1
+
 
 ## Introduction
 
@@ -52,7 +52,6 @@ medical data, or remote sensing) or the cost at scale. Today, it is common to pr
 a task for which plenty of data is available and extract a subset of the model to use as a feature
 extractor. Multiple approaches offer this possibility; supervised methods, building on classification
 Correspondence to timdarcet@meta.com
-1
 
 Published as a conference paper at ICLR 2024
 Input
@@ -96,35 +95,14 @@ similar to their neighbors, meaning patches that convey little additional inform
 As part of our investigation, we evaluate the outlier tokens with simple linear models to under-
 stand the information they contain. We observe that, compared to non-outlier tokens, they hold less
 information about their original position in the image or the original pixels in their patch. This ob-
-2
 
 Published as a conference paper at ICLR 2024
 input image
 DINO norms
 DINOv2 norms
-0
-20
-40
-60
-80
-100
-0
-200
-400
-600
 L2 norm
-10 5
-10 3
-10 1
 DINO norms
-0
-200
-400
-600
 L2 norm
-10 5
-10 3
-10 1
 DINOv2 norms
 Figure 3: Comparison of local feature norms for DINO ViT-B/16 and DINOv2 ViT-g/14. We ob-
 serve that DINOv2 has a few outlier patches, whereas DINO does not present these artifacts. For
@@ -143,7 +121,6 @@ train several models with and without this modification and observe that the out
 from the sequence entirely. As a result, the performance of the models increases in dense prediction
 tasks, and the resulting feature maps are significantly smoother. These smooth feature maps enable
 object discovery methods like LOST mentioned above with the updated models.
-2
 PROBLEM FORMULATION
 As shown in Fig. 2, most modern vision transformers exhibit artifacts in the attention maps. The
 unsupervised DINO backbone (Caron et al., 2021) has been previously praised for the quality of
@@ -151,19 +128,18 @@ local features and interpretability of attention maps. Surprisingly, the outputs
 DINOv2 models have been shown to hold good local information but exhibit undesirable artifacts in
 attention maps. In this section, we propose to study why and when these artifacts appear. While this
 work focuses on alleviating artefacts in all vision transformers, we focus our analysis on DINOv2.
-2.1
 ARTIFACTS IN THE LOCAL FEATURES OF DINOV2
 Artifacts are high-norm outlier tokens.
 We want to find a quantitative way of characterizing
-artefacts that appear in the local features. We observe that an important difference between “artifact”
+artefacts that appear in the local features. We observe that an important difference between artifact
 patches and other patches is the norm of their token embedding at the output of the model. In Fig. 3
 (left), we compare the norm of local features for a DINO and DINOv2 model given a reference
 image. We clearly see that the norm of artifact patches is much higher than the norm of other
 patches. We also plot the distribution of feature norms over a small dataset of images in Fig. 3
 (right), which is clearly bimodal, allowing us to choose a simple criterion for the rest of this section:
-tokens with norm higher than 150 will be considered as “high-norm” tokens, and we will study their
+tokens with norm higher than 150 will be considered as high-norm tokens, and we will study their
 properties relative to regular tokens. This hand-picked cutoff value can vary across models. In the
-rest of this work, we use “high-norm” and “outlier” interchangeably.
+rest of this work, we use high-norm and outlier interchangeably.
 Outliers appear during the training of large models.
 We make several additional observations
 about the conditions in which these outlier patches appear during the training of DINOv2. This
@@ -172,7 +148,6 @@ other patches around layer 15 of this 40-layer ViT (Fig. 4a). Second, when looki
 of norms along training of DINOv2, we see that these outliers only appear after one third of training
 (Fig. 4b). Finally, when analyzing more closely models of different size (Tiny, Small, Base, Large,
 Huge and giant), we see that only the three largest models exhibit outliers (Fig. 4c).
-3
 
 Published as a conference paper at ICLR 2024
 (a) Norms along layers.
@@ -186,16 +161,10 @@ middle of the model during training; they appear with models larger than and inc
 position prediction
 reconstruction
 top-1 acc
-avg. distance ↓
-L2 error ↓
+avg. distance
+L2 error
 normal
-41.7
-0.79
-18.38
 outlier
-22.8
-5.09
-25.23
 (b) Linear probing for local information.
 Figure 5: (a): Distribution of cosine similarity between input patches and their 4 neighbors. We
 plot separately artifact patches (norm of the output token over 150) and normal patches. (b): Local
@@ -216,48 +185,31 @@ tokens, we propose to probe the patch embeddings for different types of informat
 consider two different tasks: position prediction and pixel reconstruction. For each of these tasks,
 we train a linear model on top of the patch embeddings, and measure the performance of this
 model. We compare the performance achieved with high-norm tokens and with other tokens, to see
-if high-norm tokens contain different information than “normal” tokens.
-• Position prediction. We train a linear model to predict the position of each patch token in
+if high-norm tokens contain different information than normal tokens.
+Position prediction. We train a linear model to predict the position of each patch token in
 the image, and measure its accuracy. We note that this position information was injected
 in the tokens before the first ViT layer in the form of absolute position embeddings. We
 observe that high-norm tokens have much lower accuracy than the other tokens (Fig. 5b),
 suggesting they contain less information about their position in the image.
-• Pixel reconstruction. We train a linear model to predict the pixel values of the image from
+Pixel reconstruction. We train a linear model to predict the pixel values of the image from
 the patch embeddings, and measure the accuracy of this model. We observe again that
 high-norm tokens achieve much lower accuracy than other tokens (Fig. 5b). This suggests
 that high-norm tokens contain less information to reconstruct the image than the others.
 Artifacts hold global information.
 In order to evaluate how much global information is gathered
 in the high-norm tokens, we propose to evaluate them on standard image representation learning
-4
 
 Published as a conference paper at ICLR 2024
 IN1k P205 Airc. CF10 CF100 CUB Cal101 Cars DTD Flow. Food Pets SUN VOC
 [CLS]
-86.0 66.4 87.3 99.4
-94.5
-91.3
-96.9
-91.5 85.2 99.7 94.7 96.9 78.6 89.1
 normal
-65.8 53.1 17.1 97.1
-81.3
-18.6
-73.2
-10.8 63.1 59.5 74.2 47.8 37.7 70.8
 outlier
-69.0 55.1 79.1 99.3
-93.7
-84.9
-97.6
-85.2 84.9 99.6 93.5 94.1 78.5 89.7
 Table 1: Image classification via linear probing on normal and outlier patch tokens. We also report
 the accuracy of classifiers learnt on the class token. We see that outlier tokens have a much higher
 accuracy than regular ones, suggesting they are effectively storing global image information.
 [CLS]
 [REG1]
 [REG2]
-…
 [REGN]
 Transformer Model
 output
@@ -269,10 +221,8 @@ benchmarks. For each image in a classification dataset, we forward it through DI
 tract the patch embeddings. From those, we choose a single token at random, either high-norm or
 normal. This token is then considered as the image representation. We then train a logistic regres-
 sion classifier to predict the image class from this representation, and measure the accuracy.
-We
 observe that the high-norm tokens have a much higher accuracy than the other tokens (Table 1). This
 suggests that outlier tokens contain more global information than other patch tokens.
-2.2
 HYPOTHESIS AND REMEDIATION
 Having made these observations, we make the following hypothesis: large, sufficiently trained mod-
 els learn to recognize redundant tokens, and to use them as places to store, process and retrieve
@@ -290,19 +240,16 @@ We note that we have not been able to fully determine which aspects of the train
 ance of artifacts in different models. The pretraining paradigm seems to play a role, as OpenCLIP
 and DeiT-III exhibit outliers both at size B and L (Fig. 2). However, the model size and training
 length also play important parts, as observed in Fig. 4.
-3
 EXPERIMENTS
 In this section, we validate the proposed solution by training vision transformers with additional
 [reg] register tokens. We evaluate the effectiveness of our approach by a quantitative and quali-
 tative analysis. We then ablate the number of registers used for training, to check that they do not
-5
 
 Published as a conference paper at ICLR 2024
 Figure 7: Effect of register tokens on the distribution of output norms on DINOv2, OpenCLIP and
 DeiT-III. Using register tokens effectively removes the norm outliers that were present previously.
 cause a performance regression, evaluate an unsupervised object discovery method atop our features
 and finally provide a qualitative analysis of the patterns learnt by the registers.
-3.1
 TRAINING ALGORITHMS AND DATA
 As the proposed solution is a simple architectural change, we can easily apply it to any training pro-
 cedure. We try it on three different state-of-the-art training methods for supervised, text-supervised,
@@ -321,9 +268,9 @@ proposed in the official repository 2.
 DINOv2 (Oquab et al., 2023) is a self-supervised method for learning visual features, following the
 DINO work. We apply our changes to this method as it is the main focus of our study. We run this
 
+
 ## Method
 
-3.2
 
 ## Evaluation
 
@@ -346,7 +293,6 @@ is lower due to the data source we used.
 1https://github.com/facebookresearch/deit
 2https://github.com/mlfoundations/open_clip
 3https://github.com/facebookresearch/dinov2
-6
 
 Published as a conference paper at ICLR 2024
 ImageNet
@@ -354,38 +300,18 @@ ADE20k
 NYUd
 Top-1
 mIoU
-rmse ↓
+rmse
 DeiT-III
-84.7
-38.9
-0.511
 DeiT-III+reg
-84.7
-39.1
-0.512
 OpenCLIP
-78.2
-26.6
-0.702
 OpenCLIP+reg
-78.1
-26.7
-0.661
 DINOv2
-84.3
-46.6
-0.378
 DINOv2+reg
-84.8
-47.9
-0.366
 (a) Linear evaluation with frozen features.
 ImageNet
 Top-1
 OpenCLIP
-59.9
 OpenCLIP+reg
-60.1
 (b) Zero-shot classification.
 Table 2: Evaluation of downstream performance of the models that we trained, with and without
 registers. We consider linear probing of frozen features for all three models, and zero-shot evaluation
@@ -398,50 +324,20 @@ Input
 4 [reg]
 8 [reg]
 16 [reg]
-0
-4
-8
-12
-16
 number of [reg] tokens
-84.4
-84.5
-84.6
-84.7
-84.8
 top-1 acc
 ImageNet
-0
-4
-8
-12
-16
 number of [reg] tokens
-66.0
-66.2
-66.4
-66.6
-66.8
 mIoU
 Average of segmentation tasks
-0
-4
-8
-12
-16
 number of [reg] tokens
-2.73
-2.76
-2.79
-2.82
-2.85
 rmse
 Average of depth tasks
 Figure 8: Ablation of the the number of register tokens used with a DINOv2 model. (top): qualita-
 tive visualization of artifacts appearing as a function of number of registers. (bottom): performance
 on three tasks (ImageNet, ADE-20k and NYUd) as a function of number of registers used. While
 one register is sufficient to remove artefacts, using more leads to improved downstream performance.
-Number of register tokens. As described in Sec. 2.2, we propose alleviating the feature maps’
+Number of register tokens. As described in Sec. 2.2, we propose alleviating the feature maps
 artifacts by adding register tokens. In this experiment, we study the influence of the number of such
 tokens on local features and downstream performance. We train DINOv2 ViT-L/14 models with 0, 1,
 2, 4, 8 or 16 registers. In Fig. 8, we report the results of this analysis. In Fig. 8(top), we qualitatively
@@ -451,7 +347,6 @@ following the protocol from Oquab et al. (2023). There seems to be an optimal nu
 for dense tasks, and adding one brings most of the benefit. This optimum is likely explained by
 the disappearance of artifacts, leading to better local features. On ImageNet, however, performance
 improves when using more registers. In all our experiments, we kept 4 register tokens.
-3.3
 OBJECT DISCOVERY
 Recent unsupervised object discovery methods rely on the quality and smoothness of local feature
 maps (Sim´eoni et al., 2021; Wang et al., 2023). By leveraging DINO Caron et al. (2021), these
@@ -460,36 +355,17 @@ to poor performance when applied to modern backbones such as DINOv2 Oquab et al.
 supervised ones Touvron et al. (2022). We posit that this can be alleviated by the method proposed
 in this work. We run LOST (Sim´eoni et al., 2021) on features extracted from backbones trained using
 the algorithms described in Sec.3.1 with and without registers. We run object discovery on PASCAL
-7
 
 Published as a conference paper at ICLR 2024
 VOC 2007
 VOC 2012
 COCO 20k
 DeiT-III
-11.7
-13.1
-10.7
 DeiT-III+reg
-27.1
-32.7
-25.1
 OpenCLIP
-38.8
-44.3
-31.0
 OpenCLIP+reg
-37.1
-42.0
-27.9
 DINOv2
-35.3
-40.2
-26.9
 DINOv2+reg
-55.4
-60.0
-42.0
 Table 3: Unsupervised Object Discovery using LOST (Sim´eoni et al., 2021) on models with and
 without registers. We evaluated three types of models trained with various amounts of supervision
 on VOC 2007, 2012 and COCO. We measure performance using corloc. We observe that adding
@@ -510,7 +386,6 @@ and DeiT-III, adding registers significantly improves the discovery performance.
 performance is slighty worse with registers (see Sec. C for analysis). The performance of DINOv2
 on VOC2007 still does not match that of DINO as reported by Sim´eoni et al. (2021) (61.9 corloc).
 However, the model with registers gets an improvement of 20.1 corloc (55.4 versus 35.3).
-3.4
 QUALITATIVE EVALUATION OF REGISTERS
 In this final experiment, we qualitatively probe for the behavior of register tokens. We want to verify
 if they all exhibit similar attention patterns or whether a differentiation automatically emerges. To
@@ -519,7 +394,7 @@ this visualization is shown in Fig. 9. We see that registers do not have a compl
 Some selected registers exhibit interesting attention patterns, attending to the different objects in the
 scene. While nothing enforced this behavior, their activations had some natural diversity. We leave
 the study of the regularization of registers for future work.
-4
+
 
 ## Related Work
 
@@ -534,7 +409,6 @@ visual foundation models, scaling well with model sizes, and enabling excellent 
 a variety of tasks including detection (Carion et al., 2020) and segmentation (Zheng et al., 2021;
 Kirillov et al., 2023). In this context, supervision relies on annotations in the form of labels or text
 alignment; the dataset biases (Torralba & Efros, 2011) are not well characterized, yet they drive
-8
 
 Published as a conference paper at ICLR 2024
 learning and shape the learned models. An alternative approach consists of not using supervision
@@ -580,7 +454,7 @@ Other works have since reported interesting attention maps using various techniq
 the optimisation procedure (Chen et al., 2022), by steering the attention scores towards useful image
 parts (Shi et al., 2023), by modifying the architecture of the transformer layers (Yu et al., 2024), or
 by introducing a learnable pooling to produce the [CLS] token (Psomas et al., 2023).
-5
+
 
 ## Conclusion
 
@@ -594,7 +468,6 @@ additional tokens to the input sequence that are not used as outputs, and have f
 removes the artifacts, improving the performance in dense prediction and object discovery. More-
 over, we have shown that the proposed solution also removes the same artifacts present in supervised
 models such as DeiT-III and OpenCLIP, confirming the generality of our solution.
-9
 
 Published as a conference paper at ICLR 2024
 ACKNOWLEDGMENTS
@@ -605,7 +478,6 @@ supported by ANR 3IA MIAI@Grenoble Alpes (ANR-19-P3IA-0003) and by ERC grant num
 REFERENCES
 Hangbo Bao, Li Dong, and Furu Wei. Beit: Bert pre-training of image transformers. In ICLR, 2021.
 Aydar Bulatov, Yury Kuratov, and Mikhail Burtsev. Recurrent memory transformer. In NeurIPS,
-2022.
 Mikhail S Burtsev, Yuri Kuratov, Anton Peganov, and Grigory V Sapunov. Memory transformer.
 arXiv preprint arXiv:2006.11527, 2020.
 Nicolas Carion, Francisco Massa, Gabriel Synnaeve, Nicolas Usunier, Alexander Kirillov, and
@@ -636,7 +508,7 @@ Farhadi, and Ludwig Schmidt. Openclip. 2021.
 Andrew Jaegle, Felix Gimeno, Andy Brock, Oriol Vinyals, Andrew Zisserman, and Joao Carreira.
 Perceiver: General perception with iterative attention. In ICML, 2021.
 Andrew Jaegle, Sebastian Borgeaud, Jean-Baptiste Alayrac, Carl Doersch, Catalin Ionescu, David
-Ding, Skanda Koppula, Andrew Brock, Evan Shelhamer, Olivier J. H’enaff, Matthew M.
+Ding, Skanda Koppula, Andrew Brock, Evan Shelhamer, Olivier J. Henaff, Matthew M.
 Botvinick, Andrew Zisserman, Oriol Vinyals, and Jo˜ao Carreira. Perceiver io: A general ar-
 chitecture for structured inputs & outputs. In ICLR, 2022.
 Alexander Kirillov, Eric Mintun, Nikhila Ravi, Hanzi Mao, Chloe Rolland, Laura Gustafson, Tete
@@ -644,7 +516,6 @@ Xiao, Spencer Whitehead, Alexander C Berg, Wan-Yen Lo, et al. Segment anything. 
 preprint arXiv:2304.02643, 2023.
 Alex Krizhevsky, Ilya Sutskever, and Geoffrey E Hinton. Imagenet classification with deep convo-
 lutional neural networks. In NeurIPS, 2012.
-10
 
 Published as a conference paper at ICLR 2024
 Francesco Locatello, Dirk Weissenborn, Thomas Unterthiner, Aravindh Mahendran, Georg Heigold,
@@ -665,7 +536,6 @@ Imagenet large scale visual recognition challenge. IJCV, 2015.
 Mark Sandler, Andrey Zhmoginov, Max Vladymyrov, and Andrew Jackson. Fine-tuning image
 transformers using learnable memory. In CVPR, 2022.
 Baifeng Shi, Siyu Gai, Trevor Darrell, and Xin Wang. Toast: Transfer learning via attention steering,
-2023.
 Oriane Sim´eoni, Gilles Puy, Huy V Vo, Simon Roburin, Spyros Gidaris, Andrei Bursuc, Patrick
 P´erez, Renaud Marlet, and Jean Ponce. Localizing objects with self-supervised transformers and
 no labels. In BMVC, 2021.
@@ -685,22 +555,20 @@ Fu, Jianfeng Feng, Tao Xiang, Philip HS Torr, et al. Rethinking semantic segment
 a sequence-to-sequence perspective with transformers. In CVPR, 2021.
 Jinghao Zhou, Chen Wei, Huiyu Wang, Wei Shen, Cihang Xie, Alan Yuille, and Tao Kong. ibot:
 Image bert pre-training with online tokenizer. In ICLR, 2022.
-11
 
 Published as a conference paper at ICLR 2024
 Figure 10: Feature norms along locations: proportion of tokens with norm larger than the cutoff
 value at a given location. Left: official DINOv2 model (no antialiasing), right: our models (with
 antialiasing). At some positions, more than 20% of tokens have a high norm.
-Figure 11: Propagating unit gradients through a bicubic interpolation (16 × 16 →7 × 7) without
+Figure 11: Propagating unit gradients through a bicubic interpolation (16 16 7 7) without
 antialiasing. We observe a striping pattern similar to the one of Fig. 10 (left).
-A
 INTERPOLATION ARTIFACTS AND OUTLIER POSITION DISTRIBUTION
 We plot in Figure 10 (left) the proportion of outlier tokens, characterized by a norm larger than the
 cutoff value defined manually, following the distribution of norms shown in Fig. 3 (main text). We
 make two observations:
 First, the distribution has a vertical-striped pattern. We investigate this phenomenon and notice that
 in the original DINOv2 implementation, during training the position embeddings are interpolated
-from a 16 × 16 map into a 7 × 7 map, without antialiasing. Propagating unit gradients through
+from a 16 16 map into a 7 7 map, without antialiasing. Propagating unit gradients through
 such an interpolation function (bicubic resize) leads to the following gradients, shown in Fig. 11.
 In this work, when producing results with DINOv2 (especially for the results in Tables 2a,3), we
 always apply antialiasing in the interpolation operator, removing the striping pattern, which gives an
@@ -709,14 +577,12 @@ Second, the outliers tend to appear in areas closer to the border of the feature
 center. Our interpretation is that the base model tends to recycle tokens in low-informative areas to
 use as registers: pictures produced by people tend to be object-centric, and in this case the border
 areas often correspond to background, which contains less information than the center.
-B
 COMPLEXITY ANALYSIS
 Since our proposed fix introduces new tokens, it also increases the number of learnable parameters
 and the FLOP count of the model. We show in Fig. 12 the relationship between number of registers
 and increase in model FLOP count and parameter count. We observe that adding registers induces
 a negligible change in number of parameters, and a slight change in FLOP count. Still, for n = 4
 registers, the increase in FLOPs stays below 2%.
-12
 
 Published as a conference paper at ICLR 2024
 Figure 12: Increase in model parameter and FLOP count when adding different numbers of registers.
@@ -742,7 +608,6 @@ Figure 13:
 Illustration of the intermediate computations in the LOST algorithm for all models.
 Adding registers drastically improves the look of all intermediate steps for DeiT-III and DINOv2.
 The difference is less striking for the OpenCLIP model.
-C
 ANALYSIS OF LOST PERFORMANCE
 The results presented in Sec. 3.3 show that adding registers allows us to obtain better object dis-
 covery performance with DINOv2 models. The conclusions for the two other models studied in
@@ -766,7 +631,6 @@ registers are used, the LOST score is focusing on the object, with a smoother sc
 qualitatively observe that for the OpenCLIP model, the value projection filters out the outliers even
 without registers. This means that the outliers appear to live in the null space of the value projection
 layer; the investigation for this phenomenon is left for future work.
-13
 
 Published as a conference paper at ICLR 2024
 values
@@ -778,10 +642,9 @@ Figure 14: Illustration of the seed expansion score in LOST for an OpenCLIP mode
 without registers for the three types of features considered: keys, queries, and values. The score
 is qualitatively improved across all features, with fewer artifacts appearing. Interestingly, the seed
 expansion map computed using values does not exhibit artifacts with nor without registers.
-D
 BEHAVIOR OF MODELS TRAINED WITH REGISTERS
 In order to better understand the phenomenon at hand, we examine the question of to what extent
-did the register tokens ”replace” the high-norm tokens and took on the same role.
+did the register tokens replace the high-norm tokens and took on the same role.
 D.1
 NORMS
 (a) DINOv2 - no register
@@ -803,7 +666,6 @@ when using different tokens as representations. We evaluate on the aircrafts dat
 clear conclusions in the similar table 1. We observe that adding a register does not significantly
 modify the scores obtained with the [CLS] or patch tokens. However, the outlier patches are
 removed, and their behavior is transferred to the newly added register.
-14
 
 Published as a conference paper at ICLR 2024
 top-1 accuracy
@@ -812,16 +674,8 @@ top-1 accuracy
 normal patch
 outlier patch
 register
-0
-84.6
-15.5
-73.3
 N/A
-1
-85.2
-14.5
 N/A
-71.1
 Table 4: Linear probing of models with and without registers on the Aircraft dataset, using various
 tokens as representation. We observe that the behavior of the outlier tokens, aggregating global
 information, is absorbed into the register.
@@ -834,17 +688,11 @@ reconstruction
 #registers
 patches considered
 top-1 acc
-L2 error ↓
-0
+L2 error
 non-outliers
-66.3
-15.9
-4
 non-outliers (ie all)
-65.8
-16.0
 Table 5: Linear probing for local information on the patch tokens of models trained without or
-with registers. We only consider patches considered ”normal”, i.e. not the high-norm outliers. We
+with registers. We only consider patches considered normal, i.e. not the high-norm outliers. We
 observe that adding registers does not significantly modify the scores of these patches.
 D.3
 POSITIONAL FOCUS
@@ -872,10 +720,8 @@ observe that registers produce maps with a large support area, very similarly to
 and very different of a typical patch token which is more localized. As the [CLS] token is known to
 carry global information (as proven by the linear probing classification performance): this suggests
 that registers also carry global information.
-15
 
 Published as a conference paper at ICLR 2024
-E
 MASKED AUTOENCODERS
 Masked Autoencoding (He et al., 2022) is another common way of pretraining self-supervised mod-
 els. We observe in Fig. 17 that there are no artifacts in the maps produced by MAE: our hypothesis
@@ -886,20 +732,17 @@ linear probing performance on ImageNet classification for ViT-Large), preventing
 as is, and making fine-tuning a requirement.
 Figure 17: First three principal components of the output feature map of a ViT-Large Masked Au-
 toencoder.
-F
 BEHAVIOR PER ATTENTION HEAD
 In this section, we investigate whether the artifacts appear only on the attention maps for specific
 heads of the last vision transformer block, or for all of them. We show in Fig. 18 the input image
 along with the attention maps for different heads. We observe that the artifacts appear for all atten-
 tion heads, despite heads focusing on different areas of the object. We still observe that some heads
 focus more on artifacts than others.
-G
 VARIANCE ON TOKEN INFORMATION PROBING
 The results presented in table 1 are obtained by taking a random patch token, either normal or
 outlier. However, the choice of this token adds a significant source of variance in the evaluation.
 For thoroughness, we report in table 6 the standard deviation of the scores obtained relative to this
 choice.
-16
 
 Published as a conference paper at ICLR 2024
 input
@@ -915,79 +758,33 @@ Cars
 DTD
 token
 normal
-17.1±0.5
-97.1±0.1
-81.3±0.3
-18.6±0.6
-73.2±1.3
-10.8±0.3
-63.1±0.8
 outlier
-79.1±0.5
-99.3±0.0
-93.7±0.3
-84.9±2.1
-97.6±0.7
-85.2±0.9
-84.9±0.9
 [CLS]
-87.3
-99.4
-94.5
-91.3
-96.9
-91.5
-85.2
 dataset
 Flow.
 Food
 IN1k
-P205
 Pets
 SUN
 VOC
 token
 normal
-59.5±1.2
-74.2±0.3
-65.8±0.1
-53.1±0.3
-47.8±0.5
-37.7±0.3
-70.8±0.5
 outlier
-99.6±0.0
-93.5±0.2
-69.0±0.7
-55.1±1.0
-94.1±0.2
-78.5±0.2
-89.7±0.1
 [CLS]
-99.7
-94.7
-86.0
-66.4
-96.9
-78.6
-89.1
 Table 6: Image classification via linear probing on normal and outlier patch tokens. As we select the
 patch tokens randomly among the set of eligible tokens, this adds a source of variability. We report
 the standard deviation of this variability in grey along with the scores. This table is a detailed view
 of table 1.
-H
 QUALITATIVE RESULTS
 We trained three popular models: DeiT-III, OpenCLIP, DINOv2 with and without the introduction
 of register tokens. We observe in Fig. 19 the attention maps in the last layer of the Vision Trans-
 former, for all three cases. We see that our approach provides much cleaner attention maps, with
 considerably fewer artifacts, explaining the improvement on the downstream object discovery task
 mentioned in Sec. 3.3. The feature maps are also visibly improved, as shown in Fig. 20. Finally,
-17
 
 Published as a conference paper at ICLR 2024
 we also show the norm of the patch tokens in Fig. 21, and confirm that in all three models, artifact
 patches correspond to norm outliers.
-18
 
 Published as a conference paper at ICLR 2024
 Without registers
@@ -1000,7 +797,6 @@ DeiT-III
 OpenCLIP
 DINOv2
 Figure 19: Attention maps of models trained without and with registers on various images.
-19
 
 Published as a conference paper at ICLR 2024
 Without registers
@@ -1014,8 +810,7 @@ OpenCLIP
 DINOv2
 Figure 20: First principal component of the feature maps output by models trained without and
 with registers on various images. The components are whitened and the colormap covers the range
-[−3σ, +3σ].
-20
+[−3, +3].
 
 Published as a conference paper at ICLR 2024
 Without registers
@@ -1029,4 +824,4 @@ OpenCLIP
 DINOv2
 Figure 21: Maps of token norms for models trained without and with registers on various images.
 The norm outliers are very visible for models trained without registers.
-21
+

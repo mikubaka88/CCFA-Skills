@@ -5,13 +5,13 @@
 > **Source:** <https://openreview.net/forum?id=URpbmVEsqB>
 
 ---
-
-arXiv:2505.12253v1  [cs.CV]  18 May 2025
+arXiv:2505.12253v1 [cs.CV] 18 May 2025
 LLaVA-4D: Embedding SpatioTemporal Prompt
 into LMMs for 4D Scene Understanding
 Hanyu Zhou1, Gim Hee Lee1
 1 School of Computing, National University of Singapore
 {hy.zhou, gimhee.lee}@nus.edu.sg
+
 
 ## Abstract
 
@@ -34,7 +34,7 @@ the physical world. Additionally, we construct a 4D vision-language dataset with
 spatiotemporal coordinate annotations for instruction fine-tuning LMMs. Extensive
 experiments have been conducted to demonstrate the effectiveness of our method
 across different tasks in 4D scene understanding.
-1
+
 
 ## Introduction
 
@@ -77,13 +77,10 @@ Encoding
 Multi-View Images
 Instruction
 What is on
-the  road?
+the road?
 Please pro-
 vide its co-
 ordinates.
-x
-y
-z
 Large Language Model
 Embed
 This is a black car that is slowly moving along the road. At t1,
@@ -96,14 +93,10 @@ Encoding
 Multi-View Videos
 Instruction
 What is on
-the  road?
+the road?
 Please pro-
 vide its co-
 ordinates.
-x
-y
-z
-t
 (a) 3D LMM
 (b) 4D LMM (Ours)
 3D LMM: A man in sunglasses holds a green
@@ -139,9 +132,6 @@ reach the window area next.
 (c) Performance on Multiple Benchmarks
 (d) Comparison on 4D Understanding Tasks
 v1, t1
-x
-y
-z
 p=(2.25, 0.50, 0.25,
 3.17, 0.22, 0.38)
 p=(4.30, 1.71, 0.18,
@@ -159,12 +149,6 @@ Chat4D
 (SAcc@0.5)
 Chat4D
 (TAcc)
-53.2
-17.9
-54.3
-58.9
-54.6
-85.3
 Figure 1: Illustration of 3D and 4D LMM paradigms for physical world understanding. (a) Existing
 3D-LMMs encode 3D positions as spatial prompts but overlook dynamic objects. (b) Our 4D
 LMM framework embeds 4D coordinates: position and time as spatiotemporal prompts to capture
@@ -196,20 +180,19 @@ spatiotemporal embedding collaboratively enhance the modeling of dynamic and sta
 improve 4D scene understanding in LMMs. Additionally, we present Chat4D, a 4D vision-language
 dataset with spatiotemporal coordinate annotations designed to instruction-tune our model for more
 effective 4D scene understanding. Our main contributions are summarized as follows:
-• We are the first to propose a general vision-language large multimodal model for 4D scene
+We are the first to propose a general vision-language large multimodal model for 4D scene
 understanding. Our model embeds a 4D spatiotemporal prompt into visual representation to enable
 LMMs to comprehend both dynamic objects and static backgrounds.
-• We observe that backgrounds and objects share similar 3D spatial position encoding but exhibit
+We observe that backgrounds and objects share similar 3D spatial position encoding but exhibit
 distinct motion patterns in the temporal dimension. This motivates the design of a dynamic-aware
 4D coordinate encoding as a spatiotemporal prompt to distinguish objects from backgrounds.
-2
 
-• We discover that spatial and temporal components disentangled from visual features are more
+We discover that spatial and temporal components disentangled from visual features are more
 discriminative for background and objects. This inspires the spatiotemporal-disentangled vision
 embedding for scene representation.
-• We build a 4D vision-language dataset with coordinate annotations for instruction fine-tuning and
+We build a 4D vision-language dataset with coordinate annotations for instruction fine-tuning and
 conduct extensive experiments to verify the effectiveness of our method in 4D scene understanding.
-2
+
 
 ## Related Work
 
@@ -241,7 +224,6 @@ strategy for dynamic objects and static background, which has the potential risk
 of heterogeneous features. In this work, we present the first general LMM for different tasks of 4D
 scene understanding by disentangling visual features and embedding 4D spatiotemporal prompts to
 differentiate objects and background.
-3
 Our LLaVA-4D
 Overview. Fig. 2 shows the architecture of our LLaVA-4D. Given a multi-view video input sequence
 I, our LLaVA-4D achieves 4D scene understanding progressively through the following three stages:
@@ -249,9 +231,9 @@ I, our LLaVA-4D achieves 4D scene understanding progressively through the follow
 stage where we construct 4D coordinate tensors [x, y, z, t] from multi-view videos using visual
 geometry, and perform spatiotemporal encoding PE(·), TE(·) on the coordinates. The encoded
 position and time are concatenated as a spatiotemporal prompt to guide visual fusion, i.e.:
-p4D = wp · [PE(x, y, z) ∥TE(t) · β],
+p4D = wp · [PE(x, y, z) ∥TE(t) · ],
 (1)
-where wp is a learnable matrix and β is motion field for dynamic awareness of temporal encoding.
+where wp is a learnable matrix and is motion field for dynamic awareness of temporal encoding.
 2) Spatiotemporal-Disentangled Vision Embedding (cf. Sec. 3.2). This is the visual representation
 stage where we extract visual features f from multi-view videos using a vision encoder, and
 disentangle these visual features into spatiotemporal components:
@@ -262,20 +244,7 @@ features into these spatiotemporal features via cross-attention fusion:
 fst = CAtt([fs, ft], p4D),
 (3)
 where fst denotes the output visual spatiotemporal feature with 4D awareness.
-3
 
-v1
-v3
-v4
-vn
-v2
-t
-t1
-t2
-t3
-tn
-vn
-vn
 Cross-Attention Fusion
 Pretrained Large Language Model
 Linguistic Tokens
@@ -299,14 +268,8 @@ Encode
 Time
 Encode
 View 1
-t1
-tn
 View 2
-t1
-tn
 View n
-t1
-tn
 View 1
 View 2
 View n
@@ -330,13 +293,6 @@ Disentangle
 View 1
 View 2
 View n
-P1
-P2
-x
-y
-z
-t1
-tn
 Motion
 Word Token
 Linguistic Position Token
@@ -350,7 +306,6 @@ Align textual position and time with the fused vision embedding for 4D scene und
 3) Coordinate-Aligned Language Embedding (cf. Sec. 3.3). This is the linguistic representation
 stage where visual spatiotemporal features are projected into the language embedding space
 using multi-layer perception: τ st
-v
 = MLP(fst), where τ st
 v denotes visual spatiotemporal to-
 kens. Input instructions are tokenized into language space, where textual position and time are
@@ -358,13 +313,11 @@ spatiotemporally encoded into corresponding linguistic tokens τ st
 l .
 Remarks. The output τ st
 v and τ st
-l
 denote the visual and linguistic representation with 4D coordinate
 prompt, respectively. Subsequently, the LLM [13] utilizes these enhanced visual and linguistic tokens
 to improve 4D scene understanding. Our unified framework embeds 4D coordinates as spatiotemporal
 prompts into visual representations to enable spatiotemporal understanding of dynamic objects and
 static background in LMMs. The following sections detail the design of each stage.
-3.1
 Dynamic-Aware 4D Coordinate Encoding
 2D LLMs can capture spatial relationship between targets in images by using a vision encoder to
 implicitly or explicitly incorporate 2D position encoding. Similarly, 4D scene understanding can be
@@ -382,14 +335,12 @@ based on spatial dimensions such as multi-view images captured at a specific tim
 this challenge by adopting the same spatial position encoding strategy for objects and background via
 learnable Fourier feature [33]:
 pxyz = 1/
-√
 d [cos([x, y, z]W ⊤
 r ∥sin([x, y, z]W ⊤
 r ))],
 (5)
 where d denotes the dimension and Wr is the learnable parameter of the Fourier feature. From the
 temporal dimension such as continuous video sequence at a certain view, objects and background
-4
 
 Vision
 Encoder
@@ -404,8 +355,6 @@ Multi-View Videos
 t2 t1
 t2 t1
 t2 t1
-P1
-P2
 Vision
 Encoder
 4D Dynamic Scene
@@ -414,14 +363,12 @@ Cluster
 Cluster
 Object
 
+
 ## Background
 
-F
 similar
 Object
 Background
-t1
-t2
 Visual
 Spatial Temporal
 Background
@@ -434,7 +381,6 @@ Visual features of dynamic objects appear scattered while static backgrounds are
 spatiotemporal features show clear discrimination between objects and background.
 have different motion patterns and thus we add motion information into the temporal encoding:
 pt = 1/
-√
 d [cos(tW ⊤
 r ∥sin(tW ⊤
 r ))] · (1 + Φ(vel)),
@@ -444,7 +390,6 @@ spatial and temporal encoding outputs to obtain dynamic-aware 4D coordinate embe
 the spatiotemporal prompt for subsequent visual fusion. Moreover, this spatiotemporal prompt is
 extensible, where we can further add some other spatiotemporal attributes such as semantic and
 action to guide the alignment between visual and linguistic representations (cf. Sec. 5.3 for details).
-3.2
 Spatiotemporal-Disentangled Vision Embedding
 Unlike 2D image and 3D scene, 4D scene consists of spatial such as color and temporal such as
 motion components. A unified visual representation for 4D scene usually suffers from misaligned het-
@@ -473,36 +418,26 @@ localization. We first introduce an MLP to make the dimension of the 4D coordina
 same as the dimension of the spatiotemporal features: p4D = MLP([pxyz ∥pt]). Next, we fuse the
 4D coordinate embeddings with the spatiotemporal features via a cross-attention mechanism [34, 35]:
 q =wqp4D, k = wk [fs, ft], v = wv [fs, ft], a = softmax(qk⊤/
-√
 d),
-o = a · v, α = σ(MLPobj(p4D)), fst = α · o + (1 −α) · fs,
+o = a · v, = (MLPobj(p4D)), fst = · o + (1 −) · fs,
 (9)
 where w is a learnable weight. As a result, we can obtain the 4D-aware visual spatiotemporal feature.
-3.3
 Coordinate-Aligned Language Embedding
 Although vision embeddings can represent scene knowledge, LMMs understanding scenes require
 the alignment between visual and linguistic representations. Since the input of large language model
-5
 
-t1
-t2
 3D Detection
 ChatGPT-4V
-Text-Only         GPT
+Text-Only GPT
 Color
 Box
 Point
 Time
 (x, y, z)
-t
 View 1
 View 2
 View n
-t1
-t2
 ...
-t1
-t2
 Q: What is happening
 in the scene?
 A: A person in a cap
@@ -530,27 +465,11 @@ a white plate.
 (b) Training Pipeline
 (c) 4D Instruction Generation
 Chat4D
-879.1k
 2D (37.6%)
 3D (36.9%)
 4D (25.5%)
-DC
-QA
-VG
-121.7k
-107.0k
-101.2k
-DC
-107.6k
-QA
-114.8k
-VG
-102.2k
-DC
 81.9k
-QA
 76.3k
-VG
 66.4k
 Stage 2: Coordinate Alignment
 Stage 3: Instruction Fine-Tuning
@@ -564,9 +483,6 @@ Stage 1: Content Alignment
 4D DC
 4D QA
 4D VG
-451.1k
-203.4k
-224.6k
 Figure 4: Overview of our dataset and training pipeline. (a) Chat4D dataset includes 2D, 3D, and
 4D vision-language training sets for dense captioning, QA, and visual grounding. (b) Three-stage
 training: stages 1-2 use 2D/3D data for initialization; stage 3 uses 4D data for instruction fine-tuning.
@@ -580,16 +496,13 @@ spatiotemporal encodings PE(·) and TE(·) to textual position tp and time tt:
 τs = PE(tp), τt = TE(tt).
 (10)
 We further fuse the encoded position and time with corresponding word token: τ st
-l
 = τl+wsτs+wtτt,
 where ws and wt denote the learnable weights. We concatenate 4D-aware visual tokens with
 coordinate-aligned linguistic tokens for the LLM to reason. Particularly, 4D coordinate encoding
 ensures spatiotemporal localization of the scene within our unified framework. Additionally, dis-
 entangled vision embedding models spatiotemporal knowledge of the scene, and vision-language
 alignment further enable the LMM to achieve interactive understanding of 4D scenes.
-4
 Dataset and Training Pipeline
-4.1
 Our Chat4D Dataset
 Many vision-language datasets have been proposed to evaluate 2D/3D scene understanding of
 LMMs. However, there is currently no vision-language dataset specifically designed for 4D scene
@@ -600,6 +513,7 @@ initialize multimodal spatiotemporal understanding and 4D data is used for instr
 requires image-format inputs and a large number of vision-language pairs. We thus integrate existing
 standard 2D/3D spatiotemporal datasets [36, 37, 38, 39, 40, 41, 42, 43, 44, 45] and adapt specific text
 instructions (e.g., 2D/3D position and time) to align with our spatiotemporal encoding strategy. This
+
 
 ## Approach
 
@@ -612,11 +526,9 @@ utilize 3D object detection methods [52, 53] and GPT-4V [54] to extract local sp
 mation such as category, position, time from multi-view videos. These extracted features are then
 processed by text-only GPT to generate global 4D descriptions in instruction-following formats for
 typical spatiotemporal understanding tasks to produce a dataset of 224.6K samples.
-4.2
 Training Pipeline
 To ensure the stability of the training process and improve the performance of the model, we divide
 the entire training into three stages in Fig. 4 (b) as follows:
-6
 
 Table 1: Quantitative results of LMMs for scene understanding tasks on different 3D and 4D datasets.
 Methods
@@ -626,106 +538,19 @@ Scan2Cap [43]
 ScanQA [41]
 Multi3DRefer [44] ScanRef [55]
 Chat4D (Ours)
-C@0.5↑B-4@0.5↑M@0.5↑
-C↑B-4↑M↑
-F1@0.5↑
-SAcc@0.5↑C↑B-4↑SAcc@0.5↑TAcc↑
-3D
+C@0.5B-4@0.5M@0.5
+CB-4M
+F1@0.5
+SAcc@0.5CB-4SAcc@0.5TAcc
 3D-LLM [10]
-–
-–
-–
-69.4 12.0 14.5
-–
-–
-61.6 11.5
-31.4
-–
 Chat-3D v2 [56]
-63.9
-31.8
-–
-87.6 14.0
-–
-41.6
-38.4
-81.8 13.7
-39.5
-–
 LL3DA [20]
-65.2
-36.8
-26.0
-76.8 13.5 15.9
-–
-–
-72.3 11.9
-46.2
-–
 3D-LLaVA [21]
-78.8
-36.9
-27.1
-92.6 17.1 18.4
-–
-–
-85.1 16.0
-52.0
-–
 Grounded 3D-LLM [57]
-70.6
-35.5
-–
-72.7 13.4
-–
-40.6
-44.1
-66.3 12.2
-43.7
-–
 PQ3D [58]
-80.3
-36.0
-29.1
-87.8
-–
-17.8
-50.1
-51.2
-84.7 14.3
-51.5
-–
 LLaVA-3D [11]
-79.2
-41.1
-30.2
-91.7 14.5 20.7
-–
-42.2
-87.4 14.8
-45.6
-–
 Video-3D LLM [23]
-83.8
-42.4
-28.9
-102.1 16.2 19.8
-52.7
-51.7
-89.4 16.1
-52.8
-–
-4D
 LLaVA-4D (Ours)
-85.3
-45.7
-31.3
-97.8 17.9 21.2
-54.3
-53.2
-93.5 17.2
-58.9
-54.6
 This person is riding a brown horse in a sandy arena, approaching the hurdle, jumping high, clearing it
 mid-air, landing smoothly, and continuing toward the next obstacle. At 1.5s, it is at [11.15, 2.08, -7.32,
 12.45, 0.30, -7.15]. At ..., it is at [...]. At 2.3s, it is at [12.80, 1.84, -6.80, 14.26, 0.12, -6.51].
@@ -748,9 +573,6 @@ View 1
 View 2
 t=2.3s
 t=1.5s
-x
-y
-z
 Figure 5: Visual comparison of LMMs on 4D scene understanding.
 Stage 1: Content Alignment. The training sets of the DC and QA tasks in the 2D&3D vision-
 language data of our Chat4D are used to initially align the content between visual and linguistic
@@ -767,9 +589,8 @@ Stage 3: 4D Task Instruction Fine-Tuning. To further improve our model for 4D sc
 standing, we use 4D vision-language data of Chat4D to enhance the generalization of our model
 for fine-grained spatiotemporal understanding with 4D coordinates through a multi-task instruction
 fine-tuning strategy. All trainable parameters are updated while the vision encoder remains frozen.
-5
 Experiments
-5.1
+
 
 ## Experiments
 
@@ -780,53 +601,16 @@ using AdamW as the optimizer. In training stages 1-2, we set the learning rate t
 batch size of 48. We use a learning rate of 1.0e −5 with a batch size of 16 in training stage 3.
 Comparison Methods. Since there are currently no other public 4D LMMs for comparison, we
 compare our model with 3D LMMs: 3D-LLM [10], Chat-3D v2 [56], LL3DA [20], 3D-LLaVA
-7
 
 Table 2: Effect of visual representation modules.
-Coor. embed Feat. disent. Feat. fusion C↑B-4↑SAcc@0.5↑TAcc↑
-×
-×
-×
-62.3 11.7
-34.8
-12.7
-√
-×
-×
-85.4 15.1
-51.5
-47.5
-√
-√
-×
-89.0 16.5
-54.3
-51.2
-√
-√
-√
-93.5 17.2
-58.9
-54.6
+Coor. embed Feat. disent. Feat. fusion CB-4SAcc@0.5TAcc
 Table 3: Role of coordinate encoding.
 Encoding target
-C↑
-B-4↑SAcc@0.5↑TAcc↑
+B-4SAcc@0.5TAcc
 w/o Encoding
-75.0 12.1
-47.2
-46.8
 w/ 3D position
-88.6 15.3
-53.4
-47.0
 w/ 1D time
-82.7 14.0
-48.5
-52.7
 w/ 4D coordinate 93.5 17.2
-58.9
-54.6
 w/ Visual Feature Encoding
 View 1
 Map
@@ -838,16 +622,8 @@ Map
 Map
 View 2
 View n
-t1
-t2
-tn
-t1
-t2
-tn
-t1
-t2
-tn
 Object
+
 
 ## Background
 
@@ -864,6 +640,7 @@ discriminability of background and objects, which are further separated by 4D co
 [21], Grounded 3D-LLM [57], PQ3D [58], LLaVA-3D [11], and Video-3D LLM [23]. For a fair
 comparison, all methods are trained on the same evaluation benchmark via instruction fine-tuning.
 
+
 ## Evaluation
 
 ScanQA [41], ScanRef [55] and Multi3DRefer [44] and our Chat4D dataset. We evaluate the
@@ -872,7 +649,6 @@ METEOR (M). We choose the F1 metric of object prediction precision for Multi3DRe
 accuracy of intersection over unions for grounding task from ScanRef. The metrics are also applicable
 to the evaluation on our Chat4D, where grounding accuracy is divided into spatial and temporal
 components: S/TAcc. Note that the experiments in Sec. 5.3 are evaluated on 4D tasks.
-5.2
 Comparison with State-of-the-Art Models
 Quantitative Results. In Table 1, we compare the competing methods on 3D and 4D datasets. For
 3D understanding comparison, our method performs better than other methods. This shows that
@@ -884,9 +660,9 @@ comparison between our model and 3D LMMs. The results show that 3D LMMs cannot r
 timestamp and corresponding temporal information, while our method can understand the temporal
 content. This is because 3D LMMs lack the representation of temporal characteristic. In contrast, our
 
+
 ## Method
 
-5.3
 Ablation Study and Discussion
 Effect of Visual Representation Modules. In Table 2, we verify the effectiveness of coordinate
 embedding, feature disentanglement and feature fusion modules in visual representation. Coordinate
@@ -899,44 +675,21 @@ Role of 4D Coordinate Encoding. In Table 3, we analyze the impact of 3D position
 the spatiotemporal understanding performance of the LMM is negatively affected to a certain extent.
 3D position encoding mainly contributes to the spatial understanding ability of the LMM, and 1D
 time encoding can further improve the performance of temporal understanding.
-8
 
 Table 4: Discussion on spatiotemporal fusion.
 Fusion strategy
-C↑
-B-4↑
-SAcc@0.5↑
-TAcc↑
+B-4
+SAcc@0.5
+TAcc
 w/ Concatenation
-89.0
-16.5
-54.3
-51.2
 w/ Weighting
-89.5
-16.5
-55.1
-51.4
 w/ Attention
-93.5
-17.2
-58.9
-54.6
 Table 5: Impact of textual coordinate encoding.
 Text instruction
-C↑
-B-4↑SAcc@0.5↑TAcc↑
+B-4SAcc@0.5TAcc
 w/o Coordinate
-83.5 13.2
-43.2
-25.8
 w/ Coordinate w/o Encoding 90.1 16.7
-56.3
-53.0
 w/ Encoding
-93.5 17.2
-58.9
-54.6
 At 1.4s, [SEG]. At 1.9s, [SEG]. At 2.4s, [SEG].
 1.4s
 1.9s
@@ -982,7 +735,7 @@ Limitation. While our model performs well on most 3D and 4D dynamic scenes, it s
 fast-moving objects due to motion blur from frame-based cameras. This reduces discriminability of
 the spatiotemporal feature and thus weakens 4D understanding. In future work, we plan to incorporate
 event cameras [60] with high temporal resolution to improve dynamic representation.
-6
+
 
 ## Conclusion
 
@@ -992,48 +745,48 @@ localization. Additionally, we propose a spatiotemporal-disentangled vision embe
 that integrates 4D spatiotemporal prompts into disentangled spatiotemporal features for effective
 scene representation. By aligning visual spatiotemporal embeddings with language embeddings, our
 
+
 ## Approach
 
 Chat4D, a comprehensive dataset covering 2D, 3D and 4D vision-language data for multimodal
 spatiotemporal understanding. Extensive experiments validate the effectiveness of our method.
-9
 
 References
 [1] Jean-Baptiste Alayrac, Jeff Donahue, Pauline Luc, Antoine Miech, Iain Barr, Yana Hasson, Arthur Mensch,
 Katie Millican, David Moore, Michael Needham, et al. Flamingo: a visual language model for few-shot
-learning. Advances in Neural Information Processing Systems, 35:23716–23732, 2022.
+learning. Advances in Neural Information Processing Systems, 35:2371623732, 2022.
 [2] Haotian Liu, Chunyuan Li, Qingyang Wu, and Yong Jae Lee. Visual instruction tuning. In Advances in
 Neural Information Processing Systems (NeurIPS), 2023.
 [3] Alec Radford, Jong Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh, Sandhini Agarwal, Girish
 Sastry, Amanda Askell, Pam Mishkin, Jack Clark, et al. Learning transferable visual models from natural
-language supervision. In International Conference on Machine Learning, pages 8748–8763. PMLR, 2021.
+language supervision. In International Conference on Machine Learning, pages 87488763. PMLR, 2021.
 [4] Yujia Gong, Changhan Wang, Yun Tang Wang, and Jiatao Gu. Contrastive learning for speech translation.
 In International Conference on Learning Representations, 2022.
 [5] Jianfeng Wang, Jianwei Yang, Xiaowei Wang, Lu Yuan, Lei Zhang, Yejin Choi, and Jianfeng Gao. Git:
 A generative image-to-text transformer for vision and language. In Advances in Neural Information
-Processing Systems, volume 35, pages 18002–18014, 2022.
+Processing Systems, volume 35, pages 1800218014, 2022.
 [6] Junnan Li, Dongxu Li, Caiming Xiong, and Steven Hoi. BLIP: Bootstrapping language-image pre-training
 for unified vision-language understanding and generation. In Proceedings of the 39th International
 Conference on Machine Learning, volume 162 of Proceedings of Machine Learning Research, pages
-12888–12900. PMLR, 2022.
+1288812900. PMLR, 2022.
 [7] Junnan Li, Dongxu Li, Silvio Savarese, and Steven Hoi. BLIP-2: Bootstrapping language-image pre-
 training with frozen image encoders and large language models. In Proceedings of the 40th International
 Conference on Machine Learning, volume 202 of Proceedings of Machine Learning Research, pages
-19730–19742. PMLR, 2023.
+1973019742. PMLR, 2023.
 [8] Aishwarya Kamath, Mannat Singh, Yann LeCun, Ishan Misra, Gabriel Synnaeve, Nicolas Carion, and
 Karteek Alahari. Mdetr: Modulated detection for end-to-end multi-modal understanding. In Proceedings
-of the IEEE/CVF International Conference on Computer Vision, pages 1780–1790, 2021.
+of the IEEE/CVF International Conference on Computer Vision, pages 17801790, 2021.
 [9] Mandy Chen, Adams Wei Yu, Hamid Palangi, Paul Smolensky, Yinfei Yang, Xiaowei Yuan, Kathy Meier-
 Hellstern, Jianfeng Gao, Ed Chi, et al. Pali: A jointly-scaled multilingual language-image model. arXiv
 preprint arXiv:2303.07892, 2023.
 [10] Yining Hong, Haoyu Zhen, Peihao Chen, Shuhong Zheng, Yilun Du, Zhenfang Chen, and Chuang Gan.
 3d-llm: Injecting the 3d world into large language models. Advances in Neural Information Processing
-Systems, 36:20482–20494, 2023.
+Systems, 36:2048220494, 2023.
 [11] Chenming Zhu, Tai Wang, Wenwei Zhang, Jiangmiao Pang, and Xihui Liu. Llava-3d: A simple yet
 effective pathway to empowering lmms with 3d-awareness. arXiv preprint arXiv:2409.18125, 2024.
 [12] Tom Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared D Kaplan, Prafulla Dhariwal, Arvind
 Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, et al. Language models are few-shot learners.
-Advances in neural information processing systems, 33:1877–1901, 2020.
+Advances in neural information processing systems, 33:18771901, 2020.
 [13] Hugo Touvron, Thibaut Lavril, Gautier Izacard, Xavier Martinet, Marie-Anne Lachaux, Timothée Lacroix,
 Baptiste Rozière, Naman Goyal, Eric Hambro, Faisal Azhar, et al. Llama: Open and efficient foundation
 language models. arXiv preprint arXiv:2302.13971, 2023.
@@ -1045,11 +798,9 @@ namoorthi, Vikas Chandra, Yunyang Xiong, and Mohamed Elhoseiny. Minigpt-v2: larg
 as a unified interface for vision-language multi-task learning. arXiv preprint arXiv:2310.09478, 2023.
 [16] Ji Lin, Hongxu Yin, Wei Ping, Pavlo Molchanov, Mohammad Shoeybi, and Song Han. Vila: On pre-
 training for visual language models. In Proceedings of the IEEE/CVF conference on computer vision and
-pattern recognition, pages 26689–26699, 2024.
+pattern recognition, pages 2668926699, 2024.
 [17] Haotian Liu, Chunyuan Li, Yuheng Li, and Yong Jae Lee. Improved baselines with visual instruction
 tuning. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages
-26296–26306, 2024.
-10
 
 [18] Hongyu Li, Jinyu Chen, Ziyu Wei, Shaofei Huang, Tianrui Hui, Jialin Gao, Xiaoming Wei, and Si Liu.
 Llava-st: A multimodal large language model for fine-grained spatial-temporal understanding. arXiv
@@ -1059,7 +810,6 @@ large language model for universal dialogue of 3d scenes. arXiv preprint arXiv:2
 [20] Sijin Chen, Xin Chen, Chi Zhang, Mingsheng Li, Gang Yu, Hao Fei, Hongyuan Zhu, Jiayuan Fan,
 and Tao Chen. Ll3da: Visual interactive instruction tuning for omni-3d understanding reasoning and
 planning. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages
-26428–26438, 2024.
 [21] Jiajun Deng, Tianyu He, Li Jiang, Tianyu Wang, Feras Dayoub, and Ian Reid. 3d-llava: Towards generalist
 3d lmms with omni superpoint transformer. arXiv preprint arXiv:2501.01163, 2025.
 [22] Hongyan Zhi, Peihao Chen, Junyan Li, Shuailei Ma, Xinyu Sun, Tianhang Xiang, Yinjie Lei, Mingkui Tan,
@@ -1068,42 +818,42 @@ arXiv preprint arXiv:2412.01292, 2024.
 [23] Duo Zheng, Shijia Huang, and Liwei Wang. Video-3d llm: Learning position-aware video representation
 for 3d scene understanding. arXiv preprint arXiv:2412.00493, 2024.
 [24] Bernhard Kerbl, Georgios Kopanas, Thomas Leimkühler, and George Drettakis. 3d gaussian splatting for
-real-time radiance field rendering. ACM Trans. Graph., 42(4):139–1, 2023.
+real-time radiance field rendering. ACM Trans. Graph., 42(4):1391, 2023.
 [25] Wanhua Li, Renping Zhou, Jiawei Zhou, Yingwei Song, Johannes Herter, Minghan Qin, Gao Huang, and
 Hanspeter Pfister. 4d langsplat: 4d language gaussian splatting via multimodal large language models.
 arXiv preprint arXiv:2503.10437, 2025.
 [26] Zhichao Deng, Xiangtai Li, Xia Li, Yunhai Tong, Shen Zhao, and Mengyuan Liu. Vg4d: Vision-language
 model goes 4d video recognition. In 2024 IEEE International Conference on Robotics and Automation
-(ICRA), pages 5014–5020. IEEE, 2024.
+(ICRA), pages 50145020. IEEE, 2024.
 [27] Jingtao Sun, Yaonan Wang, Mingtao Feng, Yulan Guo, Ajmal Mian, and Mike Zheng Shou. L4d-track:
 Language-to-4d modeling towards 6-dof tracking and shape reconstruction in 3d point cloud stream. In
-IEEE Conf. Comput. Vis. Pattern Recog., pages 21146–21156, 2024.
+IEEE Conf. Comput. Vis. Pattern Recog., pages 2114621156, 2024.
 [28] Guanjun Wu, Taoran Yi, Jiemin Fang, Lingxi Xie, Xiaopeng Zhang, Wei Wei, Wenyu Liu, Qi Tian, and
 Xinggang Wang. 4d gaussian splatting for real-time dynamic scene rendering. In IEEE Conf. Comput. Vis.
-Pattern Recog., pages 20310–20320, 2024.
+Pattern Recog., pages 2031020320, 2024.
 [29] Johannes L Schonberger and Jan-Michael Frahm. Structure-from-motion revisited. In IEEE Conf. Comput.
-Vis. Pattern Recog., pages 4104–4113, 2016.
+Vis. Pattern Recog., pages 41044113, 2016.
 [30] Steven M Seitz, Brian Curless, James Diebel, Daniel Scharstein, and Richard Szeliski. A comparison and
+
 
 ## Evaluation
 
-computer vision and pattern recognition (CVPR’06), volume 1, pages 519–528. IEEE, 2006.
+computer vision and pattern recognition (CVPR06), volume 1, pages 519528. IEEE, 2006.
 [31] Yuliang Zou, Zelun Luo, and Jia-Bin Huang. Df-net: Unsupervised joint learning of depth and flow using
-cross-task consistency. In Eur. Conf. Comput. Vis., pages 1–18. Springer, 2018.
+cross-task consistency. In Eur. Conf. Comput. Vis., pages 118. Springer, 2018.
 [32] Tinghui Zhou, Matthew Brown, Noah Snavely, and David G Lowe. Unsupervised learning of depth and
-ego-motion from video. In IEEE Conf. Comput. Vis. Pattern Recog., pages 1851–1858, 2017.
+ego-motion from video. In IEEE Conf. Comput. Vis. Pattern Recog., pages 18511858, 2017.
 [33] Yang Li, Si Si, Gang Li, Cho-Jui Hsieh, and Samy Bengio. Learnable fourier features for multi-dimensional
-spatial positional encoding. Advances in Neural Information Processing Systems, 34:15816–15829, 2021.
+spatial positional encoding. Advances in Neural Information Processing Systems, 34:1581615829, 2021.
 [34] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz
 Kaiser, and Illia Polosukhin. Attention is all you need. Adv. Neural Inform. Process. Syst., 30, 2017.
 [35] Chun-Fu Richard Chen, Quanfu Fan, and Rameswar Panda. Crossvit: Cross-attention multi-scale vision
 transformer for image classification. In Proceedings of the IEEE/CVF international conference on computer
-vision, pages 357–366, 2021.
+vision, pages 357366, 2021.
 [36] Tsai-Shien Chen, Aliaksandr Siarohin, Willi Menapace, Ekaterina Deyneka, Hsiang-wei Chao, Byung Eun
 Jeon, Yuwei Fang, Hsin-Ying Lee, Jian Ren, Ming-Hsuan Yang, et al. Panda-70m: Captioning 70m videos
 with multiple cross-modality teachers. In Proceedings of the IEEE/CVF Conference on Computer Vision
-and Pattern Recognition, pages 13320–13331, 2024.
-11
+and Pattern Recognition, pages 1332013331, 2024.
 
 [37] Yi Wang, Yinan He, Yizhuo Li, Kunchang Li, Jiashuo Yu, Xin Ma, Xinhao Li, Guo Chen, Xinyuan
 Chen, Yaohui Wang, et al. Internvid: A large-scale video-text dataset for multimodal understanding and
@@ -1113,54 +863,48 @@ Qiu, and Zhongyu Wei. Valley: Video assistant with large language model enhanced
 arXiv:2306.07207, 2023.
 [39] Muhammad Maaz, Hanoona Rasheed, Salman Khan, and Fahad Shahbaz Khan. Video-chatgpt: Towards
 detailed video understanding via large vision and language models. arXiv preprint arXiv:2306.05424,
-2023.
 [40] Hanoona Rasheed, Muhammad Maaz, Sahal Shaji, Abdelrahman Shaker, Salman Khan, Hisham Cholakkal,
 Rao M Anwer, Eric Xing, Ming-Hsuan Yang, and Fahad S Khan. Glamm: Pixel grounding large multimodal
-model. In IEEE Conf. Comput. Vis. Pattern Recog., pages 13009–13018, 2024.
+model. In IEEE Conf. Comput. Vis. Pattern Recog., pages 1300913018, 2024.
 [41] Daichi Azuma, Taiki Miyanishi, Shuhei Kurita, and Motoaki Kawanabe. Scanqa: 3d question answering
-for spatial scene understanding. In IEEE Conf. Comput. Vis. Pattern Recog., pages 19129–19139, 2022.
+for spatial scene understanding. In IEEE Conf. Comput. Vis. Pattern Recog., pages 1912919139, 2022.
 [42] Ruiyuan Lyu, Jingli Lin, Tai Wang, Xiaohan Mao, Yilun Chen, Runsen Xu, Haifeng Huang, Chenming Zhu,
 Dahua Lin, and Jiangmiao Pang. Mmscan: A multi-modal 3d scene dataset with hierarchical grounded
-language annotations. Advances in Neural Information Processing Systems, 37:50898–50924, 2024.
+language annotations. Advances in Neural Information Processing Systems, 37:5089850924, 2024.
 [43] Zhenyu Chen, Ali Gholami, Matthias Nießner, and Angel X Chang. Scan2cap: Context-aware dense
-captioning in rgb-d scans. In IEEE Conf. Comput. Vis. Pattern Recog., pages 3193–3203, 2021.
+captioning in rgb-d scans. In IEEE Conf. Comput. Vis. Pattern Recog., pages 31933203, 2021.
 [44] Yiming Zhang, ZeMing Gong, and Angel X Chang. Multi3drefer: Grounding text description to multiple
-3d objects. In Proceedings of the IEEE/CVF International Conference on Computer Vision, pages 15225–
-15236, 2023.
+3d objects. In Proceedings of the IEEE/CVF International Conference on Computer Vision, pages 15225
 [45] Xiaojian Ma, Silong Yong, Zilong Zheng, Qing Li, Yitao Liang, Song-Chun Zhu, and Siyuan Huang.
 Sqa3d: Situated question answering in 3d scenes. arXiv preprint arXiv:2210.07474, 2022.
 [46] Hang Gao, Ruilong Li, Shubham Tulsiani, Bryan Russell, and Angjoo Kanazawa. Monocular dynamic
-view synthesis: A reality check. Advances in Neural Information Processing Systems, 35:33768–33780,
-2022.
+view synthesis: A reality check. Advances in Neural Information Processing Systems, 35:3376833780,
 [47] Keunhong Park, Utkarsh Sinha, Peter Hedman, Jonathan T Barron, Sofien Bouaziz, Dan B Goldman,
 Ricardo Martin-Brualla, and Steven M Seitz. Hypernerf: A higher-dimensional representation for topologi-
 cally varying neural radiance fields. arXiv preprint arXiv:2106.13228, 2021.
 [48] Tianye Li, Mira Slavcheva, Michael Zollhoefer, Simon Green, Christoph Lassner, Changil Kim, Tanner
 Schmidt, Steven Lovegrove, Michael Goesele, Richard Newcombe, et al. Neural 3d video synthesis from
 multi-view video. In Proceedings of the IEEE/CVF conference on computer vision and pattern recognition,
-pages 5521–5531, 2022.
+pages 55215531, 2022.
 [49] Jonathon Luiten, Georgios Kopanas, Bastian Leibe, and Deva Ramanan. Dynamic 3d gaussians: Tracking
 by persistent dynamic view synthesis. In 2024 International Conference on 3D Vision (3DV), pages
-800–809. IEEE, 2024.
+800809. IEEE, 2024.
 [50] Federico Perazzi, Jordi Pont-Tuset, Brian McWilliams, Luc Van Gool, Markus Gross, and Alexander
 Sorkine-Hornung. A benchmark dataset and evaluation methodology for video object segmentation. In
-IEEE Conf. Comput. Vis. Pattern Recog., pages 724–732, 2016.
+IEEE Conf. Comput. Vis. Pattern Recog., pages 724732, 2016.
 [51] Michael Broxton, John Flynn, Ryan Overbeck, Daniel Erickson, Peter Hedman, Matthew Duvall, Jason
 Dourgarian, Jay Busch, Matt Whalen, and Paul Debevec. Immersive light field video with a layered mesh
-representation. ACM Trans. Graph., 39(4):86–1, 2020.
+representation. ACM Trans. Graph., 39(4):861, 2020.
 [52] Yingfei Liu, Junjie Yan, Fan Jia, Shuailin Li, Aqi Gao, Tiancai Wang, and Xiangyu Zhang. Petrv2:
 A unified framework for 3d perception from multi-camera images. In Int. Conf. Comput. Vis., pages
-3262–3272, 2023.
 [53] Danila Rukhovich, Anna Vorontsova, and Anton Konushin. Imvoxelnet: Image to voxels projection for
 monocular and multi-view general-purpose 3d object detection. In Proceedings of the IEEE/CVF Winter
-Conference on Applications of Computer Vision, pages 2397–2406, 2022.
+Conference on Applications of Computer Vision, pages 23972406, 2022.
 [54] Zhengyuan Yang, Linjie Li, Kevin Lin, Jianfeng Wang, Chung-Ching Lin, Zicheng Liu, and Lijuan Wang.
 The dawn of lmms: Preliminary explorations with gpt-4v (ision). arXiv preprint arXiv:2309.17421, 9(1):1,
-2023.
-12
 
 [55] Dave Zhenyu Chen, Angel X Chang, and Matthias Nießner. Scanrefer: 3d object localization in rgb-d
-scans using natural language. In European conference on computer vision, pages 202–221. Springer, 2020.
+scans using natural language. In European conference on computer vision, pages 202221. Springer, 2020.
 [56] Haifeng Huang, Zehan Wang, Rongjie Huang, Luping Liu, Xize Cheng, Yang Zhao, Tao Jin, and Zhou
 Zhao. Chat-3d v2: Bridging 3d scene and large language models with object identifiers. arXiv preprint
 arXiv:2312.08168, 2023.
@@ -1168,12 +912,11 @@ arXiv:2312.08168, 2023.
 Pang. Grounded 3d-llm with referent tokens. arXiv preprint arXiv:2405.10370, 2024.
 [58] Ziyu Zhu, Zhuofan Zhang, Xiaojian Ma, Xuesong Niu, Yixin Chen, Baoxiong Jia, Zhidong Deng, Siyuan
 Huang, and Qing Li. Unifying 3d vision-language understanding via promptable queries. In European
-Conference on Computer Vision, pages 188–206. Springer, 2024.
+Conference on Computer Vision, pages 188206. Springer, 2024.
 [59] Mehdi Cherti, Romain Beaumont, Ross Wightman, Mitchell Wortsman, Gabriel Ilharco, Cade Gordon,
 Christoph Schuhmann, Ludwig Schmidt, and Jenia Jitsev. Reproducible scaling laws for contrastive
 language-image learning. In Proceedings of the IEEE/CVF conference on computer vision and pattern
-recognition, pages 2818–2829, 2023.
+recognition, pages 28182829, 2023.
 [60] Guillermo Gallego, Tobi Delbruck, Garrick Orchard, Chiara Bartolozzi, Brian Taba, Andrea Censi, et al.
-Event-based vision: A survey. IEEE Transactions on Pattern Analysis and Machine Intelligence, 44(1):154–
-180, 2020.
-13
+Event-based vision: A survey. IEEE Transactions on Pattern Analysis and Machine Intelligence, 44(1):154
+

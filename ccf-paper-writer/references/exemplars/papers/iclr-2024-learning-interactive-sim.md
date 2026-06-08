@@ -5,7 +5,6 @@
 > **Source:** <https://openreview.net/forum?id=sFyTZEqmUY>
 
 ---
-
 Published as a conference paper at ICLR 2024
 Sherry Yang,1,2
 Yilun Du3
@@ -19,6 +18,7 @@ Pieter Abbeel1
 3MIT
 4University of Alberta
 sherryy@{berkeley.edu, google.com}
+
 
 ## Abstract
 
@@ -35,14 +35,14 @@ along different dimensions (e.g., abundant objects in image data, densely sample
 actions in robotics data, and diverse movements in navigation data). With careful
 orchestration of diverse datasets, each providing a different aspect of the over-
 all experience, we can simulate the visual outcome of both high-level instructions
-such as “open the drawer” and low-level controls such as “move by ∆x, ∆y” from
+such as open the drawer and low-level controls such as move by ∆x, ∆y from
 otherwise static scenes and objects. We use the simulator to train both high-level
 vision-language policies and low-level reinforcement learning policies, each of
 which can be deployed in the real world in zero shot after training purely in simu-
 lation. We also show that other types of intelligence such as video captioning mod-
 els can benefit from training with simulated experience, opening up even wider
 applications. Video demos can be found at https://universal-simulator.github.io.
-1
+
 
 ## Introduction
 
@@ -50,10 +50,10 @@ Generative models trained on internet data can now produce highly realistic text
 age (Ramesh et al., 2022), and video (Ho et al., 2022a). Perhaps the ultimate goal of generative
 models is to be able to simulate the visual effects of a wide variety of actions, from how cars are
 driven on a street to how furniture and meals are prepared. With a real-world simulator, humans
-can “interact” with diverse scenes and objects, robots can learn from simulated experience without
-risking physical damage, and a vast amount of “real-world” like data can be simulated to train other
+can interact with diverse scenes and objects, robots can learn from simulated experience without
+risking physical damage, and a vast amount of real-world like data can be simulated to train other
 types of machine intelligence.
-One roadblock to building this simulator lies in the datasets — different datasets cover different
+One roadblock to building this simulator lies in the datasets different datasets cover different
 information that have to be brought together to simulate realistic experience. For instance, paired
 text-image data from the internet contains rich scenes and objects but little movement (Schuhmann
 et al., 2022; Zhai et al., 2022), video captioning and question answering data contain rich high-
@@ -67,9 +67,8 @@ In this work, we propose to combine a wealth of data in a conditional video gene
 to instantiate a universal simulator (UniSim)1. Under a unified action-in-video-out interface, the
 simulator enables rich interaction through fine-grained motion control of otherwise static scenes and
 objects. To support long-horizon repeated interactions, we formulate the simulator as an observation
-1Note that by “universal”, we mean the model can simulate through the unified interface of actions and
+1Note that by universal, we mean the model can simulate through the unified interface of actions and
 videos, as opposed to being able to simulate everything. Sound, for instance, is not being simulated.
-1
 
 Published as a conference paper at ICLR 2024
 Figure 1: A universal simulator (UniSim).
@@ -100,7 +99,6 @@ prediction model can be rolled out autoregressively to obtain consistent and lon
  We illustrate how the simulator can enable both high-level language policies, low-level control
 policies, and video captioning models to generalize to the real world when trained purely in sim-
 ulation, thereby bridging the sim-to-real gap.
-2
 LEARNING AN INTERACTIVE REAL-WORLD SIMULATOR
 We dene a simulator of the real world as a model that, given some state of the world (e.g., an
 image frame), can take in some action as input, and produce the visual consequence of the action
@@ -110,11 +108,9 @@ different frame rates. Nevertheless, we propose specic strategies for processin
 to unify the action space and align videos of variable lengths to actions in Section 2.1. With a unied
 action space, we then train an action-conditioned video generation model to fuse information across
 datasets through a universal interface relating actions to videos in Section 2.2.
-2.1
 ORCHESTRATING DIVERSE DATASETS
 Below, we highlight diverse information in different datasets and propose ways to process actions
 into a common format (see all datasets used to train UniSim in Appendix B).
-2
 
 Published as a conference paper at ICLR 2024
 Figure 2: Training and inference of UniSim.
@@ -158,7 +154,6 @@ images as single-frame videos and image captions as actions.
 For each of these datasets, we process text tokens into continuous representations using T5 language
 model embeddings (Raffel et al., 2020) concatenated with low-level actions such as robot controls.
 This serves as the nal unied action space of our simulator.
-2.2
 SIMULATING LONG-HORIZON INTERACTIONS THROUGH OBSERVATION PREDICTION
 With observations from different environments that have been converted to videos, and actions of
 different formats that have been converted to continuous embeddings, we can formulate interactions
@@ -171,7 +166,6 @@ We dene an observation space O and an action space A
 which capture the videos and actions described in Section 2.1. At a specic interactive step t, an
 agent, having observed a set of history frames ht   1 2 O, decides on some temporally extended ac-
 tion at   1 2 A, which can be resolved into a sequence of low-level robot commands to be executed in
-3
 
 Published as a conference paper at ICLR 2024
 the real world. During the execution, the next set of video frames ot 2 O are captured from the real
@@ -190,53 +184,40 @@ Parametrizing and Training the Simulator.
 We parametrize p(ot jht   1; at   1) using diffusion
 models (Sohl-Dickstein et al., 2015; Ho et al., 2020) as an instantiation of UniSim outlined in
 Figure 2. Specically, the reverse process learns a denoising model   (o(k)
-t
 ; kjht   1; at   1) that,
 conditioned on the history, generates the next observationfrom initial noise samples using K de-
 noising steps. In practice, we only use previous video frames and omit previous actions as history,
 and concatenate previous video frames with initial noise samples o(K )
-t
  N (0; I ) channelwise to
 serve as conditional inputs to the denoising model. To condition on an action at   1, we leverage
 classier-free guidance (Ho & Salimans, 2022). The nal
 T (ot jht   1; at   1) is parametrized by the
 variance schedule:
   (o(k)
-t
 ; kjht   1; at   1) = (1 +  )  (o(k)
-t
 ; kjht   1; at   1)     (ot ; kjht   1);
 (1)
 where  controls action conditioning strength. With this parametrization, we train   by minimizing
 LMSE =
-     
+
+    
  p
 1    (k)ot +
-p
- (k); k
-ht   1; at   1
-
-2
-;
+(k); k
+ht   1; at   1
 where   N (0; I ), and  (k) 2 R are a set of K different noise levels for each k 2 [1; K ].
 Given the learned   , an observation ot can be generated by sampling from the initial distribution
 o(K )
-t
  N (0; I ) and iteratively denoising according to the following process for k from K to 0
 o(k  1)
-t
 =  (k)(o(k)
-t
-   (k)  (o(k)
-t
+(k)  (o(k)
 ; kjht   1; at   1)) + ;
   N
  0;  2
-kI
-
-;
 (2)
-where  (k) is the denoising step size,  (k) is a linear decay on the current denoised sample, and  k
+where
+(k) is the denoising step size,  (k) is a linear decay on the current denoised sample, and  k
 is a time varying noise level that depends on  (k) and  (k).
 Architecture and Training.
 We use the video U-Net architecture (Ho et al., 2022b) to implement
@@ -245,11 +226,9 @@ the downsampling and upsampling passes. For history conditioning, we replicate t
 frames at all future frame indices, and concatenate the conditioning frames with the noise sample
 for each of the future frame to serve as input to the U-Net. UniSim model has 5.6B parameters and
 requires 512 TPU-v3 and 20 days to train on all data. See more details in Appendix C.
-3
 SIMULATING REAL-WORLD INTERACTIONS
 We now demonstrate emulating real-world manipulation and navigation environments by simulating
 both action-rich and long-horizon interactions for both humans and robots.
-3.1
 ACTION-RICH, LONG-HORIZON, AND DIVERSE INTERACTIONS
 Action-Rich Simulation.
 We rst demonstrate action-rich interactions through natural language
@@ -264,7 +243,6 @@ the simulation of each interaction on previous observations and new language act
 Section 2.2. UniSim successfully preserves objects manipulated by previous instructions (e.g., the
 orange and can are preserved in the drawers in Columns 4, 5, 7, 8 after being put in the drawers).
 See additional long-horizon interactions in Appendix A.1.
-4
 
 Published as a conference paper at ICLR 2024
 Figure 3: Action-rich simulations.
@@ -280,20 +258,8 @@ FVD #
 IS "
 CLIP "
 1 frame
-59.47
-315.69
-3.03
-22.55
 4 distant
-34.89
-237
-3.43
-22.62
 4 recent
-34.63
-211.3
-3.52
-22.63
 Table 1: Ablations of history conditioning
 using
 FVD, FID, and Inception score, and CLIP score on
@@ -313,13 +279,11 @@ tic environment transitions, e.g., diverse objects being revealed after removing
 variabilities such as change in camera angles. Flexibility in diffusion models promotes simulation
 of highly stochastic environments that cannot be controlled by actions, so that a policy can learn to
 only control the controllable part (Yang et al., 2022).
-3.2
 ABLATION AND ANALYSIS
 Frame Conditioning Ablations.
 We ablate over choices of past frames to condition on using a
 validation split of the Ego4D dataset (Grauman et al., 2022), which contains egocentric movement
 requiring proper handling of observation history. We compare UniSim conditioned on different
-5
 
 Published as a conference paper at ICLR 2024
 Figure 5: Diverse and stochastic simulations.
@@ -340,12 +304,10 @@ conditioned on improves generation quality in low-data domains, as shown in Figu
 domain identier improves in-distribution generation quality, we found domain-specic identiers
 to hurt generalization to other domains, and should only be applied with the test domain is in distri-
 bution of the training domain.
-4
 APPLICATIONS OF UNISIM
 We now demonstrate how UniSim can be used to train other types of machine intelligence such as
 vision-language policies, RL agents, and vision-language models through simulating highly realistic
 experiences.
-4.1
 TRAINING LONG-HORIZON VISION-LANGUAGE POLICIES THROUGH HINDSIGHT
 LABELING.
 Language models and vision language models (VLM) have recently been used as policies that can
@@ -360,11 +322,10 @@ VLM policy to predict language instructions and the motor controls from the star
 using the PALM-E architecture (Driess et al., 2023) (See data and model details in Appendix D.1).
 For the baseline, the goal is set to the last frame of the original short-horizon trajectories. During
 each evaluation run, we set the long-horizon goal by modifying the location of 3-4 blocks, and
-measure the blocks’ distance to their goal states after executing 5 instructions using the VLM policy.
+measure the blocks distance to their goal states after executing 5 instructions using the VLM policy.
 We dene the reduction in distance to goal (RDG) metric as
 RDG = ks0   sgoalk2   k sT   sgoalk2
 ks0   sgoalk2
-;
 (3)
 where sT represents the underlying block locations after executing the policy, s0 and sgoal represents
 the initial and goal block locations.
@@ -373,7 +334,6 @@ To use the simulator for long-horizon tasks, we
 draw inspiration from hindsight relabeling (Rauber et al., 2019). Specically, we create a total of
 10k long-horizon trajectories from the simulator by doing rollouts in the simulator 3-5 times per
 trajectory, where each rollout corresponds to one scripted language instruction. We then use the
-6
 
 Published as a conference paper at ICLR 2024
 Figure 7: Long-horizon simulation.
@@ -401,11 +361,7 @@ in RGD of moved blocks (left) and RGD in all blocks
 Succ. rate (all)
 Succ. rate (pointing)
 VLA-BC
-0.58
-0.12
 Simulator-RL
-0.81
-0.71
 Table 3: Evaluation of RL policy.
 Percentage of
 successful simulated rollouts (out of 48 tasks) using
@@ -417,6 +373,7 @@ the overall performance, especially in pointing-based
 tasks which contain limited expert demonstrations.
 nal frame from each long-horizon rollout as a goal input and the scripted language instructions as
 supervision for training the VLM policy.
+
 
 ## Results
 
@@ -436,7 +393,6 @@ simulator based evaluation to compare the reduction in distance to goal (RDG) of
 using generated long-horizon data to using the original short-horizon data in Table 2. The VLM
 trained using long-horizon generated data performs 3-4 times better than using the original data in
 completing long-horizon goal-conditioned tasks.
-4.2
 REAL-WORLD SIMULATOR FOR REINFORCEMENT LEARNING
 Reinforcement learning (RL) has achieved superhuman performance on difcult tasks such as play-
 ing Go and Atari games (Silver et al.; Mnih et al., 2015), but has limited real world applications due,
@@ -451,7 +407,6 @@ to Brohan et al. (2023). Because UniSim can take low-level control actions as in
 conduct model-based rollouts in the simulator using control actions generated by VLA policy. To
 acquire reward information, we use the number of steps-to-completion from the training data as a
 proxy reward to train a model that maps the current observation to learned reward. We then use the
-7
 
 Published as a conference paper at ICLR 2024
 Figure 8: [Top] Simulation from low-level controls . UniSim supports low-level control actions as inputs
@@ -471,24 +426,11 @@ a wide set of tasks, especially in tasks such as point to blue block. We the
 RL policy trained in the simulator onto the real robot in zero-shot, and observe successful task
 executions as shown in Figure 8 (bottom row). Additional results on real robot can be found in
 Appendix A.3.
-4.3
 REALISTIC SIMULATOR FOR BROADER VISION-LANGUAGE TASKS
 Activity MSR-VTT VATEX SMIT
 No netune
-15.2
-21.91
-13.31
-9.22
 Activity
-54.90
-24.88
-36.01
-16.91
 Simulator
-46.23
-27.63
-40.03
-20.58
 Table 4: VLM trained in UniSim
 to perform
 video captioning tasks.
@@ -522,7 +464,7 @@ PaLI-X netuned on generated data transfers better to other captioning tasks suc
 et al., 2016), VATEX (Wang et al., 2019), and SMIT (Monfort et al., 2021) than PaLI-X netuned
 on true data, which tends to overt to ActivityNet. These results suggest that UniSim can serve as
 an effective data generator for improving broader vision-language models.
-5
+
 
 ## Related Work
 
@@ -531,7 +473,6 @@ Language models trained on internet text succeed at text-based
 tasks (OpenAI, 2023; Anil et al., 2023) but not physical tasks, which requires perception and con-
 trol. Internet-scale generative models can synthesize realistic images and videos (Wu et al., 2021;
 Ho et al., 2022a; Singer et al., 2022; Yang et al., 2023; Blattmann et al., 2023), but have mostly
-8
 
 Published as a conference paper at ICLR 2024
 been applied to generative media (Zhang et al., 2023) as opposed to empowering sophisticated
@@ -558,7 +499,6 @@ they focus on generating domain specic videos (e.g., for self-driving) as oppos
 universal simulator that can be used to further improve other agents. The amount of control over
 generated videos in these existing work is also limited, as they do not treat video generation as a
 dynamics modeling problem like in our work.
-6
 LIMITATIONS AND CONCLUSION
 We have shown it is possible to learn a simulator of the real world in response to various action
 inputs ranging from texts to robot controls. UniSim can simulate visually realistic experiences for
@@ -595,7 +535,6 @@ visually-grounded navigation instructions in real environments. In Proceedings o
 ference on computer vision and pattern recognition , pp. 36743683, 2018.
 Marcin Andrychowicz, Filip Wolski, Alex Ray, Jonas Schneider, Rachel Fong, Peter Welinder, Bob
 McGrew, Josh Tobin, Pieter Abbeel, and Wojciech Zaremba. Hindsight experience replay. In
-9
 
 Published as a conference paper at ICLR 2024
 Advances in Neural Information Processing Systems. 2017.
@@ -616,7 +555,6 @@ models transfer web knowledge to robotic control. arXiv preprint arXiv:2307.1581
 Pablo Samuel Castro.
 Scalable methods for computing state similarity in deterministic markov
 decision processes. In Proceedings of the AAAI Conference on Articial Intelligence, volume 34,
-pp. 1006910076, 2020.
 Angel Chang, Angela Dai, Thomas Funkhouser, Maciej Halber, Matthias Niessner, Manolis Savva,
 Shuran Song, Andy Zeng, and Yinda Zhang. Matterport3d: Learning from rgb-d data in indoor
 environments. arXiv preprint arXiv:1709.06158, 2017.
@@ -649,7 +587,6 @@ modal language model. arXiv preprint arXiv:2303.03378, 2023.
 Yilun Du, Mengjiao Yang, Bo Dai, Hanjun Dai, Or Nachum, Joshua B Tenenbaum, Dale Schu-
 urmans, and Pieter Abbeel. Learning universal policies via text-guided video generation, 2023.
 URL https://arxiv. org/abs/2302.00111, 2023a.
-10
 
 Published as a conference paper at ICLR 2024
 Yuqing Du, Olivia Watkins, Zihan Wang, C·edric Colas, Trevor Darrell, Pieter Abbeel, Abhishek
@@ -676,7 +613,6 @@ Danijar Hafner, Jurgis Pasukonis, Jimmy Ba, and Timothy Lillicrap. Mastering div
 through world models. arXiv preprint arXiv:2301.04104, 2023.
 Zekun Hao, Xun Huang, and Serge Belongie. Controllable video generation with sparse trajectories.
 In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pp. 7854
-7863, 2018.
 Jonathan Ho and Tim Salimans.
 Classier-free diffusion guidance.
 arXiv preprint
@@ -694,13 +630,10 @@ with noisy text supervision. In International conference on machine learning , p
 PMLR, 2021.
 Ranjay Krishna, Kenji Hata, Frederic Ren, Li Fei-Fei, and Juan Carlos Niebles. Dense-captioning
 events in videos. In Proceedings of the IEEE international conference on computer vision , pp.
-706715, 2017.
 Timoth·ee Lesort, Natalia D·az-Rodr·guez, Jean-Franois Goudou, and David Filliat. State represen-
 tation learning for control: An overview. Neural Networks, 108:379392, 2018.
 Zhengqi Li, Richard Tucker, Noah Snavely, and Aleksander Holynski. Generative image dynamics,
-2023.
 Lennart Ljung and Torkel Glad. Modeling of dynamic systems. Prentice-Hall, Inc., 1994.
-11
 
 Published as a conference paper at ICLR 2024
 Corey Lynch and Pierre Sermanet. Language conditioned imitation learning over unstructured data.
@@ -717,14 +650,12 @@ Antoine Miech, Dimitri Zhukov, Jean-Baptiste Alayrac, Makarand Tapaswi, Ivan Lap
 Sivic.
 Howto100m: Learning a text-video embedding by watching hundred million narrated
 video clips. In Proceedings of the IEEE/CVF international conference on computer vision, pp.
-26302640, 2019.
 Volodymyr Mnih, Koray Kavukcuoglu, David Silver, Andrei A Rusu, Joel Veness, Marc G Belle-
 mare, Alex Graves, Martin Riedmiller, Andreas K Fidjeland, Georg Ostrovski, et al. Human-level
 control through deep reinforcement learning. nature, 518(7540):529533, 2015.
 Mathew Monfort, SouYoung Jin, Alexander Liu, David Harwath, Rogerio Feris, James Glass, and
 Aude Oliva. Spoken moments: Learning joint audio-visual representations from video descrip-
 tions. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition,
-pp. 1487114881, 2021.
 OpenAI. Gpt-4 technical report, 2023.
 Colin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael Matena, Yanqi
 Zhou, Wei Li, Peter J Liu, et al. Exploring the limits of transfer learning with a unied text-to-text
@@ -734,8 +665,6 @@ Clegg, John M Turner, Eric Undersander, Wojciech Galuba, Andrew Westbury, Angel 
 Manolis Savva, Yili Zhao, and Dhruv Batra. Habitat-matterport 3d dataset (HM3d): 1000 large-
 scale 3d environments for embodied AI. In Thirty-fth Conference on Neural Information Pro-
 cessing Systems Datasets and Benchmarks Track, 2021. URL https://arxiv.org/abs/
-2109.08238
-.
 Aditya Ramesh, Prafulla Dhariwal, Alex Nichol, Casey Chu, and Mark Chen. Hierarchical text-
 conditional image generation with clip latents. arXiv preprint arXiv:2204.06125, 2022.
 Paulo Rauber, Avinash Ummadisingu, Filipe Mutz, and J¤urgen Schmidhuber.
@@ -747,7 +676,6 @@ pp. 262270. PMLR, 2017.
 Manolis Savva, Abhishek Kadian, Oleksandr Maksymets, Yili Zhao, Erik Wijmans, Bhavana Jain,
 Julian Straub, Jia Liu, Vladlen Koltun, Jitendra Malik, et al. Habitat: A platform for embodied
 ai research. In Proceedings of the IEEE/CVF international conference on computer vision, pp.
-93399347, 2019.
 Christoph Schuhmann, Richard Vencu, Romain Beaumont, Robert Kaczmarczyk, Clayton Mullis,
 Aarush Katta, Theo Coombes, Jenia Jitsev, and Aran Komatsuzaki. Laion-400m: Open dataset of
 clip-ltered 400 million image-text pairs. arXiv preprint arXiv:2111.02114, 2021.
@@ -756,7 +684,6 @@ Cherti, Theo Coombes, Aarush Katta, Clayton Mullis, Mitchell Wortsman, et al. La
 open large-scale dataset for training next generation image-text models.
 Advances in Neural
 Information Processing Systems, 35:2527825294, 2022.
-12
 
 Published as a conference paper at ICLR 2024
 Younggyo Seo, Kimin Lee, Stephen L James, and Pieter Abbeel. Reinforcement learning with
@@ -777,7 +704,6 @@ Jascha Sohl-Dickstein, Eric Weiss, Niru Maheswaranathan, and Surya Ganguli. Deep
 learning using nonequilibrium thermodynamics. In International Conference on Machine Learn-
 ing, pp. 22562265. PMLR, 2015.
 Richard S. Sutton. Learning to predict by the methods of temporal differences. Machine Learning,
-1988.
 Richard S Sutton. Dyna, an integrated architecture for learning, planning, and reacting. ACM Sigart
 Bulletin, 2(4):160163, 1991.
 Yuval Tassa, Yotam Doron, Alistair Muldal, Tom Erez, Yazhe Li, Diego de Las Casas, David Bud-
@@ -809,7 +735,6 @@ visual dynamics simulation with object-centric models. arXiv preprint arXiv:2210
 Jun Xu, Tao Mei, Ting Yao, and Yong Rui. Msr-vtt: A large video description dataset for bridging
 video and language. In Proceedings of the IEEE conference on computer vision and pattern
 recognition, pp. 52885296, 2016.
-13
 
 Published as a conference paper at ICLR 2024
 Tianfan Xue, Jiajun Wu, Katherine L Bouman, and William T Freeman. Visual dynamics: Stochastic
@@ -824,14 +749,12 @@ projected latent space. In Proceedings of the IEEE/CVF Conference on Computer Vi
 Pattern Recognition, pp. 1845618466, 2023.
 Xiaohua Zhai, Alexander Kolesnikov, Neil Houlsby, and Lucas Beyer. Scaling vision transformers.
 In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pp.
-1210412113, 2022.
 Chenshuang Zhang, Chaoning Zhang, Mengchun Zhang, and In So Kweon. Text-to-image diffusion
 model in generative ai: A survey. arXiv preprint arXiv:2303.07909, 2023.
 Daquan Zhou, Weimin Wang, Hanshu Yan, Weiwei Lv, Yizhe Zhu, and Jiashi Feng. Magicvideo:
 Efcient video generation with latent diffusion models. arXiv preprint arXiv:2211.11018, 2022.
 Karl J. 	Astr¤om and Bj¤orn Wittenmark. Adaptive control of linear time-invariant systems. Automat-
 ica, 9(6):551564, 1973.
-14
 
 Published as a conference paper at ICLR 2024
 Appendix
@@ -842,13 +765,11 @@ UniSim in Section B, the model architecture and training details of UniSim in Se
 details of the three experimental setups for applications of UniSim in Section D. Finally, we provide
 failed examples when UniSim is not jointly trained on broad datasets (Section F). Video demos can
 be found at anonymous-papers-submissions.github.io
-A
 ADDITIONAL RESULTS
 A.1
 ADDITIONAL LONG-HORIZON INTERACTION
 Figure 9: Additional results on long-horizon interaction with humans and robots similar to Figure 4. UniSim
 can generate consistent video rollouts across 3-4 high-level language actions.
-15
 
 Published as a conference paper at ICLR 2024
 A.2
@@ -856,23 +777,19 @@ ADDITIONAL REAL-ROBOT RESULTS FOR LONG-HORIZON LANGUAGE POLICY
 Figure 10: Additional results (similar to Figure 7) on applying UniSim to train vision-language policies to
 complete long-horizon tasks. VLM netuned with hindsight labeled data is able to generate long-horizon
 instructions that moves two or three blocks successfully to match their location in the goal image.
-16
 
 Published as a conference paper at ICLR 2024
 A.3
 ADDITIONAL RESULTS ON LEARNING RL POLICY IN UNISIM
 Figure 11: First real observations and last simulated observations of rolling out the RL policy trained in UniSim.
-17
 
 Published as a conference paper at ICLR 2024
 Figure 12: First real observations and last real observations of executing the RL policy trained from UniSim in
 the real world in zero-shot. Middle plot also shows the output of the learned reward model (steps-to-completion)
 during policy execution, where step 0 corresponds to the top plot (initial observation) and step 70 corresponds
 to the bottom plot (nal observation).
-18
 
 Published as a conference paper at ICLR 2024
-B
 DATASETS
 We provide the datasets used to train UniSim below, including dataset name, number of training
 examples (approximate), and weight in the data mixture. Miscellaneous data are collections of
@@ -888,55 +805,27 @@ Dataset
 # Examples Weight
 Simulation
 Habitat HM3D (Ramakrishnan et al., 2021)
-710
-0.1
 Language Table sim (Lynch & Sermanet, 2020)
-160k
-0.05
 Real Robot
 Bridge Data (Ebert et al., 2021)
-2k
-0.05
 RT-1 data (Brohan et al., 2022)
-70k
-0.1
 Language Table real (Lynch & Sermanet, 2020)
-440k
-0.05
 Miscellaneous robot videos
-133k
-0.05
 Human activities
 Ego4D (Grauman et al., 2022)
 3.5M
-0.1
 Something-Something V2 (Goyal et al., 2017)
-160k
-0.1
 EPIC-KITCHENS (Damen et al., 2018)
-25k
-0.1
 Miscellaneous human videos
-50k
-0.05
 Panorama scan
 Matterport Room-to-Room scans (Anderson et al., 2018) 3.5M
-0.1
 Internet text-image LAION-400M (Schuhmann et al., 2021)
-400M
-0.05
 ALIGN (Jia et al., 2021)
-400M
-0.05
 Internet video
 Miscellaneous videos
-13M
-0.05
 Table 5: Dataset name, number of training examples, and mixture weights used for training UniSim.
-19
 
 Published as a conference paper at ICLR 2024
-C
 ARCHITECTURE AND TRAINING
 We the 3D U-Net architecture (C‚ ic‚ek et al., 2016; Ho et al., 2022b) to parametrize UniSim video
 model. We apply the spatial downsampling pass followed by the spatial upsampling pass with
@@ -956,58 +845,44 @@ are summarized in Table 6.
 Hyperparameter
 Value
 Base channels
-1024
 Optimizer
 Adam ( 1 = 0 :9;  2 = 0 :99)
 Channel multipliers
 1, 2, 4
 Learning rate
-0.0001
 Blocks per resolution
-3
 Batch size
-256
 Attention resolutions
 6, 12, 24
 Num attention heads
 16, 16, 8
 Conditioning embedding dimension
-4096
 Conditioning embedding MLP layers: 4
 Conditioning token length
-64
 EMA
-0.9999
 Dropout
-0.1
 Training hardware
 512 TPU-v3 chips
 Training steps
-1000000
 Diffusion noise schedule
 cosine
 Noise schedule log SNR range
-[-20, 20]
 Sampling timesteps
-256
 Sampling log-variance interpolation
- = 0 :1
+
+= 0 :1
 Weight decay
-0.0
 Prediction target
-
 Table 6: Hyperparameters for training UniSim diffusion model.
-20
 
 Published as a conference paper at ICLR 2024
-D
 DETAILS OF EXPERIMENTAL SETUPS
 D.1
 DETAILS OF LEARNING LONG-HORIZON POLICY
 Language Table Dataset and environment.
 The Language Table (Lynch & Sermanet, 2020)
 dataset consists of 160k simulated trajectories and 440k real trajectories where each trajectory con-
-tains a language instruction (e.g., “move blue cube to the right”), a sequence of visuomotor controls,
+tains a language instruction (e.g., move blue cube to the right), a sequence of visuomotor controls,
 and a sequence of image frames corresponding to the execution of the task. The original trajectories
 have short horizons (e.g., only moving one block).
 PALM-E VLM Policy. We modify the original PALM-E 12B model (Driess et al., 2023) to condi-
@@ -1037,16 +912,16 @@ tions and decoding tokens which can represent language, control actions, or othe
 (described below). Objectives In the first stage of training, using a dataset of demonstrations, we
 finetune the pretrained PaLI 3B vision language model checkpoint (Chen et al., 2022b) with the
 following tasks:
-• Behavioral Cloning: Given observations and task instruction, predict the demonstration
+Behavioral Cloning: Given observations and task instruction, predict the demonstration
 action. The continuous actions of the Language-Table domain are discretized into the
-form “+1 -5”, and represented using extra tokens from the PaLI model’s token vocabu-
-lary. As an example, “+1 -5” is represented by the token sequence (<extra id 65>,
+form +1 -5, and represented using extra tokens from the PaLI models token vocabu-
+lary. As an example, +1 -5 is represented by the token sequence (<extra id 65>,
 <extra id 1>, <extra id 66>, <extra id 5>).
-• Timestep to Success Prediction: Given observations and task instruction, predict how
+Timestep to Success Prediction: Given observations and task instruction, predict how
 many timesteps are left until the end of episode (i.e. success). Similar to actions, the
-number of steps remaining is represented via extra tokens from the PaLI model’s token
+number of steps remaining is represented via extra tokens from the PaLI models token
 vocabulary.
-• Instruction Prediction: Given the first and last frame of an episode, predict the task in-
+Instruction Prediction: Given the first and last frame of an episode, predict the task in-
 struction associated with that episode.
 We use learning rate 0.001, dropout rate 0.1, and batch size 128 to finetune the PaLI 3B model for
 300k gradient steps with 1k warmup steps on both the simulated and real Language Table dataset
@@ -1060,7 +935,6 @@ reward tracks if from timestep t to t + 1 the policy arrived closer to accomplis
 goal. Before starting Stage 2, we make a copy of the Stage 1 model checkpoint and keep it frozen
 to use as the reward model for RL training. Environment Definition To implement video gener-
 ation as environment transitions, we expose the inference interface of the video generation model
-21
 
 Published as a conference paper at ICLR 2024
 through remote procedure call, and use the DeepMind RL Environment API (also known as DM
@@ -1073,8 +947,7 @@ outs in the video generation environment, and add rewards to the trajectories us
 model defined above. The policy is updated using the REINFORCE (Williams, 1992) objective,
 i.e. ∇πL(ot, at, g) = ∇π log π(at|ot, g) ·
 hPT
-i=t γi t · r(oi, ai, oi+1, g)
-i
+i=t i t · r(oi, ai, oi+1, g)
 , where L(ot, at, g) repre-
 sents the loss associated with the observation-action pair (ot, at) in an episode with the goal g. The
 actors are rate limited to prevent generated trajectories from being very off-policy. We report the
@@ -1082,15 +955,10 @@ hyperparameters associated with RL training in Table 7.
 Hyperparameter
 Value
 Max steps per episode
-100
 Number of actor processes
-64
 Number of image history stack
-2
 Learner batch size
-64
-Discounting factor γ
-0.9
+Discounting factor
 Table 7: Hyperparameters for training the VLA RL policy using the ACME framework.
 D.3
 DETAILS OF VIDEO CAPTIONING
@@ -1107,7 +975,6 @@ videos, which could contain noise and ambiguous videos that could be labeled dif
 ground truth temporal proposals at evaluation following Chen et al. (2023) and Krishna et al. (2017).
 Following Chen et al. (2023) and Wang et al. (2021), we use the val1 split for validation and val2
 split for testing.
-E
 ADDITIONAL ABLATIONS
 E.1
 ABLATIONS OF DATASETS
@@ -1119,14 +986,8 @@ Dataset
 FVD #
 CLIP "
 Internet only
-219.62
-22.27
 Without internet
-307.80
-21.99
 Universal simulator
-211.30
-22.63
 Table 8: Ablations of datasets using FVD and CLIP score on the held-out test split. Including internet data
 and diverse human activity and robot data in UniSim achieves the best FVD and CLIP scores.
 E.2
@@ -1135,29 +996,19 @@ We conduct ablations on model size by computing the FVD and CLIP scores over 102
 from the test split. We found that while increasing the model size improves the video modeling
 performance, the amount of improvement measured by FVD plateaus as the model gets bigger,
 which is slightly disappointing from a scaling point of view.
-22
 
 Published as a conference paper at ICLR 2024
 Model size
 FVD #
 CLIP "
-500M
-277.85
-22.08
 1.6B
-224.61
-22.27
 5.6B
-211.30
-22.63
 Table 9: Ablations of model size using FVD and CLIP score on the held-out test split. The largest model
 achieves the best FVD and CLIP scores.
-23
 
 Published as a conference paper at ICLR 2024
-F
 FAILED SIMULATIONS WITHOUT JOINT TRAINING
-Figure 13: Failed environment simulation from the action “uncover bottle” without training on broad data as
+Figure 13: Failed environment simulation from the action uncover bottle without training on broad data as
 in UniSim. Top two videos are generated from only training on SSV2. Bottom two videos are generated from
 only training on generic internet data (without SSV2, EpicKitchen, Ego4D, and various robotics dataset).
-24
+

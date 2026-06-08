@@ -4,7 +4,6 @@
 > **Source:** <https://proceedings.mlr.press/v235/kondratyuk24a.html>
 
 ---
-
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 Dan Kondratyuk * 1
 Lijun Yu * 1 2
@@ -38,13 +37,14 @@ David A. Ross 1
 Bryan Seybold * 1
 Lu Jiang * 1 2
 
+
 ## Abstract
 
 We present VideoPoet, a model for synthesizing
 high-quality videos from a large variety of con-
 ditioning signals. VideoPoet employs a decoder-
 only transformer architecture that processes mul-
-timodal inputs – including images, videos, text,
+timodal inputs including images, videos, text,
 and audio. The training protocol follows that of
 Large Language Models (LLMs), consisting of
 two stages: pretraining and task-speciﬁc adapta-
@@ -53,7 +53,7 @@ a mixture of multimodal generative objectives
 within an autoregressive Transformer framework.
 The pretrained LLM serves as a foundation that is
 adapted to a range of video generation tasks. We
-present results demonstrating the model’s state-
+present results demonstrating the models state-
 of-the-art capabilities in zero-shot video genera-
 tion, speciﬁcally highlighting the generation of
 high-ﬁdelity motions. Project page: https://
@@ -91,6 +91,7 @@ language (Brown et al., 2020), code (Li et al., 2023; OpenAI,
 et al., 2023), and robotics (Driess et al., 2023; Zitkovich
 et al., 2023), the diffusion model remains the predominant
 
+
 ## Approach
 
 demonstrated the effectiveness of LLMs in text-to-image
@@ -121,7 +122,6 @@ adapt the model to more diverse tasks (Zhang et al., 2023b).
 In this paper, we exploit language models for video genera-
 tion, following the canonical training protocols of LLMs in
 the language domain. We introduce VideoPoet, a language
-1
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 Figure 1: VideoPoet Overview: a versatile video generator that conditions on multiple types of inputs and performs a
@@ -143,7 +143,7 @@ by text prompts (Tang et al., 2023). During subsequent task-
 adaptation, the pretrained model can be further ﬁne-tuned
 either to enhance its generation quality on the training tasks
 or to perform new tasks.
-Experiments show VideoPoet’s state-of-the-art capabilities
+Experiments show VideoPoets state-of-the-art capabilities
 in generating videos with large and high-ﬁdelity motions.
 With the powerful capabilities of the transformer architec-
 ture, VideoPoet can be straightforwardly trained on a multi-
@@ -154,8 +154,8 @@ long videos of up to 10 seconds by autoregressively ex-
 tending the content, conditioned on the last second of the
 generated video.
 We also demonstrate that VideoPoet is capable of zero-shot
-video generation. We use the term “zero-shot video gen-
-eration” as VideoPoet processes new text, image, or video
+video generation. We use the term zero-shot video gen-
+eration as VideoPoet processes new text, image, or video
 inputs that diverge from the training data distribution. Fur-
 thermore, VideoPoet handles new tasks not included in its
 training. For example, VideoPoet is able to perform new
@@ -164,13 +164,13 @@ Our contribution is a proof of concept demonstrating an
 understudied approach to high-quality video generation with
 LLMs, distinct from the dominant diffusion-based methods.
 Speciﬁcally, the main contributions include:
-• A method for training a Large Language Model (LLM)
+A method for training a Large Language Model (LLM)
 speciﬁcally for video generation, utilizing tokenized data
 that incorporates both text-paired and unpaired videos.
-• A video super-resolution method that increases spatial res-
+A video super-resolution method that increases spatial res-
 olution within the latent token space using a bidirectional
 transformer with efﬁcient windowed local attention.
-• Evaluations and demonstrations to highlight VideoPoet’s
+Evaluations and demonstrations to highlight VideoPoets
 competitive and state-of-the-art performance, especially
 in generating realistic and interesting videos with motion.
 2. Related Work
@@ -193,7 +193,6 @@ composable after training, they are not trained end-to-end in
 a uniﬁed framework. Our multitask pretraining strategy in a
 single model improves performance and provides zero-shot
 video generation capabilities.
-2
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 Figure 2: Sequence layout for VideoPoet. We encode all modalities into the discrete token space, so that we can directly
@@ -240,8 +239,8 @@ related tasks from different input signals by leveraging large
 language models. Our model consists of three components:
 (1) modality-speciﬁc tokenizers, (2) a language model back-
 bone (Fig. 2), and (3) a super-resolution module (Fig. 3).
-The tokenizers map input data – i.e. image pixels, video
-frames, and audio waveforms – into discrete tokens in a
+The tokenizers map input data i.e. image pixels, video
+frames, and audio waveforms into discrete tokens in a
 uniﬁed vocabulary. The visual and audio tokens are ﬂat-
 tened into a sequence of integers. Next, the LLM accepts
 these tokens as input along with text embeddings, and is
@@ -270,14 +269,13 @@ the LLM, thereby facilitating more efﬁcient and effective
 learning. Speciﬁcally, a video clip is encoded and quan-
 tized into an integer sequence integers, with a decoder map-
 ping back to pixel space. MAGVIT-v2 tokenizes 17-frame
-2.125-second 128×128 resolution videos sampled at 8 fps
+2.125-second 128128 resolution videos sampled at 8 fps
 to produce a latent shape of (5, 16, 16), which is then ﬂat-
 tened into 1280 tokens, with a vocabulary size of 218. We
-also tokenize videos into portrait aspect ratio at 128×224
+also tokenize videos into portrait aspect ratio at 128224
 resolution, producing a latent shape of (5, 28, 16), or 2240
 tokens.
 We enforce causal temporal dependency, which facilitates
-3
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 the generation of longer videos. To jointly represent images
@@ -305,7 +303,7 @@ in general, outperform training our model by learning text
 tokens from scratch. We use pretrained language embed-
 dings from a frozen T5 XL encoder (Raffel et al., 2020).
 For tasks with text guidance, such as text-to-video, T5 XL
-embeddings are projected into the transformer’s embedding
+embeddings are projected into the transformers embedding
 space with a linear layer.
 3.2. Language Model Backbone
 After converting the image, video, and audio modalities into
@@ -320,7 +318,7 @@ form as explained in Section 4.
 Generating high-resolution (HR) videos autoregressively
 entails heavy computational costs due to the increase in se-
 quence length. To illustrate this with an example, the video
-tokenizer of Section 3.1 operating on a 17 × 896 × 512
+tokenizer of Section 3.1 operating on a 17 896 512
 video produces a sequence of 35, 840 tokens, making autore-
 gressive sampling highly impractical. Aiming at efﬁcient
 and high-quality generative video upsampling, we develop
@@ -335,7 +333,6 @@ is composed of blocks of three transformer layers, each of
 which performs self-attention in a local window aligned
 with one of three axes (Tu et al., 2022): spatial vertical,
 spatial horizontal and temporal. The cross-attention layers
-xN
 multi-axis transformer block
 self-attn
 cross-attn
@@ -358,7 +355,7 @@ multi-head
 classification and
 merging (k=2)
 high-res
- output tokens
+output tokens
 Figure 3: Custom transformer architecture for video
 super-resolution.
 attend to the low-resolution (LR) token sequence and are
@@ -381,11 +378,10 @@ embeddings for 10% of the training samples. During in-
 ference, we use non-autoregressive sampling (Chang et al.,
 2022; Yu et al., 2023a) with classiﬁer-free guidance inde-
 pendently on both the LR condition and the text embeddings
-(Brooks et al., 2023). We use a cascade of two 2× stages to
-generate videos of 896 × 512 resolution from the 224 × 128
+(Brooks et al., 2023). We use a cascade of two 2 stages to
+generate videos of 896 512 resolution from the 224 128
 base output of VideoPoet. More implementaiton details can
 be found in the appendix.
-4
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 4. LLM Pretraining for Generation
@@ -437,14 +433,15 @@ the prediction of higher-quality initial frames and reduces
 errors and artifacts in subsequent frames.
 Video token format.
 We generate video tokens at two
-resolutions, 128×128 and 128×224, each available in two
+resolutions, 128128 and 128224, each available in two
 lengths: 17 frames and 41 frames, both encoded at 8 frames
 per second. Special conditioning tokens are used to signal
 the desired resolutions and durations for video generation.
 Images are a special case of a 1-frame video, which we
-tokenize at 128×128 resolution.
+tokenize at 128128 resolution.
 Video stylization.
 For video stylization, we adopt a
+
 
 ## Method
 
@@ -454,9 +451,9 @@ is to reconstruct the ground truth video from the given opti-
 cal ﬂow, depth, and text information, but during inference,
 we apply optical ﬂow and depth estimation on an input
 video but then vary the text prompt to generate a new style,
-e.g. “cartoon.” Similar to (Esser et al., 2023), text dictates
-the output “content” or appearance, while optical ﬂow and
-depth guide its “structure.”
+e.g. cartoon. Similar to (Esser et al., 2023), text dictates
+the output content or appearance, while optical ﬂow and
+depth guide its structure.
 4.2. Training Strategy
 For multi-task training, we use the Alternating Gradient
 Descent (AGD) method (Akbari et al., 2023) to train videos
@@ -470,7 +467,7 @@ and long video generation, we achieve efﬁcient training with
 minimal padding.
 We ﬁnd that sampling from image and video datasets uni-
 formly across time can lead to suboptimal results, as training
-on images can enhance the model’s understanding of ob-
+on images can enhance the models understanding of ob-
 jects but does not capture any motions that are represented
 in video data. Thus, we devise a two-stage pretraining strat-
 egy, where we augment our sampling weights to sample
@@ -498,7 +495,6 @@ training tasks as detailed in Section 4.1. We ﬁnetune a
 model on a high-quality training subset for text-to-video
 evaluations, as discussed in Section 4.2. Unless explicitly
 stated, we do not ﬁnetune on speciﬁc tasks for evaluations.
-5
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 Datasets.
@@ -509,6 +505,7 @@ audio) from the public internet and other sources, i.e. around
 2 trillion tokens across all modalities. The data has been
 ﬁltered to remove egregious content and sampled to improve
 contextual and demographic diversity.
+
 
 ## Evaluation
 
@@ -522,7 +519,6 @@ et al., 2012), as well as the frame prediction task on Kinetics
 are provided as the condition to predict the next 11 frames.
 We also include inpainting and outpainting tasks (Yu et al.,
 2023a) on Something-Something V2 (SSv2) (Goyal et al.,
-2017).
 We employ widely used metrics such as Fr´echet Video Dis-
 tance (FVD) (Unterthiner et al., 2018), CLIP similarity
 score (Wu et al., 2021), and Inception Score (IS) (Saito
@@ -567,13 +563,13 @@ span diverse visual domains, posing a challenge to achiev-
 ing consistent improvement across all of them. Nevertheless,
 incorporating all pretraining tasks results in the best overall
 performance, on average, across all evaluated tasks. Addi-
-tionally, the signiﬁcant disparity observed in the “SSL” row
+tionally, the signiﬁcant disparity observed in the SSL row
 suggests the limitations of self-supervised training and un-
 derscores the necessity for text-paired data during training.
 Both single-task and multi-task models are trained for the
 same number of steps. The minor decrease in performance
 of multi-task training in Table 1 might be due to the insufﬁ-
-cient training of each task. The last row, “ALL (8B)”, is the
+cient training of each task. The last row, ALL (8B), is the
 model with 8 billion parameters, trained on the pretraining
 tasks as discussed in Section 3 and utilized signiﬁcantly
 more compute.
@@ -612,13 +608,13 @@ select the prompts prior to generating videos and ﬁx these
 choices after initial selection. We also select preferentially
 for prompts that contain an explicit mention of motion so
 that the evaluation would not be biased for models that gen-
-6
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 Table 1: Pretraining task analysis on 300M models. The top rows list models with 300M parameters, trained on a
 subset of the data, and are comparable to each other. The last row shows an 8B model trained on the entire dataset. T2I
 (text-to-image), T2V (text-to-video), FP (frame prediction), Painting (inpainting/outpainting), Uncond (unconditional
 generation), AVCont (audio-video continuation), and SSL (self-supervised learning).
+
 
 ## Method
 
@@ -627,83 +623,26 @@ Zero-shot Evaluation Benchmark
 T2I
 T2V
 Uncond
-FP
 Painting
 AVCont
 T2V
-FP
 Inpainting
 Outpainting
 MSR-VTT
 UCF101
-K600
 SSv2
 SSv2
-CLIPSIM ↑
-FVD ↓
-FVD ↓
-FVD ↓
-FVD ↓
+CLIPSIM
+FVD
+FVD
+FVD
+FVD
 T2V
-✓
-0.244
-822
-759
-2,333
-2,310
 T2V+I
-✓
-✓
-0.247
-1,025
-794
-2,118
-1,916
 SSL
-✓
-✓
-✓
-✓
-0.226
-1,742
-700
-1,093
-1,500
 NO T2I
-✓
-✓
-✓
-✓
-✓
-0.235
-1,008
-755
-95
-389
 ALL
-✓
-✓
-✓
-✓
-✓
-✓
-0.240
-1,085
-729
-127
-636
 ALL (8B)
-✓
-✓
-✓
-✓
-✓
-✓
-0.305
-355
-687
-4.7
-13.76
 Table 2: Comparison on zero-shot text-to-video bench-
 marks. See Appendix A.5.5 for evaluation details.
 Model
@@ -712,59 +651,18 @@ UCF-101
 CLIPSIM
 FVD
 FVD
-IS
 CogVideo (EN) (2022)
-0.2631
-1294
-702
-25.27
 MagicVideo (2022)
--
-998
-655
--
 Video LDM (2023b)
-0.2929
--
-551
-33.45
 ModelScopeT2V (2023a)
-0.2930
-550
--
--
 InternVid (2023d)
-0.2951
--
-617
-21.04
 VideoFactory (2023c)
-0.3005
--
-410
--
 Make-A-Video (2022)
-0.3049
--
-367
-33.00
 Show-1 (2023a)
-0.3072
-538
-394
-35.42
 VideoPoet (Pretrain)
-0.3049
-213
-355
-38.44
 VideoPoet (Task adapt)
-0.3123
--
--
--
-erate high quality videos that are almost still (e.g., “person
-jumping off of a chair” over “person standing on a chair”).
+erate high quality videos that are almost still (e.g., person
+jumping off of a chair over person standing on a chair).
 Note that due to time constraints, our experiments for Pika
 and Gen2 were run on a subset of 50 prompts due to having
 to submit these manually via their web interface. These 50
@@ -786,7 +684,7 @@ ratio as well as common framerate. Raters are then asked to
 compare the videos along 5 dimensions and for each dimen-
 sion to report which video is better. The 5 dimensions are:
 (1) text ﬁdelity (which video follows the text prompt most
-faithfully), (2) video quality, (3) motion “interestingness”,
+faithfully), (2) video quality, (3) motion interestingness,
 (4) motion realism, and (5) temporal consistency. Raters are
 required to go through a collection of training examples for
 each of these 5 dimensions before they begin.
@@ -805,48 +703,27 @@ that outperforms VideoPoet on Video Quality.
 For a batch size of 4 videos and generating 17 frames at
 8fps using TPUv5p (4 chips) accelerators, our base model
 runs in 34s, the detokenizer (converting tokens to pixels)
-requires 1.3s and super-resolution is 6.8s — thus, amortized
+requires 1.3s and super-resolution is 6.8s thus, amortized
 run time is about 5 seconds per second of output video. Note
 that our model has not been optimized, and any acceleration
 techniques applicable to standard LLMs could be applied
 here as well.
-5.5. LLM’s Diverse Capabilities in Video Generation
+5.5. LLMs Diverse Capabilities in Video Generation
 This subsection presents several capabilities we discover
-from the pretrained VideoPoet, shedding light on the LLM’s
+from the pretrained VideoPoet, shedding light on the LLMs
 promising potential in video generation. By combining the
 ﬂexibility of our autoregressive language model to perform
 diverse tasks such as extending video in time, inpainting,
 outpainting, and stylization, VideoPoet accomplishes multi-
 ple tasks in a uniﬁed model.
 Coherent long video generation and image-to-video.
-A
 beneﬁt of an decoder-based language model is that it pairs
 well with autoregressively extending generation in time. We
 present two different variants: Generating longer videos
 and converting images to videos. Encoding the ﬁrst frame
 independently allows us to convert any image into the initial
-7
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
-90
-80
-70
-60
-50
-40
-30
-20
-10
-0
-10
-20
-30
-40
-50
-60
-70
-80
-90
 Phenaki
 Show1
 VideoCrafter
@@ -854,42 +731,9 @@ Runway
 Pika
 WALT
 Lumiere
-71
-61
-62
-72
-76
-55
-48
-29
-39
-38
-28
-24
-45
-52
 Text Fidelity
 VideoPoet preferred
 Other model preferred
-90
-80
-70
-60
-50
-40
-30
-20
-10
-0
-10
-20
-30
-40
-50
-60
-70
-80
-90
 Phenaki
 Show1
 VideoCrafter
@@ -897,42 +741,9 @@ Runway
 Pika
 WALT
 Lumiere
-76
-68
-60
-56
-74
-61
-41
-24
-32
-40
-44
-26
-39
-59
 Video Quality
 VideoPoet preferred
 Other model preferred
-90
-80
-70
-60
-50
-40
-30
-20
-10
-0
-10
-20
-30
-40
-50
-60
-70
-80
-90
 Phenaki
 Show1
 VideoCrafter
@@ -940,42 +751,9 @@ Runway
 Pika
 WALT
 Lumiere
-48
-72
-64
-82
-72
-66
-65
-52
-28
-36
-18
-28
-34
-35
 Motion Interestingness
 VideoPoet preferred
 Other model preferred
-90
-80
-70
-60
-50
-40
-30
-20
-10
-0
-10
-20
-30
-40
-50
-60
-70
-80
-90
 Phenaki
 Show1
 VideoCrafter
@@ -983,42 +761,9 @@ Runway
 Pika
 WALT
 Lumiere
-76
-58
-58
-58
-84
-57
-39
-24
-42
-42
-42
-16
-43
-61
 Motion Realism
 VideoPoet preferred
 Other model preferred
-90
-80
-70
-60
-50
-40
-30
-20
-10
-0
-10
-20
-30
-40
-50
-60
-70
-80
-90
 Phenaki
 Show1
 VideoCrafter
@@ -1026,20 +771,6 @@ Runway
 Pika
 WALT
 Lumiere
-66
-40
-40
-40
-56
-36
-37
-34
-60
-60
-60
-44
-64
-63
 Temporal Consistency
 VideoPoet preferred
 Other model preferred
@@ -1073,7 +804,6 @@ followed by video-to-video stylization in Fig. 7. In the Ap-
 pendix, Fig. 10 shows another example applying video-to-
 1For image-to-video examples we source images from Wikime-
 dia Commons: https://commons.wikimedia.org/wiki/Main Page
-8
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 Animated from still image
@@ -1112,7 +842,7 @@ Despite VideoPoet demonstrating highly competitive perfor-
 mance of LLMs relative to state-of-the-art models, certain
 limitations are still observed. For example, the RGB frame
 reconstruction from compressed and quantized tokens place
-an upper bound on the generative model’s visual ﬁdelity.
+an upper bound on the generative models visual ﬁdelity.
 Second, the per-frame aesthetic biases in static scenes does
 not match the best baseline. This difference is largely due
 to a choice of training data, where we focus our training
@@ -1139,7 +869,7 @@ We give special thanks to Alex Siegman, Victor Gomes, and
 Brendan Jou for managing computing resources. We also
 give thanks to Aren Jansen, Marco Tagliasacchi, Neil Zeghi-
 dour, John Hershey for audio tokenization and processing,
-Angad Singh for storyboarding in “Rookie the Raccoon”,
+Angad Singh for storyboarding in Rookie the Raccoon,
 Cordelia Schmid for research discussions, David Salesin,
 Tomas Izo, and Rahul Sukthankar for their support, and Jay
 Yagnik for the initial concept.
@@ -1159,7 +889,6 @@ veloped within our community. This includes using digital
 watermarking in generated videos to enable traceability and
 accountability, and maintain transparency in our model de-
 sign to foster trust.
-9
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 References
@@ -1185,30 +914,24 @@ large datasets. arXiv preprint arXiv:2311.15127, 2023a.
 Blattmann, A., Rombach, R., Ling, H., Dockhorn, T., Kim, S. W.,
 Fidler, S., and Kreis, K. Align your latents: High-resolution
 video synthesis with latent diffusion models. In CVPR, pp.
-22563–22575, 2023b.
 Bommasani, R., Hudson, D. A., Adeli, E., Altman, R., Arora, S.,
 von Arx, S., Bernstein, M. S., Bohg, J., Bosselut, A., Brunskill,
 E., et al. On the opportunities and risks of foundation models.
 arXiv preprint arXiv:2108.07258, 2021.
 Brooks, T., Holynski, A., and Efros, A. A. Instructpix2pix: Learn-
-ing to follow image editing instructions. In CVPR, pp. 18392–
-18402, 2023.
+ing to follow image editing instructions. In CVPR, pp. 18392
 Brown, T., Mann, B., Ryder, N., Subbiah, M., Kaplan, J. D.,
 Dhariwal, P., Neelakantan, A., Shyam, P., Sastry, G., Askell,
 A., et al. Language models are few-shot learners. NeurIPS, 33:
-1877–1901, 2020.
 Carreira, J., Noland, E., Banki-Horvath, A., Hillier, C., and Zis-
 serman, A. A short note about kinetics-600. arXiv preprint
 arXiv:1808.01340, 2018.
 Ceylan, D., Huang, C.-H. P., and Mitra, N. J. Pix2video: Video
-editing using image diffusion. In CVPR, pp. 23206–23217,
-2023.
+editing using image diffusion. In CVPR, pp. 2320623217,
 Chai, W., Guo, X., Wang, G., and Lu, Y. Stablevideo: Text-driven
-consistency-aware diffusion video editing. In CVPR, pp. 23040–
-23050, 2023.
+consistency-aware diffusion video editing. In CVPR, pp. 23040
 Chang, H., Zhang, H., Jiang, L., Liu, C., and Freeman, W. T.
 Maskgit: Masked generative image transformer. In CVPR, pp.
-11315–11325, 2022.
 Chang, H., Zhang, H., Barber, J., Maschinot, A., Lezama, J., Jiang,
 L., Yang, M.-H., Murphy, K., Freeman, W. T., Rubinstein, M.,
 et al. Muse: Text-to-image generation via masked generative
@@ -1222,15 +945,14 @@ L. Control-a-video: Controllable text-to-video generation with
 diffusion models. arXiv preprint arXiv:2305.13840, 2023b.
 Chiu, M.-C., Chen, P.-Y., and Ma, X. Better may not be fairer: A
 study on subgroup discrepancy in image classiﬁcation. In ICCV,
-pp. 4956–4966, 2023.
+pp. 49564966, 2023.
 Chowdhery, A., Narang, S., Devlin, J., Bosma, M., Mishra, G.,
 Roberts, A., Barham, P., Chung, H. W., Sutton, C., Gehrmann,
 S., et al. PaLM: Scaling language modeling with pathways.
 arXiv:2204.02311, 2022.
 Ding, M., Yang, Z., Hong, W., Zheng, W., Zhou, C., Yin, D., Lin,
 J., Zou, X., Shao, Z., Yang, H., et al. Cogview: Mastering
-text-to-image generation via transformers. NeurIPS, pp. 19822–
-19835, 2021.
+text-to-image generation via transformers. NeurIPS, pp. 19822
 Driess, D., Xia, F., Sajjadi, M. S., Lynch, C., Chowdhery, A., Ichter,
 B., Wahid, A., Tompson, J., Vuong, Q., Yu, T., et al. Palm-
 e: An embodied multimodal language model. arXiv preprint
@@ -1240,24 +962,22 @@ Krikun, M., Zhou, Y., Yu, A. W., Firat, O., et al. GLaMs:
 Efﬁcient scaling of language models with mixture-of-experts.
 In ICML, 2022.
 Esser, P., Rombach, R., and Ommer, B. Taming transformers for
-high-resolution image synthesis. In CVPR, pp. 12868–12878,
-2020.
+high-resolution image synthesis. In CVPR, pp. 1286812878,
 Esser, P., Chiu, J., Atighehchian, P., Granskog, J., and Germanidis,
 A. Structure and content-guided video synthesis with diffusion
-models. In CVPR, pp. 7346–7356, 2023.
+models. In CVPR, pp. 73467356, 2023.
 Feng, R., Weng, W., Wang, Y., Yuan, Y., Bao, J., Luo, C., Chen,
 Z., and Guo, B. Ccedit: Creative and controllable video editing
 via diffusion models. arXiv preprint arXiv:2309.16496, 2023.
 Ge, S., Nah, S., Liu, G., Poon, T., Tao, A., Catanzaro, B., Jacobs,
 D., Huang, J.-B., Liu, M.-Y., and Balaji, Y. Preserve your own
 correlation: A noise prior for video diffusion models. In CVPR,
-pp. 22930–22941, 2023.
 Geyer, M., Bar-Tal, O., Bagon, S., and Dekel, T. Tokenﬂow:
 Consistent diffusion features for consistent video editing. arXiv
 preprint arXiv:2307.10373, 2023.
 Goyal, R., Ebrahimi Kahou, S., Michalski, V., Materzynska, J.,
 Westphal, S., Kim, H., Haenel, V., Fruend, I., Yianilos, P.,
-Mueller-Freitag, M., et al. The “something something” video
+Mueller-Freitag, M., et al. The something something video
 database for learning and evaluating visual common sense. In
 ICCV, 2017.
 Guo, Y., Yang, C., Rao, A., Wang, Y., Qiao, Y., Lin, D., and
@@ -1268,7 +988,6 @@ arXiv:2307.04725, 2023.
 Gupta, A., Tian, S., Zhang, Y., Wu, J., Mart´ın-Mart´ın, R., and Fei-
 Fei, L. Maskvit: Masked visual pre-training for video prediction.
 arXiv preprint arXiv:2206.11894, 2022.
-10
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 Gupta, A., Yu, L., Sohn, K., Gu, X., Hahn, M., Fei-Fei, L., Essa, I.,
@@ -1301,7 +1020,6 @@ Hu, A., Russell, L., Yeo, H., Murez, Z., Fedoseev, G., Kendall, A.,
 Shotton, J., and Corrado, G. Gaia-1: A generative world model
 for autonomous driving.
 arXiv preprint arXiv:2309.17080,
-2023.
 Li, R., Allal, L. B., Zi, Y., Muennighoff, N., Kocetkov, D., Mou,
 C., Marone, M., Akiki, C., Li, J., Chim, J., et al. StarCoder:
 may the source be with you! arXiv:2305.06161, 2023.
@@ -1318,7 +1036,6 @@ OpenAI. GPT-4 technical report. arXiv:2303.08774, 2023.
 Perazzi, F., Pont-Tuset, J., McWilliams, B., Van Gool, L., Gross,
 M., and Sorkine-Hornung, A. A benchmark dataset and eval-
 uation methodology for video object segmentation. In CVPR,
-2016.
 Pika. Pika 1.0, 2023. URL https://pika.art/launch.
 Podell, D., English, Z., Lacey, K., Blattmann, A., Dockhorn, T.,
 M¨uller, J., Penna, J., and Rombach, R. Sdxl: Improving latent
@@ -1327,7 +1044,7 @@ preprint arXiv:2307.01952, 2023.
 Raffel, C., Shazeer, N., Roberts, A., Lee, K., Narang, S., Matena,
 M., Zhou, Y., Li, W., and Liu, P. J. Exploring the limits of
 transfer learning with a uniﬁed text-to-text transformer. Journal
-of Machine Learning Research, 21(1):5485–5551, 2020.
+of Machine Learning Research, 21(1):54855551, 2020.
 Ramesh, A., Pavlov, M., Goh, G., Gray, S., Voss, C., Radford, A.,
 Chen, M., and Sutskever, I. Zero-shot text-to-image generation.
 arXiv preprint arXiv:2102.12092, 2021.
@@ -1336,11 +1053,10 @@ Hierarchical text-conditional image generation with clip latents.
 arXiv preprint arXiv:2204.06125, 1(2):3, 2022.
 Ranftl, R., Lasinger, K., Hafner, D., Schindler, K., and Koltun, V.
 Towards robust monocular depth estimation: Mixing datasets
-for zero-shot cross-dataset transfer. IEEE TPAMI, 44(3):1623–
-1637, 2020.
+for zero-shot cross-dataset transfer. IEEE TPAMI, 44(3):1623
 Rombach, R., Blattmann, A., Lorenz, D., Esser, P., and Ommer, B.
 High-resolution image synthesis with latent diffusion models.
-In CVPR, pp. 10684–10695, 2022.
+In CVPR, pp. 1068410695, 2022.
 Rubenstein, P. K., Asawaroengchai, C., Nguyen, D. D., Bapna, A.,
 Borsos, Z., Quitry, F. d. C., Chen, P., Badawy, D. E., Han, W.,
 Kharitonov, E., et al. Audiopalm: A large language model that
@@ -1349,20 +1065,19 @@ Runway. Gen2, 2023. URL https://runwayml.com/.
 Saharia, C., Chan, W., Saxena, S., Li, L., Whang, J., Denton,
 E. L., Ghasemipour, K., Gontijo Lopes, R., Karagol Ayan, B.,
 Salimans, T., et al. Photorealistic text-to-image diffusion models
-with deep language understanding. NeurIPS, 35:36479–36494,
-2022.
+with deep language understanding. NeurIPS, 35:3647936494,
 Saito, M., Saito, S., Koyama, M., and Kobayashi, S. Train sparsely,
 generate densely: Memory-efﬁcient unsupervised training of
-high-resolution temporal gan. IJCV, 128(10):2586–2606, 2020.
+high-resolution temporal gan. IJCV, 128(10):25862606, 2020.
 Schuhmann, C., Beaumont, R., Vencu, R., Gordon, C., Wightman,
 R., Cherti, M., Coombes, T., Katta, A., Mullis, C., Wortsman,
 M., et al. Laion-5b: An open large-scale dataset for training next
 generation image-text models. Advances in Neural Information
-Processing Systems, 35:25278–25294, 2022.
+Processing Systems, 35:2527825294, 2022.
 Schumann, C., Ricco, S., Prabhu, U., Ferrari, V., and Pantofaru, C.
 A step toward more inclusive people annotations for fairness. In
 Proceedings of the 2021 AAAI/ACM Conference on AI, Ethics,
-and Society, pp. 916–925, 2021.
+and Society, pp. 916925, 2021.
 Schumann, C., Olanubi, G. O., Wright, A., Monk, E., Heldreth,
 C., and Ricco, S. Consensus and subjectivity of skin tone anno-
 tation for ML fairness. In Thirty-seventh Conference on Neu-
@@ -1379,7 +1094,6 @@ arXiv:1212.0402, 2012.
 Sun, D., Herrmann, C., Reda, F., Rubinstein, M., Fleet, D. J., and
 Freeman, W. T. Disentangling architecture and training for
 optical ﬂow. In ECCV, 2022.
-11
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 Tang, Z., Yang, Z., Zhu, C., Zeng, M., and Bansal, M. Any-
@@ -1387,7 +1101,6 @@ to-any generation via composable diffusion. arXiv preprint
 arXiv:2305.11846, 2023.
 Tu, Z., Talebi, H., Zhang, H., Yang, F., Milanfar, P., Bovik, A.,
 and Li, Y. Maxvit: Multi-axis vision transformer. In ECCV, pp.
-459–479, 2022.
 Unterthiner, T., Van Steenkiste, S., Kurach, K., Marinier, R.,
 Michalski, M., and Gelly, S.
 Towards accurate generative
@@ -1402,7 +1115,7 @@ Phenaki: Variable length video generation from open domain
 textual description. arXiv preprint arXiv:2210.02399, 2022.
 Voleti, V., Jolicoeur-Martineau, A., and Pal, C. Mcvd-masked
 conditional video diffusion for prediction, generation, and inter-
-polation. NeurIPS, 35:23371–23385, 2022.
+polation. NeurIPS, 35:2337123385, 2022.
 Wang, J., Yuan, H., Chen, D., Zhang, Y., Wang, X., and Zhang,
 S. Modelscope text-to-video technical report. arXiv preprint
 arXiv:2308.06571, 2023a.
@@ -1412,7 +1125,6 @@ models. arXiv preprint arXiv:2303.17599, 2023b.
 Wang, W., Yang, H., Tuo, Z., He, H., Zhu, J., Fu, J., and Liu,
 J. Videofactory: Swap attention in spatiotemporal diffusions
 for text-to-video generation. arXiv preprint arXiv:2305.10874,
-2023c.
 Wang, Y., He, Y., Li, Y., Li, K., Yu, J., Ma, X., Chen, X., Wang, Y.,
 Luo, P., Liu, Z., et al. Internvid: A large-scale video-text dataset
 for multimodal understanding and generation. arXiv preprint
@@ -1422,7 +1134,7 @@ and Duan, N. Godiva: Generating open-domain videos from
 natural descriptions. arXiv preprint arXiv:2104.14806, 2021.
 Xu, J., Mei, T., Yao, T., and Rui, Y. Msr-vtt: A large video
 description dataset for bridging video and language. In CVPR,
-pp. 5288–5296, 2016.
+pp. 52885296, 2016.
 Yan, W., Zhang, Y., Abbeel, P., and Srinivas, A.
 Videogpt:
 Video generation using vq-vae and transformers. arXiv preprint
@@ -1434,23 +1146,21 @@ arXiv:2206.10789, 2022.
 Yu, L., Cheng, Y., Sohn, K., Lezama, J., Zhang, H., Chang,
 H., Hauptmann, A. G., Yang, M.-H., Hao, Y., Essa, I., et al.
 MAGVIT: Masked generative video transformer. In CVPR,
-2023a.
 Yu, L., Cheng, Y., Wang, Z., Kumar, V., Macherey, W., Huang,
 Y., Ross, D. A., Essa, I., Bisk, Y., Yang, M.-H., et al. SPAE:
 Semantic pyramid autoencoder for multimodal generation with
 frozen llms. In NeurIPS, 2023b.
 Yu, L., Lezama, J., Gundavarapu, N. B., Versari, L., Sohn, K.,
 Minnen, D., Cheng, Y., Gupta, A., Gu, X., Hauptmann, A. G.,
-et al. Language model beats diffusion–tokenizer is key to visual
+et al. Language model beats diffusiontokenizer is key to visual
 generation. In ICLR, 2024.
 Yu, S., Sohn, K., Kim, S., and Shin, J. Video probabilistic diffusion
-models in projected latent space. In CVPR, pp. 18456–18466,
-2023c.
+models in projected latent space. In CVPR, pp. 1845618466,
 Zeghidour, N., Luebs, A., Omran, A., Skoglund, J., and Tagliasac-
 chi, M.
 Soundstream: An end-to-end neural audio codec.
 IEEE/ACM Transactions on Audio, Speech, and Language Pro-
-cessing, 30:495–507, 2021.
+cessing, 30:495507, 2021.
 Zeng, Y., Wei, G., Zheng, J., Zou, J., Wei, Y., Zhang, Y., and Li,
 H. Make pixels dance: High-dynamic video generation. arXiv
 preprint arXiv:2311.10982, 2023.
@@ -1459,8 +1169,7 @@ Gao, D., and Shou, M. Z. Show-1: Marrying pixel and latent
 diffusion models for text-to-video generation. arXiv preprint
 arXiv:2309.15818, 2023a.
 Zhang, L., Rao, A., and Agrawala, M. Adding conditional control
-to text-to-image diffusion models. In CVPR, pp. 3836–3847,
-2023b.
+to text-to-image diffusion models. In CVPR, pp. 38363847,
 Zhang, Y., Jiang, L., Turk, G., and Yang, D. Auditing gender
 presentation differences in text-to-image models. arXiv preprint
 arXiv:2302.03675, 2023c.
@@ -1475,19 +1184,18 @@ Wohlhart, P., Welker, S., Wahid, A., et al.
 RT-2: Vision-
 language-action models transfer web knowledge to robotic con-
 trol. In CoRL, 2023.
-12
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 A. Appendix
 A.1. Responsible AI and Fairness Analysis
 We evaluate whether the generated outputs of our model are fair regarding protected attributes such as (1) Perceived Age (2)
-Perceived Gender Expression (3) Perceived Skin Tone. We construct 306 prompts with template — “a {profession or people
-descriptor} looking {adverb} at the camera” with “profession” being crawled from the US Bureau of Labor and Statistics
-and “people descriptors” including emotion state, socioeconomic class, etc. The “adverb” is used to generate semantically
-unchanged prompt templates such as “straightly” or “directly”. We generate 8 videos for each prompt and for each generated
+Perceived Gender Expression (3) Perceived Skin Tone. We construct 306 prompts with template a {profession or people
+descriptor} looking {adverb} at the camera with profession being crawled from the US Bureau of Labor and Statistics
+and people descriptors including emotion state, socioeconomic class, etc. The adverb is used to generate semantically
+unchanged prompt templates such as straightly or directly. We generate 8 videos for each prompt and for each generated
 video we infer an approximation of the expressed attribute regarding the 3 protected attributes. Across 10 prompts that have
-the same semantic meaning but different “adverbs”, we observe our outputs generally introduced a stronger distribution shift
-toward “Young Adults” (age 18-35), “Male” and “Light Skin Tone”. However, we observe changing the “adverb” in the
+the same semantic meaning but different adverbs, we observe our outputs generally introduced a stronger distribution shift
+toward Young Adults (age 18-35), Male and Light Skin Tone. However, we observe changing the adverb in the
 prompt template can signiﬁcantly alter the output distributions. Therefore, our model can be prompted to produce outputs
 with non-uniform distributions across these groups, but also possess the ability of being prompted to enhance uniformity,
 though prompts are semantically unchanged. While research has been conducted in the image generation and recognition
@@ -1503,8 +1211,8 @@ audiovisual tasks. After obtaining the above results, we retrain our 1B and 8B m
 training data discussed in Section 3. Appendix A.2.1 shows a qualitative comparison of the 1B and 8B pretrained models.
 Increasing the model size improved temporal consistency, prompt ﬁdelity, and motion dynamics while adding capabilities
 for limited text rendering, spatial understanding, and counting.
-(a) Video generation quality in FVD (↓).
-(b) Audio generation quality in FAD (↓).
+(a) Video generation quality in FVD ().
+(b) Audio generation quality in FAD ().
 Figure 8: Effects of model and data scale on video and audio generation quality. The performance, depicted on a
 log-log scale, improves signiﬁcantly when we scale up the model and training data. Language models with 300 million,
 1 billion, and 8 billion parameters are trained on datasets comprising 10, 37, and 58 billion visual and audio tokens,
@@ -1513,7 +1221,6 @@ A.2.1. QUALITATIVE COMPARISON OF 1B AND 8B MODELS
 In Figure 9, we show outputs of 1B and 8B parameter models on the same prompts. Four frames from the best video output
 of each model in a batch of four text-to-video samples were selected to represent the model. In the ﬁrst row, the 1B model
 is unstable with large changes to the subject over time and misses elements from the complex prompt. This prompt was
-13
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 prompt: A portrait photo of a kangaroo wearing an orange hoodie and blue sunglasses standing on the grass in front of the
@@ -1524,7 +1231,6 @@ prompt: A zoomed out map of the United States made out of sushi. It is on a tabl
 sushi disappear one by one
 prompt: Rotating around a vase holding a dozen roses
 Figure 9: A comparison of a 1B (left) and 8B (right) parameter models on the same prompt and settings.
-14
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 Original Video
@@ -1532,13 +1238,13 @@ Outpainted Video
 Stylized Video
 Prompt: A gingerbread and candy train on a
 track
-Figure 10: Example of zero-shot video editing via task chaining (outpainting and stylization) – the original video is
+Figure 10: Example of zero-shot video editing via task chaining (outpainting and stylization) the original video is
 ﬁrst outpainted and then stylized via a text prompt.
 originally used for scaling comparisons in (Yu et al., 2022), and compared to a dedicated image-only model, our model does
 not preserve text as well given the training data used. In the second row, we use a simpler text task and show that the 8B
 model can represent a single letter clearly, but the 1B model still produces artifacts. In the third row, we show that the 8B
 model learns spatial positioning such as the river being in front of the astronaut and horse. In the fourth row, we show that
-the 8B parameter model learned a stop motion style to have items disappear “one by one” and can follow a complicated
+the 8B parameter model learned a stop motion style to have items disappear one by one and can follow a complicated
 layout from a long prompt. In contrast, the 1B model includes all of the nouns, but is unstable over time and does not follow
 the layout indicated in the prompt. In the bottom row, we show that the 8B model understands counts of objects in that it
 displays a full bouquet (though 12 roses are not explicitly in frame) and smooth consistent motion as opposed to the 5 roses
@@ -1550,13 +1256,12 @@ in addition to Fig. 10 and Fig. 11.
 A.4. Video Stylization
 To perform video stylization, we follow an approach inspired by (Zhang et al., 2023b; Chen et al., 2023b; Esser et al., 2023)
 to predict videos from the combination of text, optical ﬂow, and depth signals. On a subset of steps, we also condition on the
-ﬁrst video frame. As described in (Esser et al., 2023), the text will generally deﬁne the “content” or appearance of the output
-and the optical ﬂow and depth control the “structure.” In contrast to the diffusion-based approaches that usually use external
+ﬁrst video frame. As described in (Esser et al., 2023), the text will generally deﬁne the content or appearance of the output
+and the optical ﬂow and depth control the structure. In contrast to the diffusion-based approaches that usually use external
 cross-attention networks (Zhang et al., 2023b) or latent blending (Meng et al., 2021) for stylization, our approach is more
 closely related to machine translation using large language models in that we only need to provide the structure and text as a
 preﬁx to a language model.
 To perform the task, we estimate optical ﬂow from RAFT (Sun et al., 2022) and produce monocular depth maps from
-15
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 Camera Motion: Arc shot
@@ -1569,8 +1274,6 @@ Video Quality
 Text Fidelity
 22.5%
 77.5%
-30%
-70%
 Figure 12: Human side-by-side evaluations comparing VideoPoet with the video stylization model Control-a-
 video (Chen et al., 2023b). Raters prefer VideoPoet on both text ﬁdelity and video quality. Green and pink bars represent
 the proportion of trials where VideoPoet was preferred over an alternative, or preferred less than an alternative, respectively.
@@ -1578,14 +1281,12 @@ MIDAS (Ranftl et al., 2020), and then normalize and concatenate on the channel d
 same number of channels as the RGB ground truth and so can be tokenized in the same fashion as RGB videos with the
 MAGVIT-v2 tokenizer without retraining the tokenizer. The task of stylization is to reconstruct the ground truth video from
 the given optical ﬂow, depth, and text information. During inference, we apply optical ﬂow and depth estimation on an input
-video but then vary the text prompt to generate a new style, e.g. “cartoon”.
+video but then vary the text prompt to generate a new style, e.g. cartoon.
 Table 3: Comparison on video stylization. VideoPoet outperforms Control-A-Video by a large margin.
 Model
 CLIPSIM
 Control-A-Video (Chen et al., 2023b)[depth]
-0.3246
 VideoPoet (Ours)
-0.3417
 To evaluate stylization capabilities, we choose 20 videos from the public DAVIS 20162 (Perazzi et al., 2016) dataset and
 provide 2 style prompts for each video. For more details, please refer to Appendix A.5.7. Following (Esser et al., 2023), we
 evaluated the CLIP-embedding consistency between each frame and the text prompt to determine if the stylization results
@@ -1593,7 +1294,6 @@ matches the text. As shown in Table 3, VideoPoet outperforms Control-A-Video con
 also conduct human evaluations as discussed above comparing with Control-A-Video (Chen et al., 2023b). Human raters
 consistently prefer our text ﬁdelity and video quality as shown in Fig. 12.
 2DAVIS license: https://creativecommons.org/licenses/by-nc/4.0/deed.en
-16
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 Special Token
@@ -1638,19 +1338,19 @@ produces a total vocabulary size of approximately 300,000.
 Since the ﬁrst frame is tokenized separately, MAGVIT-v2 allows images to be represented in the same vocabulary as video.
 In addition to being more compact, images provide many learnable characteristics that are not typically represented in
 videos, such as strong visual styles (e.g., art paintings), objects which are infrequently seen in video, rich captions, and
-signiﬁcantly more text-image paired training data. When training on images, we resize the images to 128×128 which are
-then tokenized to a latent shape of (1, 16, 16), or 256 tokens. We scale the MAGVIT-v2 model’s size and train it on the
+signiﬁcantly more text-image paired training data. When training on images, we resize the images to 128128 which are
+then tokenized to a latent shape of (1, 16, 16), or 256 tokens. We scale the MAGVIT-v2 models size and train it on the
 datasets discussed in Section 5.1. The training follows two steps: image training, inﬂation (Yu et al., 2024) and video
-training. Due to images requiring fewer tokens, we can include roughly 5× more images per batch than videos, i.e. 256
+training. Due to images requiring fewer tokens, we can include roughly 5 more images per batch than videos, i.e. 256
 image tokens vs. 1280 video tokens. We use up to a maximum of 64 text tokens for all of our experiments. For the <res>
-token, the resolution is only speciﬁed for 128 × 224 output, 128 × 128 resolution is assumed otherwise.
+token, the resolution is only speciﬁed for 128 224 output, 128 128 resolution is assumed otherwise.
 The video-to-video tasks use the COMMIT encoding (Yu et al., 2023a) to obtain the tokens for the tasks such as inpainting
 and outpainting. Text is encoded as T5 XL embeddings (Raffel et al., 2020) and are inserted into reserved sequence positions
 right after the <bot i> token as shown in Fig. 2.
 A.5.2. SUPER-RESOLUTION IMPLEMENTATION DETAILS
-We use a 1B model for the ﬁrst 2× spatial super-resolution stage and a 500M model for the second 2× stage. The ﬁrst
-super-resolution stage models videos of 17 × 448 × 256 pixels with a token sequence of shape (5, 56, 32). The second stage
-models videos of 17 × 896 × 512 pixels with a token sequence of shape (5, 112, 64). The token sequences are obtained with
+We use a 1B model for the ﬁrst 2 spatial super-resolution stage and a 500M model for the second 2 stage. The ﬁrst
+super-resolution stage models videos of 17 448 256 pixels with a token sequence of shape (5, 56, 32). The second stage
+models videos of 17 896 512 pixels with a token sequence of shape (5, 112, 64). The token sequences are obtained with
 the same MAGVIT-v2 (Yu et al., 2024) tokenizer used for the base language model. The custom super-resolution transformer
 has local self-attention windows for vertical, horizontal and temporal layers of shape (1, 56, 4), (1, 8, 32), (5, 8, 8) in the
 ﬁrst stage and (1, 112, 2), (1, 4, 64), (5, 8, 8) in the second stage, respectively (Fig. 3). The cross-attention layers attend to
@@ -1658,7 +1358,6 @@ local windows in the low-resolution sequence isomorphic to self-attention window
 We train the super-resolution stages on a dataset of 64M high-quality text-video pairs using the masked modeling objective
 of MAGVIT (Yu et al., 2023a), with token factorization into k = 2 groups (Yu et al., 2024). During inference, we use the
 sampling algorithm of MAGVIT-v2 (Yu et al., 2024) with 24 sampling steps for each stage and classiﬁer-free guidance
-17
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 Figure 13: Example screenshot of the user interface for human side-by-side comparisons.
@@ -1671,8 +1370,8 @@ MSR-VTT, and measure Inception Score (IS) (Saito et al., 2020). When the evaluat
 the generated last frame to make a 16-frame video.
 A.5.4. ADDITIONAL HUMAN EVALUATION DETAILS
 Figure 13 shows an example screenshot of our side-by-side UI for comparing models. We used a team of 7 human raters to
-complete all ratings. To achieve best results, we call VideoPoet using the negative prompt “a still shot of an ugly cartoon,
-slideshow of an empty scene, low resolution, distorted and disﬁgured” and rewrite the given prompt by appending the string
+complete all ratings. To achieve best results, we call VideoPoet using the negative prompt a still shot of an ugly cartoon,
+slideshow of an empty scene, low resolution, distorted and disﬁgured and rewrite the given prompt by appending the string
 highly detailed, cinematic, arc shot, high contrast, soft lighting, 8k.
 A.5.5. ZERO-SHOT TEXT-TO-VIDEO EVALUATION SETTINGS
 We report the details of our zero-shot text-to-video settings here. We note that some details are missing in previous papers
@@ -1691,7 +1390,6 @@ We sample the central 16 frames of each real video, without any temporal downsam
 MSR-VTT dataset (30 fps as reported in Xu et al. (2016)). The FVD is evaluated with an I3D model trained on Kinetics-400.
 Zero-shot UCF-101. Following VDM (Ho et al., 2022b), we sample 10,000 videos from the UCF-101 test set and use their
 categories as the text prompts to generate 10,000 videos. We use the class text prompts provided in PYoCo (Ge et al., 2023)
-18
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 to represent the 101 categories. To compute the FVD real features, we sample 10K videos from the training set, following
@@ -1700,9 +1398,9 @@ we use the original fps in the UCF-101 dataset (25 fps as reported in (Soomro et
 with an I3D model trained on Kinetics-400 and the IS metric is evaluated with a C3D model trained on UCF-101.
 A.5.6. SELF-SUPERVISED TASKS EVALUATION SETTINGS
 Self-supervised learning tasks include frame prediction on K600 with 5 frames as condition, as well as inpainting and
-outpainting on SSv2. FVD (Unterthiner et al., 2018) is used as the primary metric, calculated with 16 frames at 128×128
+outpainting on SSv2. FVD (Unterthiner et al., 2018) is used as the primary metric, calculated with 16 frames at 128128
 resolution. We follow MAGVIT (Yu et al., 2023a) in evaluating these tasks against the respective real distribution, using
-50000×4 samples for K600 and 50000 samples for SSv2.
+500004 samples for K600 and 50000 samples for SSv2.
 A.5.7. STYLIZATION EVALUATION ON DAVIS
 To evaluate the CLIP similarity score and human preference on video stylization, we use the following set of videos and
 prompts. We select 20 videos from DAVIS 2016 (Perazzi et al., 2016), and for each video we take 16 frames starting from the
@@ -1710,137 +1408,97 @@ initial frame speciﬁed below and evaluate stylization on the two text prompts 
 use a central square crop at the height of the video and evaluate the output videos at 256x256 resolution. We use CLIP-B/16
 for the similarity score. Several prompts below are used in or inspired by previous work (Esser et al., 2023; Chen et al.,
 2023b; Liew et al., 2023).
-19
 
 VideoPoet: A Large Language Model for Zero-Shot Video Generation
 video name
 starting frame
 ﬁrst text prompt
 elephant
-10
 oil painting of an elephant walking away
 elephant
-10
 cartoon animation of an elephant walking through dirt surrounded by
 boulders
 car-turn
-40
 car on a snowcovered road in the countryside
 car-turn
-40
 8-bit pixelated car driving down the road
 dog-agility
-0
 a dog in the style of a comic book
 dog-agility
-0
 a dog running through a ﬁeld of poles in the style of cyberpunk
 bmx-bumps
-10
 riding a bicycle on a rainbow track in space with stars and planets in the
+
 
 ## Background
 
 bmx-bumps
-10
 riding a bicycle on a dirt track in the style of a graphic novel
 train
-0
 a gingerbread steam train made of candy
 train
-0
 a train in lava
 bus
-0
 a black and white drawing of a bus
 bus
-0
 a bus in cyberpunk style
 lucia
-0
 an astronaut walking on mars
 lucia
-0
 a claymation animation of a woman walking
 tennis
-15
 a robot throwing a laser ball
 tennis
-15
 astronaut playing tennis on the surface of the moon
 bear
-60
 a polar bear exploring on an iceberg
 bear
-60
 a space bear walking beneath the stars
 ﬂamingo
-0
 2D vector animation of a group of ﬂamingos standing near some rocks
 and water
 ﬂamingo
-0
 oil painting of pink ﬂamingos wading
 hike
-0
 a green alien explorer hiking in the mountains
 hike
-0
 paper cut-out mountains with a paper cut-out hiker
 goat
-59
 a tiger prowling along the ridge above a jungle
 goat
-59
 a dragon prowling over a crater on the moon
 parkour
-60
 a man jumping over rocks in a red sandstone canyon
 parkour
-60
 a robot dodging through an obstacle course
 cows
-10
 a pig standing in the mud
 cows
-10
 a robotic cow walking along a muddy road
 camel
-10
 a camel robot on a snowy day
 camel
-10
 toy camel standing on dirt near a fence
 blackswan
-0
 a watercolor painting of a white swan
 blackswan
-0
 a crochet black swan swims in a pond with rocks and vegetation
 dog
-20
 a cat walking
 dog
-20
 a dalmatian dog walking
 kite-surf
-10
 a sand surfer kicking up sand in the desert
 kite-surf
-10
 kite surfer in the ocean at sunset
 libby
-0
 chinese ink painting of a dog running
 libby
-0
 3D animation of a small dog running through grass
 horsejump-high
-0
 a cartoon of a magical ﬂying horse jumping over an obstacle
 horsejump-high
-0
 person rides on a horse while jumping over an obstacle with an aurora
 borealis in the background
 Table 5: DAVIS stylization evaluation settings.
-20
+

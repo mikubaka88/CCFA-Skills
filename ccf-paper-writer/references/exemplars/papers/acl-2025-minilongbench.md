@@ -5,14 +5,14 @@
 > **Source:** <https://aclanthology.org/2025.acl-long.560/>
 
 ---
-
-Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 11442–11460
+Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 1144211460
 July 27 - August 1, 2025 ©2025 Association for Computational Linguistics
 MiniLongBench: The Low-cost Long Context Understanding
 Benchmark for Large Language Models
 Zhongzhan Huang1, Guoming Ling1, Shanshan Zhong1, Hefeng Wu1, Liang Lin1,2,3
 1Sun Yat-sen University 2Peng Cheng Laboratory
 3Guangdong Key Laboratory of Big Data Analysis and Processing
+
 
 ## Abstract
 
@@ -26,6 +26,7 @@ testing time and inference expenses. Through
 extensive experimentation, we discover that
 existing LCU benchmarks exhibit significant
 redundancy, which means the inefficiency in
+
 
 ## Evaluation
 
@@ -45,7 +46,7 @@ as a low-cost benchmark, holds great potential
 to substantially drive future research into the
 LCU capabilities of LLMs. See Github for our
 code, data and tutorial.
-1
+
 
 ## Introduction
 
@@ -63,32 +64,15 @@ sequences spanning thousands or even tens of thou-
 sands of tokens. Currently, the LCU capabilities
 of LLMs are still in their early stages, and their
 Test Time (hours)
-0
-5
-10
-15
-20
-25
-30
 OPT-30B Wizard-Vicuna Llama-30B LwQ-Instruct
 30B-Epsilon
-28.99h
 1.36h
-23.94h
 1.04h
-22.55h
 1.02h
-19.06h
 0.83h
-16.55h
 0.78h
 LongBench
 MiniLongBench (ours)
-21.32×
-23.05×
-22.13×
-22.88×
-21.15×
 Figure 1: The computational cost of LongBench and
 MiniLongBench. The proposed MiniLongBench effec-
 tively reduces the computational cost of the LongBench,
@@ -103,7 +87,7 @@ due to the nature of long context data. Combined
 with the high number of test samples, the primary
 challenge these benchmarks face is their high evalu-
 ation cost. As shown in Fig. 1, some popular LLMs
-on 8×RTX3090 GPUs require approximately up
+on 8RTX3090 GPUs require approximately up
 to 15 ∼30 hours to complete an evaluation on
 LongBench with one batch size. Moreover, due
 to the large number of tokens in each long-text
@@ -120,28 +104,8 @@ Do LCU benchmarks really need such a large
 number of test samples?
 To answer this question, in this paper, we explore
 the compression of the well-known LCU bench-
-11442
 
 Spearman Correlation
-1.0
-0.9
-0.8
-0.7
-0.6
-0.5
-0.4
-0.9
-0.8
-0.7
-0.6
-0.5
-0.4
-0.9
-0.8
-0.7
-0.6
-0.5
-0.4
 SQA MQA SUM FSL CODE SYN
 SQA MQA SUM FSL CODE SYN
 SQA MQA SUM FSL CODE SYN
@@ -154,10 +118,8 @@ Strong corr.
 Moderate corr.
 Strong corr.
 Moderate corr.
-1.0
-1.0
 Figure 2: The redundancy of LongBench. "Reduce 95%" means randomly removing 95% of the dataset with
-equal probability. A Spearman correlation (Sp) ≥0.8 indicates a strong correlation and Sp ≥0.6 means moderate
+equal probability. A Spearman correlation (Sp) 0.8 indicates a strong correlation and Sp 0.6 means moderate
 correlation between the results of randomly sampled subset and LongBench. The abscissa labels from "SQA" to
 "SYN" represent the abbreviations of the six main tasks in LongBench, with details provided in Section 2.
 mark, LongBench (Bai et al., 2024a). In Section 2,
@@ -176,15 +138,14 @@ nal, while maintaining the assessment outcomes of
 LLM on LongBench. We show the related works
 in Appendix D, and summarize the contributions
 of this paper as follows:
-• In this paper, we analyze the redundancy of
+In this paper, we analyze the redundancy of
 current LCU benchmark for LLMs and propose
 an effective method to reduce the number of
 test samples for low-cost testing.
-• Analyzing on over 60 LLMs, our MiniLong-
+Analyzing on over 60 LLMs, our MiniLong-
 Bench achieves an average ranking correlation
 of about 0.97 with LongBench while reducing
 computational cost to only 4.5% of the original.
-2
 The Redundancy of LCU Benchmark
 In this section, we consider the well-known LCU
 benchmark, LongBench (Bai et al., 2024a), as an
@@ -211,6 +172,7 @@ ation results of each subset and those of the original
 LongBench SL. The closer "Sp" is to 1.0, the more
 the evaluation of the sampled subset aligns with the
 
+
 ## Evaluation
 
 and select the top 7500 results based on Sp for
@@ -224,9 +186,9 @@ dicates that LongBench contains significant redun-
 dancy and does not require so many test samples.
 Therefore, in this paper, we will design an efficient
 
+
 ## Method
 
-3
 Compression for LCU Benchmark
 In this section, we explore how to filter long-text
 data to reduce the size of LCU benchmark, en-
@@ -242,7 +204,6 @@ test samples from LongBench SL = {sj}|SL|
 j=1. Us-
 ing their performance record, we aim to construct
 a regression model to map these sparsely infor-
-11443
 
 Data Preprocessing
 Test sample
@@ -268,21 +229,21 @@ from LLM ℓi and sample sj. Text embedding κtest.
 Output: Compact LCU benchmark.
 ▷Data preprocessing
 Intra-sample dimension reduction s′
-j ←κtext(sj);
+j κtext(sj);
 Inter-sample dimension reduction by
 {ej}|SL|
-j=1 ←PCAd[s′
+j=1 PCAd[s′
 1, s′
 2, ..., s′
 |SL|];
 ▷Representation learning for test samples
-Initialize LLM ℓi’s representation by θi ∼N(0, Id);
-Initialized βj ←0;
-Update learnable (ej, βj) and θi by Eq. (2);
+Initialize LLM ℓis representation by θi ∼N(0, Id);
+Initialized j 0;
+Update learnable (ej, j) and θi by Eq. (2);
 ▷Clustering
-Determine the number of cluster centers K ←(1−p)|SL|;
-Obtain K centers (c1, c2, .., cK) by clustering and (ej, βj);
-Smini ←(c1, c2, .., cK);
+Determine the number of cluster centers K (1−p)|SL|;
+Obtain K centers (c1, c2, .., cK) by clustering and (ej, j);
+Smini (c1, c2, .., cK);
 return Compact LCU benchmark Smini
 mative long-text samples into a denser text space
 first, and gradually project them into a performance
@@ -324,16 +285,16 @@ i=1 and test samples sj ∈SL with perfor-
 mance measured by the metric metr(·, ·). We then
 assume that the probability of LLM ℓi correctly
 answering sample sj is given by:
-P(metr(ℓi, sj) = 1|θi, ej, βj)
-= [1 + exp(−ej⊤θi + βj)]−1,
+P(metr(ℓi, sj) = 1|θi, ej, j)
+= [1 + exp(−ej⊤θi + j)]−1,
 (2)
 where the learnable parameter θi ∈Rd represents
 the d-dimensional embedding of LLM ℓi, initial-
 ized using a d-dimensional standard normal dis-
 tribution. Eq. (2) is classical logistic regression
 model (Kleinbaum et al., 2002). The parameters
-(ej, βj) are the learnable representations of the test
-sample sj, where βj is initialized to zero vector
+(ej, j) are the learnable representations of the test
+sample sj, where j is initialized to zero vector
 and ej initialized by Eq. (1). In this paper, we set
 d = 10. See further analysis on these representa-
 tions, initialization and d in Section 5.
@@ -349,21 +310,15 @@ tance, etc., are used. We can normalize them to
 the interval [0, 1] , and then consider the following
 optimization problem.
 min
-c
-∥
-Xm
 i=1
 X|SL|
 j=1 metr(ℓi, sj)
-−
-Xm
 i=1
 X|SL|
-j=1 1[metr(ℓi,sj)≥c]∥,
+j=1 1[metr(ℓi,sj)c]∥,
 (3)
 Note that the existence of a solution to Eq. (3) is
 evident. It can be obtained by simply searching
-11444
 
 Dataset
 Index
@@ -375,178 +330,86 @@ Long. #data
 MiniLong. #data
 Single-Document QA
 NarrativeQA
-1-1
-F1
 English
-18,409
-22,967
-200
-6 (↓97%)
+6 (97%)
 Qasper
-1-2
-F1
 English
-3,619
-2,933
-200
-9 (↓96%)
+9 (96%)
 MultiFieldQA-en
-1-3
-F1
 English
-4,559
-4,519
-150
-7 (↓95%)
+7 (95%)
 MultiFieldQA-zh
-1-4
-F1
 Chinese
-6,701
-6,300
-200
-15 (↓93%)
+15 (93%)
 Multi-Document QA
 HotpotQA
-2-1
-F1
 English
-9,151
-8,856
-200
-13 (↓94%)
+13 (94%)
 2WikiMultihopQA
-2-2
-F1
 English
-4,887
-4,286
-200
-13 (↓94%)
+13 (94%)
 MuSiQue
-2-3
-F1
 English
-11,214
-10,910
-200
-7 (↓97%)
+7 (97%)
 DuReader
-2-4
 Rouge-L
 Chinese
-15,768
-12,996
-200
-6 (↓97%)
+6 (97%)
 Summarization
 GovReport
-3-1
 Rouge-L
 English
-8,734
-7592
-200
-12 (↓94%)
+12 (94%)
 QMSum
-3-2
 Rouge-L
 English
-10,614
-8,253
-200
-6 (↓97%)
+6 (97%)
 MultiNews
-3-3
 Rouge-L
 English
-2,113
-1,785
-200
-11 (↓95%)
+11 (95%)
 VCSUM
-3-4
 Rouge-L
 Chinese
-15,380
-10,400
-200
-6 (↓97%)
+6 (97%)
 Few-shot Learning
 TREC
-4-1
 Acc. (CLS)
 English
-5,177
-6,077
-200
-8 (↓96%)
+8 (96%)
 TriviaQA
-4-2
-F1
 English
-8,209
-9,719
-200
-12 (↓94%)
+12 (94%)
 SAMSum
-4-3
 Rouge-L
 English
-6,258
-5,974
-200
-15 (↓93%)
+15 (93%)
 LSHT
-4-4
 Acc. (CLS)
 Chinese
-22,337
-22,759
-200
-8 (↓96%)
+8 (96%)
 Synthetic Task
 PassageCount
-5-1
 Acc. (EM)
 English
-11,414
-10,627
-200
-4 (↓98%)
+4 (98%)
 PassageRetrieval-en
-5-2
 Acc. (EM)
 English
-9,289
-9,394
-200
-15 (↓93%)
+15 (93%)
 PassageRetrieval-zh
-5-3
 Acc. (EM)
 Chinese
-6,745
-6,684
-200
-15 (↓93%)
+15 (93%)
 Code Completion
 LCC
-6-1
 Edit Sim
 Python/C#/Java
-1,235
-1,187
-500
-26 (↓95%)
+26 (95%)
 RepoBench-P
-6-2
 Edit Sim
 Python/Jave
-4,206
-3,723
-500
-23 (↓95%)
+23 (95%)
 Table 1: The dataset statistics in LongBench and MiniLongBench. "Long." and "MiniLong." denote LongBench
 and MiniLongBench. "Avg len" (average length) is computed using the number of words for the English (code)
 datasets and the number of characters for the Chinese datasets. "Acc. (CLS)" refers to classification accuracy, while
@@ -554,23 +417,8 @@ datasets and the number of characters for the Chinese datasets. "Acc. (CLS)" ref
 Count
 Chinese
 English
-200
-150
-100
-50
-0
-1000
-800
-600
-400
-200
-0
 Length
-10000 20000 30000 40000
-0
 Length
-10000 20000 30000 40000
-0
 LongBench
 LongBench
 Figure 4: The Length distribution for English and Chi-
@@ -578,13 +426,13 @@ nese data in LongBench and MiniLongBench, measured
 by the number of words and characters.
 the interval [0, 1] to get an approximate solution
 for c. Once c is obtained, we replace the origi-
-nal metr(ℓi, sj) with metr(ℓi, sj)′ = 1[metr(ℓi,sj)≥c]
+nal metr(ℓi, sj) with metr(ℓi, sj)′ = 1[metr(ℓi,sj)c]
 which can transform the continuous metric into a
 discrete binary scenario similar to Eq. (2).
-(3) Clustering. Next, we update θi, ej, and βj
+(3) Clustering. Next, we update θi, ej, and j
 simultaneously using the training approach of lo-
 gistic regression. Once these learnable parameters
-converge, we concatenate (ej, βj) as the final rep-
+converge, we concatenate (ej, j) as the final rep-
 resentation of the test sample sj, and perform clus-
 tering analysis on them using K-Means (Hamerly
 and Elkan, 2003) under Euclidean distance, where
@@ -593,12 +441,12 @@ integrated as the test samples of MiniLongBench
 Smini. In Section 4, we will further validate the
 effectiveness of MiniLongBench from an experi-
 mental perspective.
-4
 Compact LCU Benchmark:
 In this section, we present our compact MiniLong-
 Bench and demonstrate through comprehensive
 experiments that it significantly reduces computa-
-tional costs while preserving original LongBench’s
+tional costs while preserving original LongBenchs
+
 
 ## Evaluation
 
@@ -607,7 +455,6 @@ the training described in Section 3, and the rest serv-
 ing as candidates for validating the effectiveness
 of MiniLongBench. See Appendix B for details of
 LLMs considered.
-4.1
 The Details of MiniLongBench
 Chosing compression ratio p = 0.95, we use the
 compression method shown in Section 3 for Long-
@@ -615,7 +462,6 @@ Bench to obtain compact LCU benchmark Mini-
 LongBench. This benchmark includes only 237
 test samples across six task categories, with an av-
 erage length of 6193 words (English) and 10344
-11445
 
 Model
 SQA
@@ -625,138 +471,24 @@ FSL
 SYN
 CODE
 DeepSeek-V3-128k
-0.43
-0.31
-0.12
-0.67
-0.26
-0.88
 GPT-4o-mini-128k
-0.41
-0.30
-0.10
-0.65
-0.23
-0.87
 GPT-3.5-Turbo-16k
-0.37
-0.25
-0.07
-0.58
-0.17
-0.81
 Internlm3-8B-32k
-0.33
-0.24
-0.04
-0.53
-0.12
-0.64
 ChatGLM3-6B-8k
-0.17
-0.08
-0.02
-0.39
-0.02
-0.48
 ChatGLM4-9B-128k
-0.36
-0.27
-0.06
-0.58
-0.14
-0.75
 Qwen-7B-8k
-0.20
-0.10
-0.04
-0.48
-0.07
-0.71
 Qwen2-7B-128k
-0.29
-0.22
-0.05
-0.55
-0.09
-0.71
 Qwen2.5-7B-128k
-0.34
-0.24
-0.04
-0.55
-0.12
-0.67
 Qwen2.5-14B-128k
-0.35
-0.26
-0.05
-0.56
-0.12
-0.66
 Qwen2.5-32B-128k
-0.36
-0.26
-0.06
-0.59
-0.15
-0.74
 Llama-7B-2k
-0.09
-0.04
-0.02
-0.39
-0.02
-0.61
 Llama2-7B-4k
-0.11
-0.04
-0.02
-0.41
-0.04
-0.66
 Llama3-8B-8k
-0.11
-0.03
-0.04
-0.47
-0.08
-0.71
 Llama-30B-2k
-0.10
-0.04
-0.02
-0.41
-0.04
-0.65
 OPT-30B-2k
-0.08
-0.03
-0.01
-0.33
-0.02
-0.48
 Wizard-Vicuna-2k
-0.20
-0.13
-0.02
-0.41
-0.05
-0.59
 LwQ-Instruct-2k
-0.23
-0.18
-0.04
-0.45
-0.07
-0.70
 30B-Epsilon-2k
-0.20
-0.13
-0.04
-0.48
-0.07
-0.73
 Table 2: Specific evaluation results on MiniLongBench.
 See Appendix C and Appendix G for the more analysis
 and detail results on various advanced LLMs.
@@ -784,28 +516,18 @@ decreasing the number of tokens in the model in-
 put and reducing computational costs. The further
 discussions with other compression ratio p and m
 trained LLMs are shown in Section 5.
-4.2
 The Evaluation Method
 In this section, we explore how to evaluate the
 LCU capabilities of LLMs using MiniLongBench.
 A straightforward approach is to directly assess
 them on MiniLongBench, yielding reliable results
 with a Sp of 0.95 compared to LongBench (see
-Appendix G for details). However, it’s important
+Appendix G for details). However, its important
 to note that MiniLongBench, having significantly
 Longbench Scores
-0.4
-0.3
-0.2
-0.1
 MiniLongbench Scores
-0.10
-0.15
-0.20
-0.25
-0.30
 Train (Sp=0.98)
-Test  (Sp=0.96)
+Test (Sp=0.96)
 ALL (Sp=0.97)
 Figure 5: The analysis of rank correlation (Sp) between
 LongBench and MiniLongBench.
@@ -830,7 +552,7 @@ tuning, we can construct the following MiniLong-
 Bench score through Eq. (2) to estimate the perfor-
 mance of ℓ0 across the entire SL:
 X|SL|
-j=1[1 + exp(−ej⊤¯θ + βj)]−1/|SL|,
+j=1[1 + exp(−ej⊤¯θ + j)]−1/|SL|,
 (4)
 The time required for fine-tuning in the aforemen-
 tioned evaluation process and the storage cost for
@@ -838,7 +560,6 @@ the features of SL are both minimal, requiring only
 about 10 MB of disk space and as little as 0.03 sec-
 onds of GPU time, even on a laptop. For specific
 statistics, please refer to Appendix H.
-4.3
 The Evaluation Results
 Moreover, Fig. 5 shows the rank correlation be-
 tween LongBench and the proposed MiniLong-
@@ -851,26 +572,16 @@ ation outcomes of LongBench while maintaining
 very low computational costs.
 Additionally, we present in Table 2 the specific
 performance of various advanced LLMs across dif-
-11446
 
 Spearman Corr.
-0.9
-0.8
-1.0
 Compression dimension
-40
-60
-80
-100
-20
 Train (r = -0.77)
-Test  (r = -0.96)
+Test (r = -0.96)
 Figure 6: The impact of compression dimension d on
 the construction of MiniLongBench. "r" is Pearson
 correlation coefficient.
 ferent tasks on the proposed MiniLongBench. For
 more detailed results, please refer to Appendix C.
-5
 Analysis
 In this Section, We conduct a more comprehensive
 analysis of the proposed MiniLongBench.
@@ -908,32 +619,19 @@ ditional computational overhead during training.
 (b) text embedding
 (c) For bias
 Ratio
-0.95
-0.90
-0.80
-0.70
-0.99
 Longf.
 w/o
 rand
 randn
 zero
-0.975
-0.925
-0.98
-0.90
-0.86
-0.98
-0.94
-0.975
-0.925
 Open.
 BERT
 Figure 7: Further analysis for MiniLongBench. The
 
+
 ## Results
 
-text embedding κtext. (c) The influence of various βj.
+text embedding κtext. (c) The influence of various j.
 The bars with darker color represent the settings adopted
 by our settings. "rand" and "randn" denote the standard
 uniform and normal distribution. "Longf." and "Open."
@@ -955,7 +653,7 @@ token inputs with a maximum length of 512, sig-
 nificantly underperforms compared to OpenAIEm-
 bedding and Longformer, which support lengths of
 8192 and 4096, respectively. This is primarily due
-to BERT’s weaker capability in information densi-
+to BERTs weaker capability in information densi-
 fication and the inevitable information loss when
 handling test samples exceeding the token length
 limit, as they can only be processed through chun-
@@ -965,39 +663,12 @@ using the more capable OpenAIEmbedding.
 In this paper, we set the compression ratio p = 0.95
 as the default. Subsequently, we further explore the
 selection of p in Fig. 7 (a). We observe that as p ap-
-11447
 
 Density
 Density
-3
-2
-0
-1
-4
 Spearman Correlation
-0.4
-0.5
-0.6
-0.7
-0.8
-0.9
-1.0
 Spearman Correlation
-0.4
-0.5
-0.6
-0.7
-0.8
-0.9
-1.0
 Spearman Correlation
-0.4
-0.5
-0.6
-0.7
-0.8
-0.9
-1.0
 Single-Document QA
 Multi-Document QA
 Summarization
@@ -1005,51 +676,8 @@ Few-shot Learning
 Code Completion
 Synthetic Task
 Spearman Correlation
-0.4
-0.5
-0.6
-0.7
-0.8
-0.9
-1.0
 Spearman Correlation
-0.4
-0.5
-0.6
-0.7
-0.8
-0.9
-1.0
 Spearman Correlation
-0.4
-0.5
-0.6
-0.7
-0.8
-0.9
-1.0
-8
-2
-0
-6
-4
-8
-2
-0
-6
-4
-8
-2
-0
-6
-4
-1
-0
-3
-2
-2
-0
-4
 Ours (Sp = 0.93)
 Avg. (Sp = 0.84)
 Ours (Sp = 0.93)
@@ -1075,18 +703,18 @@ of LLMs. Based on the experimental results in
 Fig. 7 (a), p = 0.95 is a favorable choice, as it
 balances both the testing cost and the evaluation
 capability of the benchmark.
-(5) Is the learnable bias βj important?
-In Eq. (2), we introduce a learnable bias βj for the
+(5) Is the learnable bias j important?
+In Eq. (2), we introduce a learnable bias j for the
 logistic regression model. In Fig. 7 (c), we explore
 its impact on the construction of MiniLongBench
 by testing different initializations and removing it
 entirely. We observe that, on one hand, the inclu-
-sion of βj aids in the representation learning of
+sion of j aids in the representation learning of
 test samples, as removing it results in a noticeable
 decline in Sp. On the other hand, different ini-
 tializations yield varying performance levels, with
 zero initialization achieving the best results. In con-
-clusion, the setting of learnable βj is important, and
+clusion, the setting of learnable j is important, and
 we employ a learnable bias with zero initialization.
 (6) About the selection of m LLMs.
 In this section, we further analyze the impact of the
@@ -1120,6 +748,7 @@ cific number of LLMs, m, we repeat the indepen-
 dent sampling 5 times and compute the average Sp
 of the constructed MiniLongBench and LongBench
 
+
 ## Evaluation
 
 shown in Fig. 9. We observe that as m increases,
@@ -1128,7 +757,6 @@ indicates that involving enough LLMs is benefi-
 cial for the representation learning of test samples.
 And we also note that when m = 20, the Sp in
 different tasks seems acceptable, suggesting that
-11448
 
 Single-Document QA
 Multi-Document QA
@@ -1137,97 +765,19 @@ Few-shot Learning
 Code Completion
 Synthetic Task
 # Trained LLMs
-5
-10
-15
-20
-25
-30
 # Trained LLMs
-5
-10
-15
-20
-25
-30
 # Trained LLMs
-5
-10
-15
-20
-25
-30
 # Trained LLMs
-5
-10
-15
-20
-25
-30
 # Trained LLMs
-5
-10
-15
-20
-25
-30
 # Trained LLMs
-5
-10
-15
-20
-25
-30
 Spearman Corr.
-1.00
-0.80
-0.90
 Spearman Corr.
-1.00
-0.90
-0.95
-0.85
-1.00
-0.76
-0.82
-0.89 0.89 0.90
-0.95
-0.79
-0.87
-0.91 0.92
-0.94 0.96
-0.71
-0.73
-0.80
-0.84 0.86 0.87
-0.86
-0.89
-0.90 0.90
-0.93 0.93
-0.79 0.80
-0.89 0.91 0.92 0.93
-0.80
-0.84
-0.87 0.87 0.88 0.90
-1.00
-0.80
-0.90
-1.00
-0.80
-0.90
-0.70
-1.00
-0.80
-0.90
-1.00
-0.80
-0.90
 Figure 9: The impact of the number of LLMs m on the construction of MiniLongBench .
 although the number of LLMs aids in representa-
 tion learning, there is still considerable redundancy.
 Considering the computational cost, we take the
 acceptable m = 20 as default.
-(8) Is the average Sp ≥0.97 enough?
+(8) Is the average Sp 0.97 enough?
 In Section 4, we show that the proposed MiniLong-
 Bench achieves an average Sp of 0.97 compared to
 LongBench. And, we also find that the p-value is
@@ -1239,6 +789,7 @@ evitably present.
 To demonstrate the usability of MiniLongBench
 with Sp = 0.97, in addition to the experiment in
 Fig. 5, we consider directly visualizing the ranking
+
 
 ## Results
 
@@ -1257,31 +808,10 @@ we identify a significant amount of redundancy in
 LongBench. However, relying solely on random
 LongBench
 Rank
-2
-4
-0
-6
-8
 Example 1
 Example 2
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 LongBench
 Figure 10: The visualization of ranking. See more
 ranking examples in Appendix F.
@@ -1294,7 +824,7 @@ The compression method we propose in Sec-
 tion 3 for the LCU benchmark effectively mitigates
 these issues, consistently achieving high Sp across
 various subtasks.
-6
+
 
 ## Conclusion
 
@@ -1308,9 +838,8 @@ average evaluation cost reduction to 4.5% of the
 original, while maintaining strong consistency with
 LongBench results. This phenomenon indicates
 that the proposed MiniLongBench has great poten-
-tial to greatly promote the exploration of LLMs’
+tial to greatly promote the exploration of LLMs
 LCU capabilities in the future.
-11449
 
 Limitations
 The LCU benchmark compression method shown
@@ -1333,7 +862,6 @@ This work was supported by National Science and
 Technology Major Project (No.2021ZD0111601),
 National Natural Science Foundation of China
 under Grants No.
-623B2099, 62272494 and
 62325605, Guangdong Basic and Applied Ba-
 sic Research Foundation (No.2023A1515011374,
 2023A1515012845), and Guangzhou Science and
@@ -1341,7 +869,7 @@ Technology Program (No.2024A04J6365).
 References
 Herve Abdi and Lynne J Williams. 2010. Principal
 component analysis. Wiley interdisciplinary reviews:
-computational statistics, 2(4):433–459.
+computational statistics, 2(4):433459.
 Rishabh Agarwal, Avi Singh, Lei M Zhang, Bernd
 Bohnet, Luis Rosias, Stephanie Chan, Biao Zhang,
 Ankesh Anand, Zaheer Abbas, Azade Nova, et al.
@@ -1363,11 +891,12 @@ Chenxin An, Shansan Gong, Ming Zhong, Xingjian
 Zhao, Mukai Li, Jun Zhang, Lingpeng Kong, and
 Xipeng Qiu. 2024. L-eval: Instituting standardized
 
+
 ## Evaluation
 
 ceedings of the 62nd Annual Meeting of the Associa-
 tion for Computational Linguistics (Volume 1: Long
-Papers), pages 14388–14411, Bangkok, Thailand.
+Papers), pages 1438814411, Bangkok, Thailand.
 Association for Computational Linguistics.
 Anthropic. 2024. Anthropic: Introducing claude 3.5
 sonnet.
@@ -1375,14 +904,14 @@ Yushi Bai, Xin Lv, and et al. 2024a. Longbench: A bilin-
 gual, multitask benchmark for long context under-
 standing. In Proceedings of the 62nd Annual Meet-
 ing of the Association for Computational Linguistics,
-pages 3119–3137. Association for Computational
+pages 31193137. Association for Computational
 Linguistics.
 Yushi Bai, Xin Lv, Jiajie Zhang, Yuze He, Ji Qi, Lei
 Hou, Jie Tang, Yuxiao Dong, and Juanzi Li. 2024b.
 LongAlign: A recipe for long context alignment of
 large language models. In Findings of the Associa-
 tion for Computational Linguistics: EMNLP 2024,
-pages 1376–1395, Miami, Florida, USA. Association
+pages 13761395, Miami, Florida, USA. Association
 for Computational Linguistics.
 Yushi Bai, Xin Lv, Jiajie Zhang, Hongchang Lyu,
 Jiankai Tang, Zhidian Huang, Zhengxiao Du, Xiao
@@ -1391,7 +920,7 @@ and Juanzi Li. 2024c. LongBench: A bilingual, mul-
 titask benchmark for long context understanding. In
 Proceedings of the 62nd Annual Meeting of the As-
 sociation for Computational Linguistics (Volume 1:
-Long Papers), pages 3119–3137, Bangkok, Thailand.
+Long Papers), pages 31193137, Bangkok, Thailand.
 Association for Computational Linguistics.
 Yushi Bai, Shangqing Tu, Jiajie Zhang, Hao Peng,
 Xiaozhi Wang, Xin Lv, Shulin Cao, Jiazheng Xu,
@@ -1415,12 +944,10 @@ arena: a set of benchmarks for long-context code
 models. arXiv preprint arXiv:2406.11612.
 Aydar Bulatov, Yury Kuratov, and Mikhail Burtsev.
 2022. Recurrent memory transformer. Advances
-in Neural Information Processing Systems, 35:11079–
-11091.
+in Neural Information Processing Systems, 35:11079
 Li Cai, Kilchan Choi, Mark Hansen, and Lauren Har-
 rell. 2016. Item response theory. Annual Review of
-Statistics and Its Application, 3(1):297–321.
-11450
+Statistics and Its Application, 3(1):297321.
 
 Shouyuan Chen, Sherman Wong, Liangjian Chen, and
 Yuandong Tian. 2023. Extending context window of
@@ -1432,7 +959,6 @@ Alec Radford,
 and
 Ilya
 Sutskever.
-2019.
 Generating
 long
 se-
@@ -1443,14 +969,14 @@ bonell, Quoc Le, and Ruslan Salakhutdinov. 2019.
 Transformer-xl: Attentive language models beyond
 a fixed-length context. In Proceedings of the 57th
 Annual Meeting of the Association for Computational
-Linguistics, pages 2978–2988.
+Linguistics, pages 29782988.
 Pradeep Dasigi, Kyle Lo, Iz Beltagy, Arman Cohan,
 Noah A Smith, and Matt Gardner. 2021. A dataset
 of information-seeking questions and answers an-
 chored in research papers. In Proceedings of the
 2021 Conference of the North American Chapter of
 the Association for Computational Linguistics: Hu-
-man Language Technologies, pages 4599–4610.
+man Language Technologies, pages 45994610.
 Jiayu Ding, Shuming Ma, Li Dong, Xingxing Zhang,
 Shaohan Huang, Wenhui Wang, and Furu Wei. 2023.
 Longnet: Scaling transformers to 1,000,000,000 to-
@@ -1461,7 +987,7 @@ benchmark for evaluating long text modeling capac-
 ities of large language models. In Proceedings of
 the 2024 Joint International Conference on Compu-
 tational Linguistics, Language Resources and Evalu-
-ation (LREC-COLING 2024), pages 2086–2099.
+ation (LREC-COLING 2024), pages 20862099.
 Dheeru Dua, Yizhong Wang, Pradeep Dasigi, Gabriel
 Stanovsky, Sameer Singh, and Matt Gardner. 2019.
 Drop: A reading comprehension benchmark requir-
@@ -1469,7 +995,7 @@ ing discrete reasoning over paragraphs. In Proceed-
 ings of the 2019 Conference of the North American
 Chapter of the Association for Computational Lin-
 guistics: Human Language Technologies, Volume 1
-(Long and Short Papers), pages 2368–2378.
+(Long and Short Papers), pages 23682378.
 Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey,
 Abhishek Kadian, Ahmad Al-Dahle, Aiesha Letman,
 Akhil Mathur, Alan Schelten, Amy Yang, Angela
@@ -1480,19 +1006,18 @@ Li, and Dragomir Radev. 2019. Multi-news: A large-
 scale multi-document summarization dataset and ab-
 stractive hierarchical model. In Proceedings of the
 57th Annual Meeting of the Association for Compu-
-tational Linguistics, pages 1074–1084.
+tational Linguistics, pages 10741084.
 William Fedus, Barret Zoph, and Noam Shazeer. 2022.
 Switch transformers: Scaling to trillion parame-
 ter models with simple and efficient sparsity. The
-Journal of Machine Learning Research, 23(1):5232–
-5270.
+Journal of Machine Learning Research, 23(1):5232
 Yao Fu, Rameswar Panda, Xinyao Niu, Xiang Yue, Han-
 naneh Hajishirzi, Yoon Kim, and Hao Peng. 2024.
 Data engineering for scaling language models to
 128K context. In Proceedings of the 41st Interna-
 tional Conference on Machine Learning, volume 235
 of Proceedings of Machine Learning Research, pages
-14125–14134. PMLR.
+1412514134. PMLR.
 Samir Yitzhak Gadre, Gabriel Ilharco, Alex Fang,
 Jonathan Hayase, Georgios Smyrnis, Thao Nguyen,
 Ryan Marten, Mitchell Wortsman, Dhruba Ghosh,
@@ -1515,27 +1040,26 @@ Guo, Nitesh Chawla, Olaf Wiest, Xiangliang Zhang,
 et al. 2023. What can large language models do in
 chemistry? a comprehensive benchmark on eight
 tasks. Advances in Neural Information Processing
-Systems, 36:59662–59688.
+Systems, 36:5966259688.
 Greg Hamerly and Charles Elkan. 2003. Learning the k
 in k-means. Advances in neural information process-
 ing systems, 16.
 Wei He, Zhongzhan Huang, Mingfu Liang, Senwei
 Liang, and Haizhao Yang. 2021. Blending pruning
 criteria for convolutional neural networks. In Artifi-
-cial Neural Networks and Machine Learning–ICANN
+cial Neural Networks and Machine LearningICANN
 2021: 30th International Conference on Artificial
 Neural Networks, Bratislava, Slovakia, September
-14–17, 2021, Proceedings, Part IV 30, pages 3–15.
+1417, 2021, Proceedings, Part IV 30, pages 315.
 Springer.
 Xanh Ho, Anh-Khoa Duong Nguyen, Saku Sugawara,
 and Akiko Aizawa. 2020. Constructing a multi-hop
 qa dataset for comprehensive evaluation of reasoning
 steps. In Proceedings of the 28th International Con-
-ference on Computational Linguistics, pages 6609–
-6625.
+ference on Computational Linguistics, pages 6609
 Cheng-Ping Hsieh, Simeng Sun, Samuel Kriman, Shan-
 tanu Acharya, Dima Rekesh, Fei Jia, Yang Zhang,
-and Boris Ginsburg. 2024. Ruler: What’s the real
+and Boris Ginsburg. 2024. Ruler: Whats the real
 context size of your long-context language models?
 arXiv preprint arXiv:2404.06654.
 Luyang Huang, Shuyang Cao, Nikolaus Parulian, Heng
@@ -1543,8 +1067,7 @@ Ji, and Lu Wang. 2021a. Efficient attentions for long
 document summarization. In Proceedings of the 2021
 Conference of the North American Chapter of the
 Association for Computational Linguistics: Human
-Language Technologies, pages 1419–1436.
-11451
+Language Technologies, pages 14191436.
 
 Zhongzhan Huang, Senwei Liang, Mingfu Liang, Wei
 He, Haizhao Yang, and Liang Lin. 2022. The lottery
@@ -1553,8 +1076,7 @@ neural network. arXiv preprint arXiv:2207.07858.
 Zhongzhan Huang, Wenqi Shao, Xinjiang Wang, Liang
 Lin, and Ping Luo. 2021b. Rethinking the pruning
 criteria for convolutional neural network. Advances
-in Neural Information Processing Systems, 34:16305–
-16318.
+in Neural Information Processing Systems, 34:16305
 Greg Kamradt. 2023. Needle in a haystack - pressure
 testing llms.
 https://github.com/gkamradt/
@@ -1566,7 +1088,7 @@ pruning for large language models. arXiv preprint
 arXiv:2402.02834, 11.
 Alex Kipnis, Konstantinos Voudouris, Luca M Schulze
 Buschoff, and Eric Schulz. 2024.
-metabench–a
+metabencha
 sparse benchmark to measure general ability in large
 language models. arXiv preprint arXiv:2407.12844.
 Nikita Kitaev, Lukasz Kaiser, and Anselm Levskaya.
@@ -1596,7 +1118,7 @@ Xiong, and Chien-Sheng Wu. 2024. Summary of a
 haystack: A challenge to long-context llms and rag
 systems. In Proceedings of the 2024 Conference on
 Empirical Methods in Natural Language Processing,
-pages 9885–9903.
+pages 98859903.
 Shiye Lei and Dacheng Tao. 2023. A comprehensive
 survey of dataset distillation. IEEE Transactions on
 Pattern Analysis and Machine Intelligence.
@@ -1605,7 +1127,6 @@ Wang, Ruimao Zhang, and Ying Shan. 2024. Seed-
 bench: Benchmarking multimodal large language
 models. In Proceedings of the IEEE/CVF Conference
 on Computer Vision and Pattern Recognition, pages
-13299–13308.
 Dacheng Li, Rulin Shao, Anze Xie, Ying Sheng, Lian-
 min Zheng, Joseph E. Gonzalez, Ion Stoica, Xuezhe
 Ma, and Hao Zhang. 2023a. How long can open-
@@ -1622,7 +1143,7 @@ Senwei Liang, Zhongzhan Huang, Mingfu Liang, and
 Haizhao Yang. 2020. Instance enhancement batch
 normalization: An adaptive regulator of batch noise.
 In Proceedings of the AAAI conference on artificial
-intelligence, volume 34, pages 4819–4827.
+intelligence, volume 34, pages 48194827.
 Xinnian Liang, Bing Wang, Hui Huang, Shuangzhi Wu,
 Peihao Wu, Lu Lu, Zejun Ma, and Zhoujun Li. 2023.
 Unleashing infinite-length input capacity for large-
@@ -1633,8 +1154,7 @@ Linqi Song, Ying Wei, and Zhenan Sun. 2024. Mope-
 clip: Structured pruning for efficient vision-language
 models with module-wise pruning error metric. In
 Proceedings of the IEEE/CVF Conference on Com-
-puter Vision and Pattern Recognition, pages 27370–
-27380.
+puter Vision and Pattern Recognition, pages 27370
 Tianyang Liu, Canwen Xu, and Julian McAuley.
 2023. Repobench: Benchmarking repository-level
 code auto-completion systems.
@@ -1645,17 +1165,16 @@ Chu. 2024.
 Longgenbench: Long-context gener-
 ation benchmark. In Findings of the Association
 for Computational Linguistics: EMNLP 2024, pages
-865–883.
 Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Man-
 dar Joshi, Danqi Chen, Omer Levy, Mike Lewis,
 Luke Zettlemoyer, and Veselin Stoyanov. 2019.
 Roberta: A robustly optimized bert pretraining ap-
 proach. ArXiv.
 Pedro Henrique Martins, Zita Marinho, and André FT
-Martins. 2022. ∞-former: Infinite memory trans-
+Martins. 2022. -former: Infinite memory trans-
 former. In Proceedings of the 60th Annual Meeting
 of the Association for Computational Linguistics (Vol-
-ume 1: Long Papers), pages 5468–5485.
+ume 1: Long Papers), pages 54685485.
 Saurav Muralidharan, Sharath Turuvekere Sreenivas,
 Raviraj Bhuminand Joshi, Marcin Chochowski,
 Mostofa Patwary, Mohammad Shoeybi, Bryan Catan-
@@ -1664,7 +1183,6 @@ pact language models via pruning and knowledge
 distillation. In The Thirty-eighth Annual Conference
 on Neural Information Processing Systems.
 OpenAI. 2024. Openai: Hello gpt-4o.
-11452
 
 Antonio Orvieto, Samuel L Smith, Albert Gu, Anushan
 Fernando, Caglar Gulcehre, Razvan Pascanu, and
@@ -1717,8 +1235,7 @@ tokens of context. arXiv preprint arXiv:2403.05530.
 Aurko Roy, Mohammad Saffar, Ashish Vaswani, and
 David Grangier. 2021. Efficient content-based sparse
 attention with routing transformers. Transactions of
-the Association for Computational Linguistics, 9:53–
-68.
+the Association for Computational Linguistics, 9:53
 Noveen Sachdeva and Julian McAuley. 2023. Data dis-
 tillation: A survey. arXiv preprint arXiv:2301.04272.
 Uri Shaham, Maor Ivgi, Avia Efrat, Jonathan Be-
@@ -1731,7 +1248,6 @@ Geva, Jonathan Berant, et al. 2022. Scrolls: Stan-
 dardized comparison over long language sequences.
 In Proceedings of the 2022 Conference on Empiri-
 cal Methods in Natural Language Processing, pages
-12007–12021.
 Mingyang Song, Mao Zheng, and Xuan Luo. 2024.
 Counting-stars: A simple, efficient, and reasonable
 strategy for evaluating long-context large language
@@ -1749,14 +1265,14 @@ Hugo Touvron, Matthieu Cord, Matthijs Douze, Fran-
 cisco Massa, Alexandre Sablayrolles, and Hervé Jé-
 gou. 2021. Training data-efficient image transform-
 ers and distillation through attention. In International
-conference on machine learning, pages 10347–10357.
+conference on machine learning, pages 1034710357.
 PMLR.
 Harsh Trivedi, Niranjan Balasubramanian, Tushar Khot,
 and Ashish Sabharwal. 2022.
 Musique: Multi-
 hop questions via single-hop question composition.
 Transactions of the Association for Computational
-Linguistics, 10:539–554.
+Linguistics, 10:539554.
 Laurens Van der Maaten and Geoffrey Hinton. 2008.
 Visualizing data using t-sne. Journal of machine
 learning research, 9(11).
@@ -1771,18 +1287,17 @@ Jason Phang, and Samuel Bowman. 2022. Squality:
 Building a long-document summarization dataset the
 hard way. In Proceedings of the 2022 Conference on
 Empirical Methods in Natural Language Processing,
-pages 1139–1156.
+pages 11391156.
 Minzheng Wang, Longze Chen, Fu Cheng, Shengyi
 Liao, Xinghua Zhang, Bingli Wu, Haiyang Yu, Nan
 Xu, Lei Zhang, Run Luo, et al. 2024. Leave no
 document behind: Benchmarking long-context llms
 with extended multi-doc qa. In Proceedings of the
 2024 Conference on Empirical Methods in Natural
-Language Processing, pages 5627–5646.
+Language Processing, pages 56275646.
 Sinong Wang, Belinda Z Li, Madian Khabsa, Han Fang,
 and Hao Ma. 2020. Linformer: Self-attention with
 linear complexity. arXiv preprint arXiv:2006.04768.
-11453
 
 Yuhao Wu, Ming Shan Hee, Zhiqing Hu, and Roy Ka-
 Wei Lee. 2024. Longgenbench: Benchmarking long-
@@ -1796,7 +1311,7 @@ Jasper Xian, Tommaso Teofili, Ronak Pradeep, and
 Jimmy Lin. 2024. Vector search with openai em-
 beddings: Lucene is all you need. In Proceedings
 of the 17th ACM International Conference on Web
-Search and Data Mining, pages 1090–1093.
+Search and Data Mining, pages 10901093.
 Wenhan Xiong, Jingyu Liu, Igor Molybog, Hejia Zhang,
 Prajjwal Bhargava, Rui Hou, Louis Martin, Rashi
 Rungta, Karthik Abinav Sankararaman, Barlas Oguz,
@@ -1804,7 +1319,7 @@ et al. 2024. Effective long-context scaling of founda-
 tion models. In Proceedings of the 2024 Conference
 of the North American Chapter of the Association for
 Computational Linguistics: Human Language Tech-
-nologies (Volume 1: Long Papers), pages 4643–4663.
+nologies (Volume 1: Long Papers), pages 46434663.
 Yifei Yang, Zouying Cao, and Hai Zhao. 2024. Laco:
 Large language model pruning via layer collapse.
 arXiv preprint arXiv:2402.11187.
@@ -1814,7 +1329,6 @@ pher D Manning. 2018. Hotpotqa: A dataset for
 diverse, explainable multi-hop question answering.
 In Proceedings of the 2018 Conference on Empiri-
 cal Methods in Natural Language Processing, pages
-2369–2380.
 Howard Yen, Tianyu Gao, Minmin Hou, Ke Ding,
 Daniel Fleischer, Peter Izsak, Moshe Wasserblat, and
 Danqi Chen. 2024. Helmet: How to evaluate long-
@@ -1829,7 +1343,7 @@ Dubey, Joshua Ainslie, Chris Alberti, Santiago On-
 tanon, Philip Pham, Anirudh Ravula, Qifan Wang,
 Li Yang, et al. 2020. Big bird: Transformers for
 longer sequences. Advances in neural information
-processing systems, 33:17283–17297.
+processing systems, 33:1728317297.
 Aohan Zeng, Xiao Liu, Zhengxiao Du, Zihan Wang,
 Hanyu Lai, Ming Ding, Zhuoyi Yang, Yifan Xu,
 Wendi Zheng, Xiao Xia, et al. 2023. Glm-130b: An
@@ -1843,10 +1357,10 @@ arXiv preprint arXiv:2409.02897.
 Xinrong Zhang, Yingfa Chen, Shengding Hu, Zihang
 Xu, Junhao Chen, Moo Hao, Xu Han, Zhen Thai,
 Shuo Wang, Zhiyuan Liu, and Maosong Sun. 2024b.
-∞Bench: Extending long context evaluation beyond
+Bench: Extending long context evaluation beyond
 100K tokens. In Proceedings of the 62nd Annual
 Meeting of the Association for Computational Lin-
-guistics (Volume 1: Long Papers), pages 15262–
+guistics (Volume 1: Long Papers), pages 15262
 15277, Bangkok, Thailand. Association for Compu-
 tational Linguistics.
 Ming Zhong, Da Yin, Tao Yu, Ahmad Zaidi, Mutethia
@@ -1856,38 +1370,38 @@ new benchmark for query-based multi-domain meet-
 ing summarization. In Proceedings of the 2021 Con-
 ference of the North American Chapter of the Asso-
 ciation for Computational Linguistics: Human Lan-
-guage Technologies, pages 5905–5921.
+guage Technologies, pages 59055921.
 Shanshan Zhong, Shanghua Gao, Zhongzhan Huang,
 Wushao Wen, Marinka Žitnik, and Pan Zhou. 2024a.
 Moextend: Tuning new experts for modality and task
 extension. In Proceedings of the 62nd Annual Meet-
 ing of the Association for Computational Linguistics,
-pages 80–91.
+pages 8091.
 Shanshan Zhong, Zhongzhan Huang, Shanghua Gao,
 Wushao Wen, Liang Lin, Marinka Zitnik, and Pan
-Zhou. 2024b. Let’s think outside the box: Explor-
+Zhou. 2024b. Lets think outside the box: Explor-
 ing leap-of-thought in large language models with
 creative humor generation. In Proceedings of the
 IEEE/CVF Conference on Computer Vision and Pat-
-tern Recognition, pages 13246–13257.
+tern Recognition, pages 1324613257.
 Shanshan Zhong, Zhongzhan Huang, Weushao Wen,
 Jinghui Qin, and Liang Lin. 2023a. Sur-adapter: En-
 hancing text-to-image pre-trained diffusion models
 with large language models. In Proceedings of the
 31st ACM International Conference on Multimedia,
-pages 567–578.
+pages 567578.
 Shanshan Zhong, Jinghui Qin, Zhongzhan Huang, and
 Daifeng Li. 2022. Cem: Machine-human chatting
 handoff via causal-enhance module. In Proceedings
 of the 2022 Conference on Empirical Methods in
-Natural Language Processing, pages 3242–3253.
+Natural Language Processing, pages 32423253.
 Shanshan Zhong, Wushao Wen, Jinghui Qin, Qiangpu
 Chen, and Zhongzhan Huang. 2023b.
 Lsas:
 Lightweight sub-attention strategy for alleviating at-
 tention bias problem. In 2023 IEEE International
 Conference on Multimedia and Expo (ICME), pages
-2051–2056. IEEE.
+20512056. IEEE.
 Wangchunshu Zhou, Yuchen Eleanor Jiang, Peng Cui,
 Tiannan Wang, Zhenxin Xiao, Yifan Hou, Ryan Cot-
 terell, and Mrinmaya Sachan. 2023. Recurrentgpt:
@@ -1898,10 +1412,7 @@ Shoeybi, Tom Goldstein, Anima Anandkumar, and
 Bryan Catanzaro. 2021. Long-short transformer: Ef-
 ficient transformers for language and vision. Ad-
 vances in neural information processing systems,
-34:17723–17736.
-11454
 
-A
 The Details of LongBench
 LongBench (Bai et al., 2024a) represents the first
 bilingual, multi-task benchmark specifically devel-
@@ -1915,7 +1426,7 @@ et al., 2019; Ainslie et al., 2023; Li and Roth, 2002)
 including multi-document QA, single-document
 QA, summarization, few-shot learning, code com-
 pletion, and synthetic tasks, as detailed in Table 1.
-To thoroughly evaluate large models’ bilingual
+To thoroughly evaluate large models bilingual
 proficiency in long-context processing, LongBench
 incorporates tasks in both Chinese and English.
 The dataset comprises 4,750 test instances, with
@@ -1933,7 +1444,6 @@ A is the answer. Across LongBench, I and A are
 typically short, whereas C can span thousands of
 tokens. Specific instantiations of (I, C, A) for each
 task are provided in Table 7 of (Bai et al., 2024a).
-B
 The LLMs Considered in
 In this section, we list all LLMs we considered
 in Table 3. Among them, 20 LLMs were utilized
@@ -1957,130 +1467,70 @@ Type
 Model
 Type
 ALMA-7B-Ja-V2
-T
 Amd-llama-135m
-A
 GOAT-7B-Community
-T
 Amd-llama-135m-code
-A
 Koss-7B-chat
-T
 Distilled-HermesChat-7B
-A
 Kunoichi-7B
-T
 Loyal-Macaroni-Maid-7B
-A
 Llama-2-7b-ft-instruct-es
-T
 Llama-3-8b-hf
-A
 Llama-2-7b-hf
-T
 Llama-7b-SFT_ds_wiki65k
-A
 Llama-7b-hf
-T
 Llama-shishya-7b-ep3-v1
-A
 Mistral-7B-Instruct-v0.2
-T
 Llama-30b
-A
 OLMo-1B
-T
 OLMo-1B-SFT
-A
 Airoboros-7b
-T
 StopCarbon-10.7B-v6
-A
 Gemma2-9b-hf
-T
 Synatra-RP-Orca-2-7b-v0.1
-A
 Giraffe-7b
-T
 TowerInstruct-7B-v0.1
-A
 Mistral-7b-v0.1-hf
-T
 Gemma2-2b-hf
-A
 Perry-7b
-T
 Manatee-7b
-A
 Qwen-7b-hf
-T
 Mistral-7b-v0.3-hf
-A
 Qwen1.5-0.5b-hf
-T
 Qwen1.5-1.8b-hf
-A
 Qwen2-0.5b-hf
-T
 Qwen2.5-0.5b-instruct-hf
-A
 Qwen2.5-0.5b-base
-T
 Qwen2.5-3b-base
-A
 Qwen2.5-1.5b-base
-T
 Qwen2.5-3b-instruct-hf
-A
 Tulu-7B-fp16
-T
 Recycled-wizardlm-7b-v2.0
-A
 OPT-30B
-A
 Wizaed-Vicuna
-A
 Llama-30B
-A
 LwQ-Instruct
-A
 30B-Epsilon
-A
 DeepSeek V3
-A
 GPT o1 mini
-A
 GPT-3.5-turbo
-A
 ChatGLM-6B
-A
 ChatGLM3-6B
-A
 ChatGLM3-9B
-A
 Qwen-7B
-A
 Qwen2-7B
-A
 Qwen2.5-7B
-A
 Qwen2.5-14B
-A
 Qwen2.5-32B
-A
 Gemma2-9B
-A
 Llama-7B-2k
-A
 Llama2-7B-4k
-A
 Llama3-8B
-A
 Table 3: The LLMs considered in MiniLongBench. "T"
 and "A" denote "for tranining" and "for analysis".
-C
 The Details Results of Advanced LLMs
 In Section 4.3, we present the direct performance
+
 
 ## Results
 
@@ -2092,13 +1542,12 @@ Table 4 and Table 5, where the indices in the table
 correspond to those in Table 2 in the main text.
 In addition to the performance estimation of the
 target LLM on the entire LongBench using Mini-
-LongBench’s test samples, as demonstrated in Sec-
+LongBenchs test samples, as demonstrated in Sec-
 tion 4.3, we further propose a more straightforward
 but slightly less effective method for evaluating
 LCU capabilities in Appendix G. Specifically, the
-target LLM is directly tested on MiniLongBench’s
+target LLM is directly tested on MiniLongBenchs
 test samples without requiring any additional steps.
-D
 Related Works
 D.1
 Long Context Understanding (LCU)
@@ -2108,334 +1557,36 @@ ing: the substantial runtime overhead associated
 with extended contexts and the issue of catastrophic
 forgetting during long sequence processing.
 A significant body of work has concentrated on
-11455
 
 Model
 Single-Doc QA
 Multi-Doc QA
 Summarization
-1-1
-1-2
-1-3
-1-4
 Avg
-2-1
-2-2
-2-3
-2-4
 Avg
-3-1
-3-2
-3-3
-3-4
 Avg
 DeepSeek-V3-128k
-0.29
-0.43
-0.50
-0.52
-0.43
-0.51
-0.45
-0.21
-0.10
-0.31
-0.24
-0.08
-0.16
-0.01
-0.12
 GPT-4o-mini-128k
-0.27
-0.41
-0.49
-0.48
-0.41
-0.48
-0.42
-0.19
-0.09
-0.30
-0.19
-0.07
-0.15
-0.01
-0.10
 GPT-3.5-Turbo-16k
-0.21
-0.36
-0.47
-0.43
-0.37
-0.42
-0.37
-0.15
-0.07
-0.25
-0.13
-0.04
-0.10
-0.01
-0.07
 Internlm3-8B-32k
-0.17
-0.32
-0.43
-0.40
-0.33
-0.40
-0.39
-0.14
-0.05
-0.24
-0.07
-0.02
-0.06
-0.01
-0.04
 ChatGLM3-6B-8k
-0.05
-0.14
-0.28
-0.21
-0.17
-0.12
-0.14
-0.03
-0.03
-0.08
-0.03
-0.01
-0.03
-0.01
-0.02
 ChatGLM4-9B-128k
-0.21
-0.36
-0.44
-0.45
-0.36
-0.44
-0.42
-0.17
-0.06
-0.27
-0.10
-0.04
-0.09
-0.01
-0.06
 Qwen-7B-8k
-0.08
-0.18
-0.30
-0.24
-0.20
-0.17
-0.15
-0.05
-0.04
-0.10
-0.07
-0.02
-0.06
-0.00
-0.04
 Qwen2-7B-128k
-0.15
-0.30
-0.38
-0.34
-0.29
-0.37
-0.36
-0.12
-0.05
-0.22
-0.08
-0.03
-0.07
-0.01
-0.05
 Qwen2.5-7B-128k
-0.18
-0.32
-0.43
-0.41
-0.34
-0.40
-0.38
-0.14
-0.05
-0.24
-0.08
-0.03
-0.07
-0.01
-0.04
 Qwen2.5-14B-128k
-0.19
-0.33
-0.43
-0.43
-0.35
-0.42
-0.41
-0.15
-0.06
-0.26
-0.08
-0.03
-0.07
-0.01
-0.05
 Qwen2.5-32B-128k
-0.21
-0.36
-0.43
-0.46
-0.36
-0.43
-0.40
-0.16
-0.06
-0.26
-0.11
-0.03
-0.09
-0.01
-0.06
 Llama-7B-2k
-0.03
-0.07
-0.17
-0.08
-0.09
-0.06
-0.05
-0.02
-0.02
-0.04
-0.03
-0.01
-0.04
-0.00
-0.02
 Llama2-7B-4k
-0.05
-0.10
-0.20
-0.11
-0.11
-0.06
-0.06
-0.02
-0.02
-0.04
-0.03
-0.01
-0.04
-0.00
-0.02
 Llama3-8B-8k
-0.03
-0.10
-0.17
-0.13
-0.11
-0.03
-0.05
-0.01
-0.03
-0.03
-0.09
-0.02
-0.04
-0.00
-0.04
 Llama-30B-2k
-0.04
-0.09
-0.18
-0.11
-0.10
-0.05
-0.05
-0.02
-0.02
-0.04
-0.05
-0.01
-0.04
-0.00
-0.02
 OPT-30B-2k
-0.02
-0.07
-0.16
-0.08
-0.08
-0.04
-0.05
-0.01
-0.02
-0.03
-0.03
-0.00
-0.02
-0.00
-0.01
 Wizard-Vicuna-2k
-0.10
-0.18
-0.33
-0.17
-0.20
-0.24
-0.20
-0.06
-0.02
-0.13
-0.04
-0.01
-0.04
-0.00
-0.02
 LwQ-Instruct-2k
-0.16
-0.22
-0.34
-0.19
-0.23
-0.34
-0.24
-0.11
-0.02
-0.18
-0.06
-0.02
-0.08
-0.00
-0.04
 30B-Epsilon-2k
-0.13
-0.19
-0.30
-0.16
-0.20
-0.24
-0.17
-0.08
-0.02
-0.13
-0.05
-0.02
-0.07
-0.01
-0.04
 Table 4: Results on single-doc QA, multi-doc QA and summarization tasks. The indexes, like "1-1" or "4-1", are
 following Table 1. "avg" represents the average performance of subtasks under different main tasks.
-Figure 11: The visualization of learned representation (ej, βj) of test sample.
+Figure 11: The visualization of learned representation (ej, j) of test sample.
 enhancing the efficiency and memory retention of
 Transformers (Tay et al., 2022). This includes inno-
 vations in sparse and efficient computation (Child
@@ -2466,7 +1617,7 @@ Given the critical importance of LCU capabilities
 for LLMs, an increasing number of benchmarks
 have been proposed to evaluate these capabilities,
 playing a pivotal role in exploring and advanc-
-ing LLMs’ LCU proficiency. A significant por-
+ing LLMs LCU proficiency. A significant por-
 tion of these benchmarks of LLMs focuses on
 comprehensive LCU assessment, encompassing
 tasks such as Question Answering, information
@@ -2474,337 +1625,40 @@ retrieval, and summarization. Notable examples
 include L-Eval (An et al., 2024), LongBench (Bai
 et al., 2024c), ZeroSCROLLS (Shaham et al.,
 2023), BAMBOO (Dong et al., 2024), LooGLE (Li
-11456
 
 Model
 Few-show Learning
 Synthetic
 Code
 Overall
-4-1
-4-2
-4-3
-4-4
 Avg
-5-1
-5-2
-5-3
 Avg
-6-1
-6-2
 Avg
-EN
-ZH
 All
 DeepSeek-V3-128k
-0.77
-0.93
-0.63
-0.35
-0.67
-0.05
-0.38
-0.34
-0.26
-0.90
-0.86
-0.88
-0.43
-0.26
-0.45
 GPT-4o-mini-128k
-0.76
-0.93
-0.60
-0.32
-0.65
-0.04
-0.35
-0.28
-0.23
-0.90
-0.85
-0.87
-0.42
-0.24
-0.43
 GPT-3.5-Turbo-16k
-0.70
-0.88
-0.49
-0.23
-0.58
-0.03
-0.27
-0.21
-0.17
-0.84
-0.78
-0.81
-0.37
-0.19
-0.37
 Internlm3-8B-32k
-0.61
-0.86
-0.48
-0.17
-0.53
-0.01
-0.18
-0.16
-0.12
-0.67
-0.62
-0.64
-0.32
-0.16
-0.32
 ChatGLM3-6B-8k
-0.47
-0.69
-0.26
-0.13
-0.39
-0.00
-0.03
-0.04
-0.02
-0.49
-0.48
-0.48
-0.19
-0.09
-0.19
 ChatGLM4-9B-128k
-0.69
-0.89
-0.51
-0.24
-0.58
-0.02
-0.24
-0.16
-0.14
-0.79
-0.70
-0.75
-0.36
-0.18
-0.36
 Qwen-7B-8k
-0.58
-0.78
-0.34
-0.20
-0.48
-0.01
-0.12
-0.08
-0.07
-0.74
-0.68
-0.71
-0.25
-0.11
-0.27
 Qwen2-7B-128k
-0.66
-0.89
-0.44
-0.20
-0.55
-0.01
-0.15
-0.11
-0.09
-0.74
-0.69
-0.71
-0.32
-0.14
-0.32
 Qwen2.5-7B-128k
-0.65
-0.87
-0.49
-0.21
-0.55
-0.01
-0.19
-0.16
-0.12
-0.69
-0.65
-0.67
-0.33
-0.17
-0.33
 Qwen2.5-14B-128k
-0.65
-0.87
-0.49
-0.22
-0.56
-0.01
-0.19
-0.16
-0.12
-0.68
-0.64
-0.66
-0.33
-0.17
-0.33
 Qwen2.5-32B-128k
-0.69
-0.90
-0.54
-0.25
-0.59
-0.02
-0.24
-0.19
-0.15
-0.76
-0.71
-0.74
-0.36
-0.20
-0.36
 Llama-7B-2k
-0.47
-0.71
-0.21
-0.15
-0.39
-0.00
-0.04
-0.03
-0.02
-0.64
-0.58
-0.61
-0.18
-0.06
-0.20
 Llama2-7B-4k
-0.53
-0.75
-0.22
-0.15
-0.41
-0.00
-0.07
-0.05
-0.04
-0.69
-0.63
-0.66
-0.20
-0.07
-0.21
 Llama3-8B-8k
-0.60
-0.74
-0.30
-0.24
-0.47
-0.01
-0.10
-0.14
-0.08
-0.74
-0.68
-0.71
-0.22
-0.11
-0.24
 Llama-30B-2k
-0.50
-0.72
-0.24
-0.17
-0.41
-0.00
-0.08
-0.05
-0.04
-0.67
-0.62
-0.65
-0.20
-0.07
-0.21
 OPT-30B-2k
-0.40
-0.65
-0.16
-0.11
-0.33
-0.00
-0.02
-0.03
-0.02
-0.49
-0.47
-0.48
-0.15
-0.05
-0.16
 Wizard-Vicuna-2k
-0.52
-0.76
-0.24
-0.13
-0.41
-0.01
-0.08
-0.05
-0.05
-0.62
-0.55
-0.59
-0.23
-0.08
-0.23
 LwQ-Instruct-2k
-0.54
-0.78
-0.30
-0.16
-0.45
-0.01
-0.13
-0.07
-0.07
-0.73
-0.66
-0.70
-0.28
-0.09
-0.28
 30B-Epsilon-2k
-0.58
-0.83
-0.34
-0.18
-0.48
-0.01
-0.13
-0.07
-0.07
-0.76
-0.70
-0.73
-0.27
-0.09
-0.27
-Table 5: Results on few-shot learning, synthetic, and code tasks. ‘Overall’ is computed by the macro-average (the
-mean of ‘Avg’) over major task categories. This is computed on English (EN) tasks, Chinese (ZH) tasks, and all
+Table 5: Results on few-shot learning, synthetic, and code tasks. Overall is computed by the macro-average (the
+mean of Avg) over major task categories. This is computed on English (EN) tasks, Chinese (ZH) tasks, and all
 (All) tasks, code tasks are included in both languages. The indexes, like "1-1" or "4-1", are following Table 1. "avg"
 represents the average performance of subtasks under different main tasks.
-et al., 2023b), ∞-bench (Zhang et al., 2024b),
+et al., 2023b), -bench (Zhang et al., 2024b),
 Ruler (Hsieh et al., 2024), and HELMET (Yen et al.,
 2024). Another category of benchmarks is specifi-
 cally designed to explore particular aspects of LCU
@@ -2822,7 +1676,7 @@ Wu et al., 2024; Liu et al., 2024; Que et al., 2024).
 These specialized benchmarks provide targeted
 insights into the diverse and complex facets of
 LCU, contributing to a more nuanced understand-
-ing and development of LLMs’ long-context pro-
+ing and development of LLMs long-context pro-
 cessing abilities.
 D.3
 Low-cost Deep Learning
@@ -2847,13 +1701,12 @@ Kipnis et al., 2024) as an effective means to aid in
 model architecture design, parameter tuning, and
 other training-related processes, thereby accelerat-
 ing the iteration speed of robust models.
-E
 The Visualization of Learned
 Representation of Test Samples
 In Section 3, we use the performance record of m
 LLMs on various test samples in LongBench, and
 use a logistic regression model for representation
-learning, obtaining their representations (ej, βj).
+learning, obtaining their representations (ej, j).
 In Fig. 11, we visualize test samples from certain
 sub-tasks listed in Table 1 using t-SNE (Van der
 Maaten and Hinton, 2008). It can be observed that
@@ -2863,178 +1716,29 @@ highly similar. This further demonstrates that Long-
 Bench contains a significant amount of redundancy
 in its data, and the representation learning method
 proposed in Section 3 is effective for identifying
-11457
 
 (a)
 LongBench
 Rank
-2
-4
-0
-6
-8
 Rank
-2
-4
-0
-6
-8
 Rank
-2
-4
-0
-6
-8
 Rank
-2
-4
-0
-6
-8
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 LLM Index
-2
-3
-4
-5
-1
-7
-8
-6
 (b)
 (c)
 (d)
@@ -3052,7 +1756,6 @@ LLM Index
 (p)
 Figure 12: The more examples of visualization of ranking by MiniLongBench and LongBench..
 redundant data in LongBench through clustering.
-F
 More Visualizations of Ranking
 In the Fig. 10, we provided some examples of rank-
 ings by MiniLongBench and LongBench. In this
@@ -3060,7 +1763,7 @@ section, we will present more random examples
 to illustrate the usability and reliability of Mini-
 LongBench. The results are shown in Fig. 12. As
 illustrated in Fig. 12, similar to the observations
-in the main text’s Fig. 10, the results from 16 ran-
+in the main texts Fig. 10, the results from 16 ran-
 dom sampling trials consistently demonstrate that
 the ranking outcomes of various LLMs on Mini-
 LongBench closely align with those on LongBench.
@@ -3071,9 +1774,8 @@ reach a perfect 1.0. These visualizations further
 validate that MiniLongBench achieves evaluation
 results comparable to LongBench while signifi-
 cantly reducing computational costs. This high-
-lights MiniLongBench’s effectiveness as a low-cost
+lights MiniLongBenchs effectiveness as a low-cost
 alternative for assessing LLM performance.
-G
 Evaluating Directly by MiniLongBench
 In Section 4.2 of the main text, we primarily intro-
 duce a method that utilizes test samples from Mini-
@@ -3088,138 +1790,24 @@ FSL
 SYN
 CODE
 DeepSeek-V3-128k
-0.58
-0.61
-0.17
-0.72
-0.67
-0.72
 GPT-4o-mini-128k
-0.54
-0.57
-0.18
-0.61
-0.67
-0.70
 GPT-3.5-Turbo-16k
-0.43
-0.47
-0.17
-0.40
-0.64
-0.61
 Internlm3-8B-32k
-0.38
-0.55
-0.16
-0.34
-0.67
-0.19
 ChatGLM3-6B-8k
-0.31
-0.15
-0.17
-0.30
-0.07
-0.36
 ChatGLM4-9B-128k
-0.48
-0.56
-0.18
-0.56
-0.58
-0.36
 Qwen-7B-8k
-0.30
-0.22
-0.14
-0.34
-0.20
-0.65
 Qwen2-7B-128k
-0.42
-0.42
-0.16
-0.49
-0.36
-0.43
 Qwen2.5-7B-128k
-0.48
-0.50
-0.17
-0.60
-0.67
-0.10
 Qwen2.5-14B-128k
-0.46
-0.56
-0.18
-0.65
-0.67
-0.01
 Qwen2.5-32B-128k
-0.50
-0.53
-0.17
-0.71
-0.67
-0.18
 Llama-7B-2k
-0.13
-0.09
-0.12
-0.25
-0.05
-0.57
 Llama2-7B-4k
-0.16
-0.10
-0.10
-0.23
-0.14
-0.59
 Llama3-8B-8k
-0.15
-0.08
-0.10
-0.35
-0.21
-0.70
 Llama-30B-2k
-0.15
-0.08
-0.09
-0.25
-0.15
-0.64
 OPT-30B-2k
-0.11
-0.09
-0.11
-0.15
-0.07
-0.44
 Wizard-Vicuna-2k
-0.29
-0.26
-0.16
-0.27
-0.16
-0.43
 LwQ-Instruct-2k
-0.34
-0.36
-0.16
-0.31
-0.18
-0.61
 30B-Epsilon-2k
-0.26
-0.21
-0.17
-0.42
-0.20
-0.62
 Table 6: Specific evaluation results on evaluating di-
 rectly by MiniLongBench. Due to differences in evalu-
 ation methods, the score values presented in this table
@@ -3227,14 +1815,13 @@ vary somewhat from those in Table 2, but they yield a
 similar ranking of LLMs in terms of LCU capability.
 achieves a performance of up to 0.97 in Sp. In prac-
 tice, we can also directly test the target LLM on
-MiniLongBench’s test samples to obtain an assess-
+MiniLongBenchs test samples to obtain an assess-
 ment of its LCU capability. The results in Fig. 13
 confirm that this evaluation method achieves good
 Sp across various tasks in MiniLongBench, with an
 average Sp of 0.95, slightly lower than the evalua-
 tion method presented in Section 4.2. Furthermore,
 in Table 6, we present the results of this evaluation
-11458
 
 Single-Document QA
 Multi-Document QA
@@ -3244,74 +1831,24 @@ Code Completion
 Synthetic Task
 MiniLongbench Scores
 Longbench Scores
-0.1
-0.2
-0.3
-0.4
-0.50
-0.40
-0.30
-0.20
-0.10
 Train (Sp=0.9188)
-Test  (Sp=0.9805)
+Test (Sp=0.9805)
 Train (Sp=0.9504)
-Test  (Sp=0.9474)
+Test (Sp=0.9474)
 Train (Sp=0.8812)
-Test  (Sp=0.9515)
+Test (Sp=0.9515)
 Train (Sp=0.8992)
-Test  (Sp=0.9549)
+Test (Sp=0.9549)
 Train (Sp=0.9293)
-Test  (Sp=0.9549)
+Test (Sp=0.9549)
 Train (Sp=0.8673)
-Test  (Sp=0.8469)
-0.35
-0.25
-0.15
-0.05
-0.35
-0.25
-0.15
-0.05
+Test (Sp=0.8469)
 MiniLongbench Scores
-0.1
-0.2
-0.3
-0.4
 MiniLongbench Scores
-0.1
-0.2
-0.3
-0.4
 Longbench Scores
-0.70
-0.50
-0.30
-0.10
-0.35
-0.25
-0.15
-0.05
-0.35
-0.25
-0.15
-0.05
 MiniLongbench Scores
-0.1
-0.3
-0.5
-0.7
 MiniLongbench Scores
-0.0
-0.2
-0.4
-0.6
 MiniLongbench Scores
-0.1
-0.2
-0.3
-0.4
-0.5
 ALL (Sp=0.9563)
 ALL (Sp=0.9674)
 ALL (Sp=0.9347)
@@ -3320,6 +1857,7 @@ ALL (Sp=0.9565)
 ALL (Sp=0.8730)
 Figure 13: The analysis of rank correlation (Sp) between LongBench and MiniLongBench where the result of
 MiniLongBench is evaluating directly.
+
 
 ## Method
 
@@ -3330,34 +1868,33 @@ evaluating on LongBench or MiniLongBench, or
 using the predictive method in Section 4.2, there
 may be some discrepancies in the score values.
 However, these discrepancies do not affect the
-ranking of LLMs’ LCU capabilities. For instance,
-Fig. 13 and the main text’s Fig. 5 demonstrate that
+ranking of LLMs LCU capabilities. For instance,
+Fig. 13 and the main texts Fig. 5 demonstrate that
 the results from different evaluation methods are
 highly consistent, despite minor deviations in score
 values. This phenomenon primarily arises from
 several factors: first, MiniLongBench involves sig-
 nificant pruning of test samples compared to Long-
 Bench, leading to unavoidable errors; second, dur-
-ing the logistic regression in Section 3’s Eq. (2),
+ing the logistic regression in Section 3s Eq. (2),
 normalization and discretization introduce certain
 errors, particularly in scaling. Fortunately, the pri-
 mary goal of the LCU benchmark is to rank LLMs
 based on their LCU capabilities, so the absolute
 score values do not impact the final outcomes.
-H
 The Cost by Fine-tuning ¯θ
 In Section 4.2, additional fine-tuning of ¯θ is re-
 quired, which primarily involves two costs: the
 training cost for fine-tuning and the storage cost
-for the representation vectors of LongBench’s test
+for the representation vectors of LongBenchs test
 samples. In practice, these costs are minimal and
 entirely acceptable. Specifically, storing the test
 samples of MiniLongBench and the representation
-vectors of LongBench’s test samples requires only
+vectors of LongBenchs test samples requires only
 9.01MB and 1.13MB of disk space, respectively.
 This is significantly lower and entirely acceptable
 compared to the original storage cost of nearly
-200MB for LongBench’s test samples. This re-
+200MB for LongBenchs test samples. This re-
 duction is largely due to the two-step dimension-
 ality compression method described in Section 3,
 which uses text embedding and PCA to compress
@@ -3379,331 +1916,33 @@ a laptop (CPU: AMD Ryzen 6 5600H, GPU: RTX
 seconds and 0.03 seconds, respectively. Compared
 to the original testing time of LongBench shown in
 Fig. 1, this is almost negligible.
-11459
 
 Model
 Single-Doc QA
 Multi-Doc QA
 Summarization
-1-1
-1-2
-1-3
-1-4
 Avg
-2-1
-2-2
-2-3
-2-4
 Avg
-3-1
-3-2
-3-3
-3-4
 Avg
 DeepSeek-V3-128k
-0.66
-0.40
-0.53
-0.72
-0.58
-0.74
-0.89
-0.59
-0.22
-0.61
-0.18
-0.21
-0.16
-0.15
-0.17
 GPT-4o-mini-128k
-0.51
-0.47
-0.52
-0.67
-0.54
-0.64
-0.81
-0.54
-0.29
-0.57
-0.16
-0.20
-0.17
-0.18
-0.18
 GPT-3.5-Turbo-16k
-0.12
-0.53
-0.48
-0.60
-0.43
-0.51
-0.72
-0.44
-0.20
-0.47
-0.14
-0.20
-0.17
-0.17
-0.17
 Internlm3-8B-32k
-0.07
-0.36
-0.44
-0.64
-0.38
-0.59
-0.77
-0.63
-0.22
-0.55
-0.18
-0.17
-0.16
-0.14
-0.16
 ChatGLM3-6B-8k
-0.17
-0.28
-0.38
-0.42
-0.31
-0.11
-0.20
-0.12
-0.15
-0.15
-0.15
-0.18
-0.16
-0.18
-0.17
 ChatGLM4-9B-128k
-0.33
-0.40
-0.56
-0.62
-0.48
-0.63
-0.76
-0.67
-0.20
-0.56
-0.16
-0.21
-0.16
-0.19
-0.18
 Qwen-7B-8k
-0.16
-0.28
-0.46
-0.32
-0.30
-0.29
-0.22
-0.22
-0.13
-0.22
-0.17
-0.16
-0.17
-0.06
-0.14
 Qwen2-7B-128k
-0.38
-0.40
-0.38
-0.52
-0.42
-0.64
-0.71
-0.19
-0.15
-0.42
-0.18
-0.18
-0.15
-0.13
-0.16
 Qwen2.5-7B-128k
-0.50
-0.37
-0.46
-0.58
-0.48
-0.71
-0.66
-0.50
-0.14
-0.50
-0.18
-0.21
-0.14
-0.15
-0.17
 Qwen2.5-14B-128k
-0.41
-0.43
-0.44
-0.56
-0.46
-0.67
-0.89
-0.44
-0.23
-0.56
-0.16
-0.23
-0.15
-0.16
-0.18
 Qwen2.5-32B-128k
-0.45
-0.43
-0.42
-0.68
-0.50
-0.66
-0.76
-0.48
-0.21
-0.53
-0.16
-0.21
-0.15
-0.17
-0.17
 Llama-7B-2k
-0.03
-0.11
-0.23
-0.12
-0.13
-0.07
-0.08
-0.15
-0.04
-0.09
-0.14
-0.05
-0.18
-0.12
-0.12
 Llama2-7B-4k
-0.13
-0.20
-0.23
-0.09
-0.16
-0.05
-0.11
-0.13
-0.10
-0.10
-0.16
-0.07
-0.04
-0.14
-0.10
 Llama3-8B-8k
-0.02
-0.20
-0.17
-0.22
-0.15
-0.04
-0.10
-0.13
-0.06
-0.08
-0.18
-0.14
-0.01
-0.09
-0.10
 Llama-30B-2k
-0.03
-0.17
-0.27
-0.11
-0.15
-0.07
-0.12
-0.08
-0.04
-0.08
-0.16
-0.05
-0.05
-0.11
-0.09
 OPT-30B-2k
-0.03
-0.18
-0.11
-0.11
-0.11
-0.06
-0.09
-0.14
-0.07
-0.09
-0.18
-0.05
-0.14
-0.08
-0.11
 Wizard-Vicuna-2k
-0.28
-0.21
-0.49
-0.16
-0.29
-0.46
-0.26
-0.19
-0.13
-0.26
-0.16
-0.16
-0.18
-0.14
-0.16
 LwQ-Instruct-2k
-0.33
-0.36
-0.46
-0.20
-0.34
-0.58
-0.40
-0.37
-0.09
-0.36
-0.17
-0.18
-0.19
-0.10
-0.16
 30B-Epsilon-2k
-0.24
-0.21
-0.40
-0.18
-0.26
-0.27
-0.22
-0.28
-0.07
-0.21
-0.14
-0.18
-0.18
-0.17
-0.17
 Table 7: Results on single-doc QA, multi-doc QA and summarization tasks based on evaluating directly by
 MiniLongBench. The indexes, like "1-1" or "4-1", are following Table 1. "avg" represents the average performance
 of subtasks under different main tasks.
@@ -3712,328 +1951,32 @@ Few-show Learning
 Synthetic
 Code
 Overall
-4-1
-4-2
-4-3
-4-4
 Avg
-5-1
-5-2
-5-3
 Avg
-6-1
-6-2
 Avg
-EN
-ZH
 All
 DeepSeek-V3-128k
-0.63
-1.00
-0.38
-0.88
-0.72
-0.00
-1.00
-1.00
-0.67
-0.83
-0.62
-0.72
-0.52
-0.59
-0.58
 GPT-4o-mini-128k
-0.63
-1.00
-0.31
-0.50
-0.61
-0.00
-1.00
-1.00
-0.67
-0.80
-0.61
-0.70
-0.49
-0.53
-0.54
 GPT-3.5-Turbo-16k
-0.63
-0.60
-0.38
-0.00
-0.40
-0.00
-0.93
-1.00
-0.64
-0.73
-0.49
-0.61
-0.42
-0.39
-0.45
 Internlm3-8B-32k
-0.00
-1.00
-0.38
-0.00
-0.34
-0.00
-1.00
-1.00
-0.67
-0.19
-0.18
-0.19
-0.36
-0.40
-0.38
 ChatGLM3-6B-8k
-0.50
-0.01
-0.30
-0.38
-0.30
-0.00
-0.00
-0.20
-0.07
-0.45
-0.27
-0.36
-0.19
-0.26
-0.22
 ChatGLM4-9B-128k
-0.63
-0.83
-0.35
-0.44
-0.56
-0.00
-1.00
-0.73
-0.58
-0.59
-0.13
-0.36
-0.44
-0.44
-0.45
 Qwen-7B-8k
-0.44
-0.25
-0.16
-0.50
-0.34
-0.00
-0.40
-0.20
-0.20
-0.76
-0.55
-0.65
-0.28
-0.24
-0.31
 Qwen2-7B-128k
-0.38
-0.96
-0.35
-0.27
-0.49
-0.00
-0.47
-0.60
-0.36
-0.54
-0.32
-0.43
-0.37
-0.34
-0.38
 Qwen2.5-7B-128k
-0.50
-0.83
-0.37
-0.69
-0.60
-0.00
-1.00
-1.00
-0.67
-0.10
-0.11
-0.10
-0.39
-0.51
-0.42
 Qwen2.5-14B-128k
-0.63
-0.86
-0.35
-0.75
-0.65
-0.00
-1.00
-1.00
-0.67
-0.00
-0.03
-0.01
-0.39
-0.54
-0.42
 Qwen2.5-32B-128k
-0.63
-0.97
-0.35
-0.88
-0.71
-0.00
-1.00
-1.00
-0.67
-0.29
-0.07
-0.18
-0.41
-0.59
-0.46
 Llama-7B-2k
-0.31
-0.31
-0.12
-0.25
-0.25
-0.00
-0.07
-0.07
-0.05
-0.71
-0.44
-0.57
-0.18
-0.12
-0.20
 Llama2-7B-4k
-0.25
-0.25
-0.14
-0.29
-0.23
-0.00
-0.20
-0.22
-0.14
-0.71
-0.48
-0.59
-0.18
-0.17
-0.22
 Llama3-8B-8k
-0.38
-0.20
-0.16
-0.69
-0.35
-0.00
-0.17
-0.47
-0.21
-0.84
-0.57
-0.70
-0.19
-0.30
-0.27
 Llama-30B-2k
-0.31
-0.24
-0.15
-0.31
-0.25
-0.00
-0.32
-0.13
-0.15
-0.76
-0.52
-0.64
-0.19
-0.14
-0.23
 OPT-30B-2k
-0.17
-0.21
-0.11
-0.13
-0.15
-0.02
-0.10
-0.09
-0.07
-0.51
-0.37
-0.44
-0.14
-0.09
-0.16
 Wizard-Vicuna-2k
-0.25
-0.42
-0.17
-0.23
-0.27
-0.00
-0.27
-0.20
-0.16
-0.51
-0.35
-0.43
-0.26
-0.17
-0.26
 LwQ-Instruct-2k
-0.31
-0.31
-0.17
-0.44
-0.31
-0.00
-0.33
-0.20
-0.18
-0.71
-0.52
-0.61
-0.32
-0.21
-0.33
 30B-Epsilon-2k
-0.24
-0.80
-0.26
-0.38
-0.42
-0.00
-0.40
-0.20
-0.20
-0.75
-0.50
-0.62
-0.30
-0.20
-0.31
 Table 8: Results on few-shot learning, synthetic, and code tasks based on evaluating directly by MiniLongBench.
-‘Overall’ is computed by the macro-average (the mean of ‘Avg’) over major task categories. This is computed on
+Overall is computed by the macro-average (the mean of Avg) over major task categories. This is computed on
 English (EN) tasks, Chinese (ZH) tasks, and all (All) tasks, code tasks are included in both languages. The indexes,
 like "1-1" or "4-1", are following Table 1. "avg" represents the average performance of subtasks under different
 main tasks.
-11460
+

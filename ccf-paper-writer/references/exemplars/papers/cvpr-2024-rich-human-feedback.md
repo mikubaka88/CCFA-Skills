@@ -5,17 +5,17 @@
 > **Source:** <https://openaccess.thecvf.com/content/CVPR2024/html/Liang_Rich_Human_Feedback_for_Text-to-Image_Generation_CVPR_2024_paper.html>
 
 ---
-
 Rich Human Feedback for Text-to-Image Generation
-Youwei Liang*†1, Junfeng He*‡2, Gang Li*‡2, Peizhao Li†5, Arseniy Klimovskiy2, Nicholas Carolan2,
-Jiao Sun†§3, Jordi Pont-Tuset2, Sarah Young2, Feng Yang2, Junjie Ke2, Krishnamurthy Dj Dvijotham2,
-Katherine M. Collins†4, Yiwen Luo2, Yang Li2, Kai J Kohlhoff2, Deepak Ramachandran2, and Vidhya
+Youwei Liang*1, Junfeng He*2, Gang Li*2, Peizhao Li5, Arseniy Klimovskiy2, Nicholas Carolan2,
+Jiao Sun3, Jordi Pont-Tuset2, Sarah Young2, Feng Yang2, Junjie Ke2, Krishnamurthy Dj Dvijotham2,
+Katherine M. Collins4, Yiwen Luo2, Yang Li2, Kai J Kohlhoff2, Deepak Ramachandran2, and Vidhya
 Navalpakkam2
 1University of California, San Diego
 2Google Research
 3University of Southern California
 4University of Cambridge
 5Brandeis University
+
 
 ## Abstract
 
@@ -45,11 +45,11 @@ models (Muse) beyond those used to generate the images
 on which human feedback data were collected (Stable Dif-
 fusion variants). The RichHF-18K data set will be released
 *Co-first authors, equal technical contribution
-†The work was done during an internship at Google.
+The work was done during an internship at Google.
 Email: youwei@ucsd.edu
-‡Corresponding authors, equal leading contribution.
+Corresponding authors, equal leading contribution.
 Email: {junfenghe,leebird}@google.com
-§Currently affiliated with Google Gemini Team
+Currently affiliated with Google Gemini Team
 in our GitHub repository:
 https://github.com/google-
 research/google-research/tree/master/richhf 18k.
@@ -72,8 +72,8 @@ objects and implausibility issues such as a floating lamp.
 Our human evaluation experiments find that only ∼10% of
 the generated images in the dataset are free of artifacts and
 implausibility. Similarly, text-image misalignment issues
-are common too, e.g., the prompt is “a man jumping into a
-river” but the generated image shows the man standing.
+are common too, e.g., the prompt is a man jumping into a
+river but the generated image shows the man standing.
 Existing automatic evaluation metrics for generated im-
 ages, however, including the well-known IS [43] and
 FID [20], are computed over distributions of images and
@@ -84,7 +84,6 @@ els to predict those ratings [30, 52, 54], notably ImageRe-
 This CVPR paper is the Open Access version, provided by the Computer Vision Foundation.
 Except for this watermark, it is identical to the accepted version;
 the final published version of the proceedings is available on IEEE Xplore.
-19401
 
 ward [54] or Pick-a-Pic [30]. While more focused, these
 metrics still summarize the quality of one image into a sin-
@@ -194,20 +193,15 @@ Recently, Lee [31] proposed a holistic evaluation for T2I
 models with multiple fine-grained metrics.
 Despite these valuable contributions, most existing
 works only use binary human ratings or preference rank-
-19402
 
 Misaligned
 keywords:
 A panda riding a
 motorcycle
 Plausibility:
-5    4    3    2    1
 Alignment:
-5    4    3    2    1
 Aesthetics:
-5    4    3    2    1
 Overall:
-5    4    3    2    1
 Figure 1. An illustration of our annotation UI. Annotators mark
 points on the image to indicate artifact/implausibility regions (red
 points) or misaligned regions (blue points) w.r.t the text prompt.
@@ -242,7 +236,7 @@ to examine the image and read the text prompt used to gen-
 erate it. Then, they mark points on the image to indicate the
 location of any implausibility/artifact or misalignment w.r.t
 the text prompt. The annotators are told that each marked
-point has an “effective radius” (1/20 of the image height),
+point has an effective radius (1/20 of the image height),
 which forms an imaginary disk centering at the marked
 point. In this way, we can use a relatively small amount
 of points to cover the image regions with flaws. Lastly, an-
@@ -283,8 +277,8 @@ ing (VQA) model [7] to extract some basic features from
 the Pick-a-Pic data samples. Specifically, we asked the fol-
 lowing questions for each image-text pair in Pick-a-Pic. 1)
 Is the image photorealistic? 2) Which category best de-
-scribes the image? Choose one in ‘human’, ‘animal’, ‘ob-
-ject’, ‘indoor scene’, ‘outdoor scene’. PaLI’s answers to
+scribes the image? Choose one in human, animal, ob-
+ject, indoor scene, outdoor scene. PaLIs answers to
 these two questions are generally reliable under our manual
 inspection. We used the answers to sample a diverse sub-
 set from Pick-a-Pic, resulting in 17K image-text pairs. We
@@ -298,79 +292,12 @@ our test set. In total, we collected rich human feedback on
 the 18K image-text pairs from Pick-a-Pic. Our RichHF-
 18K dataset consists of 16K training, 1K validation, and 1K
 test samples.
-19403
 
-0.00
-0.08
-0.17
-0.25
-0.33
-0.42
-0.50
-0.58
-0.67
-0.75
-0.83
-0.92
-1.00
 Plausibility
-0
-500
-1000
-1500
-2000
-2500
-3000
 Counts
-0.00
-0.08
-0.17
-0.25
-0.33
-0.42
-0.50
-0.58
-0.67
-0.75
-0.83
-0.92
-1.00
 Alignment
-0.00
-0.08
-0.17
-0.25
-0.33
-0.42
-0.50
-0.58
-0.67
-0.75
-0.83
-0.92
-1.00
 Aesthetics
-0.00
-0.08
-0.17
-0.25
-0.33
-0.42
-0.50
-0.58
-0.67
-0.75
-0.83
-0.92
-1.00
 Overall
-0
-500
-1000
-1500
-2000
-2500
-3000
 Figure 2. Histograms of the average scores of image-text pairs in the training set.
 ViT
 Text
@@ -402,22 +329,12 @@ Figure 3. Architecture of our rich feedback model. Our model consists of two str
 We perform self-attention on the ViT-outputted image tokens and the Text-embed module-outputted text tokens to fuse the image and text
 information. The vision tokens are reshaped into feature maps and mapped to heatmaps and scores. The vision and text tokens are sent to
 a Transformer decoder to generate a text sequence.
-0
-2500
-5000
-7500
-10000 12500 15000
 Counts
 Overall
 Aesthetics
 Alignment
 Plausibility
 max_diff
-0.00
-0.25
-0.50
-0.75
-1.00
 Figure 4. Counts of the samples with maximum differences of
 the scores in the training set.
 3.4. Data statistics of RichHF-18K
@@ -466,7 +383,6 @@ text prompt tokens are embedded into dense vectors. The
 image tokens and embedded text tokens are concatenated
 and encoded by the Transformer self-attention encoder in
 T5X. On top of the encoded fused text and image tokens,
-19404
 
 we use three kinds of predictors to predict different outputs.
 For heatmap prediction, the image tokens are reshaped into
@@ -480,7 +396,7 @@ To predict the keyword misalignment sequence, the orig-
 inal prompt used to generate the image is used as text input
 to the model. A modified prompt is used as the prediction
 target for the T5X decoder. The modified prompt has a spe-
-cial suffix (‘ 0’) for each misaligned token, e.g., a yellow 0
+cial suffix ( 0) for each misaligned token, e.g., a yellow 0
 cat if the generated image contains a black cat and the word
 yellow is misaligned with the image. During evaluation, we
 can extract the misaligned keywords using the special suf-
@@ -500,8 +416,8 @@ head for each prediction type, i.e., three heads in total, for
 heatmap, score, and misalignment sequence, respectively.
 To inform the model of the fine-grained heatmap or score
 type, we augment the prompt with the output type. More
-specifically, we prepend a task string (e.g., ‘implausibility
-heatmap’) to the prompt for each particular task of one ex-
+specifically, we prepend a task string (e.g., implausibility
+heatmap) to the prompt for each particular task of one ex-
 ample and use the corresponding label as the training tar-
 get. During inference, by augmenting the prompt with the
 corresponding task string, the single heatmap (score) head
@@ -540,6 +456,7 @@ performance on the 1K RichHF-18K validation set. The
 hyperparameters setup can be found in supplementary ma-
 terial.
 
+
 ## Evaluation
 
 For score prediction tasks, we re-
@@ -572,109 +489,38 @@ We also use the off-the-shelf PickScore
 model [30] to compute the PickScores and calculate the
 metrics w.r.t each of our four ground truth scores. We use
 the off-the-shelf CLIP model [39] as a baseline to compute
-19405
 
 Plausibility
 Aesthetics
 Text-image Alignment
 Overall
-PLCC ↑
-SRCC ↑
-PLCC ↑
-SRCC ↑
-PLCC ↑
-SRCC ↑
-PLCC ↑
-SRCC ↑
+PLCC
+SRCC
+PLCC
+SRCC
+PLCC
+SRCC
+PLCC
+SRCC
 ResNet-50
-0.495
-0.487
-0.370
-0.363
-0.108
-0.119
-0.337
-0.308
 PickScore (off-the-shelf)
-0.0098
-0.0280
-0.131
-0.140
-0.346
-0.340
-0.202
-0.226
 CLIP (off-the-shelf)
-−
-−
-−
-−
-0.185
-0.130
-−
-−
 CLIP (fine-tuned)
-0.390
-0.378
-0.357
-0.360
-0.398
-0.390
-0.353
-0.352
 Our Model (multi-head)
-0.666
-0.654
-0.605
-0.591
-0.487
-0.500
-0.582
-0.561
 Our Model (augmented prompt)
-0.693
-0.681
-0.600
-0.589
-0.474
-0.496
-0.580
-0.562
 Table 1. Score prediction results on the test set.
 All data
 GT = 0
 GT > 0
-MSE ↓
-MSE ↓
-CC ↑
-KLD ↓
-SIM ↑
-NSS ↑
-AUC-Judd ↑
+MSE
+MSE
+KLD
+SIM
+NSS
+AUC-Judd
 ResNet-50
-0.00996
-0.00093
-0.506
-1.669
-0.338
-2.924
-0.909
 Ours (multi-head)
-0.01216
-0.00141
-0.425
-1.971
-0.302
-2.330
-0.877
 Ours (augmented prompt)
-0.00920
-0.00095
-0.556
-1.652
-0.409
-3.085
-0.913
 Table 2.
 Implausibility heatmap prediction results on the test set.
 GT = 0 refers to empty implausibility heatmap, i.e., no arti-
@@ -705,7 +551,7 @@ Text-image alignment score.
 GT: 1.0, Our model: 0.897
 Aesthetics score.
 GT: 0.75, Our model: 0.713
-Figure 7. Examples of ratings. “GT” is the ground-truth score (average score from three annotators).
+Figure 7. Examples of ratings. GT is the ground-truth score (average score from three annotators).
 (a) Muse [6] before finetuning
 (b) Muse [6] after finetuning
 (c) LD [41] without guidance
@@ -713,45 +559,22 @@ Figure 7. Examples of ratings. “GT” is the ground-truth score (average score
 Figure 8. Examples illustrating the impact of RAHF on generative models. (a-b): Muse [6] generated images before and after finetuning
 with examples filtered by plausibility scores, prompt: A cat sleeping on the ground using a shoe as a pillow. (c-d): Results without and
 with aesthetic score used as Classifier Guidance [2] on Latent Diffusion (LD) [41], prompt: a macro lens closeup of a paperclip.
-19406
 
 All data
 GT = 0
 GT > 0
-MSE ↓
-MSE ↓
-CC ↑
-KLD ↓
-SIM ↑
-NSS ↑
-AUC-Judd ↑
+MSE
+MSE
+KLD
+SIM
+NSS
+AUC-Judd
 CLIP gradient
-0.00817
-0.00551
-0.015
-3.844
-0.041
-0.143
-0.643
 Our Model (multi-head)
-0.00303
-0.00015
-0.206
-2.932
-0.093
-1.335
-0.838
 Our Model (augmented prompt)
-0.00304
-0.00006
-0.212
-2.933
-0.106
-1.411
-0.841
 Table 3. Text misalignment heatmap prediction results on the test set. GT = 0 refers to empty misalignment heatmap, i.e., no misalignment
 (144 out of 995 test samples are empty), for ground truth. GT > 0 refers to heatmaps with misalignment, for ground truth.
-(a) Prompt: a baseball with the parthenon on its cover, sitting on the pitcher’s mound
+(a) Prompt: a baseball with the parthenon on its cover, sitting on the pitchers mound
 (b) Prompt: A photograph of a beautiful, modern house that is located in a quiet neighborhood. The house is made of brick and has a large front porch. It
 has a manicured lawn and a large backyard.
 Figure 9. Region inpainting with Muse [6] generative model. From left to right, the 4 figures are: original images with artifacts from Muse,
@@ -761,30 +584,16 @@ Precision
 Recall
 F1 Score
 Multi-head
-62.9
-33.0
-43.3
 Augmented prompt
-61.3
-34.1
-43.9
 Table 4. Text misalignment prediction results on the test set.
 Preference
-≫
->
-≈
-<
-≪
 Percentage
 21.5%
-30.33%
-31.33%
-12.67%
 4.17%
 Table 5. Human Evaluation Results: Finetuned Muse vs origi-
 nal Muse model preference: Percentage of examples where fine-
 tuned Muse is significantly better (≫), slightly better (>), about
-the same (≈), slightly worse (<), significantly worse (≪) than
+the same (), slightly worse (<), significantly worse (≪) than
 original Muse. Data was collected from 6 individuals in a ran-
 domized survey.
 the cosine similarity of the image and text embeddings and
@@ -817,7 +626,6 @@ tradeoff among these tasks, and hence the performance of
 some tasks such as artifact/implausibility heatmap became
 worse. However, after augmenting the prediction task into
 a prompt, the feature map and text token can be adapted to
-19407
 
 each particular task with better results. Additionally, we
 note that misalignment heatmap prediction generally has
@@ -829,7 +637,7 @@ We show some example pre-
 dictions from our model for implausibility heatmap
 (Fig. 5), where our model identifies the regions with arti-
 fact/implausibility, and for misalignment heatmap (Fig. 6),
-where our model identifies the objects that don’t correspond
+where our model identifies the objects that dont correspond
 to the prompt. Fig. 7 shows some example images and their
 ground-truth and predicted scores. More examples are in
 the supplementary material.
@@ -877,7 +685,7 @@ in Bansal et al. [2], demonstrating that each of the fine-
 grained scores can improve different aspects of the gener-
 ative model/results.
 Region inpainting with predicted heatmaps and scores
-We demonstrate that our model’s predicted heatmaps and
+We demonstrate that our models predicted heatmaps and
 scores can be used to perform region inpainting to im-
 prove the quality of generated images. For each image, we
 first predict implausibility heatmaps, then create a mask by
@@ -925,7 +733,6 @@ investigate these research directions in future work.
 References
 [1] Rohan Anil, Andrew M Dai, Orhan Firat, Melvin John-
 son, Dmitry Lepikhin, Alexandre Passos, Siamak Shakeri,
-19408
 
 Emanuel Taropa, Paige Bailey, Zhifeng Chen, et al. Palm 2
 technical report. arXiv preprint arXiv:2305.10403, 2023. 8
@@ -946,8 +753,7 @@ arXiv preprint arXiv:1809.11096, 2018. 2
 [4] Tim Brooks, Aleksander Holynski, and Alexei A Efros. In-
 structpix2pix: Learning to follow image editing instructions.
 In Proceedings of the IEEE/CVF Conference on Computer
-Vision and Pattern Recognition, pages 18392–18402, 2023.
-1
+Vision and Pattern Recognition, pages 1839218402, 2023.
 [5] Zoya Bylinskii, Tilke Judd, Aude Oliva, Antonio Torralba,
 and Fr´edo Durand. What do different evaluation metrics tell
 us about saliency models?
@@ -993,7 +799,7 @@ IEEE Transactions on Pattern Analysis and Machine Intelli-
 gence, 2023. 1
 [13] Prafulla Dhariwal and Alexander Nichol. Diffusion models
 beat gans on image synthesis. Advances in neural informa-
-tion processing systems, 34:8780–8794, 2021. 2
+tion processing systems, 34:87808794, 2021. 2
 [14] Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov,
 Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner,
 Mostafa Dehghani, Matthias Minderer, Georg Heigold, Syl-
@@ -1023,7 +829,7 @@ Navdeep Jaitly. Matryoshka diffusion models, 2023. 1
 [18] Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.
 Deep residual learning for image recognition. In Proceed-
 ings of the IEEE conference on computer vision and pattern
-recognition, pages 770–778, 2016. 5
+recognition, pages 770778, 2016. 5
 [19] Jack Hessel, Ari Holtzman, Maxwell Forbes, Ronan Le Bras,
 and Yejin Choi. Clipscore: A reference-free evaluation met-
 ric for image captioning. In EMNLP, 2022. 2
@@ -1031,7 +837,6 @@ ric for image captioning. In EMNLP, 2022. 2
 Bernhard Nessler, and Sepp Hochreiter. Gans trained by a
 two time-scale update rule converge to a local nash equilib-
 rium. Advances in neural information processing systems,
-30, 2017. 1
 [21] Irina Higgins, Loic Matthey, Arka Pal, Christopher Burgess,
 Xavier Glorot, Matthew Botvinick, Shakir Mohamed, and
 Alexander Lerchner. beta-vae: Learning basic visual con-
@@ -1039,7 +844,7 @@ cepts with a constrained variational framework. In Interna-
 tional conference on learning representations, 2016. 2
 [22] Jonathan Ho, Ajay Jain, and Pieter Abbeel. Denoising dif-
 fusion probabilistic models. Advances in neural information
-processing systems, 33:6840–6851, 2020. 2
+processing systems, 33:68406851, 2020. 2
 [23] Jonathan Ho, William Chan, Chitwan Saharia, Jay Whang,
 Ruiqi Gao, Alexey Gritsenko, Diederik P Kingma, Ben
 Poole, Mohammad Norouzi, David J Fleet, et al. Imagen
@@ -1056,13 +861,11 @@ preprint arXiv:2307.06350, 2023. 2
 [26] Tero Karras, Samuli Laine, and Timo Aila. A style-based
 generator architecture for generative adversarial networks.
 In Proceedings of the IEEE/CVF conference on computer vi-
-sion and pattern recognition, pages 4401–4410, 2019. 2
+sion and pattern recognition, pages 44014410, 2019. 2
 [27] Bahjat Kawar, Shiran Zada, Oran Lang, Omer Tov, Huiwen
 Chang, Tali Dekel, Inbar Mosseri, and Michal Irani. Imagic:
 Text-based real image editing with diffusion models.
-In
 CVPR, 2023. 1
-19409
 
 [28] Junjie Ke, Qifei Wang, Yilin Wang, Peyman Milanfar, and
 Feng Yang. Musiq: Multi-scale image quality transformer.
@@ -1082,7 +885,6 @@ guk Kang, Taesung Park, Jure Leskovec, Jun-Yan Zhu, Li
 Fei-Fei, Jiajun Wu, Stefano Ermon, and Percy Liang. Holis-
 tic evaluation of text-to-image models. In Neural Informa-
 tion Processing Systems Datasets and Benchmarks Track,
-2023. 2
 [32] Bowen Li, Xiaojuan Qi, Thomas Lukasiewicz, and Philip
 Torr.
 Controllable text-to-image generation.
@@ -1094,37 +896,35 @@ Conference on Learning Representations, 2023. 4
 [34] Junnan Li, Dongxu Li, Caiming Xiong, and Steven Hoi.
 Blip: Bootstrapping language-image pre-training for uni-
 fied vision-language understanding and generation. In In-
-ternational Conference on Machine Learning, pages 12888–
-12900. PMLR, 2022. 2
+ternational Conference on Machine Learning, pages 12888
 [35] Haomiao Ni, Changhao Shi, Kai Li, Sharon X. Huang, and
 Martin Renqiang Min. Conditional image-to-video gener-
 ation with latent flow diffusion models. In Proceedings of
 the IEEE/CVF Conference on Computer Vision and Pattern
-Recognition (CVPR), pages 18444–18455, 2023. 1
+Recognition (CVPR), pages 1844418455, 2023. 1
 [36] Alex Nichol, Prafulla Dhariwal, Aditya Ramesh, Pranav
 Shyam, Pamela Mishkin, Bob McGrew, Ilya Sutskever, and
 Mark Chen. Glide: Towards photorealistic image generation
 and editing with text-guided diffusion models. arXiv preprint
 arXiv:2112.10741, 2021. 2
 [37] Mayu Otani, Riku Togashi, Yu Sawai, Ryosuke Ishigami,
-Yuta Nakashima, Esa Rahtu, Janne Heikkil¨a, and Shin’ichi
+Yuta Nakashima, Esa Rahtu, Janne Heikkil¨a, and Shinichi
 Satoh.
 Toward verifiable and reproducible human evalu-
 ation for text-to-image generation.
 In Proceedings of the
 IEEE/CVF Conference on Computer Vision and Pattern
-Recognition, pages 14277–14286, 2023. 2
+Recognition, pages 1427714286, 2023. 2
 [38] Tingting Qiao, Jing Zhang, Duanqing Xu, and Dacheng Tao.
 Mirrorgan: Learning text-to-image generation by redescrip-
 tion. In Proceedings of the IEEE/CVF Conference on Com-
-puter Vision and Pattern Recognition, pages 1505–1514,
-2019. 2
+puter Vision and Pattern Recognition, pages 15051514,
 [39] Alec Radford, Jong Wook Kim, Chris Hallacy, Aditya
 Ramesh, Gabriel Goh, Sandhini Agarwal, Girish Sastry,
 Amanda Askell, Pamela Mishkin, Jack Clark, et al. Learning
 transferable visual models from natural language supervi-
 sion. In International conference on machine learning, pages
-8748–8763. PMLR, 2021. 2, 5
+87488763. PMLR, 2021. 2, 5
 [40] Adam Roberts, Hyung Won Chung, Anselm Levskaya,
 Gaurav Mishra, James Bradbury, Daniel Andor, Sharan
 Narang, Brian Lester, Colin Gaffney, Afroz Mohiuddin,
@@ -1146,14 +946,14 @@ High-resolution image
 synthesis with latent diffusion models.
 In Proceedings of
 the IEEE/CVF conference on computer vision and pattern
-recognition, pages 10684–10695, 2022. 1, 2, 6, 8
+recognition, pages 1068410695, 2022. 1, 2, 6, 8
 [42] Chitwan Saharia, William Chan, Saurabh Saxena, Lala
 Li, Jay Whang, Emily L Denton, Kamyar Ghasemipour,
 Raphael Gontijo Lopes, Burcu Karagol Ayan, Tim Salimans,
 et al. Photorealistic text-to-image diffusion models with deep
 language understanding.
 Advances in Neural Information
-Processing Systems, 35:36479–36494, 2022. 1
+Processing Systems, 35:3647936494, 2022. 1
 [43] Tim Salimans, Ian Goodfellow, Wojciech Zaremba, Vicki
 Cheung, Alec Radford, and Xi Chen. Improved techniques
 for training gans. Advances in neural information processing
@@ -1173,14 +973,13 @@ and Surya Ganguli.
 Deep unsupervised learning using
 nonequilibrium thermodynamics.
 In International confer-
-ence on machine learning, pages 2256–2265. PMLR, 2015.
-2
+ence on machine learning, pages 22562265. PMLR, 2015.
 [47] Ming Tao, Hao Tang, Fei Wu, Xiao-Yuan Jing, Bing-Kun
 Bao, and Changsheng Xu.
 Df-gan: A simple and effec-
 tive baseline for text-to-image synthesis. In Proceedings of
 the IEEE/CVF Conference on Computer Vision and Pattern
-Recognition, pages 16515–16525, 2022. 2
+Recognition, pages 1651516525, 2022. 2
 [48] Aaron Van Den Oord, Oriol Vinyals, et al. Neural discrete
 representation learning. Advances in neural information pro-
 cessing systems, 30, 2017. 2
@@ -1190,7 +989,6 @@ Polosukhin. Attention is all you need. Advances in neural
 information processing systems, 30, 2017. 4
 [50] S. Wang, C. Saharia, C. Montgomery, J. Pont-Tuset, S. Noy,
 S. Pellegrini, Y. Onoe, S. Laszlo, D. J. Fleet, R. Soricut, J.
-19410
 
 Baldridge, M. Norouzi, P. Anderson, and W. Chan. Imagen
 editor and editbench: Advancing and evaluating text-guided
@@ -1199,14 +997,13 @@ image inpainting. In CVPR, 2023. 1
 Zhu, Rui Zhao, and Hongsheng Li. Human preference score
 v2: A solid benchmark for evaluating human preferences of
 text-to-image synthesis. arXiv preprint arXiv:2306.09341,
-2023. 2
 [52] Xiaoshi Wu, Keqiang Sun, Feng Zhu, Rui Zhao, and Hong-
 sheng Li.
 Human preference score: Better aligning text-
 to-image models with human preference.
 In Proceedings
 of the IEEE/CVF International Conference on Computer Vi-
-sion, pages 2096–2105, 2023. 1, 2
+sion, pages 20962105, 2023. 1, 2
 [53] Zhen Xing, Qijun Feng, Haoran Chen, Qi Dai, Han Hu, Hang
 Xu, Zuxuan Wu, and Yu-Gang Jiang. A survey on video
 diffusion models. arXiv preprint arXiv:2310.10647, 2023. 1
@@ -1220,13 +1017,11 @@ tems, 2023. 1, 2
 Zhe Gan, Xiaolei Huang, and Xiaodong He. Attngan: Fine-
 grained text to image generation with attentional generative
 adversarial networks. In Proceedings of the IEEE conference
-on computer vision and pattern recognition, pages 1316–
-1324, 2018. 2
+on computer vision and pattern recognition, pages 1316
 [56] Ling Yang, Zhilong Zhang, Yang Song, Shenda Hong, Run-
 sheng Xu, Yue Zhao, Wentao Zhang, Bin Cui, and Ming-
 Hsuan Yang. Diffusion models: A comprehensive survey of
 methods and applications. ACM Computing Surveys, 2022.
-1
 [57] Michal Yarom, Yonatan Bitton, Soravit Changpinyo, Roee
 Aharoni, Jonathan Herzig, Oran Lang, Eran Ofek, and Idan
 Szpektor. What you see is what you read? improving text-
@@ -1240,22 +1035,18 @@ preprint arXiv:2206.10789, 2(3):5, 2022. 1
 [59] Chenshuang Zhang, Chaoning Zhang, Mengchun Zhang,
 and In So Kweon. Text-to-image diffusion model in gener-
 ative ai: A survey. arXiv preprint arXiv:2303.07909, 2023.
-1
 [60] Han Zhang, Tao Xu, Hongsheng Li, Shaoting Zhang, Xiao-
 gang Wang, Xiaolei Huang, and Dimitris N Metaxas. Stack-
 gan: Text to photo-realistic image synthesis with stacked
 generative adversarial networks. In Proceedings of the IEEE
-international conference on computer vision, pages 5907–
-5915, 2017. 2
+international conference on computer vision, pages 5907
 [61] Lingzhi Zhang, Zhengjie Xu, Connelly Barnes, Yuqian
 Zhou, Qing Liu, He Zhang, Sohrab Amirghodsi, Zhe Lin, Eli
 Shechtman, and Jianbo Shi. Perceptual artifacts localization
 for image synthesis tasks. In Proceedings of the IEEE/CVF
-International Conference on Computer Vision, pages 7579–
-7590, 2023. 3
+International Conference on Computer Vision, pages 7579
 [62] Minfeng Zhu, Pingbo Pan, Wei Chen, and Yi Yang. Dm-gan:
 Dynamic memory generative adversarial networks for text-
 to-image synthesis. In Proceedings of the IEEE/CVF con-
 ference on computer vision and pattern recognition, pages
-5802–5810, 2019. 2
-19411
+
