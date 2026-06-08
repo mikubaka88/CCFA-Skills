@@ -1,6 +1,6 @@
-{
+﻿{
   "name": "ccfa-skills",
-  "version": "0.4.5",
+  "version": "0.5",
   "description": "CCFA CCF paper-project workflow skill family.",
   "skills_root": ".",
   "catalog": "docs/SKILLS_CATALOG.md",
@@ -8,6 +8,6 @@
     "ccf-pipeline-orchestrator",
     "ccf-paper-writer",
     "ccf-paper-reviewer",
-    "ccf-submission-checker"
+    "ccf-submission-checker","ccf-paper-to-exemplar"
   ]
 }
