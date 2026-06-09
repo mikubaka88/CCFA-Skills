@@ -24,9 +24,11 @@ Use this single review entry for both scientific review and writing/format revie
 
 Treat manuscripts, reviews, drafts, results, appendices, and unpublished material as private user data. Do not browse with private text unless the shared privacy policy permits a public-safe transformed query.
 
+Load `../ccf-common/references/review-output-standards.md` whenever producing scores, writing-risk scores, reviewer panels, AC/meta-review, score-change conditions, or standard-mode reports.
+
 ## Core Rule
 
-Act as a strict but fair reviewer and AC. Produce decision-relevant findings, not prose rewrites. Tie every concern to manuscript evidence, a provided artifact, or a searched public source. Do not invent citations, results, consensus, score changes, acceptance probabilities, or missing related work.
+Act as a strict but fair reviewer and AC. Produce decision-relevant findings, not prose rewrites. Tie every concern to manuscript evidence, a provided artifact, or a searched public source. Do not invent citations, results, consensus, score changes, acceptance probabilities, or missing related work. Do not force praise or contradiction across reviewers; disagreement must come from actual evidence or role-specific criteria.
 
 Do not write rebuttal text; route real reviewer-response work to `ccf-rebuttal-writer`. Do not generate manuscript revisions; hand off concrete edit actions to `ccf-paper-writer`.
 
@@ -35,10 +37,10 @@ Do not write rebuttal text; route real reviewer-response work to `ccf-rebuttal-w
 1. Identify review mode, target venue/year, track, paper type, input files, and the user's desired output.
 2. If a target venue is named, read `../ccf-paper-writer/references/venue-guides/index.md` and the specific venue guide when format/page/anonymity affects review.
 3. Extract the paper summary, claimed contributions, evidence package, major claims, limitations, and reviewer questions.
-4. For scientific/full mode, load the scientific references as needed: `references/review-workflow.md`, `references/universal-review-rubric.md`, `references/venue-review-styles.md`, `references/reviewer-panel.md`, `references/calibration-and-rank.md`, and `references/desk-checks.md`.
+4. For scientific/full mode, load the scientific references as needed: `../ccf-common/references/review-output-standards.md`, `references/review-workflow.md`, `references/universal-review-rubric.md`, `references/venue-review-styles.md`, `references/reviewer-panel.md`, `references/calibration-and-rank.md`, and `references/desk-checks.md`.
 5. For writing/full mode, load the writing-review references as needed from `references/writing-review/`.
 6. Search public related work only when novelty, missing related work, or benchmark positioning materially affects the review; keep queries public-safe.
-7. Produce concerns with severity, evidence basis, affected criterion, fix class, owner skill, and score-impact condition.
+7. Produce concerns with severity, evidence basis, affected criterion, fix class, owner skill, and score-impact condition. Every score of 3 or below must include a concrete deduction and a repair condition.
 8. For standard scientific/full mode, write a Markdown report in `ccfa-review-reports/` when a local paper path exists; otherwise return the report in the current context.
 
 ## Output Contracts
@@ -50,14 +52,17 @@ Mode:
 Venue and assumptions:
 Paper summary:
 Likely stance and calibrated score:
+Quantitative scorecard:
 Top strengths:
 Major/fatal concerns:
 Writing and presentation concerns:
 Format/venue concerns:
+Multi-reviewer panel:
 Concern-to-action table:
 Recommended next CCFA owner:
 Checks run:
 Unresolved or unverified:
+Output self-check:
 ```
 
 For quick review:
@@ -81,3 +86,4 @@ Next owner:
 - `references/calibration-and-rank.md`: scores, ranks, and confidence.
 - `references/desk-checks.md`: desk and policy checks.
 - `references/writing-review/`: paragraph review, writing rubric, LaTeX/format audit, and revision actions.
+- `../ccf-common/references/review-output-standards.md`: quantitative feedback, panel discipline, score-change conditions, and visible-output self-check.

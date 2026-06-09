@@ -1,5 +1,12 @@
 ﻿# Changelog
 
+## v0.5.1 - 2026-06-09
+
+- Added `ccf-literature-monitor` as the competitor-monitoring and new-paper tracking owner, with overlap scoring, RELAX/RESEARCH/FOLLOW-UP actions, and handoffs to literature search, idea review, idea optimization, paper writing, and integrity audit.
+- Standardized quantitative review feedback across idea review, paper review, and writing review: scorecards now require confidence, evidence basis, deductions, repair conditions, and score-change conditions.
+- Added shared multi-reviewer panel discipline so reviewers stay independent, evidence-grounded, and factual without forced praise, forced disagreement, or unsupported rejection.
+- Updated routing, trigger registry, artifact contracts, installation matrices, README variants, catalog, architecture docs, plugin manifests, validators, and generated-diagram source for the 15-skill family.
+
 ## v0.4.5 - 2026-06-06
 
 - Made Simplified Chinese the default `README.md` entry, added `README.en.md`, kept `README.zh-CN.md` as a Simplified Chinese compatibility entry, and preserved free switching between Simplified Chinese, English, and Traditional Chinese.
@@ -29,7 +36,7 @@
 - Consolidated the runtime surface from 23 skills to 13 clear owner skills.
 - Merged helper skills into owner modes: workflow planning, compression, writing review, citation audit, result figures/tables, artifact packaging, venue format, resubmission, paper presentation, and docs SVG maintenance.
 - Renamed the review owner to `ccf-paper-reviewer` and made it responsible for both scientific and writing/format review modes.
-- Rewrote README EN/zh-CN/zh-TW, routing, trigger registry, catalog, architecture docs, installation matrices, and merge audit docs around the 14-skill family.
+- Rewrote README EN/zh-CN/zh-TW, routing, trigger registry, catalog, architecture docs, installation matrices, and merge audit docs around the consolidated skill family.
 - Rebuilt all 24 CCFA SVG diagrams from `tools/build_ccfa_diagrams.py` using the consolidated family.
 - Reworked `demo/attention-is-all-you-need/` into a NeurIPS-style dry run: original-paper reading, idea document, ordered skill run, writing draft, review/rebuttal, submission check, official data, and result tables.
 - Bumped plugin manifests to `0.4.3`.

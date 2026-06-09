@@ -2,12 +2,12 @@
 name: ccf-paper-to-exemplar
 description: "Convert user-provided conference paper PDFs into distilled writing exemplar cards for the ccf-paper-writer skill. Extracts full text, analyzes writing patterns by venue, and produces ready-to-use exemplar cards with story patterns, abstract/introduction/method/evidence moves, and citation-style analysis. Use when the user wants to add custom writing exemplars, convert favorite papers into reusable writing templates, or build a personal exemplar library for a target venue."
 metadata:
- ccf_skill_controls:
- handoff_question_mode: partial
- respect_session_denylists: true
- protect_idea_scope_in_writing: true
- private_material_safety: moderate
- shared_controls: ../ccf-common/references/
+  ccf_skill_controls:
+    handoff_question_mode: partial
+    respect_session_denylists: true
+    protect_idea_scope_in_writing: true
+    private_material_safety: moderate
+    shared_controls: ../ccf-common/references/
 ---
 
 # Paper-to-Exemplar

@@ -34,11 +34,11 @@ The current v0.4 line reduces CCFA runtime skills from 23 to 13. The goal is not
 
 ## Install Policy
 
-Install only the 13 current runtime skills. Do not copy merged helper names into `$CODEX_HOME/skills`. If an older local install still has those helper directories, remove them before installing the current family to avoid trigger collisions.
+Install only the 15 current runtime skills. Do not copy merged helper names into `$CODEX_HOME/skills`. If an older local install still has those helper directories, remove them before installing the current family to avoid trigger collisions. `ccf-literature-monitor` and `ccf-paper-to-exemplar` are current runtime entries, not merged helper names.
 
 ## Demo Policy
 
-The demo must use the current 13 runtime skills. Merged abilities still appear in the demo as modes:
+The demo must use the current 15 runtime skills. Merged abilities still appear in the demo as modes:
 
 - compression and talk output inside `ccf-paper-writer`
 - source-format-preserving polish and venue-aware LaTeX drafting inside `ccf-paper-writer`

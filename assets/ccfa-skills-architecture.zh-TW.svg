@@ -9,7 +9,7 @@
 <rect x="0" y="0" width="1800" height="158" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
 <text x="72" y="66" font-size="44" font-weight="850" fill="#FFFFFF" text-anchor="start">CCFA 技能家族邏輯</text>
 <text x="72" y="108" font-size="20" font-weight="500" fill="#D8E6F2" text-anchor="start">主研究鏈路、共享狀態、治理層和修改回路。</text>
-<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.5 · 14 個 owner skills · 一個論文專案閉環</text>
+<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.5 · 15 個 owner skills · 一個論文專案閉環</text>
 <rect x="70" y="228" width="500" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="70" y="228" width="500" height="52" rx="24" fill="#1F7A8C" stroke="none" stroke-width="2" />
 <text x="92" y="262" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">搭建</text>
@@ -32,24 +32,32 @@
 <rect x="668" y="380" width="8" height="66" rx="18" fill="#D2673D" stroke="none" stroke-width="2" />
 <text x="692" y="414" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-idea-reviewer</text>
 <text x="692" y="439" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">評分、排序、階段風險</text>
-<rect x="1230" y="228" width="500" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="1230" y="228" width="500" height="328" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="1230" y="228" width="500" height="52" rx="24" fill="#6657A8" stroke="none" stroke-width="2" />
 <text x="1252" y="262" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">證據</text>
 <rect x="1248" y="298" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="1248" y="298" width="8" height="66" rx="18" fill="#6657A8" stroke="none" stroke-width="2" />
-<text x="1272" y="332" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-literature-searcher</text>
-<text x="1272" y="357" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">prior art、open gap、benchmark</text>
+<text x="1272" y="332" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-literature-monitor</text>
+<text x="1272" y="357" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">新論文、競品、overlap</text>
 <rect x="1248" y="380" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="1248" y="380" width="8" height="66" rx="18" fill="#6657A8" stroke="none" stroke-width="2" />
-<text x="1272" y="414" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-experiment-designer</text>
-<text x="1272" y="439" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">baseline、消融、真實結果表</text>
-<rect x="70" y="560" width="500" height="164" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="1272" y="414" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-literature-searcher</text>
+<text x="1272" y="439" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">prior art、open gap、benchmark</text>
+<rect x="1248" y="462" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="1248" y="462" width="8" height="66" rx="18" fill="#6657A8" stroke="none" stroke-width="2" />
+<text x="1272" y="496" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-experiment-designer</text>
+<text x="1272" y="521" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">baseline、消融、真實結果表</text>
+<rect x="70" y="560" width="500" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="70" y="560" width="500" height="52" rx="24" fill="#2D3742" stroke="none" stroke-width="2" />
 <text x="92" y="594" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">正文</text>
 <rect x="88" y="630" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="88" y="630" width="8" height="66" rx="18" fill="#2D3742" stroke="none" stroke-width="2" />
-<text x="112" y="664" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-writer</text>
-<text x="112" y="689" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">起草、篇幅、壓縮、展示</text>
+<text x="112" y="664" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-to-exemplar</text>
+<text x="112" y="689" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">PDF 轉寫作範例卡</text>
+<rect x="88" y="712" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="88" y="712" width="8" height="66" rx="18" fill="#2D3742" stroke="none" stroke-width="2" />
+<text x="112" y="746" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-writer</text>
+<text x="112" y="771" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">起草、篇幅、壓縮、展示</text>
 <rect x="650" y="560" width="500" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="650" y="560" width="500" height="52" rx="24" fill="#B58B2A" stroke="none" stroke-width="2" />
 <text x="672" y="594" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">品質保障</text>

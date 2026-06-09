@@ -6,8 +6,10 @@
   "catalog": "docs/SKILLS_CATALOG.md",
   "entrypoints": [
     "ccf-pipeline-orchestrator",
+    "ccf-literature-monitor",
     "ccf-paper-writer",
     "ccf-paper-reviewer",
-    "ccf-submission-checker","ccf-paper-to-exemplar"
+    "ccf-submission-checker",
+    "ccf-paper-to-exemplar"
   ]
 }

@@ -15,7 +15,7 @@ Primary sources:
 1. `ccfa.yaml` - shared project state.
 2. `artifacts/00-original-paper-reading.md` - motivation, problem, insight, method, results, contribution idea, and source writing pattern.
 3. `artifacts/01-idea-document.md` - ICLR idea brief.
-4. `artifacts/02-iclr-closed-loop-skill-run.md` - all 13 skills and their concrete artifacts.
+4. `artifacts/02-iclr-closed-loop-skill-run.md` - all 15 current skills and their concrete artifacts.
 5. `artifacts/03-idea-review.md` - strict idea review before writing.
 6. `artifacts/03-writing-draft.md` - writing-stage decisions and optimization record.
 7. `paper/attention_iclr_submission.tex` - complete ICLR-style LaTeX manuscript.

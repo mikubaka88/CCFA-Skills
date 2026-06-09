@@ -6,18 +6,46 @@ Use this rubric when reviewing a manuscript from the perspective of writing qual
 
 Score each dimension on 1-5 when enough text is available.
 
-| Dimension | What To Inspect |
-| --- | --- |
-| Storyline and motivation | Whether the paper makes the problem, gap, and stakes unavoidable before presenting the method. |
-| Contribution display | Whether contributions are specific, non-overlapping, evidence-backed, and visible in abstract/introduction/conclusion. |
-| Paragraph logic | Whether each paragraph has one job, a clear topic sentence, causal flow, and no mixed objectives. |
-| Claim-evidence alignment | Whether every strong claim is supported by experiment, proof, citation, example, or qualified language. |
-| Method readability | Whether notation, modules, algorithm steps, assumptions, and design choices are introduced in the right order. |
-| Experiment narration | Whether tables/figures are introduced before interpretation and whether the text explains what each result proves. |
-| Related-work positioning | Whether closest work is compared on technical axes rather than listed chronologically. |
-| Terminology and notation consistency | Whether key terms, symbols, dataset names, model names, and claims stay stable across sections. |
-| LaTeX and format discipline | Whether the manuscript follows venue style, references, captions, labels, equations, algorithms, and page/line constraints. |
-| Reviewer-facing risk | Whether the writing creates avoidable rejection risks: hidden contribution, exaggerated claim, missing limitation, unclear baseline, or inconsistent story. |
+| Dimension | Weight | What To Inspect |
+| --- | ---: | --- |
+| Storyline and motivation | 12 | Whether the paper makes the problem, gap, and stakes unavoidable before presenting the method. |
+| Contribution display | 12 | Whether contributions are specific, non-overlapping, evidence-backed, and visible in abstract/introduction/conclusion. |
+| Paragraph logic | 10 | Whether each paragraph has one job, a clear topic sentence, causal flow, and no mixed objectives. |
+| Claim-evidence alignment | 14 | Whether every strong claim is supported by experiment, proof, citation, example, or qualified language. |
+| Method readability | 10 | Whether notation, modules, algorithm steps, assumptions, and design choices are introduced in the right order. |
+| Experiment narration | 10 | Whether tables/figures are introduced before interpretation and whether the text explains what each result proves. |
+| Related-work positioning | 8 | Whether closest work is compared on technical axes rather than listed chronologically. |
+| Terminology and notation consistency | 8 | Whether key terms, symbols, dataset names, model names, and claims stay stable across sections. |
+| LaTeX and format discipline | 8 | Whether the manuscript follows venue style, references, captions, labels, equations, algorithms, and page/line constraints. |
+| Reviewer-facing risk | 8 | Whether the writing creates avoidable rejection risks: hidden contribution, exaggerated claim, missing limitation, unclear baseline, or inconsistent story. |
+
+Weights sum to 100. Compute:
+
+```text
+Writing score (1-5) = sum(dimension score * weight) / 100
+Writing risk band = low / moderate / high / severe
+```
+
+Do not present the writing score as an acceptance probability. It measures communication risk and reviewer readability, not scientific validity.
+
+## Quantitative Writing Feedback
+
+Include this scorecard in standard writing review:
+
+| Dimension | Weight | Score (1-5) | Confidence (1-5) | Evidence basis | Concrete repair |
+| --- | ---: | ---: | ---: | --- | --- |
+| Storyline and motivation | 12 |  |  |  |  |
+| Contribution display | 12 |  |  |  |  |
+| Paragraph logic | 10 |  |  |  |  |
+| Claim-evidence alignment | 14 |  |  |  |  |
+| Method readability | 10 |  |  |  |  |
+| Experiment narration | 10 |  |  |  |  |
+| Related-work positioning | 8 |  |  |  |  |
+| Terminology and notation consistency | 8 |  |  |  |  |
+| LaTeX and format discipline | 8 |  |  |  |  |
+| Reviewer-facing risk | 8 |  |  |  |  |
+
+For each score of 3 or below, name the location, the reviewer confusion it creates, and the smallest edit that would raise the score.
 
 ## Score Anchors
 
@@ -54,6 +82,32 @@ Expected effect:
 ```
 
 Do not write "improve clarity", "strengthen motivation", "add details", or "polish language" without naming the exact sentence/paragraph role, missing information, and edit action.
+
+## Writing Review Panel
+
+Use these independent roles for standard writing review:
+
+- **Storyline reviewer:** checks problem -> gap -> root challenge -> insight -> evidence progression.
+- **Skeptical reviewer-reader:** checks where the prose makes the work look weaker, more incremental, or less supported than it is.
+- **Claim-evidence reviewer:** checks unsupported, over-broad, or misplaced claims.
+- **Paragraph-logic reviewer:** checks topic sentences, paragraph jobs, transitions, and redundancy.
+- **Venue-style reviewer:** checks target-venue expectations, contribution display, and figure/table narration.
+- **LaTeX/format reviewer:** checks captions, labels, equations, algorithms, references, anonymity markers, and page-risk signals.
+
+Each role must output:
+
+```text
+Role:
+Writing score tendency:
+Confidence:
+Main readability gain:
+Main reviewer-confusion risk:
+Evidence basis:
+Concrete edit:
+Expected score movement:
+```
+
+Do not force praise or criticism. If a role finds the section acceptable on its axis, state why and move to the next role.
 
 ## Writing-Only Boundaries
 

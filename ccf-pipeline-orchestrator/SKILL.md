@@ -21,7 +21,7 @@ Operate as the project coordinator and workflow planner. Clarify the goal, map t
 1. Identify target venue, current stage, available artifacts, constraints, deadline pressure, and the user's immediate goal.
 2. Read `ccfa.yaml` when available; if absent, continue with supplied artifacts and report that project-state tracking is unavailable.
 3. For unclear projects, use `references/workflow-planning/intake-protocol.md`, `approach-options.md`, and `design-brief-template.md`.
-4. Classify the next owner: `ccf-project-scaffolder`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, or `ccf-rebuttal-writer`.
+4. Classify the next owner: `ccf-project-scaffolder`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, or `ccf-rebuttal-writer`.
 5. Define the gate: required input, output artifact, pass condition, blocker, and handoff.
 6. Provide `ccfa.yaml` update instructions rather than silently overwriting user project state unless explicitly asked.
 

@@ -41,8 +41,10 @@ SKILL_STAGE = {
     "ccf-pipeline-orchestrator": "setup",
     "ccf-idea-optimizer": "idea",
     "ccf-idea-reviewer": "idea",
+    "ccf-literature-monitor": "evidence",
     "ccf-literature-searcher": "evidence",
     "ccf-experiment-designer": "evidence",
+    "ccf-paper-to-exemplar": "writing",
     "ccf-paper-writer": "writing",
     "ccf-paper-reviewer": "review",
     "ccf-integrity-auditor": "audit",
@@ -58,10 +60,10 @@ LANG = {
     "en": {
         "suffix": "",
         "font": "Inter, Segoe UI, Arial, sans-serif",
-        "tag": "v0.4.5 · 13 owner skills · one paper-project loop",
+        "tag": "v0.5 · 15 owner skills · one paper-project loop",
         "architecture": ("CCFA Skill Family Logic", "Main research chain, shared state, governance, and revision loop."),
         "workflow": ("End-to-End Paper Workflow", "Every stage leaves a concrete artifact and hands off to one owner."),
-        "catalog": ("Installable Runtime Skills", "The consolidated 13-skill surface after helper modes were merged."),
+        "catalog": ("Installable Runtime Skills", "The consolidated 15-skill surface with monitoring and exemplar support."),
         "routing": ("Routing Boundaries", "Similar prompts route to one owner skill to avoid trigger conflicts."),
         "artifacts": ("Artifact Contract", "ccfa.yaml and files connect idea, evidence, manuscript, reviews, package, and rebuttal."),
         "review": ("Review, Audit, And Action Boundaries", "Judgment, factual integrity, package readiness, rewriting, and response stay separate."),
@@ -71,10 +73,10 @@ LANG = {
     "zh-CN": {
         "suffix": ".zh-CN",
         "font": "Microsoft YaHei, Segoe UI, Arial, sans-serif",
-        "tag": "v0.4.5 · 13 个 owner skills · 一个论文项目闭环",
+        "tag": "v0.5 · 15 个 owner skills · 一个论文项目闭环",
         "architecture": ("CCFA 技能家族逻辑", "主研究链路、共享状态、治理层和修改回路。"),
         "workflow": ("端到端论文流程", "每个阶段都留下具体 artifact，并交给唯一 owner。"),
-        "catalog": ("可安装 Runtime Skills", "helper 能力合并后的 13 个可安装入口。"),
+        "catalog": ("可安装 Runtime Skills", "包含监控和写作范例支持的 15 个入口。"),
         "routing": ("路由边界", "相似请求只进入一个 owner skill，避免触发冲突。"),
         "artifacts": ("Artifact 合约", "ccfa.yaml 与文件串联 idea、证据、正文、评审、投稿包和 rebuttal。"),
         "review": ("评审、审计与行动边界", "判断、事实完整性、投稿检查、改写和回应分开处理。"),
@@ -84,10 +86,10 @@ LANG = {
     "zh-TW": {
         "suffix": ".zh-TW",
         "font": "Microsoft JhengHei, Segoe UI, Arial, sans-serif",
-        "tag": "v0.4.5 · 13 個 owner skills · 一個論文專案閉環",
+        "tag": "v0.5 · 15 個 owner skills · 一個論文專案閉環",
         "architecture": ("CCFA 技能家族邏輯", "主研究鏈路、共享狀態、治理層和修改回路。"),
         "workflow": ("端到端論文流程", "每個階段都留下具體 artifact，並交給唯一 owner。"),
-        "catalog": ("可安裝 Runtime Skills", "helper 能力合併後的 13 個可安裝入口。"),
+        "catalog": ("可安裝 Runtime Skills", "包含監控和寫作範例支援的 15 個入口。"),
         "routing": ("路由邊界", "相似請求只進入一個 owner skill，避免觸發衝突。"),
         "artifacts": ("Artifact 合約", "ccfa.yaml 與檔案串聯 idea、證據、正文、審稿、投稿包和 rebuttal。"),
         "review": ("審稿、稽核與行動邊界", "判斷、事實完整性、投稿檢查、改寫和回應分開處理。"),
@@ -102,8 +104,10 @@ ROLE = {
         "ccf-pipeline-orchestrator": "stage plan, gates, handoffs",
         "ccf-idea-optimizer": "explore, rescue, shape idea",
         "ccf-idea-reviewer": "score, rank, staged risk",
+        "ccf-literature-monitor": "new papers, competitors, overlap",
         "ccf-literature-searcher": "prior art, open gaps, benchmarks",
         "ccf-experiment-designer": "baselines, ablations, real tables",
+        "ccf-paper-to-exemplar": "PDFs to writing exemplar cards",
         "ccf-paper-writer": "draft, budget, compress, present",
         "ccf-paper-reviewer": "science and writing review",
         "ccf-integrity-auditor": "claims, numbers, citations",
@@ -117,8 +121,10 @@ ROLE = {
         "ccf-pipeline-orchestrator": "阶段计划、gate、handoff",
         "ccf-idea-optimizer": "探索、救援、塑形",
         "ccf-idea-reviewer": "评分、排序、阶段风险",
+        "ccf-literature-monitor": "新论文、竞品、overlap",
         "ccf-literature-searcher": "prior art、open gap、benchmark",
         "ccf-experiment-designer": "baseline、消融、真实结果表",
+        "ccf-paper-to-exemplar": "PDF 转写作范例卡",
         "ccf-paper-writer": "起草、篇幅、压缩、展示",
         "ccf-paper-reviewer": "科学评审和写作评审",
         "ccf-integrity-auditor": "claim、数字、引用",
@@ -132,8 +138,10 @@ ROLE = {
         "ccf-pipeline-orchestrator": "階段計畫、gate、handoff",
         "ccf-idea-optimizer": "探索、救援、塑形",
         "ccf-idea-reviewer": "評分、排序、階段風險",
+        "ccf-literature-monitor": "新論文、競品、overlap",
         "ccf-literature-searcher": "prior art、open gap、benchmark",
         "ccf-experiment-designer": "baseline、消融、真實結果表",
+        "ccf-paper-to-exemplar": "PDF 轉寫作範例卡",
         "ccf-paper-writer": "起草、篇幅、壓縮、展示",
         "ccf-paper-reviewer": "科學審稿和寫作審稿",
         "ccf-integrity-auditor": "claim、數字、引用",
@@ -238,8 +246,8 @@ def build_architecture(lang: str) -> None:
     groups = [
         (labels[0], 70, 228, ["ccf-project-scaffolder", "ccf-pipeline-orchestrator"], COLORS["setup"]),
         (labels[1], 650, 228, ["ccf-idea-optimizer", "ccf-idea-reviewer"], COLORS["idea"]),
-        (labels[2], 1230, 228, ["ccf-literature-searcher", "ccf-experiment-designer"], COLORS["evidence"]),
-        (labels[3], 70, 560, ["ccf-paper-writer"], COLORS["writing"]),
+        (labels[2], 1230, 228, ["ccf-literature-monitor", "ccf-literature-searcher", "ccf-experiment-designer"], COLORS["evidence"]),
+        (labels[3], 70, 560, ["ccf-paper-to-exemplar", "ccf-paper-writer"], COLORS["writing"]),
         (labels[4], 650, 560, ["ccf-paper-reviewer", "ccf-integrity-auditor"], COLORS["review"]),
         (labels[5], 1230, 560, ["ccf-submission-checker", "ccf-rebuttal-writer"], COLORS["submission"]),
     ]
@@ -264,15 +272,17 @@ def build_architecture(lang: str) -> None:
 
 
 def build_workflow(lang: str) -> None:
-    parts = start(1040, lang, "workflow")
+    parts = start(1240, lang, "workflow")
     steps = {
         "en": [
             ("Scaffold", "project tree + ccfa.yaml", "ccf-project-scaffolder"),
             ("Plan", "stage gates + owners", "ccf-pipeline-orchestrator"),
             ("Shape Idea", "rescue + insight", "ccf-idea-optimizer"),
             ("Stage Review", "score + staged risks", "ccf-idea-reviewer"),
-            ("Evidence", "prior art + open gaps", "ccf-literature-searcher"),
+            ("Monitor", "new papers + competitors", "ccf-literature-monitor"),
+            ("Search", "prior art + open gaps", "ccf-literature-searcher"),
             ("Experiment", "baselines + tables", "ccf-experiment-designer"),
+            ("Exemplar", "PDFs to style cards", "ccf-paper-to-exemplar"),
             ("Write", "venue-aware manuscript", "ccf-paper-writer"),
             ("Review", "scientific + writing report", "ccf-paper-reviewer"),
             ("Audit", "claims + citations", "ccf-integrity-auditor"),
@@ -284,8 +294,10 @@ def build_workflow(lang: str) -> None:
             ("规划", "阶段 gate + owner", "ccf-pipeline-orchestrator"),
             ("优化 idea", "救援 + insight", "ccf-idea-optimizer"),
             ("阶段评审", "评分 + 阶段风险", "ccf-idea-reviewer"),
-            ("证据", "prior art + open gap", "ccf-literature-searcher"),
+            ("监控", "新论文 + 竞品", "ccf-literature-monitor"),
+            ("检索", "prior art + open gap", "ccf-literature-searcher"),
             ("实验", "baseline + 表格", "ccf-experiment-designer"),
+            ("范例", "PDF 到写作卡", "ccf-paper-to-exemplar"),
             ("写作", "会议感知正文", "ccf-paper-writer"),
             ("评审", "科学 + 写作报告", "ccf-paper-reviewer"),
             ("审计", "claim + 引用", "ccf-integrity-auditor"),
@@ -297,8 +309,10 @@ def build_workflow(lang: str) -> None:
             ("規劃", "階段 gate + owner", "ccf-pipeline-orchestrator"),
             ("優化 idea", "救援 + insight", "ccf-idea-optimizer"),
             ("階段審稿", "評分 + 階段風險", "ccf-idea-reviewer"),
-            ("證據", "prior art + open gap", "ccf-literature-searcher"),
+            ("監控", "新論文 + 競品", "ccf-literature-monitor"),
+            ("檢索", "prior art + open gap", "ccf-literature-searcher"),
             ("實驗", "baseline + 表格", "ccf-experiment-designer"),
+            ("範例", "PDF 到寫作卡", "ccf-paper-to-exemplar"),
             ("寫作", "會議感知正文", "ccf-paper-writer"),
             ("審稿", "科學 + 寫作報告", "ccf-paper-reviewer"),
             ("稽核", "claim + 引用", "ccf-integrity-auditor"),
@@ -331,20 +345,20 @@ def build_catalog(lang: str) -> None:
     group_defs = {
         "en": [
             ("Project Control", ["ccf-project-scaffolder", "ccf-pipeline-orchestrator", "ccf-common"]),
-            ("Research Formation", ["ccf-idea-optimizer", "ccf-idea-reviewer", "ccf-literature-searcher"]),
-            ("Evidence To Paper", ["ccf-experiment-designer", "ccf-paper-writer", "ccf-paper-reviewer"]),
+            ("Research Formation", ["ccf-idea-optimizer", "ccf-idea-reviewer", "ccf-literature-monitor", "ccf-literature-searcher"]),
+            ("Evidence To Paper", ["ccf-experiment-designer", "ccf-paper-to-exemplar", "ccf-paper-writer", "ccf-paper-reviewer"]),
             ("Delivery And Governance", ["ccf-integrity-auditor", "ccf-submission-checker", "ccf-rebuttal-writer", "ccf-skill-forger"]),
         ],
         "zh-CN": [
             ("项目控制", ["ccf-project-scaffolder", "ccf-pipeline-orchestrator", "ccf-common"]),
-            ("研究成型", ["ccf-idea-optimizer", "ccf-idea-reviewer", "ccf-literature-searcher"]),
-            ("证据到正文", ["ccf-experiment-designer", "ccf-paper-writer", "ccf-paper-reviewer"]),
+            ("研究成型", ["ccf-idea-optimizer", "ccf-idea-reviewer", "ccf-literature-monitor", "ccf-literature-searcher"]),
+            ("证据到正文", ["ccf-experiment-designer", "ccf-paper-to-exemplar", "ccf-paper-writer", "ccf-paper-reviewer"]),
             ("交付与治理", ["ccf-integrity-auditor", "ccf-submission-checker", "ccf-rebuttal-writer", "ccf-skill-forger"]),
         ],
         "zh-TW": [
             ("專案控制", ["ccf-project-scaffolder", "ccf-pipeline-orchestrator", "ccf-common"]),
-            ("研究成型", ["ccf-idea-optimizer", "ccf-idea-reviewer", "ccf-literature-searcher"]),
-            ("證據到正文", ["ccf-experiment-designer", "ccf-paper-writer", "ccf-paper-reviewer"]),
+            ("研究成型", ["ccf-idea-optimizer", "ccf-idea-reviewer", "ccf-literature-monitor", "ccf-literature-searcher"]),
+            ("證據到正文", ["ccf-experiment-designer", "ccf-paper-to-exemplar", "ccf-paper-writer", "ccf-paper-reviewer"]),
             ("交付與治理", ["ccf-integrity-auditor", "ccf-submission-checker", "ccf-rebuttal-writer", "ccf-skill-forger"]),
         ],
     }[lang]
@@ -356,25 +370,28 @@ def build_catalog(lang: str) -> None:
 
 
 def build_routing(lang: str) -> None:
-    parts = start(980, lang, "routing")
+    parts = start(1120, lang, "routing")
     pairs = {
         "en": [
             ("rough idea / rescue", "ccf-idea-optimizer", "rank or score ideas", "ccf-idea-reviewer"),
-            ("find papers / gaps", "ccf-literature-searcher", "audit cited papers", "ccf-integrity-auditor"),
+            ("monitor new papers", "ccf-literature-monitor", "deep related work", "ccf-literature-searcher"),
+            ("audit cited papers", "ccf-integrity-auditor", "extract exemplars", "ccf-paper-to-exemplar"),
             ("design experiments", "ccf-experiment-designer", "write manuscript text", "ccf-paper-writer"),
             ("judge paper quality", "ccf-paper-reviewer", "check submission package", "ccf-submission-checker"),
             ("answer reviewers", "ccf-rebuttal-writer", "maintain skills / SVG", "ccf-skill-forger"),
         ],
         "zh-CN": [
             ("优化 / 救 idea", "ccf-idea-optimizer", "给 idea 排名评分", "ccf-idea-reviewer"),
-            ("找文献 / gap", "ccf-literature-searcher", "审计已引用文献", "ccf-integrity-auditor"),
+            ("监控新论文", "ccf-literature-monitor", "深度相关工作", "ccf-literature-searcher"),
+            ("审计已引用文献", "ccf-integrity-auditor", "抽取写作范例", "ccf-paper-to-exemplar"),
             ("设计实验", "ccf-experiment-designer", "写正文", "ccf-paper-writer"),
             ("判断论文质量", "ccf-paper-reviewer", "检查投稿包", "ccf-submission-checker"),
             ("回复审稿人", "ccf-rebuttal-writer", "维护 skills / SVG", "ccf-skill-forger"),
         ],
         "zh-TW": [
             ("優化 / 救 idea", "ccf-idea-optimizer", "給 idea 排名評分", "ccf-idea-reviewer"),
-            ("找文獻 / gap", "ccf-literature-searcher", "稽核已引用文獻", "ccf-integrity-auditor"),
+            ("監控新論文", "ccf-literature-monitor", "深度相關工作", "ccf-literature-searcher"),
+            ("稽核已引用文獻", "ccf-integrity-auditor", "抽取寫作範例", "ccf-paper-to-exemplar"),
             ("設計實驗", "ccf-experiment-designer", "寫正文", "ccf-paper-writer"),
             ("判斷論文品質", "ccf-paper-reviewer", "檢查投稿包", "ccf-submission-checker"),
             ("回覆審稿人", "ccf-rebuttal-writer", "維護 skills / SVG", "ccf-skill-forger"),
@@ -404,19 +421,22 @@ def build_artifacts(lang: str) -> None:
     parts.append(text(900, 468, center[1], 16, 520, "#D8E6F2", "middle"))
     nodes = [
         ("idea_brief.md", "ccf-idea-optimizer", 90, 250),
-        ("literature.md", "ccf-literature-searcher", 500, 230),
-        ("experiments.md", "ccf-experiment-designer", 1220, 230),
-        ("manuscript.tex", "ccf-paper-writer", 90, 610),
-        ("review.md", "ccf-paper-reviewer", 500, 640),
-        ("submission/", "ccf-submission-checker", 910, 640),
-        ("rebuttal.tex", "ccf-rebuttal-writer", 1320, 610),
+        ("monitoring.md", "ccf-literature-monitor", 500, 230),
+        ("literature.md", "ccf-literature-searcher", 910, 230),
+        ("experiments.md", "ccf-experiment-designer", 1320, 230),
+        ("manuscript.tex", "ccf-paper-writer", 60, 610),
+        ("exemplars/*.md", "ccf-paper-to-exemplar", 405, 640),
+        ("review.md", "ccf-paper-reviewer", 750, 640),
+        ("submission/", "ccf-submission-checker", 1095, 640),
+        ("rebuttal.tex", "ccf-rebuttal-writer", 1440, 610),
     ]
+    for _title, _owner, x, y in nodes:
+        parts.append(line(900, 515 if y > 520 else 365, x + 165, y + 54, "#A7B2C0", 2))
     for title, owner, x, y in nodes:
         color = COLORS[SKILL_STAGE[owner]]
         parts.append(rect(x, y, 330, 108, PANEL, "none", 22, 'filter="url(#shadow)"'))
         parts.append(text(x + 28, y + 42, title, 24, 820, INK))
         parts.append(text(x + 28, y + 75, owner, 14, 650, color))
-        parts.append(line(900, 515 if y > 520 else 365, x + 165, y + 54, "#A7B2C0", 2))
     finish(parts, "artifacts", lang)
 
 
@@ -460,7 +480,7 @@ def build_installation(lang: str) -> None:
     sets = {
         "en": [
             ("Required core", ["ccf-common", "routing, policies, artifact contract"], COLORS["gov"]),
-            ("Full paper loop", ["all 13 runtime skills", "best for end-to-end research projects"], COLORS["setup"]),
+            ("Full paper loop", ["all 15 runtime skills", "best for end-to-end research projects"], COLORS["setup"]),
             ("Writing subset", ["common + writer + reviewer + submission", "for draft, polish, format checks"], COLORS["writing"]),
             ("Early research subset", ["common + idea + literature + experiments", "for project planning before drafting"], COLORS["idea"]),
             ("Submission subset", ["common + writer + integrity + submission", "for final package readiness"], COLORS["submission"]),
@@ -468,7 +488,7 @@ def build_installation(lang: str) -> None:
         ],
         "zh-CN": [
             ("必装核心", ["ccf-common", "路由、策略、artifact 合约"], COLORS["gov"]),
-            ("完整论文闭环", ["全部 13 个 runtime skills", "适合端到端研究项目"], COLORS["setup"]),
+            ("完整论文闭环", ["全部 15 个 runtime skills", "适合端到端研究项目"], COLORS["setup"]),
             ("写作子集", ["common + writer + reviewer + submission", "用于起草、润色、格式检查"], COLORS["writing"]),
             ("早期研究子集", ["common + idea + literature + experiments", "用于写稿前规划"], COLORS["idea"]),
             ("投稿子集", ["common + writer + integrity + submission", "用于最终投稿包检查"], COLORS["submission"]),
@@ -476,7 +496,7 @@ def build_installation(lang: str) -> None:
         ],
         "zh-TW": [
             ("必裝核心", ["ccf-common", "路由、策略、artifact 合約"], COLORS["gov"]),
-            ("完整論文閉環", ["全部 13 個 runtime skills", "適合端到端研究專案"], COLORS["setup"]),
+            ("完整論文閉環", ["全部 15 個 runtime skills", "適合端到端研究專案"], COLORS["setup"]),
             ("寫作子集", ["common + writer + reviewer + submission", "用於起草、潤飾、格式檢查"], COLORS["writing"]),
             ("早期研究子集", ["common + idea + literature + experiments", "用於寫稿前規劃"], COLORS["idea"]),
             ("投稿子集", ["common + writer + integrity + submission", "用於最終投稿包檢查"], COLORS["submission"]),

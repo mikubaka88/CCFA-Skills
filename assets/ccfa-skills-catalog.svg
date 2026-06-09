@@ -8,8 +8,8 @@
 <rect x="0" y="0" width="1800" height="1100" rx="0" fill="#F6F8FB" stroke="none" stroke-width="2" />
 <rect x="0" y="0" width="1800" height="158" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
 <text x="72" y="66" font-size="44" font-weight="850" fill="#FFFFFF" text-anchor="start">Installable Runtime Skills</text>
-<text x="72" y="108" font-size="20" font-weight="500" fill="#D8E6F2" text-anchor="start">The consolidated 13-skill surface after helper modes were merged.</text>
-<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.5 · 14 owner skills · one paper-project loop</text>
+<text x="72" y="108" font-size="20" font-weight="500" fill="#D8E6F2" text-anchor="start">The consolidated 15-skill surface with monitoring and exemplar support.</text>
+<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.5 · 15 owner skills · one paper-project loop</text>
 <rect x="70" y="235" width="380" height="328" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="70" y="235" width="380" height="52" rx="24" fill="#1F7A8C" stroke="none" stroke-width="2" />
 <text x="92" y="269" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">Project Control</text>
@@ -27,7 +27,7 @@
 <text x="112" y="503" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-common</text>
 <text x="112" y="528" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">routing, policy, source</text>
 <text x="112" y="546" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">registry</text>
-<rect x="505" y="235" width="380" height="328" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="505" y="235" width="380" height="410" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="505" y="235" width="380" height="52" rx="24" fill="#D2673D" stroke="none" stroke-width="2" />
 <text x="527" y="269" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">Research Formation</text>
 <rect x="523" y="305" width="344" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
@@ -40,10 +40,15 @@
 <text x="547" y="446" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">score, rank, staged risk</text>
 <rect x="523" y="469" width="344" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="523" y="469" width="8" height="66" rx="18" fill="#6657A8" stroke="none" stroke-width="2" />
-<text x="547" y="503" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-literature-searcher</text>
-<text x="547" y="528" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">prior art, open gaps,</text>
-<text x="547" y="546" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">benchmarks</text>
-<rect x="940" y="235" width="380" height="328" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="547" y="503" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-literature-monitor</text>
+<text x="547" y="528" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">new papers, competitors,</text>
+<text x="547" y="546" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">overlap</text>
+<rect x="523" y="551" width="344" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="523" y="551" width="8" height="66" rx="18" fill="#6657A8" stroke="none" stroke-width="2" />
+<text x="547" y="585" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-literature-searcher</text>
+<text x="547" y="610" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">prior art, open gaps,</text>
+<text x="547" y="628" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">benchmarks</text>
+<rect x="940" y="235" width="380" height="410" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="940" y="235" width="380" height="52" rx="24" fill="#6657A8" stroke="none" stroke-width="2" />
 <text x="962" y="269" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">Evidence To Paper</text>
 <rect x="958" y="305" width="344" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
@@ -53,13 +58,17 @@
 <text x="982" y="382" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">tables</text>
 <rect x="958" y="387" width="344" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="958" y="387" width="8" height="66" rx="18" fill="#2D3742" stroke="none" stroke-width="2" />
-<text x="982" y="421" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-writer</text>
-<text x="982" y="446" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">draft, budget, compress,</text>
-<text x="982" y="464" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">present</text>
+<text x="982" y="421" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-to-exemplar</text>
+<text x="982" y="446" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">PDFs to writing exemplar cards</text>
 <rect x="958" y="469" width="344" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="958" y="469" width="8" height="66" rx="18" fill="#B58B2A" stroke="none" stroke-width="2" />
-<text x="982" y="503" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-reviewer</text>
-<text x="982" y="528" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">science and writing review</text>
+<rect x="958" y="469" width="8" height="66" rx="18" fill="#2D3742" stroke="none" stroke-width="2" />
+<text x="982" y="503" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-writer</text>
+<text x="982" y="528" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">draft, budget, compress,</text>
+<text x="982" y="546" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">present</text>
+<rect x="958" y="551" width="344" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="958" y="551" width="8" height="66" rx="18" fill="#B58B2A" stroke="none" stroke-width="2" />
+<text x="982" y="585" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-reviewer</text>
+<text x="982" y="610" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">science and writing review</text>
 <rect x="1375" y="235" width="380" height="410" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="1375" y="235" width="380" height="52" rx="24" fill="#8A4F86" stroke="none" stroke-width="2" />
 <text x="1397" y="269" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">Delivery And Governance</text>

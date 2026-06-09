@@ -77,3 +77,44 @@ Before finalizing scores:
 3. Are strength claims backed by exact manuscript evidence?
 4. Are score-change conditions concrete and feasible?
 5. Is the score calibrated to the named venue rather than generic positivity?
+
+## Mandatory Scorecard Output
+
+After every review, output the following structured scorecard. Do not skip dimensions. Keep prose concise unless the user requests a detailed rationale.
+
+```markdown
+## Scorecard
+
+| Dimension | Score (1-5) | Confidence (1-5) | Evidence basis | Deduction / score-change condition |
+|:---|:---:|:---:|:---|:---|
+| Novelty | [1-5] | [1-5] | [section/paragraph/line ref] | [deduction and repair condition] |
+| Soundness | [1-5] | [1-5] | [section/paragraph/line ref] | [deduction and repair condition] |
+| Evidence | [1-5] | [1-5] | [section/paragraph/line ref] | [deduction and repair condition] |
+| Significance | [1-5] | [1-5] | [section/paragraph/line ref] | [deduction and repair condition] |
+| Clarity | [1-5] | [1-5] | [section/paragraph/line ref] | [deduction and repair condition] |
+| Reproducibility | [1-5] | [1-5] | [section/paragraph/line ref] | [deduction and repair condition] |
+| Ethics / Limitations | [1-5] | [1-5] | [section/paragraph/line ref] | [deduction and repair condition] |
+
+**Overall:** [1-10]  | **Scholarly Confidence:** [1-5]
+
+**Recommendation:** [accept/weak-accept/borderline/weak-reject/reject]
+**Verdict:** [What condition(s) would raise or lower the score by 1 point?]
+```
+
+## Scoring Rules
+
+1. All dimensions must be scored. Do not skip dimensions because they are inconvenient. If a dimension genuinely does not apply, score it by the closest applicable standard and state the limitation.
+2. Each score must be backed by at least one verifiable manuscript reference. Do not write "The paper is not well organized." Write "Section 3.1 (para 2) introduces a method without naming or motivating the insight and fails to separate the differential contribution from the components. 3/5 clarity."
+3. Evidence means manuscript evidence, not promise. 1/5 evidence means the cited evidence is either not present or not persuasive. 5/5 means evidence is conclusive and includes ablations, robustness, and failure analysis.
+4. Confidence is not a dimension score. Confidence is an estimate of how well evidence can be assessed without guesswork. Use 1/5 when there are almost no verifiable evidence citations or when an appendix/code is missing. Use 5/5 when all evidence is verifiable against the manuscript.
+5. Never round scores. If the paper is between 6 and 7, pick one and explain why the tie-breaker is decisive.
+
+## Score-Change Conditions
+
+After the scorecard, include a compact condition table:
+
+| Change | Condition | Likely affected dimensions | Expected movement |
+| --- | --- | --- | --- |
+| Raise score | [concrete evidence/edit] | [dimensions] | [+0.5/+1 overall or dimension-only] |
+| Lower score | [failure revealed by closer inspection] | [dimensions] | [-0.5/-1 overall or fatal] |
+| No quick change | [issue requiring new result or new method] | [dimensions] | [unlikely before submission] |

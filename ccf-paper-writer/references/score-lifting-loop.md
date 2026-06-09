@@ -130,6 +130,7 @@ Use these moves only when supported by the manuscript:
 ```text
 Current likely score:
 Target score:
+Criterion scorecard:
 Main blockers:
 Fixability table:
 Priority revision queue:

@@ -116,10 +116,22 @@ Likely score:
 Confidence:
 Main positive signal:
 Main negative signal:
+Evidence basis:
 Score-change condition:
 ```
 
-Use at least method/soundness, evidence/experiment, novelty/positioning, writing/clarity, ethics/reproducibility, and AC perspectives.
+Use at least method/soundness, evidence/experiment, novelty/positioning, writing/clarity, ethics/reproducibility, and AC perspectives. For full reviews, also include domain application, evidence/ablation, reproducibility, and novice-advocate lenses when applicable. Do not force praise, disagreement, or rejection; if a role cannot judge, mark the missing evidence.
+
+End the panel with:
+
+```text
+Agreement:
+Disagreement:
+Decisive positive axis:
+Decisive negative axis:
+Unresolved evidence:
+AC stance:
+```
 
 ## 11. Concerns Table
 
@@ -143,9 +155,9 @@ Include:
 - AC stance,
 - discussion risks.
 
-## 13. Scores
+## 13. Quantitative Scores
 
-Use this order:
+Use the scorecard from `references/calibration-and-rank.md`, then include this compact summary:
 
 ```text
 Quality:
@@ -158,6 +170,7 @@ Reproducibility:
 Ethics / Limitations:
 Overall:
 Confidence:
+Score-change conditions:
 ```
 
 Use venue-specific scales when available; otherwise use 1-5 criteria and 1-10 overall.

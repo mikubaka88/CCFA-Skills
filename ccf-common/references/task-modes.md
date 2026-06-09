@@ -74,6 +74,18 @@ When a non-review task is under-specified, proceed with reasonable assumptions a
 
 Visible output should maximize useful information and minimize boilerplate. Avoid long disclaimers, repeated "what this is not" lists, vague praise, generic next steps, and empty section headings. Every paragraph, bullet, or table row should contain at least one of: a concrete claim, a specific edit, an evidence link, a named artifact, a decision, a blocker, a quantified value, or an actionable question.
 
+## Output Quality Gate
+
+Before returning a visible artifact, every CCFA skill should do one quick self-read:
+
+1. The answer follows the requested or promised output format.
+2. Headings, bullets, and tables are complete and in a logical order.
+3. Review and audit outputs include concrete evidence, severity, score or pass/fail status, and action conditions where applicable.
+4. Writing outputs preserve the user's source format unless restructuring was requested.
+5. Chinese and English punctuation are used consistently; mixed punctuation is allowed only when required by code, LaTeX, citations, or filenames.
+6. The argument flow is clear: problem -> reason -> consequence -> action, or broader claim -> evidence -> limitation -> next step.
+7. No generic filler remains where a concrete location, artifact, or action is required.
+
 ## Minimal Status
 
 Every CCFA skill may include mode in final output when checklist strictness affects reliability:

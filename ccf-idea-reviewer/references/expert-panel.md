@@ -4,6 +4,8 @@ Use this file for role-specific idea review. Keep roles independent before aggre
 
 Each expert must write as a strict reviewer, not as a generic coach. Do not use generic praise or generic concern. Every role must name a concrete claim, mechanism, closest-work risk, evidence gap, or venue criterion. After the strict concern, each role must name the smallest repair or evidence test that would change its judgment; if no repair exists, explain why.
 
+Do not force roles to disagree, praise, or reject. A role may say that the idea is plausible on its axis, but it must state the evidence that supports that view. A role may also say `insufficient evidence` when the idea or search basis is too incomplete for a fair judgment.
+
 ## Required Roles
 
 ### Field Expert
@@ -67,6 +69,8 @@ Add only when relevant:
 - Theory/proof expert.
 - Security threat-model expert.
 - Dataset/benchmark curator.
+- Domain practitioner.
+- Resource and implementation feasibility reviewer.
 
 ## Per-Expert Output
 
@@ -84,3 +88,17 @@ Confidence:
 ```
 
 If a role cannot find a rejection-grade concern, say why and identify the evidence that supports that confidence. Do not fill the field with generic encouragement.
+
+## Panel Synthesis
+
+After all independent role notes, synthesize without averaging away fatal risks:
+
+```text
+Agreement:
+Disagreement:
+Strongest accept argument:
+Strongest reject argument:
+Score-relevant uncertainty:
+Most valuable next evidence:
+Panel-calibrated recommendation:
+```

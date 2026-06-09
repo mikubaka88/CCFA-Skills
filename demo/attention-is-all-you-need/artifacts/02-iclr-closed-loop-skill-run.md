@@ -1,6 +1,6 @@
 # 02 - ICLR Closed-Loop Skill Run
 
-This file records the intended closed loop across the current 13 runtime skills. It is not a routing checklist only: each row names a concrete artifact or decision produced by that skill.
+This file records the intended closed loop across the current 15 runtime skills. It is not a routing checklist only: each row names a concrete artifact or decision produced by that skill.
 
 | Step | Skill | Input | Concrete output |
 | --- | --- | --- | --- |

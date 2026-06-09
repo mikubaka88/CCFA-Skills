@@ -24,6 +24,8 @@ If the user says not to use, disable, skip, or avoid a sibling skill, do not inv
 
 Do not invent prior art, experimental evidence, reviewer sentiment, or acceptance probability. Separate low novelty from unknown novelty, and report confidence independently from score.
 
+Load `../ccf-common/references/review-output-standards.md` whenever producing numeric scores, multi-expert panel notes, score-change conditions, or standard-mode reports.
+
 Treat rough ideas, unpublished method details, draft abstracts, and experiment plans as private user data. Load `../ccf-common/references/privacy-and-evidence.md` before browsing, using private text in a query, or making evidence/provenance claims.
 
 ## Core Rule
@@ -42,12 +44,12 @@ In standard mode, complete this checklist before any idea score, ranking, or rec
 2. Each idea is normalized into problem, gap, root challenge, insight, method mechanism, expected evidence, and limitation.
 3. Literature status is labeled as searched, partially searched, user-provided only, or not searched.
 4. Standard mode has a closest-work table from public-safe literature search unless the user forbids browsing or privacy prevents safe queries.
-5. Multi-expert roles are applied: field expert, method expert, experiment expert, AC/venue expert, and skeptical prior-art expert.
-6. All rubric dimensions are scored on 1-5 or marked not applicable with a reason.
+5. Multi-expert roles are applied independently: field expert, method expert, experiment expert, AC/venue expert, and skeptical prior-art expert. Add ethics, systems, theory, user-study, security, or dataset roles only when relevant.
+6. All rubric dimensions are scored on 1-5 or marked not applicable with a reason; every score of 3 or below includes deduction, evidence basis, repair condition, and expected score movement.
 7. Fatal risks are separated from fixable weaknesses and local refinements.
 8. Confidence is reported separately from score.
 9. The final recommendation is one of: accept-to-develop, revise, pivot-with-rescue-route, abandon, or needs-literature-search. `abandon` is reserved for no plausible reformulation, not ordinary weakness.
-10. Any optional module transition to `ccf-literature-searcher`, `ccf-idea-optimizer`, `ccf-experiment-designer`, or `ccf-paper-writer` follows the CCFA handoff mode; if denied or disabled, output upgrade actions only.
+10. Any optional module transition to `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-idea-optimizer`, `ccf-experiment-designer`, or `ccf-paper-writer` follows the CCFA handoff mode; if denied or disabled, output upgrade actions only.
 
 Load `references/strict-idea-review.md` in standard mode or whenever the user asks for strict review, novelty diagnosis, or literature-backed scoring. Load `references/rubric.md` whenever producing numeric scores.
 
@@ -58,8 +60,8 @@ Load `references/strict-idea-review.md` in standard mode or whenever the user as
 3. Map the venue family and review lens. If the user names a current venue policy, page rule, review form, or target-year criterion, verify the official source before applying it.
 4. In standard mode, load `references/strict-idea-review.md` and search closest literature with public-safe queries. Prefer `ccf-literature-searcher` when allowed by handoff mode; otherwise use local browsing and the shared source policy. Apply source-quality exclusions. If not searched, cap novelty confidence and state the exact uncertainty.
 5. Build the closest-work table and novelty delta before scoring. A novelty claim must say what remains after subtracting the nearest prior work.
-6. Load `references/expert-panel.md` and produce independent notes from the required expert roles. Each role must include at least one concrete rejection-grade concern or a reason no such concern exists.
-7. Load `references/rubric.md` and score the 10 dimensions. Use `references/calibration.md` to aggregate, calibrate confidence, apply fatal gates, and choose a recommendation.
+6. Load `../ccf-common/references/review-output-standards.md` and `references/expert-panel.md`; produce independent notes from the required expert roles. Each role must include a concrete rejection-grade concern or a reason no such concern exists. Do not force disagreement, praise, or rejection.
+7. Load `references/rubric.md` and score the 10 dimensions. Use `references/calibration.md` to aggregate, calibrate confidence, apply fatal gates, and choose a recommendation. Include score-change conditions rather than unsupported acceptance probabilities.
 8. Convert every major weakness into an upgrade action. Label actions as problem-refinement, method-redesign, novelty-grounding, evidence-design, feasibility-check, venue-switch, pivot, or abandon. For every idea that is not `accept-to-develop`, include the smallest change that could raise development potential.
 9. For multiple ideas, rank by serious-risk-adjusted score after the literature and mechanism scan. Prefer ideas with fewer severe novelty/soundness/evidence risks even if they are less fashionable. If all ideas score low, still identify the best salvageable ingredient in each and the single most promising rescue path overall.
 10. If the idea is viable but underdeveloped, follow the CCFA handoff mode before using `ccf-idea-optimizer` for targeted repair. If the evidence package is the main weakness, follow handoff mode before using `ccf-experiment-designer`. If a module is denied, stop at verdict, risks, and action queue.
@@ -80,6 +82,7 @@ Serious blockers:
 Per-expert reviewer notes:
 Rubric scores:
 Weighted final score:
+Score-change conditions:
 Confidence:
 Strict reviewer comments:
 Fixability table:
@@ -88,6 +91,7 @@ Evidence that would change my score:
 Recommendation:
 Optional next-module decision:
 Checklist status:
+Output self-check:
 ```
 
 For quick mode, return a compact version:
@@ -125,5 +129,6 @@ Load only what is needed:
 - `references/rubric.md`: Use for dimensions, weights, and 1-5 scoring anchors.
 - `references/calibration.md`: Use for weighted scores, fatal gates, confidence, recommendations, and multi-idea tournaments.
 - `references/source-notes.md`: Use when explaining provenance, official criteria, or current literature/venue checks.
+- `../ccf-common/references/review-output-standards.md`: Use for quantitative feedback, independent panel discipline, score-change conditions, and final output self-check.
 
-If the user asks to improve the idea rather than score it, follow the CCFA handoff mode before switching to `ccf-idea-optimizer` unless explicitly named. If the user asks mainly for current related work, route to `ccf-literature-searcher`. If the user provides a full paper draft and asks for paper review, follow the CCFA handoff mode before switching to `ccf-paper-reviewer`; if not confirmed, provide only idea-stage caveats.
+If the user asks to improve the idea rather than score it, follow the CCFA handoff mode before switching to `ccf-idea-optimizer` unless explicitly named. If the user asks mainly for recent-paper monitoring or competitor tracking, route to `ccf-literature-monitor`; if the user asks for deep related work, route to `ccf-literature-searcher`. If the user provides a full paper draft and asks for paper review, follow the CCFA handoff mode before switching to `ccf-paper-reviewer`; if not confirmed, provide only idea-stage caveats.

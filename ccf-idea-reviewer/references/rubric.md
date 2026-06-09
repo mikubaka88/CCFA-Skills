@@ -23,6 +23,44 @@ Score current readiness, not the user's worth or the absolute future of the dire
 
 Weights sum to 100. Adjust only when an official venue review form makes a dimension clearly more important, and state the adjustment.
 
+## Quantitative Feedback Output
+
+For standard idea review, output both a dimension scorecard and an aggregate score. Use:
+
+```text
+Weighted score (1-5) = sum(dimension score * weight) / 100
+Optional overall score (1-10) = weighted score * 2
+```
+
+Do not treat the weighted score as an acceptance probability. The score is a decision aid that must be read with fatal risks, literature-search status, and development potential.
+
+Include this table:
+
+| Dimension | Weight | Score (1-5) | Confidence (1-5) | Deduction / evidence basis | Repair condition |
+| --- | ---: | ---: | ---: | --- | --- |
+| Problem importance | 12 |  |  |  |  |
+| Novelty against likely prior work | 14 |  |  |  |  |
+| Conceptual innovation | 12 |  |  |  |  |
+| Method soundness | 14 |  |  |  |  |
+| Elegance and simplicity | 8 |  |  |  |  |
+| Feasibility under resources | 8 |  |  |  |  |
+| Experimental convincibility | 10 |  |  |  |  |
+| Venue and audience fit | 8 |  |  |  |  |
+| Timeliness and topic heat | 6 |  |  |  |  |
+| Risk-adjusted acceptance potential | 8 |  |  |  |  |
+
+Then report:
+
+```text
+Weighted final score:
+Current conference readiness:
+Development potential:
+Confidence:
+Score-change conditions:
+```
+
+Every score of 3 or below must name the exact claim, missing mechanism, closest-work risk, missing evidence, or venue criterion that caused the deduction.
+
 ## Score Anchors
 
 ### 5

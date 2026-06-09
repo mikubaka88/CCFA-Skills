@@ -13,6 +13,8 @@ Simulate multiple reviewer perspectives:
 5. Target-venue reviewer: alignment with the conference's review culture and expected evidence.
 6. Ethics/reproducibility reviewer when relevant.
 
+Run these perspectives independently before synthesis. Do not force praise, disagreement, or rejection; each role must cite draft evidence or mark the missing evidence that prevents judgment.
+
 ## Closed-Loop Workflow
 
 1. Calibrate the review target:
@@ -63,6 +65,15 @@ Confidence:
 Likely score:
 Per-criterion deductions:
 Score-change condition:
+```
+
+For writing-focused self-review, add:
+
+```text
+Writing score (1-5):
+Writing risk band:
+Evidence basis:
+Expected score movement:
 ```
 
 ## Revision Plan Format
@@ -124,6 +135,16 @@ Before finalizing the review, ask:
 3. Are conditional diagnostic changes tied to concrete edits or evidence?
 4. Are required new experiments, proofs, studies, or baselines clearly separated from writing-only fixes?
 5. Does the review use the target venue's taste instead of a generic positive tone?
+
+## Output Self-Check
+
+Before returning a revised section, score-risk report, or reviewer-style notes, check:
+
+1. Scores match the listed severity.
+2. Every score of 3 or below has a concrete edit, evidence addition, or claim-qualification condition.
+3. Reviewer roles do not duplicate the same generic complaint.
+4. Tables are valid Markdown and section labels are complete.
+5. The final text or action list uses clear problem -> reason -> action logic.
 
 ## Output Modes
 

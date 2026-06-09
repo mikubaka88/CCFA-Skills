@@ -18,8 +18,9 @@ metadata:
 
 This is the manuscript text owner. It also owns local compression and presentation adaptation because both change paper wording or paper-derived communication. Keep idea scope, method mechanism, experiments, numbers, and conclusions unchanged unless the user explicitly authorizes a research-scope change. Follow `../ccf-common/references/task-modes.md`, especially the output-flexibility rule: user-requested output format comes before this skill's internal checklist shape.
 
-Do not invent results, baselines, experiments, reviewer impact, or missing evidence. For citations, never guess bib entries: search for the correct paper and obtain its bib entry before citing per 
-eferences/citation-workflow.md. Unsupported claims must be weakened, marked as needing evidence, or left unchanged with a risk note.
+Do not invent results, baselines, experiments, reviewer impact, or missing evidence. For citations, never guess bib entries: search for the correct paper and obtain its bib entry before citing `references/citation-workflow.md`. Unsupported claims must be weakened, marked as needing evidence, or left unchanged with a risk note.
+
+When running local writing self-review, score-risk checks, or reviewer-style revision loops, load `../ccf-common/references/review-output-standards.md`. Use scores as diagnostic feedback only; do not present them as acceptance probabilities.
 
 ## Core Rule
 
@@ -58,8 +59,8 @@ The visible output should feel like useful writing, not a process report. Use pl
 7. **Compile and check** (mandatory for full manuscripts when a LaTeX engine is available): compile the draft, measure the actual page count, and compare against the venue budget from step3. If under target by >15%, expand with mechanism detail, experiment setup, analysis, limitations, and `TBD` placeholders---not padding or invented results. If over target by >10%, compress with `references/compression-rules.md`. Recompile after any substantial change and repeat until the page count is within tolerance. Record the final status: `underfilled / target-fit / draft-over / final-over / not compiled`.
 8. For compression, load `references/compression-rules.md`; return compressed text in the same format and include a cut log only when requested or when content was materially removed.
 9. For presentation adaptation, derive slides/poster/talk/Q&A only from the manuscript and supplied evidence, in the user's requested slide/poster/script format.
-10. If current literature, baselines, or experiments are missing, ask a targeted question or hand off to `ccf-literature-searcher` or `ccf-experiment-designer`; do not fill gaps by invention.
-11. Before calling text ready, run a local score-risk check and, when needed, hand off to `ccf-paper-reviewer`.
+10. If current literature, baselines, or experiments are missing, ask a targeted question or hand off to `ccf-literature-monitor` for recent-paper/competitor watch, `ccf-literature-searcher` for deep retrieval, or `ccf-experiment-designer` for experiment design; do not fill gaps by invention.
+11. Before calling text ready, run a local score-risk check with quantitative writing feedback when enough text is available; when scientific judgment is needed, hand off to `ccf-paper-reviewer`.
 
 ## Post-Writing Coordination
 
@@ -73,6 +74,7 @@ Next CCFA skills available:
 - ccf-integrity-auditor: citation existence, claim-evidence consistency, bibtex correctness
 - ccf-submission-checker: venue template compliance, page/anonymity limits, LaTeX compilation
 - ccf-experiment-designer: missing experiments, baseline design, ablation planning
+- ccf-literature-monitor: recent-paper tracking, competitor monitoring, novelty-threat alerts
 - ccf-literature-searcher: missing related work, closest-competitor search
 - ccf-rebuttal-writer: reviewer response, rebuttal drafting, revision ledger
 - ccf-pipeline-orchestrator: full-project planning, stage gates, next-skill routing
@@ -99,6 +101,7 @@ Only list skills that are actually relevant to the paper current state. Do not s
 - `references/writing-checklists.md`: readiness checks.
 - `references/score-lifting-loop.md`: score-risk improvement loop.
 - `references/expert-review-loop.md`: reviewer-style self-check.
+- `../ccf-common/references/review-output-standards.md`: quantitative feedback, reviewer-panel discipline, score-change conditions, and final output self-check.
 - `references/compression-rules.md`: page/word compression.
 - `references/table-style-guide.md`: LaTeX table beautification: booktabs rules, number precision, narrow-column fixes, caption style, and placement.
 - `references/exemplars/`: style-move references; never copy content.

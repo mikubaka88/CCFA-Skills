@@ -16,6 +16,7 @@ EXPECTED_SKILLS = {
     "ccf-idea-optimizer",
     "ccf-idea-reviewer",
     "ccf-integrity-auditor",
+    "ccf-literature-monitor",
     "ccf-literature-searcher",
     "ccf-paper-reviewer",
     "ccf-paper-writer",

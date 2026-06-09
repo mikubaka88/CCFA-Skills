@@ -1,0 +1,4 @@
+interface:
+  display_name: "CCF Literature Monitor"
+  short_description: "Monitor arXiv, OpenReview, conference feeds, labs, and competitor papers for idea overlap, new-paper tracking, and trend gaps."
+  default_prompt: "Use $ccf-literature-monitor to watch arXiv, OpenReview, conference feeds, labs, and competitor papers. Report overlaps factually."

@@ -520,6 +520,24 @@ sources:
     verified_at: null
     stale_after_days: 365
     notes: Exemplar source record.
+  - id: arxiv-api
+    title: arXiv API User Manual
+    url: https://arxiv.org/help/api/
+    source_type: background_method
+    used_by: [ccf-literature-monitor, ccf-literature-searcher]
+    recorded_at: 2026-06-09
+    verified_at: null
+    stale_after_days: 365
+    notes: Use for recent preprint discovery and category watch queries; verify final claims against paper pages.
+  - id: openreview-api
+    title: OpenReview API Documentation
+    url: https://docs.openreview.net/
+    source_type: background_method
+    used_by: [ccf-literature-monitor, ccf-literature-searcher, ccf-paper-reviewer]
+    recorded_at: 2026-06-09
+    verified_at: null
+    stale_after_days: 365
+    notes: Use for venue feed and review-platform paper discovery when public; do not expose private manuscript text in queries.
   - id: semantic-scholar-api
     title: Semantic Scholar API Documentation
     url: https://api.semanticscholar.org/api-docs/

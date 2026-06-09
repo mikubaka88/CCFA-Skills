@@ -9,36 +9,44 @@
 <rect x="0" y="0" width="1800" height="158" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
 <text x="72" y="66" font-size="44" font-weight="850" fill="#FFFFFF" text-anchor="start">Artifact 合約</text>
 <text x="72" y="108" font-size="20" font-weight="500" fill="#D8E6F2" text-anchor="start">ccfa.yaml 與檔案串聯 idea、證據、正文、審稿、投稿包和 rebuttal。</text>
-<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.5 · 14 個 owner skills · 一個論文專案閉環</text>
+<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.5 · 15 個 owner skills · 一個論文專案閉環</text>
 <rect x="570" y="365" width="660" height="150" rx="32" fill="#102033" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <text x="900" y="423" font-size="40" font-weight="860" fill="#FFFFFF" text-anchor="middle">ccfa.yaml</text>
 <text x="900" y="468" font-size="16" font-weight="520" fill="#D8E6F2" text-anchor="middle">version · stage · target_venue · artifacts · claims · reviews · checks</text>
+<line x1="900" y1="365" x2="255" y2="304" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="900" y1="365" x2="665" y2="284" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="900" y1="365" x2="1075" y2="284" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="900" y1="365" x2="1485" y2="284" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="900" y1="515" x2="225" y2="664" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="900" y1="515" x2="570" y2="694" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="900" y1="515" x2="915" y2="694" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="900" y1="515" x2="1260" y2="694" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="900" y1="515" x2="1605" y2="664" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
 <rect x="90" y="250" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <text x="118" y="292" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">idea_brief.md</text>
 <text x="118" y="325" font-size="14" font-weight="650" fill="#D2673D" text-anchor="start">ccf-idea-optimizer</text>
-<line x1="900" y1="365" x2="255" y2="304" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
 <rect x="500" y="230" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<text x="528" y="272" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">literature.md</text>
-<text x="528" y="305" font-size="14" font-weight="650" fill="#6657A8" text-anchor="start">ccf-literature-searcher</text>
-<line x1="900" y1="365" x2="665" y2="284" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="1220" y="230" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<text x="1248" y="272" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">experiments.md</text>
-<text x="1248" y="305" font-size="14" font-weight="650" fill="#6657A8" text-anchor="start">ccf-experiment-designer</text>
-<line x1="900" y1="365" x2="1385" y2="284" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="90" y="610" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<text x="118" y="652" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">manuscript.tex</text>
-<text x="118" y="685" font-size="14" font-weight="650" fill="#2D3742" text-anchor="start">ccf-paper-writer</text>
-<line x1="900" y1="515" x2="255" y2="664" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="500" y="640" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<text x="528" y="682" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">review.md</text>
-<text x="528" y="715" font-size="14" font-weight="650" fill="#B58B2A" text-anchor="start">ccf-paper-reviewer</text>
-<line x1="900" y1="515" x2="665" y2="694" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="910" y="640" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<text x="938" y="682" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">submission/</text>
-<text x="938" y="715" font-size="14" font-weight="650" fill="#BA4C5E" text-anchor="start">ccf-submission-checker</text>
-<line x1="900" y1="515" x2="1075" y2="694" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
-<rect x="1320" y="610" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<text x="1348" y="652" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">rebuttal.tex</text>
-<text x="1348" y="685" font-size="14" font-weight="650" fill="#477AA6" text-anchor="start">ccf-rebuttal-writer</text>
-<line x1="900" y1="515" x2="1485" y2="664" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<text x="528" y="272" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">monitoring.md</text>
+<text x="528" y="305" font-size="14" font-weight="650" fill="#6657A8" text-anchor="start">ccf-literature-monitor</text>
+<rect x="910" y="230" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="938" y="272" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">literature.md</text>
+<text x="938" y="305" font-size="14" font-weight="650" fill="#6657A8" text-anchor="start">ccf-literature-searcher</text>
+<rect x="1320" y="230" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="1348" y="272" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">experiments.md</text>
+<text x="1348" y="305" font-size="14" font-weight="650" fill="#6657A8" text-anchor="start">ccf-experiment-designer</text>
+<rect x="60" y="610" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="88" y="652" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">manuscript.tex</text>
+<text x="88" y="685" font-size="14" font-weight="650" fill="#2D3742" text-anchor="start">ccf-paper-writer</text>
+<rect x="405" y="640" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="433" y="682" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">exemplars/*.md</text>
+<text x="433" y="715" font-size="14" font-weight="650" fill="#2D3742" text-anchor="start">ccf-paper-to-exemplar</text>
+<rect x="750" y="640" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="778" y="682" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">review.md</text>
+<text x="778" y="715" font-size="14" font-weight="650" fill="#B58B2A" text-anchor="start">ccf-paper-reviewer</text>
+<rect x="1095" y="640" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="1123" y="682" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">submission/</text>
+<text x="1123" y="715" font-size="14" font-weight="650" fill="#BA4C5E" text-anchor="start">ccf-submission-checker</text>
+<rect x="1440" y="610" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="1468" y="652" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">rebuttal.tex</text>
+<text x="1468" y="685" font-size="14" font-weight="650" fill="#477AA6" text-anchor="start">ccf-rebuttal-writer</text>
 </svg>

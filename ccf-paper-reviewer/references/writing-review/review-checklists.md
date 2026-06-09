@@ -19,6 +19,8 @@ Use this file to prevent omissions during manuscript writing review, paragraph-b
 - Paragraph issues are tied to role, takeaway, logic, evidence, redundancy, and concrete edit action.
 - Global motivation and problem-gap-root-challenge chain are checked.
 - Claim-evidence alignment is included for major claims.
+- Quantitative writing scorecard is produced when enough text is available.
+- Writing-review panel roles are run independently before synthesis in standard mode.
 - Terminology, notation, datasets, models, and contribution wording are checked across sections.
 - Related work is checked for closest-work positioning, not citation-list volume.
 - Figures/tables/captions/equations/algorithms are checked when present.
@@ -80,6 +82,8 @@ If the user explicitly asks for paper scoring, simulated reviewers, AC/meta-revi
 Checklist status:
 - Venue/assumptions:
 - Reading scope:
+- Quantitative scorecard:
+- Writing-review panel:
 - Paragraph IDs:
 - Storyline:
 - Claim-evidence:

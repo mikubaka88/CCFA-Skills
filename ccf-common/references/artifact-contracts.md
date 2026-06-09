@@ -5,6 +5,7 @@ These contracts prevent CCFA skills from overwriting each other's work. Read bro
 | Artifact | Primary owner | Contract |
 | --- | --- | --- |
 | `ccfa.yaml` | `ccf-project-scaffolder`, `ccf-pipeline-orchestrator` | Scaffold creates it; orchestrator updates stage/gate state. Other skills may read and propose updates. |
+| `literature-monitor/*.md`, `output/literature-monitor/*` | `ccf-literature-monitor` | Stores dated monitoring reports, overlap flags, and watch summaries. Literature searcher may deep-retrieve flagged papers; reviewer/optimizer may use the flags for score or rescue decisions. |
 | `manuscript/*.tex` | `ccf-paper-writer` | Review and audit skills suggest edits; writing changes route back to paper writer unless user explicitly authorizes otherwise. |
 | `references/*.bib` | `ccf-integrity-auditor` | Integrity auditor verifies existing entries; literature searcher proposes new candidates. |
 | `experiments/results.*` | user, `ccf-experiment-designer` | Figure/table and integrity skills read supplied numbers only. |
