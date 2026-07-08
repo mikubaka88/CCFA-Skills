@@ -19,6 +19,10 @@ The bundled library must remain:
 | `lollipop_rank` | Headline metric comparison, benchmark result ranking, compact bar replacement. | Differences are tiny and uncertainty dominates. |
 | `slopegraph` | Paired changes such as base vs big, before vs after, old vs new. | Metrics are on unrelated scales without clear normalization or labels. |
 | `heatmap_matrix` | Dense model/config/dataset matrices and table-to-visual summaries. | Exact numeric lookup is more important than pattern reading. |
+| `donut_chart` | Composition, proportions, dataset/source split, error taxonomy, or budget allocation. | Exact comparison between many categories is the main task; use bars instead. |
+| `grouped_bar_chart` | Categorical comparisons across methods, datasets, ablations, cohorts, or settings. | Too many groups make labels unreadable; use small multiples or heatmaps. |
+| `volcano_plot` | Effect-size versus significance screening, feature/gene/module discovery, or large ablation scans. | P-values, effect sizes, or thresholds are not supplied. |
+| `correlation_heatmap` | Metric-feature relationships, module interactions, dataset correlations, or diagnostic matrices. | The sample size is too small or correlation is not meaningful for the data type. |
 | `ridgeline_density` | Seed distributions, sample distributions, uncertainty, repeated-run behavior. | The paper only has one value per group. |
 | `small_multiple_lines` | Trends across datasets, scales, ablations, or time. | Panels do not share a comparable visual grammar. |
 | `radial_scorecard` | Multi-criterion profile summaries for exploratory or slide visuals. | The figure is the main scientific evidence; radial charts can overstate shape differences. |
@@ -28,9 +32,11 @@ The bundled library must remain:
 1. Start from the visual contract: claim, reviewer question, source data, and intended placement.
 2. Pick a recipe by evidence shape, not by aesthetics.
 3. Keep the proposed method color stable across all generated figures.
-4. Use direct labels whenever possible; do not make reviewers decode a legend for the main message.
-5. If the recipe does not fit the evidence, compose a new one using the same primitives: canvas, axis, direct labels, semantic palette, and source note.
-6. Save source data next to generated figures or name the upstream file in the caption.
+4. Use typographic hierarchy: large title, strong panel titles, compact axis text, and direct labels for the main evidence.
+5. Use direct labels whenever possible; do not make reviewers decode a legend for the main message.
+6. For composite figures, combine 2-5 coordinated panels only when each panel answers a distinct reviewer question.
+7. If the recipe does not fit the evidence, compose a new one using the same primitives: canvas, axis, direct labels, semantic palette, and source note.
+8. Save source data next to generated figures or name the upstream file in the caption.
 
 ## Custom Plot Invention Prompt
 
@@ -55,6 +61,22 @@ Then design a plot grammar:
 - Contrast: color, alignment, slope, position, or grouping.
 - Context: uncertainty, baseline, scale, or source note.
 - Constraint: what the visual refuses to claim.
+
+## Composite Dashboard Rules
+
+Use a composite figure when a single chart would hide the analysis structure. A useful composite dashboard usually combines:
+
+- one composition view, such as donut or stacked bars;
+- one categorical comparison, such as grouped bars;
+- one relationship view, such as correlation heatmap or scatter;
+- one discovery/screening view, such as volcano or ranked hits.
+
+Keep the figure publishable:
+
+- Use one shared title and a clear panel title for every subfigure.
+- Keep each panel visually independent; do not force all panels into one color scale.
+- Use different but harmonious palettes across panels.
+- Avoid shrinking text below readability; use fewer panels if labels become fragile.
 
 ## External-Inspiration Boundary
 

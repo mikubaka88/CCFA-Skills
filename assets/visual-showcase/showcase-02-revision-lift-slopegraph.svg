@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560">
+<style>text{font-family:Inter, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas, Menlo, monospace}</style>
+<rect x="0" y="0" width="900" height="560" rx="0" fill="#F7FAFC"/>
+<text x="42.00" y="52.00" font-size="28" font-weight="820" fill="#17212B" text-anchor="start">Revision lift after CCFA coordination</text>
+<text x="42.00" y="82.00" font-size="14" font-weight="520" fill="#5D6977" text-anchor="start">A paired-change view for before/after writing or experiment quality.</text>
+<text x="42.00" y="536.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="start">Synthetic random data generated with fixed seed 20260708.</text>
+<text x="245.00" y="108.00" font-size="15" font-weight="820" fill="#17212B" text-anchor="middle">Draft</text>
+<text x="655.00" y="108.00" font-size="15" font-weight="820" fill="#17212B" text-anchor="middle">Revised</text>
+<line x1="245.00" y1="126.00" x2="245.00" y2="492.00" stroke="#DCE4EC" stroke-width="1.20" stroke-linecap="round" opacity="1.000"/>
+<line x1="655.00" y1="126.00" x2="655.00" y2="492.00" stroke="#DCE4EC" stroke-width="1.20" stroke-linecap="round" opacity="1.000"/>
+<line x1="245.00" y1="475.36" x2="655.00" y2="288.64" stroke="#0E2A47" stroke-width="2.60" stroke-linecap="round" opacity="0.820"/>
+<circle cx="245.00" cy="475.36" r="6.00" fill="#0E2A47" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<circle cx="655.00" cy="288.64" r="6.00" fill="#0E2A47" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<text x="227.00" y="480.36" font-size="12" font-weight="650" fill="#17212B" text-anchor="end">Motivation  47.5</text>
+<text x="673.00" y="293.64" font-size="12" font-weight="650" fill="#17212B" text-anchor="start">74.1</text>
+<line x1="245.00" y1="421.31" x2="655.00" y2="240.91" stroke="#28587B" stroke-width="2.60" stroke-linecap="round" opacity="0.820"/>
+<circle cx="245.00" cy="421.31" r="6.00" fill="#28587B" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<circle cx="655.00" cy="240.91" r="6.00" fill="#28587B" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<text x="227.00" y="426.31" font-size="12" font-weight="650" fill="#17212B" text-anchor="end">Method  55.2</text>
+<text x="673.00" y="245.91" font-size="12" font-weight="650" fill="#17212B" text-anchor="start">80.9</text>
+<line x1="245.00" y1="367.26" x2="655.00" y2="186.16" stroke="#9FB798" stroke-width="2.60" stroke-linecap="round" opacity="0.820"/>
+<circle cx="245.00" cy="367.26" r="6.00" fill="#9FB798" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<circle cx="655.00" cy="186.16" r="6.00" fill="#9FB798" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<text x="227.00" y="372.26" font-size="12" font-weight="650" fill="#17212B" text-anchor="end">Evidence  62.9</text>
+<text x="673.00" y="191.16" font-size="12" font-weight="650" fill="#17212B" text-anchor="start">88.7</text>
+<line x1="245.00" y1="316.02" x2="655.00" y2="180.54" stroke="#F2C14E" stroke-width="2.60" stroke-linecap="round" opacity="0.820"/>
+<circle cx="245.00" cy="316.02" r="6.00" fill="#F2C14E" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<circle cx="655.00" cy="180.54" r="6.00" fill="#F2C14E" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<text x="227.00" y="321.02" font-size="12" font-weight="650" fill="#17212B" text-anchor="end">Visuals  70.2</text>
+<text x="673.00" y="185.54" font-size="12" font-weight="650" fill="#17212B" text-anchor="start">89.5</text>
+<line x1="245.00" y1="266.18" x2="655.00" y2="142.64" stroke="#F78154" stroke-width="2.60" stroke-linecap="round" opacity="0.820"/>
+<circle cx="245.00" cy="266.18" r="6.00" fill="#F78154" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<circle cx="655.00" cy="142.64" r="6.00" fill="#F78154" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<text x="227.00" y="271.18" font-size="12" font-weight="650" fill="#17212B" text-anchor="end">Rebuttal  77.3</text>
+<text x="673.00" y="147.64" font-size="12" font-weight="650" fill="#17212B" text-anchor="start">94.9</text>
+</svg>

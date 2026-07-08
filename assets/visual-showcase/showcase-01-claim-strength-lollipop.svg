@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+<style>text{font-family:Inter, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas, Menlo, monospace}</style>
+<rect x="0" y="0" width="900" height="520" rx="0" fill="#FAFBFF"/>
+<text x="42.00" y="52.00" font-size="28" font-weight="820" fill="#17212B" text-anchor="start">Claim strength ranking</text>
+<text x="42.00" y="82.00" font-size="14" font-weight="520" fill="#5D6977" text-anchor="start">Direct labels keep a dense comparison readable without legend hunting.</text>
+<text x="42.00" y="496.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="start">Synthetic random data generated with fixed seed 20260708.</text>
+<line x1="230.00" y1="450.00" x2="830.00" y2="450.00" stroke="#DCE4EC" stroke-width="1.00" stroke-linecap="round" opacity="1.000"/>
+<line x1="230.00" y1="108.00" x2="230.00" y2="450.00" stroke="#DCE4EC" stroke-width="0.80" stroke-linecap="round" opacity="0.800"/>
+<text x="230.00" y="474.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="middle">0</text>
+<line x1="380.00" y1="108.00" x2="380.00" y2="450.00" stroke="#DCE4EC" stroke-width="0.80" stroke-linecap="round" opacity="0.800"/>
+<text x="380.00" y="474.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="middle">23.6</text>
+<line x1="530.00" y1="108.00" x2="530.00" y2="450.00" stroke="#DCE4EC" stroke-width="0.80" stroke-linecap="round" opacity="0.800"/>
+<text x="530.00" y="474.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="middle">47.2</text>
+<line x1="680.00" y1="108.00" x2="680.00" y2="450.00" stroke="#DCE4EC" stroke-width="0.80" stroke-linecap="round" opacity="0.800"/>
+<text x="680.00" y="474.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="middle">70.8</text>
+<line x1="830.00" y1="108.00" x2="830.00" y2="450.00" stroke="#DCE4EC" stroke-width="0.80" stroke-linecap="round" opacity="0.800"/>
+<text x="830.00" y="474.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="middle">94.4</text>
+<text x="212.00" y="455.00" font-size="13" font-weight="650" fill="#17212B" text-anchor="end">Claim 6</text>
+<line x1="230.00" y1="450.00" x2="629.08" y2="450.00" stroke="#174A7C" stroke-width="5.00" stroke-linecap="round" opacity="0.780"/>
+<circle cx="629.08" cy="450.00" r="8.50" fill="#174A7C" stroke="#FFFFFF" stroke-width="2.00" opacity="1.000"/>
+<text x="643.08" y="455.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="start">62.8</text>
+<text x="212.00" y="400.33" font-size="13" font-weight="650" fill="#17212B" text-anchor="end">Claim 1</text>
+<line x1="230.00" y1="395.33" x2="632.26" y2="395.33" stroke="#D95F02" stroke-width="5.00" stroke-linecap="round" opacity="0.780"/>
+<circle cx="632.26" cy="395.33" r="8.50" fill="#D95F02" stroke="#FFFFFF" stroke-width="2.00" opacity="1.000"/>
+<text x="646.26" y="400.33" font-size="12" font-weight="760" fill="#17212B" text-anchor="start">63.3</text>
+<text x="212.00" y="345.67" font-size="13" font-weight="650" fill="#17212B" text-anchor="end">Claim 5</text>
+<line x1="230.00" y1="340.67" x2="681.19" y2="340.67" stroke="#1B9E77" stroke-width="5.00" stroke-linecap="round" opacity="0.780"/>
+<circle cx="681.19" cy="340.67" r="8.50" fill="#1B9E77" stroke="#FFFFFF" stroke-width="2.00" opacity="1.000"/>
+<text x="695.19" y="345.67" font-size="12" font-weight="760" fill="#17212B" text-anchor="start">71</text>
+<text x="212.00" y="291.00" font-size="13" font-weight="650" fill="#17212B" text-anchor="end">Claim 4</text>
+<line x1="230.00" y1="286.00" x2="704.07" y2="286.00" stroke="#7570B3" stroke-width="5.00" stroke-linecap="round" opacity="0.780"/>
+<circle cx="704.07" cy="286.00" r="8.50" fill="#7570B3" stroke="#FFFFFF" stroke-width="2.00" opacity="1.000"/>
+<text x="718.07" y="291.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="start">74.6</text>
+<text x="212.00" y="236.33" font-size="13" font-weight="650" fill="#17212B" text-anchor="end">Claim 3</text>
+<line x1="230.00" y1="231.33" x2="716.15" y2="231.33" stroke="#E7298A" stroke-width="5.00" stroke-linecap="round" opacity="0.780"/>
+<circle cx="716.15" cy="231.33" r="8.50" fill="#E7298A" stroke="#FFFFFF" stroke-width="2.00" opacity="1.000"/>
+<text x="730.15" y="236.33" font-size="12" font-weight="760" fill="#17212B" text-anchor="start">76.5</text>
+<text x="212.00" y="181.67" font-size="13" font-weight="650" fill="#17212B" text-anchor="end">Claim 2</text>
+<line x1="230.00" y1="176.67" x2="740.29" y2="176.67" stroke="#66A61E" stroke-width="5.00" stroke-linecap="round" opacity="0.780"/>
+<circle cx="740.29" cy="176.67" r="8.50" fill="#66A61E" stroke="#FFFFFF" stroke-width="2.00" opacity="1.000"/>
+<text x="754.29" y="181.67" font-size="12" font-weight="760" fill="#17212B" text-anchor="start">80.3</text>
+<text x="212.00" y="127.00" font-size="13" font-weight="650" fill="#17212B" text-anchor="end">Claim 7</text>
+<line x1="230.00" y1="122.00" x2="765.71" y2="122.00" stroke="#E6AB02" stroke-width="5.00" stroke-linecap="round" opacity="0.780"/>
+<circle cx="765.71" cy="122.00" r="8.50" fill="#E6AB02" stroke="#FFFFFF" stroke-width="2.00" opacity="1.000"/>
+<text x="779.71" y="127.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="start">84.3</text>
+</svg>

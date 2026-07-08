@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="740" viewBox="0 0 760 740">
+<style>text{font-family:Inter, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas, Menlo, monospace}</style>
+<rect x="0" y="0" width="760" height="740" rx="0" fill="#F9FAFB"/>
+<text x="42.00" y="52.00" font-size="28" font-weight="820" fill="#17212B" text-anchor="start">Submission readiness profile</text>
+<text x="42.00" y="82.00" font-size="14" font-weight="520" fill="#5D6977" text-anchor="start">A secondary summary view for multi-criterion readiness checks.</text>
+<text x="42.00" y="716.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="start">Synthetic random data generated with fixed seed 20260708.</text>
+<circle cx="380.00" cy="402.00" r="57.35" fill="none" stroke="#DCE4EC" stroke-width="1.00" opacity="1.000"/>
+<circle cx="380.00" cy="402.00" r="114.70" fill="none" stroke="#DCE4EC" stroke-width="1.00" opacity="1.000"/>
+<circle cx="380.00" cy="402.00" r="172.05" fill="none" stroke="#DCE4EC" stroke-width="1.00" opacity="1.000"/>
+<circle cx="380.00" cy="402.00" r="229.40" fill="none" stroke="#DCE4EC" stroke-width="1.00" opacity="1.000"/>
+<line x1="380.00" y1="402.00" x2="380.00" y2="172.60" stroke="#DCE4EC" stroke-width="0.80" stroke-linecap="round" opacity="1.000"/>
+<text x="380.00" y="130.60" font-size="11" font-weight="650" fill="#17212B" text-anchor="middle">story</text>
+<line x1="380.00" y1="402.00" x2="559.35" y2="258.97" stroke="#DCE4EC" stroke-width="0.80" stroke-linecap="round" opacity="1.000"/>
+<text x="595.32" y="234.29" font-size="11" font-weight="650" fill="#17212B" text-anchor="middle">novelty</text>
+<line x1="380.00" y1="402.00" x2="603.65" y2="453.05" stroke="#DCE4EC" stroke-width="0.80" stroke-linecap="round" opacity="1.000"/>
+<text x="648.50" y="467.28" font-size="11" font-weight="650" fill="#17212B" text-anchor="middle">method</text>
+<line x1="380.00" y1="402.00" x2="479.53" y2="608.68" stroke="#DCE4EC" stroke-width="0.80" stroke-linecap="round" opacity="1.000"/>
+<text x="499.49" y="654.13" font-size="11" font-weight="650" fill="#17212B" text-anchor="middle">evidence</text>
+<line x1="380.00" y1="402.00" x2="280.47" y2="608.68" stroke="#DCE4EC" stroke-width="0.80" stroke-linecap="round" opacity="1.000"/>
+<text x="260.51" y="654.13" font-size="11" font-weight="650" fill="#17212B" text-anchor="middle">visual</text>
+<line x1="380.00" y1="402.00" x2="156.35" y2="453.05" stroke="#DCE4EC" stroke-width="0.80" stroke-linecap="round" opacity="1.000"/>
+<text x="111.50" y="467.28" font-size="11" font-weight="650" fill="#17212B" text-anchor="middle">format</text>
+<line x1="380.00" y1="402.00" x2="200.65" y2="258.97" stroke="#DCE4EC" stroke-width="0.80" stroke-linecap="round" opacity="1.000"/>
+<text x="164.68" y="234.29" font-size="11" font-weight="650" fill="#17212B" text-anchor="middle">risk</text>
+<polygon points="380.00,222.97 512.89,296.02 566.89,444.66 472.54,594.16 285.98,597.23 197.96,443.55 237.56,288.41" fill="#111827" stroke="#111827" stroke-width="2.00" opacity="0.220"/>
+<polyline points="380.00,222.97 512.89,296.02 566.89,444.66 472.54,594.16 285.98,597.23 197.96,443.55 237.56,288.41 380.00,222.97" fill="none" stroke="#111827" stroke-width="2.80" stroke-linecap="round" stroke-linejoin="round" opacity="1.000"/>
+<circle cx="380.00" cy="222.97" r="5.50" fill="#111827" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<circle cx="512.89" cy="296.02" r="5.50" fill="#374151" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<circle cx="566.89" cy="444.66" r="5.50" fill="#1D4ED8" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<circle cx="472.54" cy="594.16" r="5.50" fill="#059669" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<circle cx="285.98" cy="597.23" r="5.50" fill="#D97706" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<circle cx="197.96" cy="443.55" r="5.50" fill="#BE123C" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<circle cx="237.56" cy="288.41" r="5.50" fill="#111827" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+</svg>

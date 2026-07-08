@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="540" viewBox="0 0 920 540">
+<style>text{font-family:Inter, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas, Menlo, monospace}</style>
+<rect x="0" y="0" width="920" height="540" rx="0" fill="#FCFBF8"/>
+<text x="42.00" y="52.00" font-size="28" font-weight="820" fill="#17212B" text-anchor="start">Evidence coverage matrix</text>
+<text x="42.00" y="82.00" font-size="14" font-weight="520" fill="#5D6977" text-anchor="start">A table-like heatmap for quickly spotting weak evidence columns.</text>
+<text x="42.00" y="516.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="start">Synthetic random data generated with fixed seed 20260708.</text>
+<text x="245.83" y="114.00" font-size="12" font-weight="720" fill="#5D6977" text-anchor="middle">novel</text>
+<text x="357.50" y="114.00" font-size="12" font-weight="720" fill="#5D6977" text-anchor="middle">sound</text>
+<text x="469.17" y="114.00" font-size="12" font-weight="720" fill="#5D6977" text-anchor="middle">abl.</text>
+<text x="580.83" y="114.00" font-size="12" font-weight="720" fill="#5D6977" text-anchor="middle">rob.</text>
+<text x="692.50" y="114.00" font-size="12" font-weight="720" fill="#5D6977" text-anchor="middle">eff.</text>
+<text x="804.17" y="114.00" font-size="12" font-weight="720" fill="#5D6977" text-anchor="middle">clear</text>
+<text x="172.00" y="165.00" font-size="12" font-weight="650" fill="#17212B" text-anchor="end">Vision</text>
+<rect x="193.00" y="135.00" width="105.67" height="50.00" rx="10.00" fill="#F4A261" stroke="#FFFFFF" opacity="1.000"/>
+<text x="245.83" y="165.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">76.1</text>
+<rect x="304.67" y="135.00" width="105.67" height="50.00" rx="10.00" fill="#F4A261" stroke="#FFFFFF" opacity="1.000"/>
+<text x="357.50" y="165.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">69.2</text>
+<rect x="416.33" y="135.00" width="105.67" height="50.00" rx="10.00" fill="#F4A261" stroke="#FFFFFF" opacity="1.000"/>
+<text x="469.17" y="165.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">72.2</text>
+<rect x="528.00" y="135.00" width="105.67" height="50.00" rx="10.00" fill="#2A9D8F" stroke="#FFFFFF" opacity="1.000"/>
+<text x="580.83" y="165.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">56</text>
+<rect x="639.67" y="135.00" width="105.67" height="50.00" rx="10.00" fill="#F4A261" stroke="#FFFFFF" opacity="1.000"/>
+<text x="692.50" y="165.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">71</text>
+<rect x="751.33" y="135.00" width="105.67" height="50.00" rx="10.00" fill="#E9C46A" stroke="#FFFFFF" opacity="1.000"/>
+<text x="804.17" y="165.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">65.4</text>
+<text x="172.00" y="221.00" font-size="12" font-weight="650" fill="#17212B" text-anchor="end">NLP</text>
+<rect x="193.00" y="191.00" width="105.67" height="50.00" rx="10.00" fill="#264653" stroke="#FFFFFF" opacity="1.000"/>
+<text x="245.83" y="221.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">43.8</text>
+<rect x="304.67" y="191.00" width="105.67" height="50.00" rx="10.00" fill="#F4A261" stroke="#FFFFFF" opacity="1.000"/>
+<text x="357.50" y="221.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">74.6</text>
+<rect x="416.33" y="191.00" width="105.67" height="50.00" rx="10.00" fill="#8AB17D" stroke="#FFFFFF" opacity="1.000"/>
+<text x="469.17" y="221.00" font-size="12" font-weight="760" fill="#FFFFFF" text-anchor="middle">91.7</text>
+<rect x="528.00" y="191.00" width="105.67" height="50.00" rx="10.00" fill="#E9C46A" stroke="#FFFFFF" opacity="1.000"/>
+<text x="580.83" y="221.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">66.9</text>
+<rect x="639.67" y="191.00" width="105.67" height="50.00" rx="10.00" fill="#264653" stroke="#FFFFFF" opacity="1.000"/>
+<text x="692.50" y="221.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">48.2</text>
+<rect x="751.33" y="191.00" width="105.67" height="50.00" rx="10.00" fill="#2A9D8F" stroke="#FFFFFF" opacity="1.000"/>
+<text x="804.17" y="221.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">57</text>
+<text x="172.00" y="277.00" font-size="12" font-weight="650" fill="#17212B" text-anchor="end">ML</text>
+<rect x="193.00" y="247.00" width="105.67" height="50.00" rx="10.00" fill="#2A9D8F" stroke="#FFFFFF" opacity="1.000"/>
+<text x="245.83" y="277.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">54.3</text>
+<rect x="304.67" y="247.00" width="105.67" height="50.00" rx="10.00" fill="#E76F51" stroke="#FFFFFF" opacity="1.000"/>
+<text x="357.50" y="277.00" font-size="12" font-weight="760" fill="#FFFFFF" text-anchor="middle">86.8</text>
+<rect x="416.33" y="247.00" width="105.67" height="50.00" rx="10.00" fill="#2A9D8F" stroke="#FFFFFF" opacity="1.000"/>
+<text x="469.17" y="277.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">51.4</text>
+<rect x="528.00" y="247.00" width="105.67" height="50.00" rx="10.00" fill="#E76F51" stroke="#FFFFFF" opacity="1.000"/>
+<text x="580.83" y="277.00" font-size="12" font-weight="760" fill="#FFFFFF" text-anchor="middle">79.2</text>
+<rect x="639.67" y="247.00" width="105.67" height="50.00" rx="10.00" fill="#F4A261" stroke="#FFFFFF" opacity="1.000"/>
+<text x="692.50" y="277.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">74.2</text>
+<rect x="751.33" y="247.00" width="105.67" height="50.00" rx="10.00" fill="#E9C46A" stroke="#FFFFFF" opacity="1.000"/>
+<text x="804.17" y="277.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">67.5</text>
+<text x="172.00" y="333.00" font-size="12" font-weight="650" fill="#17212B" text-anchor="end">Systems</text>
+<rect x="193.00" y="303.00" width="105.67" height="50.00" rx="10.00" fill="#264653" stroke="#FFFFFF" opacity="1.000"/>
+<text x="245.83" y="333.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">45.1</text>
+<rect x="304.67" y="303.00" width="105.67" height="50.00" rx="10.00" fill="#F4A261" stroke="#FFFFFF" opacity="1.000"/>
+<text x="357.50" y="333.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">68</text>
+<rect x="416.33" y="303.00" width="105.67" height="50.00" rx="10.00" fill="#E76F51" stroke="#FFFFFF" opacity="1.000"/>
+<text x="469.17" y="333.00" font-size="12" font-weight="760" fill="#FFFFFF" text-anchor="middle">81.7</text>
+<rect x="528.00" y="303.00" width="105.67" height="50.00" rx="10.00" fill="#2A9D8F" stroke="#FFFFFF" opacity="1.000"/>
+<text x="580.83" y="333.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">55.7</text>
+<rect x="639.67" y="303.00" width="105.67" height="50.00" rx="10.00" fill="#E9C46A" stroke="#FFFFFF" opacity="1.000"/>
+<text x="692.50" y="333.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">66.4</text>
+<rect x="751.33" y="303.00" width="105.67" height="50.00" rx="10.00" fill="#8AB17D" stroke="#FFFFFF" opacity="1.000"/>
+<text x="804.17" y="333.00" font-size="12" font-weight="760" fill="#FFFFFF" text-anchor="middle">87.8</text>
+<text x="172.00" y="389.00" font-size="12" font-weight="650" fill="#17212B" text-anchor="end">HCI</text>
+<rect x="193.00" y="359.00" width="105.67" height="50.00" rx="10.00" fill="#F4A261" stroke="#FFFFFF" opacity="1.000"/>
+<text x="245.83" y="389.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">69.3</text>
+<rect x="304.67" y="359.00" width="105.67" height="50.00" rx="10.00" fill="#E76F51" stroke="#FFFFFF" opacity="1.000"/>
+<text x="357.50" y="389.00" font-size="12" font-weight="760" fill="#FFFFFF" text-anchor="middle">78.3</text>
+<rect x="416.33" y="359.00" width="105.67" height="50.00" rx="10.00" fill="#8AB17D" stroke="#FFFFFF" opacity="1.000"/>
+<text x="469.17" y="389.00" font-size="12" font-weight="760" fill="#FFFFFF" text-anchor="middle">88.5</text>
+<rect x="528.00" y="359.00" width="105.67" height="50.00" rx="10.00" fill="#E9C46A" stroke="#FFFFFF" opacity="1.000"/>
+<text x="580.83" y="389.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">58.2</text>
+<rect x="639.67" y="359.00" width="105.67" height="50.00" rx="10.00" fill="#F4A261" stroke="#FFFFFF" opacity="1.000"/>
+<text x="692.50" y="389.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">74.8</text>
+<rect x="751.33" y="359.00" width="105.67" height="50.00" rx="10.00" fill="#2A9D8F" stroke="#FFFFFF" opacity="1.000"/>
+<text x="804.17" y="389.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">54.1</text>
+</svg>

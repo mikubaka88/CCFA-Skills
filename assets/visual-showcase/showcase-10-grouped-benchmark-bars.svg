@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="560" viewBox="0 0 940 560">
+<style>text{font-family:Inter, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas, Menlo, monospace}</style>
+<rect x="0" y="0" width="940" height="560" rx="0" fill="#F7FAFC"/>
+<text x="42.00" y="52.00" font-size="28" font-weight="820" fill="#17212B" text-anchor="start">Grouped benchmark comparison</text>
+<text x="42.00" y="82.00" font-size="14" font-weight="520" fill="#5D6977" text-anchor="start">Grouped bars make categorical comparison stronger than a pie chart.</text>
+<text x="42.00" y="536.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="start">Synthetic random data generated with fixed seed 20260708.</text>
+<line x1="82.00" y1="468.00" x2="898.00" y2="468.00" stroke="#DCE4EC" stroke-width="0.90" stroke-linecap="round" opacity="0.820"/>
+<text x="70.00" y="472.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="end">0</text>
+<line x1="82.00" y1="384.00" x2="898.00" y2="384.00" stroke="#DCE4EC" stroke-width="0.90" stroke-linecap="round" opacity="0.820"/>
+<text x="70.00" y="388.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="end">26.4</text>
+<line x1="82.00" y1="300.00" x2="898.00" y2="300.00" stroke="#DCE4EC" stroke-width="0.90" stroke-linecap="round" opacity="0.820"/>
+<text x="70.00" y="304.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="end">52.8</text>
+<line x1="82.00" y1="216.00" x2="898.00" y2="216.00" stroke="#DCE4EC" stroke-width="0.90" stroke-linecap="round" opacity="0.820"/>
+<text x="70.00" y="220.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="end">79.2</text>
+<line x1="82.00" y1="132.00" x2="898.00" y2="132.00" stroke="#DCE4EC" stroke-width="0.90" stroke-linecap="round" opacity="0.820"/>
+<text x="70.00" y="136.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="end">105.6</text>
+<text x="184.00" y="496.00" font-size="12" font-weight="720" fill="#17212B" text-anchor="middle">clean</text>
+<rect x="147.00" y="238.82" width="22.00" height="229.18" rx="6.00" fill="#0E2A47" stroke="none" opacity="0.920"/>
+<rect x="173.00" y="194.26" width="22.00" height="273.74" rx="6.00" fill="#28587B" stroke="none" opacity="0.920"/>
+<text x="184.00" y="186.26" font-size="10" font-weight="720" fill="#17212B" text-anchor="middle">86</text>
+<rect x="199.00" y="178.34" width="22.00" height="289.66" rx="6.00" fill="#9FB798" stroke="none" opacity="0.920"/>
+<text x="210.00" y="170.34" font-size="10" font-weight="720" fill="#17212B" text-anchor="middle">91</text>
+<text x="388.00" y="496.00" font-size="12" font-weight="720" fill="#17212B" text-anchor="middle">shift</text>
+<rect x="351.00" y="273.84" width="22.00" height="194.16" rx="6.00" fill="#0E2A47" stroke="none" opacity="0.920"/>
+<rect x="377.00" y="216.54" width="22.00" height="251.46" rx="6.00" fill="#28587B" stroke="none" opacity="0.920"/>
+<text x="388.00" y="208.54" font-size="10" font-weight="720" fill="#17212B" text-anchor="middle">79</text>
+<rect x="403.00" y="200.63" width="22.00" height="267.37" rx="6.00" fill="#9FB798" stroke="none" opacity="0.920"/>
+<text x="414.00" y="192.63" font-size="10" font-weight="720" fill="#17212B" text-anchor="middle">84</text>
+<text x="592.00" y="496.00" font-size="12" font-weight="720" fill="#17212B" text-anchor="middle">low-data</text>
+<rect x="555.00" y="296.12" width="22.00" height="171.88" rx="6.00" fill="#0E2A47" stroke="none" opacity="0.920"/>
+<rect x="581.00" y="235.64" width="22.00" height="232.36" rx="6.00" fill="#28587B" stroke="none" opacity="0.920"/>
+<rect x="607.00" y="213.36" width="22.00" height="254.64" rx="6.00" fill="#9FB798" stroke="none" opacity="0.920"/>
+<text x="618.00" y="205.36" font-size="10" font-weight="720" fill="#17212B" text-anchor="middle">80</text>
+<text x="796.00" y="496.00" font-size="12" font-weight="720" fill="#17212B" text-anchor="middle">noisy</text>
+<rect x="759.00" y="315.21" width="22.00" height="152.79" rx="6.00" fill="#0E2A47" stroke="none" opacity="0.920"/>
+<rect x="785.00" y="251.55" width="22.00" height="216.45" rx="6.00" fill="#28587B" stroke="none" opacity="0.920"/>
+<rect x="811.00" y="222.91" width="22.00" height="245.09" rx="6.00" fill="#9FB798" stroke="none" opacity="0.920"/>
+<text x="822.00" y="214.91" font-size="10" font-weight="720" fill="#17212B" text-anchor="middle">77</text>
+<rect x="82.00" y="98.00" width="18.00" height="12.00" rx="4.00" fill="#0E2A47" stroke="none" opacity="1.000"/>
+<text x="108.00" y="109.00" font-size="12" font-weight="650" fill="#5D6977" text-anchor="start">base</text>
+<rect x="208.00" y="98.00" width="18.00" height="12.00" rx="4.00" fill="#28587B" stroke="none" opacity="1.000"/>
+<text x="234.00" y="109.00" font-size="12" font-weight="650" fill="#5D6977" text-anchor="start">ours</text>
+<rect x="334.00" y="98.00" width="18.00" height="12.00" rx="4.00" fill="#9FB798" stroke="none" opacity="1.000"/>
+<text x="360.00" y="109.00" font-size="12" font-weight="650" fill="#5D6977" text-anchor="start">oracle</text>
+</svg>

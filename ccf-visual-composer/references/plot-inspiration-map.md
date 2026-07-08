@@ -30,9 +30,14 @@ Use this menu to invent new charts:
 | Evidence shape | Candidate grammars |
 | --- | --- |
 | One headline metric per model | Lollipop, dot plot, ranked strip, annotated benchmark tile. |
+| Composition or category share | Donut, waffle, stacked bar, mosaic tile; prefer bars when exact comparison matters. |
+| Categorical comparison | Grouped bar, diverging bar, interval bar, Cleveland dot plot. |
 | Many models x many datasets | Heatmap, clustered matrix, table-figure hybrid, small multiples. |
 | Before/after or base/big | Slopegraph, paired dots, ratio strips, delta ladder. |
 | Runs/seeds/samples | Ridgeline, violin/box hybrid, uncertainty ribbons, raincloud. |
+| Effect-size screening | Volcano plot, MA plot, ranked hit map, thresholded scatter. |
+| Relationship matrix | Correlation heatmap, pair grid, clustered heatmap, annotated matrix. |
 | Time or scale trends | Small multiples, direct-labeled line families, horizon strips. |
 | Mechanism path or pipeline | Annotated flow, layered schematic, evidence-linked block diagram. |
+| Multi-view analysis | Composite dashboard with composition, comparison, relationship, and screening panels. |
 | Multiple quality dimensions | Radar only for secondary summary; prefer parallel coordinates or scorecard when exact comparison matters. |

@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="580" viewBox="0 0 960 580">
+<style>text{font-family:Inter, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas, Menlo, monospace}</style>
+<rect x="0" y="0" width="960" height="580" rx="0" fill="#FBFAF8"/>
+<text x="42.00" y="52.00" font-size="28" font-weight="820" fill="#17212B" text-anchor="start">Evidence dashboard as a paper-ready table</text>
+<text x="42.00" y="82.00" font-size="14" font-weight="520" fill="#5D6977" text-anchor="start">A compact table combines bars, risk chips, and sparklines from synthetic review data.</text>
+<text x="42.00" y="556.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="start">Synthetic data generated with fixed seed 20260708.</text>
+<rect x="56.00" y="124.00" width="980.00" height="54.00" rx="16.00" fill="#2B183F" stroke="none" opacity="1.000"/>
+<text x="72.00" y="158.00" font-size="13" font-weight="820" fill="#FFFFFF" text-anchor="start">Evidence block</text>
+<text x="282.00" y="158.00" font-size="13" font-weight="820" fill="#FFFFFF" text-anchor="start">Support</text>
+<text x="472.00" y="158.00" font-size="13" font-weight="820" fill="#FFFFFF" text-anchor="start">Clarity</text>
+<text x="662.00" y="158.00" font-size="13" font-weight="820" fill="#FFFFFF" text-anchor="start">Risk</text>
+<text x="802.00" y="158.00" font-size="13" font-weight="820" fill="#FFFFFF" text-anchor="start">Stability sparkline</text>
+<rect x="56.00" y="178.00" width="980.00" height="54.00" rx="0.00" fill="#FFFFFF" stroke="#E7DDE4" opacity="1.000"/>
+<text x="72.00" y="211.00" font-size="13" font-weight="760" fill="#1F2937" text-anchor="start">Main result</text>
+<rect x="282.00" y="196.00" width="124.00" height="12.00" rx="6.00" fill="#E5E7EB" stroke="none" opacity="1.000"/>
+<rect x="282.00" y="196.00" width="92.90" height="12.00" rx="6.00" fill="#5F0F40" stroke="none" opacity="1.000"/>
+<text x="418.00" y="209.00" font-size="12" font-weight="760" fill="#374151" text-anchor="start">75%</text>
+<rect x="472.00" y="196.00" width="124.00" height="12.00" rx="6.00" fill="#E5E7EB" stroke="none" opacity="1.000"/>
+<rect x="472.00" y="196.00" width="113.18" height="12.00" rx="6.00" fill="#9A031E" stroke="none" opacity="1.000"/>
+<text x="608.00" y="209.00" font-size="12" font-weight="760" fill="#374151" text-anchor="start">91%</text>
+<rect x="668.00" y="192.00" width="74.00" height="26.00" rx="13.00" fill="#6A994E" stroke="none" opacity="0.900"/>
+<text x="705.00" y="210.00" font-size="12" font-weight="820" fill="#FFFFFF" text-anchor="middle">10%</text>
+<polyline points="804.00,208.99 831.14,202.47 858.29,192.09 885.43,199.43 912.57,216.35 939.71,192.00 966.86,217.00 994.00,213.50" fill="none" stroke="#FB8B24" stroke-width="2.30" stroke-linecap="round" stroke-linejoin="round" opacity="1.000"/>
+<circle cx="966.86" cy="217.00" r="3.60" fill="#FB8B24" stroke="#FFFFFF" stroke-width="1.00" opacity="1.000"/>
+<circle cx="994.00" cy="213.50" r="3.60" fill="#FB8B24" stroke="#FFFFFF" stroke-width="1.00" opacity="1.000"/>
+<rect x="56.00" y="232.00" width="980.00" height="54.00" rx="0.00" fill="#F7F0F3" stroke="#E7DDE4" opacity="1.000"/>
+<text x="72.00" y="265.00" font-size="13" font-weight="760" fill="#1F2937" text-anchor="start">Ablation</text>
+<rect x="282.00" y="250.00" width="124.00" height="12.00" rx="6.00" fill="#E5E7EB" stroke="none" opacity="1.000"/>
+<rect x="282.00" y="250.00" width="88.38" height="12.00" rx="6.00" fill="#9A031E" stroke="none" opacity="1.000"/>
+<text x="418.00" y="263.00" font-size="12" font-weight="760" fill="#374151" text-anchor="start">71%</text>
+<rect x="472.00" y="250.00" width="124.00" height="12.00" rx="6.00" fill="#E5E7EB" stroke="none" opacity="1.000"/>
+<rect x="472.00" y="250.00" width="62.87" height="12.00" rx="6.00" fill="#FB8B24" stroke="none" opacity="1.000"/>
+<text x="608.00" y="263.00" font-size="12" font-weight="760" fill="#374151" text-anchor="start">51%</text>
+<rect x="668.00" y="246.00" width="74.00" height="26.00" rx="13.00" fill="#6A994E" stroke="none" opacity="0.900"/>
+<text x="705.00" y="264.00" font-size="12" font-weight="820" fill="#FFFFFF" text-anchor="middle">15%</text>
+<polyline points="804.00,258.48 831.14,260.72 858.29,264.82 885.43,258.72 912.57,271.00 939.71,246.18 966.86,246.00 994.00,261.00" fill="none" stroke="#E36414" stroke-width="2.30" stroke-linecap="round" stroke-linejoin="round" opacity="1.000"/>
+<circle cx="966.86" cy="246.00" r="3.60" fill="#E36414" stroke="#FFFFFF" stroke-width="1.00" opacity="1.000"/>
+<circle cx="994.00" cy="261.00" r="3.60" fill="#E36414" stroke="#FFFFFF" stroke-width="1.00" opacity="1.000"/>
+<rect x="56.00" y="286.00" width="980.00" height="54.00" rx="0.00" fill="#FFFFFF" stroke="#E7DDE4" opacity="1.000"/>
+<text x="72.00" y="319.00" font-size="13" font-weight="760" fill="#1F2937" text-anchor="start">Robustness</text>
+<rect x="282.00" y="304.00" width="124.00" height="12.00" rx="6.00" fill="#E5E7EB" stroke="none" opacity="1.000"/>
+<rect x="282.00" y="304.00" width="67.79" height="12.00" rx="6.00" fill="#FB8B24" stroke="none" opacity="1.000"/>
+<text x="418.00" y="317.00" font-size="12" font-weight="760" fill="#374151" text-anchor="start">55%</text>
+<rect x="472.00" y="304.00" width="124.00" height="12.00" rx="6.00" fill="#E5E7EB" stroke="none" opacity="1.000"/>
+<rect x="472.00" y="304.00" width="108.16" height="12.00" rx="6.00" fill="#E36414" stroke="none" opacity="1.000"/>
+<text x="608.00" y="317.00" font-size="12" font-weight="760" fill="#374151" text-anchor="start">87%</text>
+<rect x="668.00" y="300.00" width="74.00" height="26.00" rx="13.00" fill="#FB8B24" stroke="none" opacity="0.900"/>
+<text x="705.00" y="318.00" font-size="12" font-weight="820" fill="#FFFFFF" text-anchor="middle">31%</text>
+<polyline points="804.00,312.84 831.14,305.43 858.29,312.28 885.43,313.70 912.57,308.90 939.71,311.75 966.86,325.00 994.00,300.00" fill="none" stroke="#0F4C5C" stroke-width="2.30" stroke-linecap="round" stroke-linejoin="round" opacity="1.000"/>
+<circle cx="966.86" cy="325.00" r="3.60" fill="#0F4C5C" stroke="#FFFFFF" stroke-width="1.00" opacity="1.000"/>
+<circle cx="994.00" cy="300.00" r="3.60" fill="#0F4C5C" stroke="#FFFFFF" stroke-width="1.00" opacity="1.000"/>
+<rect x="56.00" y="340.00" width="980.00" height="54.00" rx="0.00" fill="#F7F0F3" stroke="#E7DDE4" opacity="1.000"/>
+<text x="72.00" y="373.00" font-size="13" font-weight="760" fill="#1F2937" text-anchor="start">Efficiency</text>
+<rect x="282.00" y="358.00" width="124.00" height="12.00" rx="6.00" fill="#E5E7EB" stroke="none" opacity="1.000"/>
+<rect x="282.00" y="358.00" width="93.81" height="12.00" rx="6.00" fill="#E36414" stroke="none" opacity="1.000"/>
+<text x="418.00" y="371.00" font-size="12" font-weight="760" fill="#374151" text-anchor="start">76%</text>
+<rect x="472.00" y="358.00" width="124.00" height="12.00" rx="6.00" fill="#E5E7EB" stroke="none" opacity="1.000"/>
+<rect x="472.00" y="358.00" width="102.97" height="12.00" rx="6.00" fill="#0F4C5C" stroke="none" opacity="1.000"/>
+<text x="608.00" y="371.00" font-size="12" font-weight="760" fill="#374151" text-anchor="start">83%</text>
+<rect x="668.00" y="354.00" width="74.00" height="26.00" rx="13.00" fill="#6A994E" stroke="none" opacity="0.900"/>
+<text x="705.00" y="372.00" font-size="12" font-weight="820" fill="#FFFFFF" text-anchor="middle">15%</text>
+<polyline points="804.00,373.16 831.14,358.51 858.29,354.82 885.43,360.41 912.57,354.00 939.71,375.06 966.86,379.00 994.00,373.71" fill="none" stroke="#6A994E" stroke-width="2.30" stroke-linecap="round" stroke-linejoin="round" opacity="1.000"/>
+<circle cx="966.86" cy="379.00" r="3.60" fill="#6A994E" stroke="#FFFFFF" stroke-width="1.00" opacity="1.000"/>
+<circle cx="994.00" cy="373.71" r="3.60" fill="#6A994E" stroke="#FFFFFF" stroke-width="1.00" opacity="1.000"/>
+<rect x="56.00" y="394.00" width="980.00" height="54.00" rx="0.00" fill="#FFFFFF" stroke="#E7DDE4" opacity="1.000"/>
+<text x="72.00" y="427.00" font-size="13" font-weight="760" fill="#1F2937" text-anchor="start">Failure cases</text>
+<rect x="282.00" y="412.00" width="124.00" height="12.00" rx="6.00" fill="#E5E7EB" stroke="none" opacity="1.000"/>
+<rect x="282.00" y="412.00" width="86.18" height="12.00" rx="6.00" fill="#0F4C5C" stroke="none" opacity="1.000"/>
+<text x="418.00" y="425.00" font-size="12" font-weight="760" fill="#374151" text-anchor="start">69%</text>
+<rect x="472.00" y="412.00" width="124.00" height="12.00" rx="6.00" fill="#E5E7EB" stroke="none" opacity="1.000"/>
+<rect x="472.00" y="412.00" width="58.71" height="12.00" rx="6.00" fill="#6A994E" stroke="none" opacity="1.000"/>
+<text x="608.00" y="425.00" font-size="12" font-weight="760" fill="#374151" text-anchor="start">47%</text>
+<rect x="668.00" y="408.00" width="74.00" height="26.00" rx="13.00" fill="#6A994E" stroke="none" opacity="0.900"/>
+<text x="705.00" y="426.00" font-size="12" font-weight="820" fill="#FFFFFF" text-anchor="middle">18%</text>
+<polyline points="804.00,426.41 831.14,410.87 858.29,416.15 885.43,418.92 912.57,427.12 939.71,433.00 966.86,417.43 994.00,408.00" fill="none" stroke="#5F0F40" stroke-width="2.30" stroke-linecap="round" stroke-linejoin="round" opacity="1.000"/>
+<circle cx="966.86" cy="417.43" r="3.60" fill="#5F0F40" stroke="#FFFFFF" stroke-width="1.00" opacity="1.000"/>
+<circle cx="994.00" cy="408.00" r="3.60" fill="#5F0F40" stroke="#FFFFFF" stroke-width="1.00" opacity="1.000"/>
+<rect x="56.00" y="448.00" width="980.00" height="54.00" rx="0.00" fill="#F7F0F3" stroke="#E7DDE4" opacity="1.000"/>
+<text x="72.00" y="481.00" font-size="13" font-weight="760" fill="#1F2937" text-anchor="start">Reproducibility</text>
+<rect x="282.00" y="466.00" width="124.00" height="12.00" rx="6.00" fill="#E5E7EB" stroke="none" opacity="1.000"/>
+<rect x="282.00" y="466.00" width="81.99" height="12.00" rx="6.00" fill="#6A994E" stroke="none" opacity="1.000"/>
+<text x="418.00" y="479.00" font-size="12" font-weight="760" fill="#374151" text-anchor="start">66%</text>
+<rect x="472.00" y="466.00" width="124.00" height="12.00" rx="6.00" fill="#E5E7EB" stroke="none" opacity="1.000"/>
+<rect x="472.00" y="466.00" width="76.29" height="12.00" rx="6.00" fill="#5F0F40" stroke="none" opacity="1.000"/>
+<text x="608.00" y="479.00" font-size="12" font-weight="760" fill="#374151" text-anchor="start">62%</text>
+<rect x="668.00" y="462.00" width="74.00" height="26.00" rx="13.00" fill="#6A994E" stroke="none" opacity="0.900"/>
+<text x="705.00" y="480.00" font-size="12" font-weight="820" fill="#FFFFFF" text-anchor="middle">16%</text>
+<polyline points="804.00,480.44 831.14,466.79 858.29,469.32 885.43,470.57 912.57,487.00 939.71,479.14 966.86,462.00 994.00,486.13" fill="none" stroke="#9A031E" stroke-width="2.30" stroke-linecap="round" stroke-linejoin="round" opacity="1.000"/>
+<circle cx="966.86" cy="462.00" r="3.60" fill="#9A031E" stroke="#FFFFFF" stroke-width="1.00" opacity="1.000"/>
+<circle cx="994.00" cy="486.13" r="3.60" fill="#9A031E" stroke="#FFFFFF" stroke-width="1.00" opacity="1.000"/>
+</svg>

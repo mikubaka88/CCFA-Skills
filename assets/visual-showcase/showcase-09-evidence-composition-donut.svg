@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="560" viewBox="0 0 820 560">
+<style>text{font-family:Inter, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas, Menlo, monospace}</style>
+<rect x="0" y="0" width="820" height="560" rx="0" fill="#FCFBF8"/>
+<text x="42.00" y="52.00" font-size="28" font-weight="820" fill="#17212B" text-anchor="start">Evidence-source composition</text>
+<text x="42.00" y="82.00" font-size="14" font-weight="520" fill="#5D6977" text-anchor="start">Donut charts are useful when composition is the question, not precise ranking.</text>
+<text x="42.00" y="536.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="start">Synthetic random data generated with fixed seed 20260708.</text>
+<path d="M311.60,156.80 A156.80,156.80 0 0 1 387.14,451.00 L354.77,392.12 A89.60,89.60 0 0 0 311.60,224.00 Z" fill="#264653" stroke="#FFFFFF" stroke-width="2.20" opacity="0.950"/>
+<text x="490.59" y="271.64" font-size="12" font-weight="780" fill="#17212B" text-anchor="middle">42%</text>
+<path d="M387.14,451.00 A156.80,156.80 0 0 1 179.21,397.62 L235.95,361.61 A89.60,89.60 0 0 0 354.77,392.12 Z" fill="#2A9D8F" stroke="#FFFFFF" stroke-width="2.20" opacity="0.950"/>
+<text x="265.64" y="496.59" font-size="12" font-weight="780" fill="#17212B" text-anchor="middle">24%</text>
+<path d="M179.21,397.62 A156.80,156.80 0 0 1 169.72,246.84 L230.53,275.45 A89.60,89.60 0 0 0 235.95,361.61 Z" fill="#E9C46A" stroke="#FFFFFF" stroke-width="2.20" opacity="0.950"/>
+<text x="127.16" y="329.20" font-size="12" font-weight="780" fill="#17212B" text-anchor="middle">16%</text>
+<path d="M169.72,246.84 A156.80,156.80 0 0 1 244.84,171.72 L273.45,232.53 A89.60,89.60 0 0 0 230.53,275.45 Z" fill="#F4A261" stroke="#FFFFFF" stroke-width="2.20" opacity="0.950"/>
+<text x="180.93" y="186.93" font-size="12" font-weight="780" fill="#17212B" text-anchor="middle">11%</text>
+<path d="M244.84,171.72 A156.80,156.80 0 0 1 311.60,156.80 L311.60,224.00 A89.60,89.60 0 0 0 273.45,232.53 Z" fill="#E76F51" stroke="#FFFFFF" stroke-width="2.20" opacity="0.950"/>
+<text x="271.29" y="137.25" font-size="12" font-weight="780" fill="#17212B" text-anchor="middle">7%</text>
+<circle cx="311.60" cy="313.60" r="82.43" fill="#FCFBF8" stroke="none" stroke-width="1.50" opacity="1.000"/>
+<text x="311.60" y="308.60" font-size="28" font-weight="850" fill="#17212B" text-anchor="middle">100</text>
+<text x="311.60" y="333.60" font-size="11" font-weight="650" fill="#5D6977" text-anchor="middle">total</text>
+<rect x="541.20" y="158.00" width="18.00" height="18.00" rx="5.00" fill="#264653" stroke="none" opacity="1.000"/>
+<text x="569.20" y="172.00" font-size="13" font-weight="720" fill="#17212B" text-anchor="start">benchmark</text>
+<text x="774.00" y="172.00" font-size="12" font-weight="680" fill="#5D6977" text-anchor="end">42.0%</text>
+<rect x="541.20" y="192.00" width="18.00" height="18.00" rx="5.00" fill="#2A9D8F" stroke="none" opacity="1.000"/>
+<text x="569.20" y="206.00" font-size="13" font-weight="720" fill="#17212B" text-anchor="start">ablation</text>
+<text x="774.00" y="206.00" font-size="12" font-weight="680" fill="#5D6977" text-anchor="end">24.0%</text>
+<rect x="541.20" y="226.00" width="18.00" height="18.00" rx="5.00" fill="#E9C46A" stroke="none" opacity="1.000"/>
+<text x="569.20" y="240.00" font-size="13" font-weight="720" fill="#17212B" text-anchor="start">robustness</text>
+<text x="774.00" y="240.00" font-size="12" font-weight="680" fill="#5D6977" text-anchor="end">16.0%</text>
+<rect x="541.20" y="260.00" width="18.00" height="18.00" rx="5.00" fill="#F4A261" stroke="none" opacity="1.000"/>
+<text x="569.20" y="274.00" font-size="13" font-weight="720" fill="#17212B" text-anchor="start">efficiency</text>
+<text x="774.00" y="274.00" font-size="12" font-weight="680" fill="#5D6977" text-anchor="end">11.0%</text>
+<rect x="541.20" y="294.00" width="18.00" height="18.00" rx="5.00" fill="#E76F51" stroke="none" opacity="1.000"/>
+<text x="569.20" y="308.00" font-size="13" font-weight="720" fill="#17212B" text-anchor="start">case study</text>
+<text x="774.00" y="308.00" font-size="12" font-weight="680" fill="#5D6977" text-anchor="end">7.0%</text>
+</svg>

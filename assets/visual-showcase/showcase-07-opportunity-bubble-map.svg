@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="620" viewBox="0 0 920 620">
+<style>text{font-family:Inter, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas, Menlo, monospace}</style>
+<rect x="0" y="0" width="920" height="620" rx="0" fill="#F8FAFC"/>
+<text x="42.00" y="52.00" font-size="28" font-weight="820" fill="#17212B" text-anchor="start">Opportunity map from synthetic paper signals</text>
+<text x="42.00" y="82.00" font-size="14" font-weight="520" fill="#5D6977" text-anchor="start">Bubble size encodes evidence readiness; axes are random novelty and tractability scores.</text>
+<text x="42.00" y="596.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="start">Synthetic data generated with fixed seed 20260708.</text>
+<rect x="110.00" y="132.00" width="740.00" height="404.00" rx="18.00" fill="#FFFFFF" stroke="#E2E8F0" opacity="1.000"/>
+<line x1="480.00" y1="150.00" x2="480.00" y2="518.00" stroke="#CBD5E1" stroke-width="1.40" stroke-linecap="round" opacity="0.900"/>
+<line x1="128.00" y1="334.00" x2="832.00" y2="334.00" stroke="#CBD5E1" stroke-width="1.40" stroke-linecap="round" opacity="0.900"/>
+<text x="130.00" y="164.00" font-size="12" font-weight="700" fill="#64748B" text-anchor="start">high risk / high novelty</text>
+<text x="830.00" y="518.00" font-size="12" font-weight="700" fill="#64748B" text-anchor="end">high tractability</text>
+<text x="92.00" y="536.00" font-size="11" font-weight="600" fill="#64748B" text-anchor="end">low</text>
+<text x="92.00" y="140.00" font-size="11" font-weight="600" fill="#64748B" text-anchor="end">high</text>
+<circle cx="376.57" cy="335.78" r="27.63" fill="#063B63" stroke="#FFFFFF" stroke-width="2.00" opacity="0.720"/>
+<circle cx="614.60" cy="180.06" r="27.86" fill="#0B7285" stroke="#FFFFFF" stroke-width="2.00" opacity="0.720"/>
+<circle cx="388.03" cy="207.23" r="23.79" fill="#38A3A5" stroke="#FFFFFF" stroke-width="2.00" opacity="0.720"/>
+<text x="417.81" y="211.23" font-size="11" font-weight="760" fill="#0F172A" text-anchor="start">S3</text>
+<circle cx="450.74" cy="234.62" r="19.58" fill="#80ED99" stroke="#FFFFFF" stroke-width="2.00" opacity="0.720"/>
+<circle cx="246.27" cy="321.95" r="15.06" fill="#F4D35E" stroke="#FFFFFF" stroke-width="2.00" opacity="0.720"/>
+<circle cx="400.52" cy="283.19" r="28.68" fill="#EE964B" stroke="#FFFFFF" stroke-width="2.00" opacity="0.720"/>
+<circle cx="281.83" cy="316.75" r="15.51" fill="#063B63" stroke="#FFFFFF" stroke-width="2.00" opacity="0.720"/>
+<circle cx="740.43" cy="209.61" r="26.76" fill="#0B7285" stroke="#FFFFFF" stroke-width="2.00" opacity="0.720"/>
+<text x="773.19" y="213.61" font-size="11" font-weight="760" fill="#0F172A" text-anchor="start">S8</text>
+<circle cx="376.75" cy="413.23" r="15.89" fill="#38A3A5" stroke="#FFFFFF" stroke-width="2.00" opacity="0.720"/>
+<circle cx="250.85" cy="336.09" r="13.63" fill="#80ED99" stroke="#FFFFFF" stroke-width="2.00" opacity="0.720"/>
+<circle cx="779.32" cy="296.53" r="13.48" fill="#F4D35E" stroke="#FFFFFF" stroke-width="2.00" opacity="0.720"/>
+<circle cx="344.24" cy="435.04" r="13.29" fill="#EE964B" stroke="#FFFFFF" stroke-width="2.00" opacity="0.720"/>
+<circle cx="231.97" cy="221.06" r="26.10" fill="#063B63" stroke="#FFFFFF" stroke-width="2.00" opacity="0.720"/>
+<circle cx="429.10" cy="335.58" r="27.65" fill="#0B7285" stroke="#FFFFFF" stroke-width="2.00" opacity="0.720"/>
+<text x="462.75" y="339.58" font-size="11" font-weight="760" fill="#0F172A" text-anchor="start">S14</text>
+<circle cx="275.06" cy="447.27" r="13.91" fill="#38A3A5" stroke="#FFFFFF" stroke-width="2.00" opacity="0.720"/>
+<circle cx="227.29" cy="307.37" r="26.74" fill="#80ED99" stroke="#FFFFFF" stroke-width="2.00" opacity="0.720"/>
+<circle cx="498.65" cy="323.60" r="21.52" fill="#F4D35E" stroke="#FFFFFF" stroke-width="2.00" opacity="0.720"/>
+<text x="110.00" y="568.00" font-size="12" font-weight="760" fill="#475569" text-anchor="start">tractability</text>
+<text x="46.00" y="142.00" font-size="12" font-weight="760" fill="#475569" text-anchor="start">novelty</text>
+</svg>

@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from html import escape
-from math import exp, pi, sqrt
+from math import cos, exp, log10, pi, sin, sqrt, tau
 from pathlib import Path
 from statistics import mean, pstdev
 from typing import Iterable, Sequence
@@ -67,6 +67,11 @@ class Canvas:
     def circle(self, x: float, y: float, r: float, fill: str, stroke: str = "none", width: float = 1.5, opacity: float = 1) -> None:
         self.parts.append(
             f'<circle cx="{x:.2f}" cy="{y:.2f}" r="{r:.2f}" fill="{fill}" stroke="{stroke}" stroke-width="{width:.2f}" opacity="{opacity:.3f}"/>'
+        )
+
+    def path(self, d: str, fill: str, stroke: str = "none", width: float = 1.2, opacity: float = 1) -> None:
+        self.parts.append(
+            f'<path d="{d}" fill="{fill}" stroke="{stroke}" stroke-width="{width:.2f}" opacity="{opacity:.3f}"/>'
         )
 
     def polyline(self, points: Sequence[tuple[float, float]], stroke: str, width: float = 2.5, fill: str = "none", opacity: float = 1) -> None:
@@ -247,6 +252,203 @@ def heatmap_matrix(
     return c.render()
 
 
+def donut_chart(
+    rows: Sequence[dict[str, object]],
+    value_key: str,
+    label_key: str,
+    title: str,
+    subtitle: str | None = None,
+    note: str | None = None,
+    palette: Sequence[str] | None = None,
+    theme: Theme | None = None,
+) -> str:
+    theme = theme or Theme(width=760, height=560)
+    palette = list(palette or PALETTES["npg"])
+    values = [max(0.0, float(row[value_key])) for row in rows]
+    total = sum(values) or 1.0
+    c = Canvas(theme.width, theme.height, theme)
+    c.label_block(title, subtitle, note)
+    cx, cy = theme.width * 0.38, theme.height * 0.56
+    outer, inner = min(theme.width, theme.height) * 0.28, min(theme.width, theme.height) * 0.16
+    angle = -pi / 2
+    for i, (row, value) in enumerate(zip(rows, values)):
+        delta = tau * value / total
+        end = angle + delta
+        large = 1 if delta > pi else 0
+        x1, y1 = cx + cos(angle) * outer, cy + sin(angle) * outer
+        x2, y2 = cx + cos(end) * outer, cy + sin(end) * outer
+        x3, y3 = cx + cos(end) * inner, cy + sin(end) * inner
+        x4, y4 = cx + cos(angle) * inner, cy + sin(angle) * inner
+        d = (
+            f"M{x1:.2f},{y1:.2f} A{outer:.2f},{outer:.2f} 0 {large} 1 {x2:.2f},{y2:.2f} "
+            f"L{x3:.2f},{y3:.2f} A{inner:.2f},{inner:.2f} 0 {large} 0 {x4:.2f},{y4:.2f} Z"
+        )
+        color = palette[i % len(palette)]
+        c.path(d, color, "#FFFFFF", 2.2, 0.95)
+        mid = angle + delta / 2
+        lx, ly = cx + cos(mid) * (outer + 28), cy + sin(mid) * (outer + 28)
+        pct = value / total * 100
+        if pct >= 7:
+            c.text(lx, ly + 4, f"{pct:.0f}%", 12, 780, theme.ink, "middle")
+        angle = end
+    c.circle(cx, cy, inner * 0.92, theme.bg, "none")
+    c.text(cx, cy - 5, f"{total:.0f}", 28, 850, theme.ink, "middle")
+    c.text(cx, cy + 20, "total", 11, 650, theme.muted, "middle")
+    legend_x, legend_y = theme.width * 0.66, theme.height * 0.30
+    for i, row in enumerate(rows):
+        y = legend_y + i * 34
+        color = palette[i % len(palette)]
+        pct = values[i] / total * 100
+        c.rect(legend_x, y - 10, 18, 18, color, "none", 5)
+        c.text(legend_x + 28, y + 4, str(row[label_key]), 13, 720, theme.ink)
+        c.text(theme.width - 46, y + 4, f"{pct:.1f}%", 12, 680, theme.muted, "end")
+    return c.render()
+
+
+def grouped_bar_chart(
+    rows: Sequence[dict[str, object]],
+    group_key: str,
+    series_keys: Sequence[str],
+    title: str,
+    subtitle: str | None = None,
+    note: str | None = None,
+    palette: Sequence[str] | None = None,
+    theme: Theme | None = None,
+    unit: str = "",
+) -> str:
+    theme = theme or Theme(width=940, height=560)
+    palette = list(palette or PALETTES["ccfa"])
+    values = [float(row[key]) for row in rows for key in series_keys]
+    lo, hi = 0.0, max(values) * 1.16 if values else 1.0
+    c = Canvas(theme.width, theme.height, theme)
+    c.label_block(title, subtitle, note)
+    left, right, top, bottom = 82, theme.width - 42, 132, theme.height - 92
+    for frac in (0, 0.25, 0.5, 0.75, 1.0):
+        y = _scale(lo + (hi - lo) * frac, lo, hi, bottom, top)
+        c.line(left, y, right, y, theme.grid, 0.9, 0.82)
+        c.text(left - 12, y + 4, _pretty(lo + (hi - lo) * frac), 11, 500, theme.muted, "end")
+    group_w = (right - left) / max(1, len(rows))
+    bar_w = min(26, group_w * 0.68 / max(1, len(series_keys)))
+    for i, row in enumerate(rows):
+        gx = left + i * group_w + group_w / 2
+        c.text(gx, bottom + 28, str(row[group_key]), 12, 720, theme.ink, "middle")
+        for j, key in enumerate(series_keys):
+            value = float(row[key])
+            h = bottom - _scale(value, lo, hi, bottom, top)
+            x = gx - bar_w * len(series_keys) / 2 + j * bar_w
+            color = palette[j % len(palette)]
+            c.rect(x + 2, bottom - h, bar_w - 4, h, color, "none", 6, 0.92)
+            if value > hi * 0.72:
+                c.text(x + bar_w / 2, bottom - h - 8, f"{_pretty(value)}{unit}", 10, 720, theme.ink, "middle")
+    legend_x = left
+    legend_y = top - 34
+    for j, key in enumerate(series_keys):
+        x = legend_x + j * 126
+        c.rect(x, legend_y, 18, 12, palette[j % len(palette)], "none", 4)
+        c.text(x + 26, legend_y + 11, key, 12, 650, theme.muted)
+    return c.render()
+
+
+def volcano_plot(
+    rows: Sequence[dict[str, object]],
+    fold_key: str,
+    p_key: str,
+    label_key: str | None,
+    title: str,
+    subtitle: str | None = None,
+    note: str | None = None,
+    fold_threshold: float = 1.0,
+    p_threshold: float = 0.05,
+    palette: Sequence[str] | None = None,
+    theme: Theme | None = None,
+) -> str:
+    theme = theme or Theme(width=900, height=590)
+    palette = list(palette or ["#477AA6", "#B58B2A", "#BA4C5E", "#8B96A3"])
+    points = []
+    for row in rows:
+        fold = float(row[fold_key])
+        p_value = max(float(row[p_key]), 1e-12)
+        points.append((fold, -log10(p_value), row))
+    xlo, xhi = _extent([p[0] for p in points] + [-fold_threshold, fold_threshold])
+    ylo, yhi = 0.0, max([p[1] for p in points] + [-log10(p_threshold)]) * 1.08
+    c = Canvas(theme.width, theme.height, theme)
+    c.label_block(title, subtitle, note)
+    left, right, top, bottom = 88, theme.width - 44, 128, theme.height - 78
+    c.rect(left, top, right - left, bottom - top, "#FFFFFF", "#E2E8F0", 14)
+    for fold in (-fold_threshold, fold_threshold):
+        x = _scale(fold, xlo, xhi, left + 18, right - 18)
+        c.line(x, top + 14, x, bottom - 14, "#CBD5E1", 1.2, 0.95)
+    y_thr = _scale(-log10(p_threshold), ylo, yhi, bottom - 16, top + 18)
+    c.line(left + 14, y_thr, right - 14, y_thr, "#CBD5E1", 1.2, 0.95)
+    for fold, score, row in points:
+        x = _scale(fold, xlo, xhi, left + 18, right - 18)
+        y = _scale(score, ylo, yhi, bottom - 16, top + 18)
+        if fold >= fold_threshold and score >= -log10(p_threshold):
+            color, r = palette[2], 5.6
+        elif fold <= -fold_threshold and score >= -log10(p_threshold):
+            color, r = palette[0], 5.6
+        elif score >= -log10(p_threshold):
+            color, r = palette[1], 4.8
+        else:
+            color, r = palette[3], 3.8
+        c.circle(x, y, r, color, "#FFFFFF", 0.9, 0.84)
+    top_hits = sorted(points, key=lambda item: item[1] + abs(item[0]) * 0.35, reverse=True)[:12]
+    placed: list[tuple[float, float]] = []
+    for fold, score, row in top_hits:
+        x = _scale(fold, xlo, xhi, left + 18, right - 18)
+        y = _scale(score, ylo, yhi, bottom - 16, top + 18)
+        if any(abs(x - px) < 62 and abs(y - py) < 22 for px, py in placed):
+            continue
+        label = str(row[label_key]) if label_key else f"{fold:.1f}"
+        dx = 10 if x < (left + right) / 2 else -10
+        anchor = "start" if dx > 0 else "end"
+        c.text(x + dx, y - 8, label, 11, 760, theme.ink, anchor)
+        placed.append((x, y))
+        if len(placed) >= 5:
+            break
+    c.text((left + right) / 2, bottom + 38, "log2 fold change", 12, 760, theme.muted, "middle")
+    c.text(left - 50, top + 12, "-log10 p", 12, 760, theme.muted)
+    return c.render()
+
+
+def correlation_heatmap(
+    matrix: Sequence[Sequence[float]],
+    labels: Sequence[str],
+    title: str,
+    subtitle: str | None = None,
+    note: str | None = None,
+    palette: Sequence[str] | None = None,
+    theme: Theme | None = None,
+) -> str:
+    theme = theme or Theme(width=760, height=700)
+    palette = list(palette or PALETTES["diverging_cork"])
+    c = Canvas(theme.width, theme.height, theme)
+    c.label_block(title, subtitle, note)
+    n = len(labels)
+    left, top = 148, 142
+    cell = min((theme.width - left - 70) / n, (theme.height - top - 80) / n)
+    for i, label in enumerate(labels):
+        c.text(left - 18, top + i * cell + cell / 2 + 5, label, 12, 700, theme.ink, "end")
+        c.text(left + i * cell + cell / 2, top - 18, label, 12, 700, theme.ink, "middle")
+    for i, row in enumerate(matrix):
+        for j, value in enumerate(row):
+            v = max(-1.0, min(1.0, float(value)))
+            idx = round(_scale(v, -1, 1, 0, len(palette) - 1))
+            color = palette[max(0, min(len(palette) - 1, int(idx)))]
+            x, y = left + j * cell, top + i * cell
+            c.rect(x + 2, y + 2, cell - 4, cell - 4, color, "#FFFFFF", 8, 0.95)
+            fill = "#FFFFFF" if abs(v) > 0.62 else theme.ink
+            c.text(x + cell / 2, y + cell / 2 + 4, f"{v:.2f}", 10, 760, fill, "middle")
+    legend_x, legend_y = left, theme.height - 78
+    sw = 34
+    for idx, color in enumerate(palette):
+        c.rect(legend_x + idx * sw, legend_y, sw, 12, color, "none")
+    c.text(legend_x, legend_y + 30, "-1", 11, 650, theme.muted, "middle")
+    c.text(legend_x + sw * (len(palette) - 1), legend_y + 30, "+1", 11, 650, theme.muted, "middle")
+    c.text(legend_x + sw * (len(palette) - 1) / 2, legend_y + 30, "corr", 11, 650, theme.muted, "middle")
+    return c.render()
+
+
 def _density(values: Sequence[float], xs: Sequence[float]) -> list[float]:
     vals = [float(v) for v in values]
     sd = pstdev(vals) or 1.0
@@ -349,8 +551,6 @@ def radial_scorecard(
     c.label_block(title, subtitle, note)
     cx, cy = theme.width / 2, theme.height / 2 + 32
     radius = min(theme.width, theme.height) * 0.31
-    from math import cos, sin, tau
-
     n = len(scores)
     rings = [0.25, 0.5, 0.75, 1.0]
     for r in rings:
@@ -378,6 +578,10 @@ def recipe_catalog() -> dict[str, str]:
         "lollipop_rank": "Ranked comparisons with direct value labels; good for headline results.",
         "slopegraph": "Before/after or base/big comparison; good for paired scientific changes.",
         "heatmap_matrix": "Dense model/config/result matrix; good for compact tables-as-visuals.",
+        "donut_chart": "Composition and proportion summary with explicit labels; use sparingly for exact comparisons.",
+        "grouped_bar_chart": "Grouped categorical comparisons; good for baselines, ablations, and cohorts.",
+        "volcano_plot": "Effect-size versus significance screening; good for biomarker, feature, and ablation scans.",
+        "correlation_heatmap": "Relationship matrix; good for metrics, modules, datasets, or feature correlations.",
         "ridgeline_density": "Distribution comparison; good for seeds, runs, samples, or uncertainty.",
         "small_multiple_lines": "Repeated temporal or scale trends with shared grammar.",
         "radial_scorecard": "Compact multi-criterion profile; use carefully and always label scale.",
