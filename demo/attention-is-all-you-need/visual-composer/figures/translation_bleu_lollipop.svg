@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="460" viewBox="0 0 880 460">
+<style>text{font-family:Inter, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas, Menlo, monospace}</style>
+<rect x="0" y="0" width="880" height="460" rx="0" fill="#FBFCFE"/>
+<text x="42.00" y="52.00" font-size="28" font-weight="820" fill="#17212B" text-anchor="start">Transformer headline translation results</text>
+<text x="42.00" y="82.00" font-size="14" font-weight="520" fill="#5D6977" text-anchor="start">Direct-labeled lollipop chart for the two official BLEU values.</text>
+<text x="42.00" y="436.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="start">Source: demo/artifacts/official-data.md; values are official Transformer paper excerpts.</text>
+<line x1="230.00" y1="390.00" x2="810.00" y2="390.00" stroke="#DCE4EC" stroke-width="1.00" stroke-linecap="round" opacity="1.000"/>
+<line x1="230.00" y1="108.00" x2="230.00" y2="390.00" stroke="#DCE4EC" stroke-width="0.80" stroke-linecap="round" opacity="0.800"/>
+<text x="230.00" y="414.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="middle">0</text>
+<line x1="375.00" y1="108.00" x2="375.00" y2="390.00" stroke="#DCE4EC" stroke-width="0.80" stroke-linecap="round" opacity="0.800"/>
+<text x="375.00" y="414.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="middle">11.5</text>
+<line x1="520.00" y1="108.00" x2="520.00" y2="390.00" stroke="#DCE4EC" stroke-width="0.80" stroke-linecap="round" opacity="0.800"/>
+<text x="520.00" y="414.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="middle">23.0</text>
+<line x1="665.00" y1="108.00" x2="665.00" y2="390.00" stroke="#DCE4EC" stroke-width="0.80" stroke-linecap="round" opacity="0.800"/>
+<text x="665.00" y="414.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="middle">34.4</text>
+<line x1="810.00" y1="108.00" x2="810.00" y2="390.00" stroke="#DCE4EC" stroke-width="0.80" stroke-linecap="round" opacity="0.800"/>
+<text x="810.00" y="414.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="middle">45.9</text>
+<text x="212.00" y="395.00" font-size="13" font-weight="650" fill="#17212B" text-anchor="end">WMT14 EN-DE</text>
+<line x1="230.00" y1="390.00" x2="588.71" y2="390.00" stroke="#1F6F8B" stroke-width="5.00" stroke-linecap="round" opacity="0.780"/>
+<circle cx="588.71" cy="390.00" r="8.50" fill="#1F6F8B" stroke="#FFFFFF" stroke-width="2.00" opacity="1.000"/>
+<text x="602.71" y="395.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="start">28.4 BLEU</text>
+<text x="212.00" y="127.00" font-size="13" font-weight="650" fill="#17212B" text-anchor="end">WMT14 EN-FR</text>
+<line x1="230.00" y1="122.00" x2="747.86" y2="122.00" stroke="#D2673D" stroke-width="5.00" stroke-linecap="round" opacity="0.780"/>
+<circle cx="747.86" cy="122.00" r="8.50" fill="#D2673D" stroke="#FFFFFF" stroke-width="2.00" opacity="1.000"/>
+<text x="761.86" y="127.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="start">41 BLEU</text>
+</svg>

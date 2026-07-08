@@ -1,5 +1,14 @@
 ﻿# Changelog
 
+## v0.7.0 - 2026-07-08
+
+- Added `ccf-visual-composer` for publication-grade figure/table visual contracts, palettes, panel maps, caption placement, manuscript integration, and render QA from supplied results.
+- Added bundled standard-library Python SVG plotting recipes under `ccf-visual-composer/resources/python/`, including lollipop, slopegraph, heatmap, ridgeline, small-multiple, and radial-scorecard recipes.
+- Added `demo/attention-is-all-you-need/visual-composer/` with runnable plotting examples and generated SVG figures from verified Transformer demo data.
+- Added plotting inspiration references for Matplotlib, Seaborn, Plotly, Bokeh, Altair, Plotnine, Python Graph Gallery, Scientific Visualization, SciencePlots, and LovelyPlots as design inspiration without code copying.
+- Added a multi-expert storyline generation/review/fusion framework to `ccf-paper-writer/references/storyline-blueprint.md` and wired writer routing for scientific storytelling, paper/story structure, insight framing, and claim generation.
+- Updated routing, trigger registry, artifact contracts, source registry, installation matrices, docs, manifests, generated SVG diagrams, and handoff rules for the 16-skill family.
+
 ## v0.5.1 - 2026-06-09
 
 - Added `ccf-literature-monitor` as the competitor-monitoring and new-paper tracking owner, with overlap scoring, RELAX/RESEARCH/FOLLOW-UP actions, and handoffs to literature search, idea review, idea optimization, paper writing, and integrity audit.

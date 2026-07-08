@@ -4,6 +4,8 @@ Use this file for full-paper drafting, section-specific rewriting, and exemplar-
 
 These are transferable writing patterns, not copied examples. Do not reuse sentence templates, distinctive wording, examples, claims, or confidence from any source paper or external skill. Adapt the logic to the user's actual problem, method, and evidence.
 
+Always apply `prose-quality-guardrails.md` with this file. It is the authority for avoiding defensive or incremental prose, label-heavy symbols, formula dumping, number-only abstracts, punctuation-driven structure, overlong compound sentences, strange shorthand, third-person manuscript narration, and unsupported hype.
+
 ## Dense Output Rule
 
 For broad writing tasks, produce the artifact first and make it substantial:
@@ -45,6 +47,14 @@ CCF-A papers read as continuous prose arguments, not as annotated outlines. The 
 - **Repeated motivation:** State the paper's core motivation once in the introduction and once in the conclusion. Do not re-motivate in every section.
 
 - **Over-bolded terms:** Do not bold every technical term. Use italics sparingly for the first definition only. Reserve bold for venue-mandated formatting (e.g., NeurIPS checklist headings).
+
+- **Question/claim labels as prose:** Avoid `Q1`, `Q2`, `C1`, `C2`, `RQ1`, and similar shorthand in the main narrative. Use natural names and sentence-level transitions unless the venue or study design explicitly requires labels.
+
+- **Number-led abstracts:** Do not let the abstract become a list of gains. Put task, gap, insight, method, and scope before numeric evidence.
+
+- **Formula-first paragraphs:** Do not introduce a method through dense symbols before explaining the scientific role of the quantity being defined.
+
+- **Third-person manuscript voice:** Do not write manuscript text as "this paper proposes" or "the authors show". Use direct scientific voice or make the concept itself the subject.
 
 ### Citation Weaving
 
@@ -124,6 +134,7 @@ Abstract checks:
 - Every result claim is later supported.
 - Method names are readable before details are introduced.
 - No sentence carries several unrelated messages.
+- The abstract is not dominated by numeric comparisons; numbers appear only as decisive evidence after the contribution is clear.
 
 ## Introduction Patterns
 

@@ -30,7 +30,7 @@ Treat submission as a build, venue-policy, page-budget, and artifact-readiness g
 3. For venue questions, read `../ccf-paper-writer/references/venue-guides/index.md` and the specific venue guide before checking official freshness.
 4. For package checks, inspect compile status, page count, target page budget, anonymity, fonts, PDF metadata, template path, references, supplementary files, and required forms.
 5. For artifact checks, build a reproducibility checklist: code, data, models, environment, seeds, hardware, license, access restrictions, and README.
-6. Hand off to `ccf-paper-writer` for text/page rewrites: compression when over limit, expansion when a full manuscript is materially underfilled, and normal polishing when within budget. Hand off to `ccf-experiment-designer` for missing reproducibility experiments and `ccf-rebuttal-writer` for post-review response packaging.
+6. Hand off to `ccf-paper-writer` for text/page rewrites: compression when over limit, expansion when a full manuscript is materially underfilled, and normal polishing when within budget. Hand off to `ccf-experiment-designer` for missing reproducibility experiments, `ccf-visual-composer` for figure/table float order, caption placement, font, clipping, palette, or visual readability fixes, and `ccf-rebuttal-writer` for post-review response packaging.
 
 ## Output Contract
 

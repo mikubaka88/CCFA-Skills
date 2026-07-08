@@ -28,6 +28,8 @@ Write for the target CCF venue, not for a generic paper. Improve structure, sect
 
 The visible output should feel like useful writing, not a process report. Use planning tables and checklists internally; show them only when the user asks for planning, audit status, or rationale.
 
+Apply `references/prose-quality-guardrails.md` to all manuscript-facing prose. Avoid defensive or incremental framing, label-heavy symbols such as `Q1`/`C1`, formula dumping, number-only abstracts, punctuation-driven structure, overlong compound sentences, strange shorthand, third-person narration about "the paper", and unsupported hype. Prioritize cohesive paragraph logic, stable terminology, evidence-bounded claims, and varied sentence rhythm.
+
 ## Format And Output Policy
 
 1. For polishing, rewriting, line editing, or compression of existing text, preserve the original format unless the user asks to restructure it. Keep LaTeX commands, section headings, citation keys, labels, equations, figure/table environments, Markdown headings, lists, and table shape intact whenever possible. Return the revised text in the same format first.
@@ -53,14 +55,14 @@ The visible output should feel like useful writing, not a process report. Use pl
 1. Identify mode, requested output format, target venue, paper type, draft state, available evidence, target length/page budget, and whether idea-scope changes are authorized. Load `references/output-style-policy.md` whenever output format, source-format preservation, or from-scratch LaTeX drafting matters.
 2. If the user supplied existing text, preserve its format and revise in place unless the user asked for a new structure.
 3. **Select venue and exemplars.** If the user names a target venue (e.g., "投CVPR", "for NeurIPS"): load the venue guide from `references/venue-guides/index.md` and the matched exemplar cards from `references/exemplars/index.md`. If no venue is specified, load `references/custom-format/default-user-format.md` which selects the user custom exemplars. If neither venue nor custom exemplars exist, use NeurIPS as the LaTeX fallback and the most relevant general-purpose exemplars. Then load `references/length-budget-policy.md` and create a section-level length plan. A short seed idea must still become a full submission-shaped manuscript; do not produce a short article because the input was short. Target85--100% of the venue main-body page budget.
-4. Build or update the global story with `references/storyline-blueprint.md`: task -> gap -> root challenge -> insight -> method -> evidence -> limitation. Keep this internal unless the user asked for a plan.
+4. Build or update the global story with `references/storyline-blueprint.md`. For storyline generation, scientific storytelling, narrative design, paper/story structure, research insight framing, claim generation, abstract planning, or introduction planning, use its multi-expert storyline pipeline and expression logic. For ordinary drafting, use its compact arc: scientific origin -> knowledge gap -> scientific tension -> fundamental question -> core insight -> method mechanism -> evidence ladder -> bounded claim. Keep this internal unless the user asked for a plan.
 5. **Prepare citations** (mandatory for full manuscripts and section drafts): load `references/citation-workflow.md`. Identify citation slots by section, search for literature for each slot, obtain correct bib entries, save them to the project `.bib` file, and insert cites naturally per the workflow. Do not draft a section without first identifying what it needs to cite. If the closest-competitor literature is unknown, hand off to `ccf-literature-searcher` before continuing.
-6. For full-paper, abstract, introduction, method, experiment, conclusion, or exemplar-pattern tasks, load `references/research-writing-patterns.md` and then draft or revise section by section using `references/section-modules.md` and `references/writing-checklists.md`. For full manuscripts, compare the draft against the length budget and expand or compress as needed.
+6. For full-paper, abstract, introduction, method, experiment, conclusion, or exemplar-pattern tasks, load `references/prose-quality-guardrails.md` and `references/research-writing-patterns.md`, then draft or revise section by section using `references/section-modules.md` and `references/writing-checklists.md`. For full manuscripts, compare the draft against the length budget and expand or compress as needed.
 7. **Compile and check** (mandatory for full manuscripts when a LaTeX engine is available): compile the draft, measure the actual page count, and compare against the venue budget from step3. If under target by >15%, expand with mechanism detail, experiment setup, analysis, limitations, and `TBD` placeholders---not padding or invented results. If over target by >10%, compress with `references/compression-rules.md`. Recompile after any substantial change and repeat until the page count is within tolerance. Record the final status: `underfilled / target-fit / draft-over / final-over / not compiled`.
 8. For compression, load `references/compression-rules.md`; return compressed text in the same format and include a cut log only when requested or when content was materially removed.
 9. For presentation adaptation, derive slides/poster/talk/Q&A only from the manuscript and supplied evidence, in the user's requested slide/poster/script format.
-10. If current literature, baselines, or experiments are missing, ask a targeted question or hand off to `ccf-literature-monitor` for recent-paper/competitor watch, `ccf-literature-searcher` for deep retrieval, or `ccf-experiment-designer` for experiment design; do not fill gaps by invention.
-11. Before calling text ready, run a local score-risk check with quantitative writing feedback when enough text is available; when scientific judgment is needed, hand off to `ccf-paper-reviewer`.
+10. If current literature, baselines, or experiments are missing, ask a targeted question or hand off to `ccf-literature-monitor` for recent-paper/competitor watch, `ccf-literature-searcher` for deep retrieval, or `ccf-experiment-designer` for experiment design. For publication-grade figure/table layout, visual contracts, palette choices, caption placement, or manuscript visual integration, hand off to `ccf-visual-composer`. Do not fill gaps by invention.
+11. Before calling text ready, run the final prose self-audit in `references/prose-quality-guardrails.md`, then run a local score-risk check with quantitative writing feedback when enough text is available; when scientific judgment is needed, hand off to `ccf-paper-reviewer`.
 
 ## Post-Writing Coordination
 
@@ -74,6 +76,7 @@ Next CCFA skills available:
 - ccf-integrity-auditor: citation existence, claim-evidence consistency, bibtex correctness
 - ccf-submission-checker: venue template compliance, page/anonymity limits, LaTeX compilation
 - ccf-experiment-designer: missing experiments, baseline design, ablation planning
+- ccf-visual-composer: publication-grade figures/tables, palette, caption, layout, visual QA
 - ccf-literature-monitor: recent-paper tracking, competitor monitoring, novelty-threat alerts
 - ccf-literature-searcher: missing related work, closest-competitor search
 - ccf-rebuttal-writer: reviewer response, rebuttal drafting, revision ledger
@@ -96,7 +99,8 @@ Only list skills that are actually relevant to the paper current state. Do not s
 - `references/output-style-policy.md`: user-format priority, edit-format preservation, and NeurIPS fallback behavior.
 - `references/length-budget-policy.md`: venue page/word budget, underfilled draft expansion, compile-adjust loop, and compression trigger.
 - `references/research-writing-patterns.md`: section-level patterns, dense output rules, and exemplar-mode adaptation.
-- `references/storyline-blueprint.md`: whole-paper story.
+- `references/prose-quality-guardrails.md`: anti-defensive prose rules, paragraph cohesion, terminology consistency, evidence-bounded claims, sentence rhythm, and final prose self-audit.
+- `references/storyline-blueprint.md`: whole-paper story, multi-expert storyline generation, scientific storytelling structure, and claim construction.
 - `references/section-modules.md`: section drafting.
 - `references/writing-checklists.md`: readiness checks.
 - `references/score-lifting-loop.md`: score-risk improvement loop.

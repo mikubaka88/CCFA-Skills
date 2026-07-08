@@ -1,6 +1,6 @@
 {
   "name": "ccfa-skills",
-  "version": "0.5",
+  "version": "0.7",
   "description": "CCFA CCF paper-project workflow skill family.",
   "author": {
     "name": "CCFA Skills maintainers"
@@ -18,13 +18,15 @@
   "interface": {
     "displayName": "CCFA Skills",
     "shortDescription": "CCF paper-project workflow skills.",
-    "longDescription": "A governed 15-skill ccf-* family for CCF/NeurIPS paper projects: idea, monitoring, literature, experiments, writing, review, audit, submission, rebuttal, and family maintenance.",
+    "longDescription": "A governed 16-skill ccf-* family for CCF/NeurIPS paper projects: idea, monitoring, literature, experiments, publication visuals with bundled Python plotting recipes, writing, review, audit, submission, rebuttal, and family maintenance.",
     "developerName": "CCFA Skills maintainers",
     "category": "Productivity",
     "capabilities": [
       "skills",
       "research-workflow",
-      "paper-writing"
+      "paper-writing",
+      "publication-visuals",
+      "data-visualization"
     ],
     "brandColor": "#1F6F8B",
     "defaultPrompt": "Use the appropriate canonical ccf-* skill from CCFA Skills. Respect trigger boundaries, artifact contracts, venue-format routing, and renamed skill ownership."

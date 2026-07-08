@@ -38,7 +38,7 @@ Do not write rebuttal text; route real reviewer-response work to `ccf-rebuttal-w
 2. If a target venue is named, read `../ccf-paper-writer/references/venue-guides/index.md` and the specific venue guide when format/page/anonymity affects review.
 3. Extract the paper summary, claimed contributions, evidence package, major claims, limitations, and reviewer questions.
 4. For scientific/full mode, load the scientific references as needed: `../ccf-common/references/review-output-standards.md`, `references/review-workflow.md`, `references/universal-review-rubric.md`, `references/venue-review-styles.md`, `references/reviewer-panel.md`, `references/calibration-and-rank.md`, and `references/desk-checks.md`.
-5. For writing/full mode, load the writing-review references as needed from `references/writing-review/`.
+5. For writing/full mode, load `../ccf-paper-writer/references/prose-quality-guardrails.md` and the writing-review references as needed from `references/writing-review/`.
 6. Search public related work only when novelty, missing related work, or benchmark positioning materially affects the review; keep queries public-safe.
 7. Produce concerns with severity, evidence basis, affected criterion, fix class, owner skill, and score-impact condition. Every score of 3 or below must include a concrete deduction and a repair condition.
 8. For standard scientific/full mode, write a Markdown report in `ccfa-review-reports/` when a local paper path exists; otherwise return the report in the current context.
@@ -86,4 +86,5 @@ Next owner:
 - `references/calibration-and-rank.md`: scores, ranks, and confidence.
 - `references/desk-checks.md`: desk and policy checks.
 - `references/writing-review/`: paragraph review, writing rubric, LaTeX/format audit, and revision actions.
+- `../ccf-paper-writer/references/prose-quality-guardrails.md`: prose anti-patterns and cohesion checks for writing review.
 - `../ccf-common/references/review-output-standards.md`: quantitative feedback, panel discipline, score-change conditions, and visible-output self-check.

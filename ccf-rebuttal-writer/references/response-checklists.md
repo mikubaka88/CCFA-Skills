@@ -45,6 +45,18 @@ Each response should include:
 - no unsupported new claim,
 - no defensive wording.
 
+## Response Prose Discipline
+
+Use `../../ccf-paper-writer/references/prose-quality-guardrails.md` for response text that may be copied into the manuscript or response letter.
+
+- Quote only the shortest reviewer phrase needed to identify the issue; do not build the response around long quotations.
+- Avoid defensive openings such as "we disagree" unless the reviewer statement is factually wrong and the evidence is immediately given.
+- Do not structure the response with dense `Q1`/`C1` labels unless required by the response template.
+- Replace colon-heavy and dash-heavy chains with direct answer sentences.
+- Keep terms consistent with the manuscript; do not introduce a new name for the same method, module, dataset, or claim.
+- Vary sentence length while staying concise.
+- Prefer evidence, location, and promised edit over rhetoric.
+
 ## Positive Opening Checklist
 
 - Start from strengths, reviewer agreement, or acknowledged value when available.
@@ -91,6 +103,7 @@ Do not call the response ready until:
 - Every answer has evidence or a clear limitation.
 - Literal comments and deeper intent are both addressed for major issues.
 - Reviewer quotations are concise and followed by direct answers.
+- Response prose is non-defensive, label-light, terminology-consistent, and not dominated by quotations or punctuation chains.
 - Reviewer color labels are used for multi-reviewer TeX responses.
 - Related concerns are merged when doing so saves space.
 - Existing paper coverage is cited by line, section, table, figure, or appendix when available.

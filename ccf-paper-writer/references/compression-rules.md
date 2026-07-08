@@ -106,6 +106,8 @@ Theory/PL/FM:
 - Use one term consistently rather than alternating synonyms.
 - Prefer "because" and "therefore" relations over long rhetorical bridges.
 - Replace verbose contribution bullets with claim + evidence pairs.
+- Remove defensive hedges, unexplained labels, punctuation-heavy chains, and third-person manuscript narration before cutting substantive content.
+- Preserve sentence rhythm; do not compress every sentence into the same short template.
 
 ## Risk Labels
 

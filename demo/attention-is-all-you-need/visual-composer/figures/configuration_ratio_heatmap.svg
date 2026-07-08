@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="390" viewBox="0 0 820 390">
+<style>text{font-family:Inter, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas, Menlo, monospace}</style>
+<rect x="0" y="0" width="820" height="390" rx="0" fill="#FBFCFE"/>
+<text x="42.00" y="52.00" font-size="28" font-weight="820" fill="#17212B" text-anchor="start">Transformer configuration ratios</text>
+<text x="42.00" y="82.00" font-size="14" font-weight="520" fill="#5D6977" text-anchor="start">Column values are ratios relative to the base configuration.</text>
+<text x="42.00" y="366.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="start">Source: demo/artifacts/official-data.md; values are official Transformer paper excerpts.</text>
+<text x="247.00" y="114.00" font-size="12" font-weight="720" fill="#5D6977" text-anchor="middle">N</text>
+<text x="361.00" y="114.00" font-size="12" font-weight="720" fill="#5D6977" text-anchor="middle">d_model</text>
+<text x="475.00" y="114.00" font-size="12" font-weight="720" fill="#5D6977" text-anchor="middle">d_ff</text>
+<text x="589.00" y="114.00" font-size="12" font-weight="720" fill="#5D6977" text-anchor="middle">heads</text>
+<text x="703.00" y="114.00" font-size="12" font-weight="720" fill="#5D6977" text-anchor="middle">steps</text>
+<text x="172.00" y="165.00" font-size="12" font-weight="650" fill="#17212B" text-anchor="end">Base</text>
+<rect x="193.00" y="135.00" width="108.00" height="50.00" rx="10.00" fill="#F7FCF5" stroke="#FFFFFF" opacity="1.000"/>
+<text x="247.00" y="165.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">1</text>
+<rect x="307.00" y="135.00" width="108.00" height="50.00" rx="10.00" fill="#F7FCF5" stroke="#FFFFFF" opacity="1.000"/>
+<text x="361.00" y="165.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">1</text>
+<rect x="421.00" y="135.00" width="108.00" height="50.00" rx="10.00" fill="#F7FCF5" stroke="#FFFFFF" opacity="1.000"/>
+<text x="475.00" y="165.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">1</text>
+<rect x="535.00" y="135.00" width="108.00" height="50.00" rx="10.00" fill="#F7FCF5" stroke="#FFFFFF" opacity="1.000"/>
+<text x="589.00" y="165.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">1</text>
+<rect x="649.00" y="135.00" width="108.00" height="50.00" rx="10.00" fill="#F7FCF5" stroke="#FFFFFF" opacity="1.000"/>
+<text x="703.00" y="165.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">1</text>
+<text x="172.00" y="221.00" font-size="12" font-weight="650" fill="#17212B" text-anchor="end">Big</text>
+<rect x="193.00" y="191.00" width="108.00" height="50.00" rx="10.00" fill="#F7FCF5" stroke="#FFFFFF" opacity="1.000"/>
+<text x="247.00" y="221.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">1</text>
+<rect x="307.00" y="191.00" width="108.00" height="50.00" rx="10.00" fill="#A1D99B" stroke="#FFFFFF" opacity="1.000"/>
+<text x="361.00" y="221.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">2</text>
+<rect x="421.00" y="191.00" width="108.00" height="50.00" rx="10.00" fill="#A1D99B" stroke="#FFFFFF" opacity="1.000"/>
+<text x="475.00" y="221.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">2</text>
+<rect x="535.00" y="191.00" width="108.00" height="50.00" rx="10.00" fill="#A1D99B" stroke="#FFFFFF" opacity="1.000"/>
+<text x="589.00" y="221.00" font-size="12" font-weight="760" fill="#17212B" text-anchor="middle">2</text>
+<rect x="649.00" y="191.00" width="108.00" height="50.00" rx="10.00" fill="#006D2C" stroke="#FFFFFF" opacity="1.000"/>
+<text x="703.00" y="221.00" font-size="12" font-weight="760" fill="#FFFFFF" text-anchor="middle">3</text>
+</svg>

@@ -1,6 +1,6 @@
 ﻿# CCFA Architecture
 
-CCFA is a paper-project workflow family, not a loose collection of unrelated writing prompts. The v0.5 architecture has one owner skill per responsibility area and uses `ccfa.yaml` plus explicit artifact contracts to keep stages connected.
+CCFA is a paper-project workflow family, not a loose collection of unrelated writing prompts. The v0.7 architecture has one owner skill per responsibility area and uses `ccfa.yaml` plus explicit artifact contracts to keep stages connected.
 
 ![Architecture](../assets/ccfa-skills-architecture.svg)
 
@@ -10,7 +10,7 @@ The family has three layers:
 
 | Layer | Purpose | Skills |
 | --- | --- | --- |
-| Research production chain | Move a paper project from project setup to rebuttal. | `ccf-project-scaffolder`, `ccf-pipeline-orchestrator`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, `ccf-rebuttal-writer` |
+| Research production chain | Move a paper project from project setup to rebuttal. | `ccf-project-scaffolder`, `ccf-pipeline-orchestrator`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, `ccf-rebuttal-writer` |
 | Shared state and policy | Keep routing, evidence, privacy, source registry, and artifact ownership consistent. | `ccf-common` |
 | Family maintenance | Maintain skills, docs, generated SVGs, validation, and releases. | `ccf-skill-forger` |
 
@@ -19,7 +19,7 @@ The main chain is:
 ```text
 scaffold -> orchestrate -> optimize idea -> review idea
          -> monitor recent literature -> search literature
-         -> design experiments -> optional exemplar extraction
+         -> design experiments -> compose visuals -> optional exemplar extraction
          -> write manuscript -> review manuscript -> audit integrity
          -> check submission -> rebuttal / ledger / resubmission
 ```
@@ -47,7 +47,7 @@ The file is not meant to contain the whole paper. It is a routing and status spi
 
 ## Owner Boundaries
 
-The family intentionally merged helper skills into owner modes:
+The family intentionally merged helper skills into owner modes. In v0.7, `ccf-visual-composer` also carries a small self-contained Python SVG plotting recipe library so paper-visual examples can run without optional plotting dependencies.
 
 | Capability | Owner | Boundary |
 | --- | --- | --- |
@@ -57,10 +57,11 @@ The family intentionally merged helper skills into owner modes:
 | Exemplar extraction | `ccf-paper-to-exemplar` | Converts PDFs into writing pattern cards; does not draft or review manuscripts. |
 | Writing review | `ccf-paper-reviewer` | Diagnoses writing and format-facing risk; does not rewrite unless handed back to writer. |
 | Citation audit | `ccf-integrity-auditor` | Checks existing citations; broad discovery stays with literature search. |
-| Result figures/tables | `ccf-experiment-designer` | Uses real results; never invents numbers. |
+| Result evidence and specs | `ccf-experiment-designer` | Uses real results; never invents numbers. |
+| Publication figures/tables and plots | `ccf-visual-composer` | Owns visual contracts, bundled Python plotting recipes, palettes, panel/table layout, captions, manuscript integration, and render QA from supplied results. |
 | Venue format and artifacts | `ccf-submission-checker` | Checks package readiness; content polishing stays with writer. |
 | Resubmission adaptation | `ccf-rebuttal-writer` | Maintains response/ledger logic; manuscript edits route back to writer. |
-| Docs SVGs | `ccf-skill-forger` | Repository maintenance only; research figures stay with experiment designer. |
+| Docs SVGs | `ccf-skill-forger` | Repository maintenance only; research figures/tables stay with experiment designer and visual composer. |
 
 ![Review boundaries](../assets/ccfa-skills-review-boundaries.svg)
 

@@ -20,6 +20,9 @@ artifacts:
   family_self_audit: "artifacts/06-family-self-audit.md"
   official_data: "artifacts/official-data.md"
   result_tables: "artifacts/result-tables.md"
+  visual_composer_demo: "visual-composer/README.md"
+  visual_composer_script: "visual-composer/plot_demo.py"
+  visual_composer_figures: "visual-composer/figures/"
 claims:
   - id: C1
     text: "A sequence transduction model can rely entirely on attention, without recurrence or convolution."

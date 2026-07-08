@@ -14,13 +14,13 @@ metadata:
 
 ## Core Rule
 
-Design experiments that test the paper's central claims. Build result tables and publication figures only from supplied real values or explicit placeholders. Never fabricate numbers, improvements, significance, benchmark ranks, or user-study outcomes. Follow the user's requested output shape: experiment plan, table, LaTeX table, figure spec, ablation list, or execution queue.
+Design experiments that test the paper's central claims. Build result tables and evidence-bound figure specs only from supplied real values or explicit placeholders. Never fabricate numbers, improvements, significance, benchmark ranks, or user-study outcomes. Publication-grade layout, palette, caption placement, and render QA belong to `ccf-visual-composer`. Follow the user's requested output shape: experiment plan, table, LaTeX table, figure spec, ablation list, or execution queue.
 
 ## Modes
 
 - `design`: datasets, baselines, metrics, ablations, robustness, efficiency, failure analysis, and execution priority.
 - `result-template`: fill-in tables with `TBD` placeholders.
-- `result-presentation`: LaTeX tables, figure plans, SVG/PDF-ready chart specs, captions, and QA from supplied real results.
+- `result-presentation`: result tables, figure evidence plans, chart specs, caption facts, and missing-value markers from supplied real results.
 
 ## Workflow
 
@@ -30,11 +30,12 @@ Design experiments that test the paper's central claims. Build result tables and
 4. If datasets or baselines are unknown, use public-safe search or hand off to `ccf-literature-searcher`; mark uncertainty instead of guessing.
 5. Load `references/evidence-design.md` for venue-family expectations and `references/result-templates.md` for result tables.
 6. For result presentation, preserve units, seeds, confidence intervals, dataset names, and metric direction. Mark missing values explicitly.
-7. Hand off to `ccf-paper-writer` for manuscript prose, `ccf-integrity-auditor` for number/claim consistency, and `ccf-submission-checker` for package or artifact readiness.
+7. Hand off to `ccf-visual-composer` for publication-grade figure/table layout, palettes, panel maps, captions, manuscript integration, and render QA.
+8. Hand off to `ccf-paper-writer` for manuscript prose, `ccf-integrity-auditor` for number/claim consistency, and `ccf-submission-checker` for package or artifact readiness.
 
 ## Adaptive Output Contract
 
-Return the requested artifact first. For a result table request, output the table. For a figure request, output the figure spec/caption/QA notes. For a full experiment-design request, use this default structure:
+Return the requested artifact first. For a result table request, output the table. For a figure request, output the evidence-bound figure spec and caption facts, then name `ccf-visual-composer` as next owner for visual composition when needed. For a full experiment-design request, use this default structure:
 
 ```text
 Mode:

@@ -31,6 +31,7 @@ Trace each important claim to supplied evidence, each number to supplied results
 4. For citation audit, verify only existing citations unless the user asks for new literature; broad search belongs to `ccf-literature-searcher`.
 5. For any questionable citation, separate metadata problems from context-support problems.
 6. Hand off to `ccf-paper-reviewer` for full scientific judgment and to `ccf-paper-writer` for safe wording edits.
+7. If the numbers and claims are consistent but the figure/table layout, caption placement, palette, float order, or rendered readability is weak, hand off to `ccf-visual-composer`.
 
 ## Output Contract
 

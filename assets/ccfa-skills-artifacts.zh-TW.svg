@@ -9,7 +9,7 @@
 <rect x="0" y="0" width="1800" height="158" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
 <text x="72" y="66" font-size="44" font-weight="850" fill="#FFFFFF" text-anchor="start">Artifact 合約</text>
 <text x="72" y="108" font-size="20" font-weight="500" fill="#D8E6F2" text-anchor="start">ccfa.yaml 與檔案串聯 idea、證據、正文、審稿、投稿包和 rebuttal。</text>
-<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.5 · 15 個 owner skills · 一個論文專案閉環</text>
+<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.7 · 16 個 owner skills · 一個論文專案閉環</text>
 <rect x="570" y="365" width="660" height="150" rx="32" fill="#102033" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <text x="900" y="423" font-size="40" font-weight="860" fill="#FFFFFF" text-anchor="middle">ccfa.yaml</text>
 <text x="900" y="468" font-size="16" font-weight="520" fill="#D8E6F2" text-anchor="middle">version · stage · target_venue · artifacts · claims · reviews · checks</text>
@@ -17,6 +17,7 @@
 <line x1="900" y1="365" x2="665" y2="284" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
 <line x1="900" y1="365" x2="1075" y2="284" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
 <line x1="900" y1="365" x2="1485" y2="284" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="900" y1="365" x2="1485" y2="444" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
 <line x1="900" y1="515" x2="225" y2="664" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
 <line x1="900" y1="515" x2="570" y2="694" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
 <line x1="900" y1="515" x2="915" y2="694" stroke="#A7B2C0" stroke-width="2" stroke-linecap="round" marker-end="url(#arrow)"/>
@@ -34,6 +35,9 @@
 <rect x="1320" y="230" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <text x="1348" y="272" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">experiments.md</text>
 <text x="1348" y="305" font-size="14" font-weight="650" fill="#6657A8" text-anchor="start">ccf-experiment-designer</text>
+<rect x="1320" y="390" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="1348" y="432" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">visual-composer/</text>
+<text x="1348" y="465" font-size="14" font-weight="650" fill="#6657A8" text-anchor="start">ccf-visual-composer</text>
 <rect x="60" y="610" width="330" height="108" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <text x="88" y="652" font-size="24" font-weight="820" fill="#15202B" text-anchor="start">manuscript.tex</text>
 <text x="88" y="685" font-size="14" font-weight="650" fill="#2D3742" text-anchor="start">ccf-paper-writer</text>

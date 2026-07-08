@@ -9,7 +9,8 @@ These contracts prevent CCFA skills from overwriting each other's work. Read bro
 | `manuscript/*.tex` | `ccf-paper-writer` | Review and audit skills suggest edits; writing changes route back to paper writer unless user explicitly authorizes otherwise. |
 | `references/*.bib` | `ccf-integrity-auditor` | Integrity auditor verifies existing entries; literature searcher proposes new candidates. |
 | `experiments/results.*` | user, `ccf-experiment-designer` | Figure/table and integrity skills read supplied numbers only. |
-| `figures/*`, `tables/*` | `ccf-experiment-designer` | Captions may route through paper writer; data must be real. |
+| `figures/*`, `tables/*` | `ccf-experiment-designer`, `ccf-visual-composer` | Experiment designer owns evidence/result content and real values; visual composer owns plotting code, palette, panel/table layout, caption placement, manuscript integration, and render QA. Data must be real. |
+| `visual-composer/*` | `ccf-visual-composer` | Stores visual contracts, Python plotting scripts, generated figures, panel/table maps, palette decisions, render QA ledgers, and visual iteration logs. It must not become a hidden source of invented numbers. |
 | `reviews/*` | `ccf-paper-reviewer`, user | Rebuttal writer reads real reviews and maintains response ledger. |
 | `reviews/revision-ledger.md` | `ccf-rebuttal-writer` | Tracks reviewer comment -> response promise -> manuscript action -> status. |
 | `submission/*` | `ccf-submission-checker` | Stores build, anonymity, page, metadata, and policy readiness results. |

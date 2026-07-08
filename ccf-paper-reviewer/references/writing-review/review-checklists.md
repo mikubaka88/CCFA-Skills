@@ -22,6 +22,7 @@ Use this file to prevent omissions during manuscript writing review, paragraph-b
 - Quantitative writing scorecard is produced when enough text is available.
 - Writing-review panel roles are run independently before synthesis in standard mode.
 - Terminology, notation, datasets, models, and contribution wording are checked across sections.
+- Prose quality guardrails are checked: no defensive/incremental framing, label-heavy shorthand, number-only abstracts, formula dumping, third-person manuscript voice, punctuation-driven structure, unsupported hype, or overlong compound sentences.
 - Related work is checked for closest-work positioning, not citation-list volume.
 - Figures/tables/captions/equations/algorithms are checked when present.
 - LaTeX/source/template issues are checked when source or snippets are available.
@@ -36,6 +37,7 @@ Use this file to prevent omissions during manuscript writing review, paragraph-b
 - Unsupported claims are tied to the exact missing citation/result/proof/example/qualification.
 - Repeated material is marked as cut, merge, move, or appendix candidate.
 - Transitions between paragraphs are checked for causal order.
+- Sentence rhythm and syntax are checked so paragraphs do not become mechanically uniform.
 - Edit actions are concrete: keep, reorder, split, merge, cut, move, qualify, expand, or rewrite.
 
 ## LaTeX / Format Checklist
@@ -86,6 +88,7 @@ Checklist status:
 - Writing-review panel:
 - Paragraph IDs:
 - Storyline:
+- Prose quality:
 - Claim-evidence:
 - Consistency:
 - LaTeX/format:

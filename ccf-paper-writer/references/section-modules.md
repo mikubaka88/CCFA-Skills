@@ -4,6 +4,8 @@ Use this file when drafting, rewriting, or checking a specific paper section. Al
 
 Use the steps below as internal writing control unless the user asks to see the plan. For direct polishing, line editing, compression, or LaTeX revision, return the revised text in the user's original format rather than exposing paragraph-role analysis.
 
+Also apply `references/prose-quality-guardrails.md`. Section drafting must avoid defensive framing, symbolic question/claim labels in prose, formula dumping, number-only abstracts, third-person manuscript narration, and punctuation used as a substitute for logic.
+
 ## Module Template
 
 For any section:
@@ -13,7 +15,8 @@ For any section:
 3. Draft paragraphs one role at a time.
 4. Check local flow: one paragraph, one message.
 5. Check global flow: section supports the main story and venue plan.
-6. Update claim-evidence and reviewer-risk maps.
+6. Check prose quality: stable terminology, no unsupported hype, no unnecessary repeated concepts, and varied sentence rhythm.
+7. Update claim-evidence and reviewer-risk maps.
 
 Show steps 1-2 only when the user requested a plan, outline, diagnosis, or explanation.
 
@@ -53,6 +56,7 @@ Checks:
 - Does every major abstract claim appear later with evidence?
 - Is the method name understandable without hidden context?
 - Does the abstract fit target venue style: concise for systems, precise for theory, contribution/evidence-balanced for AI/CV/NLP?
+- Is the abstract built around the scientific contribution rather than a dense list of numeric improvements?
 
 ## Introduction
 
@@ -77,6 +81,7 @@ Checks:
 
 - Does the core challenge appear early enough?
 - Is the root technical reason explicit?
+- Does the introduction avoid defensive or incremental framing?
 - Are prior methods used to motivate the gap rather than dumped as citations? Count the citations: if under12, expand the prior-work ladder.
 - Do contribution bullets map to Method and Experiments?
 - Would a skeptical reviewer understand why the work is not a small patch?
@@ -135,6 +140,8 @@ Citation rules:
 Style rule:
 
 - Do not use bold inline labels (`\textbf{Input:}`, `\textbf{Output:}`, `\textbf{Architecture:}`) in every paragraph. Write prose that flows: "The encoder takes a sequence of tokens and produces contextualized representations through stacked self-attention layers" rather than "`\textbf{Encoder:}` The encoder uses self-attention."
+- Do not let theorem statements, equations, or notation blocks replace explanation. Introduce their purpose before the formalism and explain their role afterward.
+- Avoid `Q1`/`C1`-style labels for modules or claims unless the venue or task convention requires them.
 
 Checks:
 
@@ -236,8 +243,9 @@ When the user gives one paragraph:
 2. State the intended message in one sentence.
 3. Check sentence flow.
 4. Check term consistency.
-5. Check whether claims are supported or need softer wording.
-6. Rewrite with the same technical meaning unless the user asks for structural changes.
+5. Check whether the paragraph repeats a concept without adding logic.
+6. Check whether claims are supported or need softer wording.
+7. Rewrite with the same technical meaning unless the user asks for structural changes.
 
 Visible output default: the rewritten paragraph only, preserving Markdown/LaTeX/citation formatting. Add a short note only if a claim was softened, a citation/result looked unsupported, or the user asked for explanation.
 

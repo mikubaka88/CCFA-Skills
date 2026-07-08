@@ -15,6 +15,7 @@ This catalog is the public trigger-conflict index for the current CCFA family. I
 | `ccf-literature-monitor` | Monitoring | Track recent arXiv/OpenReview/venue papers, labs, competitors, and novelty-threat signals. | 竞品监控、新论文追踪、最近有没有类似 idea、arXiv/会议动态。 | arxiv-watch, venue-watch, novelty-check, trend-scouting, competitor-tracking | Deep related-work search, citation audit, or final idea scoring. |
 | `ccf-literature-searcher` | Evidence | Search and screen literature, prior art, datasets, benchmarks, and opportunity gaps. | 检索相关工作、prior art、数据集、benchmark、方向调研、open gap。 | search, screening, opportunity map | Auditing only already cited papers or acting as a final idea kill gate. |
 | `ccf-experiment-designer` | Evidence | Design experiments and build real-result tables/figures. | 设计实验、baseline、metric、消融、结果表和真实结果图。 | experiment design, result templates, result figures/tables | Inventing results or drawing CCFA docs diagrams. |
+| `ccf-visual-composer` | Visual evidence | Compose publication-grade figures/tables, Python plotting code, palettes, captions, panel maps, and manuscript layout integration from supplied results. | 图表排版、配色、多面板 figure、Python 绘图代码、创意数据分析图、表格版式、caption、正文嵌入、视觉 QA。 | visual-contract, figure-design, python-plotting, table-design, layout-integration, render-qa | Designing experiments, inventing results, writing manuscript prose as the main task, or final submission compliance. |
 | `ccf-paper-to-exemplar` | Writing support | Convert paper PDFs into reusable writing exemplar cards for `ccf-paper-writer`. | 把论文 PDF 转成写作范例卡、建立个人 exemplar 库。 | exemplar extraction, style-pattern cards, custom exemplar registration | Writing papers or performing review. |
 | `ccf-paper-writer` | Manuscript | Draft, revise, polish, compress, preserve source format during edits, create venue- and length-aware LaTeX manuscripts from ideas, and presentation-adapt paper text. | 写作、润色、压缩；保留原格式；只有 idea 时按目标会议 LaTeX 和篇幅预算起草；缺省回退 NeurIPS。 | draft, polish, compression, venue-aware LaTeX drafting, page-budget drafting, presentation | Full review, evidence audit, package check, rebuttal. |
 | `ccf-paper-reviewer` | Review | Review manuscripts scientifically and stylistically. | 科学审稿、写作评审、格式风险、评分、AC/meta-review。 | scientific review, writing review, format-facing review | Rewriting manuscript text or drafting rebuttals. |
@@ -32,7 +33,7 @@ This catalog is the public trigger-conflict index for the current CCFA family. I
 | `ccf-paper-compressor` | `ccf-paper-writer` | Compression changes manuscript text and must share writing safeguards. |
 | `ccf-writing-reviewer` | `ccf-paper-reviewer` | Writing review is a review mode, not a separate runtime owner. |
 | `ccf-citation-auditor` | `ccf-integrity-auditor` | Citation verification is evidence integrity. |
-| `ccf-figure-table-builder` | `ccf-experiment-designer` | Result figures/tables depend on experiment evidence and real numbers. |
+| `ccf-figure-table-builder` | `ccf-experiment-designer`, then `ccf-visual-composer` | Evidence/result content depends on real experiment values; publication visual composition, palette, caption placement, and render QA belong to visual composer. |
 | `ccf-artifact-packager` | `ccf-submission-checker` | Artifact readiness is submission readiness. |
 | `ccf-venue-format-guide` | `ccf-submission-checker` | Venue format lookup is a submission gate; writing still reads venue references. |
 | `ccf-resubmission-adapter` | `ccf-rebuttal-writer` | Resubmission follows reviewer-response and revision-ledger logic. |
@@ -52,7 +53,7 @@ This catalog is the public trigger-conflict index for the current CCFA family. I
 - Manuscript rewriting, compression, and presentation outputs go to `ccf-paper-writer`; judgment goes to `ccf-paper-reviewer`.
 - PDF-to-exemplar conversion goes to `ccf-paper-to-exemplar`; actual manuscript drafting still goes to `ccf-paper-writer`.
 - From-scratch submission manuscripts must be length-aware: underfilled drafts stay with `ccf-paper-writer` for expansion; overfilled drafts stay with `ccf-paper-writer` for compression; final page compliance goes to `ccf-submission-checker`.
-- Real result tables and figures go to `ccf-experiment-designer`; docs diagrams go to `ccf-skill-forger`.
+- Real result/evidence structure goes to `ccf-experiment-designer`; publication-grade figure/table composition, Python plot recipes, palette, caption placement, and render QA go to `ccf-visual-composer`; docs diagrams go to `ccf-skill-forger`.
 - Venue requirements, package checks, anonymity, and artifact readiness go to `ccf-submission-checker`.
 - Reviewer responses, revision ledgers, and resubmission plans go to `ccf-rebuttal-writer`.
 

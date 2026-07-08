@@ -9,7 +9,7 @@
 <rect x="0" y="0" width="1800" height="158" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
 <text x="72" y="66" font-size="44" font-weight="850" fill="#FFFFFF" text-anchor="start">Attention Demo 閉環</text>
 <text x="72" y="108" font-size="20" font-weight="500" fill="#D8E6F2" text-anchor="start">從 Transformer 原文到 ICLR 風格寫作、審稿、rebuttal 與檢查。</text>
-<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.5 · 15 個 owner skills · 一個論文專案閉環</text>
+<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.7 · 16 個 owner skills · 一個論文專案閉環</text>
 <rect x="90" y="235" width="350" height="155" rx="28" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <text x="124" y="302" font-size="42" font-weight="860" fill="#D2673D" text-anchor="start">28.4</text>
 <text x="124" y="340" font-size="17" font-weight="560" fill="#5A6775" text-anchor="start">WMT14 EN-DE BLEU</text>
@@ -23,35 +23,40 @@
 <rect x="1350" y="235" width="350" height="155" rx="28" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <text x="1384" y="302" font-size="42" font-weight="860" fill="#BA4C5E" text-anchor="start">ICLR</text>
 <text x="1384" y="340" font-size="17" font-weight="560" fill="#5A6775" text-anchor="start">demo target venue</text>
-<circle cx="92" cy="555" r="42" fill="#1F7A8C" filter="url(#shadow)"/>
-<text x="92" y="565" font-size="28" font-weight="850" fill="#FFFFFF" text-anchor="middle">1</text>
-<text x="30" y="647" font-size="22" font-weight="820" fill="#15202B" text-anchor="start">讀取</text>
-<text x="30" y="678" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">原文</text>
-<line x1="144" y1="555" x2="317" y2="555" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<circle cx="377" cy="555" r="42" fill="#D2673D" filter="url(#shadow)"/>
-<text x="377" y="565" font-size="28" font-weight="850" fill="#FFFFFF" text-anchor="middle">2</text>
-<text x="315" y="647" font-size="22" font-weight="820" fill="#15202B" text-anchor="start">提煉</text>
-<text x="315" y="678" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">動機 / 問題 / insight</text>
-<line x1="429" y1="555" x2="602" y2="555" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<circle cx="662" cy="555" r="42" fill="#B58B2A" filter="url(#shadow)"/>
-<text x="662" y="565" font-size="28" font-weight="850" fill="#FFFFFF" text-anchor="middle">3</text>
-<text x="600" y="647" font-size="22" font-weight="820" fill="#15202B" text-anchor="start">審稿</text>
-<text x="600" y="678" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">idea 評分</text>
-<line x1="714" y1="555" x2="887" y2="555" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<circle cx="947" cy="555" r="42" fill="#2D3742" filter="url(#shadow)"/>
-<text x="947" y="565" font-size="28" font-weight="850" fill="#FFFFFF" text-anchor="middle">4</text>
-<text x="885" y="647" font-size="22" font-weight="820" fill="#15202B" text-anchor="start">寫作</text>
-<text x="885" y="678" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">完整 ICLR 風格 TeX</text>
-<line x1="999" y1="555" x2="1172" y2="555" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<circle cx="1232" cy="555" r="42" fill="#8A4F86" filter="url(#shadow)"/>
-<text x="1232" y="565" font-size="28" font-weight="850" fill="#FFFFFF" text-anchor="middle">5</text>
-<text x="1170" y="647" font-size="22" font-weight="820" fill="#15202B" text-anchor="start">批評</text>
-<text x="1170" y="678" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">寫作 + 科學 + 完整性</text>
-<line x1="1284" y1="555" x2="1457" y2="555" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<circle cx="1517" cy="555" r="42" fill="#477AA6" filter="url(#shadow)"/>
-<text x="1517" y="565" font-size="28" font-weight="850" fill="#FFFFFF" text-anchor="middle">6</text>
-<text x="1455" y="647" font-size="22" font-weight="820" fill="#15202B" text-anchor="start">回應</text>
-<text x="1455" y="678" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">rebuttal + 投稿檢查</text>
+<circle cx="95" cy="555" r="42" fill="#1F7A8C" filter="url(#shadow)"/>
+<text x="95" y="565" font-size="28" font-weight="850" fill="#FFFFFF" text-anchor="middle">1</text>
+<text x="33" y="647" font-size="22" font-weight="820" fill="#15202B" text-anchor="start">讀取</text>
+<text x="33" y="678" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">原文</text>
+<line x1="147" y1="555" x2="295" y2="555" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="353" cy="555" r="42" fill="#D2673D" filter="url(#shadow)"/>
+<text x="353" y="565" font-size="28" font-weight="850" fill="#FFFFFF" text-anchor="middle">2</text>
+<text x="291" y="647" font-size="22" font-weight="820" fill="#15202B" text-anchor="start">提煉</text>
+<text x="291" y="678" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">動機 / 問題 / insight</text>
+<line x1="405" y1="555" x2="553" y2="555" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="611" cy="555" r="42" fill="#B58B2A" filter="url(#shadow)"/>
+<text x="611" y="565" font-size="28" font-weight="850" fill="#FFFFFF" text-anchor="middle">3</text>
+<text x="549" y="647" font-size="22" font-weight="820" fill="#15202B" text-anchor="start">審稿</text>
+<text x="549" y="678" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">idea 評分</text>
+<line x1="663" y1="555" x2="811" y2="555" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="869" cy="555" r="42" fill="#2D3742" filter="url(#shadow)"/>
+<text x="869" y="565" font-size="28" font-weight="850" fill="#FFFFFF" text-anchor="middle">4</text>
+<text x="807" y="647" font-size="22" font-weight="820" fill="#15202B" text-anchor="start">寫作</text>
+<text x="807" y="678" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">完整 ICLR 風格 TeX</text>
+<line x1="921" y1="555" x2="1069" y2="555" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="1127" cy="555" r="42" fill="#6657A8" filter="url(#shadow)"/>
+<text x="1127" y="565" font-size="28" font-weight="850" fill="#FFFFFF" text-anchor="middle">5</text>
+<text x="1065" y="647" font-size="22" font-weight="820" fill="#15202B" text-anchor="start">繪圖</text>
+<text x="1065" y="678" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">繪圖配方 + SVG 圖</text>
+<line x1="1179" y1="555" x2="1327" y2="555" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="1385" cy="555" r="42" fill="#8A4F86" filter="url(#shadow)"/>
+<text x="1385" y="565" font-size="28" font-weight="850" fill="#FFFFFF" text-anchor="middle">6</text>
+<text x="1323" y="647" font-size="22" font-weight="820" fill="#15202B" text-anchor="start">批評</text>
+<text x="1323" y="678" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">寫作 + 科學 + 完整性</text>
+<line x1="1437" y1="555" x2="1585" y2="555" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<circle cx="1643" cy="555" r="42" fill="#477AA6" filter="url(#shadow)"/>
+<text x="1643" y="565" font-size="28" font-weight="850" fill="#FFFFFF" text-anchor="middle">7</text>
+<text x="1581" y="647" font-size="22" font-weight="820" fill="#15202B" text-anchor="start">回應</text>
+<text x="1581" y="678" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">rebuttal + 投稿檢查</text>
 <rect x="360" y="805" width="1080" height="72" rx="22" fill="#102033" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <text x="900" y="850" font-size="21" font-weight="780" fill="#FFFFFF" text-anchor="middle">demo/attention-is-all-you-need/paper/attention_iclr_submission.tex</text>
 </svg>

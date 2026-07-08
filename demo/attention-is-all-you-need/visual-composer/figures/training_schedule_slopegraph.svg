@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="520" viewBox="0 0 860 520">
+<style>text{font-family:Inter, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas, Menlo, monospace}</style>
+<rect x="0" y="0" width="860" height="520" rx="0" fill="#FBFCFE"/>
+<text x="42.00" y="52.00" font-size="28" font-weight="820" fill="#17212B" text-anchor="start">Base-to-big training schedule shift</text>
+<text x="42.00" y="82.00" font-size="14" font-weight="520" fill="#5D6977" text-anchor="start">Slightly normalized units keep the paired-change story visible.</text>
+<text x="42.00" y="496.00" font-size="11" font-weight="500" fill="#5D6977" text-anchor="start">Source: demo/artifacts/official-data.md; values are official Transformer paper excerpts.</text>
+<text x="245.00" y="108.00" font-size="15" font-weight="820" fill="#17212B" text-anchor="middle">Base</text>
+<text x="615.00" y="108.00" font-size="15" font-weight="820" fill="#17212B" text-anchor="middle">Big</text>
+<line x1="245.00" y1="126.00" x2="245.00" y2="452.00" stroke="#DCE4EC" stroke-width="1.20" stroke-linecap="round" opacity="1.000"/>
+<line x1="615.00" y1="126.00" x2="615.00" y2="452.00" stroke="#DCE4EC" stroke-width="1.20" stroke-linecap="round" opacity="1.000"/>
+<line x1="245.00" y1="437.18" x2="615.00" y2="410.24" stroke="#E64B35" stroke-width="2.60" stroke-linecap="round" opacity="0.820"/>
+<circle cx="245.00" cy="437.18" r="6.00" fill="#E64B35" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<circle cx="615.00" cy="410.24" r="6.00" fill="#E64B35" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<text x="227.00" y="442.18" font-size="12" font-weight="650" fill="#17212B" text-anchor="end">step time (s)  0.4</text>
+<text x="633.00" y="415.24" font-size="12" font-weight="650" fill="#17212B" text-anchor="start">1</text>
+<line x1="245.00" y1="410.24" x2="615.00" y2="320.43" stroke="#4DBBD5" stroke-width="2.60" stroke-linecap="round" opacity="0.820"/>
+<circle cx="245.00" cy="410.24" r="6.00" fill="#4DBBD5" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<circle cx="615.00" cy="320.43" r="6.00" fill="#4DBBD5" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<text x="227.00" y="415.24" font-size="12" font-weight="650" fill="#17212B" text-anchor="end">training steps (100K)  1</text>
+<text x="633.00" y="325.43" font-size="12" font-weight="650" fill="#17212B" text-anchor="start">3</text>
+<line x1="245.00" y1="410.24" x2="615.00" y2="140.82" stroke="#00A087" stroke-width="2.60" stroke-linecap="round" opacity="0.820"/>
+<circle cx="245.00" cy="410.24" r="6.00" fill="#00A087" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<circle cx="615.00" cy="140.82" r="6.00" fill="#00A087" stroke="#FFFFFF" stroke-width="1.50" opacity="1.000"/>
+<text x="227.00" y="415.24" font-size="12" font-weight="650" fill="#17212B" text-anchor="end">duration (12h units)  1</text>
+<text x="633.00" y="145.82" font-size="12" font-weight="650" fill="#17212B" text-anchor="start">7</text>
+</svg>

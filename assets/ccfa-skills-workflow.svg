@@ -9,7 +9,7 @@
 <rect x="0" y="0" width="1800" height="158" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
 <text x="72" y="66" font-size="44" font-weight="850" fill="#FFFFFF" text-anchor="start">End-to-End Paper Workflow</text>
 <text x="72" y="108" font-size="20" font-weight="500" fill="#D8E6F2" text-anchor="start">Every stage leaves a concrete artifact and hands off to one owner.</text>
-<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.5 · 15 owner skills · one paper-project loop</text>
+<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.7 · 16 owner skills · one paper-project loop</text>
 <rect x="90" y="235" width="360" height="168" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <circle cx="135" cy="280" r="28" fill="#1F7A8C"/>
 <text x="135" y="290" font-size="24" font-weight="850" fill="#FFFFFF" text-anchor="middle">1</text>
@@ -56,48 +56,55 @@
 <circle cx="995" cy="530" r="28" fill="#6657A8"/>
 <text x="995" y="540" font-size="24" font-weight="850" fill="#FFFFFF" text-anchor="middle">7</text>
 <text x="1034" y="527" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">Experiment</text>
-<text x="1034" y="558" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">baselines + tables</text>
+<text x="1034" y="558" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">baselines + result specs</text>
 <text x="978" y="613" font-size="15" font-weight="760" fill="#6657A8" text-anchor="start">ccf-experiment-designer</text>
 <line x1="1318" y1="569" x2="1370" y2="569" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
 <rect x="1380" y="485" width="360" height="168" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="1425" cy="530" r="28" fill="#2D3742"/>
+<circle cx="1425" cy="530" r="28" fill="#6657A8"/>
 <text x="1425" y="540" font-size="24" font-weight="850" fill="#FFFFFF" text-anchor="middle">8</text>
-<text x="1464" y="527" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">Exemplar</text>
-<text x="1464" y="558" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">PDFs to style cards</text>
-<text x="1408" y="613" font-size="15" font-weight="760" fill="#2D3742" text-anchor="start">ccf-paper-to-exemplar</text>
+<text x="1464" y="527" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">Visuals</text>
+<text x="1464" y="558" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">plot recipes + layout QA</text>
+<text x="1408" y="613" font-size="15" font-weight="760" fill="#6657A8" text-anchor="start">ccf-visual-composer</text>
 <path d="M1560 663 C1560 705, 180 705, 180 729" fill="none" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
 <rect x="90" y="735" width="360" height="168" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <circle cx="135" cy="780" r="28" fill="#2D3742"/>
 <text x="135" y="790" font-size="24" font-weight="850" fill="#FFFFFF" text-anchor="middle">9</text>
-<text x="174" y="777" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">Write</text>
-<text x="174" y="808" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">venue-aware manuscript</text>
-<text x="118" y="863" font-size="15" font-weight="760" fill="#2D3742" text-anchor="start">ccf-paper-writer</text>
+<text x="174" y="777" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">Exemplar</text>
+<text x="174" y="808" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">PDFs to style cards</text>
+<text x="118" y="863" font-size="15" font-weight="760" fill="#2D3742" text-anchor="start">ccf-paper-to-exemplar</text>
 <line x1="458" y1="819" x2="510" y2="819" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
 <rect x="520" y="735" width="360" height="168" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="565" cy="780" r="28" fill="#B58B2A"/>
+<circle cx="565" cy="780" r="28" fill="#2D3742"/>
 <text x="565" y="790" font-size="24" font-weight="850" fill="#FFFFFF" text-anchor="middle">10</text>
-<text x="604" y="777" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">Review</text>
-<text x="604" y="808" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">scientific + writing report</text>
-<text x="548" y="863" font-size="15" font-weight="760" fill="#B58B2A" text-anchor="start">ccf-paper-reviewer</text>
+<text x="604" y="777" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">Write</text>
+<text x="604" y="808" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">venue-aware manuscript</text>
+<text x="548" y="863" font-size="15" font-weight="760" fill="#2D3742" text-anchor="start">ccf-paper-writer</text>
 <line x1="888" y1="819" x2="940" y2="819" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
 <rect x="950" y="735" width="360" height="168" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="995" cy="780" r="28" fill="#8A4F86"/>
+<circle cx="995" cy="780" r="28" fill="#B58B2A"/>
 <text x="995" y="790" font-size="24" font-weight="850" fill="#FFFFFF" text-anchor="middle">11</text>
-<text x="1034" y="777" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">Audit</text>
-<text x="1034" y="808" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">claims + citations</text>
-<text x="978" y="863" font-size="15" font-weight="760" fill="#8A4F86" text-anchor="start">ccf-integrity-auditor</text>
+<text x="1034" y="777" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">Review</text>
+<text x="1034" y="808" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">scientific + writing report</text>
+<text x="978" y="863" font-size="15" font-weight="760" fill="#B58B2A" text-anchor="start">ccf-paper-reviewer</text>
 <line x1="1318" y1="819" x2="1370" y2="819" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
 <rect x="1380" y="735" width="360" height="168" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="1425" cy="780" r="28" fill="#BA4C5E"/>
+<circle cx="1425" cy="780" r="28" fill="#8A4F86"/>
 <text x="1425" y="790" font-size="24" font-weight="850" fill="#FFFFFF" text-anchor="middle">12</text>
-<text x="1464" y="777" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">Submit</text>
-<text x="1464" y="808" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">PDF + anonymity + artifacts</text>
-<text x="1408" y="863" font-size="15" font-weight="760" fill="#BA4C5E" text-anchor="start">ccf-submission-checker</text>
+<text x="1464" y="777" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">Audit</text>
+<text x="1464" y="808" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">claims + citations</text>
+<text x="1408" y="863" font-size="15" font-weight="760" fill="#8A4F86" text-anchor="start">ccf-integrity-auditor</text>
 <path d="M1560 913 C1560 955, 180 955, 180 979" fill="none" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
 <rect x="90" y="985" width="360" height="168" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<circle cx="135" cy="1030" r="28" fill="#477AA6"/>
+<circle cx="135" cy="1030" r="28" fill="#BA4C5E"/>
 <text x="135" y="1040" font-size="24" font-weight="850" fill="#FFFFFF" text-anchor="middle">13</text>
-<text x="174" y="1027" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">Respond</text>
-<text x="174" y="1058" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">rebuttal + ledger</text>
-<text x="118" y="1113" font-size="15" font-weight="760" fill="#477AA6" text-anchor="start">ccf-rebuttal-writer</text>
+<text x="174" y="1027" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">Submit</text>
+<text x="174" y="1058" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">PDF + anonymity + artifacts</text>
+<text x="118" y="1113" font-size="15" font-weight="760" fill="#BA4C5E" text-anchor="start">ccf-submission-checker</text>
+<line x1="458" y1="1069" x2="510" y2="1069" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="520" y="985" width="360" height="168" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<circle cx="565" cy="1030" r="28" fill="#477AA6"/>
+<text x="565" y="1040" font-size="24" font-weight="850" fill="#FFFFFF" text-anchor="middle">14</text>
+<text x="604" y="1027" font-size="22" font-weight="840" fill="#15202B" text-anchor="start">Respond</text>
+<text x="604" y="1058" font-size="15" font-weight="560" fill="#5A6775" text-anchor="start">rebuttal + ledger</text>
+<text x="548" y="1113" font-size="15" font-weight="760" fill="#477AA6" text-anchor="start">ccf-rebuttal-writer</text>
 </svg>

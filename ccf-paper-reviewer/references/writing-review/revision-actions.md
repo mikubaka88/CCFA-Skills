@@ -10,6 +10,7 @@ Classify every issue:
 
 - Writing-fixable: contribution statement, paragraph flow, terminology, figure narration, related-work framing, limitation wording.
 - Structure-fixable: reorder sections, move paragraphs, split mixed paragraphs, merge repeated paragraphs, or change section headings.
+- Prose-quality: remove defensive framing, label-heavy shorthand, third-person manuscript voice, punctuation-driven structure, unsupported hype, number-led abstract prose, formula dumping, or mechanically uniform sentence rhythm.
 - Claim-qualification: weaken, scope, move, or support claims that currently exceed evidence.
 - Analysis-fixable: add deeper explanation, error analysis, complexity analysis, sensitivity analysis, qualitative analysis, or proof intuition using existing results.
 - Citation/positioning: add close related work and explain the technical difference, not just a citation.
@@ -131,6 +132,20 @@ Actions:
 - Move details to the section where a reviewer expects them.
 - Replace vague transition sentences with the specific logical link to the next paragraph.
 
+### Prose anti-patterns present
+
+Reviewer deduction: "The writing sounds mechanical, defensive, or artificially structured."
+
+Actions:
+
+- Replace `Q1`/`C1`/`RQ1` labels in running prose with natural names and transitions.
+- Rewrite third-person manuscript narration into direct scientific voice.
+- Split compound sentences that combine motivation, mechanism, evidence, and conclusion.
+- Convert punctuation-heavy chains into explicit cause, contrast, or consequence sentences.
+- Move formula-heavy derivations to appendix unless they are necessary for first-pass understanding.
+- Rebuild number-led abstract sentences around task, gap, insight, method, and scoped evidence.
+- Remove repeated concept definitions and choose one canonical term.
+
 ### LaTeX or format risk
 
 Reviewer deduction: "The submission looks careless or may violate venue rules."
@@ -200,6 +215,7 @@ After revision, ask:
 4. Are limitations honest and bounded?
 5. Is the target venue's evidence package visible in the main text?
 6. Does the paragraph now have one clear role and one retained message?
-7. Are labels, citations, captions, notation, and format issues actually fixed in source?
+7. Does the revised prose avoid defensive framing, unnecessary labels, third-person manuscript voice, punctuation-driven structure, and unsupported hype?
+8. Are labels, citations, captions, notation, and format issues actually fixed in source?
 
 Do not mark an issue fixed until the revised text or available evidence would plausibly change a criterion score.

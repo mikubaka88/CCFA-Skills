@@ -2,7 +2,7 @@ schema_version: 4
 generated_at: 2026-06-09
 authority: SKILL.md wins if this registry conflicts with a skill body.
 naming_policy: canonical runtime names use ccf-<object>-<role/action>; ccf-common is the governance exception.
-runtime_skill_count: 15
+runtime_skill_count: 16
 skills:
   - name: ccf-project-scaffolder
     trigger: "Create project folders, copy/select templates, initialize ccfa.yaml."
@@ -31,7 +31,11 @@ skills:
   - name: ccf-experiment-designer
     trigger: "Design experiments, baselines, metrics, ablations, robustness tests, result templates, and real-result tables/figures."
     exclude: "Does not invent results or draw docs diagrams."
-    handoff: "ccf-literature-searcher, ccf-paper-writer, ccf-paper-reviewer, ccf-integrity-auditor, ccf-submission-checker"
+    handoff: "ccf-literature-searcher, ccf-visual-composer, ccf-paper-writer, ccf-paper-reviewer, ccf-integrity-auditor, ccf-submission-checker"
+  - name: ccf-visual-composer
+    trigger: "Compose, polish, generate, and QA publication-grade figures, tables, Python plotting code, creative data-analysis plots, captions, palettes, panel maps, and manuscript visual layout integration from supplied data/results."
+    exclude: "Does not design experiments, invent results, write manuscript prose as the main task, or perform final submission compliance."
+    handoff: "ccf-experiment-designer, ccf-paper-writer, ccf-integrity-auditor, ccf-submission-checker"
   - name: ccf-paper-to-exemplar
     trigger: "Convert PDF papers into writing exemplar cards and register reusable style references for ccf-paper-writer."
     exclude: "Does not write papers or perform review."
@@ -39,7 +43,7 @@ skills:
   - name: ccf-paper-writer
     trigger: "Draft, revise, polish, compress, preserve source format during edits, create venue- and length-aware LaTeX manuscripts from ideas, and presentation-adapt paper text."
     exclude: "Does not perform full review, evidence audit, package check, or rebuttal."
-    handoff: "ccf-literature-monitor, ccf-literature-searcher, ccf-experiment-designer, ccf-paper-reviewer, ccf-submission-checker, ccf-rebuttal-writer"
+    handoff: "ccf-literature-monitor, ccf-literature-searcher, ccf-experiment-designer, ccf-visual-composer, ccf-paper-reviewer, ccf-submission-checker, ccf-rebuttal-writer"
   - name: ccf-paper-reviewer
     trigger: "Review manuscripts scientifically and stylistically: scores, reviewer panel, AC/meta-review, paragraph logic, and format-facing risks."
     exclude: "Does not rewrite the manuscript or draft rebuttals."
@@ -47,11 +51,11 @@ skills:
   - name: ccf-integrity-auditor
     trigger: "Audit claims, numbers, table/figure/text consistency, citation metadata, and citation-context support."
     exclude: "Does not replace full review or broad literature search."
-    handoff: "ccf-paper-reviewer, ccf-paper-writer, ccf-literature-monitor, ccf-literature-searcher"
+    handoff: "ccf-paper-reviewer, ccf-paper-writer, ccf-visual-composer, ccf-literature-monitor, ccf-literature-searcher"
   - name: ccf-submission-checker
     trigger: "Check venue format, LaTeX/PDF package readiness, anonymity, metadata, supplementary files, and artifact/reproducibility readiness."
     exclude: "Does not polish manuscript content."
-    handoff: "ccf-paper-writer, ccf-experiment-designer, ccf-paper-reviewer, ccf-rebuttal-writer"
+    handoff: "ccf-paper-writer, ccf-experiment-designer, ccf-visual-composer, ccf-paper-reviewer, ccf-rebuttal-writer"
   - name: ccf-rebuttal-writer
     trigger: "Write rebuttals, author responses, response letters, revision ledgers, and conservative resubmission plans."
     exclude: "Does not trigger for ordinary manuscript writing."
@@ -69,7 +73,7 @@ merged_runtime_entries:
   ccf-paper-compressor: ccf-paper-writer
   ccf-writing-reviewer: ccf-paper-reviewer
   ccf-citation-auditor: ccf-integrity-auditor
-  ccf-figure-table-builder: ccf-experiment-designer
+  ccf-figure-table-builder: ccf-experiment-designer + ccf-visual-composer
   ccf-artifact-packager: ccf-submission-checker
   ccf-venue-format-guide: ccf-submission-checker
   ccf-resubmission-adapter: ccf-rebuttal-writer

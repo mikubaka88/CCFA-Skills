@@ -29,7 +29,7 @@ A strong paper is rarely defined by the final PDF alone. What matters is the res
 
 CCFA Skills starts from that observation. It treats a CCF-A paper project as a research storyline that can be maintained, audited, and advanced over time, rather than as a one-shot text generation task. An idea should be shaped before it is defended. Experiments should serve explicit claims rather than merely fill tables. Writing should preserve evidence boundaries. A rebuttal should not be an improvised answer at the end of the process, but a traceable bridge to revision and resubmission.
 
-The central insight is that paper quality comes from the quality of continuous decisions. Writing, review, integrity audit, submission checking, and rebuttal should not replace one another; they should keep separate responsibilities and hand off through the same project state. The v0.5 line therefore organizes the family into 15 stage roles, so each stage has a clear responsibility, each artifact has a home, and the system behaves more like a collaboration framework around the research storyline than a loose prompt collection.
+The central insight is that paper quality comes from the quality of continuous decisions. Writing, review, integrity audit, submission checking, and rebuttal should not replace one another; they should keep separate responsibilities and hand off through the same project state. The v0.7 line therefore organizes the family into 16 stage roles, so each stage has a clear responsibility, each artifact has a home, and the system behaves more like a collaboration framework around the research storyline than a loose prompt collection. v0.7 also gives `ccf-visual-composer` a bundled Python SVG plotting recipe library for paper-ready visual examples.
 
 ![CCFA skill family logic](assets/ccfa-skills-architecture.svg)
 
@@ -45,6 +45,7 @@ project scaffold
   -> literature monitoring / competitor tracking
   -> literature search
   -> experiment design
+  -> visual composition
   -> writing exemplar extraction (optional)
   -> venue-aware writing
   -> scientific/writing review
@@ -67,7 +68,8 @@ project scaffold
 | Idea gate | `ccf-idea-reviewer` | Explicitly score, rank, stress-test, or triage ideas. | Scores, risks, stage-aware development potential. | Brainstorming or developing one rough idea further. |
 | Monitoring | `ccf-literature-monitor` | Track new papers, competitors, arXiv/OpenReview/venue feeds, or ask whether recent work overlaps an idea. | Monitoring report, overlap levels, RELAX/RESEARCH/FOLLOW-UP flags, handoff signals. | Deep related-work search, citation audit, or final idea scoring. |
 | Evidence | `ccf-literature-searcher` | Search related work, prior art, datasets, benchmarks, and open gaps. | Literature notes, opportunity map, evidence gaps, related-work structure. | Auditing already cited papers or treating related work as a final idea kill gate. |
-| Experiments | `ccf-experiment-designer` | Design baselines, metrics, ablations, robustness checks. | Protocols, baseline matrix, result templates, real-result tables. | Inventing results or drawing docs diagrams. |
+| Experiments | `ccf-experiment-designer` | Design baselines, metrics, ablations, robustness checks. | Protocols, baseline matrix, result templates, evidence-bound figure/table specs. | Inventing results or drawing docs diagrams. |
+| Visuals | `ccf-visual-composer` | Compose publication-grade figures/tables, Python plotting code, palettes, captions, panel maps, and manuscript integration from supplied results. | Visual contract, plot recipe/code, panel/table map, palette, LaTeX placement, caption plan, render QA ledger. | Designing experiments, inventing results, writing prose as the main task, final submission compliance. |
 | Exemplar | `ccf-paper-to-exemplar` | Convert user-provided paper PDFs into reusable writing exemplar cards. | Exemplar cards, writing patterns, venue tags, writer index updates. | Writing papers or performing review. |
 | Manuscript | `ccf-paper-writer` | Draft, revise, polish, compress, create venue- and length-aware LaTeX, make presentations. | Manuscript text, format-preserving edits, compressed text, page budget, slides/poster/talk. | Full review, integrity audit, submission check, rebuttal. |
 | Review | `ccf-paper-reviewer` | Run scientific review, writing review, scoring, AC/meta-review. | Review report, risk table, revision priorities. | Rewriting the manuscript directly. |
@@ -88,7 +90,8 @@ project scaffold
 | Monitor new papers, competitors, or recent similar ideas | `ccf-literature-monitor` | `ccf-literature-searcher` |
 | Find new papers, datasets, benchmarks, or open gaps | `ccf-literature-searcher` | `ccf-integrity-auditor` |
 | Verify already cited papers | `ccf-integrity-auditor` | `ccf-literature-searcher` |
-| Design experiments and tables | `ccf-experiment-designer` | `ccf-paper-writer` |
+| Design experiments, metrics, baselines, and result evidence specs | `ccf-experiment-designer` | `ccf-paper-writer` |
+| Compose figure/table layout, Python plots, palettes, captions, and manuscript visual integration | `ccf-visual-composer` | `ccf-experiment-designer` |
 | Convert a PDF into a writing exemplar | `ccf-paper-to-exemplar` | `ccf-paper-writer` |
 | Draft, polish, compress, preserve source format | `ccf-paper-writer` | `ccf-paper-reviewer` |
 | Judge acceptance risk | `ccf-paper-reviewer` | `ccf-paper-writer` |
@@ -121,7 +124,8 @@ ccf-doc-diagram-designer
 | Compression, slides, poster, talk, Q&A | `ccf-paper-writer` |
 | Writing review | `ccf-paper-reviewer` |
 | Citation audit | `ccf-integrity-auditor` |
-| Result figures/tables | `ccf-experiment-designer` |
+| Result evidence/specs | `ccf-experiment-designer` |
+| Publication figure/table layout, Python plotting recipes, palettes, captions, render QA | `ccf-visual-composer` |
 | Artifact package and venue format | `ccf-submission-checker` |
 | Resubmission adaptation | `ccf-rebuttal-writer` |
 | Documentation SVGs | `ccf-skill-forger` |
@@ -130,7 +134,7 @@ ccf-doc-diagram-designer
 
 ![Artifact contract](assets/ccfa-skills-artifacts.svg)
 
-`ccfa.yaml` is a status spine, not the whole paper. Concrete outputs still live in idea briefs, literature notes, experiment plans, manuscripts, review reports, integrity audits, submission checks, and revision ledgers. Review and audit skills diagnose; writing changes go back to `ccf-paper-writer`.
+`ccfa.yaml` is a status spine, not the whole paper. Concrete outputs still live in idea briefs, literature notes, experiment plans, visual contracts, Python plotting scripts, manuscripts, review reports, integrity audits, submission checks, and revision ledgers. Review and audit skills diagnose; writing changes go back to `ccf-paper-writer`; visual layout and plotting changes go to `ccf-visual-composer`.
 
 ## Output Policy
 
@@ -168,7 +172,7 @@ cp -R CCFA-Skills/ccf-* "$CODEX_HOME/skills/"
 Partial install must include `ccf-common`:
 
 ```bash
-skills=(ccf-common ccf-paper-writer ccf-paper-reviewer ccf-submission-checker)
+skills=(ccf-common ccf-paper-writer ccf-visual-composer ccf-paper-reviewer ccf-submission-checker)
 mkdir -p "$CODEX_HOME/skills"
 for s in "${skills[@]}"; do cp -R "$s" "$CODEX_HOME/skills/"; done
 ```
@@ -176,7 +180,7 @@ for s in "${skills[@]}"; do cp -R "$s" "$CODEX_HOME/skills/"; done
 PowerShell:
 
 ```powershell
-$skills = @("ccf-common", "ccf-paper-writer", "ccf-paper-reviewer", "ccf-submission-checker")
+$skills = @("ccf-common", "ccf-paper-writer", "ccf-visual-composer", "ccf-paper-reviewer", "ccf-submission-checker")
 New-Item -ItemType Directory -Force "$env:CODEX_HOME\skills" | Out-Null
 foreach ($s in $skills) { Copy-Item -Recurse -Force $s "$env:CODEX_HOME\skills\" }
 ```
@@ -198,7 +202,7 @@ To understand why the family is designed this way, read these in order:
 
 ## Demo
 
-`demo/attention-is-all-you-need/` is an optional ICLR-style closed-loop demo showing idea extraction, idea review, LaTeX writing, review, integrity audit, submission check, and rebuttal.
+`demo/attention-is-all-you-need/` is an optional ICLR-style closed-loop demo showing idea extraction, idea review, LaTeX writing, visual-composer SVG plotting examples, review, integrity audit, submission check, and rebuttal.
 
 ![Attention demo](assets/ccfa-skills-demo-attention.svg)
 

@@ -272,11 +272,164 @@ sources:
     title: Nature Skills
     url: https://github.com/Yuan1z0825/nature-skills
     source_type: background_method
-    used_by: [ccf-common, ccf-paper-writer, ccf-paper-reviewer]
+    used_by: [ccf-common, ccf-paper-writer, ccf-paper-reviewer, ccf-visual-composer]
     recorded_at: 2026-06-06
     verified_at: null
     stale_after_days: 365
     notes: Related skill family for high-standard paper writing and style workflow comparison; not an authoritative CCF venue source.
+  - id: nature-figure-skill
+    title: Nature Figure Skill
+    url: https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-figure/README.md
+    source_type: background_method
+    used_by: [ccf-experiment-designer, ccf-visual-composer]
+    recorded_at: 2026-07-08
+    verified_at: 2026-07-08
+    stale_after_days: 365
+    notes: Inspiration for figure contracts, panel maps, editable vector exports, source-data traceability, and render QA; not a venue policy source.
+  - id: deli-autoresearch-framework
+    title: Deli AutoResearch Framework
+    url: https://victorchen96.github.io/auto_research/framework.html
+    source_type: background_method
+    used_by: [ccf-common, ccf-paper-writer, ccf-visual-composer]
+    recorded_at: 2026-07-08
+    verified_at: 2026-07-08
+    stale_after_days: 365
+    notes: Workflow inspiration for file-backed state, anti-loop pivoting, separation of execution and evaluation, and direction diversity; not a scientific claim source.
+  - id: ggsci-palettes
+    title: Scientific Journal And Sci-Fi Themed Color Palettes For ggplot2
+    url: https://cran.r-project.org/web/packages/ggsci/vignettes/ggsci.html
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-07-08
+    verified_at: 2026-07-08
+    stale_after_days: 365
+    notes: Scientific journal themed palette reference; validate accessibility before final figures.
+  - id: fabio-crameri-scientific-colour-maps
+    title: Scientific Colour Maps
+    url: https://www.fabiocrameri.ch/colourmaps/
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-07-08
+    verified_at: 2026-07-08
+    stale_after_days: 365
+    notes: Perceptually uniform, color-vision-aware scientific color maps for ordered data.
+  - id: colorbrewer
+    title: ColorBrewer 2.0
+    url: https://colorbrewer2.org/
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-07-08
+    verified_at: 2026-07-08
+    stale_after_days: 365
+    notes: Categorical, sequential, and diverging palette reference with colorblind/print options.
+  - id: okabe-ito-cud
+    title: Color Universal Design And Okabe-Ito Palette
+    url: https://jfly.uni-koeln.de/color/
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-07-08
+    verified_at: 2026-07-08
+    stale_after_days: 365
+    notes: Color-vision accessible qualitative palette reference.
+  - id: nature-colour-misuse
+    title: The Misuse Of Colour In Science Communication
+    url: https://www.nature.com/articles/s41467-020-19160-7
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-07-08
+    verified_at: 2026-07-08
+    stale_after_days: 365
+    notes: Background warning against misleading scientific color maps and inaccessible color choices.
+  - id: matplotlib-gallery
+    title: Matplotlib Examples Gallery
+    url: https://matplotlib.org/stable/gallery/index.html
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-07-08
+    verified_at: 2026-07-08
+    stale_after_days: 365
+    notes: Broad plot taxonomy and source-code gallery used as conceptual inspiration only; CCFA bundled recipes are original.
+  - id: seaborn-gallery
+    title: Seaborn Example Gallery
+    url: https://seaborn.pydata.org/examples/index.html
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-07-08
+    verified_at: 2026-07-08
+    stale_after_days: 365
+    notes: Statistical visualization and small-multiple inspiration only; do not copy examples or datasets.
+  - id: plotly-python
+    title: Plotly Python Graphing Library
+    url: https://plotly.com/python/
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-07-08
+    verified_at: 2026-07-08
+    stale_after_days: 365
+    notes: Interactive and dashboard-oriented plotting inspiration; CCFA paper figures remain evidence-bound static/vector outputs unless interactivity is requested.
+  - id: bokeh-gallery
+    title: Bokeh Gallery
+    url: https://docs.bokeh.org/en/latest/docs/gallery.html
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-07-08
+    verified_at: 2026-07-08
+    stale_after_days: 365
+    notes: Linked-view and web-native visualization inspiration only.
+  - id: altair-gallery
+    title: Altair Example Gallery
+    url: https://altair-viz.github.io/gallery/index.html
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-07-08
+    verified_at: 2026-07-08
+    stale_after_days: 365
+    notes: Declarative grammar-of-graphics inspiration; use data/mark/encoding/transform thinking.
+  - id: plotnine
+    title: Plotnine Grammar Of Graphics For Python
+    url: https://github.com/has2k1/plotnine
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-07-08
+    verified_at: 2026-07-08
+    stale_after_days: 365
+    notes: Grammar-of-graphics layering and theme inspiration only.
+  - id: python-graph-gallery
+    title: The Python Graph Gallery
+    url: https://python-graph-gallery.com/
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-07-08
+    verified_at: 2026-07-08
+    stale_after_days: 365
+    notes: Chart taxonomy and data-to-viz routing inspiration only; do not copy gallery code.
+  - id: scientific-visualization-book
+    title: Scientific Visualization Python And Matplotlib
+    url: https://github.com/rougier/scientific-visualization-book
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-07-08
+    verified_at: 2026-07-08
+    stale_after_days: 365
+    notes: Publication-quality layout, annotation, typography, and scientific-visualization principles as conceptual inspiration only.
+  - id: scienceplots
+    title: SciencePlots
+    url: https://github.com/garrettj403/SciencePlots
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-07-08
+    verified_at: 2026-07-08
+    stale_after_days: 365
+    notes: Scientific-paper style inspiration; do not vendor styles or code.
+  - id: lovelyplots
+    title: LovelyPlots
+    url: https://github.com/killiansheriff/LovelyPlots
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-07-08
+    verified_at: 2026-07-08
+    stale_after_days: 365
+    notes: Editable scientific-figure style inspiration; do not vendor styles or code.
   - id: auto-claude-research-in-sleep
     title: Auto Claude Code Research In Sleep
     url: https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep

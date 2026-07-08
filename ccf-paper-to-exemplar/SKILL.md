@@ -37,11 +37,12 @@ write papers. It produces exemplar cards that teach the writer skill how to writ
  - Method presentation: module-by-module, concept-first, or pipeline-first?
  - Evidence organization: table strategy, ablation logic, qualitative placement
  - Citation patterns: density, weaving style, author-name usage, grouping
-5. Fill in the `[ANALYZE]` placeholders with concrete, actionable writing-pattern descriptions.
-6. Save the completed card to `ccf-paper-writer/references/exemplars/cards/`.
-7. Register the card in `ccf-paper-writer/references/exemplars/index.md` under the correct venue section.
-8. If the user wants this as their default writing template, update `ccf-paper-writer/references/custom-format/default-user-format.md`.
-9. Inform the user the exemplar is ready and what writing patterns it provides.
+5. Load `../ccf-paper-writer/references/prose-quality-guardrails.md` and filter the extracted pattern: preserve transferable logic, but do not turn defensive framing, `Q1`/`C1` labels, formula dumping, number-only abstracts, third-person manuscript narration, punctuation-heavy structure, or unsupported hype into reusable advice.
+6. Fill in the `[ANALYZE]` placeholders with concrete, actionable writing-pattern descriptions.
+7. Save the completed card to `ccf-paper-writer/references/exemplars/cards/`.
+8. Register the card in `ccf-paper-writer/references/exemplars/index.md` under the correct venue section.
+9. If the user wants this as their default writing template, update `ccf-paper-writer/references/custom-format/default-user-format.md`.
+10. Inform the user the exemplar is ready and what writing patterns it provides.
 
 ## Venue-Aware Routing
 
@@ -79,6 +80,7 @@ After processing PDFs:
 3. State which venue family each card belongs to.
 4. If cards were registered as defaults, confirm the registration.
 5. Provide next-action options: "Run ccf-paper-writer with these exemplars" or "Add more papers."
+6. State any excluded anti-patterns when the source paper used them heavily.
 
 ## Reference Files
 
@@ -87,6 +89,7 @@ After processing PDFs:
 - `../ccf-paper-writer/references/exemplars/cards/`: card storage directory.
 - `../ccf-paper-writer/references/custom-format/default-user-format.md`: default exemplar configuration.
 - `../ccf-paper-writer/references/venue-guides/index.md`: venue family classification.
+- `../ccf-paper-writer/references/prose-quality-guardrails.md`: anti-pattern filter for distilled writing cards.
 
 ## Card Format
 
@@ -119,6 +122,9 @@ How are citations woven? Density? Style?
 
 ## Reusable Techniques
 Transferable writing techniques.
+
+## Excluded Anti-Patterns
+Writing moves from the source that should not be reused, such as label-heavy prose, formula dumping, number-only abstract style, defensive framing, or punctuation-driven structure.
 
 ## Do-Not-Copy Boundary
 Do not copy specific task, claims, examples, or technical content.

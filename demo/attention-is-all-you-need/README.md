@@ -1,6 +1,6 @@
 # Attention Is All You Need - CCFA ICLR Closed-Loop Demo
 
-This demo reads the original *Attention Is All You Need* paper, extracts the research idea, and runs the current 13-skill CCFA family as if the project were being prepared as an ICLR-style submission.
+This demo reads the original *Attention Is All You Need* paper, extracts the research idea, and runs the current 16-skill CCFA family as if the project were being prepared as an ICLR-style submission.
 
 Primary sources:
 
@@ -15,7 +15,7 @@ Primary sources:
 1. `ccfa.yaml` - shared project state.
 2. `artifacts/00-original-paper-reading.md` - motivation, problem, insight, method, results, contribution idea, and source writing pattern.
 3. `artifacts/01-idea-document.md` - ICLR idea brief.
-4. `artifacts/02-iclr-closed-loop-skill-run.md` - all 15 current skills and their concrete artifacts.
+4. `artifacts/02-iclr-closed-loop-skill-run.md` - all 16 current skills and their concrete artifacts.
 5. `artifacts/03-idea-review.md` - strict idea review before writing.
 6. `artifacts/03-writing-draft.md` - writing-stage decisions and optimization record.
 7. `paper/attention_iclr_submission.tex` - complete ICLR-style LaTeX manuscript.
@@ -23,7 +23,8 @@ Primary sources:
 9. `artifacts/05-submission-check.md` - ICLR format, build, anonymity, page, and artifact checks.
 10. `artifacts/06-family-self-audit.md` - remaining CCFA family issues found by this demo.
 11. `artifacts/official-data.md` and `artifacts/result-tables.md` - official values and evidence tables.
-12. `skill-self-tests.md` - smoke prompts proving consolidated routing.
+12. `visual-composer/README.md` and `visual-composer/plot_demo.py` - runnable paper-visual plotting examples.
+13. `skill-self-tests.md` - smoke prompts proving consolidated routing.
 
 ## Demo Bibliography Policy
 
@@ -40,4 +41,4 @@ pdflatex -interaction=nonstopmode -halt-on-error attention_iclr_submission.tex
 
 ## What Changed From The Earlier Demo
 
-The earlier demo was too short and route-oriented. This version produces a full manuscript, compiles the TeX, runs idea review before writing, records writing and scientific review, drafts rebuttal text, and lists remaining family problems. It keeps unsupported evidence explicit instead of filling gaps with invented values.
+The earlier demo was too short and route-oriented. This version produces a full manuscript, compiles the TeX, runs idea review before writing, records writing and scientific review, drafts rebuttal text, renders visual-composer SVG figures from verified data, and lists remaining family problems. It keeps unsupported evidence explicit instead of filling gaps with invented values.

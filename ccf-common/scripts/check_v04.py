@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate CCFA v0.4 structure without rewriting files."""
+"""Validate current CCFA structure without rewriting files."""
 
 from __future__ import annotations
 
@@ -18,6 +18,7 @@ EXPECTED_SKILLS = {
     "ccf-integrity-auditor",
     "ccf-literature-monitor",
     "ccf-literature-searcher",
+    "ccf-visual-composer",
     "ccf-paper-reviewer",
     "ccf-paper-writer",
     "ccf-pipeline-orchestrator",
@@ -160,12 +161,22 @@ def check_required_files(errors: list[str]) -> None:
         "demo/attention-is-all-you-need/artifacts/06-family-self-audit.md",
         "demo/attention-is-all-you-need/artifacts/official-data.md",
         "demo/attention-is-all-you-need/artifacts/result-tables.md",
+        "demo/attention-is-all-you-need/visual-composer/README.md",
+        "demo/attention-is-all-you-need/visual-composer/plot_demo.py",
+        "demo/attention-is-all-you-need/visual-composer/figures/translation_bleu_lollipop.svg",
+        "demo/attention-is-all-you-need/visual-composer/figures/training_schedule_slopegraph.svg",
+        "demo/attention-is-all-you-need/visual-composer/figures/configuration_ratio_heatmap.svg",
+        "demo/attention-is-all-you-need/visual-composer/figures/base_big_small_multiples.svg",
         "demo/attention-is-all-you-need/paper/attention_iclr_submission.tex",
         "demo/attention-is-all-you-need/paper/iclr2026_conference.sty",
         "ccf-common/references/artifact-contracts.md",
         "ccf-common/references/ccfa-yaml-contract.md",
+        "ccf-visual-composer/resources/python/ccfa_plot_recipes.py",
+        "ccf-visual-composer/references/python-plot-recipes.md",
+        "ccf-visual-composer/references/plot-inspiration-map.md",
         "ccf-paper-writer/references/output-style-policy.md",
         "ccf-paper-writer/references/research-writing-patterns.md",
+        "ccf-paper-writer/references/prose-quality-guardrails.md",
         "ccf-project-scaffolder/assets/ccfa.yaml",
         ".codex-plugin/plugin.json",
         ".claude-plugin/plugin.json",
@@ -205,11 +216,11 @@ def main() -> int:
     check_venue_guides(errors)
     check_required_files(errors)
     if errors:
-        print("CCFA v0.4 validation failed:")
+        print("CCFA validation failed:")
         for error in errors:
             print(f"[ERROR] {error}")
         return 1
-    print(f"CCFA v0.4 validation passed. Skills: {len(names)}")
+    print(f"CCFA validation passed. Skills: {len(names)}")
     return 0
 
 

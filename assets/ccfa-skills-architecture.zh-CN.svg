@@ -9,7 +9,7 @@
 <rect x="0" y="0" width="1800" height="158" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
 <text x="72" y="66" font-size="44" font-weight="850" fill="#FFFFFF" text-anchor="start">CCFA 技能家族逻辑</text>
 <text x="72" y="108" font-size="20" font-weight="500" fill="#D8E6F2" text-anchor="start">主研究链路、共享状态、治理层和修改回路。</text>
-<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.5 · 15 个 owner skills · 一个论文项目闭环</text>
+<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.7 · 16 个 owner skills · 一个论文项目闭环</text>
 <rect x="70" y="228" width="500" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="70" y="228" width="500" height="52" rx="24" fill="#1F7A8C" stroke="none" stroke-width="2" />
 <text x="92" y="262" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">搭建</text>
@@ -46,18 +46,22 @@
 <rect x="1248" y="462" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="1248" y="462" width="8" height="66" rx="18" fill="#6657A8" stroke="none" stroke-width="2" />
 <text x="1272" y="496" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-experiment-designer</text>
-<text x="1272" y="521" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">baseline、消融、真实结果表</text>
-<rect x="70" y="560" width="500" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="1272" y="521" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">baseline、消融、结果规格</text>
+<rect x="70" y="560" width="500" height="328" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="70" y="560" width="500" height="52" rx="24" fill="#2D3742" stroke="none" stroke-width="2" />
 <text x="92" y="594" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">正文</text>
 <rect x="88" y="630" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="88" y="630" width="8" height="66" rx="18" fill="#2D3742" stroke="none" stroke-width="2" />
-<text x="112" y="664" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-to-exemplar</text>
-<text x="112" y="689" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">PDF 转写作范例卡</text>
+<rect x="88" y="630" width="8" height="66" rx="18" fill="#6657A8" stroke="none" stroke-width="2" />
+<text x="112" y="664" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-visual-composer</text>
+<text x="112" y="689" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">Python 绘图、图表、排版 QA</text>
 <rect x="88" y="712" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="88" y="712" width="8" height="66" rx="18" fill="#2D3742" stroke="none" stroke-width="2" />
-<text x="112" y="746" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-writer</text>
-<text x="112" y="771" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">起草、篇幅、压缩、展示</text>
+<text x="112" y="746" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-to-exemplar</text>
+<text x="112" y="771" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">PDF 转写作范例卡</text>
+<rect x="88" y="794" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="88" y="794" width="8" height="66" rx="18" fill="#2D3742" stroke="none" stroke-width="2" />
+<text x="112" y="828" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-writer</text>
+<text x="112" y="853" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">起草、篇幅、压缩、展示</text>
 <rect x="650" y="560" width="500" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="650" y="560" width="500" height="52" rx="24" fill="#B58B2A" stroke="none" stroke-width="2" />
 <text x="672" y="594" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">质量保障</text>

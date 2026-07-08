@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Experiment Designer"
-  short_description: "Design experiments and build result tables/figures from supplied real values; never invent results."
-  default_prompt: "Use $ccf-experiment-designer for experiment design, baselines, ablations, result templates, and real-result figure/table presentation."
+  short_description: "Design experiments and build evidence-bound result tables/figure specs from supplied real values; never invent results."
+  default_prompt: "Use $ccf-experiment-designer for experiment design, baselines, ablations, result templates, and real-result evidence structure; use $ccf-visual-composer for publication visual layout."

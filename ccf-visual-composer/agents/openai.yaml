@@ -1,0 +1,4 @@
+interface:
+  display_name: "CCF Visual Composer"
+  short_description: "Compose publication-grade figures/tables, Python plots, palettes, captions, layout, and render QA from supplied results."
+  default_prompt: "Use $ccf-visual-composer for publication figure/table layout, creative data-analysis plots, Python plotting code, palette selection, multi-panel composition, caption placement, manuscript visual integration, and visual QA without inventing data."

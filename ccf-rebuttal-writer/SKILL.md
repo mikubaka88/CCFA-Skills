@@ -27,7 +27,7 @@ Handle post-review communication and revision accountability. Responses must be 
 
 1. Identify venue, response format, word budget, deadline, review scores/confidence, and whether this is rebuttal, revision, or resubmission.
 2. Parse comments into issue groups by reviewer, concern type, severity, available evidence, response strategy, and promised paper change.
-3. Load `references/response-strategy.md` and answer high-impact concerns first: soundness, novelty, missing evidence, incorrect assumptions, and shared concerns.
+3. Load `references/response-strategy.md` and `../ccf-paper-writer/references/prose-quality-guardrails.md`; answer high-impact concerns first: soundness, novelty, missing evidence, incorrect assumptions, and shared concerns.
 4. Load `references/revision-ledger.md` whenever promised edits, manuscript locations, or resubmission actions must be tracked.
 5. For full rebuttals, load `references/tex-templates.md` and use the TeX templates in `assets/templates/` when useful.
 6. For resubmission, map old reviewer concerns to the new venue's constraints through `ccf-submission-checker`; do not silently add experiments or bibliography changes.
@@ -55,5 +55,6 @@ Checklist status:
 
 - `references/response-strategy.md`: response tactics.
 - `references/response-checklists.md`: tone, evidence, promises, and word-budget checks.
+- `../ccf-paper-writer/references/prose-quality-guardrails.md`: concise, non-defensive response prose and anti-pattern checks.
 - `references/tex-templates.md`: reusable TeX response templates.
 - `references/revision-ledger.md`: tracking reviewer comments and manuscript actions.

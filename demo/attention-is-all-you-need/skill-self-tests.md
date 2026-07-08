@@ -1,6 +1,6 @@
 # Skill Self-Tests
 
-The current runtime surface has 13 skills. These smoke prompts check routing for the Attention/ICLR closed-loop demo.
+The current runtime surface has 16 skills. These smoke prompts check routing for the Attention/ICLR closed-loop demo.
 
 | Prompt intent | Expected skill | Demo evidence |
 | --- | --- | --- |
@@ -10,6 +10,7 @@ The current runtime surface has 13 skills. These smoke prompts check routing for
 | Score the idea's ICLR risk before writing. | `ccf-idea-reviewer` | `03-idea-review.md`. |
 | Search or list related-work targets. | `ccf-literature-searcher` | `02-iclr-closed-loop-skill-run.md`, Related Work in TeX. |
 | Design WMT evidence tables and ablation plan. | `ccf-experiment-designer` | `official-data.md`, `result-tables.md`, TeX experiment section. |
+| Generate paper-ready SVG plots from verified result data. | `ccf-visual-composer` | `visual-composer/plot_demo.py`, `visual-composer/figures/*.svg`. |
 | Draft and optimize the full ICLR manuscript. | `ccf-paper-writer` | `03-writing-draft.md`, `paper/attention_iclr_submission.tex`. |
 | Review writing and scientific quality. | `ccf-paper-reviewer` | `04-review-and-rebuttal.md`. |
 | Check claims, numbers, and citations. | `ccf-integrity-auditor` | `04-review-and-rebuttal.md` integrity table. |
