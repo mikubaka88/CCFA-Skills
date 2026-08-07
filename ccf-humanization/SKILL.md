@@ -22,21 +22,24 @@ Apply this skill before manuscript-facing work by `ccf-paper-writer` and before 
 
 Produce direct academic content, not prose that argues with hypothetical reviewers. Remove defensive framing, generic disclaimers, repeated low-probability cases, ritual safeguards, and process narration that do not change the scientific claim or evidence. Keep a concern outside the artifact as a user-review warning when it needs judgment. Do not edit a source file merely to encode a warning.
 
+Humanization must never dilute academic rigor. Preserve technical precision, evidence boundaries, causal and comparative logic, reproducibility-relevant details, calibrated claims, terminology, equations, citations, and venue-required disclosures. Improve the prose by making the scientific argument clearer and more natural, not by making it vaguer, more promotional, or less complete.
+
+Keep method confirmation and version-gate status internal. A method must pass the confirmed-full-method gate before publication use, but manuscript prose must not say that a method, baseline, configuration, or checkpoint is "confirmed," "approved," "publication-ready," or otherwise cleared by an engineering process. State the actual method name, scientifically relevant structure, configuration, data, and protocol directly and naturally. For example, write `We evaluate Transformer Base on English-to-German translation`, not `We use the confirmed Transformer Base configuration`.
+
 Never hide an observed result, known failure, assumption, conflict of interest, ethical issue, reproducibility fact, or venue-required disclosure when omission would make the paper materially misleading. Flag it as a blocking warning and wait for the user's decision; do not silently insert it or help conceal it.
 
 ## Modes
 
 - `manuscript-humanization`: remove defensive or AI-like prose while preserving claims, evidence, terminology, citations, equations, and user format.
-- `experiment-humanization`: deduplicate smoke tests, remove hypothetical test sprawl, and enforce confirmed publication method versions.
+- `experiment-humanization`: deduplicate smoke tests, remove hypothetical test sprawl, and prevent simplified development variants from entering publication artifacts.
 - `warning-only`: return a separate review warning without modifying manuscript, experiment, code, table, or configuration files.
 
 ## Workflow
 
 1. Identify the target artifact, owning CCFA skill, requested change, and whether edits are already authorized.
 2. Classify each candidate issue as `remove`, `keep`, or `warn-only` using `references/humanization-policy.md`.
-3. For manuscript prose, remove defensive positioning, boilerplate caveats, reviewer simulation, and improbable case lists. Keep only content that advances problem, method, evidence, interpretation, or a required disclosure.
-4. For experiment work, load `references/experiment-discipline.md`. Require each publication method to have a confirmed identity and full configuration; do not place simplified, toy, approximate, proxy, reduced, or debug variants in manuscript text, final tables, or claimed comparisons.
-   Each publication method must be a confirmed full version before it enters the paper.
+3. For manuscript prose, remove defensive positioning, boilerplate caveats, reviewer simulation, improbable case lists, and internal process/status language. Keep only content that advances problem, method, evidence, interpretation, or a required disclosure. Rewrite version-gate phrases as natural academic descriptions of the actual method and relevant configuration.
+4. For experiment work, load `references/experiment-discipline.md`. Require each publication method to have a verified identity and full configuration in the internal gate; do not place simplified, toy, approximate, proxy, reduced, or debug variants in manuscript text, final tables, or claimed comparisons, and do not expose the gate status in manuscript wording.
 5. Minimize smoke testing to changed, executable, decision-relevant paths. Do not repeat equivalent smoke tests or treat smoke success as publication evidence.
 6. Do not introduce SHA-256/checksum boilerplate for generic provenance, version confirmation, deduplication, or paper-writing workflow. Preserve it only when cryptographic hashing is the research subject, a real implementation dependency, or an external system requirement; surface that exception as a warning when it conflicts with the user's preference.
 7. Put any unresolved concern in the warning format below. Do not patch files, add comments, inject disclaimers, or alter method configuration for a warning-only issue until the user explicitly approves a concrete change.

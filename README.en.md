@@ -29,19 +29,19 @@ A strong paper is rarely defined by the final PDF alone. What matters is the res
 
 CCFA Skills starts from that observation. It treats a CCF-A paper project as a research storyline that can be maintained, audited, and advanced over time, rather than as a one-shot text generation task. An idea should be shaped before it is defended. Experiments should serve explicit claims rather than merely fill tables. Writing should preserve evidence boundaries. A rebuttal should not be an improvised answer at the end of the process, but a traceable bridge to revision and resubmission.
 
-The central insight is that paper quality comes from the quality of continuous decisions. The current family has 17 runtime roles and puts `ccf-humanization` first for manuscript and publication-facing experiment artifacts: direct academic prose, separate user-review warnings, minimal effective smoke tests, no generic SHA-256 provenance ritual, and only confirmed full method versions in the paper.
+The central insight is that paper quality comes from the quality of continuous decisions. The current family has 17 runtime roles and puts `ccf-humanization` first for manuscript and publication-facing experiment artifacts: fluent, natural, and rigorous academic prose; separate user-review warnings; minimal effective smoke tests; and no generic SHA-256 provenance ritual. Method completeness is checked internally, while the paper describes the actual method directly instead of exposing engineering-status language such as “confirmed” or “approved.”
 
 ## v0.8 Visual Demos
 
-v0.8 preserves the existing 17-skill architecture and paper-project lifecycle. It strengthens two cross-cutting capabilities: `ccf-humanization` as the first preflight, and `ccf-visual-composer` for content-grounded scientific architecture prompts, confirmed generation, structure QA, and editable SVG/PDF reconstruction. The figures use Simplified Chinese explanations while retaining canonical skill, model, and format names in English. Visible English labels use initial capitals rather than all-caps styling.
+v0.8 preserves the existing 17-skill architecture and paper-project lifecycle. It strengthens two cross-cutting capabilities: `ccf-humanization` as the first preflight, and `ccf-visual-composer` for content-grounded scientific architecture prompts, confirmed generation, structure QA, and editable SVG/PDF reconstruction. In the three demos, only the titles are in Simplified Chinese; internal modules, labels, and sentences remain in English. Ordinary English follows natural title or sentence case, while acronyms and initialisms such as CCF, GPT, QA, SVG, PDF, AI, PNG, and SHA-256 remain uppercase.
 
 ![CCFA v0.8 dual-upgrade concept map](assets/v0.8/ccfa-two-upgrades-overview.zh-CN.png)
 
-The concrete Transformer examples show how `Visual Composer` replaces a generic black box with an inspectable encoder-decoder topology, while `Ccf Humanization` removes defensive prose and duplicated smoke checks, admits only the confirmed publication method, and keeps review warnings outside the paper.
+The concrete Transformer examples show how `Visual Composer` replaces a generic black box with an inspectable encoder-decoder topology, while `CCF Humanization` removes defensive prose and duplicated smoke checks, checks method completeness internally, describes the actual method naturally, and keeps review warnings outside the paper.
 
 ![Visual Composer Transformer Chinese demo](assets/v0.8/visual-composer-transformer-demo.zh-CN.png)
 
-![Ccf Humanization Transformer Chinese demo](assets/v0.8/ccf-humanization-transformer-demo.zh-CN.png)
+![CCF Humanization Transformer Chinese-title demo](assets/v0.8/ccf-humanization-transformer-demo.zh-CN.png)
 
 ![CCFA skill family logic](assets/ccfa-skills-architecture.svg)
 
@@ -75,7 +75,7 @@ humanization preflight
 
 | Stage | Skill | Starts when | Main output | Do not use for |
 | --- | --- | --- | --- | --- |
-| Priority preflight | `ccf-humanization` | Remove defensive writing, isolate warnings, deduplicate smoke tests, disable generic SHA-256 requirements, or block simplified methods from publication artifacts. | Humanized artifact, confirmed-method status, separate warning ledger. | Concealing material evidence, writing the paper, designing experiments, or overriding mandatory disclosures. |
+| Priority preflight | `ccf-humanization` | Remove defensive writing, isolate warnings, deduplicate smoke tests, disable generic SHA-256 requirements, or block simplified methods from publication artifacts. | Humanized artifact, internal method-version gate, separate warning ledger. | Concealing material evidence, writing the paper, designing experiments, or overriding mandatory disclosures. |
 | Setup | `ccf-project-scaffolder` | Create a paper project, copy templates, initialize `ccfa.yaml`. | Project tree, template files, initial state. | Research content generation. |
 | Planning | `ccf-pipeline-orchestrator` | Plan stages, gates, artifact status, next owner. | Workflow plan, gates, handoff. | Writing, review, search, experiments, rebuttal. |
 | Idea shaping | `ccf-idea-optimizer` | Explore, rescue, or concretize a rough idea or vague direction. | Problem-gap-insight-method-evidence brief, rescue routes, minimum testable question. | Ranking multiple ideas. |
@@ -99,7 +99,7 @@ humanization preflight
 
 | User intent | Use | Do not use |
 | --- | --- | --- |
-| Remove defensive writing, keep warnings outside files, trim repeated smoke tests, or enforce confirmed full methods | `ccf-humanization` | `ccf-paper-reviewer` |
+| Remove defensive writing, keep warnings outside files, trim repeated smoke tests, or prevent simplified methods from entering publication artifacts | `ccf-humanization` | `ccf-paper-reviewer` |
 | Make a rough idea concrete or find a rescue route | `ccf-idea-optimizer` | `ccf-idea-reviewer` |
 | Explicitly score, rank, or select ideas | `ccf-idea-reviewer` | `ccf-idea-optimizer` |
 | Monitor new papers, competitors, or recent similar ideas | `ccf-literature-monitor` | `ccf-literature-searcher` |

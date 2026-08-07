@@ -8,8 +8,9 @@
 - Extended `ccf-visual-composer` with scientific method/architecture diagram routing, content-derived research-figure prompts, an explicit pre-call GPT Image 2 confirmation gate, generated-draft inspection, and a mandatory post-generation offer to reconstruct editable SVG/vector PDF.
 - Defined semantic vector reconstruction requirements so editable deliverables use live text, selectable groups, and typed connectors instead of relabeling an embedded or auto-traced raster as editable.
 - Updated routing, trigger registry, artifact ownership, agent guidance, catalog, architecture docs, manifests, and validation for the new visual workflow.
-- Added a figure-wide title-case rule: visible English words use an initial capital instead of all-caps styling across generated architecture diagrams, reproducible plots, tables, and render QA.
-- Added three Simplified Chinese v0.8 visual assets: the dual-upgrade concept map, a concrete Transformer `Visual Composer` before/after demo, and a concrete `Ccf Humanization` manuscript/experiment demo. Canonical skill and model terms remain in English inside the localized figures.
+- Added a figure-wide capitalization rule: ordinary English uses natural title or sentence case, while canonical acronyms and initialisms such as `CCF`, `GPT`, `QA`, `SVG/PDF`, `AI`, `PNG`, and `SHA-256` remain uppercase.
+- Added three v0.8 visual assets with Chinese titles and English internal labels: the dual-upgrade concept map, a concrete Transformer `Visual Composer` before/after demo, and a concrete `CCF Humanization` manuscript/experiment demo.
+- Kept method confirmation as an internal experiment gate while removing confirmation, approval, and publication-readiness status language from manuscript prose; papers state the actual method and scientifically relevant configuration directly.
 - Updated all README variants to present the v0.8 visuals without changing the established 17-skill architecture or lifecycle order.
 
 ## v0.7.0 - 2026-07-08

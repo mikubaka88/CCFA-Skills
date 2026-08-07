@@ -8,7 +8,7 @@ Visual QA is based on rendered output, not source optimism. When source files ex
 - No incoherent overlap between text, plots, legends, subfigures, floats, or surrounding paragraphs.
 - Float order matches the paper logic and cross-references resolve.
 - Fonts are embedded or accepted by the target template; labels remain readable at final size.
-- Every visible English word uses title case with only its first letter capitalized; no all-caps title, module label, legend, axis, annotation, badge, or table header remains.
+- Ordinary visible English uses natural title or sentence case; canonical acronyms and initialisms remain uppercase, and no complete ordinary-language title, module label, legend, axis, annotation, badge, or table header is styled in all caps.
 - Vector text remains editable when requested; raster previews are high enough resolution.
 - Color contrast survives grayscale and color-vision checks.
 - Figure captions and table captions are present, near the artifact, and not detached by bad float placement.

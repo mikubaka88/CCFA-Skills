@@ -4,6 +4,8 @@
 
 Write the strongest accurate academic version of the work. State the research problem, mechanism, evidence, and bounded conclusion directly. Do not write as though answering an imagined hostile reviewer.
 
+Natural prose is not relaxed scholarship. Preserve method specificity, evidence-to-claim alignment, uncertainty where scientifically relevant, reproducibility details, equations, citations, terminology, and mandatory disclosures. Never trade rigor for conversational tone, rhetorical smoothness, brevity, or a more favorable narrative.
+
 Remove or rewrite:
 
 - boilerplate caveats that do not affect interpretation;
@@ -13,6 +15,7 @@ Remove or rewrite:
 - meta-commentary about what reviewers may think, accept, reject, question, or misunderstand;
 - repetitive statements that the method is not intended for implausible scenarios;
 - warning prose, internal risk notes, or reviewer simulations inside manuscript paragraphs.
+- engineering-status phrases such as "the confirmed version," "the approved configuration," "publication-ready method," or narration that a method passed an internal gate;
 
 Keep:
 
@@ -21,6 +24,26 @@ Keep:
 - fair protocol constraints and known threats that affect comparison validity;
 - venue-mandated limitations, ethics, impact, disclosure, or reproducibility content;
 - concise scope statements when a broader reading would be materially false.
+
+## Method Status Versus Academic Description
+
+Confirmation is an internal evidence and experiment gate, not a manuscript claim. Verify the method identity, revision, configuration, dataset split, and checkpoint before writing, then describe only the scientifically relevant method in fluent academic prose.
+
+Prefer:
+
+```text
+We evaluate Transformer Base on English-to-German translation.
+The encoder and decoder each contain six layers.
+```
+
+Avoid:
+
+```text
+We use the confirmed Transformer Base configuration.
+The publication-ready version contains six encoder and decoder layers.
+```
+
+Mention a release, revision, checkpoint, or configuration identifier only when it improves reproducibility or distinguishes scientifically different variants. State that identifier directly; do not frame it as approval, confirmation, readiness, or process completion.
 
 ## Unfavorable Information
 
@@ -64,3 +87,5 @@ This rule does not rewrite scientific reality. Preserve SHA-256 or another hash 
 - No warning was injected into a source file without approval.
 - No material fact was hidden or softened into a misleading claim.
 - Internal process notes stay outside the manuscript.
+- Internal confirmation and publication-readiness status is absent from manuscript prose; methods are described by their scientific identity and relevant configuration.
+- The revision remains technically precise, professionally academic, and no less rigorous than the source.

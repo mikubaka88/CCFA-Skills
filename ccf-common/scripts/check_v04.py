@@ -230,7 +230,7 @@ def check_visual_generation_contract(errors: list[str]) -> None:
         "editable-reconstruction",
         "obtain the required GPT Image 2 confirmation before the external call",
         "ask the mandatory editable-deliverable question",
-        "Do not render English words in all caps",
+        "Acronyms such as `CCF`, `AI`, `GPT`, `QA`, `SVG`, `PDF`, `PNG`, and `SHA-256` remain uppercase",
     )
     for term in required_skill_terms:
         if term not in skill_text:
@@ -240,7 +240,7 @@ def check_visual_generation_contract(errors: list[str]) -> None:
         "是否需要我把它重建为可编辑的 SVG，并同时导出矢量 PDF？",
         "Do not begin vector reconstruction until the user agrees.",
         "Do not embed the whole raster in an SVG and call it editable.",
-        "Never use all-caps text",
+        "preserve canonical uppercase acronyms and initialisms",
     )
     for term in required_reference_terms:
         if term not in reference_text:
@@ -263,19 +263,25 @@ def check_humanization_contract(errors: list[str]) -> None:
             "highest-priority preflight",
             "warning-only",
             "Do not edit a source file merely to encode a warning.",
-            "confirmed full version",
+            "verified identity and full configuration in the internal gate",
+            "Keep method confirmation and version-gate status internal.",
         ),
         "policy": (
             "## SHA-256 And Checksum Rule",
             "do not conceal it",
             "Make no source edit",
+            "## Method Status Versus Academic Description",
         ),
         "experiment": (
             "Only `confirmed` methods may enter publication artifacts.",
             "Smoke tests are engineering checks, not paper evidence.",
             "do not silently substitute a simplified version",
+            "The `confirmed` label is internal metadata.",
         ),
-        "writer": ("Run `ccf-humanization` as the first manuscript-facing preflight",),
+        "writer": (
+            "Run `ccf-humanization` as the first manuscript-facing preflight",
+            "do not write that it is confirmed, approved, or publication-ready",
+        ),
         "designer": ("Run `ccf-humanization` as the first publication-facing experiment preflight",),
     }
     for key, terms in checks.items():

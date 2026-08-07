@@ -16,11 +16,11 @@ metadata:
 
 **CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode`, `../ccf-common/references/handoff-modes.md`, and `../ccf-common/references/task-modes.md`.
 
-Run `ccf-humanization` as the first publication-facing experiment preflight. Load `../ccf-humanization/references/experiment-discipline.md`, minimize smoke tests to unique changed critical paths, and allow only confirmed full method versions in manuscript text, final tables, captions, and claimed comparisons. Put version conflicts or necessary exceptions in a separate user-review warning; do not modify experiment or manuscript files merely to encode the warning.
+Run `ccf-humanization` as the first publication-facing experiment preflight. Load `../ccf-humanization/references/experiment-discipline.md`, minimize smoke tests to unique changed critical paths, and allow only internally confirmed full method versions in manuscript text, final tables, captions, and claimed comparisons. In publication-facing wording, name the method and scientifically relevant configuration naturally without exposing confirmation, approval, or readiness status. Put version conflicts or necessary exceptions in a separate user-review warning; do not modify experiment or manuscript files merely to encode the warning.
 
 ## Core Rule
 
-Design the smallest sufficient experiment package that tests the paper's central claims with confirmed full methods. Build result tables and evidence-bound figure specs only from supplied real values or explicit placeholders. Never fabricate numbers, improvements, significance, benchmark ranks, or user-study outcomes. Do not expand protocols with repetitive smoke tests or implausible defensive cases. Publication-grade layout, palette, caption placement, and render QA belong to `ccf-visual-composer`. Follow the user's requested output shape: experiment plan, table, LaTeX table, figure spec, ablation list, or execution queue.
+Design the smallest sufficient experiment package that tests the paper's central claims with complete method configurations verified by the internal gate. Build result tables and evidence-bound figure specs only from supplied real values or explicit placeholders. Never fabricate numbers, improvements, significance, benchmark ranks, or user-study outcomes. Do not expand protocols with repetitive smoke tests or implausible defensive cases. Publication-grade layout, palette, caption placement, and render QA belong to `ccf-visual-composer`. Follow the user's requested output shape: experiment plan, table, LaTeX table, figure spec, ablation list, or execution queue.
 
 ## Modes
 

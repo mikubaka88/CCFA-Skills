@@ -33,7 +33,7 @@ The bundled library must remain:
 2. Pick a recipe by evidence shape, not by aesthetics.
 3. Keep the proposed method color stable across all generated figures.
 4. Use typographic hierarchy: large title, strong panel titles, compact axis text, and direct labels for the main evidence.
-5. Apply title case to every visible English word: capitalize only the first letter and keep the remaining letters lowercase. Never use all-caps titles, panel names, legends, axes, annotations, badges, or table headers; use font weight, size, color, or spacing for emphasis instead.
+5. Use natural title or sentence case for ordinary visible English, while preserving canonical uppercase acronyms and initialisms such as `CCF`, `AI`, `QA`, `SVG`, and `PDF`. Never use all caps for complete ordinary-language titles, panel names, legends, axes, annotations, badges, or table headers; use font weight, size, color, or spacing for emphasis instead.
 6. Use direct labels whenever possible; do not make reviewers decode a legend for the main message.
 7. For composite figures, combine 2-5 coordinated panels only when each panel answers a distinct reviewer question.
 8. If the recipe does not fit the evidence, compose a new one using the same primitives: canvas, axis, direct labels, semantic palette, and source note.

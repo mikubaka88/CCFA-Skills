@@ -67,7 +67,7 @@ STYLE
 Clean scientific vector-illustration aesthetic; flat shapes; precise alignment; generous whitespace; restrained accessible palette; consistent stroke widths; no photorealism; no unnecessary decoration.
 
 TYPOGRAPHY
-Use only these exact short labels after title-case normalization: [label list]. Capitalize only the first letter of every displayed English word and keep the remaining letters lowercase. Never use all-caps text; write `Visual Composer`, `Gpt Image 2`, and `Editable Svg/Pdf`, not `VISUAL COMPOSER`, `GPT IMAGE 2`, or `EDITABLE SVG/PDF`. Keep text horizontal, high-contrast, and large enough at final paper size. Do not invent or paraphrase labels. If exact text cannot be rendered reliably, leave a clean label slot for later vector reconstruction.
+Use only these exact short labels after capitalization normalization: [label list]. Use natural title or sentence case for ordinary English, but preserve canonical uppercase acronyms and initialisms. Write `Visual Composer`, `GPT Image 2`, `Structure QA`, and `Editable SVG/PDF`, not `VISUAL COMPOSER`, `Gpt Image 2`, `Structure Qa`, or `Editable Svg/Pdf`. Keep `CCF`, `AI`, `GPT`, `QA`, `SVG`, `PDF`, `PNG`, `SHA-256`, and comparable standardized abbreviations uppercase. Keep text horizontal, high-contrast, and large enough at final paper size. Do not invent or paraphrase labels. If exact text cannot be rendered reliably, leave a clean label slot for later vector reconstruction.
 
 OUTPUT CONSTRAINTS
 [Aspect ratio/resolution/background.] Preserve margins. Keep arrows unambiguous and prevent crossings where possible.
@@ -78,7 +78,7 @@ No unsupported components, fake metrics, fabricated equations, logos, watermarks
 
 Favor short labels of one to five words. Put long explanations in the caption, not inside the generated figure. When equations or exact typography are essential, reserve clean slots and add them during editable reconstruction.
 
-Before showing or sending the prompt, normalize the complete visible-text inventory to title case. This visible-image rule applies to titles, module names, legends, annotations, badges, axis labels, and table headers. Keep canonical model or acronym spelling outside the image in prose, captions, filenames, and metadata when needed. Do not silently return to all caps for emphasis; use weight, size, color, or spacing instead.
+Before showing or sending the prompt, normalize the complete visible-text inventory to natural title or sentence case. Preserve canonical uppercase acronyms and initialisms inside the image as well as in prose, captions, filenames, and metadata. Do not use all caps for an entire ordinary phrase merely for emphasis; use weight, size, color, or spacing instead.
 
 ## 4. Required GPT Image 2 Confirmation Gate
 
@@ -97,7 +97,7 @@ Inspect the generated image rather than assuming prompt compliance. Compare it w
 - missing, duplicated, invented, or renamed modules;
 - incorrect arrow direction, topology, training/inference boundary, or grouping;
 - unreadable or hallucinated labels/equations;
-- any all-caps English word or label that violates the required title-case display rule;
+- any all-caps ordinary English phrase or incorrectly lowercased acronym that violates the capitalization rule;
 - inconsistent visual encoding or novelty emphasis;
 - paper-size readability, contrast, whitespace, and crop safety.
 
@@ -133,7 +133,7 @@ Use a deterministic vector-first route instead of image generation when the user
 - Training-only, inference-only, optional, and repeated components are distinguishable.
 - Novelty emphasis matches the manuscript rather than decorative salience.
 - Labels match the manuscript terminology exactly.
-- Every displayed English word uses title case with only its first letter capitalized; no all-caps styling remains.
+- Ordinary English uses natural title or sentence case, while canonical acronyms and initialisms remain uppercase.
 - SVG objects are individually selectable and text remains editable.
 - The PDF is exported from vector source, not from a flattened screenshot.
 - Raster draft and reconstructed vector tell the same scientific story.

@@ -29,19 +29,19 @@
 
 CCFA Skills 正是從這個觀察出發。它把 CCF-A 論文專案看作一條可以被維護、稽核和反覆推進的研究故事線，而不是一次性的文本生成任務。一個 idea 需要先被塑形，在真正需要取捨時再接受嚴格審稿；一組實驗需要服務於明確 claim，而不是孤立地填滿表格；一篇論文的寫作需要保留證據邊界；一次 rebuttal 也不應只是臨時答辯，而應成為下一輪修改和重投的可追蹤記錄。
 
-這個專案的核心 insight 是：論文品質來自連續決策的品質。當前家族包含 17 個 runtime roles，並把 `ccf-humanization` 放在論文和投稿實驗產物的最前面：正文保持純粹、直接的學術表達，warning 獨立交給使用者審核，smoke 只保留有效且不重複的關鍵路徑，禁用通用 SHA-256 provenance 儀式，論文只採用確認的完整方法版本。
+這個專案的核心 insight 是：論文品質來自連續決策的品質。當前家族包含 17 個 runtime roles，並把 `ccf-humanization` 放在論文和投稿實驗產物的最前面：正文保持流暢、自然、嚴謹的學術表達，warning 獨立交給使用者審核，smoke 只保留有效且不重複的關鍵路徑，禁用通用 SHA-256 provenance 儀式。方法完整性由內部流程校驗，論文則直接、自然地描述實際採用的方法，不寫入「已確認」「已批准」等工程狀態。
 
 ## v0.8 核心升級圖示
 
-v0.8 保持原有 17-skill 家族架構和論文專案閉環不變，集中增強兩個橫向能力：`ccf-humanization` 作為最高優先級預檢，`ccf-visual-composer` 負責內容驅動的科研架構圖、生成確認、結構 QA 與可編輯 SVG/PDF 重建。圖內說明使用簡體中文，skill、模型和格式名稱保留英文；英文標籤統一使用首字母大寫形式，不採用全大寫排版。
+v0.8 保持原有 17-skill 家族架構和論文專案閉環不變，集中增強兩個橫向能力：`ccf-humanization` 作為最高優先級預檢，`ccf-visual-composer` 負責內容驅動的科研架構圖、生成確認、結構 QA 與可編輯 SVG/PDF 重建。三張 demo 僅標題使用簡體中文，圖內模組、標籤和句子保持英文；普通英文採用自然的標題式或句式大小寫，CCF、GPT、QA、SVG、PDF、AI、PNG、SHA-256 等縮寫保持標準全大寫。
 
 ![CCFA v0.8 雙升級概念圖](assets/v0.8/ccfa-two-upgrades-overview.zh-CN.png)
 
-具體的 Transformer demo 展示 `Visual Composer` 如何從通用黑盒圖轉為可核對的編碼器—解碼器拓撲；`Ccf Humanization` demo 則逐項展示論文寫作、Smoke 測試和方法版本的修改前後差異，並把需要判斷的問題保留在獨立審核警告中。
+具體的 Transformer demo 展示 `Visual Composer` 如何從通用黑盒圖轉為可核對的編碼器—解碼器拓撲，並保留 `GPT Image 2 → Structure QA → Editable SVG/PDF` 交付鏈；`CCF Humanization` demo 則展示如何保留流暢自然且嚴謹的學術表達、精簡 smoke 測試，並把方法版本校驗留在內部流程、把需要判斷的問題留在獨立審核警告中。
 
 ![Visual Composer Transformer 中文對比 Demo](assets/v0.8/visual-composer-transformer-demo.zh-CN.png)
 
-![Ccf Humanization Transformer 中文對比 Demo](assets/v0.8/ccf-humanization-transformer-demo.zh-CN.png)
+![CCF Humanization Transformer 中文對比 Demo](assets/v0.8/ccf-humanization-transformer-demo.zh-CN.png)
 
 ![CCFA 技能家族邏輯](assets/ccfa-skills-architecture.zh-TW.svg)
 
@@ -77,7 +77,7 @@ v0.8 保持原有 17-skill 家族架構和論文專案閉環不變，集中增�
 
 | 階段 | Skill | 啟動條件 | 主要產物 | 不應該用於 |
 | --- | --- | --- | --- | --- |
-| 最高優先級預檢 | `ccf-humanization` | 去除防禦性寫作、隔離 warning、精簡重複 smoke、禁用通用 SHA-256 要求，或阻止簡化方法進入論文。 | 人類化產物、確認方法狀態、獨立 warning ledger。 | 隱藏實質證據、代替論文寫作/實驗設計或覆蓋強制披露。 |
+| 最高優先級預檢 | `ccf-humanization` | 去除防禦性寫作、隔離 warning、精簡重複 smoke、禁用通用 SHA-256 要求，或阻止簡化方法進入論文。 | 人類化產物、內部方法版本校驗、獨立 warning ledger。 | 隱藏實質證據、代替論文寫作/實驗設計或覆蓋強制披露。 |
 | 專案搭建 | `ccf-project-scaffolder` | 使用者要建立論文專案目錄、複製模板、初始化 `ccfa.yaml`。 | 專案目錄、模板檔、初始狀態檔。 | 生成研究內容或替使用者寫 idea。 |
 | 流程編排 | `ccf-pipeline-orchestrator` | 使用者要拆任務、排階段、設 gate、決定下一步 owner。 | 階段計畫、gate、handoff、狀態更新建議。 | 直接寫作、審稿、檢索、設計實驗或 rebuttal。 |
 | Idea 優化 | `ccf-idea-optimizer` | 使用者有粗 idea、模糊方向、想找方向或救方向。 | problem-gap-insight-method-evidence 文件、救援路線、最小可驗證問題。 | 對多個 idea 排名打分。 |
@@ -101,7 +101,7 @@ v0.8 保持原有 17-skill 家族架構和論文專案閉環不變，集中增�
 
 | 使用者真正要做的事 | 使用 | 不使用 |
 | --- | --- | --- |
-| 去掉防禦性寫作、warning 不注入文件、精簡重複 smoke、論文只用確認的完整方法 | `ccf-humanization` | `ccf-paper-reviewer` |
+| 去掉防禦性寫作、warning 不注入文件、精簡重複 smoke、阻止簡化方法進入論文 | `ccf-humanization` | `ccf-paper-reviewer` |
 | 把模糊 idea 變成可做的研究方案，或找救援路線 | `ccf-idea-optimizer` | `ccf-idea-reviewer` |
 | 明確要對多個 idea 打分、排序、取捨 | `ccf-idea-reviewer` | `ccf-idea-optimizer` |
 | 監控新論文、競品、最近是否有類似 idea | `ccf-literature-monitor` | `ccf-literature-searcher` |

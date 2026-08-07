@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Humanization"
   short_description: "Remove defensive prose and enforce publication-faithful methods"
-  default_prompt: "Use $ccf-humanization first to remove defensive writing, keep warnings outside artifacts, deduplicate smoke tests, disable generic SHA-256 requirements, and allow only confirmed full method versions in the paper."
+  default_prompt: "Use $ccf-humanization first to remove defensive and engineering-status writing, keep warnings outside artifacts, deduplicate smoke tests, disable generic SHA-256 requirements, and allow only internally confirmed full methods while describing them naturally in the paper."

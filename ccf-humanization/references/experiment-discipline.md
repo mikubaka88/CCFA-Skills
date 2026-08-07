@@ -17,6 +17,8 @@ Status: confirmed / provisional / simplified
 
 Only `confirmed` methods may enter publication artifacts. Keep `provisional` and `simplified` variants in development notes. This includes toy, approximate, proxy, reduced-budget, debug, fewer-layer, lower-resolution, shortened-training, subset-only, mocked, emulated, and otherwise altered variants.
 
+The `confirmed` label is internal metadata. Do not copy `confirmed`, `approved`, `publication-ready`, gate status, confirmation source, or similar engineering language into manuscript prose, captions, or table labels. Once the gate passes, name the method and report only scientifically relevant configuration details. For example, write `Transformer Base with six encoder and six decoder layers`, not `the confirmed full Transformer Base version`.
+
 If compute or availability prevents the confirmed version from running, do not silently substitute a simplified version. Return a blocking warning and ask the user to choose among obtaining the confirmed version, changing the claim, postponing the comparison, or explicitly redesigning the experiment outside the manuscript.
 
 An ablation is not a simplified substitute when it is clearly labeled, starts from the confirmed full method, changes exactly the intended component, and is reported only as an ablation rather than as the main method or baseline.
@@ -51,3 +53,4 @@ Before publication-facing output, verify:
 - smoke tests are absent from the evidence narrative unless the paper studies testing itself;
 - necessary ablations are labeled as ablations rather than alternate main methods;
 - any unresolved version mismatch is reported as a warning with no automatic file change.
+- manuscript prose and display labels describe the method naturally without exposing internal confirmation or publication-readiness status.
