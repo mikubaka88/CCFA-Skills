@@ -16,12 +16,14 @@ metadata:
 
 Operate as the project coordinator and workflow planner. Clarify the goal, map the current stage, update or read `ccfa.yaml`, define gates, and name the next owner skill. Do not perform the downstream skill's work. Follow `../ccf-common/references/task-modes.md`: if the user asks for a short plan, checklist, YAML update, table, or narrative roadmap, use that visible shape instead of forcing a fixed report.
 
+Place `ccf-humanization` before any handoff that will write manuscript text or create publication-facing experiment artifacts. This priority preflight does not replace the downstream owner and requires no extra handoff question.
+
 ## Workflow
 
 1. Identify target venue, current stage, available artifacts, constraints, deadline pressure, and the user's immediate goal.
 2. Read `ccfa.yaml` when available; if absent, continue with supplied artifacts and report that project-state tracking is unavailable.
 3. For unclear projects, use `references/workflow-planning/intake-protocol.md`, `approach-options.md`, and `design-brief-template.md`.
-4. Classify the next owner: `ccf-project-scaffolder`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, or `ccf-rebuttal-writer`.
+4. Classify the next owner: `ccf-project-scaffolder`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, or `ccf-rebuttal-writer`. Prefix `ccf-humanization` when the output will enter a manuscript or publication-facing experiment artifact.
 5. Define the gate: required input, output artifact, pass condition, blocker, and handoff.
 6. Provide `ccfa.yaml` update instructions rather than silently overwriting user project state unless explicitly asked.
 

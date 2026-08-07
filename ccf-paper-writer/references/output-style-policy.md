@@ -5,11 +5,12 @@ Use this reference when the requested writing output could conflict with the def
 ## Priority Order
 
 1. User-requested final format.
-2. Original source format for edit/polish/compression tasks.
-3. Target venue LaTeX format for from-scratch manuscript tasks.
-4. Target venue length/page budget for full-manuscript tasks.
-5. NeurIPS LaTeX fallback when the target venue is absent, unknown, or has no local guide.
-6. Compact risk/status note only after the main writing output.
+2. `ccf-humanization` direct-academic and warning-non-injection policy.
+3. Original source format for edit/polish/compression tasks.
+4. Target venue LaTeX format for from-scratch manuscript tasks.
+5. Target venue length/page budget for full-manuscript tasks.
+6. NeurIPS LaTeX fallback when the target venue is absent, unknown, or has no local guide.
+7. Compact user-review warning only after the main writing output and never injected into the artifact.
 
 ## Edit And Polish
 
@@ -19,7 +20,7 @@ Preserve existing structure unless the user asks for restructuring:
 - Markdown headings, tables, lists, code fences, and links.
 - Paragraph count and section order when the request is "polish", "润色", "改写但不改结构", or "keep format".
 
-If a sentence contains an unsupported claim, either soften it in place or add a short note after the revised text. Do not turn a polish request into a long review report.
+If a sentence contains an unsupported claim, narrow it accurately in place or add a short warning after the revised text. Do not inject defensive caveats or turn a polish request into a long review report.
 
 ## From Idea To Manuscript
 
@@ -31,7 +32,7 @@ When the user has only an idea and asks to write a paper:
 4. Establish a page/word budget from `length-budget-policy.md`; for submission-style drafts, aim near the venue limit rather than producing a short skeleton.
 5. If the venue guide is missing or no venue is named, draft with the NeurIPS template path `ccf-latex-templates/NeurIPS/neurips_2026.tex`.
 6. Use `TBD` for missing results, citations, figures, or implementation details.
-7. For "完整文章", "full paper", "from scratch", or "投稿", include all normal paper parts for the target venue: abstract, introduction, background/related work or preliminaries, method, experiments, analysis/ablation, limitations, ethics/reproducibility if relevant, conclusion, references, and appendix/checklist placeholders when expected.
+7. For "完整文章", "full paper", "from scratch", or "投稿", include the normal paper parts for the target venue: abstract, introduction, background/related work or preliminaries, method, experiments, analysis/ablation, conclusion, references, and expected appendix/checklist placeholders. Include limitations, ethics, or reproducibility sections only when venue-required or scientifically material; do not invent defensive content to fill them.
 
 If the first draft is substantially below the venue budget, expand with useful missing content before declaring it complete. If it exceeds the budget, run compression locally because compression is owned by `ccf-paper-writer`.
 

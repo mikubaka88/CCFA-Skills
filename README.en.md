@@ -29,7 +29,19 @@ A strong paper is rarely defined by the final PDF alone. What matters is the res
 
 CCFA Skills starts from that observation. It treats a CCF-A paper project as a research storyline that can be maintained, audited, and advanced over time, rather than as a one-shot text generation task. An idea should be shaped before it is defended. Experiments should serve explicit claims rather than merely fill tables. Writing should preserve evidence boundaries. A rebuttal should not be an improvised answer at the end of the process, but a traceable bridge to revision and resubmission.
 
-The central insight is that paper quality comes from the quality of continuous decisions. Writing, review, integrity audit, submission checking, and rebuttal should not replace one another; they should keep separate responsibilities and hand off through the same project state. The v0.7 line therefore organizes the family into 16 stage roles, so each stage has a clear responsibility, each artifact has a home, and the system behaves more like a collaboration framework around the research storyline than a loose prompt collection. v0.7 also gives `ccf-visual-composer` a bundled Python SVG plotting recipe library for paper-ready visual examples.
+The central insight is that paper quality comes from the quality of continuous decisions. The current family has 17 runtime roles and puts `ccf-humanization` first for manuscript and publication-facing experiment artifacts: direct academic prose, separate user-review warnings, minimal effective smoke tests, no generic SHA-256 provenance ritual, and only confirmed full method versions in the paper.
+
+## v0.8 Visual Demos
+
+v0.8 preserves the existing 17-skill architecture and paper-project lifecycle. It strengthens two cross-cutting capabilities: `ccf-humanization` as the first preflight, and `ccf-visual-composer` for content-grounded scientific architecture prompts, confirmed generation, structure QA, and editable SVG/PDF reconstruction. The figures use Simplified Chinese explanations while retaining canonical skill, model, and format names in English. Visible English labels use initial capitals rather than all-caps styling.
+
+![CCFA v0.8 dual-upgrade concept map](assets/v0.8/ccfa-two-upgrades-overview.zh-CN.png)
+
+The concrete Transformer examples show how `Visual Composer` replaces a generic black box with an inspectable encoder-decoder topology, while `Ccf Humanization` removes defensive prose and duplicated smoke checks, admits only the confirmed publication method, and keeps review warnings outside the paper.
+
+![Visual Composer Transformer Chinese demo](assets/v0.8/visual-composer-transformer-demo.zh-CN.png)
+
+![Ccf Humanization Transformer Chinese demo](assets/v0.8/ccf-humanization-transformer-demo.zh-CN.png)
 
 ![CCFA skill family logic](assets/ccfa-skills-architecture.svg)
 
@@ -38,7 +50,8 @@ The central insight is that paper quality comes from the quality of continuous d
 The default paper-project loop is:
 
 ```text
-project scaffold
+humanization preflight
+  -> project scaffold
   -> workflow orchestration
   -> idea optimization
   -> idea review
@@ -62,6 +75,7 @@ project scaffold
 
 | Stage | Skill | Starts when | Main output | Do not use for |
 | --- | --- | --- | --- | --- |
+| Priority preflight | `ccf-humanization` | Remove defensive writing, isolate warnings, deduplicate smoke tests, disable generic SHA-256 requirements, or block simplified methods from publication artifacts. | Humanized artifact, confirmed-method status, separate warning ledger. | Concealing material evidence, writing the paper, designing experiments, or overriding mandatory disclosures. |
 | Setup | `ccf-project-scaffolder` | Create a paper project, copy templates, initialize `ccfa.yaml`. | Project tree, template files, initial state. | Research content generation. |
 | Planning | `ccf-pipeline-orchestrator` | Plan stages, gates, artifact status, next owner. | Workflow plan, gates, handoff. | Writing, review, search, experiments, rebuttal. |
 | Idea shaping | `ccf-idea-optimizer` | Explore, rescue, or concretize a rough idea or vague direction. | Problem-gap-insight-method-evidence brief, rescue routes, minimum testable question. | Ranking multiple ideas. |
@@ -69,7 +83,7 @@ project scaffold
 | Monitoring | `ccf-literature-monitor` | Track new papers, competitors, arXiv/OpenReview/venue feeds, or ask whether recent work overlaps an idea. | Monitoring report, overlap levels, RELAX/RESEARCH/FOLLOW-UP flags, handoff signals. | Deep related-work search, citation audit, or final idea scoring. |
 | Evidence | `ccf-literature-searcher` | Search related work, prior art, datasets, benchmarks, and open gaps. | Literature notes, opportunity map, evidence gaps, related-work structure. | Auditing already cited papers or treating related work as a final idea kill gate. |
 | Experiments | `ccf-experiment-designer` | Design baselines, metrics, ablations, robustness checks. | Protocols, baseline matrix, result templates, evidence-bound figure/table specs. | Inventing results or drawing docs diagrams. |
-| Visuals | `ccf-visual-composer` | Compose publication-grade figures/tables, Python plotting code, palettes, captions, panel maps, and manuscript integration from supplied results. | Visual contract, plot recipe/code, panel/table map, palette, LaTeX placement, caption plan, render QA ledger. | Designing experiments, inventing results, writing prose as the main task, final submission compliance. |
+| Scientific visuals | `ccf-visual-composer` | Create reproducible data figures and content-grounded method/model/system architecture diagrams, including confirmed GPT Image 2 drafts and editable SVG/PDF reconstruction. | Visual contract, plot code, architecture prompt, confirmed generated draft, semantic SVG/vector PDF, caption plan, render QA ledger. | Designing experiments, inventing results/components, writing prose as the main task, final submission compliance. |
 | Exemplar | `ccf-paper-to-exemplar` | Convert user-provided paper PDFs into reusable writing exemplar cards. | Exemplar cards, writing patterns, venue tags, writer index updates. | Writing papers or performing review. |
 | Manuscript | `ccf-paper-writer` | Draft, revise, polish, compress, create venue- and length-aware LaTeX, make presentations. | Manuscript text, format-preserving edits, compressed text, page budget, slides/poster/talk. | Full review, integrity audit, submission check, rebuttal. |
 | Review | `ccf-paper-reviewer` | Run scientific review, writing review, scoring, AC/meta-review. | Review report, risk table, revision priorities. | Rewriting the manuscript directly. |
@@ -85,13 +99,14 @@ project scaffold
 
 | User intent | Use | Do not use |
 | --- | --- | --- |
+| Remove defensive writing, keep warnings outside files, trim repeated smoke tests, or enforce confirmed full methods | `ccf-humanization` | `ccf-paper-reviewer` |
 | Make a rough idea concrete or find a rescue route | `ccf-idea-optimizer` | `ccf-idea-reviewer` |
 | Explicitly score, rank, or select ideas | `ccf-idea-reviewer` | `ccf-idea-optimizer` |
 | Monitor new papers, competitors, or recent similar ideas | `ccf-literature-monitor` | `ccf-literature-searcher` |
 | Find new papers, datasets, benchmarks, or open gaps | `ccf-literature-searcher` | `ccf-integrity-auditor` |
 | Verify already cited papers | `ccf-integrity-auditor` | `ccf-literature-searcher` |
 | Design experiments, metrics, baselines, and result evidence specs | `ccf-experiment-designer` | `ccf-paper-writer` |
-| Compose figure/table layout, Python plots, palettes, captions, and manuscript visual integration | `ccf-visual-composer` | `ccf-experiment-designer` |
+| Compose data figures or content-grounded method/architecture diagrams and editable SVG/PDF | `ccf-visual-composer` | `ccf-experiment-designer` |
 | Convert a PDF into a writing exemplar | `ccf-paper-to-exemplar` | `ccf-paper-writer` |
 | Draft, polish, compress, preserve source format | `ccf-paper-writer` | `ccf-paper-reviewer` |
 | Judge acceptance risk | `ccf-paper-reviewer` | `ccf-paper-writer` |
@@ -172,7 +187,7 @@ cp -R CCFA-Skills/ccf-* "$CODEX_HOME/skills/"
 Partial install must include `ccf-common`:
 
 ```bash
-skills=(ccf-common ccf-paper-writer ccf-visual-composer ccf-paper-reviewer ccf-submission-checker)
+skills=(ccf-common ccf-humanization ccf-paper-writer ccf-visual-composer ccf-paper-reviewer ccf-submission-checker)
 mkdir -p "$CODEX_HOME/skills"
 for s in "${skills[@]}"; do cp -R "$s" "$CODEX_HOME/skills/"; done
 ```
@@ -180,7 +195,7 @@ for s in "${skills[@]}"; do cp -R "$s" "$CODEX_HOME/skills/"; done
 PowerShell:
 
 ```powershell
-$skills = @("ccf-common", "ccf-paper-writer", "ccf-visual-composer", "ccf-paper-reviewer", "ccf-submission-checker")
+$skills = @("ccf-common", "ccf-humanization", "ccf-paper-writer", "ccf-visual-composer", "ccf-paper-reviewer", "ccf-submission-checker")
 New-Item -ItemType Directory -Force "$env:CODEX_HOME\skills" | Out-Null
 foreach ($s in $skills) { Copy-Item -Recurse -Force $s "$env:CODEX_HOME\skills\" }
 ```

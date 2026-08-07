@@ -11,6 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 EXPECTED_SKILLS = {
+    "ccf-humanization",
     "ccf-common",
     "ccf-experiment-designer",
     "ccf-idea-optimizer",
@@ -106,10 +107,15 @@ def check_registry(skill_names: list[str], errors: list[str]) -> None:
         fail(errors, "missing skill-trigger-registry.yaml")
         return
     text = read(registry)
-    registered = set(re.findall(r"^\s*-\s+name:\s*(ccf-[a-z0-9-]+)\s*$", text, flags=re.MULTILINE))
+    registered_order = re.findall(r"^\s*-\s+name:\s*(ccf-[a-z0-9-]+)\s*$", text, flags=re.MULTILINE)
+    registered = set(registered_order)
     missing = sorted(set(skill_names) - registered)
     if missing:
         fail(errors, "registry missing skills: " + ", ".join(missing))
+    if not registered_order or registered_order[0] != "ccf-humanization":
+        fail(errors, "ccf-humanization must be the first registry entry")
+    if "runtime_skill_count: 17" not in text:
+        fail(errors, "skill-trigger-registry runtime_skill_count must be 17")
 
 
 def check_venue_guides(errors: list[str]) -> None:
@@ -174,6 +180,9 @@ def check_required_files(errors: list[str]) -> None:
         "ccf-visual-composer/resources/python/ccfa_plot_recipes.py",
         "ccf-visual-composer/references/python-plot-recipes.md",
         "ccf-visual-composer/references/plot-inspiration-map.md",
+        "ccf-visual-composer/references/architecture-diagram-generation.md",
+        "ccf-humanization/references/humanization-policy.md",
+        "ccf-humanization/references/experiment-discipline.md",
         "ccf-paper-writer/references/output-style-policy.md",
         "ccf-paper-writer/references/research-writing-patterns.md",
         "ccf-paper-writer/references/prose-quality-guardrails.md",
@@ -209,12 +218,87 @@ def check_required_files(errors: list[str]) -> None:
                 fail(errors, f"missing or invalid SVG: {rel}")
 
 
+def check_visual_generation_contract(errors: list[str]) -> None:
+    skill_path = ROOT / "ccf-visual-composer" / "SKILL.md"
+    reference_path = ROOT / "ccf-visual-composer" / "references" / "architecture-diagram-generation.md"
+    if not skill_path.is_file() or not reference_path.is_file():
+        return
+    skill_text = read(skill_path)
+    reference_text = read(reference_path)
+    required_skill_terms = (
+        "architecture-generation",
+        "editable-reconstruction",
+        "obtain the required GPT Image 2 confirmation before the external call",
+        "ask the mandatory editable-deliverable question",
+        "Do not render English words in all caps",
+    )
+    for term in required_skill_terms:
+        if term not in skill_text:
+            fail(errors, f"ccf-visual-composer missing visual generation contract term: {term}")
+    required_reference_terms = (
+        "是否现在调用 GPT Image 2 生成架构图草案？",
+        "是否需要我把它重建为可编辑的 SVG，并同时导出矢量 PDF？",
+        "Do not begin vector reconstruction until the user agrees.",
+        "Do not embed the whole raster in an SVG and call it editable.",
+        "Never use all-caps text",
+    )
+    for term in required_reference_terms:
+        if term not in reference_text:
+            fail(errors, f"architecture diagram reference missing required gate: {term}")
+
+
+def check_humanization_contract(errors: list[str]) -> None:
+    paths = {
+        "skill": ROOT / "ccf-humanization" / "SKILL.md",
+        "policy": ROOT / "ccf-humanization" / "references" / "humanization-policy.md",
+        "experiment": ROOT / "ccf-humanization" / "references" / "experiment-discipline.md",
+        "writer": ROOT / "ccf-paper-writer" / "SKILL.md",
+        "designer": ROOT / "ccf-experiment-designer" / "SKILL.md",
+        "claude": ROOT / ".claude-plugin" / "plugin.json",
+    }
+    if any(not path.is_file() for path in paths.values()):
+        return
+    checks = {
+        "skill": (
+            "highest-priority preflight",
+            "warning-only",
+            "Do not edit a source file merely to encode a warning.",
+            "confirmed full version",
+        ),
+        "policy": (
+            "## SHA-256 And Checksum Rule",
+            "do not conceal it",
+            "Make no source edit",
+        ),
+        "experiment": (
+            "Only `confirmed` methods may enter publication artifacts.",
+            "Smoke tests are engineering checks, not paper evidence.",
+            "do not silently substitute a simplified version",
+        ),
+        "writer": ("Run `ccf-humanization` as the first manuscript-facing preflight",),
+        "designer": ("Run `ccf-humanization` as the first publication-facing experiment preflight",),
+    }
+    for key, terms in checks.items():
+        content = read(paths[key])
+        for term in terms:
+            if term not in content:
+                fail(errors, f"{paths[key].relative_to(ROOT).as_posix()} missing humanization contract term: {term}")
+    try:
+        claude_manifest = json.loads(read(paths["claude"]))
+    except json.JSONDecodeError:
+        return
+    if claude_manifest.get("entrypoints", [None])[0] != "ccf-humanization":
+        fail(errors, "ccf-humanization must be the first Claude plugin entrypoint")
+
+
 def main() -> int:
     errors: list[str] = []
     names = check_skills(errors)
     check_registry(names, errors)
     check_venue_guides(errors)
     check_required_files(errors)
+    check_visual_generation_contract(errors)
+    check_humanization_contract(errors)
     if errors:
         print("CCFA validation failed:")
         for error in errors:

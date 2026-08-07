@@ -11,6 +11,7 @@ The safety level is moderate by default:
 3. Do not paste private manuscript, review, rebuttal, or result text into web searches unless the user explicitly asks for that exposure.
 4. For literature and policy checks, prefer public queries: title, venue, method keywords, author-approved public abstract, official venue page, proceedings page, arXiv/OpenReview/CVF/PMLR/ACL Anthology page, DBLP/Semantic Scholar/OpenAlex record, project page, benchmark name, or dataset name.
 5. When exact private wording matters, ask before using it in a query unless the user already made it public in the current request.
+6. Before sending private research content to an external image model, show the complete outbound prompt and list any reference images. Minimize it to the content required for the figure; confirmation authorizes only those shown inputs, not the full manuscript, source tree, result files, reviewer text, identities, or unrelated proprietary details.
 
 ## Path And Identity Privacy
 

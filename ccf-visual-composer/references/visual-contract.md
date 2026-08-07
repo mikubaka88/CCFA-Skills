@@ -11,9 +11,12 @@ Core claim:
 Reviewer question:
 Evidence layer: main / mechanism / robustness / limitation / qualitative
 Source data:
+Source method / architecture content:
 Statistics / uncertainty:
 Figure prototype or table type:
 Panel or table map:
+Architecture topology / typed connections:
+Exact label inventory:
 Caption role:
 Manuscript placement:
 Output formats:
@@ -42,6 +45,15 @@ Traceability:
 - Group rows/columns by reviewer question, dataset family, method family, or claim.
 - Use consistent metric direction, units, uncertainty, and numeric precision.
 - Move secondary columns to appendix when they weaken the main comparison.
+
+## Architecture Map Rules
+
+- Every node, group, label, and connection must be traceable to supplied method content.
+- Record the reader scan path, topology, and edge semantics before choosing visual style.
+- Distinguish data flow, control flow, supervision, retrieval, feedback, and gradients when the distinction matters.
+- Mark training-only and inference-only elements explicitly; do not collapse them into a misleading single path.
+- Use the strongest visual emphasis for the actual contribution, not for generic encoders, databases, or decorative icons.
+- Keep an exact label inventory for generation QA and later editable SVG reconstruction.
 
 ## Stateful Iteration
 

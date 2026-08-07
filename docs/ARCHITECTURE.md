@@ -1,6 +1,6 @@
 ﻿# CCFA Architecture
 
-CCFA is a paper-project workflow family, not a loose collection of unrelated writing prompts. The v0.7 architecture has one owner skill per responsibility area and uses `ccfa.yaml` plus explicit artifact contracts to keep stages connected.
+CCFA is a paper-project workflow family, not a loose collection of unrelated writing prompts. The current 17-skill architecture has one owner per responsibility area, a first-priority humanization overlay, and `ccfa.yaml` plus explicit artifact contracts to keep stages connected.
 
 ![Architecture](../assets/ccfa-skills-architecture.svg)
 
@@ -10,6 +10,7 @@ The family has three layers:
 
 | Layer | Purpose | Skills |
 | --- | --- | --- |
+| Priority humanization overlay | Keep manuscript and experiment outputs direct, non-defensive, version-confirmed, and free of repeated ineffective smoke tests before content owners act. | `ccf-humanization` |
 | Research production chain | Move a paper project from project setup to rebuttal. | `ccf-project-scaffolder`, `ccf-pipeline-orchestrator`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, `ccf-rebuttal-writer` |
 | Shared state and policy | Keep routing, evidence, privacy, source registry, and artifact ownership consistent. | `ccf-common` |
 | Family maintenance | Maintain skills, docs, generated SVGs, validation, and releases. | `ccf-skill-forger` |
@@ -17,6 +18,8 @@ The family has three layers:
 The main chain is:
 
 ```text
+priority preflight: humanize artifact and isolate warnings
+
 scaffold -> orchestrate -> optimize idea -> review idea
          -> monitor recent literature -> search literature
          -> design experiments -> compose visuals -> optional exemplar extraction
@@ -47,10 +50,11 @@ The file is not meant to contain the whole paper. It is a routing and status spi
 
 ## Owner Boundaries
 
-The family intentionally merged helper skills into owner modes. In v0.7, `ccf-visual-composer` also carries a small self-contained Python SVG plotting recipe library so paper-visual examples can run without optional plotting dependencies.
+The family intentionally merged helper skills into owner modes. `ccf-visual-composer` carries a small self-contained Python SVG plotting recipe library for reproducible data figures and a gated architecture-diagram workflow: content-derived prompt, explicit GPT Image 2 confirmation, generated-draft inspection, then an opt-in semantic SVG/vector-PDF reconstruction.
 
 | Capability | Owner | Boundary |
 | --- | --- | --- |
+| Humanization and publication-faithfulness | `ccf-humanization` | Runs before writing/experiment publication output; removes defensive prose, isolates warnings, deduplicates smoke tests, and blocks simplified publication methods without hiding material evidence. |
 | Workflow planning | `ccf-pipeline-orchestrator` | Coordinates stages; does not write, search, review, or rebut. |
 | Literature monitoring | `ccf-literature-monitor` | Tracks recent papers, venue feeds, labs, and competitors; deep retrieval stays with literature search. |
 | Compression and presentations | `ccf-paper-writer` | Changes manuscript-derived text; does not judge acceptance risk. |
@@ -58,7 +62,7 @@ The family intentionally merged helper skills into owner modes. In v0.7, `ccf-vi
 | Writing review | `ccf-paper-reviewer` | Diagnoses writing and format-facing risk; does not rewrite unless handed back to writer. |
 | Citation audit | `ccf-integrity-auditor` | Checks existing citations; broad discovery stays with literature search. |
 | Result evidence and specs | `ccf-experiment-designer` | Uses real results; never invents numbers. |
-| Publication figures/tables and plots | `ccf-visual-composer` | Owns visual contracts, bundled Python plotting recipes, palettes, panel/table layout, captions, manuscript integration, and render QA from supplied results. |
+| Publication visuals | `ccf-visual-composer` | Owns reproducible data plots plus research method/architecture diagrams, content-derived GPT Image 2 prompts and generation gates, semantic editable SVG/PDF reconstruction, palettes, captions, manuscript integration, and render QA. |
 | Venue format and artifacts | `ccf-submission-checker` | Checks package readiness; content polishing stays with writer. |
 | Resubmission adaptation | `ccf-rebuttal-writer` | Maintains response/ledger logic; manuscript edits route back to writer. |
 | Docs SVGs | `ccf-skill-forger` | Repository maintenance only; research figures/tables stay with experiment designer and visual composer. |

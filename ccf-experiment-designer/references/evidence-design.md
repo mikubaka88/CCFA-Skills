@@ -10,7 +10,7 @@ Start from the claim, not the table. Each experiment should answer one of these 
 - Why does the mechanism work?
 - Is the comparison fair and current?
 - Does the result generalize across settings?
-- What fails, when, and why?
+- What fails, when, and why, only when observed or material to the claimed scope?
 - Can the work be reproduced or audited?
 - Does the evidence match the venue's expectations?
 
@@ -94,7 +94,7 @@ Useful ablations:
 - Replace a specialized component with a generic alternative.
 - Vary a key hyperparameter.
 - Change data scale, workload, or domain.
-- Test hard cases and failure cases.
+- Test hard or failure cases only when plausible, observed, claim-relevant, or venue-required.
 - Analyze compute, memory, latency, or cost.
 
 ## Benchmark Or Dataset Design
@@ -124,7 +124,9 @@ For most CCF-A submissions:
 1. Main comparison against close and strong baselines.
 2. Mechanism ablation or proof.
 3. Robustness/generalization/stress test.
-4. Failure analysis or limitation study.
-5. Reproducibility details.
+4. Claim-relevant robustness or failure analysis when needed.
+5. Reproducibility details for the confirmed full method.
 
 If this package is infeasible, narrow the central claim before adding weaker experiments.
+
+Do not replace any publication method or baseline with a simplified, toy, approximate, proxy, reduced, or debug version. Do not add repeated smoke tests as evidence; retain only the smallest non-duplicative set that checks changed critical paths.

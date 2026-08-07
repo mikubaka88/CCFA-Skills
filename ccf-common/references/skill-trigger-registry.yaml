@@ -2,8 +2,12 @@ schema_version: 4
 generated_at: 2026-06-09
 authority: SKILL.md wins if this registry conflicts with a skill body.
 naming_policy: canonical runtime names use ccf-<object>-<role/action>; ccf-common is the governance exception.
-runtime_skill_count: 16
+runtime_skill_count: 17
 skills:
+  - name: ccf-humanization
+    trigger: "Apply the highest-priority humanization preflight to manuscript and experiment artifacts: remove defensive writing and improbable case sprawl, keep warnings outside files, disable generic SHA-256/checksum requirements, deduplicate smoke tests, and permit only confirmed full method versions in publication outputs."
+    exclude: "Does not hide material evidence, fabricate results, replace paper writing or experiment design, or override venue-mandated disclosures."
+    handoff: "ccf-paper-writer, ccf-experiment-designer, ccf-paper-reviewer, ccf-integrity-auditor"
   - name: ccf-project-scaffolder
     trigger: "Create project folders, copy/select templates, initialize ccfa.yaml."
     exclude: "Does not create research content."
@@ -31,10 +35,10 @@ skills:
   - name: ccf-experiment-designer
     trigger: "Design experiments, baselines, metrics, ablations, robustness tests, result templates, and real-result tables/figures."
     exclude: "Does not invent results or draw docs diagrams."
-    handoff: "ccf-literature-searcher, ccf-visual-composer, ccf-paper-writer, ccf-paper-reviewer, ccf-integrity-auditor, ccf-submission-checker"
+    handoff: "ccf-humanization, ccf-literature-searcher, ccf-visual-composer, ccf-paper-writer, ccf-paper-reviewer, ccf-integrity-auditor, ccf-submission-checker"
   - name: ccf-visual-composer
-    trigger: "Compose, polish, generate, and QA publication-grade figures, tables, Python plotting code, creative data-analysis plots, captions, palettes, panel maps, and manuscript visual layout integration from supplied data/results."
-    exclude: "Does not design experiments, invent results, write manuscript prose as the main task, or perform final submission compliance."
+    trigger: "Compose, generate, reconstruct, and QA publication-grade data figures/tables and scientific method/architecture diagrams, including GPT Image 2 prompt design and confirmed generation plus editable SVG/PDF reconstruction."
+    exclude: "Does not design experiments, invent results/components, write manuscript prose as the main task, or perform final submission compliance."
     handoff: "ccf-experiment-designer, ccf-paper-writer, ccf-integrity-auditor, ccf-submission-checker"
   - name: ccf-paper-to-exemplar
     trigger: "Convert PDF papers into writing exemplar cards and register reusable style references for ccf-paper-writer."
@@ -43,7 +47,7 @@ skills:
   - name: ccf-paper-writer
     trigger: "Draft, revise, polish, compress, preserve source format during edits, create venue- and length-aware LaTeX manuscripts from ideas, and presentation-adapt paper text."
     exclude: "Does not perform full review, evidence audit, package check, or rebuttal."
-    handoff: "ccf-literature-monitor, ccf-literature-searcher, ccf-experiment-designer, ccf-visual-composer, ccf-paper-reviewer, ccf-submission-checker, ccf-rebuttal-writer"
+    handoff: "ccf-humanization, ccf-literature-monitor, ccf-literature-searcher, ccf-experiment-designer, ccf-visual-composer, ccf-paper-reviewer, ccf-submission-checker, ccf-rebuttal-writer"
   - name: ccf-paper-reviewer
     trigger: "Review manuscripts scientifically and stylistically: scores, reviewer panel, AC/meta-review, paragraph logic, and format-facing risks."
     exclude: "Does not rewrite the manuscript or draft rebuttals."

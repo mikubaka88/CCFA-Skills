@@ -29,7 +29,19 @@
 
 CCFA Skills 正是從這個觀察出發。它把 CCF-A 論文專案看作一條可以被維護、稽核和反覆推進的研究故事線，而不是一次性的文本生成任務。一個 idea 需要先被塑形，在真正需要取捨時再接受嚴格審稿；一組實驗需要服務於明確 claim，而不是孤立地填滿表格；一篇論文的寫作需要保留證據邊界；一次 rebuttal 也不應只是臨時答辯，而應成為下一輪修改和重投的可追蹤記錄。
 
-這個專案的核心 insight 是：論文品質來自連續決策的品質。寫作、審稿、稽核、投稿檢查和 rebuttal 不應該互相替代，而應該各自保持邊界，並在同一個專案狀態中交接。v0.7 因此將家族收斂為 16 個階段角色，讓每個階段都有清楚的責任，讓每個 artifact 都能找到歸屬，也讓整套系統更像一個圍繞研究故事線展開的協作框架，而不是鬆散的 prompt 集合。v0.7 也為 `ccf-visual-composer` 增加內建 Python SVG 繪圖配方庫，用於生成論文級圖表示例。
+這個專案的核心 insight 是：論文品質來自連續決策的品質。當前家族包含 17 個 runtime roles，並把 `ccf-humanization` 放在論文和投稿實驗產物的最前面：正文保持純粹、直接的學術表達，warning 獨立交給使用者審核，smoke 只保留有效且不重複的關鍵路徑，禁用通用 SHA-256 provenance 儀式，論文只採用確認的完整方法版本。
+
+## v0.8 核心升級圖示
+
+v0.8 保持原有 17-skill 家族架構和論文專案閉環不變，集中增強兩個橫向能力：`ccf-humanization` 作為最高優先級預檢，`ccf-visual-composer` 負責內容驅動的科研架構圖、生成確認、結構 QA 與可編輯 SVG/PDF 重建。圖內說明使用簡體中文，skill、模型和格式名稱保留英文；英文標籤統一使用首字母大寫形式，不採用全大寫排版。
+
+![CCFA v0.8 雙升級概念圖](assets/v0.8/ccfa-two-upgrades-overview.zh-CN.png)
+
+具體的 Transformer demo 展示 `Visual Composer` 如何從通用黑盒圖轉為可核對的編碼器—解碼器拓撲；`Ccf Humanization` demo 則逐項展示論文寫作、Smoke 測試和方法版本的修改前後差異，並把需要判斷的問題保留在獨立審核警告中。
+
+![Visual Composer Transformer 中文對比 Demo](assets/v0.8/visual-composer-transformer-demo.zh-CN.png)
+
+![Ccf Humanization Transformer 中文對比 Demo](assets/v0.8/ccf-humanization-transformer-demo.zh-CN.png)
 
 ![CCFA 技能家族邏輯](assets/ccfa-skills-architecture.zh-TW.svg)
 
@@ -38,7 +50,8 @@ CCFA Skills 正是從這個觀察出發。它把 CCF-A 論文專案看作一條�
 預設論文專案閉環如下：
 
 ```text
-專案搭建
+人類化優先預檢
+  -> 專案搭建
   -> 流程編排
   -> idea 優化
   -> idea 審稿
@@ -60,10 +73,11 @@ CCFA Skills 正是從這個觀察出發。它把 CCF-A 論文專案看作一條�
 
 ![端到端流程](assets/ccfa-skills-workflow.zh-TW.svg)
 
-## 16 個 Runtime Skills
+## 17 個 Runtime Skills
 
 | 階段 | Skill | 啟動條件 | 主要產物 | 不應該用於 |
 | --- | --- | --- | --- | --- |
+| 最高優先級預檢 | `ccf-humanization` | 去除防禦性寫作、隔離 warning、精簡重複 smoke、禁用通用 SHA-256 要求，或阻止簡化方法進入論文。 | 人類化產物、確認方法狀態、獨立 warning ledger。 | 隱藏實質證據、代替論文寫作/實驗設計或覆蓋強制披露。 |
 | 專案搭建 | `ccf-project-scaffolder` | 使用者要建立論文專案目錄、複製模板、初始化 `ccfa.yaml`。 | 專案目錄、模板檔、初始狀態檔。 | 生成研究內容或替使用者寫 idea。 |
 | 流程編排 | `ccf-pipeline-orchestrator` | 使用者要拆任務、排階段、設 gate、決定下一步 owner。 | 階段計畫、gate、handoff、狀態更新建議。 | 直接寫作、審稿、檢索、設計實驗或 rebuttal。 |
 | Idea 優化 | `ccf-idea-optimizer` | 使用者有粗 idea、模糊方向、想找方向或救方向。 | problem-gap-insight-method-evidence 文件、救援路線、最小可驗證問題。 | 對多個 idea 排名打分。 |
@@ -71,7 +85,7 @@ CCFA Skills 正是從這個觀察出發。它把 CCF-A 論文專案看作一條�
 | 文獻監控 | `ccf-literature-monitor` | 使用者要追蹤新論文、競品、arXiv/OpenReview/會議動態，或問最近有沒有類似 idea。 | 監控報告、overlap level、RELAX/RESEARCH/FOLLOW-UP 標記、跨 skill handoff。 | 系統性 related work 檢索、引用稽核或最終 idea 打分。 |
 | 文獻證據 | `ccf-literature-searcher` | 使用者要查 related work、prior art、資料集、benchmark、open gap 或引用證據。 | 文獻列表、篩選理由、相關工作結構、機會圖、證據缺口。 | 只核驗已經寫進論文的引用，或把 related work 當成最終否決。 |
 | 實驗設計 | `ccf-experiment-designer` | 使用者要設計 baseline、metric、消融、魯棒性實驗或結果表。 | 實驗協議、baseline 矩陣、結果表模板、evidence-bound 圖表規格。 | 編造結果或繪製文件架構圖。 |
-| 圖表呈現 | `ccf-visual-composer` | 使用者要基於已提供結果做論文圖表排版、Python 繪圖程式碼、創意資料分析圖、配色、多面板 figure、表格版式、caption 或正文嵌入。 | visual contract、plot recipe/code、panel/table map、palette、LaTeX placement、caption plan、render QA ledger。 | 設計實驗、編造結果、主寫正文或最終投稿合規。 |
+| 科研成圖 | `ccf-visual-composer` | 使用者要製作資料分析圖、論文方法/模型/系統架構圖、科研繪圖 prompt、GPT Image 2 草稿、可編輯 SVG/PDF、caption 或正文嵌入。 | visual contract、可重現 plot code、內容驅動的架構圖 prompt、經確認的生成稿、語義化 SVG/向量 PDF、caption、render QA ledger。 | 設計實驗、編造結果/模組、主寫正文或最終投稿合規。 |
 | 寫作範例 | `ccf-paper-to-exemplar` | 使用者提供論文 PDF，希望抽取成可複用寫作範例或個人 exemplar 庫。 | exemplar card、寫作 pattern、venue 標籤、writer 可用索引。 | 直接寫論文或進行審稿。 |
 | 論文寫作 | `ccf-paper-writer` | 使用者要寫、潤飾、壓縮、改寫、從 idea 起草 LaTeX、按目標會議篇幅成稿、做 slides/poster/talk。 | 論文正文、保留格式的修改稿、壓縮稿、篇幅預算、展示材料。 | 完整審稿、事實稽核、投稿包檢查或 rebuttal。 |
 | 論文審稿 | `ccf-paper-reviewer` | 使用者要科學審稿、寫作審稿、評分、AC/meta-review 或投稿風險診斷。 | 科學審稿、寫作審稿、風險表、評分和修改優先級。 | 直接替換正文或寫 rebuttal。 |
@@ -87,13 +101,14 @@ CCFA Skills 正是從這個觀察出發。它把 CCF-A 論文專案看作一條�
 
 | 使用者真正要做的事 | 使用 | 不使用 |
 | --- | --- | --- |
+| 去掉防禦性寫作、warning 不注入文件、精簡重複 smoke、論文只用確認的完整方法 | `ccf-humanization` | `ccf-paper-reviewer` |
 | 把模糊 idea 變成可做的研究方案，或找救援路線 | `ccf-idea-optimizer` | `ccf-idea-reviewer` |
 | 明確要對多個 idea 打分、排序、取捨 | `ccf-idea-reviewer` | `ccf-idea-optimizer` |
 | 監控新論文、競品、最近是否有類似 idea | `ccf-literature-monitor` | `ccf-literature-searcher` |
 | 找新文獻、找 benchmark、找資料集、找 open gap | `ccf-literature-searcher` | `ccf-integrity-auditor` |
 | 核驗論文裡已引用文獻是否支撐 claim | `ccf-integrity-auditor` | `ccf-literature-searcher` |
 | 設計實驗、指標、baseline 和結果證據結構 | `ccf-experiment-designer` | `ccf-paper-writer` |
-| 優化圖表排版、Python 繪圖程式碼、創意資料分析圖、配色、caption、多面板佈局、正文嵌入 | `ccf-visual-composer` | `ccf-experiment-designer` |
+| 優化資料圖表，或根據論文內容生成方法/架構圖並轉成可編輯 SVG/PDF | `ccf-visual-composer` | `ccf-experiment-designer` |
 | 把 PDF 論文轉成寫作範例 | `ccf-paper-to-exemplar` | `ccf-paper-writer` |
 | 寫正文、潤飾、壓縮、保持原格式改寫 | `ccf-paper-writer` | `ccf-paper-reviewer` |
 | 判斷論文能否被接收、哪裡會被拒 | `ccf-paper-reviewer` | `ccf-paper-writer` |
@@ -192,7 +207,7 @@ cp -R CCFA-Skills/ccf-* "$CODEX_HOME/skills/"
 部分安裝必須包含 `ccf-common`：
 
 ```bash
-skills=(ccf-common ccf-paper-writer ccf-visual-composer ccf-paper-reviewer ccf-submission-checker)
+skills=(ccf-common ccf-humanization ccf-paper-writer ccf-visual-composer ccf-paper-reviewer ccf-submission-checker)
 mkdir -p "$CODEX_HOME/skills"
 for s in "${skills[@]}"; do cp -R "$s" "$CODEX_HOME/skills/"; done
 ```
@@ -200,19 +215,19 @@ for s in "${skills[@]}"; do cp -R "$s" "$CODEX_HOME/skills/"; done
 PowerShell：
 
 ```powershell
-$skills = @("ccf-common", "ccf-paper-writer", "ccf-visual-composer", "ccf-paper-reviewer", "ccf-submission-checker")
+$skills = @("ccf-common", "ccf-humanization", "ccf-paper-writer", "ccf-visual-composer", "ccf-paper-reviewer", "ccf-submission-checker")
 New-Item -ItemType Directory -Force "$env:CODEX_HOME\skills" | Out-Null
 foreach ($s in $skills) { Copy-Item -Recurse -Force $s "$env:CODEX_HOME\skills\" }
 ```
 
 | 組合 | 包含 | 適合 |
 | --- | --- | --- |
-| 全流程 | 16 個 runtime skills | 從 idea 到 rebuttal 的完整論文專案。 |
-| 寫作子集 | `ccf-common`, `ccf-paper-writer`, `ccf-visual-composer`, `ccf-paper-reviewer`, `ccf-submission-checker` | 起草、潤飾、圖表視覺整合、寫作審稿、格式檢查。 |
+| 全流程 | 17 個 runtime skills | 從 idea 到 rebuttal 的完整論文專案。 |
+| 寫作子集 | `ccf-common`, `ccf-humanization`, `ccf-paper-writer`, `ccf-visual-composer`, `ccf-paper-reviewer`, `ccf-submission-checker` | 人類化預檢、起草、潤飾、圖表視覺整合、寫作審稿、格式檢查。 |
 | 監控子集 | `ccf-common`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-idea-reviewer`, `ccf-idea-optimizer` | 追蹤新論文、競品和 novelty 風險。 |
-| 早期研究子集 | `ccf-common`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer` | 寫正文前的 idea、文獻監控、文獻檢索和實驗設計。 |
-| 圖表/正文呈現子集 | `ccf-common`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-writer`, `ccf-integrity-auditor`, `ccf-submission-checker` | 基於真實結果製作論文圖表、配色、caption、正文嵌入和一致性檢查。 |
-| 投稿子集 | `ccf-common`, `ccf-paper-writer`, `ccf-visual-composer`, `ccf-integrity-auditor`, `ccf-submission-checker` | 已有稿件的完整性、圖表展示和投稿包檢查。 |
+| 早期研究子集 | `ccf-common`, `ccf-humanization`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer` | 寫正文前的 idea、文獻監控、文獻檢索和確認版本實驗設計。 |
+| 圖表/正文呈現子集 | `ccf-common`, `ccf-humanization`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-writer`, `ccf-integrity-auditor`, `ccf-submission-checker` | 基於真實結果製作論文圖表、配色、caption、正文嵌入和一致性檢查。 |
+| 投稿子集 | `ccf-common`, `ccf-humanization`, `ccf-paper-writer`, `ccf-visual-composer`, `ccf-integrity-auditor`, `ccf-submission-checker` | 已有稿件的人類化、完整性、圖表展示和投稿包檢查。 |
 | 維護子集 | `ccf-common`, `ccf-skill-forger` | 維護技能、文件、SVG 和 release。 |
 
 ![安裝組合](assets/ccfa-skills-installation.zh-TW.svg)

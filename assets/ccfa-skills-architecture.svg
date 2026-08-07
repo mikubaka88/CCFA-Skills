@@ -9,18 +9,22 @@
 <rect x="0" y="0" width="1800" height="158" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
 <text x="72" y="66" font-size="44" font-weight="850" fill="#FFFFFF" text-anchor="start">CCFA Skill Family Logic</text>
 <text x="72" y="108" font-size="20" font-weight="500" fill="#D8E6F2" text-anchor="start">Main research chain, shared state, governance, and revision loop.</text>
-<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">v0.7 · 16 owner skills · one paper-project loop</text>
-<rect x="70" y="228" width="500" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">current · 17 owner skills · one paper-project loop</text>
+<rect x="70" y="228" width="500" height="328" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="70" y="228" width="500" height="52" rx="24" fill="#1F7A8C" stroke="none" stroke-width="2" />
 <text x="92" y="262" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">Setup</text>
 <rect x="88" y="298" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="88" y="298" width="8" height="66" rx="18" fill="#1F7A8C" stroke="none" stroke-width="2" />
-<text x="112" y="332" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-project-scaffolder</text>
-<text x="112" y="357" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">project folders, template, ccfa.yaml</text>
+<rect x="88" y="298" width="8" height="66" rx="18" fill="#2D3742" stroke="none" stroke-width="2" />
+<text x="112" y="332" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-humanization</text>
+<text x="112" y="357" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">direct prose, full methods</text>
 <rect x="88" y="380" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="88" y="380" width="8" height="66" rx="18" fill="#1F7A8C" stroke="none" stroke-width="2" />
-<text x="112" y="414" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-pipeline-orchestrator</text>
-<text x="112" y="439" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">stage plan, gates, handoffs</text>
+<text x="112" y="414" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-project-scaffolder</text>
+<text x="112" y="439" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">project folders, template, ccfa.yaml</text>
+<rect x="88" y="462" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
+<rect x="88" y="462" width="8" height="66" rx="18" fill="#1F7A8C" stroke="none" stroke-width="2" />
+<text x="112" y="496" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-pipeline-orchestrator</text>
+<text x="112" y="521" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">stage plan, gates, handoffs</text>
 <rect x="650" y="228" width="500" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
 <rect x="650" y="228" width="500" height="52" rx="24" fill="#D2673D" stroke="none" stroke-width="2" />
 <text x="672" y="262" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">Idea Formation</text>

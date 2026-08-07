@@ -1,5 +1,17 @@
 ﻿# Changelog
 
+## v0.8.0 - 2026-08-07
+
+- Added `ccf-humanization` as the first-priority manuscript/experiment preflight for direct academic prose, warning-only non-injection, generic SHA-256/checksum removal, effective non-duplicative smoke scope, and confirmed full publication methods.
+- Integrated humanization gates into `ccf-paper-writer` and `ccf-experiment-designer`; simplified/toy/proxy/debug methods cannot enter manuscript text or final result tables, and material concerns are surfaced for user review without automatic file changes.
+- Expanded the runtime family from 16 to 17 skills and updated routing, artifact contracts, installation sets, manifests, docs, demo smoke coverage, validators, and generated diagrams.
+- Extended `ccf-visual-composer` with scientific method/architecture diagram routing, content-derived research-figure prompts, an explicit pre-call GPT Image 2 confirmation gate, generated-draft inspection, and a mandatory post-generation offer to reconstruct editable SVG/vector PDF.
+- Defined semantic vector reconstruction requirements so editable deliverables use live text, selectable groups, and typed connectors instead of relabeling an embedded or auto-traced raster as editable.
+- Updated routing, trigger registry, artifact ownership, agent guidance, catalog, architecture docs, manifests, and validation for the new visual workflow.
+- Added a figure-wide title-case rule: visible English words use an initial capital instead of all-caps styling across generated architecture diagrams, reproducible plots, tables, and render QA.
+- Added three Simplified Chinese v0.8 visual assets: the dual-upgrade concept map, a concrete Transformer `Visual Composer` before/after demo, and a concrete `Ccf Humanization` manuscript/experiment demo. Canonical skill and model terms remain in English inside the localized figures.
+- Updated all README variants to present the v0.8 visuals without changing the established 17-skill architecture or lifecycle order.
+
 ## v0.7.0 - 2026-07-08
 
 - Added `ccf-visual-composer` for publication-grade figure/table visual contracts, palettes, panel maps, caption placement, manuscript integration, and render QA from supplied results.

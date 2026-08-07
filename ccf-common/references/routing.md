@@ -2,12 +2,17 @@
 
 Route by the user's primary intent. Do not activate every downstream skill just because it may become useful later.
 
-v0.7 consolidates helper skills into the owning workflow skills. Runtime surface is intentionally small: 16 installable `ccf-*` skills plus the LaTeX/template reference tree. Removed helper names must not be installed as standalone skills.
+The current runtime surface contains 17 installable `ccf-*` skills plus the LaTeX/template reference tree. Removed helper names must not be installed as standalone skills.
+
+## Priority Overlay
+
+`ccf-humanization` has first priority for manuscript-facing and publication-facing experiment outputs. Run it as a preflight before `ccf-paper-writer` or `ccf-experiment-designer`, then return ownership to the content skill. It removes defensive prose and unproductive test sprawl, enforces confirmed full methods, and keeps judgment-sensitive warnings outside artifacts. It does not replace the writer/designer or authorize hiding material evidence.
 
 ## Canonical Runtime Skills
 
 | Intent | Owning skill | Included modes | Boundary |
 | --- | --- | --- | --- |
+| Humanize manuscript/experiment artifacts, remove defensive writing and improbable case sprawl, isolate warnings, deduplicate smoke tests, disable generic SHA-256 requirements, and reject simplified publication methods. | `ccf-humanization` | manuscript-humanization, experiment-humanization, warning-only | Does not conceal material evidence, fabricate results, write the paper, design experiments, or override mandatory disclosures. |
 | Create project folders, copy/select templates, initialize `ccfa.yaml`. | `ccf-project-scaffolder` | scaffold | Does not create research content. |
 | Plan workflow, decompose tasks, coordinate stages/gates/handoffs. | `ccf-pipeline-orchestrator` | planning, status, gate | Does not perform downstream research work. |
 | Explore, rescue, or turn a rough direction into a problem-gap-insight-method-evidence plan. | `ccf-idea-optimizer` | exploratory idea shaping, rescue routes | Does not rank multiple ideas as the main task. |
@@ -15,7 +20,7 @@ v0.7 consolidates helper skills into the owning workflow skills. Runtime surface
 | Monitor recent papers, arXiv/OpenReview/venue feeds, labs, competitors, and recurring novelty threats. | `ccf-literature-monitor` | arxiv-watch, venue-watch, novelty-check, trend-scouting, competitor-tracking | Does not replace deep related-work search, citation audit, or final idea scoring. |
 | Search literature, prior art, datasets, benchmarks, citation evidence, and opportunity gaps. | `ccf-literature-searcher` | search, screening, opportunity map | Does not audit only already cited papers or act as a final idea kill gate. |
 | Design experiments and real-result tables/figures. | `ccf-experiment-designer` | experiment design, result templates, result figures/tables | Does not invent results. |
-| Compose publication-grade figures/tables, Python plotting code, palettes, captions, panel maps, and manuscript visual layout integration from supplied results. | `ccf-visual-composer` | visual-contract, figure-design, python-plotting, table-design, layout-integration, render-qa | Does not design experiments, invent results, write manuscript prose, or perform final submission compliance. |
+| Compose publication-grade data figures/tables and scientific method/architecture diagrams, including content-derived GPT Image 2 prompts, confirmed generation, and editable SVG/PDF reconstruction. | `ccf-visual-composer` | visual-contract, figure-design, architecture-generation, editable-reconstruction, python-plotting, table-design, layout-integration, render-qa | Does not design experiments, invent results/components, write manuscript prose, or perform final submission compliance. |
 | Draft, revise, polish, compress, and presentation-adapt paper text. | `ccf-paper-writer` | writing, polishing, compression, venue-aware LaTeX drafting, slides/poster/talk/Q&A | Preserves user format for edits; does not run full review or rebuttal. |
 | Convert user-provided paper PDFs into reusable writing exemplar cards. | `ccf-paper-to-exemplar` | exemplar extraction, writing-pattern cards, custom exemplar registration | Does not write papers or perform review. |
 | Review manuscripts scientifically and stylistically. | `ccf-paper-reviewer` | scientific review, writing review, format-facing review, AC/meta-review | Does not rewrite or rebut. |
@@ -28,6 +33,8 @@ v0.7 consolidates helper skills into the owning workflow skills. Runtime surface
 ## Default Paper Project Flow
 
 ```text
+Priority preflight: ccf-humanization
+
 ccf-project-scaffolder
   -> ccf-pipeline-orchestrator
   -> ccf-idea-optimizer
@@ -54,7 +61,7 @@ Governance: ccf-common / ccf-skill-forger
 | `ccf-paper-compressor` | `ccf-paper-writer` | Compression changes manuscript text and must preserve writing scope. |
 | `ccf-writing-reviewer` | `ccf-paper-reviewer` | Writing review and scientific review are review modes over the same manuscript. |
 | `ccf-citation-auditor` | `ccf-integrity-auditor` | Citation verification is evidence integrity, not broad literature search. |
-| `ccf-figure-table-builder` | `ccf-experiment-designer`, then `ccf-visual-composer` | Experiment designer owns evidence design and real result values; visual composer owns publication layout, palette, captions, and render QA. |
+| `ccf-figure-table-builder` | `ccf-experiment-designer`, then `ccf-visual-composer` | Experiment designer owns evidence design and real result values; visual composer owns publication layout, data plotting, scientific architecture diagrams, captions, vector reconstruction, and render QA. |
 | `ccf-artifact-packager` | `ccf-submission-checker` | Artifact readiness is part of submission package readiness. |
 | `ccf-venue-format-guide` | `ccf-submission-checker` | Venue format lookup is a submission/package gate; paper writing still reads venue references. |
 | `ccf-resubmission-adapter` | `ccf-rebuttal-writer` | Resubmission follows review-response and revision-ledger ownership. |
@@ -75,6 +82,7 @@ For manuscript writing from only an idea, `ccf-paper-writer` checks the venue gu
 
 | Prompt | Expected route |
 | --- | --- |
+| 去掉防御性写作 / 不要把 warning 注入论文 / 精简重复 smoke / 论文只用确认的完整方法 | `ccf-humanization` |
 | 先帮我把论文项目流程和下一步拆清楚 | `ccf-pipeline-orchestrator` |
 | 优化一个 NeurIPS idea / 找几个可做方向 / 这个方向还能怎么救 | `ccf-idea-optimizer` |
 | 给三个 idea 评分排名 / 明确让我严格取舍 | `ccf-idea-reviewer` |
@@ -84,6 +92,7 @@ For manuscript writing from only an idea, `ccf-paper-writer` checks the venue gu
 | 根据真实结果规划论文图表的数据和证据结构 | `ccf-experiment-designer` |
 | 优化图表排版 / 选择论文配色 / 多面板 figure 放正文里 | `ccf-visual-composer` |
 | 用 Python 画漂亮数据分析图 / 创造有趣但可信的论文图 | `ccf-visual-composer` |
+| 根据论文方法生成架构图 / 调用 GPT Image 2 / 转成可编辑 SVG 或 PDF | `ccf-visual-composer` |
 | 把这篇 PDF 做成写作范例 / 添加 exemplar | `ccf-paper-to-exemplar` |
 | 润色 introduction 或压缩到页数限制 | `ccf-paper-writer` |
 | 把论文做成 slides 和 Q&A | `ccf-paper-writer` |

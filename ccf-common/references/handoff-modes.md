@@ -24,6 +24,7 @@ Use `task-modes.md` for quick/standard execution mode. This file controls siblin
 
 ## Always-On Boundaries
 
+- `ccf-humanization` runs without an extra handoff question before manuscript-facing writing or publication-facing experiment output. Warning-class concerns remain outside artifacts and make no file changes until the user approves a concrete edit.
 - A user denylist wins in every mode.
 - `ccf-paper-writer` must preserve topic, core problem, method mechanism, experiment setting, numerical results, and conclusion direction unless the user explicitly authorizes idea-scope changes.
 - `ccf-experiment-designer` must never invent experimental results, benchmark ranks, numerical improvements, statistical significance, or user-study outcomes.
@@ -36,6 +37,7 @@ Use `task-modes.md` for quick/standard execution mode. This file controls siblin
 
 | Situation | PARTIAL | FULL | OFF |
 | --- | --- | --- | --- |
+| Manuscript/experiment artifact -> `ccf-humanization` preflight | No ask | No ask | Auto |
 | User explicitly names sibling skill | Use it | Use it | Use it |
 | Light local risk scan inside current skill | No ask | No ask | No ask |
 | Idea optimization -> idea scoring | Ask | Ask | Auto |

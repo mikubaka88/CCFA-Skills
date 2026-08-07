@@ -1,11 +1,12 @@
 # Naming And Merge Audit
 
-The current v0.7 line keeps CCFA runtime skills small while adding one explicit visual-publication owner with bundled plotting recipes. The goal is not to remove capability, but to remove trigger ambiguity. A user should be able to choose one owner for a request without guessing among small helper skills.
+The current v0.8 line keeps the established 17-skill architecture while adding a first-priority humanization preflight and extending the explicit visual-publication owner with scientific architecture generation and editable reconstruction. The goal is not to add a parallel lifecycle, but to keep trigger ownership clear across the existing paper-project chain.
 
 ## Current Runtime Surface
 
 | Stage | Runtime skill |
 | --- | --- |
+| Priority preflight | `ccf-humanization` |
 | Setup | `ccf-project-scaffolder` |
 | Planning | `ccf-pipeline-orchestrator` |
 | Idea | `ccf-idea-optimizer`, `ccf-idea-reviewer` |
@@ -34,11 +35,11 @@ The current v0.7 line keeps CCFA runtime skills small while adding one explicit 
 
 ## Install Policy
 
-Install only the 16 current runtime skills. Do not copy merged helper names into `$CODEX_HOME/skills`. If an older local install still has those helper directories, remove them before installing the current family to avoid trigger collisions. `ccf-literature-monitor`, `ccf-visual-composer`, and `ccf-paper-to-exemplar` are current runtime entries, not merged helper names.
+Install only the 17 current runtime skills. Do not copy merged helper names into `$CODEX_HOME/skills`. If an older local install still has those helper directories, remove them before installing the current family to avoid trigger collisions. `ccf-humanization`, `ccf-literature-monitor`, `ccf-visual-composer`, and `ccf-paper-to-exemplar` are current runtime entries, not merged helper names.
 
 ## Demo Policy
 
-The demo must use the current 16 runtime skills. Merged abilities still appear in the demo as modes:
+The demo must use the current 17 runtime skills. Merged abilities still appear in the demo as modes:
 
 - compression and talk output inside `ccf-paper-writer`
 - source-format-preserving polish and venue-aware LaTeX drafting inside `ccf-paper-writer`

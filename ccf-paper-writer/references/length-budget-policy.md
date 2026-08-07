@@ -29,7 +29,7 @@ Default draft targets:
 
 - Strict page-limited submissions: aim for 85-100% of the main-body limit.
 - Early internal drafts: aim for 70-90% unless the user asks for a short proposal.
-- Demos, tutorials, or smoke tests: may be shorter only when the user explicitly says demo, sample, short, toy, or skeleton.
+- Demos or tutorials may be shorter only when the user explicitly requests a non-publication sample. A smoke test is never a manuscript-length category or publication method substitute.
 - Final submission: must be at or below the official limit after compression.
 
 Slight mismatch is acceptable:
@@ -50,7 +50,7 @@ For AI/ML/CV/NLP-style 8-10 page main-body papers:
 | Related Work / Background | 0.75-1.25 pages |
 | Method | 2.0-3.0 pages |
 | Experiments | 2.0-3.0 pages |
-| Analysis / Ablation / Limitations | 0.75-1.5 pages |
+| Analysis / Ablation / required scope boundaries | 0.75-1.5 pages |
 | Conclusion | 0.2-0.4 page |
 
 Adjust by venue family:
@@ -68,8 +68,8 @@ If a full manuscript is under target, expand in this order:
 2. Add a focused Related Work contrast with closest-work groups.
 3. Make the Method auditable: notation, module motivation, algorithm/pipeline, complexity, assumptions.
 4. Add experiment setup details: datasets, metrics, baselines, implementation, hyperparameters.
-5. Add main-result, ablation, robustness, efficiency, and failure-analysis scaffolds.
-6. Add limitations, ethics/reproducibility, and appendix pointers where expected.
+5. Add main-result, ablation, robustness, and efficiency scaffolds using confirmed method versions.
+6. Add venue-required ethics/reproducibility material and appendix pointers where expected; do not add generic limitations or hypothetical failure cases for padding.
 
 Allowed expansion content:
 
@@ -94,9 +94,9 @@ When a manuscript is under target, expand in this priority order---each step add
 2. **Background/Preliminaries:** add formal problem definition, notation, and structural analysis (e.g., complexity tables, dependency path arguments).
 3. **Method detail:** add per-component motivation (why this module, what gap it fills), forward equations, and connection to the global insight.
 4. **Experiment setup:** add dataset statistics, preprocessing details, baselines with rationale, metric definitions, implementation notes.
-5. **Results and analysis:** add result tables, complexity comparisons, ablation motivations (why each test matters), and caveat notes.
-6. **Discussion:** add architecture-level analysis (why it works, regime of applicability, failure modes).
-7. **Limitations and ethics:** add concrete scope boundaries, failure-mode analysis, and domain-specific impact notes.
+5. **Results and analysis:** add result tables, complexity comparisons, and ablation motivations using confirmed full methods.
+6. **Discussion:** add architecture-level analysis of why the method works and its evidenced regime of applicability.
+7. **Required disclosures:** add only venue-required or scientifically material scope, ethics, reproducibility, and impact content; route judgment-sensitive wording through `ccf-humanization`.
 8. **References:** ensure all cited works appear in the bibliography with complete metadata.
 
 ## Compile And Adjust Loop

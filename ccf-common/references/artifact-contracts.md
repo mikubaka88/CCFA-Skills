@@ -4,13 +4,14 @@ These contracts prevent CCFA skills from overwriting each other's work. Read bro
 
 | Artifact | Primary owner | Contract |
 | --- | --- | --- |
+| `humanization-warnings.md`, `output/humanization-warnings/*` | `ccf-humanization`, user | Stores advisory/blocking concerns that were not inserted into manuscript, experiment, code, table, or configuration files. Each record states that no artifact change was made for the warning; edits require explicit user approval. |
 | `ccfa.yaml` | `ccf-project-scaffolder`, `ccf-pipeline-orchestrator` | Scaffold creates it; orchestrator updates stage/gate state. Other skills may read and propose updates. |
 | `literature-monitor/*.md`, `output/literature-monitor/*` | `ccf-literature-monitor` | Stores dated monitoring reports, overlap flags, and watch summaries. Literature searcher may deep-retrieve flagged papers; reviewer/optimizer may use the flags for score or rescue decisions. |
 | `manuscript/*.tex` | `ccf-paper-writer` | Review and audit skills suggest edits; writing changes route back to paper writer unless user explicitly authorizes otherwise. |
 | `references/*.bib` | `ccf-integrity-auditor` | Integrity auditor verifies existing entries; literature searcher proposes new candidates. |
 | `experiments/results.*` | user, `ccf-experiment-designer` | Figure/table and integrity skills read supplied numbers only. |
-| `figures/*`, `tables/*` | `ccf-experiment-designer`, `ccf-visual-composer` | Experiment designer owns evidence/result content and real values; visual composer owns plotting code, palette, panel/table layout, caption placement, manuscript integration, and render QA. Data must be real. |
-| `visual-composer/*` | `ccf-visual-composer` | Stores visual contracts, Python plotting scripts, generated figures, panel/table maps, palette decisions, render QA ledgers, and visual iteration logs. It must not become a hidden source of invented numbers. |
+| `figures/*`, `tables/*` | `ccf-experiment-designer`, `ccf-visual-composer` | Experiment designer owns evidence/result content and real values; visual composer owns plotting code, method/architecture diagram composition, palette, panel/table layout, caption placement, manuscript integration, editable vector reconstruction, and render QA. Data and depicted method components must be real. |
+| `visual-composer/*` | `ccf-visual-composer` | Stores visual contracts, Python plotting scripts, architecture specifications/prompts, generated raster drafts, canonical editable SVGs, derived vector PDFs, panel/table maps, palette decisions, render QA ledgers, and visual iteration logs. It must not become a hidden source of invented numbers, modules, labels, or flows. |
 | `reviews/*` | `ccf-paper-reviewer`, user | Rebuttal writer reads real reviews and maintains response ledger. |
 | `reviews/revision-ledger.md` | `ccf-rebuttal-writer` | Tracks reviewer comment -> response promise -> manuscript action -> status. |
 | `submission/*` | `ccf-submission-checker` | Stores build, anonymity, page, metadata, and policy readiness results. |

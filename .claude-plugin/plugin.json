@@ -1,10 +1,11 @@
 {
   "name": "ccfa-skills",
-  "version": "0.7",
+  "version": "0.8.0",
   "description": "CCFA CCF paper-project workflow skill family.",
   "skills_root": ".",
   "catalog": "docs/SKILLS_CATALOG.md",
   "entrypoints": [
+    "ccf-humanization",
     "ccf-pipeline-orchestrator",
     "ccf-literature-monitor",
     "ccf-visual-composer",

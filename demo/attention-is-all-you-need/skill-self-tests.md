@@ -1,9 +1,10 @@
 # Skill Self-Tests
 
-The current runtime surface has 16 skills. These smoke prompts check routing for the Attention/ICLR closed-loop demo.
+The current runtime surface has 17 skills. These smoke prompts cover only distinct, decision-relevant routing boundaries in the Attention/ICLR demo; they are not repeated merely to exercise every skill.
 
 | Prompt intent | Expected skill | Demo evidence |
 | --- | --- | --- |
+| Remove defensive manuscript prose, keep warnings outside TeX, and reject simplified method variants. | `ccf-humanization` | Humanization policy and the confirmed Transformer configuration used by the demo. |
 | Create an ICLR-style paper workspace for the Transformer idea. | `ccf-project-scaffolder` | `ccfa.yaml`, `paper/iclr2026_conference.sty`. |
 | Plan the workflow from source reading to rebuttal. | `ccf-pipeline-orchestrator` | `02-iclr-closed-loop-skill-run.md`. |
 | Turn the source paper into a reusable idea brief. | `ccf-idea-optimizer` | `01-idea-document.md`. |
@@ -20,6 +21,8 @@ The current runtime surface has 16 skills. These smoke prompts check routing for
 | Maintain skills/docs/SVG/release quality. | `ccf-skill-forger` | writer policy updates and family self-audit. |
 
 Conflict checks:
+
+- Retain one smoke prompt per distinct routing boundary; do not repeat equivalent prompts with only wording changes.
 
 - "润色并保持 LaTeX 格式" routes to `ccf-paper-writer`, not `ccf-paper-reviewer`.
 - "完整审稿/评分" routes to `ccf-paper-reviewer`, not `ccf-paper-writer`.

@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Visual Composer"
-  short_description: "Compose publication-grade figures/tables, Python plots, analytical charts, palettes, captions, layout, and render QA from supplied results."
-  default_prompt: "Use $ccf-visual-composer for publication figure/table layout, creative data-analysis plots, pie/donut charts, bar charts, volcano plots, correlation heatmaps, composite dashboards, Python plotting code, palette selection, multi-panel composition, caption placement, manuscript visual integration, and visual QA without inventing data."
+  short_description: "Compose paper plots and architecture diagrams, including confirmed GPT Image 2 drafts and editable SVG/PDF reconstruction."
+  default_prompt: "Use $ccf-visual-composer for reproducible data-analysis plots and publication visuals. For a scientific method/architecture diagram, derive a content-grounded prompt, show it and confirm before invoking GPT Image 2, inspect the result, then always ask whether to reconstruct it as editable SVG/vector PDF. Never invent data, modules, labels, or connections."

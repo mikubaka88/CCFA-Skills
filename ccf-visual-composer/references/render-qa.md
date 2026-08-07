@@ -8,12 +8,18 @@ Visual QA is based on rendered output, not source optimism. When source files ex
 - No incoherent overlap between text, plots, legends, subfigures, floats, or surrounding paragraphs.
 - Float order matches the paper logic and cross-references resolve.
 - Fonts are embedded or accepted by the target template; labels remain readable at final size.
+- Every visible English word uses title case with only its first letter capitalized; no all-caps title, module label, legend, axis, annotation, badge, or table header remains.
 - Vector text remains editable when requested; raster previews are high enough resolution.
 - Color contrast survives grayscale and color-vision checks.
 - Figure captions and table captions are present, near the artifact, and not detached by bad float placement.
 - Tables do not exceed margins and do not use unreadable shrinkage.
 - Numeric precision, units, sample size, confidence intervals, and metric direction match the manuscript.
 - Source data or scripts are traceable enough for later integrity audit.
+- Architecture nodes, groups, and connections match the supplied method; no plausible-looking component was invented.
+- Architecture arrows have correct direction and semantics, and training/inference boundaries remain truthful.
+- Generated-image labels match the approved label inventory; malformed text is corrected during semantic SVG reconstruction.
+- An editable SVG contains live text and selectable vector groups rather than a full-page embedded or auto-traced raster.
+- A requested vector PDF is exported from the reconstructed vector source, with SVG retained as the canonical editable artifact.
 
 ## QA Ledger
 

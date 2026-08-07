@@ -2,6 +2,8 @@
 
 Use this file for manuscript drafting, polishing, compression, abstract writing, introduction writing, paragraph review, and response text that may be copied into a paper. The goal is not to make prose decorative. The goal is to make every sentence serve the scientific argument.
 
+Apply `../../ccf-humanization/references/humanization-policy.md` first. Keep warning-only concerns outside source files and do not add defensive prose, generic limitations, or improbable case lists as a substitute for academic content.
+
 ## Core Principle
 
 Write from inside the research contribution. A manuscript should sound like a coherent scientific argument made by the authors, not a detached report about "the paper", "the reviewers", or a checklist of isolated claims.
@@ -67,7 +69,7 @@ Claims must match the available support:
 
 - Use strong verbs only when evidence is strong.
 - Prefer scoped claims over universal claims.
-- State limitations as boundaries of validity, not as apologetic disclaimers.
+- State only material or required scope boundaries, not apologetic disclaimers or speculative failure lists.
 - Replace unsupported assertions with mechanism, evidence, or a narrower claim.
 
 ## Section-Specific Checks
@@ -91,7 +93,7 @@ Equations and theorems must be narrated:
 
 ### Experiments
 
-Do not list results as disconnected numbers. Each paragraph should answer a question: effectiveness, causality, generalization, efficiency, robustness, or limitation.
+Do not list results as disconnected numbers. Each paragraph should answer a question: effectiveness, causality, generalization, efficiency, robustness, or a material scope boundary.
 
 ### Conclusion
 
