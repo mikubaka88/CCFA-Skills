@@ -62,7 +62,7 @@ The family intentionally merged helper skills into owner modes. `ccf-visual-comp
 | Writing review | `ccf-paper-reviewer` | Diagnoses writing and format-facing risk; does not rewrite unless handed back to writer. |
 | Citation audit | `ccf-integrity-auditor` | Checks existing citations; broad discovery stays with literature search. |
 | Result evidence and specs | `ccf-experiment-designer` | Uses real results; never invents numbers. |
-| Publication visuals | `ccf-visual-composer` | Owns reproducible data plots plus research method/architecture diagrams, content-derived GPT Image 2 prompts and generation gates, semantic editable SVG/PDF reconstruction, palettes, captions, manuscript integration, and render QA. |
+| Publication visuals | `ccf-visual-composer` | Owns reproducible data plots plus research method/architecture diagrams, GPT Image 2-first generation, post-generation editable SVG/PDF/PPTX reconstruction, explicit pure-SVG opt-out, palettes, captions, manuscript integration, and render QA. |
 | Venue format and artifacts | `ccf-submission-checker` | Checks package readiness; content polishing stays with writer. |
 | Resubmission adaptation | `ccf-rebuttal-writer` | Maintains response/ledger logic; manuscript edits route back to writer. |
 | Docs SVGs | `ccf-skill-forger` | Repository maintenance only; research figures/tables stay with experiment designer and visual composer. |

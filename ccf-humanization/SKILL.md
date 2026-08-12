@@ -1,6 +1,6 @@
 ---
 name: ccf-humanization
-description: "Humanize and de-defend CCF/AI research artifacts before other CCFA output work. Use as the highest-priority preflight for manuscript drafting or revision, experiment plans, result tables, method descriptions, and publication files when Codex must remove defensive writing, boilerplate disclaimers, repetitive improbable edge cases, unnecessary safeguards, generic SHA-256/checksum requirements, duplicated smoke tests, simplified/toy methods, or AI-like risk narration. Keep necessary concerns in a separate user-review warning instead of silently injecting them into files. Do not conceal material evidence, fabricate results, or override venue-mandated disclosures."
+description: "Humanize and de-defend publication-facing CCF/AI prose and artifacts as a sidecar preflight, never as the primary task owner. Use before manuscript drafting/revision and before final manuscript experiment text, tables, captions, or method descriptions when Codex must remove defensive writing, boilerplate disclaimers, repetitive improbable edge cases, unnecessary safeguards, generic SHA-256/checksum requirements, duplicated smoke tests, simplified/toy methods, or AI-like risk narration. Do not auto-load as the sole owner for raw experiment planning, retrieval, review, auditing, routing, visual rendering, or assessment-only tasks without publication prose. Keep necessary concerns in a separate user-review warning instead of silently injecting them into files. Do not conceal material evidence, fabricate results, or override venue-mandated disclosures."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -16,7 +16,7 @@ metadata:
 
 **CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode`, `../ccf-common/references/handoff-modes.md`, and `../ccf-common/references/task-modes.md`.
 
-Apply this skill before manuscript-facing work by `ccf-paper-writer` and before publication-facing experiment work by `ccf-experiment-designer`. It is a priority quality layer, not a substitute for either owner. Respect the user's requested format and do not broaden the research scope.
+Apply this skill before manuscript-facing work by `ccf-paper-writer` and before publication-facing experiment work by `ccf-experiment-designer`. It is the highest-priority preflight as a sidecar quality layer, not a substitute for either owner. Respect the user's requested format and do not broaden the research scope.
 
 ## Core Rule
 
@@ -39,16 +39,17 @@ Never hide an observed result, known failure, assumption, conflict of interest, 
 1. Identify the target artifact, owning CCFA skill, requested change, and whether edits are already authorized.
 2. Classify each candidate issue as `remove`, `keep`, or `warn-only` using `references/humanization-policy.md`.
 3. For manuscript prose, remove defensive positioning, boilerplate caveats, reviewer simulation, improbable case lists, and internal process/status language. Keep only content that advances problem, method, evidence, interpretation, or a required disclosure. Rewrite version-gate phrases as natural academic descriptions of the actual method and relevant configuration.
-4. For experiment work, load `references/experiment-discipline.md`. Require each publication method to have a verified identity and full configuration in the internal gate; do not place simplified, toy, approximate, proxy, reduced, or debug variants in manuscript text, final tables, or claimed comparisons, and do not expose the gate status in manuscript wording.
-5. Minimize smoke testing to changed, executable, decision-relevant paths. Do not repeat equivalent smoke tests or treat smoke success as publication evidence.
-6. Do not introduce SHA-256/checksum boilerplate for generic provenance, version confirmation, deduplication, or paper-writing workflow. Preserve it only when cryptographic hashing is the research subject, a real implementation dependency, or an external system requirement; surface that exception as a warning when it conflicts with the user's preference.
-7. Put any unresolved concern in the warning format below. Do not patch files, add comments, inject disclaimers, or alter method configuration for a warning-only issue until the user explicitly approves a concrete change.
-8. Return the requested artifact first, followed only by a compact warning block when one exists. Then hand back to the owning CCFA skill.
+4. Apply the manuscript pattern controls in `references/humanization-policy.md`. Prefer zero em dashes in new academic prose and never exceed three in a full paper, excluding direct quotations. Remove throat-clearing openers, forced three-item structures, synonym cycling, and metronomic sentence patterns when they do not serve the science.
+5. For experiment work, load `references/experiment-discipline.md`. Require each publication method to have a verified identity and full configuration in the internal gate; do not place simplified, toy, approximate, proxy, reduced, or debug variants in manuscript text, final tables, or claimed comparisons, and do not expose the gate status in manuscript wording.
+6. Minimize smoke testing to changed, executable, decision-relevant paths. Do not repeat equivalent smoke tests or treat smoke success as publication evidence.
+7. Do not introduce SHA-256/checksum boilerplate for generic provenance, version confirmation, deduplication, or paper-writing workflow. Preserve it only when cryptographic hashing is the research subject, a real implementation dependency, or an external system requirement; surface that exception as a warning when it conflicts with the user's preference.
+8. Put any unresolved concern in the warning format below. Do not patch files, add comments, inject disclaimers, or alter method configuration for a warning-only issue until the user explicitly approves a concrete change.
+9. Return the requested artifact first, followed only by a compact warning block when one exists. Then hand back to the owning CCFA skill.
 
 ## Warning Contract
 
 ```text
-CCF Humanization Warning — not inserted into artifacts
+CCF Humanization Warning: not inserted into artifacts
 Issue:
 Why user review is required:
 Affected claim / file / experiment:
@@ -75,5 +76,5 @@ Return only fields that help the user verify the task; do not turn a normal edit
 
 ## References
 
-- `references/humanization-policy.md`: read for manuscript humanization, warning classification, non-injection rules, unfavorable information, and SHA-256/checksum handling.
+- `references/humanization-policy.md`: read for manuscript humanization, consolidated writing constraints, warning classification, non-injection rules, unfavorable information, and SHA-256/checksum handling.
 - `references/experiment-discipline.md`: read for smoke-test scope, confirmed method identity, prohibited simplified publication variants, and experiment-to-paper gates.

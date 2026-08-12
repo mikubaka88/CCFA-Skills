@@ -56,16 +56,9 @@ Experiments:
 - Then efficiency, scaling, or downstream evidence if claimed.
 - Then limitations and failure cases.
 
-## Closed-Loop Generation
+## Quality Pass
 
-Run the same loop used by `references/expert-review-loop.md`:
-
-1. Draft using this custom format.
-2. Simulate at least three reviewer views: method expert, experiment expert, and writing/storyline expert.
-3. Assign a provisional score on a 1-10 scale with reasons.
-4. Revise high-severity issues first: unclear contribution, unsupported evidence, missing outputs, weak baselines, overclaiming, or format drift.
-5. Re-review the revision.
-6. Repeat until no high-severity issue remains, or clearly list the remaining unresolved risk.
+Apply one internal writing-quality pass after drafting. Check scientific meaning, evidence bounds, terminology, paragraph flow, and format fidelity. Do not simulate reviewers, assign scores, or expose an iterative critique transcript unless the user explicitly requests review. Route a separate scientific review to `ccf-paper-reviewer` instead of mixing it into ordinary writing.
 
 ## Citation Rules
 
@@ -81,16 +74,8 @@ When using this custom format, follow the citation workflow in `references/citat
 
 ## Output Contract
 
-When this default format is active, return:
-
-1. Custom-format assumption.
-2. Loaded custom exemplars.
-3. Global story blueprint.
-4. Draft or revision.
-5. Claim-evidence map.
-6. Review score and critique.
-7. Revision pass and re-review score.
+When this default format is active, return the artifact the user requested. Mention the format assumption and selected exemplars only when they help the user evaluate a from-scratch draft. Keep story blueprints, claim-evidence maps, and quality checks internal unless the user asks to see them. Exact-output requests override this default.
 
 ## Maintenance
 
-The custom exemplar list is intentionally easy to edit. To add or remove future examples, use the separate skill `custom-exemplar-curator`. That skill should generate candidate cards, schemas, and edit instructions for the user to review manually; it should not silently change the custom exemplar set.
+The custom exemplar list is intentionally easy to edit. To add or remove future examples, use `ccf-paper-to-exemplar`, which distills user-provided papers and updates the exemplar registry without treating source text as a reusable template.

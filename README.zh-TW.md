@@ -1,262 +1,242 @@
-﻿<h1 align="center">CCFA Skills</h1>
+<div align="center">
 
-<p align="center"><strong>A skill family for shaping the research storyline of CCF-A papers.</strong></p>
+<h1>CCFA Skills</h1>
 
-<p align="center">
-  <a href="README.md">简体中文</a> ·
-  <a href="README.en.md">English</a> ·
-  <strong>繁體中文</strong>
-</p>
+**A skill family for shaping the research storyline of CCF-A papers.**
 
-<p align="center">
-  <img src="assets/ccfaskills.png" alt="CCFA Skills 主視覺" width="100%">
-</p>
+[简体中文](README.md) · [English](README.en.md) · [繁體中文](README.zh-TW.md)
+
+<img src="assets/ccfaskills.png" alt="CCFA Skills logo" width="560">
 
 ---
 
-<div align="center">
-  <p>
-    <span style="color:#334155"><em>"The structure of the prose becomes the structure of the scientific argument."</em></span><br>
-    <sub>George D. Gopen and Judith A. Swan, <a href="https://www.cs.tufts.edu/comp/150FP/archive/george-gopen/sci.html"><em>The Science of Scientific Writing</em></a></sub>
-  </p>
-  <p>
-    <span style="color:#2563eb"><em>"The very process of science is centered around communication."</em></span><br>
-    <sub>Yann LeCun and James M. Manyika, <a href="https://www.amacad.org/publication/daedalus/learning-abstractions-conversation-yann-lecun"><em>Learning Abstractions</em></a></sub>
-  </p>
+*“The structure of the prose becomes the structure of the scientific argument.”*<br>
+George D. Gopen and Judith A. Swan, [*The Science of Scientific Writing*](https://www.cs.tufts.edu/comp/150FP/archive/george-gopen/sci.html)
+
+*“The very process of science is centered around communication.”*<br>
+Yann LeCun and James M. Manyika, [*Learning Abstractions*](https://www.amacad.org/publication/daedalus/learning-abstractions-conversation-yann-lecun)
+
 </div>
 
-一篇高水準論文真正重要的，往往不是最後那份 PDF，而是貫穿其後的研究故事線。它從一個尚不穩定的 idea 開始，在文獻中尋找位置，在實驗中接受檢驗，在寫作中被組織成可被審稿人理解的論證，又在審稿和 rebuttal 中繼續被修正。真正困難的地方，不只是寫出某一段 introduction，而是讓 idea、證據、實驗、表達和回應始終指向同一個研究問題。
+凌晨兩點，實驗終於結束，新的結果比預期更好。可是重新打開稿件時，真正棘手的問題才顯現出來：最初那個清晰而有力的研究問題已經埋進冗長的 related work，方法描述與程式中的實際機制出現偏差；新補的實驗回應了上一輪審稿意見，卻讓論證分成幾條彼此疏離的線索。每個局部似乎都更完善了，整篇論文反而更難讀懂。
 
-CCFA Skills 正是從這個觀察出發。它把 CCF-A 論文專案看作一條可以被維護、稽核和反覆推進的研究故事線，而不是一次性的文本生成任務。一個 idea 需要先被塑形，在真正需要取捨時再接受嚴格審稿；一組實驗需要服務於明確 claim，而不是孤立地填滿表格；一篇論文的寫作需要保留證據邊界；一次 rebuttal 也不應只是臨時答辯，而應成為下一輪修改和重投的可追蹤記錄。
+許多有潛力的研究最終未能充分展現價值，並不是因為 idea 不夠好，而是因為它在漫長的推進中逐漸失去了清晰的輪廓。文獻愈積愈多，實驗表格不斷擴張，作者還要在研究、寫作和審稿視角之間反覆切換。一個無所不包的長 prompt 很難同時做好這些事情，因為檢索需要忠於來源，實驗需要遵循協議，寫作需要圍繞論證展開，審稿則必須保持獨立判斷。
 
-這個專案的核心 insight 是：論文品質來自連續決策的品質。當前家族包含 17 個 runtime roles，並把 `ccf-humanization` 放在論文和投稿實驗產物的最前面：正文保持流暢、自然、嚴謹的學術表達，warning 獨立交給使用者審核，smoke 只保留有效且不重複的關鍵路徑，禁用通用 SHA-256 provenance 儀式。方法完整性由內部流程校驗，論文則直接、自然地描述實際採用的方法，不寫入「已確認」「已批准」等工程狀態。
+我們因此設計了 CCFA Skills。論文不是等待逐項填充的文件，而是一條需要在反覆修改中保持連貫的研究故事線。17 個分工明確的 skills 從 idea、文獻和實驗出發，幫助論證逐漸成形，並貫穿寫作、繪圖、評審、rebuttal 與投稿。當任務從一個 skill 交給另一個 skill 時，研究問題、證據和結論之間的聯繫仍然會被保留下來。
 
-## v0.8 核心升級圖示
+<p align="center">
+  <img src="assets/ccfa-skills-hero.zh-TW.svg" alt="CCFA Skills 家族概覽" width="100%">
+</p>
 
-v0.8 保持原有 17-skill 家族架構和論文專案閉環不變，集中增強兩個橫向能力：`ccf-humanization` 作為最高優先級預檢，`ccf-visual-composer` 負責內容驅動的科研架構圖、生成確認、結構 QA 與可編輯 SVG/PDF 重建。三張 demo 僅標題使用簡體中文，圖內模組、標籤和句子保持英文；普通英文採用自然的標題式或句式大小寫，CCF、GPT、QA、SVG、PDF、AI、PNG、SHA-256 等縮寫保持標準全大寫。
+## 快速開始
 
-![CCFA v0.8 雙升級概念圖](assets/v0.8/ccfa-two-upgrades-overview.zh-CN.png)
+選擇你正在使用的 Agent：
 
-具體的 Transformer demo 展示 `Visual Composer` 如何從通用黑盒圖轉為可核對的編碼器—解碼器拓撲，並保留 `GPT Image 2 → Structure QA → Editable SVG/PDF` 交付鏈；`CCF Humanization` demo 則展示如何保留流暢自然且嚴謹的學術表達、精簡 smoke 測試，並把方法版本校驗留在內部流程、把需要判斷的問題留在獨立審核警告中。
+[Codex 安裝](docs/getting-started/CODEX.md) · [Claude Code 安裝](docs/getting-started/CLAUDE_CODE.md) · [Cursor 安裝](docs/getting-started/CURSOR.md) · [Gemini CLI 安裝](docs/getting-started/GEMINI_CLI.md) · [其他 Agent](docs/getting-started/OTHER_AGENTS.md) · [自動更新](docs/getting-started/AUTO_UPDATE.md)
 
-![Visual Composer Transformer 中文對比 Demo](assets/v0.8/visual-composer-transformer-demo.zh-CN.png)
-
-![CCF Humanization Transformer 中文對比 Demo](assets/v0.8/ccf-humanization-transformer-demo.zh-CN.png)
-
-![CCFA 技能家族邏輯](assets/ccfa-skills-architecture.zh-TW.svg)
-
-## 整體鏈路
-
-預設論文專案閉環如下：
-
-```text
-人類化優先預檢
-  -> 專案搭建
-  -> 流程編排
-  -> idea 優化
-  -> idea 審稿
-  -> 文獻監控 / 競品追蹤
-  -> 文獻檢索
-  -> 實驗設計
-  -> 圖表視覺整合
-  -> 寫作範例抽取（可選）
-  -> 會議感知寫作
-  -> 科學/寫作審稿
-  -> 完整性稽核
-  -> 投稿包檢查
-  -> rebuttal / revision ledger / resubmission
-```
-
-每個階段只交給一個 owner skill。這樣做的目的不是減少功能，而是讓觸發條件、輸出格式和 artifact 歸屬更穩定：寫作由 writer 負責，判斷由 reviewer 負責，事實核驗由 auditor 負責，投稿包由 submission checker 負責，回應審稿人由 rebuttal writer 負責。
-
-`ccfa.yaml` 是共享專案狀態檔。它記錄 `target_venue`、`stage`、`artifacts`、`claims`、`experiments`、`reviews`、`revision_ledger` 和 `submission_checks`，讓各個 skill 可以聯動，但不會互相覆蓋正文、實驗表、審稿報告或 rebuttal。
-
-![端到端流程](assets/ccfa-skills-workflow.zh-TW.svg)
-
-## 17 個 Runtime Skills
-
-| 階段 | Skill | 啟動條件 | 主要產物 | 不應該用於 |
-| --- | --- | --- | --- | --- |
-| 最高優先級預檢 | `ccf-humanization` | 去除防禦性寫作、隔離 warning、精簡重複 smoke、禁用通用 SHA-256 要求，或阻止簡化方法進入論文。 | 人類化產物、內部方法版本校驗、獨立 warning ledger。 | 隱藏實質證據、代替論文寫作/實驗設計或覆蓋強制披露。 |
-| 專案搭建 | `ccf-project-scaffolder` | 使用者要建立論文專案目錄、複製模板、初始化 `ccfa.yaml`。 | 專案目錄、模板檔、初始狀態檔。 | 生成研究內容或替使用者寫 idea。 |
-| 流程編排 | `ccf-pipeline-orchestrator` | 使用者要拆任務、排階段、設 gate、決定下一步 owner。 | 階段計畫、gate、handoff、狀態更新建議。 | 直接寫作、審稿、檢索、設計實驗或 rebuttal。 |
-| Idea 優化 | `ccf-idea-optimizer` | 使用者有粗 idea、模糊方向、想找方向或救方向。 | problem-gap-insight-method-evidence 文件、救援路線、最小可驗證問題。 | 對多個 idea 排名打分。 |
-| Idea 審稿 | `ccf-idea-reviewer` | 使用者明確要求評分、排名、嚴格審稿、判斷創新性或取捨。 | 分數、風險、stage-aware 發展潛力、修改建議。 | 繼續發散優化單個 idea。 |
-| 文獻監控 | `ccf-literature-monitor` | 使用者要追蹤新論文、競品、arXiv/OpenReview/會議動態，或問最近有沒有類似 idea。 | 監控報告、overlap level、RELAX/RESEARCH/FOLLOW-UP 標記、跨 skill handoff。 | 系統性 related work 檢索、引用稽核或最終 idea 打分。 |
-| 文獻證據 | `ccf-literature-searcher` | 使用者要查 related work、prior art、資料集、benchmark、open gap 或引用證據。 | 文獻列表、篩選理由、相關工作結構、機會圖、證據缺口。 | 只核驗已經寫進論文的引用，或把 related work 當成最終否決。 |
-| 實驗設計 | `ccf-experiment-designer` | 使用者要設計 baseline、metric、消融、魯棒性實驗或結果表。 | 實驗協議、baseline 矩陣、結果表模板、evidence-bound 圖表規格。 | 編造結果或繪製文件架構圖。 |
-| 科研成圖 | `ccf-visual-composer` | 使用者要製作資料分析圖、論文方法/模型/系統架構圖、科研繪圖 prompt、GPT Image 2 草稿、可編輯 SVG/PDF、caption 或正文嵌入。 | visual contract、可重現 plot code、內容驅動的架構圖 prompt、經確認的生成稿、語義化 SVG/向量 PDF、caption、render QA ledger。 | 設計實驗、編造結果/模組、主寫正文或最終投稿合規。 |
-| 寫作範例 | `ccf-paper-to-exemplar` | 使用者提供論文 PDF，希望抽取成可複用寫作範例或個人 exemplar 庫。 | exemplar card、寫作 pattern、venue 標籤、writer 可用索引。 | 直接寫論文或進行審稿。 |
-| 論文寫作 | `ccf-paper-writer` | 使用者要寫、潤飾、壓縮、改寫、從 idea 起草 LaTeX、按目標會議篇幅成稿、做 slides/poster/talk。 | 論文正文、保留格式的修改稿、壓縮稿、篇幅預算、展示材料。 | 完整審稿、事實稽核、投稿包檢查或 rebuttal。 |
-| 論文審稿 | `ccf-paper-reviewer` | 使用者要科學審稿、寫作審稿、評分、AC/meta-review 或投稿風險診斷。 | 科學審稿、寫作審稿、風險表、評分和修改優先級。 | 直接替換正文或寫 rebuttal。 |
-| 完整性稽核 | `ccf-integrity-auditor` | 使用者要核驗 claim、數字、圖表、引用、BibTeX 和上下文支撐。 | claim-support 表、數字一致性報告、引用稽核。 | broad literature search 或完整科學審稿。 |
-| 投稿檢查 | `ccf-submission-checker` | 使用者要查會議規則、頁數、匿名、PDF metadata、artifact、camera-ready。 | 投稿包檢查、LaTeX/PDF 構建結果、匿名和 artifact checklist。 | 潤飾正文內容。 |
-| 審稿回覆 | `ccf-rebuttal-writer` | 使用者要寫 rebuttal、response letter、revision ledger 或重投計畫。 | rebuttal 文案、逐條回應、revision ledger、resubmission plan。 | 普通論文寫作。 |
-| 共享治理 | `ccf-common` | 維護路由、隱私/證據策略、source registry、artifact contract。 | 公共規則、路由表、source registry、校驗策略。 | 普通研究任務。 |
-| 家族維護 | `ccf-skill-forger` | 維護 skill、命名、docs、SVG、校驗、release。 | 更新後的技能文件、文件、圖、驗證結果和發布提交。 | 研究寫作、審稿或實驗設計。 |
-
-![Runtime skill 總覽](assets/ccfa-skills-catalog.zh-TW.svg)
-
-## 觸發邊界
-
-| 使用者真正要做的事 | 使用 | 不使用 |
-| --- | --- | --- |
-| 去掉防禦性寫作、warning 不注入文件、精簡重複 smoke、阻止簡化方法進入論文 | `ccf-humanization` | `ccf-paper-reviewer` |
-| 把模糊 idea 變成可做的研究方案，或找救援路線 | `ccf-idea-optimizer` | `ccf-idea-reviewer` |
-| 明確要對多個 idea 打分、排序、取捨 | `ccf-idea-reviewer` | `ccf-idea-optimizer` |
-| 監控新論文、競品、最近是否有類似 idea | `ccf-literature-monitor` | `ccf-literature-searcher` |
-| 找新文獻、找 benchmark、找資料集、找 open gap | `ccf-literature-searcher` | `ccf-integrity-auditor` |
-| 核驗論文裡已引用文獻是否支撐 claim | `ccf-integrity-auditor` | `ccf-literature-searcher` |
-| 設計實驗、指標、baseline 和結果證據結構 | `ccf-experiment-designer` | `ccf-paper-writer` |
-| 優化資料圖表，或根據論文內容生成方法/架構圖並轉成可編輯 SVG/PDF | `ccf-visual-composer` | `ccf-experiment-designer` |
-| 把 PDF 論文轉成寫作範例 | `ccf-paper-to-exemplar` | `ccf-paper-writer` |
-| 寫正文、潤飾、壓縮、保持原格式改寫 | `ccf-paper-writer` | `ccf-paper-reviewer` |
-| 判斷論文能否被接收、哪裡會被拒 | `ccf-paper-reviewer` | `ccf-paper-writer` |
-| 檢查頁數、匿名、PDF、metadata、artifact | `ccf-submission-checker` | `ccf-paper-writer` |
-| 回覆審稿人和維護 revision ledger | `ccf-rebuttal-writer` | `ccf-paper-reviewer` |
-| 改文件圖、維護 skill、發 release | `ccf-skill-forger` | `ccf-experiment-designer` |
-
-![路由邊界](assets/ccfa-skills-routing.zh-TW.svg)
-
-## 已合併的 Helper 能力
-
-這些舊名稱不要再作為獨立 runtime skills 安裝：
-
-```text
-ccf-workflow-planner
-ccf-paper-compressor
-ccf-writing-reviewer
-ccf-citation-auditor
-ccf-figure-table-builder
-ccf-artifact-packager
-ccf-venue-format-guide
-ccf-resubmission-adapter
-ccf-paper-presenter
-ccf-doc-diagram-designer
-```
-
-| 已合併能力 | 目前 owner | 原因 |
-| --- | --- | --- |
-| workflow planning | `ccf-pipeline-orchestrator` | 規劃和編排必須共享同一個階段狀態。 |
-| compression、slides、poster、talk、Q&A | `ccf-paper-writer` | 都屬於論文文本或論文派生文本。 |
-| writing review | `ccf-paper-reviewer` | 它是審稿模式，不是寫作模式。 |
-| citation audit | `ccf-integrity-auditor` | 核驗引用屬於事實完整性。 |
-| figure/table builder | `ccf-experiment-designer` + `ccf-visual-composer` | 前者綁定真實實驗結果和證據結構，後者負責發表級視覺表達、Python 繪圖程式碼、配色、caption 和渲染 QA。 |
-| artifact packager、venue format guide | `ccf-submission-checker` | 都屬於投稿包 readiness。 |
-| resubmission adapter | `ccf-rebuttal-writer` | 重投需要基於 reviewer response 和 revision ledger。 |
-| docs SVG designer | `ccf-skill-forger` | 文件圖是家族維護，不是論文實驗圖。 |
-
-## Artifact 合約
-
-CCFA 的 artifact 設計是為了避免 skill 互相覆蓋。
-
-| Artifact | 主要 owner | 其他 skill 如何使用 |
-| --- | --- | --- |
-| `ccfa.yaml` | `ccf-project-scaffolder`, `ccf-pipeline-orchestrator` | 讀取階段、目標會議、產物狀態和 gate。 |
-| idea brief | `ccf-idea-optimizer` | reviewer 評分，writer 用於正文 story。 |
-| idea review | `ccf-idea-reviewer` | optimizer 和 experiment designer 用於修正方向。 |
-| literature notes | `ccf-literature-searcher` | writer 寫 related work，auditor 檢查引用支撐。 |
-| experiment plan/results | `ccf-experiment-designer` | writer 寫實驗，auditor 查數字一致性。 |
-| visual contracts/figures/tables/plot scripts | `ccf-visual-composer` | writer 連接正文敘事，auditor 查數字一致性，submission checker 查最終格式。 |
-| manuscript | `ccf-paper-writer` | reviewer/auditor/submission checker 只診斷或檢查。 |
-| review report | `ccf-paper-reviewer` | writer 修稿，rebuttal writer 提取回應點。 |
-| integrity report | `ccf-integrity-auditor` | writer 修 claim，literature searcher 補證據。 |
-| submission check | `ccf-submission-checker` | writer 修格式，rebuttal writer 準備後續版本。 |
-| revision ledger | `ccf-rebuttal-writer` | orchestrator 追蹤 reviewer comment 到 action 的閉環。 |
-
-![Artifact 合約](assets/ccfa-skills-artifacts.zh-TW.svg)
-
-## 寫作與審稿輸出原則
-
-- 寫作、潤飾、壓縮、presentation 任務應服從使用者要求的輸出格式。
-- 使用者給 LaTeX 就保持 LaTeX，給 Markdown 就保持 Markdown。
-- 使用者只有 idea 且要求從 0 寫文章時，`ccf-paper-writer` 先讀取目標會議 venue guide 和篇幅預算；如果沒有目標會議或找不到 guide，回退 NeurIPS 模板。
-- 投稿式完整稿件不能只求可編譯：應接近目標會議主文篇幅，短太多要擴寫，超出篇幅再由 writer 的 compression 模式壓縮，最後交給 `ccf-submission-checker` 檢查頁數。
-- 非 review 類 skill 應該靈活、資訊密度高，產出具體 artifact，而不是空泛流程說明。
-- review、audit、submission gate 可以保持嚴格結構，因為它們的價值是可追蹤的判斷、風險和 pass/fail 檢查。
-- 所有 skill 都不能編造實驗結果、引用、官方規則或 reviewer 結論。
-
-![審稿、稽核與行動邊界](assets/ccfa-skills-review-boundaries.zh-TW.svg)
-
-## Venue Guides
-
-會議 LaTeX/template 資訊是 reference，不是 runtime skill：
-
-```text
-ccf-paper-writer/references/venue-guides/index.md
-ccf-paper-writer/references/venue-guides/<venue>.md
-```
-
-| 場景 | 使用 |
-| --- | --- |
-| 按 ICLR/NeurIPS/CVPR 等目標會議寫正文 | `ccf-paper-writer` 先讀 venue guide，再寫正文。 |
-| 檢查頁數、匿名、PDF metadata、camera-ready、artifact | `ccf-submission-checker`。 |
-| 只問某會議 LaTeX/template/page limit | `ccf-submission-checker`，必要時讀取 venue guide。 |
-| 找不到目標會議 guide | `ccf-paper-writer` 預設回退 NeurIPS 模板，並提示最終投稿前需重新核驗。 |
-
-## 安裝
-
-完整安裝：
-
-```bash
-git clone https://github.com/mikubaka88/CCFA-Skills.git
-mkdir -p "$CODEX_HOME/skills"
-cp -R CCFA-Skills/ccf-* "$CODEX_HOME/skills/"
-```
-
-部分安裝必須包含 `ccf-common`：
-
-```bash
-skills=(ccf-common ccf-humanization ccf-paper-writer ccf-visual-composer ccf-paper-reviewer ccf-submission-checker)
-mkdir -p "$CODEX_HOME/skills"
-for s in "${skills[@]}"; do cp -R "$s" "$CODEX_HOME/skills/"; done
-```
-
-PowerShell：
+在 Codex 中一行安裝：
 
 ```powershell
-$skills = @("ccf-common", "ccf-humanization", "ccf-paper-writer", "ccf-visual-composer", "ccf-paper-reviewer", "ccf-submission-checker")
-New-Item -ItemType Directory -Force "$env:CODEX_HOME\skills" | Out-Null
-foreach ($s in $skills) { Copy-Item -Recurse -Force $s "$env:CODEX_HOME\skills\" }
+npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes --copy
 ```
 
-| 組合 | 包含 | 適合 |
-| --- | --- | --- |
-| 全流程 | 17 個 runtime skills | 從 idea 到 rebuttal 的完整論文專案。 |
-| 寫作子集 | `ccf-common`, `ccf-humanization`, `ccf-paper-writer`, `ccf-visual-composer`, `ccf-paper-reviewer`, `ccf-submission-checker` | 人類化預檢、起草、潤飾、圖表視覺整合、寫作審稿、格式檢查。 |
-| 監控子集 | `ccf-common`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-idea-reviewer`, `ccf-idea-optimizer` | 追蹤新論文、競品和 novelty 風險。 |
-| 早期研究子集 | `ccf-common`, `ccf-humanization`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer` | 寫正文前的 idea、文獻監控、文獻檢索和確認版本實驗設計。 |
-| 圖表/正文呈現子集 | `ccf-common`, `ccf-humanization`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-writer`, `ccf-integrity-auditor`, `ccf-submission-checker` | 基於真實結果製作論文圖表、配色、caption、正文嵌入和一致性檢查。 |
-| 投稿子集 | `ccf-common`, `ccf-humanization`, `ccf-paper-writer`, `ccf-visual-composer`, `ccf-integrity-auditor`, `ccf-submission-checker` | 已有稿件的人類化、完整性、圖表展示和投稿包檢查。 |
-| 維護子集 | `ccf-common`, `ccf-skill-forger` | 維護技能、文件、SVG 和 release。 |
+安裝後，直接說出你正在面對的研究問題：
 
-![安裝組合](assets/ccfa-skills-installation.zh-TW.svg)
+```text
+嚴格評審這三個選題並排序，指出各自最可能被拒的原因。
+檢索近三年與時序視覺推理相關的工作、benchmark 和公開 baseline。
+根據這篇論文設計主實驗、消融和穩健性證據，不要虛構結果。
+把方法部分改寫為 CVPR 風格，並保留公式、術語和引用。
+根據論文繪製方法架構圖，先生成審美稿，再詢問是否重建為 PPTX。
+```
 
-## 進一步閱讀
+## 為什麼需要一個 skill 家族
 
-如果你想理解這個家族為什麼這樣設計，建議按下面順序閱讀：
+論文研究中的困難彼此相連，卻不能由同一種思考方式解決。
 
-| 文件 | 適合什麼時候看 |
-| --- | --- |
-| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | 想理解主鏈路、治理層、artifact 狀態和 revision loop。 |
-| [docs/SKILLS_CATALOG.md](docs/SKILLS_CATALOG.md) | 想查每個 skill 的啟動條件、邊界和容易誤觸發的場景。 |
-| [docs/INSTALLATION_MATRIX.zh-TW.md](docs/INSTALLATION_MATRIX.zh-TW.md) | 想只安裝部分 skills，判斷哪些必須裝、哪些不能單獨裝。 |
-| [docs/NAMING_AND_MERGE_AUDIT.md](docs/NAMING_AND_MERGE_AUDIT.md) | 想理解為什麼合併 helper skills，以及命名如何減少衝突。 |
-| [AGENT_GUIDE.md](AGENT_GUIDE.md) | 給 agent 使用的操作指南，說明如何選擇 owner、交接 artifact、避免覆蓋。 |
-| [demo/attention-is-all-you-need/](demo/attention-is-all-you-need/) | 想看一個完整 ICLR 風格閉環示例。 |
+| 研究者遇到的困境 | CCFA Skills 如何回應 |
+|---|---|
+| 檢索、實驗、寫作和審稿擠在同一次對話中，彼此干擾 | 由最適合當前任務的 skill 負責，其他能力按需協助 |
+| 文獻事實、實驗數字和正文結論逐漸脫節 | 分別核對來源、實驗設計與全文一致性，讓每個 claim 都能找到證據 |
+| 論文愈改愈像審稿回覆，充滿防禦、解釋和內部狀態 | 寫作負責形成正文，Humanization 讓語言回到自然、直接的學術表達 |
+| 新一輪評審不斷更換關注點，難以判斷修訂是否真正進步 | 同時觀察當前稿件的錄用準備度與相對上一版的實際改進 |
+| 架構圖要麼只是方框流程，要麼漂亮卻無法繼續編輯 | 先探索適合內容的視覺語言，再按需要重建為 SVG、PDF 或 PPTX |
+| 載入的 skills 愈多，結果反而愈容易受到無關規則干擾 | 只載入與當前問題直接相關的能力，減少無關上下文 |
 
-## Demo
+## 我們珍視什麼
 
-`demo/attention-is-all-you-need/` 是一個 ICLR 風格閉環 demo，用原始 Transformer 論文展示 CCFA 家族如何從原文思路提煉、idea 審稿、LaTeX 寫作、visual-composer SVG 繪圖示例、寫作/科學審稿、完整性稽核、投稿檢查走到 rebuttal。demo 是示例，不是必須閱讀的入口。
+- **讓研究問題先於工具。** 評價一個 idea 與發展一個 idea 是兩種工作；設計實驗與美化圖表也需要不同的判斷。CCFA Skills 讓每一步都回到它真正要回答的問題。
+- **讓證據始終有據可查。** 文獻、實驗協議、數值、結論、圖表和引用不會被混成一團。缺失的事實保持缺失，直到它被可靠地找到或驗證。
+- **讓論文聽起來像學術，而不是辯護。** Humanization 刪除防禦性鋪墊、機械枚舉、過度破折號和內部工程措辭，同時保留真正影響結論的限制、證據與披露。
+- **讓評審保持獨立。** Reviewer 負責判斷，Writer 負責修改。先看問題，再決定如何改，避免一邊審稿一邊替自己解釋。
+- **讓科研圖表達清楚，也足夠美觀。** 數值圖保持可重現；方法圖先尋找與內容相稱的構圖，再由使用者決定是否轉成可編輯版本。
+- **讓範文成為方向，而不是模板。** 使用者提供目標論文後，系統學習它的敘事節奏、段落職責和證據組織，但不複製原句，也不把一種寫法強加給所有研究。
 
-![Attention demo](assets/ccfa-skills-demo-attention.zh-TW.svg)
+## 家族架構
+
+![CCFA Skills 家族架構](assets/ccfa-skills-architecture.zh-TW.svg)
+
+每一次請求都由最適合它的 skill 負責。其他 skills 不會重複處理同一項任務，只會在需要時提供相鄰能力。例如，`ccf-paper-writer` 負責正文寫作，`ccf-humanization` 幫助語言保持自然；`ccf-experiment-designer` 決定實驗表需要回答什麼問題，`ccf-visual-composer` 再把這些資訊轉化為清楚的圖表。
+
+### 17 個核心 skills
+
+| 研究階段 | Skill | 它能帶來什麼 |
+|---|---|---|
+| 家族協調 | `ccf-common` | 理解請求，協調分工，統一證據與隱私規則 |
+| 專案推進 | `ccf-pipeline-orchestrator` | 梳理目標、階段、關鍵節點與下一步 |
+| 專案起步 | `ccf-project-scaffolder` | 準備論文目錄、模板與研究材料空間 |
+| 選題判斷 | `ccf-idea-reviewer` | 比較多個 idea，評估新穎性、風險與 venue fit |
+| 選題發展 | `ccf-idea-optimizer` | 把模糊方向發展成問題、洞察、方法與證據路徑 |
+| 文獻檢索 | `ccf-literature-searcher` | 尋找相關工作、資料集、benchmark 與公開 baseline |
+| 前沿追蹤 | `ccf-literature-monitor` | 關注新論文、相近工作與研究方向的最新變化 |
+| 實驗設計 | `ccf-experiment-designer` | 設計主實驗、消融、穩健性分析與結果表結構 |
+| 完整性核驗 | `ccf-integrity-auditor` | 核對 claim、數值、術語、圖表和引用 |
+| 論文評審 | `ccf-paper-reviewer` | 給出獨立科學評審、版本比較與錄用準備度判斷 |
+| 論文寫作 | `ccf-paper-writer` | 起草、改寫、潤飾與壓縮論文內容 |
+| 學術表達 | `ccf-humanization` | 去除防禦性和機械感，保留自然嚴謹的學術表達 |
+| 審稿回覆 | `ccf-rebuttal-writer` | 組織 rebuttal、response letter 與修訂記錄 |
+| 科研繪圖 | `ccf-visual-composer` | 生成數值圖、視覺表格、方法圖及可編輯版本 |
+| 投稿檢查 | `ccf-submission-checker` | 檢查模板、頁數、匿名、PDF 與補充材料 |
+| 範文學習 | `ccf-paper-to-exemplar` | 從使用者提供的論文中提煉可重用的寫作方法 |
+| 家族維護 | `ccf-skill-forger` | 改進 skills，消除衝突，完成發布前檢查 |
+
+完整職責視圖：
+
+![按職責劃分的 skill 目錄](assets/ccfa-skills-catalog.zh-TW.svg)
+
+## 從 idea 到投稿
+
+![預設科研工作流](assets/ccfa-skills-workflow.zh-TW.svg)
+
+這不是一條必須從頭走到尾的流水線。你可以帶著一個尚未成形的想法而來，也可以只帶來一張難以解釋的結果表、一段總被審稿人誤解的方法，或一份即將提交的 PDF。CCFA Skills 會從你所在的位置開始，只調用真正有幫助的部分。
+
+## 繪圖示例
+
+這裡展示的是實際科研成圖，而不是功能宣傳圖。不同圖面向不同閱讀場景，因此使用不同的構圖語言。
+
+### 論文方法架構圖
+
+下圖從 `output/DynTrace.pdf` 中提取計算關係，並借鑑 LLaVA-4D Figure 2 組織層次、資訊密度與方法機制的方式。輸入與視覺處理位於底部，幾何證據和 DTV/DTG 分支構成中層，token 融合、MLLM 與答案位於頂部。我們借鑑的是論文圖講清機制的方法，而不是複製其中的模型內容或版面。
+
+![論文方法架構圖](assets/visual-showcase/dyntrace-paper-mechanism-llava4d-reference.png)
+
+**成圖方式：** 先從 DynTrace 論文中提煉機制關係，梳理每種表示及其對應操作，再參考 LLaVA-4D Figure 2 的論文構圖語言，由 GPT Image 2 生成，並核對方法資訊是否完整。目前展示的是 PNG 視覺稿；構圖確認後，可繼續重建為 SVG、向量 PDF 或由原生物件組成的 PPTX。
+
+<details>
+<summary>查看參考圖、出處與構圖原則</summary>
+
+![LLaVA-4D Figure 2 參考圖](assets/visual-showcase/references/llava-4d-figure-2-iclr-2026.png)
+
+參考出處：Hanyu Zhou and Gim Hee Lee, [*LLaVA-4D: Embedding SpatioTemporal Prompt into LMMs for 4D Scene Understanding*](https://arxiv.org/abs/2505.12253), Figure 2；亦見 [OpenReview 頁面](https://openreview.net/forum?id=URpbmVEsqB)。截圖僅用於非商業的學術構圖研究與風格說明，版權歸原作者所有。如涉及侵權，請聯絡專案維護者刪除。
+
+- 論文圖應當讓輸入、表示、操作、分支、融合與輸出一目了然。
+- 影片幀、光流、遮罩、3D 軌跡、DT-Tokens 與 temporal graph 都承擔方法含義，而不是裝飾。
+- 普通英語使用自然大小寫；Qwen3-VL、WAFT、SAM3、DTV、DTG、MLLM、3D 與 4D 保持規範縮寫。
+
+</details>
+
+### PPT/Poster
+
+下面保留兩張早期視覺探索。它們更適合簡報、專案海報或 README 概覽，因此不作為頂會論文方法圖示例。
+
+#### GPT Image 2 概念稿
+
+![GPT Image 2 概念稿](assets/visual-showcase/dyntrace-method-architecture-gpt-image-2.png)
+
+**成圖方式：** 從 DynTrace 的三階段方法出發，把影片、軌跡和圖結構轉化為鮮明的視覺敘事，再由 GPT Image 2 完成概念探索。
+
+#### 參考驅動的 PPT/Poster
+
+![PPT/Poster](assets/visual-showcase/dyntrace-ppt-poster-reference-driven.png)
+
+**成圖方式：** 在三階段內容之上加入參考構圖原則，讓標題、色塊和視覺錨點更適合簡報與海報閱讀。
+
+### 資料分析圖
+
+以下圖形由 `ccf-visual-composer` 的可重現繪圖方案生成。圖中數值僅用於展示圖形語言，不代表論文實驗結論。
+
+| 組合圖 | 熱圖 |
+|---|---|
+| ![組合圖](assets/visual-showcase/showcase-13-composite-analysis-dashboard.svg) | ![熱圖](assets/visual-showcase/showcase-03-evidence-coverage-heatmap.svg) |
+| **火山圖** | **柱狀圖** |
+| ![火山圖](assets/visual-showcase/showcase-11-volcano-candidate-screen.svg) | ![柱狀圖](assets/visual-showcase/showcase-10-grouped-benchmark-bars.svg) |
+| **坡度圖** | **徑向圖** |
+| ![坡度圖](assets/visual-showcase/showcase-02-revision-lift-slopegraph.svg) | ![徑向圖](assets/visual-showcase/showcase-06-readiness-radial-scorecard.svg) |
+
+更多示例位於 [`assets/visual-showcase/`](assets/visual-showcase/)。
+
+## 寫作如何保持自然
+
+`ccf-paper-writer` 可以學習使用者指定的範文。它關注優秀論文如何提出問題、展開方法、安排證據和控制節奏，但不會複製原句，也不會把某一篇論文變成所有研究的固定模板。
+
+`ccf-humanization` 負責清理那些會遮住學術內容的表達習慣，包括防禦性鋪墊、重複的 caveat、生硬的三項並列、過度使用破折號、為避免重複而頻繁更換術語，以及關於內部版本狀態的敘述。真正影響結論、重現、倫理或投稿要求的事實仍會被保留。需要作者判斷的問題會單獨提醒，而不會悄悄寫進正文。
+
+評審同時回答兩個不同的問題：
+
+![評審與修訂評分](assets/ccfa-skills-review-boundaries.zh-TW.svg)
+
+- **當前稿件是否足以投稿。** 它衡量論文距離目標 venue 的要求還有多遠。
+- **這次修訂是否真正進步。** 它比較新舊版本解決了什麼，又是否引入新的問題。
+
+## 讓圖既好看，也能繼續修改
+
+![繪圖交付方式](assets/ccfa-skills-artifacts.zh-TW.svg)
+
+數值圖優先來自可重現程式和可追溯資料。方法圖、系統圖與架構圖通常先由 GPT Image 2 探索與內容相稱的視覺語言，再詢問使用者是否繼續製作可編輯 SVG、向量 PDF 或 PPTX。常見概念使用風格統一的開源圖示，方法特有的圖示則單獨生成和清理。進入 PPTX 後，文字、框、節點與連接線盡量保留為原生物件，使最終成圖能夠真正修改。
+
+如果使用者明確不使用 GPT Image 2，或希望直接從程式生成，`ccf-visual-composer` 會改用純 SVG 路線並清楚標註。
+
+## 各司其職，彼此接力
+
+![技能協作邊界](assets/ccfa-skills-routing.zh-TW.svg)
+
+清楚的分工讓每項判斷保持可信：
+
+| 你的請求 | 負責的 Skill | 明確不負責 |
+|---|---|---|
+| 給 idea 評分、排序 | `ccf-idea-reviewer` | 不在評分時繼續擴寫方法 |
+| 發展一個模糊 idea | `ccf-idea-optimizer` | 不把排名當成主要目標 |
+| 搜 benchmark 與公開結果 | `ccf-literature-searcher` | 不代替實驗結果作出結論 |
+| 設計 baseline、指標與消融 | `ccf-experiment-designer` | 不改動或虛構結果 |
+| 評審、評分與診斷 | `ccf-paper-reviewer` | 不在評審過程中改寫正文 |
+| 改寫、潤飾與壓縮 | `ccf-paper-writer` | 不在改寫時重新評價研究 |
+| 繪製圖表與 PPTX | `ccf-visual-composer` | 不選擇資料集、指標或數字 |
+
+## 倉庫結構
+
+```text
+CCFA-Skills/
+├── ccf-common/                 # 家族共享規則
+├── ccf-*/SKILL.md              # 17 個 skill 入口
+├── ccf-*/references/           # 按需閱讀的參考資料
+├── ccf-*/scripts/              # 可重現操作
+├── assets/                     # README 圖片與繪圖示例
+├── evaluation/                 # 回歸與消融結果
+├── tools/build_ccfa_diagrams.py
+└── 實驗結果.md
+```
+
+較長的規則放在 `references/`，可重複執行的操作放在 `scripts/`。迭代過程沿用固定檔名，由新版本覆蓋舊版本，避免堆積難以辨認的過程文件。
 
 ## 維護與驗證
 
-```bash
-python ccf-common/scripts/check_v04.py
-python ccf-common/scripts/check_markdown_links.py
-python ccf-common/scripts/check_sources.py
-python ccf-common/scripts/check_path_privacy.py .
-python tools/build_ccfa_diagrams.py
+```powershell
+python ccf-common\scripts\check_v04.py
+python ccf-common\scripts\check_path_privacy.py
+python ccf-common\scripts\check_markdown_links.py
+python ccf-common\scripts\check_sources.py
 ```
+
+這些檢查確認 17 個 skills 能被正確識別，彼此職責清楚，文件連結有效，公開檔案不包含本機路徑或私人資訊。實驗與效率結果見 [實驗結果.md](实验结果.md)。
+
+## 我們堅持的底線
+
+- 不虛構實驗結果、引用、模組或 venue 規則。
+- 私有論文和未公開結果只讀取完成任務所需的內容。
+- 外部檢索與圖像生成只在使用者授權後進行，並且只傳遞完成任務所需的資訊。
+- 使用者可以停用任意 skill，其他 skills 不會繞過這項選擇。
+- 自動評分必須說明量表、比較對象、依據與不確定性。
+
+## 致謝
+
+感謝 [Research-Paper-Writing-Skills](https://github.com/Master-cai/Research-Paper-Writing-Skills) 對學術寫作 skill 開源生態的貢獻。

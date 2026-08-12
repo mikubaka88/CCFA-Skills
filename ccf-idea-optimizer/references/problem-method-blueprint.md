@@ -38,7 +38,15 @@ Failure modes:
 Alternative designs rejected:
 ```
 
-If the method is a combination of known components, identify the non-obvious interaction. If no interaction exists, the idea is likely an engineering assembly and needs a sharper contribution or a stronger benchmark/evidence story.
+Then state the causal chain in one line:
+
+```text
+Intervention -> changed representation/optimization/inference behavior -> measurable intermediate effect -> task-level outcome
+```
+
+When a mechanism comes from prior work, record the source-supported primitive and the optimizer's new interaction separately. The source may justify that a primitive works under its original assumptions; it does not automatically justify transfer, compatibility, or the new paper's central claim.
+
+If the method is a combination of known components, identify the non-obvious interaction, the compatibility condition, and the observation that would distinguish the combination from either component alone. If no such interaction exists, the idea is likely an engineering assembly and needs a sharper contribution or a stronger benchmark/evidence story.
 
 ## Coherence Filter
 

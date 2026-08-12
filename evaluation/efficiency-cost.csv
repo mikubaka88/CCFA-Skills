@@ -1,0 +1,13 @@
+experiment,dimension,model_or_judge,condition_or_candidate,n_jobs,success_rate,mean_seconds,input_tokens,cached_input_tokens,output_tokens,reasoning_tokens,total_tokens,current_cost_usd_or_formula,plus_weekly_pool_usd,plus_weekly_token_quota,api_equivalent_usd,cost_basis
+model_regression_judge,idea,deepseek-v4-flash,gpt-5.5,804,1.0000,20.3117,1202052,331648,1184950,1080865,2387002,0.454571,,,,DeepSeek API token-price estimate
+model_regression_judge,idea,gpt-5.5,deepseek-v4-flash,804,1.0000,54.3707,11148609,7363072,176875,80273,11325484,5*11325484/Q_week,5,Q_week,27.915471,Plus allocation; previous API-equivalent retained separately
+model_regression_judge,writing,deepseek-v4-flash,gpt-5.5,60,1.0000,31.3042,2040524,1305728,308369,298552,2348893,0.192871,,,,DeepSeek API token-price estimate
+model_regression_judge,writing,gpt-5.5,deepseek-v4-flash,60,1.0000,63.0444,1749938,394752,17281,10821,1767219,5*1767219/Q_week,5,Q_week,7.491736,Plus allocation; previous API-equivalent retained separately
+figurebench_subset20,visual,deepseek-v4-flash,routed,20,1.0000,198.3235,,,,,931639,0.156592,,,,Pure-SVG generation; current-artifact DeepSeek API estimate
+figurebench_subset20,visual,gpt-5.5,routed,20,1.0000,100.2885,,,,,443501,5*443501/Q_week,5,Q_week,3.313803,Pure-SVG generation; Plus allocation; previous API-equivalent retained separately
+dyntrace_skill_ablation,visual,gpt-5.6-terra,no-skills-a,1,1.0000,180.3280,254027,220160,7850,929,261877,5*261877/Q_week,5,Q_week,,Pure-SVG generation; Plus allocation
+dyntrace_skill_ablation,visual,gpt-5.6-terra,full-skills-a,2,0.5000,919.5830,646789,589568,12144,1820,658933,>5*658933/Q_week,5,Q_week,,Pure-SVG generation; lower-bound tokens and time
+dyntrace_skill_ablation,visual,gpt-5.6-terra,without-visual-a,1,1.0000,280.6600,611896,553216,9725,1915,621621,5*621621/Q_week,5,Q_week,,Pure-SVG generation; Plus allocation
+dyntrace_skill_ablation,visual,gpt-5.6-terra,no-skills-b,1,1.0000,143.2810,158702,138496,6233,435,164935,5*164935/Q_week,5,Q_week,,Pure-SVG generation; Plus allocation
+dyntrace_skill_ablation,visual,gpt-5.6-terra,full-skills-b,1,1.0000,310.0920,391310,342528,12218,3259,403528,5*403528/Q_week,5,Q_week,,Pure-SVG generation; Plus allocation
+dyntrace_skill_ablation,visual,gpt-5.6-terra,without-visual-b,1,1.0000,321.8860,685140,621056,12150,2265,697290,5*697290/Q_week,5,Q_week,,Pure-SVG generation; Plus allocation

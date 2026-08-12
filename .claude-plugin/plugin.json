@@ -1,7 +1,7 @@
 {
   "name": "ccfa-skills",
-  "version": "0.8.0",
-  "description": "CCFA CCF paper-project workflow skill family.",
+  "version": "0.9.0",
+  "description": "A coordinated skill family for CCF research papers.",
   "skills_root": ".",
   "catalog": "docs/SKILLS_CATALOG.md",
   "entrypoints": [

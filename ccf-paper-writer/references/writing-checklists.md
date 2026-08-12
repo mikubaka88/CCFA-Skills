@@ -12,6 +12,7 @@ Use this for one paragraph, one small subsection, or single-pass polish:
 - Local claims are supported, softened, or flagged.
 - No citation, result, experiment, or reviewer impact is invented.
 - Prose follows `prose-quality-guardrails.md`: no defensive framing, label-heavy symbols, number-only abstract style, third-person manuscript voice, or punctuation-driven structure.
+- Short edited prose has no avoidable em dash, throat-clearing opener, forced triad, synonym cycling, or repeated sentence template.
 - Full paper storyline, full score-risk loop, and final-readiness checks are skipped unless the user requests standard mode.
 
 Visible output default: put the revised text first and preserve the user's original Markdown/LaTeX/citation format. Use this compact status only when useful:
@@ -84,6 +85,11 @@ Use with `prose-quality-guardrails.md` before calling a draft polished:
 - `Q1`, `Q2`, `C1`, `C2`, `RQ1`, and similar labels are absent from running prose unless explicitly required.
 - Equations, theorems, and symbols are introduced with their scientific purpose and do not appear as dense blocks without narration.
 - Quotation marks, colons, dashes, slashes, arrows, and bracketed labels are not used as substitutes for logical transitions.
+- Authored prose prefers zero em dashes and contains no more than three across the full paper, excluding direct quotations.
+- Throat-clearing openers are removed when the following clause can stand directly.
+- Contributions and arguments use their natural number of parts instead of forced three-item lists.
+- Canonical technical terms remain stable; near-synonyms are not rotated for surface variety.
+- No five-sentence run falls into a five-word length band because of repeated syntax.
 - Long compound sentences are split when they mix motivation, mechanism, evidence, and conclusion.
 - Canonical terms are used consistently across abstract, introduction, method, experiments, and conclusion.
 - Strong claims avoid hype and are scoped to available evidence.
@@ -148,6 +154,7 @@ Do not call a paper or section ready until:
 - The target venue/custom format is clear.
 - The global story is internally consistent.
 - The prose quality checklist has no high-risk pattern remaining.
+- `scripts/check_prose_quality.py --strict` has no error or warning for a full section or paper when local execution is available; advisory terms have been reviewed in context.
 - Central claims have visible support.
 - Closest prior work and strongest baselines are handled.
 - Venue-specific evidence is visible in the main paper.

@@ -1,593 +1,566 @@
-#!/usr/bin/env python3
-"""Generate CCFA documentation SVG diagrams.
-
-The generator is the source of truth. Do not hand-edit generated SVG files
-without backporting the change here.
-"""
-
 from __future__ import annotations
 
 from html import escape
 from pathlib import Path
-import textwrap
 
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
-W = 1800
 
-BG = "#F6F8FB"
-PANEL = "#FFFFFF"
-INK = "#15202B"
-MUTED = "#5A6775"
-SOFT = "#E5ECF3"
-NAVY = "#102033"
-BLUE = "#1F6F8B"
-
-COLORS = {
-    "setup": "#1F7A8C",
-    "idea": "#D2673D",
-    "evidence": "#6657A8",
-    "writing": "#2D3742",
-    "review": "#B58B2A",
-    "audit": "#8A4F86",
-    "submission": "#BA4C5E",
-    "post": "#477AA6",
-    "gov": "#5D6977",
-}
-
-SKILL_STAGE = {
-    "ccf-humanization": "writing",
-    "ccf-project-scaffolder": "setup",
-    "ccf-pipeline-orchestrator": "setup",
-    "ccf-idea-optimizer": "idea",
-    "ccf-idea-reviewer": "idea",
-    "ccf-literature-monitor": "evidence",
-    "ccf-literature-searcher": "evidence",
-    "ccf-experiment-designer": "evidence",
-    "ccf-visual-composer": "evidence",
-    "ccf-paper-to-exemplar": "writing",
-    "ccf-paper-writer": "writing",
-    "ccf-paper-reviewer": "review",
-    "ccf-integrity-auditor": "audit",
-    "ccf-submission-checker": "submission",
-    "ccf-rebuttal-writer": "post",
-    "ccf-common": "gov",
-    "ccf-skill-forger": "gov",
-}
-
-SKILLS = list(SKILL_STAGE)
 
 LANG = {
     "en": {
         "suffix": "",
-        "font": "Inter, Segoe UI, Arial, sans-serif",
-        "tag": "current · 17 owner skills · one paper-project loop",
-        "architecture": ("CCFA Skill Family Logic", "Main research chain, shared state, governance, and revision loop."),
-        "workflow": ("End-to-End Paper Workflow", "Every stage leaves a concrete artifact and hands off to one owner."),
-        "catalog": ("Installable Runtime Skills", "The 17-skill surface starts with humanization, then routes to one content owner."),
-        "routing": ("Routing Boundaries", "Similar prompts route to one owner skill to avoid trigger conflicts."),
-        "artifacts": ("Artifact Contract", "ccfa.yaml and files connect idea, evidence, manuscript, reviews, package, and rebuttal."),
-        "review": ("Review, Audit, And Action Boundaries", "Judgment, factual integrity, package readiness, rewriting, and response stay separate."),
-        "installation": ("Installation Sets", "Partial installs are supported, but ccf-common is always required."),
-        "demo": ("Attention Demo Loop", "Original Transformer paper to ICLR-style writing, review, rebuttal, and checks."),
+        "title": "CCFA Skills family",
+        "subtitle": "A coordinated skill family for CCF-style research papers",
+        "groups": {
+            "governance": "Governance",
+            "ideation": "Ideation",
+            "evidence": "Evidence",
+            "writing": "Writing",
+            "delivery": "Delivery",
+            "maintenance": "Maintenance",
+        },
     },
     "zh-CN": {
         "suffix": ".zh-CN",
-        "font": "Microsoft YaHei, Segoe UI, Arial, sans-serif",
-        "tag": "当前 · 17 个 owner skills · 一个论文项目闭环",
-        "architecture": ("CCFA 技能家族逻辑", "主研究链路、共享状态、治理层和修改回路。"),
-        "workflow": ("端到端论文流程", "每个阶段都留下具体 artifact，并交给唯一 owner。"),
-        "catalog": ("可安装 Runtime Skills", "17 个入口先做人类化预检，再路由到唯一内容 owner。"),
-        "routing": ("路由边界", "相似请求只进入一个 owner skill，避免触发冲突。"),
-        "artifacts": ("Artifact 合约", "ccfa.yaml 与文件串联 idea、证据、正文、评审、投稿包和 rebuttal。"),
-        "review": ("评审、审计与行动边界", "判断、事实完整性、投稿检查、改写和回应分开处理。"),
-        "installation": ("安装组合", "支持部分安装，但任何组合都必须包含 ccf-common。"),
-        "demo": ("Attention Demo 闭环", "从 Transformer 原文到 ICLR 风格写作、评审、rebuttal 与检查。"),
+        "title": "CCFA Skills 家族",
+        "subtitle": "面向 CCF 论文研究的协作式 skill 家族",
+        "groups": {
+            "governance": "共同规则",
+            "ideation": "选题",
+            "evidence": "研究证据",
+            "writing": "论文表达",
+            "delivery": "图表与投稿",
+            "maintenance": "家族完善",
+        },
     },
     "zh-TW": {
         "suffix": ".zh-TW",
-        "font": "Microsoft JhengHei, Segoe UI, Arial, sans-serif",
-        "tag": "當前 · 17 個 owner skills · 一個論文專案閉環",
-        "architecture": ("CCFA 技能家族邏輯", "主研究鏈路、共享狀態、治理層和修改回路。"),
-        "workflow": ("端到端論文流程", "每個階段都留下具體 artifact，並交給唯一 owner。"),
-        "catalog": ("可安裝 Runtime Skills", "17 個入口先做人類化預檢，再路由到唯一內容 owner。"),
-        "routing": ("路由邊界", "相似請求只進入一個 owner skill，避免觸發衝突。"),
-        "artifacts": ("Artifact 合約", "ccfa.yaml 與檔案串聯 idea、證據、正文、審稿、投稿包和 rebuttal。"),
-        "review": ("審稿、稽核與行動邊界", "判斷、事實完整性、投稿檢查、改寫和回應分開處理。"),
-        "installation": ("安裝組合", "支援部分安裝，但任何組合都必須包含 ccf-common。"),
-        "demo": ("Attention Demo 閉環", "從 Transformer 原文到 ICLR 風格寫作、審稿、rebuttal 與檢查。"),
-    },
-}
-
-ROLE = {
-    "en": {
-        "ccf-humanization": "direct prose, full methods",
-        "ccf-project-scaffolder": "project folders, template, ccfa.yaml",
-        "ccf-pipeline-orchestrator": "stage plan, gates, handoffs",
-        "ccf-idea-optimizer": "explore, rescue, shape idea",
-        "ccf-idea-reviewer": "score, rank, staged risk",
-        "ccf-literature-monitor": "new papers, competitors, overlap",
-        "ccf-literature-searcher": "prior art, open gaps, benchmarks",
-        "ccf-experiment-designer": "baselines, ablations, result specs",
-        "ccf-visual-composer": "Python plots, visuals, layout QA",
-        "ccf-paper-to-exemplar": "PDFs to writing exemplar cards",
-        "ccf-paper-writer": "draft, budget, compress, present",
-        "ccf-paper-reviewer": "science and writing review",
-        "ccf-integrity-auditor": "claims, numbers, citations",
-        "ccf-submission-checker": "venue, PDF, anonymity, artifacts",
-        "ccf-rebuttal-writer": "response, ledger, resubmission",
-        "ccf-common": "routing, policy, source registry",
-        "ccf-skill-forger": "skills, docs, diagrams, release",
-    },
-    "zh-CN": {
-        "ccf-humanization": "纯学术表达、warning 隔离、完整方法",
-        "ccf-project-scaffolder": "目录、模板、ccfa.yaml",
-        "ccf-pipeline-orchestrator": "阶段计划、gate、handoff",
-        "ccf-idea-optimizer": "探索、救援、塑形",
-        "ccf-idea-reviewer": "评分、排序、阶段风险",
-        "ccf-literature-monitor": "新论文、竞品、overlap",
-        "ccf-literature-searcher": "prior art、open gap、benchmark",
-        "ccf-experiment-designer": "baseline、消融、结果规格",
-        "ccf-visual-composer": "Python 绘图、图表、排版 QA",
-        "ccf-paper-to-exemplar": "PDF 转写作范例卡",
-        "ccf-paper-writer": "起草、篇幅、压缩、展示",
-        "ccf-paper-reviewer": "科学评审和写作评审",
-        "ccf-integrity-auditor": "claim、数字、引用",
-        "ccf-submission-checker": "会议、PDF、匿名、artifact",
-        "ccf-rebuttal-writer": "回应、ledger、重投",
-        "ccf-common": "路由、策略、source registry",
-        "ccf-skill-forger": "skills、文档、图、release",
-    },
-    "zh-TW": {
-        "ccf-humanization": "純學術表達、warning 隔離、完整方法",
-        "ccf-project-scaffolder": "目錄、模板、ccfa.yaml",
-        "ccf-pipeline-orchestrator": "階段計畫、gate、handoff",
-        "ccf-idea-optimizer": "探索、救援、塑形",
-        "ccf-idea-reviewer": "評分、排序、階段風險",
-        "ccf-literature-monitor": "新論文、競品、overlap",
-        "ccf-literature-searcher": "prior art、open gap、benchmark",
-        "ccf-experiment-designer": "baseline、消融、結果規格",
-        "ccf-visual-composer": "Python 繪圖、圖表、排版 QA",
-        "ccf-paper-to-exemplar": "PDF 轉寫作範例卡",
-        "ccf-paper-writer": "起草、篇幅、壓縮、展示",
-        "ccf-paper-reviewer": "科學審稿和寫作審稿",
-        "ccf-integrity-auditor": "claim、數字、引用",
-        "ccf-submission-checker": "會議、PDF、匿名、artifact",
-        "ccf-rebuttal-writer": "回應、ledger、重投",
-        "ccf-common": "路由、策略、source registry",
-        "ccf-skill-forger": "skills、文件、圖、release",
+        "title": "CCFA Skills 家族",
+        "subtitle": "面向 CCF 論文研究的協作式 skill 家族",
+        "groups": {
+            "governance": "共同規則",
+            "ideation": "選題",
+            "evidence": "研究證據",
+            "writing": "論文表達",
+            "delivery": "圖表與投稿",
+            "maintenance": "家族完善",
+        },
     },
 }
 
 
-def esc(value: str) -> str:
-    return escape(value, quote=False)
+PALETTE = {
+    "ink": "#233044",
+    "muted": "#667085",
+    "line": "#D9E1F2",
+    "bg": "#F8FAFF",
+    "white": "#FFFFFF",
+    "blue": "#DDEBFF",
+    "blue2": "#7AA7FF",
+    "purple": "#E9DFFF",
+    "purple2": "#9D7BFF",
+    "red": "#FFE1E1",
+    "red2": "#FF8A8A",
+    "green": "#DFF7EA",
+    "green2": "#58C58A",
+    "orange": "#FFE9C7",
+    "orange2": "#FFB552",
+}
 
 
-def rect(x: int, y: int, w: int, h: int, fill: str, stroke: str = "none", rx: int = 18, extra: str = "") -> str:
-    return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{rx}" fill="{fill}" stroke="{stroke}" stroke-width="2" {extra}/>'
+ROLES = {
+    "ccf-common": ("Shared rules", "共同规则", "共同規則"),
+    "ccf-pipeline-orchestrator": ("Plan", "规划", "規劃"),
+    "ccf-project-scaffolder": ("Project setup", "项目起步", "專案起步"),
+    "ccf-idea-reviewer": ("Score ideas", "选题评分", "選題評分"),
+    "ccf-idea-optimizer": ("Shape ideas", "优化选题", "優化選題"),
+    "ccf-literature-searcher": ("Search literature", "文献检索", "文獻檢索"),
+    "ccf-literature-monitor": ("Track new work", "前沿追踪", "前沿追蹤"),
+    "ccf-experiment-designer": ("Design evidence", "实验设计", "實驗設計"),
+    "ccf-integrity-auditor": ("Check integrity", "完整性核验", "完整性核驗"),
+    "ccf-paper-reviewer": ("Independent review", "独立评审", "獨立評審"),
+    "ccf-paper-writer": ("Write and revise", "写作改写", "寫作改寫"),
+    "ccf-humanization": ("Natural academic prose", "自然学术表达", "自然學術表達"),
+    "ccf-rebuttal-writer": ("Rebuttal", "回复审稿", "回覆審稿"),
+    "ccf-visual-composer": ("Figures", "绘图", "繪圖"),
+    "ccf-submission-checker": ("Submission", "投稿检查", "投稿檢查"),
+    "ccf-paper-to-exemplar": ("Writing exemplars", "范文学习", "範文學習"),
+    "ccf-skill-forger": ("Maintain skills", "家族维护", "家族維護"),
+}
 
 
-def line(x1: int, y1: int, x2: int, y2: int, color: str = "#94A3B8", width: int = 3, arrow: bool = True) -> str:
+GROUPS = {
+    "governance": ["ccf-common", "ccf-pipeline-orchestrator", "ccf-project-scaffolder"],
+    "ideation": ["ccf-idea-reviewer", "ccf-idea-optimizer"],
+    "evidence": ["ccf-literature-searcher", "ccf-literature-monitor", "ccf-experiment-designer", "ccf-integrity-auditor"],
+    "writing": ["ccf-paper-reviewer", "ccf-paper-writer", "ccf-humanization", "ccf-rebuttal-writer"],
+    "delivery": ["ccf-visual-composer", "ccf-submission-checker", "ccf-paper-to-exemplar"],
+    "maintenance": ["ccf-skill-forger"],
+}
+
+
+def tr(role: str, lang: str) -> str:
+    value = ROLES[role]
+    if lang == "en":
+        return value[0]
+    if lang == "zh-CN":
+        return value[1]
+    return value[2]
+
+
+def attrs(**kwargs: object) -> str:
+    return " ".join(f'{k.replace("_", "-")}="{escape(str(v), quote=True)}"' for k, v in kwargs.items() if v is not None)
+
+
+def text(x: int, y: int, content: str, size: int = 16, weight: int = 500, fill: str | None = None, anchor: str = "start") -> str:
+    return f'<text {attrs(x=x, y=y, font_size=size, font_weight=weight, fill=fill or PALETTE["ink"], text_anchor=anchor)}>{escape(content)}</text>'
+
+
+def rect(x: int, y: int, w: int, h: int, fill: str, stroke: str | None = None, r: int = 18, extra: str = "") -> str:
+    return f'<rect {attrs(x=x, y=y, width=w, height=h, rx=r, fill=fill, stroke=stroke or PALETTE["line"], stroke_width=1.4)} {extra}/>'
+
+
+def line(x1: int, y1: int, x2: int, y2: int, color: str = "#AAB7D4", width: float = 2.0, arrow: bool = True) -> str:
     marker = ' marker-end="url(#arrow)"' if arrow else ""
-    return f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{color}" stroke-width="{width}" stroke-linecap="round"{marker}/>'
+    return f'<line {attrs(x1=x1, y1=y1, x2=x2, y2=y2, stroke=color, stroke_width=width, stroke_linecap="round")}{marker}/>'
 
 
-def path(d: str, color: str = "#94A3B8", width: int = 3, arrow: bool = True) -> str:
+def path(d: str, color: str = "#AAB7D4", width: float = 2.0, arrow: bool = False, dash: str | None = None) -> str:
     marker = ' marker-end="url(#arrow)"' if arrow else ""
-    return f'<path d="{d}" fill="none" stroke="{color}" stroke-width="{width}" stroke-linecap="round" stroke-linejoin="round"{marker}/>'
+    dash_attr = f' stroke-dasharray="{dash}"' if dash else ""
+    return f'<path d="{d}" fill="none" stroke="{color}" stroke-width="{width}" stroke-linecap="round" stroke-linejoin="round"{marker}{dash_attr}/>'
 
 
-def text(x: int, y: int, value: str, size: int, weight: int = 500, fill: str = INK, anchor: str = "start") -> str:
-    return f'<text x="{x}" y="{y}" font-size="{size}" font-weight="{weight}" fill="{fill}" text-anchor="{anchor}">{esc(value)}</text>'
+def circle(cx: int, cy: int, r: int, fill: str, stroke: str | None = None, width: float = 1.4, extra: str = "") -> str:
+    return f'<circle {attrs(cx=cx, cy=cy, r=r, fill=fill, stroke=stroke or PALETTE["line"], stroke_width=width)} {extra}/>'
 
 
-def wrap_lines(value: str, width: int) -> list[str]:
-    if not value:
-        return []
-    if " " not in value and len(value) > width:
-        return [value[i : i + width] for i in range(0, len(value), width)]
-    return textwrap.wrap(value, width=width, break_long_words=False) or [value]
+def defs() -> str:
+    return """
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#8EA0C5"/>
+  </marker>
+  <filter id="softShadow" x="-15%" y="-20%" width="130%" height="145%">
+    <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#2F3A5F" flood-opacity="0.10"/>
+  </filter>
+  <linearGradient id="hero" x1="0" x2="1" y1="0" y2="1">
+    <stop offset="0%" stop-color="#F8FAFF"/>
+    <stop offset="100%" stop-color="#EEF3FF"/>
+  </linearGradient>
+</defs>
+"""
 
 
-def wrapped_text(x: int, y: int, value: str, size: int, weight: int = 500, fill: str = INK, width: int = 30, line_gap: int = 22) -> list[str]:
-    return [text(x, y + i * line_gap, line, size, weight, fill) for i, line in enumerate(wrap_lines(value, width))]
+def svg(width: int, height: int, body: str) -> str:
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img">
+{defs()}
+<rect width="{width}" height="{height}" fill="url(#hero)"/>
+<style>
+text {{ font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; }}
+.small {{ fill: {PALETTE["muted"]}; font-size: 13px; }}
+.mono {{ font-family: "JetBrains Mono", Consolas, monospace; }}
+</style>
+{body}
+</svg>
+"""
 
 
-def start(height: int, lang: str, key: str) -> list[str]:
-    title, subtitle = LANG[lang][key]
-    font = LANG[lang]["font"]
-    return [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{height}" viewBox="0 0 {W} {height}">',
-        "<defs>",
-        '<linearGradient id="header" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#102033"/><stop offset="0.58" stop-color="#1F6F8B"/><stop offset="1" stop-color="#7A4E9B"/></linearGradient>',
-        '<filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#0B1826" flood-opacity="0.13"/></filter>',
-        '<marker id="arrow" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto"><path d="M2,2 L11,6.5 L2,11 Z" fill="#7B8794"/></marker>',
-        "</defs>",
-        f'<style>text{{font-family:{font};dominant-baseline:auto}} .mono{{font-family:Consolas,Menlo,monospace}}</style>',
-        rect(0, 0, W, height, BG, "none", 0),
-        rect(0, 0, W, 158, "url(#header)", "none", 0),
-        text(72, 66, title, 44, 850, "#FFFFFF"),
-        text(72, 108, subtitle, 20, 500, "#D8E6F2"),
-        text(W - 72, 132, LANG[lang]["tag"], 16, 650, "#D8E6F2", "end"),
+def write_svg(name: str, lang: str, content: str) -> None:
+    ASSETS.mkdir(exist_ok=True)
+    path = ASSETS / f"{name}{LANG[lang]['suffix']}.svg"
+    path.write_text(content, encoding="utf-8")
+
+
+def build_hero(lang: str) -> None:
+    copy = {
+        "en": {
+            "eyebrow": "A skill family for research papers",
+            "title_lines": ["From research idea", "to submission"],
+            "subtitle_lines": [
+                "17 focused skills for literature, experiments, writing,",
+                "review, figures, and submission.",
+            ],
+            "chips": ["Focused collaboration", "Evidence-grounded writing", "Editable scientific figures"],
+            "nodes": ["Idea", "Evidence", "Manuscript", "Visuals", "Submission"],
+            "hub_label": "Family",
+            "footer": "Each task meets the skill that understands it best.",
+            "footer_detail": "Shared context · Academic expression · Scientific figures",
+        },
+        "zh-CN": {
+            "eyebrow": "为科研论文而生的 skill 家族",
+            "title_lines": ["从研究想法到论文投稿"],
+            "subtitle_lines": ["17 个彼此协作的 skills，覆盖文献、实验、写作、审稿、绘图与投稿检查。"],
+            "chips": ["清晰分工", "证据支撑写作", "可编辑科研图"],
+            "nodes": ["选题", "证据", "论文", "绘图", "投稿"],
+            "hub_label": "家族",
+            "footer": "让每项任务交给最理解它的 skill。",
+            "footer_detail": "任务理解 · 学术表达 · 科研绘图",
+        },
+        "zh-TW": {
+            "eyebrow": "為研究論文而生的 skill 家族",
+            "title_lines": ["從研究想法到論文投稿"],
+            "subtitle_lines": ["17 個彼此協作的 skills，涵蓋文獻、實驗、寫作、審稿、繪圖與投稿檢查。"],
+            "chips": ["清晰分工", "證據支撐寫作", "可編輯科研圖"],
+            "nodes": ["選題", "證據", "論文", "繪圖", "投稿"],
+            "hub_label": "家族",
+            "footer": "讓每項任務交給最理解它的 skill。",
+            "footer_detail": "任務理解 · 學術表達 · 科研繪圖",
+        },
+    }[lang]
+    body = [
+        '<path d="M0 0 H1400 V620 H0 Z" fill="#F8FAFF"/>',
+        '<path d="M730 0 C900 80 860 230 1040 280 C1190 320 1260 210 1400 250 V0 Z" fill="#EEF3FF"/>',
+        '<path d="M810 620 C900 500 1040 540 1120 420 C1210 290 1290 370 1400 320 V620 Z" fill="#F2ECFF" opacity="0.75"/>',
+        text(72, 92, copy["eyebrow"], 17, 800, PALETTE["purple2"]),
     ]
+    if lang == "en":
+        body.extend([
+            text(72, 151, copy["title_lines"][0], 43, 900),
+            text(72, 200, copy["title_lines"][1], 43, 900),
+            text(72, 239, copy["subtitle_lines"][0], 17, 500, PALETTE["muted"]),
+            text(72, 265, copy["subtitle_lines"][1], 17, 500, PALETTE["muted"]),
+        ])
+        chip_y = 294
+        chip_widths = [174, 205, 205]
+    else:
+        body.extend([
+            text(72, 168, copy["title_lines"][0], 46, 900),
+            text(72, 213, copy["subtitle_lines"][0], 19, 500, PALETTE["muted"]),
+        ])
+        chip_y = 258
+        chip_widths = [148, 168, 156]
+    chip_x = 72
+    chip_colors = [PALETTE["blue"], PALETTE["green"], PALETTE["orange"]]
+    for label, color, w in zip(copy["chips"], chip_colors, chip_widths):
+        body.append(rect(chip_x, chip_y, w, 42, color, r=21, stroke=color))
+        body.append(text(chip_x + w // 2, chip_y + 27, label, 13, 750, anchor="middle"))
+        chip_x += w + 14
 
-
-def finish(parts: list[str], name: str, lang: str) -> None:
-    parts.append("</svg>")
-    suffix = LANG[lang]["suffix"]
-    (ASSETS / f"ccfa-skills-{name}{suffix}.svg").write_text("\n".join(parts) + "\n", encoding="utf-8")
-
-
-def chip(parts: list[str], x: int, y: int, label: str, color: str, w: int = 210) -> None:
-    parts.append(rect(x, y, w, 38, color, "none", 19))
-    parts.append(text(x + w // 2, y + 25, label, 15, 760, "#FFFFFF", "middle"))
-
-
-def skill_card(parts: list[str], x: int, y: int, skill: str, lang: str, w: int = 260, h: int = 92) -> None:
-    color = COLORS[SKILL_STAGE[skill]]
-    parts.append(rect(x, y, w, h, PANEL, "none", 18, 'filter="url(#shadow)"'))
-    parts.append(rect(x, y, 8, h, color, "none", 18))
-    parts.append(text(x + 24, y + 34, skill, 15, 820, INK))
-    wrap_width = max(27, (w - 72) // 9)
-    for line_i, line_text in enumerate(wrap_lines(ROLE[lang][skill], wrap_width)):
-        parts.append(text(x + 24, y + 59 + line_i * 18, line_text, 13, 520, MUTED))
-
-
-def stage_panel(parts: list[str], x: int, y: int, title: str, skills: list[str], lang: str, color: str, w: int = 260) -> None:
-    h = 82 + len(skills) * 82
-    parts.append(rect(x, y, w, h, "#FFFFFF", "none", 24, 'filter="url(#shadow)"'))
-    parts.append(rect(x, y, w, 52, color, "none", 24))
-    parts.append(text(x + 22, y + 34, title, 18, 820, "#FFFFFF"))
-    for i, skill in enumerate(skills):
-        skill_card(parts, x + 18, y + 70 + i * 82, skill, lang, w - 36, 66)
+    # A routed research constellation: the geometry carries the product message.
+    hub_x, hub_y = 1035, 305
+    body.extend([
+        circle(hub_x, hub_y, 88, PALETTE["white"], PALETTE["purple2"], 3.0, 'filter="url(#softShadow)"'),
+        circle(hub_x, hub_y, 58, "#F2ECFF", PALETTE["purple2"], 1.5),
+        text(hub_x, hub_y - 3, "CCFA", 25, 900, anchor="middle"),
+        text(hub_x, hub_y + 25, copy["hub_label"], 15, 750, PALETTE["muted"], "middle"),
+    ])
+    nodes = [(855, 135), (1160, 120), (1270, 310), (1165, 505), (850, 485)]
+    fills = [PALETTE["purple"], PALETTE["green"], PALETTE["red"], PALETTE["orange"], PALETTE["blue"]]
+    accents = [PALETTE["purple2"], PALETTE["green2"], PALETTE["red2"], PALETTE["orange2"], PALETTE["blue2"]]
+    for (nx, ny), label, fill, accent in zip(nodes, copy["nodes"], fills, accents):
+        dx = nx - hub_x
+        dy = ny - hub_y
+        body.append(path(f"M {hub_x + dx * 0.63:.0f} {hub_y + dy * 0.63:.0f} Q {(hub_x + nx) / 2 + dy * 0.10:.0f} {(hub_y + ny) / 2 - dx * 0.10:.0f} {nx} {ny}", accent, 3.2, False))
+        body.append(circle(nx, ny, 57, fill, accent, 2.0, 'filter="url(#softShadow)"'))
+        body.append(circle(nx, ny - 11, 12, accent, accent, 1.0))
+        body.append(text(nx, ny + 27, label, 15, 800, anchor="middle"))
+    body.extend([
+        path("M 855 135 Q 1000 45 1160 120", PALETTE["line"], 1.8, False, "5 8"),
+        path("M 1160 120 Q 1340 170 1270 310", PALETTE["line"], 1.8, False, "5 8"),
+        path("M 1270 310 Q 1320 450 1165 505", PALETTE["line"], 1.8, False, "5 8"),
+        path("M 1165 505 Q 980 590 850 485", PALETTE["line"], 1.8, False, "5 8"),
+        rect(72, 410, 590, 92, PALETTE["white"], r=24, extra='filter="url(#softShadow)"'),
+        circle(112, 456, 17, PALETTE["green"], PALETTE["green2"], 1.6),
+        text(112, 462, "✓", 18, 900, PALETTE["green2"], "middle"),
+        text(145, 451, copy["footer"], 15, 700),
+        text(145, 476, copy["footer_detail"], 13, 600, PALETTE["muted"]),
+    ])
+    write_svg("ccfa-skills-hero", lang, svg(1400, 620, "\n".join(body)))
 
 
 def build_architecture(lang: str) -> None:
-    parts = start(1400, lang, "architecture")
-    labels = {
-        "en": ["Setup", "Idea Formation", "Evidence", "Manuscript", "Assurance", "Submit / Respond", "Revision loop", "shared project state", "Governance"],
-        "zh-CN": ["搭建", "选题成型", "证据", "正文", "质量保障", "投稿 / 回应", "修改回路", "共享项目状态", "治理层"],
-        "zh-TW": ["搭建", "選題成型", "證據", "正文", "品質保障", "投稿 / 回應", "修改回路", "共享專案狀態", "治理層"],
+    l = LANG[lang]
+    subtitle = {
+        "en": "Clear responsibilities and coherent transitions from idea to submission",
+        "zh-CN": "从研究方向到投稿检查，分工清晰，衔接连贯",
+        "zh-TW": "從研究方向到投稿檢查，分工清晰，銜接連貫",
     }[lang]
-    groups = [
-        (labels[0], 70, 228, ["ccf-humanization", "ccf-project-scaffolder", "ccf-pipeline-orchestrator"], COLORS["setup"]),
-        (labels[1], 650, 228, ["ccf-idea-optimizer", "ccf-idea-reviewer"], COLORS["idea"]),
-        (labels[2], 1230, 228, ["ccf-literature-monitor", "ccf-literature-searcher", "ccf-experiment-designer"], COLORS["evidence"]),
-        (labels[3], 70, 560, ["ccf-visual-composer", "ccf-paper-to-exemplar", "ccf-paper-writer"], COLORS["writing"]),
-        (labels[4], 650, 560, ["ccf-paper-reviewer", "ccf-integrity-auditor"], COLORS["review"]),
-        (labels[5], 1230, 560, ["ccf-submission-checker", "ccf-rebuttal-writer"], COLORS["submission"]),
+    labels = {
+        "en": [
+            ("Research direction", "idea review · idea optimization"),
+            ("Evidence construction", "literature · experiments · integrity"),
+            ("Publication narrative", "review · writing · humanization · rebuttal"),
+            ("Scientific delivery", "figures · exemplars · submission"),
+        ],
+        "zh-CN": [
+            ("研究方向", "选题评审 · 选题优化"),
+            ("证据构建", "文献 · 实验 · 完整性核验"),
+            ("论文叙事", "评审 · 写作 · 学术表达 · 审稿回复"),
+            ("科研交付", "绘图 · 范文 · 投稿检查"),
+        ],
+        "zh-TW": [
+            ("研究方向", "選題評審 · 選題優化"),
+            ("證據構建", "文獻 · 實驗 · 完整性核驗"),
+            ("論文敘事", "評審 · 寫作 · 學術表達 · 審稿回覆"),
+            ("研究交付", "繪圖 · 範文 · 投稿檢查"),
+        ],
+    }[lang]
+    route_title = {"en": "Understand the task", "zh-CN": "理解任务", "zh-TW": "理解任務"}[lang]
+    owner_rule = {"en": "one task · one owner", "zh-CN": "每项任务 · 明确负责", "zh-TW": "每項任務 · 明確負責"}[lang]
+    sidecar = {"en": "Supporting checks", "zh-CN": "辅助检查", "zh-TW": "輔助檢查"}[lang]
+    artifact = {"en": "Traceable result", "zh-CN": "可追溯成果", "zh-TW": "可追溯成果"}[lang]
+    owner_label = {"en": ("Owner", "skill"), "zh-CN": ("主责", "模块"), "zh-TW": ("主責", "模組")}[lang]
+    footer = {
+        "en": "Project planning · Project setup · Skill family maintenance",
+        "zh-CN": "项目规划 · 项目起步 · 家族维护",
+        "zh-TW": "專案規劃 · 專案起步 · 家族維護",
+    }[lang]
+    body = [
+        text(60, 62, l["title"], 32, 800),
+        text(60, 92, subtitle, 16, 500, PALETTE["muted"]),
+        rect(56, 130, 1288, 535, PALETTE["white"], r=30, extra='filter="url(#softShadow)"'),
+        rect(90, 275, 185, 170, PALETTE["blue"], r=35),
+        circle(182, 330, 31, PALETTE["white"], PALETTE["blue2"], 2.0),
+        text(182, 337, "↗", 26, 900, PALETTE["blue2"], "middle"),
+        text(182, 388, route_title, 19, 850, anchor="middle"),
+        text(182, 418, "ccf-common", 14, 700, PALETTE["muted"], "middle"),
+        path("M 275 360 C 330 360 340 205 400 205", PALETTE["blue2"], 3.0, True),
+        path("M 275 360 C 330 360 340 325 400 325", PALETTE["green2"], 3.0, True),
+        path("M 275 360 C 330 360 340 445 400 445", PALETTE["red2"], 3.0, True),
+        path("M 275 360 C 330 360 340 565 400 565", PALETTE["orange2"], 3.0, True),
     ]
-    for title, x, y, skills, color in groups:
-        stage_panel(parts, x, y, title, skills, lang, color, 500)
-    parts.append(line(570, 370, 650, 370))
-    parts.append(line(1150, 370, 1230, 370))
-    parts.append(path("M1480 492 C1480 530 320 530 320 560", "#94A3B8", 3))
-    parts.append(line(570, 680, 650, 680))
-    parts.append(line(1150, 680, 1230, 680))
-    parts.append(path("M1480 828 C1420 910 390 910 320 828", COLORS["post"], 4))
-    parts.append(text(900, 890, labels[6], 20, 820, COLORS["post"], "middle"))
+    ys = [205, 325, 445, 565]
+    fills = [PALETTE["purple"], PALETTE["green"], PALETTE["red"], PALETTE["orange"]]
+    accents = [PALETTE["purple2"], PALETTE["green2"], PALETTE["red2"], PALETTE["orange2"]]
+    symbols = ["◇", "▦", "¶", "✦"]
+    for (title_, detail), y, fill, accent, symbol in zip(labels, ys, fills, accents, symbols):
+        body.append(rect(400, y - 47, 470, 94, fill, stroke=accent, r=28))
+        body.append(circle(442, y, 23, PALETTE["white"], accent, 1.6))
+        body.append(text(442, y + 7, symbol, 19, 850, accent, "middle"))
+        body.append(text(480, y - 5, title_, 18, 850))
+        body.append(text(480, y + 23, detail, 13, 650, PALETTE["muted"]))
+        body.append(path(f"M 870 {y} C 920 {y} 920 360 960 360", accent, 2.8, True))
 
-    parts.append(rect(350, 930, 1100, 118, NAVY, "none", 30, 'filter="url(#shadow)"'))
-    parts.append(text(900, 980, "ccfa.yaml", 36, 850, "#FFFFFF", "middle"))
-    parts.append(text(900, 1015, labels[7], 18, 500, "#D8E6F2", "middle"))
-    for i, item in enumerate(["idea", "literature", "experiments", "manuscript", "reviews", "submission", "ledger"]):
-        chip(parts, 410 + i * 150, 1068, item, BLUE, 128)
-
-    stage_panel(parts, 420, 1120, labels[8], ["ccf-common", "ccf-skill-forger"], lang, COLORS["gov"], 960)
-    finish(parts, "architecture", lang)
+    body.extend([
+        rect(970, 250, 165, 220, "#F4F0FF", stroke=PALETTE["purple2"], r=34),
+        text(1052, 292, owner_rule, 15, 850, anchor="middle"),
+        circle(1052, 355, 46, PALETTE["white"], PALETTE["purple2"], 2.2),
+        text(1052, 349, owner_label[0], 16, 900, PALETTE["purple2"], "middle"),
+        text(1052, 371, owner_label[1], 13, 750, PALETTE["muted"], "middle"),
+        rect(991, 420, 122, 32, PALETTE["white"], stroke=PALETTE["line"], r=16),
+        text(1052, 441, sidecar, 12, 750, anchor="middle"),
+        path("M 1135 360 C 1170 360 1170 360 1200 360", PALETTE["purple2"], 3.0, True),
+        rect(1204, 295, 105, 130, PALETTE["blue"], stroke=PALETTE["blue2"], r=26),
+        text(1256, 340, "✓", 28, 900, PALETTE["green2"], "middle"),
+        text(1256, 379, artifact, 13, 850, anchor="middle"),
+        text(1256, 402, "ccfa.yaml", 11, 650, PALETTE["muted"], "middle"),
+        text(635, 633, footer, 13, 650, PALETTE["muted"], "middle"),
+    ])
+    write_svg("ccfa-skills-architecture", lang, svg(1400, 720, "\n".join(body)))
 
 
 def build_workflow(lang: str) -> None:
-    parts = start(1240, lang, "workflow")
+    title = {"en": "A research workflow that stays coherent", "zh-CN": "彼此衔接的科研工作流", "zh-TW": "彼此銜接的研究工作流程"}[lang]
     steps = {
-        "en": [
-            ("Humanize", "direct prose + full methods", "ccf-humanization"),
-            ("Scaffold", "project tree + ccfa.yaml", "ccf-project-scaffolder"),
-            ("Plan", "stage gates + owners", "ccf-pipeline-orchestrator"),
-            ("Shape Idea", "rescue + insight", "ccf-idea-optimizer"),
-            ("Stage Review", "score + staged risks", "ccf-idea-reviewer"),
-            ("Monitor", "new papers + competitors", "ccf-literature-monitor"),
-            ("Search", "prior art + open gaps", "ccf-literature-searcher"),
-            ("Experiment", "baselines + result specs", "ccf-experiment-designer"),
-            ("Visuals", "plot recipes + layout QA", "ccf-visual-composer"),
-            ("Exemplar", "PDFs to style cards", "ccf-paper-to-exemplar"),
-            ("Write", "venue-aware manuscript", "ccf-paper-writer"),
-            ("Review", "scientific + writing report", "ccf-paper-reviewer"),
-            ("Audit", "claims + citations", "ccf-integrity-auditor"),
-            ("Submit", "PDF + anonymity + artifacts", "ccf-submission-checker"),
-            ("Respond", "rebuttal + ledger", "ccf-rebuttal-writer"),
-        ],
-        "zh-CN": [
-            ("人类化", "纯学术表达 + 完整方法", "ccf-humanization"),
-            ("搭建", "目录 + ccfa.yaml", "ccf-project-scaffolder"),
-            ("规划", "阶段 gate + owner", "ccf-pipeline-orchestrator"),
-            ("优化 idea", "救援 + insight", "ccf-idea-optimizer"),
-            ("阶段评审", "评分 + 阶段风险", "ccf-idea-reviewer"),
-            ("监控", "新论文 + 竞品", "ccf-literature-monitor"),
-            ("检索", "prior art + open gap", "ccf-literature-searcher"),
-            ("实验", "baseline + 结果规格", "ccf-experiment-designer"),
-            ("图表", "绘图配方 + 排版 QA", "ccf-visual-composer"),
-            ("范例", "PDF 到写作卡", "ccf-paper-to-exemplar"),
-            ("写作", "会议感知正文", "ccf-paper-writer"),
-            ("评审", "科学 + 写作报告", "ccf-paper-reviewer"),
-            ("审计", "claim + 引用", "ccf-integrity-auditor"),
-            ("投稿", "PDF + 匿名 + artifact", "ccf-submission-checker"),
-            ("回应", "rebuttal + ledger", "ccf-rebuttal-writer"),
-        ],
-        "zh-TW": [
-            ("人類化", "純學術表達 + 完整方法", "ccf-humanization"),
-            ("搭建", "目錄 + ccfa.yaml", "ccf-project-scaffolder"),
-            ("規劃", "階段 gate + owner", "ccf-pipeline-orchestrator"),
-            ("優化 idea", "救援 + insight", "ccf-idea-optimizer"),
-            ("階段審稿", "評分 + 階段風險", "ccf-idea-reviewer"),
-            ("監控", "新論文 + 競品", "ccf-literature-monitor"),
-            ("檢索", "prior art + open gap", "ccf-literature-searcher"),
-            ("實驗", "baseline + 結果規格", "ccf-experiment-designer"),
-            ("圖表", "繪圖配方 + 排版 QA", "ccf-visual-composer"),
-            ("範例", "PDF 到寫作卡", "ccf-paper-to-exemplar"),
-            ("寫作", "會議感知正文", "ccf-paper-writer"),
-            ("審稿", "科學 + 寫作報告", "ccf-paper-reviewer"),
-            ("稽核", "claim + 引用", "ccf-integrity-auditor"),
-            ("投稿", "PDF + 匿名 + artifact", "ccf-submission-checker"),
-            ("回應", "rebuttal + ledger", "ccf-rebuttal-writer"),
-        ],
+        "en": [("Plan", ""), ("Review", "ideas"), ("Search", "literature"), ("Design", "experiments"), ("Write", ""), ("Refine", "prose"), ("Audit", ""), ("Create", "figures"), ("Check", "submission")],
+        "zh-CN": [("规划", ""), ("评审", "选题"), ("检索", "文献"), ("设计", "实验"), ("撰写", "论文"), ("改善", "表达"), ("核验", "证据"), ("绘制", "图表"), ("检查", "投稿")],
+        "zh-TW": [("規劃", ""), ("評審", "選題"), ("檢索", "文獻"), ("設計", "實驗"), ("撰寫", "論文"), ("改善", "表達"), ("核驗", "證據"), ("繪製", "圖表"), ("檢查", "投稿")],
     }[lang]
-    for i, (title, artifact, skill) in enumerate(steps):
-        col = i % 4
-        row = i // 4
-        x = 90 + col * 430
-        y = 235 + row * 250
-        color = COLORS[SKILL_STAGE[skill]]
-        parts.append(rect(x, y, 360, 168, PANEL, "none", 24, 'filter="url(#shadow)"'))
-        parts.append(f'<circle cx="{x + 45}" cy="{y + 45}" r="28" fill="{color}"/>')
-        parts.append(text(x + 45, y + 55, str(i + 1), 24, 850, "#FFFFFF", "middle"))
-        parts.append(text(x + 84, y + 42, title, 22, 840, INK))
-        parts.append(text(x + 84, y + 73, artifact, 15, 560, MUTED))
-        parts.append(text(x + 28, y + 128, skill, 15, 760, color))
-        if i < len(steps) - 1:
-            if col < 3:
-                parts.append(line(x + 368, y + 84, x + 420, y + 84))
-            else:
-                parts.append(path(f"M{x + 180} {y + 178} C{x + 180} {y + 220}, 180 {y + 220}, 180 {y + 244}"))
-    finish(parts, "workflow", lang)
+    owners = {
+        "en": ["Project planning", "Idea review", "Literature search", "Experiment design", "Paper writing", "Humanization", "Integrity audit", "Visual composer", "Submission check"],
+        "zh-CN": ["项目规划", "选题评审", "文献检索", "实验设计", "论文写作", "学术表达", "完整性核验", "科研绘图", "投稿检查"],
+        "zh-TW": ["專案規劃", "選題評審", "文獻檢索", "實驗設計", "論文寫作", "學術表達", "完整性核驗", "科研繪圖", "投稿檢查"],
+    }[lang]
+    colors = [PALETTE["blue"], PALETTE["purple"], PALETTE["green"], PALETTE["green"], PALETTE["red"], PALETTE["red"], PALETTE["orange"], PALETTE["orange"], "#EEF2FF"]
+    body = [text(60, 62, title, 30, 800), text(60, 92, LANG[lang]["subtitle"], 15, 500, PALETTE["muted"])]
+    x = 55
+    card_w = 146
+    gap = 24
+    for i, ((step_1, step_2), owner, color) in enumerate(zip(steps, owners, colors), 1):
+        body.append(rect(x, 155, card_w, 150, color, r=22, extra='filter="url(#softShadow)"'))
+        body.append(text(x + card_w / 2, 188, f"{i}", 20, 900, PALETTE["ink"], "middle"))
+        body.append(text(x + card_w / 2, 224 if step_2 else 237, step_1, 15, 850, PALETTE["ink"], "middle"))
+        if step_2:
+            body.append(text(x + card_w / 2, 245, step_2, 15, 850, PALETTE["ink"], "middle"))
+        body.append(text(x + card_w / 2, 280, owner, 11, 650, PALETTE["muted"], "middle"))
+        if i < len(steps):
+            body.append(line(x + card_w + 4, 230, x + card_w + gap - 5, 230))
+        x += card_w + gap
+    note = {
+        "en": "Humanization refines publication prose while Paper Writer keeps the argument coherent.",
+        "zh-CN": "学术表达模块改善文字，论文写作模块保持论证连贯。",
+        "zh-TW": "學術表達模組改善文字，論文寫作模組保持論證連貫。",
+    }[lang]
+    body.append(rect(340, 365, 920, 82, PALETTE["white"], r=22, extra='filter="url(#softShadow)"'))
+    body.append(text(800, 408, note, 17, 700, PALETTE["ink"], "middle"))
+    write_svg("ccfa-skills-workflow", lang, svg(1600, 530, "\n".join(body)))
 
 
 def build_catalog(lang: str) -> None:
-    parts = start(1100, lang, "catalog")
-    group_defs = {
-        "en": [
-            ("Project Control", ["ccf-humanization", "ccf-project-scaffolder", "ccf-pipeline-orchestrator", "ccf-common"]),
-            ("Research Formation", ["ccf-idea-optimizer", "ccf-idea-reviewer", "ccf-literature-monitor", "ccf-literature-searcher"]),
-            ("Evidence To Paper", ["ccf-experiment-designer", "ccf-visual-composer", "ccf-paper-to-exemplar", "ccf-paper-writer", "ccf-paper-reviewer"]),
-            ("Delivery And Governance", ["ccf-integrity-auditor", "ccf-submission-checker", "ccf-rebuttal-writer", "ccf-skill-forger"]),
-        ],
-        "zh-CN": [
-            ("项目控制", ["ccf-humanization", "ccf-project-scaffolder", "ccf-pipeline-orchestrator", "ccf-common"]),
-            ("研究成型", ["ccf-idea-optimizer", "ccf-idea-reviewer", "ccf-literature-monitor", "ccf-literature-searcher"]),
-            ("证据到正文", ["ccf-experiment-designer", "ccf-visual-composer", "ccf-paper-to-exemplar", "ccf-paper-writer", "ccf-paper-reviewer"]),
-            ("交付与治理", ["ccf-integrity-auditor", "ccf-submission-checker", "ccf-rebuttal-writer", "ccf-skill-forger"]),
-        ],
-        "zh-TW": [
-            ("專案控制", ["ccf-humanization", "ccf-project-scaffolder", "ccf-pipeline-orchestrator", "ccf-common"]),
-            ("研究成型", ["ccf-idea-optimizer", "ccf-idea-reviewer", "ccf-literature-monitor", "ccf-literature-searcher"]),
-            ("證據到正文", ["ccf-experiment-designer", "ccf-visual-composer", "ccf-paper-to-exemplar", "ccf-paper-writer", "ccf-paper-reviewer"]),
-            ("交付與治理", ["ccf-integrity-auditor", "ccf-submission-checker", "ccf-rebuttal-writer", "ccf-skill-forger"]),
-        ],
+    title = {"en": "Skill catalog by responsibility", "zh-CN": "按职责划分的技能目录", "zh-TW": "按職責劃分的技能目錄"}[lang]
+    subtitle = {
+        "en": "17 skills with distinct responsibilities and purposeful collaboration",
+        "zh-CN": "17 个 skills 各有专长，并在需要时彼此协作",
+        "zh-TW": "17 個 skills 各有專長，並在需要時彼此協作",
     }[lang]
-    for i, (title, skills) in enumerate(group_defs):
-        x = 70 + i * 435
-        color = COLORS[SKILL_STAGE[skills[0]]]
-        stage_panel(parts, x, 235, title, skills, lang, color, 380)
-    finish(parts, "catalog", lang)
+    body = [text(60, 58, title, 30, 800), text(60, 88, subtitle, 15, 500, PALETTE["muted"])]
+    layout = [("governance", 60, 125, PALETTE["blue"]), ("ideation", 430, 125, PALETTE["purple"]), ("evidence", 800, 125, PALETTE["green"]), ("writing", 60, 380, PALETTE["red"]), ("delivery", 430, 380, PALETTE["orange"]), ("maintenance", 800, 380, "#EEF2FF")]
+    for group, x, y, color in layout:
+        body.append(rect(x, y, 320, 205, color, r=24, extra='filter="url(#softShadow)"'))
+        body.append(text(x + 20, y + 36, LANG[lang]["groups"][group], 20, 850))
+        yy = y + 70
+        for skill in GROUPS[group]:
+            body.append(text(x + 22, yy, f"{skill}", 13, 700, PALETTE["ink"]))
+            body.append(text(x + 220, yy, tr(skill, lang), 12, 600, PALETTE["muted"]))
+            yy += 29
+    write_svg("ccfa-skills-catalog", lang, svg(1200, 660, "\n".join(body)))
 
 
 def build_routing(lang: str) -> None:
-    parts = start(1400, lang, "routing")
-    pairs = {
+    title = {"en": "Clear boundaries between skills", "zh-CN": "清晰的 skill 职责边界", "zh-TW": "清晰的 skill 職責邊界"}[lang]
+    rows = {
         "en": [
-            ("humanize publication output", "ccf-humanization", "write manuscript text", "ccf-paper-writer"),
-            ("rough idea / rescue", "ccf-idea-optimizer", "rank or score ideas", "ccf-idea-reviewer"),
-            ("monitor new papers", "ccf-literature-monitor", "deep related work", "ccf-literature-searcher"),
-            ("audit cited papers", "ccf-integrity-auditor", "extract exemplars", "ccf-paper-to-exemplar"),
-            ("design experiments", "ccf-experiment-designer", "compose visuals", "ccf-visual-composer"),
-            ("write manuscript text", "ccf-paper-writer", "judge paper quality", "ccf-paper-reviewer"),
-            ("check submission package", "ccf-submission-checker", "answer reviewers", "ccf-rebuttal-writer"),
-            ("maintain skills / SVG", "ccf-skill-forger", "shared governance", "ccf-common"),
+            ("Idea scoring", "ccf-idea-reviewer", "scores and ranks; does not rewrite"),
+            ("Idea shaping", "ccf-idea-optimizer", "turns fuzzy ideas into method plans"),
+            ("Literature retrieval", "ccf-literature-searcher", "searches prior art and benchmarks"),
+            ("Experiment semantics", "ccf-experiment-designer", "chooses evidence structure, not rendering"),
+            ("Manuscript editing", "ccf-paper-writer", "changes prose; humanization preflight applies"),
+            ("Rendered visuals", "ccf-visual-composer", "uses GPT Image 2 first unless pure SVG is requested"),
         ],
         "zh-CN": [
-            ("人类化投稿产物", "ccf-humanization", "写正文", "ccf-paper-writer"),
-            ("优化 / 救 idea", "ccf-idea-optimizer", "给 idea 排名评分", "ccf-idea-reviewer"),
-            ("监控新论文", "ccf-literature-monitor", "深度相关工作", "ccf-literature-searcher"),
-            ("审计已引用文献", "ccf-integrity-auditor", "抽取写作范例", "ccf-paper-to-exemplar"),
-            ("设计实验", "ccf-experiment-designer", "图表呈现", "ccf-visual-composer"),
-            ("写正文", "ccf-paper-writer", "判断论文质量", "ccf-paper-reviewer"),
-            ("检查投稿包", "ccf-submission-checker", "回复审稿人", "ccf-rebuttal-writer"),
-            ("维护 skills / SVG", "ccf-skill-forger", "共享治理", "ccf-common"),
+            ("选题评分", "ccf-idea-reviewer", "负责评分排序，不改写论文"),
+            ("发展选题", "ccf-idea-optimizer", "把模糊想法发展成研究方案"),
+            ("文献检索", "ccf-literature-searcher", "检索相关工作与 benchmark"),
+            ("实验设计", "ccf-experiment-designer", "设计证据结构，不负责图形美化"),
+            ("论文改写", "ccf-paper-writer", "修改正文，并按需改善学术表达"),
+            ("科研绘图", "ccf-visual-composer", "默认先用 GPT Image 2，除非指定纯 SVG"),
         ],
         "zh-TW": [
-            ("人類化投稿產物", "ccf-humanization", "寫正文", "ccf-paper-writer"),
-            ("優化 / 救 idea", "ccf-idea-optimizer", "給 idea 排名評分", "ccf-idea-reviewer"),
-            ("監控新論文", "ccf-literature-monitor", "深度相關工作", "ccf-literature-searcher"),
-            ("稽核已引用文獻", "ccf-integrity-auditor", "抽取寫作範例", "ccf-paper-to-exemplar"),
-            ("設計實驗", "ccf-experiment-designer", "圖表呈現", "ccf-visual-composer"),
-            ("寫正文", "ccf-paper-writer", "判斷論文品質", "ccf-paper-reviewer"),
-            ("檢查投稿包", "ccf-submission-checker", "回覆審稿人", "ccf-rebuttal-writer"),
-            ("維護 skills / SVG", "ccf-skill-forger", "共享治理", "ccf-common"),
+            ("選題評分", "ccf-idea-reviewer", "負責評分排序，不改寫論文"),
+            ("發展選題", "ccf-idea-optimizer", "把模糊想法發展成研究方案"),
+            ("文獻檢索", "ccf-literature-searcher", "檢索相關工作與 benchmark"),
+            ("實驗設計", "ccf-experiment-designer", "設計證據結構，不負責圖形美化"),
+            ("論文改寫", "ccf-paper-writer", "修改正文，並按需改善學術表達"),
+            ("科研繪圖", "ccf-visual-composer", "預設先用 GPT Image 2，除非指定純 SVG"),
         ],
     }[lang]
-    for i, (left, left_skill, right, right_skill) in enumerate(pairs):
-        y = 230 + i * 135
-        for x, label, skill in [(90, left, left_skill), (1000, right, right_skill)]:
-            color = COLORS[SKILL_STAGE[skill]]
-            parts.append(rect(x, y, 650, 104, PANEL, "none", 22, 'filter="url(#shadow)"'))
-            chip(parts, x + 24, y + 24, label, color, 230)
-            parts.append(text(x + 285, y + 47, skill, 20, 820, INK))
-            parts.append(text(x + 285, y + 76, ROLE[lang][skill], 14, 520, MUTED))
-        parts.append(text(900, y + 62, "vs", 28, 850, "#94A3B8", "middle"))
-    finish(parts, "routing", lang)
+    body = [text(60, 58, title, 30, 800)]
+    y = 115
+    for task, owner, rule in rows:
+        body.append(rect(70, y, 1060, 62, PALETTE["white"], r=18, extra='filter="url(#softShadow)"'))
+        body.append(text(100, y + 38, task, 16, 800))
+        body.append(text(420, y + 38, owner, 15, 800, PALETTE["purple2"]))
+        body.append(text(720, y + 38, rule, 14, 600, PALETTE["muted"]))
+        y += 78
+    write_svg("ccfa-skills-routing", lang, svg(1200, 630, "\n".join(body)))
 
 
 def build_artifacts(lang: str) -> None:
-    parts = start(920, lang, "artifacts")
-    center = {
-        "en": ("ccfa.yaml", "version · stage · target_venue · artifacts · claims · reviews · checks"),
-        "zh-CN": ("ccfa.yaml", "version · stage · target_venue · artifacts · claims · reviews · checks"),
-        "zh-TW": ("ccfa.yaml", "version · stage · target_venue · artifacts · claims · reviews · checks"),
+    title = {"en": "From research content to editable figures", "zh-CN": "从研究内容到可编辑图形", "zh-TW": "從研究內容到可編輯圖形"}[lang]
+    labels = {
+        "en": ["Research content", "Visual composition", "Figure checks", "Editable delivery"],
+        "zh-CN": ["研究内容", "视觉构图", "成图检查", "可编辑交付"],
+        "zh-TW": ["研究內容", "視覺構圖", "成圖檢查", "可編輯交付"],
     }[lang]
-    parts.append(rect(570, 365, 660, 150, NAVY, "none", 32, 'filter="url(#shadow)"'))
-    parts.append(text(900, 423, center[0], 40, 860, "#FFFFFF", "middle"))
-    parts.append(text(900, 468, center[1], 16, 520, "#D8E6F2", "middle"))
-    nodes = [
-        ("idea_brief.md", "ccf-idea-optimizer", 90, 250),
-        ("monitoring.md", "ccf-literature-monitor", 500, 230),
-        ("literature.md", "ccf-literature-searcher", 910, 230),
-        ("experiments.md", "ccf-experiment-designer", 1320, 230),
-        ("visual-composer/", "ccf-visual-composer", 1320, 390),
-        ("manuscript.tex", "ccf-paper-writer", 60, 610),
-        ("exemplars/*.md", "ccf-paper-to-exemplar", 405, 640),
-        ("review.md", "ccf-paper-reviewer", 750, 640),
-        ("submission/", "ccf-submission-checker", 1095, 640),
-        ("rebuttal.tex", "ccf-rebuttal-writer", 1440, 610),
-    ]
-    for _title, _owner, x, y in nodes:
-        parts.append(line(900, 515 if y > 520 else 365, x + 165, y + 54, "#A7B2C0", 2))
-    for title, owner, x, y in nodes:
-        color = COLORS[SKILL_STAGE[owner]]
-        parts.append(rect(x, y, 330, 108, PANEL, "none", 22, 'filter="url(#shadow)"'))
-        parts.append(text(x + 28, y + 42, title, 24, 820, INK))
-        parts.append(text(x + 28, y + 75, owner, 14, 650, color))
-    finish(parts, "artifacts", lang)
+    details = {
+        "en": ["paper, prompt, data", "layout, icons, hierarchy", "meaning, text, alignment", "SVG, PDF, PPTX"],
+        "zh-CN": ["论文、指令、数据", "版式、图标、层次", "含义、文字、对齐", "SVG、PDF、PPTX"],
+        "zh-TW": ["論文、指令、資料", "版式、圖示、層次", "含義、文字、對齊", "SVG、PDF、PPTX"],
+    }[lang]
+    body = [text(60, 58, title, 30, 800)]
+    x_positions = [80, 345, 610, 875]
+    colors = [PALETTE["blue"], PALETTE["purple"], PALETTE["green"], PALETTE["orange"]]
+    for i, (x, label, detail, color) in enumerate(zip(x_positions, labels, details, colors)):
+        body.append(rect(x, 170, 210, 130, color, r=24, extra='filter="url(#softShadow)"'))
+        body.append(text(x + 105, 215, label, 20, 850, anchor="middle"))
+        body.append(text(x + 105, 252, detail, 13, 600, PALETTE["muted"], "middle"))
+        if i < 3:
+            body.append(line(x + 215, 235, x + 260, 235))
+    note = {
+        "en": "The final figure remains clear, traceable, and genuinely editable.",
+        "zh-CN": "最终图形保持清晰、可追溯，并且能够真正编辑。",
+        "zh-TW": "最終圖形保持清晰、可追溯，並且能夠真正編輯。",
+    }[lang]
+    body.append(rect(250, 390, 700, 70, PALETTE["white"], r=24, extra='filter="url(#softShadow)"'))
+    body.append(text(600, 433, note, 17, 700, PALETTE["ink"], "middle"))
+    write_svg("ccfa-skills-artifacts", lang, svg(1200, 560, "\n".join(body)))
 
 
 def build_review(lang: str) -> None:
-    parts = start(1040, lang, "review")
-    rows = {
-        "en": [
-            ("Rewrite text", "ccf-paper-writer", "changes manuscript wording, structure, compression, slides"),
-            ("Compose visuals", "ccf-visual-composer", "Python plots, figure/table contracts, palettes, captions, render QA"),
-            ("Judge quality", "ccf-paper-reviewer", "scores novelty, soundness, clarity, reviewer risk"),
-            ("Audit facts", "ccf-integrity-auditor", "verifies claims, numbers, citations, BibTeX support"),
-            ("Check package", "ccf-submission-checker", "venue rules, PDF build, anonymity, metadata, artifact"),
-            ("Answer reviews", "ccf-rebuttal-writer", "response letter, revision ledger, conservative resubmission"),
-        ],
-        "zh-CN": [
-            ("改写正文", "ccf-paper-writer", "修改措辞、结构、压缩和展示材料"),
-            ("图表呈现", "ccf-visual-composer", "Python 绘图、图表契约、配色、caption 和渲染 QA"),
-            ("判断质量", "ccf-paper-reviewer", "评估创新性、正确性、清晰度和审稿风险"),
-            ("审计事实", "ccf-integrity-auditor", "核验 claim、数字、引用和 BibTeX 支撑"),
-            ("检查投稿包", "ccf-submission-checker", "会议规则、PDF、匿名、metadata、artifact"),
-            ("回应评审", "ccf-rebuttal-writer", "response letter、revision ledger、保守重投"),
-        ],
-        "zh-TW": [
-            ("改寫正文", "ccf-paper-writer", "修改措辭、結構、壓縮和展示材料"),
-            ("圖表呈現", "ccf-visual-composer", "Python 繪圖、圖表契約、配色、caption 和渲染 QA"),
-            ("判斷品質", "ccf-paper-reviewer", "評估創新性、正確性、清晰度和審稿風險"),
-            ("稽核事實", "ccf-integrity-auditor", "核驗 claim、數字、引用和 BibTeX 支撐"),
-            ("檢查投稿包", "ccf-submission-checker", "會議規則、PDF、匿名、metadata、artifact"),
-            ("回應審稿", "ccf-rebuttal-writer", "response letter、revision ledger、保守重投"),
-        ],
+    title = {"en": "Review and revision scoring", "zh-CN": "评审与修订评分", "zh-TW": "評審與修訂評分"}[lang]
+    labels = {
+        "en": ["Current readiness", "Version improvement", "Issue history", "Reviewer confidence"],
+        "zh-CN": ["当前稿件", "版本进步", "问题记录", "评审置信度"],
+        "zh-TW": ["當前稿件", "版本進步", "問題記錄", "評審信心"],
     }[lang]
-    for i, (action, skill, note) in enumerate(rows):
-        y = 225 + i * 130
-        color = COLORS[SKILL_STAGE[skill]]
-        parts.append(rect(120, y, 1560, 96, PANEL, "none", 24, 'filter="url(#shadow)"'))
-        chip(parts, 150, y + 26, action, color, 230)
-        parts.append(text(440, y + 43, skill, 22, 840, INK))
-        parts.append(text(440, y + 72, note, 16, 520, MUTED))
-    finish(parts, "review-boundaries", lang)
+    details = {
+        "en": ["meets venue standard", "better than previous draft", "resolved, partial, new", "stable evidence threshold"],
+        "zh-CN": ["距离录用标准多远", "是否优于上一版", "已解决、部分解决、新问题", "判断依据是否充分"],
+        "zh-TW": ["距離錄用標準多遠", "是否優於上一版", "已解決、部分解決、新問題", "判斷依據是否充分"],
+    }[lang]
+    body = [text(60, 58, title, 30, 800)]
+    for i, (label, detail) in enumerate(zip(labels, details)):
+        x = 90 + i * 270
+        body.append(rect(x, 150, 220, 150, [PALETTE["blue"], PALETTE["purple"], PALETTE["green"], PALETTE["orange"]][i], r=24, extra='filter="url(#softShadow)"'))
+        body.append(text(x + 110, 205, label, 17, 850, anchor="middle"))
+        body.append(text(x + 110, 245, detail, 13, 600, PALETTE["muted"], "middle"))
+    write_svg("ccfa-skills-review-boundaries", lang, svg(1200, 430, "\n".join(body)))
 
 
 def build_installation(lang: str) -> None:
-    parts = start(900, lang, "installation")
-    sets = {
-        "en": [
-            ("Required core", ["ccf-common", "routing, policies, artifact contract"], COLORS["gov"]),
-            ("Full paper loop", ["all 17 runtime skills", "best for end-to-end research projects"], COLORS["setup"]),
-            ("Writing subset", ["common + writer + visuals + reviewer + submission", "for draft, polish, visual QA, format checks"], COLORS["writing"]),
-            ("Early research subset", ["common + idea + literature + experiments", "for project planning before drafting"], COLORS["idea"]),
-            ("Visual subset", ["common + experiments + visuals + writer + audit", "for Python SVG plots and paper visuals"], COLORS["evidence"]),
-            ("Do not install", ["merged helper skill names", "compression, talks, citation audit, venue guide"], COLORS["review"]),
-        ],
-        "zh-CN": [
-            ("必装核心", ["ccf-common", "路由、策略、artifact 合约"], COLORS["gov"]),
-            ("完整论文闭环", ["全部 17 个 runtime skills", "适合端到端研究项目"], COLORS["setup"]),
-            ("写作子集", ["common + writer + visuals + reviewer + submission", "用于起草、润色、图表 QA、格式检查"], COLORS["writing"]),
-            ("早期研究子集", ["common + idea + literature + experiments", "用于写稿前规划"], COLORS["idea"]),
-            ("图表子集", ["common + experiments + visuals + writer + audit", "用于 Python SVG 图和论文图表"], COLORS["evidence"]),
-            ("不要安装", ["已合并 helper skill 名称", "压缩、报告、引用审计、venue guide"], COLORS["review"]),
-        ],
-        "zh-TW": [
-            ("必裝核心", ["ccf-common", "路由、策略、artifact 合約"], COLORS["gov"]),
-            ("完整論文閉環", ["全部 17 個 runtime skills", "適合端到端研究專案"], COLORS["setup"]),
-            ("寫作子集", ["common + writer + visuals + reviewer + submission", "用於起草、潤飾、圖表 QA、格式檢查"], COLORS["writing"]),
-            ("早期研究子集", ["common + idea + literature + experiments", "用於寫稿前規劃"], COLORS["idea"]),
-            ("圖表子集", ["common + experiments + visuals + writer + audit", "用於 Python SVG 圖和論文圖表"], COLORS["evidence"]),
-            ("不要安裝", ["已合併 helper skill 名稱", "壓縮、報告、引用稽核、venue guide"], COLORS["review"]),
-        ],
+    title = {"en": "Installation shape", "zh-CN": "安装形态", "zh-TW": "安裝形態"}[lang]
+    labels = {
+        "en": ["Repository", "Installed skills", "Local project"],
+        "zh-CN": ["仓库", "已安装 skills", "本地项目"],
+        "zh-TW": ["倉庫", "已安裝 skills", "本地專案"],
     }[lang]
-    for i, (title, lines, color) in enumerate(sets):
-        x = 90 + (i % 3) * 560
-        y = 245 + (i // 3) * 260
-        parts.append(rect(x, y, 480, 172, PANEL, "none", 26, 'filter="url(#shadow)"'))
-        chip(parts, x + 28, y + 28, title, color, 220)
-        parts.append(text(x + 32, y + 98, lines[0], 23, 820, INK))
-        parts.append(text(x + 32, y + 132, lines[1], 16, 520, MUTED))
-    finish(parts, "installation", lang)
+    paths = ["CCFA-Skills/", "~/.codex/skills/", "paper workspace"]
+    body = [text(60, 58, title, 30, 800)]
+    x_positions = [120, 490, 860]
+    for x, label, path, color in zip(x_positions, labels, paths, [PALETTE["blue"], PALETTE["purple"], PALETTE["green"]]):
+        body.append(rect(x, 150, 240, 145, color, r=24, extra='filter="url(#softShadow)"'))
+        body.append(text(x + 120, 205, label, 20, 850, anchor="middle"))
+        body.append(text(x + 120, 245, path, 14, 650, PALETTE["muted"], "middle"))
+    body.append(line(365, 222, 485, 222))
+    body.append(line(735, 222, 855, 222))
+    write_svg("ccfa-skills-installation", lang, svg(1200, 430, "\n".join(body)))
 
 
 def build_demo(lang: str) -> None:
-    parts = start(950, lang, "demo")
-    metrics = [
-        ("28.4", "WMT14 EN-DE BLEU", COLORS["idea"]),
-        ("41.0", "WMT14 EN-FR BLEU", COLORS["evidence"]),
-        ("8×P100", "official training hardware", COLORS["setup"]),
-        ("ICLR", "demo target venue", COLORS["submission"]),
-    ]
-    for i, (num, label, color) in enumerate(metrics):
-        x = 90 + i * 420
-        parts.append(rect(x, 235, 350, 155, PANEL, "none", 28, 'filter="url(#shadow)"'))
-        parts.append(text(x + 34, 302, num, 42, 860, color))
-        for line_i, line_text in enumerate(wrap_lines(label, 24)):
-            parts.append(text(x + 34, 340 + line_i * 22, line_text, 17, 560, MUTED))
-    flow = {
-        "en": [("Read", "source paper"), ("Extract", "motivation / problem / insight"), ("Review", "idea score"), ("Write", "full ICLR-style TeX"), ("Visualize", "plot recipes + SVG figures"), ("Critique", "writing + science + integrity"), ("Respond", "rebuttal + submission check")],
-        "zh-CN": [("读取", "原文"), ("提炼", "动机 / 问题 / insight"), ("评审", "idea 评分"), ("写作", "完整 ICLR 风格 TeX"), ("绘图", "绘图配方 + SVG 图"), ("批评", "写作 + 科学 + 完整性"), ("回应", "rebuttal + 投稿检查")],
-        "zh-TW": [("讀取", "原文"), ("提煉", "動機 / 問題 / insight"), ("審稿", "idea 評分"), ("寫作", "完整 ICLR 風格 TeX"), ("繪圖", "繪圖配方 + SVG 圖"), ("批評", "寫作 + 科學 + 完整性"), ("回應", "rebuttal + 投稿檢查")],
+    title = {"en": "Demo: attention study routing", "zh-CN": "Demo：注意力研究路由", "zh-TW": "Demo：注意力研究路由"}[lang]
+    stages = {
+        "en": ["Idea", "Reviewer", "Searcher", "Experiment", "Writer", "Submission"],
+        "zh-CN": ["想法", "评审", "检索", "实验", "写作", "投稿"],
+        "zh-TW": ["想法", "評審", "檢索", "實驗", "寫作", "投稿"],
     }[lang]
-    node_gap = 258
-    for i, (title, detail) in enumerate(flow):
-        x = 95 + i * node_gap
-        y = 555
-        color = [COLORS["setup"], COLORS["idea"], COLORS["review"], COLORS["writing"], COLORS["evidence"], COLORS["audit"], COLORS["post"]][i]
-        parts.append(f'<circle cx="{x}" cy="{y}" r="42" fill="{color}" filter="url(#shadow)"/>')
-        parts.append(text(x, y + 10, str(i + 1), 28, 850, "#FFFFFF", "middle"))
-        parts.append(text(x - 62, y + 92, title, 22, 820, INK))
-        for line_i, line_text in enumerate(wrap_lines(detail, 22)):
-            parts.append(text(x - 62, y + 123 + line_i * 19, line_text, 14, 520, MUTED))
-        if i < len(flow) - 1:
-            parts.append(line(x + 52, y, x + node_gap - 58, y))
-    parts.append(rect(360, 805, 1080, 72, NAVY, "none", 22, 'filter="url(#shadow)"'))
-    parts.append(text(900, 850, "demo/attention-is-all-you-need/paper/attention_iclr_submission.tex", 21, 780, "#FFFFFF", "middle"))
-    finish(parts, "demo-attention", lang)
+    body = [text(60, 58, title, 30, 800)]
+    x = 95
+    for i, stage in enumerate(stages):
+        body.append(rect(x, 155, 140, 105, [PALETTE["blue"], PALETTE["purple"], PALETTE["green"], PALETTE["green"], PALETTE["red"], PALETTE["orange"]][i], r=22, extra='filter="url(#softShadow)"'))
+        body.append(text(x + 70, 210, stage, 18, 850, anchor="middle"))
+        if i < len(stages) - 1:
+            body.append(line(x + 145, 208, x + 205, 208))
+        x += 180
+    note = {
+        "en": "The demo is illustrative and preserved as-is in README.",
+        "zh-CN": "README 保留原 demo，仅重生成架构说明图。",
+        "zh-TW": "README 保留原 demo，僅重生成架構說明圖。",
+    }[lang]
+    body.append(text(600, 345, note, 17, 700, PALETTE["muted"], "middle"))
+    write_svg("ccfa-skills-demo-attention", lang, svg(1200, 440, "\n".join(body)))
+
+
+BUILDERS = [
+    build_hero,
+    build_architecture,
+    build_workflow,
+    build_catalog,
+    build_routing,
+    build_artifacts,
+    build_review,
+    build_installation,
+    build_demo,
+]
 
 
 def main() -> None:
-    ASSETS.mkdir(exist_ok=True)
-    builders = [
-        build_architecture,
-        build_workflow,
-        build_catalog,
-        build_routing,
-        build_artifacts,
-        build_review,
-        build_installation,
-        build_demo,
-    ]
     for lang in LANG:
-        for builder in builders:
+        for builder in BUILDERS:
             builder(lang)
+    print(f"Generated {len(LANG) * len(BUILDERS)} SVG files in {ASSETS}")
 
 
 if __name__ == "__main__":

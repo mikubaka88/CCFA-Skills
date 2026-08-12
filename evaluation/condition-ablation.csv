@@ -1,0 +1,13 @@
+model,condition,n_tasks,quality_score,success_rate,mean_seconds,mean_input_tokens,mean_output_tokens,mean_total_tokens,current_cost_usd_or_formula,plus_weekly_pool_usd,plus_weekly_token_quota,api_equivalent_usd,cost_basis
+deepseek-v4-flash,base,50,0.902320,1.0000,31.145,5863.9,3270.4,9134.3,0.00171171,,,,DeepSeek API token-price estimate
+deepseek-v4-flash,family,50,0.962187,1.0000,36.869,216413.7,3914.3,220328.0,0.00490401,,,,DeepSeek API token-price estimate
+deepseek-v4-flash,task,50,0.963827,1.0000,47.132,193547.9,4591.9,198139.8,0.00685754,,,,DeepSeek API token-price estimate
+deepseek-v4-flash,task_humanization,50,0.933428,1.0000,40.763,196481.9,3774.5,200256.4,0.00687679,,,,DeepSeek API token-price estimate
+deepseek-v4-pro,base,50,0.918709,1.0000,40.255,5784.9,2488.0,8272.9,0.00449992,,,,DeepSeek API token-price estimate
+deepseek-v4-pro,family,50,0.929986,1.0000,42.898,216334.7,2555.6,218890.3,0.00567648,,,,DeepSeek API token-price estimate
+deepseek-v4-pro,task,50,0.951373,1.0000,41.996,193468.9,2458.6,195927.5,0.00533144,,,,DeepSeek API token-price estimate
+deepseek-v4-pro,task_humanization,50,0.949254,1.0000,41.993,196402.9,2473.9,198876.8,0.00542169,,,,DeepSeek API token-price estimate
+gpt-5.6-terra,base,50,0.964593,1.0000,45.185,19750.1,1403.0,21153.1,5*21153.1/Q_week,5,Q_week,,Plus allocation; Q_week is the account weekly token quota
+gpt-5.6-terra,family,50,0.972289,1.0000,66.080,52873.8,2156.4,55030.2,5*55030.2/Q_week,5,Q_week,,Plus allocation; Q_week is the account weekly token quota
+gpt-5.6-terra,task,50,0.974914,1.0000,66.617,48581.8,2123.0,50704.8,5*50704.8/Q_week,5,Q_week,,Plus allocation; Q_week is the account weekly token quota
+gpt-5.6-terra,task_humanization,50,0.971583,1.0000,65.076,53713.0,2140.2,55853.2,5*55853.2/Q_week,5,Q_week,,Plus allocation; Q_week is the account weekly token quota

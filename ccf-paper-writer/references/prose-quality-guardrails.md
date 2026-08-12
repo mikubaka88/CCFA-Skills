@@ -4,6 +4,8 @@ Use this file for manuscript drafting, polishing, compression, abstract writing,
 
 Apply `../../ccf-humanization/references/humanization-policy.md` first. Keep warning-only concerns outside source files and do not add defensive prose, generic limitations, or improbable case lists as a substitute for academic content.
 
+These checks improve precision, rhythm, and readability. They are writing-quality controls, not detector-evasion methods.
+
 ## Core Principle
 
 Write from inside the research contribution. A manuscript should sound like a coherent scientific argument made by the authors, not a detached report about "the paper", "the reviewers", or a checklist of isolated claims.
@@ -27,6 +29,12 @@ Avoid these unless the venue, discipline, or user explicitly requires them:
 - Strange symbols replacing natural language: arrows, mathematical shorthand, custom markers, or abbreviations that are not needed for the method.
 - Empty intensifiers and hype: "significant", "substantial", "powerful", "novel", "first", "dramatically", "obviously", or "clearly" without evidence and scope.
 - Repeated redefinition: once a concept is named, use the same term unless a narrower subcase is introduced.
+
+## Measurable Pattern Controls
+
+The authoritative punctuation limits, opening-filler patterns, precision-word list, enumeration rule, synonym rule, and rhythm thresholds live in `../../ccf-humanization/references/humanization-policy.md`. Apply that policy after the scientific content is correct; do not restate or locally override its thresholds here.
+
+For a full section or paper, run `../scripts/check_prose_quality.py`. The script is non-mutating and can read a path or standard input, so it does not require an intermediate report file. Treat its findings as writing signals governed by the humanization policy, not as detector-evasion targets.
 
 ## Positive Writing Rules
 
@@ -113,3 +121,4 @@ Before calling writing ready, scan for:
 - Any visible third-person narration about the paper or reviewer.
 - Any punctuation pattern doing the work of logic.
 - Any paragraph whose sentences all have the same length or template.
+- Any hard failure or review signal defined by the humanization policy and reported by `scripts/check_prose_quality.py`.

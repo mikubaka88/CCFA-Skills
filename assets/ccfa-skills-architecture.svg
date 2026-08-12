@@ -1,126 +1,71 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1400" viewBox="0 0 1800 1400">
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="720" viewBox="0 0 1400 720" role="img">
+
 <defs>
-<linearGradient id="header" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#102033"/><stop offset="0.58" stop-color="#1F6F8B"/><stop offset="1" stop-color="#7A4E9B"/></linearGradient>
-<filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#0B1826" flood-opacity="0.13"/></filter>
-<marker id="arrow" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto"><path d="M2,2 L11,6.5 L2,11 Z" fill="#7B8794"/></marker>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#8EA0C5"/>
+  </marker>
+  <filter id="softShadow" x="-15%" y="-20%" width="130%" height="145%">
+    <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#2F3A5F" flood-opacity="0.10"/>
+  </filter>
+  <linearGradient id="hero" x1="0" x2="1" y1="0" y2="1">
+    <stop offset="0%" stop-color="#F8FAFF"/>
+    <stop offset="100%" stop-color="#EEF3FF"/>
+  </linearGradient>
 </defs>
-<style>text{font-family:Inter, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas,Menlo,monospace}</style>
-<rect x="0" y="0" width="1800" height="1400" rx="0" fill="#F6F8FB" stroke="none" stroke-width="2" />
-<rect x="0" y="0" width="1800" height="158" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
-<text x="72" y="66" font-size="44" font-weight="850" fill="#FFFFFF" text-anchor="start">CCFA Skill Family Logic</text>
-<text x="72" y="108" font-size="20" font-weight="500" fill="#D8E6F2" text-anchor="start">Main research chain, shared state, governance, and revision loop.</text>
-<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">current · 17 owner skills · one paper-project loop</text>
-<rect x="70" y="228" width="500" height="328" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="70" y="228" width="500" height="52" rx="24" fill="#1F7A8C" stroke="none" stroke-width="2" />
-<text x="92" y="262" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">Setup</text>
-<rect x="88" y="298" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="88" y="298" width="8" height="66" rx="18" fill="#2D3742" stroke="none" stroke-width="2" />
-<text x="112" y="332" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-humanization</text>
-<text x="112" y="357" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">direct prose, full methods</text>
-<rect x="88" y="380" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="88" y="380" width="8" height="66" rx="18" fill="#1F7A8C" stroke="none" stroke-width="2" />
-<text x="112" y="414" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-project-scaffolder</text>
-<text x="112" y="439" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">project folders, template, ccfa.yaml</text>
-<rect x="88" y="462" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="88" y="462" width="8" height="66" rx="18" fill="#1F7A8C" stroke="none" stroke-width="2" />
-<text x="112" y="496" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-pipeline-orchestrator</text>
-<text x="112" y="521" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">stage plan, gates, handoffs</text>
-<rect x="650" y="228" width="500" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="650" y="228" width="500" height="52" rx="24" fill="#D2673D" stroke="none" stroke-width="2" />
-<text x="672" y="262" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">Idea Formation</text>
-<rect x="668" y="298" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="668" y="298" width="8" height="66" rx="18" fill="#D2673D" stroke="none" stroke-width="2" />
-<text x="692" y="332" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-idea-optimizer</text>
-<text x="692" y="357" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">explore, rescue, shape idea</text>
-<rect x="668" y="380" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="668" y="380" width="8" height="66" rx="18" fill="#D2673D" stroke="none" stroke-width="2" />
-<text x="692" y="414" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-idea-reviewer</text>
-<text x="692" y="439" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">score, rank, staged risk</text>
-<rect x="1230" y="228" width="500" height="328" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1230" y="228" width="500" height="52" rx="24" fill="#6657A8" stroke="none" stroke-width="2" />
-<text x="1252" y="262" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">Evidence</text>
-<rect x="1248" y="298" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1248" y="298" width="8" height="66" rx="18" fill="#6657A8" stroke="none" stroke-width="2" />
-<text x="1272" y="332" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-literature-monitor</text>
-<text x="1272" y="357" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">new papers, competitors, overlap</text>
-<rect x="1248" y="380" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1248" y="380" width="8" height="66" rx="18" fill="#6657A8" stroke="none" stroke-width="2" />
-<text x="1272" y="414" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-literature-searcher</text>
-<text x="1272" y="439" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">prior art, open gaps, benchmarks</text>
-<rect x="1248" y="462" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1248" y="462" width="8" height="66" rx="18" fill="#6657A8" stroke="none" stroke-width="2" />
-<text x="1272" y="496" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-experiment-designer</text>
-<text x="1272" y="521" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">baselines, ablations, result specs</text>
-<rect x="70" y="560" width="500" height="328" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="70" y="560" width="500" height="52" rx="24" fill="#2D3742" stroke="none" stroke-width="2" />
-<text x="92" y="594" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">Manuscript</text>
-<rect x="88" y="630" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="88" y="630" width="8" height="66" rx="18" fill="#6657A8" stroke="none" stroke-width="2" />
-<text x="112" y="664" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-visual-composer</text>
-<text x="112" y="689" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">Python plots, visuals, layout QA</text>
-<rect x="88" y="712" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="88" y="712" width="8" height="66" rx="18" fill="#2D3742" stroke="none" stroke-width="2" />
-<text x="112" y="746" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-to-exemplar</text>
-<text x="112" y="771" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">PDFs to writing exemplar cards</text>
-<rect x="88" y="794" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="88" y="794" width="8" height="66" rx="18" fill="#2D3742" stroke="none" stroke-width="2" />
-<text x="112" y="828" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-writer</text>
-<text x="112" y="853" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">draft, budget, compress, present</text>
-<rect x="650" y="560" width="500" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="650" y="560" width="500" height="52" rx="24" fill="#B58B2A" stroke="none" stroke-width="2" />
-<text x="672" y="594" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">Assurance</text>
-<rect x="668" y="630" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="668" y="630" width="8" height="66" rx="18" fill="#B58B2A" stroke="none" stroke-width="2" />
-<text x="692" y="664" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-reviewer</text>
-<text x="692" y="689" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">science and writing review</text>
-<rect x="668" y="712" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="668" y="712" width="8" height="66" rx="18" fill="#8A4F86" stroke="none" stroke-width="2" />
-<text x="692" y="746" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-integrity-auditor</text>
-<text x="692" y="771" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">claims, numbers, citations</text>
-<rect x="1230" y="560" width="500" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1230" y="560" width="500" height="52" rx="24" fill="#BA4C5E" stroke="none" stroke-width="2" />
-<text x="1252" y="594" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">Submit / Respond</text>
-<rect x="1248" y="630" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1248" y="630" width="8" height="66" rx="18" fill="#BA4C5E" stroke="none" stroke-width="2" />
-<text x="1272" y="664" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-submission-checker</text>
-<text x="1272" y="689" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">venue, PDF, anonymity, artifacts</text>
-<rect x="1248" y="712" width="464" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1248" y="712" width="8" height="66" rx="18" fill="#477AA6" stroke="none" stroke-width="2" />
-<text x="1272" y="746" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-rebuttal-writer</text>
-<text x="1272" y="771" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">response, ledger, resubmission</text>
-<line x1="570" y1="370" x2="650" y2="370" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<line x1="1150" y1="370" x2="1230" y2="370" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<path d="M1480 492 C1480 530 320 530 320 560" fill="none" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<line x1="570" y1="680" x2="650" y2="680" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<line x1="1150" y1="680" x2="1230" y2="680" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
-<path d="M1480 828 C1420 910 390 910 320 828" fill="none" stroke="#477AA6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<text x="900" y="890" font-size="20" font-weight="820" fill="#477AA6" text-anchor="middle">Revision loop</text>
-<rect x="350" y="930" width="1100" height="118" rx="30" fill="#102033" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<text x="900" y="980" font-size="36" font-weight="850" fill="#FFFFFF" text-anchor="middle">ccfa.yaml</text>
-<text x="900" y="1015" font-size="18" font-weight="500" fill="#D8E6F2" text-anchor="middle">shared project state</text>
-<rect x="410" y="1068" width="128" height="38" rx="19" fill="#1F6F8B" stroke="none" stroke-width="2" />
-<text x="474" y="1093" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">idea</text>
-<rect x="560" y="1068" width="128" height="38" rx="19" fill="#1F6F8B" stroke="none" stroke-width="2" />
-<text x="624" y="1093" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">literature</text>
-<rect x="710" y="1068" width="128" height="38" rx="19" fill="#1F6F8B" stroke="none" stroke-width="2" />
-<text x="774" y="1093" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">experiments</text>
-<rect x="860" y="1068" width="128" height="38" rx="19" fill="#1F6F8B" stroke="none" stroke-width="2" />
-<text x="924" y="1093" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">manuscript</text>
-<rect x="1010" y="1068" width="128" height="38" rx="19" fill="#1F6F8B" stroke="none" stroke-width="2" />
-<text x="1074" y="1093" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">reviews</text>
-<rect x="1160" y="1068" width="128" height="38" rx="19" fill="#1F6F8B" stroke="none" stroke-width="2" />
-<text x="1224" y="1093" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">submission</text>
-<rect x="1310" y="1068" width="128" height="38" rx="19" fill="#1F6F8B" stroke="none" stroke-width="2" />
-<text x="1374" y="1093" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">ledger</text>
-<rect x="420" y="1120" width="960" height="246" rx="24" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="420" y="1120" width="960" height="52" rx="24" fill="#5D6977" stroke="none" stroke-width="2" />
-<text x="442" y="1154" font-size="18" font-weight="820" fill="#FFFFFF" text-anchor="start">Governance</text>
-<rect x="438" y="1190" width="924" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="438" y="1190" width="8" height="66" rx="18" fill="#5D6977" stroke="none" stroke-width="2" />
-<text x="462" y="1224" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-common</text>
-<text x="462" y="1249" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">routing, policy, source registry</text>
-<rect x="438" y="1272" width="924" height="66" rx="18" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="438" y="1272" width="8" height="66" rx="18" fill="#5D6977" stroke="none" stroke-width="2" />
-<text x="462" y="1306" font-size="15" font-weight="820" fill="#15202B" text-anchor="start">ccf-skill-forger</text>
-<text x="462" y="1331" font-size="13" font-weight="520" fill="#5A6775" text-anchor="start">skills, docs, diagrams, release</text>
+
+<rect width="1400" height="720" fill="url(#hero)"/>
+<style>
+text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; }
+.small { fill: #667085; font-size: 13px; }
+.mono { font-family: "JetBrains Mono", Consolas, monospace; }
+</style>
+<text x="60" y="62" font-size="32" font-weight="800" fill="#233044" text-anchor="start">CCFA Skills family</text>
+<text x="60" y="92" font-size="16" font-weight="500" fill="#667085" text-anchor="start">Clear responsibilities and coherent transitions from idea to submission</text>
+<rect x="56" y="130" width="1288" height="535" rx="30" fill="#FFFFFF" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
+<rect x="90" y="275" width="185" height="170" rx="35" fill="#DDEBFF" stroke="#D9E1F2" stroke-width="1.4" />
+<circle cx="182" cy="330" r="31" fill="#FFFFFF" stroke="#7AA7FF" stroke-width="2.0" />
+<text x="182" y="337" font-size="26" font-weight="900" fill="#7AA7FF" text-anchor="middle">↗</text>
+<text x="182" y="388" font-size="19" font-weight="850" fill="#233044" text-anchor="middle">Understand the task</text>
+<text x="182" y="418" font-size="14" font-weight="700" fill="#667085" text-anchor="middle">ccf-common</text>
+<path d="M 275 360 C 330 360 340 205 400 205" fill="none" stroke="#7AA7FF" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 275 360 C 330 360 340 325 400 325" fill="none" stroke="#58C58A" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 275 360 C 330 360 340 445 400 445" fill="none" stroke="#FF8A8A" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<path d="M 275 360 C 330 360 340 565 400 565" fill="none" stroke="#FFB552" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="400" y="158" width="470" height="94" rx="28" fill="#E9DFFF" stroke="#9D7BFF" stroke-width="1.4" />
+<circle cx="442" cy="205" r="23" fill="#FFFFFF" stroke="#9D7BFF" stroke-width="1.6" />
+<text x="442" y="212" font-size="19" font-weight="850" fill="#9D7BFF" text-anchor="middle">◇</text>
+<text x="480" y="200" font-size="18" font-weight="850" fill="#233044" text-anchor="start">Research direction</text>
+<text x="480" y="228" font-size="13" font-weight="650" fill="#667085" text-anchor="start">idea review · idea optimization</text>
+<path d="M 870 205 C 920 205 920 360 960 360" fill="none" stroke="#9D7BFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="400" y="278" width="470" height="94" rx="28" fill="#DFF7EA" stroke="#58C58A" stroke-width="1.4" />
+<circle cx="442" cy="325" r="23" fill="#FFFFFF" stroke="#58C58A" stroke-width="1.6" />
+<text x="442" y="332" font-size="19" font-weight="850" fill="#58C58A" text-anchor="middle">▦</text>
+<text x="480" y="320" font-size="18" font-weight="850" fill="#233044" text-anchor="start">Evidence construction</text>
+<text x="480" y="348" font-size="13" font-weight="650" fill="#667085" text-anchor="start">literature · experiments · integrity</text>
+<path d="M 870 325 C 920 325 920 360 960 360" fill="none" stroke="#58C58A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="400" y="398" width="470" height="94" rx="28" fill="#FFE1E1" stroke="#FF8A8A" stroke-width="1.4" />
+<circle cx="442" cy="445" r="23" fill="#FFFFFF" stroke="#FF8A8A" stroke-width="1.6" />
+<text x="442" y="452" font-size="19" font-weight="850" fill="#FF8A8A" text-anchor="middle">¶</text>
+<text x="480" y="440" font-size="18" font-weight="850" fill="#233044" text-anchor="start">Publication narrative</text>
+<text x="480" y="468" font-size="13" font-weight="650" fill="#667085" text-anchor="start">review · writing · humanization · rebuttal</text>
+<path d="M 870 445 C 920 445 920 360 960 360" fill="none" stroke="#FF8A8A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="400" y="518" width="470" height="94" rx="28" fill="#FFE9C7" stroke="#FFB552" stroke-width="1.4" />
+<circle cx="442" cy="565" r="23" fill="#FFFFFF" stroke="#FFB552" stroke-width="1.6" />
+<text x="442" y="572" font-size="19" font-weight="850" fill="#FFB552" text-anchor="middle">✦</text>
+<text x="480" y="560" font-size="18" font-weight="850" fill="#233044" text-anchor="start">Scientific delivery</text>
+<text x="480" y="588" font-size="13" font-weight="650" fill="#667085" text-anchor="start">figures · exemplars · submission</text>
+<path d="M 870 565 C 920 565 920 360 960 360" fill="none" stroke="#FFB552" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="970" y="250" width="165" height="220" rx="34" fill="#F4F0FF" stroke="#9D7BFF" stroke-width="1.4" />
+<text x="1052" y="292" font-size="15" font-weight="850" fill="#233044" text-anchor="middle">one task · one owner</text>
+<circle cx="1052" cy="355" r="46" fill="#FFFFFF" stroke="#9D7BFF" stroke-width="2.2" />
+<text x="1052" y="349" font-size="16" font-weight="900" fill="#9D7BFF" text-anchor="middle">Owner</text>
+<text x="1052" y="371" font-size="13" font-weight="750" fill="#667085" text-anchor="middle">skill</text>
+<rect x="991" y="420" width="122" height="32" rx="16" fill="#FFFFFF" stroke="#D9E1F2" stroke-width="1.4" />
+<text x="1052" y="441" font-size="12" font-weight="750" fill="#233044" text-anchor="middle">Supporting checks</text>
+<path d="M 1135 360 C 1170 360 1170 360 1200 360" fill="none" stroke="#9D7BFF" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="1204" y="295" width="105" height="130" rx="26" fill="#DDEBFF" stroke="#7AA7FF" stroke-width="1.4" />
+<text x="1256" y="340" font-size="28" font-weight="900" fill="#58C58A" text-anchor="middle">✓</text>
+<text x="1256" y="379" font-size="13" font-weight="850" fill="#233044" text-anchor="middle">Traceable result</text>
+<text x="1256" y="402" font-size="11" font-weight="650" fill="#667085" text-anchor="middle">ccfa.yaml</text>
+<text x="635" y="633" font-size="13" font-weight="650" fill="#667085" text-anchor="middle">Project planning · Project setup · Skill family maintenance</text>
 </svg>

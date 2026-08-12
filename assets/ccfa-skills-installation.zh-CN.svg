@@ -1,43 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="900" viewBox="0 0 1800 900">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img">
+
 <defs>
-<linearGradient id="header" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#102033"/><stop offset="0.58" stop-color="#1F6F8B"/><stop offset="1" stop-color="#7A4E9B"/></linearGradient>
-<filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#0B1826" flood-opacity="0.13"/></filter>
-<marker id="arrow" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto"><path d="M2,2 L11,6.5 L2,11 Z" fill="#7B8794"/></marker>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#8EA0C5"/>
+  </marker>
+  <filter id="softShadow" x="-15%" y="-20%" width="130%" height="145%">
+    <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#2F3A5F" flood-opacity="0.10"/>
+  </filter>
+  <linearGradient id="hero" x1="0" x2="1" y1="0" y2="1">
+    <stop offset="0%" stop-color="#F8FAFF"/>
+    <stop offset="100%" stop-color="#EEF3FF"/>
+  </linearGradient>
 </defs>
-<style>text{font-family:Microsoft YaHei, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas,Menlo,monospace}</style>
-<rect x="0" y="0" width="1800" height="900" rx="0" fill="#F6F8FB" stroke="none" stroke-width="2" />
-<rect x="0" y="0" width="1800" height="158" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
-<text x="72" y="66" font-size="44" font-weight="850" fill="#FFFFFF" text-anchor="start">安装组合</text>
-<text x="72" y="108" font-size="20" font-weight="500" fill="#D8E6F2" text-anchor="start">支持部分安装，但任何组合都必须包含 ccf-common。</text>
-<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">当前 · 17 个 owner skills · 一个论文项目闭环</text>
-<rect x="90" y="245" width="480" height="172" rx="26" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="118" y="273" width="220" height="38" rx="19" fill="#5D6977" stroke="none" stroke-width="2" />
-<text x="228" y="298" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">必装核心</text>
-<text x="122" y="343" font-size="23" font-weight="820" fill="#15202B" text-anchor="start">ccf-common</text>
-<text x="122" y="377" font-size="16" font-weight="520" fill="#5A6775" text-anchor="start">路由、策略、artifact 合约</text>
-<rect x="650" y="245" width="480" height="172" rx="26" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="678" y="273" width="220" height="38" rx="19" fill="#1F7A8C" stroke="none" stroke-width="2" />
-<text x="788" y="298" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">完整论文闭环</text>
-<text x="682" y="343" font-size="23" font-weight="820" fill="#15202B" text-anchor="start">全部 17 个 runtime skills</text>
-<text x="682" y="377" font-size="16" font-weight="520" fill="#5A6775" text-anchor="start">适合端到端研究项目</text>
-<rect x="1210" y="245" width="480" height="172" rx="26" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1238" y="273" width="220" height="38" rx="19" fill="#2D3742" stroke="none" stroke-width="2" />
-<text x="1348" y="298" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">写作子集</text>
-<text x="1242" y="343" font-size="23" font-weight="820" fill="#15202B" text-anchor="start">common + writer + visuals + reviewer + submission</text>
-<text x="1242" y="377" font-size="16" font-weight="520" fill="#5A6775" text-anchor="start">用于起草、润色、图表 QA、格式检查</text>
-<rect x="90" y="505" width="480" height="172" rx="26" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="118" y="533" width="220" height="38" rx="19" fill="#D2673D" stroke="none" stroke-width="2" />
-<text x="228" y="558" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">早期研究子集</text>
-<text x="122" y="603" font-size="23" font-weight="820" fill="#15202B" text-anchor="start">common + idea + literature + experiments</text>
-<text x="122" y="637" font-size="16" font-weight="520" fill="#5A6775" text-anchor="start">用于写稿前规划</text>
-<rect x="650" y="505" width="480" height="172" rx="26" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="678" y="533" width="220" height="38" rx="19" fill="#6657A8" stroke="none" stroke-width="2" />
-<text x="788" y="558" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">图表子集</text>
-<text x="682" y="603" font-size="23" font-weight="820" fill="#15202B" text-anchor="start">common + experiments + visuals + writer + audit</text>
-<text x="682" y="637" font-size="16" font-weight="520" fill="#5A6775" text-anchor="start">用于 Python SVG 图和论文图表</text>
-<rect x="1210" y="505" width="480" height="172" rx="26" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1238" y="533" width="220" height="38" rx="19" fill="#B58B2A" stroke="none" stroke-width="2" />
-<text x="1348" y="558" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">不要安装</text>
-<text x="1242" y="603" font-size="23" font-weight="820" fill="#15202B" text-anchor="start">已合并 helper skill 名称</text>
-<text x="1242" y="637" font-size="16" font-weight="520" fill="#5A6775" text-anchor="start">压缩、报告、引用审计、venue guide</text>
+
+<rect width="1200" height="430" fill="url(#hero)"/>
+<style>
+text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; }
+.small { fill: #667085; font-size: 13px; }
+.mono { font-family: "JetBrains Mono", Consolas, monospace; }
+</style>
+<text x="60" y="58" font-size="30" font-weight="800" fill="#233044" text-anchor="start">安装形态</text>
+<rect x="120" y="150" width="240" height="145" rx="24" fill="#DDEBFF" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
+<text x="240" y="205" font-size="20" font-weight="850" fill="#233044" text-anchor="middle">仓库</text>
+<text x="240" y="245" font-size="14" font-weight="650" fill="#667085" text-anchor="middle">CCFA-Skills/</text>
+<rect x="490" y="150" width="240" height="145" rx="24" fill="#E9DFFF" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
+<text x="610" y="205" font-size="20" font-weight="850" fill="#233044" text-anchor="middle">已安装 skills</text>
+<text x="610" y="245" font-size="14" font-weight="650" fill="#667085" text-anchor="middle">~/.codex/skills/</text>
+<rect x="860" y="150" width="240" height="145" rx="24" fill="#DFF7EA" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
+<text x="980" y="205" font-size="20" font-weight="850" fill="#233044" text-anchor="middle">本地项目</text>
+<text x="980" y="245" font-size="14" font-weight="650" fill="#667085" text-anchor="middle">paper workspace</text>
+<line x1="365" y1="222" x2="485" y2="222" stroke="#AAB7D4" stroke-width="2.0" stroke-linecap="round" marker-end="url(#arrow)"/>
+<line x1="735" y1="222" x2="855" y2="222" stroke="#AAB7D4" stroke-width="2.0" stroke-linecap="round" marker-end="url(#arrow)"/>
 </svg>

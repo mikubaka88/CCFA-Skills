@@ -5,52 +5,52 @@ naming_policy: canonical runtime names use ccf-<object>-<role/action>; ccf-commo
 runtime_skill_count: 17
 skills:
   - name: ccf-humanization
-    trigger: "Apply the highest-priority humanization preflight to manuscript and experiment artifacts: remove defensive writing and improbable case sprawl, keep warnings outside files, disable generic SHA-256/checksum requirements, deduplicate smoke tests, and permit only confirmed full method versions in publication outputs."
-    exclude: "Does not hide material evidence, fabricate results, replace paper writing or experiment design, or override venue-mandated disclosures."
+    trigger: "Apply Humanization only as a sidecar preflight for manuscript-facing writing or final publication experiment prose/tables/captions/method descriptions; remove defensive writing and improbable case sprawl, keep warnings outside files, disable generic SHA-256/checksum requirements, deduplicate smoke tests, and permit only confirmed full method versions in publication outputs."
+    exclude: "Never acts as the primary owner; does not hide material evidence, fabricate results, replace paper writing or experiment design, own assessment-only review, or override venue-mandated disclosures."
     handoff: "ccf-paper-writer, ccf-experiment-designer, ccf-paper-reviewer, ccf-integrity-auditor"
   - name: ccf-project-scaffolder
-    trigger: "Create project folders, copy/select templates, initialize ccfa.yaml."
-    exclude: "Does not create research content."
+    trigger: "Create project folders, copy/select templates, initialize ccfa.yaml, and prepare artifact directories."
+    exclude: "Does not plan workflow stages/gates only, coordinate handoffs, or create research content."
     handoff: "ccf-pipeline-orchestrator, ccf-paper-writer, ccf-submission-checker"
   - name: ccf-pipeline-orchestrator
-    trigger: "Plan workflow, decompose tasks, coordinate stages, gates, artifacts, handoffs, and ccfa.yaml state."
-    exclude: "Does not perform downstream writing, review, search, experiment design, or rebuttal."
+    trigger: "Plan workflow, decompose tasks, coordinate full project stages/gates only, artifacts, handoffs, and ccfa.yaml state."
+    exclude: "Does not create folders/templates as the main task or perform downstream writing, review, search, experiment design, or rebuttal."
     handoff: "All owning workflow skills"
   - name: ccf-idea-optimizer
-    trigger: "Explore, rescue, optimize, and concretize rough research directions into problem, gap, insight, method, novelty, and evidence plans."
+    trigger: "Explore, rescue, optimize, and concretize rough research directions into problem, gap, insight, method, novelty, and evidence plans; use for developing a fuzzy idea with no score."
     exclude: "Does not rank or score multiple ideas as the main task."
     handoff: "ccf-idea-reviewer, ccf-literature-monitor, ccf-literature-searcher, ccf-experiment-designer, ccf-paper-writer"
   - name: ccf-idea-reviewer
-    trigger: "Score, rank, compare, and triage early research ideas when the user explicitly asks for judgment."
-    exclude: "Does not brainstorm directions, polish manuscripts, or optimize a single idea as the main task."
+    trigger: "Score, rank, compare, and triage early research ideas when the user explicitly asks for judgment, including score and rank multiple ideas."
+    exclude: "Does not brainstorm directions, polish manuscripts, develop a fuzzy idea with no score, or optimize a single idea as the main task."
     handoff: "ccf-idea-optimizer, ccf-literature-monitor, ccf-literature-searcher"
   - name: ccf-literature-monitor
     trigger: "Monitor arXiv, OpenReview, venue feeds, labs, competitors, and new papers for overlap with a user's idea."
     exclude: "Does not replace deep related-work search, citation audit, or final idea scoring."
     handoff: "ccf-literature-searcher, ccf-idea-reviewer, ccf-idea-optimizer, ccf-paper-writer, ccf-integrity-auditor"
   - name: ccf-literature-searcher
-    trigger: "Search and screen literature, related work, prior art, datasets, benchmarks, citation evidence, and research opportunity gaps."
-    exclude: "Does not audit only already-cited references or act as a final idea kill gate."
+    trigger: "Search and screen external literature, related work, prior art, datasets, benchmarks, citation evidence, and research opportunity gaps when retrieval is the requested deliverable."
+    exclude: "Does not own supplied-result table schemas, experiment evidence structure, full manuscript review, already-cited-only audits, or manuscript writing."
     handoff: "ccf-idea-optimizer, ccf-idea-reviewer, ccf-experiment-designer, ccf-paper-writer, ccf-integrity-auditor"
   - name: ccf-experiment-designer
-    trigger: "Design experiments, baselines, metrics, ablations, robustness tests, result templates, and real-result tables/figures."
-    exclude: "Does not invent results or draw docs diagrams."
+    trigger: "Design experiment evidence semantics: datasets, baselines, metrics, ablations, robustness tests, supplied-result evidence structure, result-table schemas, and chart-spec semantics; visual styling and rendering belong to ccf-visual-composer."
+    exclude: "Does not invent results, draw docs diagrams, search literature as the main deliverable, or improve layout/colors/readability of an already specified table/figure."
     handoff: "ccf-humanization, ccf-literature-searcher, ccf-visual-composer, ccf-paper-writer, ccf-paper-reviewer, ccf-integrity-auditor, ccf-submission-checker"
   - name: ccf-visual-composer
-    trigger: "Compose, generate, reconstruct, and QA publication-grade data figures/tables and scientific method/architecture diagrams, including GPT Image 2 prompt design and confirmed generation plus editable SVG/PDF reconstruction."
-    exclude: "Does not design experiments, invent results/components, write manuscript prose as the main task, or perform final submission compliance."
+    trigger: "Render, style, generate, reconstruct, and QA publication-grade data figures, visual table layouts, visual table redesign without changing numbers, reference-guided layout control, and scientific method/architecture diagrams from supplied content or values; visual beautification remains here, while experiment semantics belong to ccf-experiment-designer."
+    exclude: "Does not design experiments, invent results/components, write manuscript prose, convert PDFs into writing exemplars, or perform final submission compliance."
     handoff: "ccf-experiment-designer, ccf-paper-writer, ccf-integrity-auditor, ccf-submission-checker"
   - name: ccf-paper-to-exemplar
-    trigger: "Convert PDF papers into writing exemplar cards and register reusable style references for ccf-paper-writer."
-    exclude: "Does not write papers or perform review."
+    trigger: "Convert PDF papers into writing exemplar cards and register reusable style references for ccf-paper-writer; use for PDF to writing exemplar and personal exemplar libraries."
+    exclude: "Does not write papers, perform review, render figures, or reconstruct visuals."
     handoff: "ccf-paper-writer"
   - name: ccf-paper-writer
-    trigger: "Draft, revise, polish, compress, preserve source format during edits, create venue- and length-aware LaTeX manuscripts from ideas, and presentation-adapt paper text."
-    exclude: "Does not perform full review, evidence audit, package check, or rebuttal."
+    trigger: "Draft, revise, rewrite, polish, compress, preserve source format during edits, create venue- and length-aware LaTeX manuscripts from ideas, and presentation-adapt paper text; requested text changes remain here even when motivated by reviews, including rewrite based on review with no new review."
+    exclude: "Does not perform full review, scientific review, scoring, assessment-only diagnosis, evidence audit, package check, or rebuttal."
     handoff: "ccf-humanization, ccf-literature-monitor, ccf-literature-searcher, ccf-experiment-designer, ccf-visual-composer, ccf-paper-reviewer, ccf-submission-checker, ccf-rebuttal-writer"
   - name: ccf-paper-reviewer
-    trigger: "Review manuscripts scientifically and stylistically: scores, reviewer panel, AC/meta-review, paragraph logic, and format-facing risks."
-    exclude: "Does not rewrite the manuscript or draft rebuttals."
+    trigger: "Assess manuscripts without rewriting: full scientific review, scores, reviewer panel, AC/meta-review, issue diagnosis, paragraph logic, format-facing risks, and cross-version comparison with separate relative-progress and absolute-readiness scorecards."
+    exclude: "Does not rewrite the manuscript, handle review-motivated rewrites when no new review is requested, draft rebuttals, own the revision ledger, or style/render visual tables."
     handoff: "ccf-paper-writer, ccf-experiment-designer, ccf-integrity-auditor, ccf-submission-checker, ccf-rebuttal-writer"
   - name: ccf-integrity-auditor
     trigger: "Audit claims, numbers, table/figure/text consistency, citation metadata, and citation-context support."

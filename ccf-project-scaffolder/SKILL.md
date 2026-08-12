@@ -1,6 +1,6 @@
 ---
 name: ccf-project-scaffolder
-description: "Create CCF paper project folders, select or copy LaTeX templates, initialize ccfa.yaml, and prepare artifact directories. Use for project scaffolding and reproducible workspace setup. Do not generate research content."
+description: "Create CCF paper project folders, select or copy LaTeX templates, initialize ccfa.yaml, and prepare artifact directories. Use for project scaffolding, folder/template setup, and reproducible workspace setup. Do not plan workflow stages/gates only, coordinate handoffs, or generate research content."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial

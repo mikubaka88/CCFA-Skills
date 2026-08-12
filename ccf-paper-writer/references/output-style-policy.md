@@ -22,6 +22,10 @@ Preserve existing structure unless the user asks for restructuring:
 
 If a sentence contains an unsupported claim, narrow it accurately in place or add a short warning after the revised text. Do not inject defensive caveats or turn a polish request into a long review report.
 
+## Canonical Revision Files
+
+Use one canonical path for each requested manuscript or writing deliverable. Ordinary iterations overwrite that file in place. Do not create version-suffixed, dated, timestamped, `revised`, `new`, or `final-final` copies unless the user explicitly requests snapshots or multiple alternatives. Keep rollback in version control. Do not save prompt drafts, critique passes, or failed rewrites beside the manuscript. Immutable submissions, user-provided source versions, and raw experiment records remain separate when preservation is scientifically or externally required.
+
 ## From Idea To Manuscript
 
 When the user has only an idea and asks to write a paper:

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">DynTrace: 4D Spatio-Temporal Reasoning</title>
+  <desc id="desc">A three-stage DynTrace architecture showing dynamic object extraction, spatio-temporal dynamics encoding through DTV and DTG, and MLLM reasoning.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4 L0,8 Z" fill="#475569"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4 L0,8 Z" fill="#3b82f6"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#334155" flood-opacity="0.13"/>
+    </filter>
+    <style>
+      .title { font-family: Arial, Helvetica, sans-serif; fill: #172554; font-weight: 700; }
+      .label { font-family: Arial, Helvetica, sans-serif; fill: #1e293b; font-weight: 700; }
+      .body { font-family: Arial, Helvetica, sans-serif; fill: #475569; font-size: 14px; }
+      .tiny { font-family: Arial, Helvetica, sans-serif; fill: #64748b; font-size: 12px; }
+      .stage { fill: #ffffff; stroke-width: 2; rx: 18; filter: url(#shadow); }
+      .card { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; rx: 12; }
+      .line { fill: none; stroke: #475569; stroke-width: 2.4; marker-end: url(#arrow); }
+      .blue-line { fill: none; stroke: #3b82f6; stroke-width: 2.6; marker-end: url(#arrowBlue); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#ffffff"/>
+  <text x="800" y="54" text-anchor="middle" class="title" font-size="30">DynTrace: Tracking Dynamic Object Evidence for 4D Reasoning</text>
+  <text x="800" y="82" text-anchor="middle" class="body" font-size="16">Training-free spatio-temporal reasoning with geometry-grounded visual and structured evidence</text>
+  <line x1="42" y1="101" x2="1558" y2="101" stroke="#dbeafe" stroke-width="2"/>
+
+  <!-- Stage 1 -->
+  <rect x="30" y="125" width="440" height="680" class="stage" stroke="#93c5fd"/>
+  <rect x="30" y="125" width="440" height="56" rx="18" fill="#dbeafe"/>
+  <text x="55" y="158" class="title" font-size="19">Stage 1: Dynamic Objects Extraction</text>
+  <text x="55" y="207" class="label" font-size="14">Input Video Frames</text>
+  <g transform="translate(55 220)">
+    <rect x="0" y="0" width="105" height="78" rx="8" fill="#bfdbfe"/>
+    <rect x="8" y="8" width="89" height="62" rx="5" fill="#e0f2fe"/>
+    <path d="M10 57 C32 38 52 65 95 26 L95 70 L10 70 Z" fill="#93c5fd"/>
+    <circle cx="35" cy="41" r="9" fill="#ef4444"/><rect x="28" y="49" width="14" height="12" rx="3" fill="#f87171"/>
+    <rect x="68" y="35" width="18" height="27" rx="4" fill="#7c3aed"/>
+    <text x="52" y="92" text-anchor="middle" class="tiny">t = 1</text>
+    <rect x="125" y="0" width="105" height="78" rx="8" fill="#bfdbfe"/>
+    <rect x="133" y="8" width="89" height="62" rx="5" fill="#e0f2fe"/>
+    <path d="M135 57 C157 38 177 65 220 26 L220 70 L135 70 Z" fill="#93c5fd"/>
+    <circle cx="169" cy="40" r="9" fill="#ef4444"/><rect x="162" y="48" width="14" height="12" rx="3" fill="#f87171"/>
+    <rect x="191" y="35" width="18" height="27" rx="4" fill="#7c3aed"/>
+    <text x="177" y="92" text-anchor="middle" class="tiny">t = 2</text>
+    <rect x="250" y="0" width="105" height="78" rx="8" fill="#bfdbfe"/>
+    <rect x="258" y="8" width="89" height="62" rx="5" fill="#e0f2fe"/>
+    <path d="M260 57 C282 38 302 65 345 26 L345 70 L260 70 Z" fill="#93c5fd"/>
+    <circle cx="305" cy="39" r="9" fill="#ef4444"/><rect x="298" y="47" width="14" height="12" rx="3" fill="#f87171"/>
+    <rect x="316" y="35" width="18" height="27" rx="4" fill="#7c3aed"/>
+    <text x="302" y="92" text-anchor="middle" class="tiny">t = T</text>
+  </g>
+  <rect x="55" y="335" width="365" height="52" class="card" fill="#f5f3ff"/>
+  <path d="M78 355 l10 -10 l10 10 -10 10 Z" fill="#8b5cf6"/>
+  <text x="112" y="358" class="label" font-size="14">User Query</text>
+  <text x="112" y="377" class="tiny">“How do the two vehicles move?”</text>
+  <path d="M235 388 L235 416" class="line"/>
+  <rect x="55" y="425" width="365" height="74" class="card"/>
+  <rect x="70" y="440" width="44" height="44" rx="9" fill="#ede9fe"/>
+  <text x="92" y="469" text-anchor="middle" class="title" font-size="16">Q</text>
+  <text x="130" y="453" class="label" font-size="15">Qwen3-VL</text>
+  <text x="130" y="475" class="body">Select query-relevant objects</text>
+  <path d="M237 499 L237 522" class="line"/>
+  <rect x="55" y="531" width="365" height="96" class="card"/>
+  <rect x="70" y="547" width="44" height="44" rx="9" fill="#fee2e2"/>
+  <path d="M77 569 C84 552 99 587 107 559" fill="none" stroke="#ef4444" stroke-width="3"/>
+  <text x="130" y="558" class="label" font-size="15">WAFT Optical Flow</text>
+  <text x="130" y="580" class="body">Remove camera motion</text>
+  <text x="130" y="600" class="body">Cluster dynamic objects</text>
+  <path d="M237 627 L237 650" class="line"/>
+  <rect x="55" y="659" width="365" height="103" class="card"/>
+  <rect x="70" y="677" width="44" height="44" rx="9" fill="#dbeafe"/>
+  <path d="M79 686 h26 v26 h-26z" fill="none" stroke="#2563eb" stroke-width="3"/>
+  <text x="130" y="687" class="label" font-size="15">SAM3</text>
+  <text x="130" y="709" class="body">Generate temporally consistent</text>
+  <text x="130" y="729" class="body">dynamic object masks</text>
+  <path d="M420 710 L495 710" class="blue-line"/>
+
+  <!-- Stage 2 -->
+  <rect x="510" y="125" width="590" height="680" class="stage" stroke="#c4b5fd"/>
+  <rect x="510" y="125" width="590" height="56" rx="18" fill="#ede9fe"/>
+  <text x="535" y="158" class="title" font-size="19">Stage 2: Spatio-Temporal Dynamics Encoding</text>
+  <rect x="540" y="205" width="530" height="120" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="565" y="235" class="label" font-size="16">Geometry-Grounded Dynamic Evidence</text>
+  <g transform="translate(565 255)">
+    <circle cx="20" cy="20" r="20" fill="#dbeafe"/><path d="M12 24 L27 12 M20 8 v24" stroke="#2563eb" stroke-width="2"/><text x="52" y="17" class="label" font-size="13">Object Trajectory</text><text x="52" y="35" class="tiny">world-coordinate tracks</text>
+    <circle cx="240" cy="20" r="20" fill="#fee2e2"/><path d="M231 14 a12 12 0 0 1 17 0" fill="none" stroke="#ef4444" stroke-width="2"/><path d="M240 8 v22" stroke="#ef4444" stroke-width="2"/><text x="271" y="17" class="label" font-size="13">Camera Behavior</text><text x="271" y="35" class="tiny">pose and ego-motion</text>
+  </g>
+  <g transform="translate(625 302)"><circle cx="0" cy="0" r="6" fill="#8b5cf6"/><circle cx="27" cy="0" r="6" fill="#ef4444"/><path d="M7 0 H20" stroke="#64748b" stroke-width="2"/><text x="44" y="5" class="label" font-size="13">Relation Evolution</text></g>
+  <path d="M662 325 L662 365" class="blue-line"/>
+  <path d="M948 325 L948 365" class="blue-line"/>
+  <text x="662" y="354" text-anchor="middle" class="tiny">visual branch</text>
+  <text x="948" y="354" text-anchor="middle" class="tiny">structured branch</text>
+  <rect x="540" y="375" width="250" height="340" rx="14" fill="#eff6ff" stroke="#93c5fd" stroke-width="2"/>
+  <rect x="560" y="393" width="65" height="27" rx="13" fill="#bfdbfe"/><text x="593" y="412" text-anchor="middle" class="title" font-size="14">DTV</text>
+  <text x="650" y="412" class="label" font-size="14">Dynamic Trajectory Visualization</text>
+  <g transform="translate(564 442)">
+    <rect x="0" y="0" width="202" height="150" rx="9" fill="#bfdbfe"/>
+    <path d="M8 122 C43 88 83 133 194 48 L194 142 L8 142 Z" fill="#93c5fd"/>
+    <rect x="26" y="72" width="36" height="30" rx="6" fill="#f87171"/>
+    <rect x="130" y="45" width="30" height="25" rx="5" fill="#8b5cf6"/>
+    <path d="M44 69 C72 57 94 47 116 38" fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#arrowBlue)"/>
+    <path d="M145 42 C158 33 169 29 183 30" fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#arrowBlue)"/>
+    <text x="101" y="170" text-anchor="middle" class="body">Reproject 3D trajectories</text>
+    <text x="101" y="190" text-anchor="middle" class="body">as motion arrows on frames</text>
+  </g>
+  <rect x="815" y="375" width="255" height="340" rx="14" fill="#faf5ff" stroke="#c4b5fd" stroke-width="2"/>
+  <rect x="835" y="393" width="65" height="27" rx="13" fill="#ddd6fe"/><text x="867" y="412" text-anchor="middle" class="title" font-size="14">DTG</text>
+  <text x="915" y="412" class="label" font-size="14">Dynamic Trace Graph</text>
+  <rect x="837" y="440" width="206" height="80" rx="10" fill="#ffffff" stroke="#ddd6fe"/>
+  <text x="853" y="463" class="body">Dynamic Cues</text><text x="853" y="485" class="body">Trace Evolution</text><text x="853" y="507" class="body">Key Moments</text>
+  <path d="M940 520 L940 544" class="line"/>
+  <rect x="837" y="552" width="206" height="42" rx="9" fill="#ede9fe"/>
+  <text x="940" y="578" text-anchor="middle" class="label" font-size="14">Object / Relation DT-Tokens</text>
+  <path d="M940 594 L940 618" class="line"/>
+  <g transform="translate(842 630)">
+    <path d="M28 26 L86 8 L151 30 L97 58 Z" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+    <circle cx="28" cy="26" r="10" fill="#ef4444"/><circle cx="86" cy="8" r="10" fill="#8b5cf6"/><circle cx="151" cy="30" r="10" fill="#60a5fa"/><circle cx="97" cy="58" r="10" fill="#f59e0b"/>
+    <text x="172" y="35" class="body">Temporal graph</text>
+  </g>
+  <path d="M790 545 L1122 545" class="blue-line"/>
+
+  <!-- Stage 3 -->
+  <rect x="1130" y="125" width="440" height="680" class="stage" stroke="#fca5a5"/>
+  <rect x="1130" y="125" width="440" height="56" rx="18" fill="#fee2e2"/>
+  <text x="1155" y="151" class="title" font-size="18">Stage 3: Representation</text>
+  <text x="1155" y="171" class="title" font-size="18">Integration &amp; Reasoning</text>
+  <text x="1350" y="220" text-anchor="middle" class="label" font-size="15">Evidence Fusion</text>
+  <rect x="1175" y="242" width="150" height="52" rx="10" fill="#f5f3ff" stroke="#c4b5fd"/>
+  <text x="1250" y="264" text-anchor="middle" class="label" font-size="14">User Query</text><text x="1250" y="282" text-anchor="middle" class="tiny">language intent</text>
+  <rect x="1375" y="242" width="150" height="52" rx="10" fill="#eff6ff" stroke="#93c5fd"/>
+  <text x="1450" y="264" text-anchor="middle" class="label" font-size="14">DTV</text><text x="1450" y="282" text-anchor="middle" class="tiny">visual motion priors</text>
+  <rect x="1275" y="314" width="150" height="52" rx="10" fill="#faf5ff" stroke="#c4b5fd"/>
+  <text x="1350" y="336" text-anchor="middle" class="label" font-size="14">DTG</text><text x="1350" y="354" text-anchor="middle" class="tiny">continuous traces</text>
+  <path d="M1250 294 L1325 390" class="line"/><path d="M1450 294 L1375 390" class="line"/><path d="M1350 366 L1350 390" class="line"/>
+  <rect x="1200" y="402" width="300" height="150" rx="18" fill="#fff1f2" stroke="#fb7185" stroke-width="2"/>
+  <g transform="translate(1230 432)"><rect x="0" y="0" width="54" height="54" rx="13" fill="#fb7185"/><circle cx="18" cy="20" r="6" fill="#ffffff"/><circle cx="36" cy="20" r="6" fill="#ffffff"/><path d="M13 37 C20 29 34 29 41 37" fill="none" stroke="#ffffff" stroke-width="3"/></g>
+  <text x="1305" y="455" class="title" font-size="22">MLLM</text>
+  <text x="1305" y="480" class="body">Reason over dynamic evidence</text>
+  <text x="1305" y="503" class="body">with 4D scene understanding</text>
+  <path d="M1350 552 L1350 590" class="line"/>
+  <rect x="1180" y="605" width="340" height="105" rx="15" fill="#ffffff" stroke="#fb7185" stroke-width="2"/>
+  <path d="M1210 637 l14 14 l28 -30" fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1262" y="638" class="label" font-size="16">Final Answer</text>
+  <text x="1262" y="664" class="body">“They move apart while the</text>
+  <text x="1262" y="686" class="body">camera remains stable.”</text>
+  <text x="800" y="852" text-anchor="middle" class="tiny">DynTrace makes object motion, camera behavior, and evolving relations explicit before MLLM inference.</text>
+</svg>

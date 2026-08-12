@@ -1,6 +1,6 @@
 ---
 name: ccf-idea-optimizer
-description: "Turn rough CCF research directions into concrete problem, gap, insight, method, novelty, and evidence plans. Use for idea optimization, fuzzy idea concretization, research direction shaping, early direction exploration, salvage routes, 优化idea, 具象化idea, 研究思路优化, 找方向, 方向探索. Do not rank or score multiple ideas as the main output."
+description: "Turn rough CCF research directions into concrete problem, gap, insight, method, novelty, and evidence plans. Use for idea optimization, fuzzy idea concretization, develop a fuzzy idea with no score, research direction shaping, early direction exploration, salvage routes, 优化idea, 具象化idea, 研究思路优化, 找方向, 方向探索. Do not rank or score multiple ideas as the main output."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -26,7 +26,7 @@ Treat rough ideas, unpublished method details, draft abstracts, and experiment p
 
 ## Core Rule
 
-Optimize the research idea before optimizing the writing. Do not inflate novelty, invent related work, invent results, or turn weak ideas into confident claims. Make the idea more CCF-A-ready by sharpening the problem, mechanism, contribution, evidence package, and reviewer-facing risk register. For fuzzy ideas, generate diverse but internally consistent candidate concretizations; prefer timely, elegant, non-stale directions and clearly mark novelty uncertainty until searched. In exploratory mode, do not kill a seed direction just because it is currently weak or crowded: produce at least one plausible rescue route, narrower problem, venue switch, benchmark/evidence route, or "minimum viable research question" before recommending a pivot. Follow the user's requested output shape: idea card, alternatives, roadmap, questions, table, Chinese explanation, or handoff-ready brief.
+Optimize the research idea before optimizing the writing. Do not inflate novelty, invent related work, invent results, or turn weak ideas into confident claims. Make the idea more CCF-A-ready by sharpening the problem, mechanism, contribution, evidence package, and reviewer-facing risk register. When literature is available, reason through a compact research map of source-backed observations, limitations, mechanism primitives, and protocol anchors instead of treating paper titles or summaries as prompt decoration. For fuzzy ideas, evolve diverse but internally consistent candidate concretizations, retain their lineage, and challenge the strongest route once before finalizing it. Prefer timely, elegant, non-stale directions and clearly mark novelty uncertainty until searched. In exploratory mode, do not kill a seed direction just because it is currently weak or crowded: produce at least one plausible rescue route, narrower problem, venue switch, benchmark/evidence route, or "minimum viable research question" before recommending a pivot. Follow the user's requested output shape: idea card, alternatives, roadmap, questions, table, Chinese explanation, or handoff-ready brief.
 
 ## Mandatory Checklist
 
@@ -42,7 +42,9 @@ In standard mode, complete this checklist before final output. In quick mode, ru
 8. Reviewer risks are labeled as writing-fixable, design-fixable, evidence-fixable, requires-new-result, venue-mismatch, or likely-pivot.
 9. Diverse variants are checked for internal contradictions, mutually incompatible assumptions, and theme drift.
 10. Early-stage outputs separate `current weakness` from `development potential`; uncertainty is labeled as `needs-search`, `needs-mechanism`, or `needs-evidence`, not as rejection.
-11. Any optional module transition to `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-idea-reviewer`, `ccf-experiment-designer`, or `ccf-paper-writer` follows the CCFA handoff mode; if denied or disabled, output a local risk scan or next-step note only.
+11. When literature is supplied or searched, each selected idea traces its gap, borrowed mechanism primitives, and protocol anchors to sources while separating source-supported facts from optimizer inference.
+12. The final route survives one overlap challenge and one evidence challenge; revisions change the idea only when the challenge exposes a material weakness.
+13. Any optional module transition to `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-idea-reviewer`, `ccf-experiment-designer`, or `ccf-paper-writer` follows the CCFA handoff mode; if denied or disabled, output a local risk scan or next-step note only.
 
 Load `references/idea-intake.md` when inputs are incomplete or several idea drafts must be normalized.
 
@@ -50,14 +52,16 @@ Load `references/idea-intake.md` when inputs are incomplete or several idea draf
 
 1. Identify the target venue, track, field, idea maturity, user's decision goal, constraints, and available evidence. If no venue is named, assume a generic CCF-A target and label the assumption.
 2. Map the target to a CCF-A family. Use `../ccf-common/references/ccf-a-venue-map.md` for shared venue-family routing; then load `references/venue-idea-adapters.md` for idea-stage priorities.
-3. Ground novelty and timeliness. If the user asks for current prior art, latest trends, frontiers, non-stale ideas, recent similar papers, competitor tracking, or venue-specific policy, follow CCFA handoff mode before using `ccf-literature-monitor` for recent-paper/competitor signals or `ccf-literature-searcher` for deep related-work search. If searching directly, browse primary sources: official venue pages, papers, proceedings, arXiv pages, project pages, and credible scholar sources. Mark unsearched novelty as uncertain. Treat close prior work as a differentiation problem first; treat it as a dead end only when the same problem, mechanism, evidence path, and venue claim are already covered.
+3. Ground novelty and timeliness. If the user asks for current prior art, latest trends, frontiers, non-stale ideas, recent similar papers, competitor tracking, or venue-specific policy, follow CCFA handoff mode before using `ccf-literature-monitor` for recent-paper/competitor signals or `ccf-literature-searcher` for deep related-work search. If searching directly, browse primary sources: official venue pages, papers, proceedings, arXiv pages, project pages, and credible scholar sources. Ask the searcher for an idea-grounding packet when the search feeds this skill. Mark unsearched novelty as uncertain. Treat close prior work as a differentiation problem first; treat it as a dead end only when the same problem, mechanism, evidence path, and venue claim are already covered.
 4. Normalize the raw idea. Load `references/idea-intake.md` and produce an idea card with task, audience, gap, root challenge, insight, method, expected evidence, and constraints.
-5. For fuzzy or underdetermined ideas, load `references/frontier-ideation.md` and produce 3-5 candidate concretizations with high diversity across problem angle, mechanism, evidence type, and venue fit. Randomness is allowed in exploration, but final candidates must be coherent and non-conflicting.
-6. Sharpen the problem and method. Load `references/problem-method-blueprint.md`; convert vague motivation into a decision-relevant problem and convert method names into mechanisms, assumptions, failure modes, and alternatives.
-7. Shape the innovation. Decide the strongest honest contribution type and remove unsupported or diluted claims.
-8. Design the minimum convincing evidence package. Load `references/experiment-design.md`; specify datasets, baselines, ablations, metrics, stress tests, efficiency, user study, proof, or systems evaluation as required by the venue family. Follow CCFA handoff mode before using `ccf-experiment-designer` for a full experiment plan.
-9. Run an internal development pass. In exploratory mode, use a coach-like viability scan: what can be saved, what must be narrowed, what evidence would decide, and what the next interaction should ask. Follow the CCFA handoff mode before using `ccf-idea-reviewer` as an optional scoring module; use it only when the user explicitly wants scoring, ranking, investment triage, or strict novelty judgment. If it is denied or disabled, perform a compact multi-expert risk scan focused only on problem and method.
-10. Produce an optimized idea plan, rescue/pivot options, and a writing-readiness note. Follow the CCFA handoff mode before offering the viable plan to `ccf-paper-writer`; if writing is denied or not confirmed, stop at the idea plan.
+5. Build compact research memory when literature is available. Load `references/literature-grounded-evolution.md`; convert sources into evidence cards and a small relation map, triangulate gaps across sources, and discard background material that does not change a design decision. Do not paste whole abstracts into the working context.
+6. For fuzzy or underdetermined ideas, load `references/frontier-ideation.md` and produce 3-5 candidate concretizations with high diversity across problem angle, mechanism, evidence type, and venue fit. Give every candidate a parent and an explicit operation such as refine, combine, transfer, invert, or instrument. Randomness is allowed in exploration, but final candidates must be coherent and non-conflicting.
+7. Select and evolve development routes. Compare candidates internally by grounded gap, causal mechanism fit, differentiation, falsifiability, resource fit, and evidence feasibility. Keep the strongest route plus one meaningfully different fallback; challenge the strongest route with its closest-overlap risk and weakest evidence link, then revise it once if needed. This is development selection, not a user-facing numeric ranking task.
+8. Sharpen the problem and method. Load `references/problem-method-blueprint.md`; convert vague motivation into a decision-relevant problem and convert method names into mechanisms, assumptions, failure modes, alternatives, and a causal chain from intervention to expected observation.
+9. Shape the innovation. Decide the strongest honest contribution type and remove unsupported or diluted claims. A combination of known components needs a non-obvious interaction and a new falsifiable claim, not only a longer pipeline.
+10. Design the minimum convincing evidence package. Load `references/experiment-design.md`; derive datasets, baselines, metrics, and protocol details from compatible public precedents when available, then add discriminating tests for the new mechanism. Follow CCFA handoff mode before using `ccf-experiment-designer` for a full experiment plan.
+11. Run an internal development pass. In exploratory mode, use a coach-like viability scan: what can be saved, what must be narrowed, what evidence would decide, and what the next interaction should ask. Follow the CCFA handoff mode before using `ccf-idea-reviewer` as an optional scoring module; use it only when the user explicitly wants scoring, ranking, investment triage, or strict novelty judgment. If it is denied or disabled, perform a compact multi-expert risk scan focused only on problem and method.
+12. Produce an optimized idea plan, rescue/pivot options, and a writing-readiness note. Keep internal search traces and branch bookkeeping out of polished academic prose; expose a compact source/inference basis when it helps audit the idea. Follow the CCFA handoff mode before offering the viable plan to `ccf-paper-writer`; if writing is denied or not confirmed, stop at the idea plan.
 
 ## Adaptive Output Contracts
 
@@ -70,6 +74,7 @@ Target venue and assumptions:
 Mode and development stance:
 Raw idea diagnosis:
 Optimized idea card:
+Grounding map and inference boundaries:
 Candidate concretizations:
 Problem statement:
 Core insight:
@@ -101,6 +106,7 @@ Load only what is needed:
 
 - `references/idea-intake.md`: Use for incomplete, messy, or multi-candidate idea drafts.
 - `references/frontier-ideation.md`: Use for fuzzy idea concretization, high-diversity exploration, non-stale direction checks, and coherence filters.
+- `references/literature-grounded-evolution.md`: Use when supplied or searched literature should drive gap discovery, mechanism transfer, branch evolution, and protocol-grounded evidence planning.
 - `references/problem-method-blueprint.md`: Use when sharpening the problem, insight, mechanism, contribution type, and failure modes.
 - `references/venue-idea-adapters.md`: Use after mapping a target to a CCF-A family.
 - `references/experiment-design.md`: Use when designing baselines, ablations, evidence packages, and acceptance-oriented experiments.

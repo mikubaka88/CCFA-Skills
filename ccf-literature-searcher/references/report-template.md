@@ -11,6 +11,7 @@ literature-search-YYYYMMDD-<topic-slug>/
   papers.md
   papers.csv
   search-notes.md
+  idea-grounding.md  # only when feeding idea optimization
 ```
 
 If the user provides a project directory, write the folder there. Otherwise use the current workspace. If file writing is unavailable, return the same sections in the final answer.
@@ -110,3 +111,41 @@ For pure benchmark papers, set `numeric_evidence_score` to `N/A benchmark`.
 - For experiment design:
 - For review:
 ```
+
+## idea-grounding.md
+
+Create this optional file only when the search feeds `ccf-idea-optimizer`. Keep it compact and decision-relevant.
+
+```md
+# Idea-Grounding Packet
+
+## Scope And Evidence Boundary
+
+- Topic / seed:
+- Search date:
+- Source-supported facts:
+- Searcher inferences:
+- Unknowns:
+
+## Evidence Cards
+
+| Source | Supported observation | Reported limitation | Mechanism primitive | Protocol anchor | Transfer condition | Confidence |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  |  |  | dataset / baseline / metric / setting |  | direct / inferred / unknown |
+
+## Cross-Source Relations
+
+| Source pair / cluster | Relation | Open gap or conflict | Why it matters | Evidence needed next |
+| --- | --- | --- | --- | --- |
+|  | supports / conflicts-with / leaves-open / depends-on / evaluated-by |  |  |  |
+
+## Idea Constraints
+
+- Already covered central claims:
+- Transferable mechanism primitives:
+- Protocols suitable for direct comparison:
+- Stale or overcrowded routes:
+- Minimum viable research questions:
+```
+
+Limit the normal packet to eight evidence cards. Include a source only when it changes a problem boundary, mechanism choice, comparison set, or experiment protocol.

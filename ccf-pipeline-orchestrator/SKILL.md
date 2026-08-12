@@ -1,6 +1,6 @@
 ---
 name: ccf-pipeline-orchestrator
-description: "Plan and coordinate CCF paper-project stages, goals, constraints, success criteria, gates, artifacts, handoffs, and ccfa.yaml status across the CCFA family. Use for workflow planning, task decomposition, project status, stage gates, next-skill routing, 任务拆解, 流程规划. Do not perform downstream writing, review, search, experiment design, or rebuttal itself."
+description: "Plan and coordinate CCF paper-project stages, goals, constraints, success criteria, gates, artifacts, handoffs, and ccfa.yaml status across the CCFA family. Use for workflow planning, task decomposition, full project stages/gates only, project status, stage gates, next-skill routing, 任务拆解, 流程规划. Do not create folders/templates as the main task or perform downstream writing, review, search, experiment design, or rebuttal itself."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial

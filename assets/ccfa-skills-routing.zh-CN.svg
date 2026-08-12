@@ -1,101 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1400" viewBox="0 0 1800 1400">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img">
+
 <defs>
-<linearGradient id="header" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#102033"/><stop offset="0.58" stop-color="#1F6F8B"/><stop offset="1" stop-color="#7A4E9B"/></linearGradient>
-<filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#0B1826" flood-opacity="0.13"/></filter>
-<marker id="arrow" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto"><path d="M2,2 L11,6.5 L2,11 Z" fill="#7B8794"/></marker>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M 0 0 L 10 5 L 0 10 z" fill="#8EA0C5"/>
+  </marker>
+  <filter id="softShadow" x="-15%" y="-20%" width="130%" height="145%">
+    <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#2F3A5F" flood-opacity="0.10"/>
+  </filter>
+  <linearGradient id="hero" x1="0" x2="1" y1="0" y2="1">
+    <stop offset="0%" stop-color="#F8FAFF"/>
+    <stop offset="100%" stop-color="#EEF3FF"/>
+  </linearGradient>
 </defs>
-<style>text{font-family:Microsoft YaHei, Segoe UI, Arial, sans-serif;dominant-baseline:auto} .mono{font-family:Consolas,Menlo,monospace}</style>
-<rect x="0" y="0" width="1800" height="1400" rx="0" fill="#F6F8FB" stroke="none" stroke-width="2" />
-<rect x="0" y="0" width="1800" height="158" rx="0" fill="url(#header)" stroke="none" stroke-width="2" />
-<text x="72" y="66" font-size="44" font-weight="850" fill="#FFFFFF" text-anchor="start">路由边界</text>
-<text x="72" y="108" font-size="20" font-weight="500" fill="#D8E6F2" text-anchor="start">相似请求只进入一个 owner skill，避免触发冲突。</text>
-<text x="1728" y="132" font-size="16" font-weight="650" fill="#D8E6F2" text-anchor="end">当前 · 17 个 owner skills · 一个论文项目闭环</text>
-<rect x="90" y="230" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="114" y="254" width="230" height="38" rx="19" fill="#2D3742" stroke="none" stroke-width="2" />
-<text x="229" y="279" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">人类化投稿产物</text>
-<text x="375" y="277" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-humanization</text>
-<text x="375" y="306" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">纯学术表达、warning 隔离、完整方法</text>
-<rect x="1000" y="230" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1024" y="254" width="230" height="38" rx="19" fill="#2D3742" stroke="none" stroke-width="2" />
-<text x="1139" y="279" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">写正文</text>
-<text x="1285" y="277" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-writer</text>
-<text x="1285" y="306" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">起草、篇幅、压缩、展示</text>
-<text x="900" y="292" font-size="28" font-weight="850" fill="#94A3B8" text-anchor="middle">vs</text>
-<rect x="90" y="365" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="114" y="389" width="230" height="38" rx="19" fill="#D2673D" stroke="none" stroke-width="2" />
-<text x="229" y="414" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">优化 / 救 idea</text>
-<text x="375" y="412" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-idea-optimizer</text>
-<text x="375" y="441" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">探索、救援、塑形</text>
-<rect x="1000" y="365" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1024" y="389" width="230" height="38" rx="19" fill="#D2673D" stroke="none" stroke-width="2" />
-<text x="1139" y="414" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">给 idea 排名评分</text>
-<text x="1285" y="412" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-idea-reviewer</text>
-<text x="1285" y="441" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">评分、排序、阶段风险</text>
-<text x="900" y="427" font-size="28" font-weight="850" fill="#94A3B8" text-anchor="middle">vs</text>
-<rect x="90" y="500" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="114" y="524" width="230" height="38" rx="19" fill="#6657A8" stroke="none" stroke-width="2" />
-<text x="229" y="549" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">监控新论文</text>
-<text x="375" y="547" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-literature-monitor</text>
-<text x="375" y="576" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">新论文、竞品、overlap</text>
-<rect x="1000" y="500" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1024" y="524" width="230" height="38" rx="19" fill="#6657A8" stroke="none" stroke-width="2" />
-<text x="1139" y="549" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">深度相关工作</text>
-<text x="1285" y="547" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-literature-searcher</text>
-<text x="1285" y="576" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">prior art、open gap、benchmark</text>
-<text x="900" y="562" font-size="28" font-weight="850" fill="#94A3B8" text-anchor="middle">vs</text>
-<rect x="90" y="635" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="114" y="659" width="230" height="38" rx="19" fill="#8A4F86" stroke="none" stroke-width="2" />
-<text x="229" y="684" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">审计已引用文献</text>
-<text x="375" y="682" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-integrity-auditor</text>
-<text x="375" y="711" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">claim、数字、引用</text>
-<rect x="1000" y="635" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1024" y="659" width="230" height="38" rx="19" fill="#2D3742" stroke="none" stroke-width="2" />
-<text x="1139" y="684" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">抽取写作范例</text>
-<text x="1285" y="682" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-to-exemplar</text>
-<text x="1285" y="711" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">PDF 转写作范例卡</text>
-<text x="900" y="697" font-size="28" font-weight="850" fill="#94A3B8" text-anchor="middle">vs</text>
-<rect x="90" y="770" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="114" y="794" width="230" height="38" rx="19" fill="#6657A8" stroke="none" stroke-width="2" />
-<text x="229" y="819" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">设计实验</text>
-<text x="375" y="817" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-experiment-designer</text>
-<text x="375" y="846" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">baseline、消融、结果规格</text>
-<rect x="1000" y="770" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1024" y="794" width="230" height="38" rx="19" fill="#6657A8" stroke="none" stroke-width="2" />
-<text x="1139" y="819" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">图表呈现</text>
-<text x="1285" y="817" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-visual-composer</text>
-<text x="1285" y="846" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">Python 绘图、图表、排版 QA</text>
-<text x="900" y="832" font-size="28" font-weight="850" fill="#94A3B8" text-anchor="middle">vs</text>
-<rect x="90" y="905" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="114" y="929" width="230" height="38" rx="19" fill="#2D3742" stroke="none" stroke-width="2" />
-<text x="229" y="954" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">写正文</text>
-<text x="375" y="952" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-writer</text>
-<text x="375" y="981" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">起草、篇幅、压缩、展示</text>
-<rect x="1000" y="905" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1024" y="929" width="230" height="38" rx="19" fill="#B58B2A" stroke="none" stroke-width="2" />
-<text x="1139" y="954" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">判断论文质量</text>
-<text x="1285" y="952" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-paper-reviewer</text>
-<text x="1285" y="981" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">科学评审和写作评审</text>
-<text x="900" y="967" font-size="28" font-weight="850" fill="#94A3B8" text-anchor="middle">vs</text>
-<rect x="90" y="1040" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="114" y="1064" width="230" height="38" rx="19" fill="#BA4C5E" stroke="none" stroke-width="2" />
-<text x="229" y="1089" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">检查投稿包</text>
-<text x="375" y="1087" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-submission-checker</text>
-<text x="375" y="1116" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">会议、PDF、匿名、artifact</text>
-<rect x="1000" y="1040" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1024" y="1064" width="230" height="38" rx="19" fill="#477AA6" stroke="none" stroke-width="2" />
-<text x="1139" y="1089" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">回复审稿人</text>
-<text x="1285" y="1087" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-rebuttal-writer</text>
-<text x="1285" y="1116" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">回应、ledger、重投</text>
-<text x="900" y="1102" font-size="28" font-weight="850" fill="#94A3B8" text-anchor="middle">vs</text>
-<rect x="90" y="1175" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="114" y="1199" width="230" height="38" rx="19" fill="#5D6977" stroke="none" stroke-width="2" />
-<text x="229" y="1224" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">维护 skills / SVG</text>
-<text x="375" y="1222" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-skill-forger</text>
-<text x="375" y="1251" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">skills、文档、图、release</text>
-<rect x="1000" y="1175" width="650" height="104" rx="22" fill="#FFFFFF" stroke="none" stroke-width="2" filter="url(#shadow)"/>
-<rect x="1024" y="1199" width="230" height="38" rx="19" fill="#5D6977" stroke="none" stroke-width="2" />
-<text x="1139" y="1224" font-size="15" font-weight="760" fill="#FFFFFF" text-anchor="middle">共享治理</text>
-<text x="1285" y="1222" font-size="20" font-weight="820" fill="#15202B" text-anchor="start">ccf-common</text>
-<text x="1285" y="1251" font-size="14" font-weight="520" fill="#5A6775" text-anchor="start">路由、策略、source registry</text>
-<text x="900" y="1237" font-size="28" font-weight="850" fill="#94A3B8" text-anchor="middle">vs</text>
+
+<rect width="1200" height="630" fill="url(#hero)"/>
+<style>
+text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; }
+.small { fill: #667085; font-size: 13px; }
+.mono { font-family: "JetBrains Mono", Consolas, monospace; }
+</style>
+<text x="60" y="58" font-size="30" font-weight="800" fill="#233044" text-anchor="start">清晰的 skill 职责边界</text>
+<rect x="70" y="115" width="1060" height="62" rx="18" fill="#FFFFFF" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
+<text x="100" y="153" font-size="16" font-weight="800" fill="#233044" text-anchor="start">选题评分</text>
+<text x="420" y="153" font-size="15" font-weight="800" fill="#9D7BFF" text-anchor="start">ccf-idea-reviewer</text>
+<text x="720" y="153" font-size="14" font-weight="600" fill="#667085" text-anchor="start">负责评分排序，不改写论文</text>
+<rect x="70" y="193" width="1060" height="62" rx="18" fill="#FFFFFF" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
+<text x="100" y="231" font-size="16" font-weight="800" fill="#233044" text-anchor="start">发展选题</text>
+<text x="420" y="231" font-size="15" font-weight="800" fill="#9D7BFF" text-anchor="start">ccf-idea-optimizer</text>
+<text x="720" y="231" font-size="14" font-weight="600" fill="#667085" text-anchor="start">把模糊想法发展成研究方案</text>
+<rect x="70" y="271" width="1060" height="62" rx="18" fill="#FFFFFF" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
+<text x="100" y="309" font-size="16" font-weight="800" fill="#233044" text-anchor="start">文献检索</text>
+<text x="420" y="309" font-size="15" font-weight="800" fill="#9D7BFF" text-anchor="start">ccf-literature-searcher</text>
+<text x="720" y="309" font-size="14" font-weight="600" fill="#667085" text-anchor="start">检索相关工作与 benchmark</text>
+<rect x="70" y="349" width="1060" height="62" rx="18" fill="#FFFFFF" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
+<text x="100" y="387" font-size="16" font-weight="800" fill="#233044" text-anchor="start">实验设计</text>
+<text x="420" y="387" font-size="15" font-weight="800" fill="#9D7BFF" text-anchor="start">ccf-experiment-designer</text>
+<text x="720" y="387" font-size="14" font-weight="600" fill="#667085" text-anchor="start">设计证据结构，不负责图形美化</text>
+<rect x="70" y="427" width="1060" height="62" rx="18" fill="#FFFFFF" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
+<text x="100" y="465" font-size="16" font-weight="800" fill="#233044" text-anchor="start">论文改写</text>
+<text x="420" y="465" font-size="15" font-weight="800" fill="#9D7BFF" text-anchor="start">ccf-paper-writer</text>
+<text x="720" y="465" font-size="14" font-weight="600" fill="#667085" text-anchor="start">修改正文，并按需改善学术表达</text>
+<rect x="70" y="505" width="1060" height="62" rx="18" fill="#FFFFFF" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
+<text x="100" y="543" font-size="16" font-weight="800" fill="#233044" text-anchor="start">科研绘图</text>
+<text x="420" y="543" font-size="15" font-weight="800" fill="#9D7BFF" text-anchor="start">ccf-visual-composer</text>
+<text x="720" y="543" font-size="14" font-weight="600" fill="#667085" text-anchor="start">默认先用 GPT Image 2，除非指定纯 SVG</text>
 </svg>

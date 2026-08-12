@@ -1,6 +1,6 @@
 ---
 name: ccf-idea-reviewer
-description: "Strictly score, rank, compare, and triage early CCF research ideas with prior-art awareness and venue-fit risk. Use only for explicit idea scoring, idea ranking, idea review, acceptance-potential triage, idea评分, 选题评分, 选题排名, 严格评审. Do not polish manuscripts, brainstorm directions, or optimize a single idea unless scoring is explicit."
+description: "Strictly score, rank, compare, and triage early CCF research ideas with prior-art awareness and venue-fit risk. Use only for explicit idea scoring, score and rank multiple ideas, idea ranking, idea review, acceptance-potential triage, idea评分, 选题评分, 选题排名, 严格评审. Do not polish manuscripts, brainstorm directions, develop a fuzzy idea with no score, or optimize a single idea unless scoring is explicit."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial

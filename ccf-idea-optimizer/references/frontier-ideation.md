@@ -4,7 +4,7 @@ Use this file when the user provides a fuzzy, broad, or stale-prone idea and wan
 
 ## Exploration Rule
 
-Generate diverse candidates first, then filter. High randomness is allowed during exploration, but final suggestions must be coherent, feasible, and aligned with the user's theme.
+Generate diverse candidates first, then filter. High randomness is allowed during exploration, but final suggestions must be coherent, feasible, and aligned with the user's theme. When literature is available, load `literature-grounded-evolution.md` and derive candidates from source-backed gap relations rather than from topic keywords alone.
 
 Do not claim frontier novelty unless a current literature search supports it. If no search is performed, label novelty as `unsearched`.
 
@@ -35,6 +35,8 @@ Useful variation patterns:
 - Human-centered or deployment constraint that changes the problem.
 - Negative result or diagnostic paper when SOTA chasing is crowded.
 
+Give each candidate a parent and one primary operation: `refine`, `combine`, `transfer`, `invert`, or `instrument`. Keep the operation meaningful: a `combine` candidate must name the interaction between mechanisms, and a `transfer` candidate must check the source mechanism's assumptions in the target setting.
+
 ## Non-Stale Check
 
 Ask or search:
@@ -61,6 +63,8 @@ Revise candidates before rejecting them. A candidate should be rejected only aft
 - The venue audience mismatch is severe.
 - The core insight is only a renamed component.
 - Two modules optimize incompatible objectives.
+
+After the audit, retain the strongest development route and one structurally different fallback. Challenge the strongest route once against its closest-overlap risk and weakest evidence link; do not run repetitive self-reflection that only paraphrases the same idea.
 
 ## Rescue Patterns
 

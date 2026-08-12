@@ -2,7 +2,7 @@
 
 ## Confirmed Publication Method Gate
 
-Every method appearing in manuscript prose, final result tables, captions, or claimed comparisons must be a confirmed, full version. Record:
+Every method appearing in manuscript prose, final result tables, captions, or claimed comparisons must be a confirmed full version. Record the gate internally:
 
 ```text
 Display name:
@@ -33,7 +33,7 @@ Smoke tests are engineering checks, not paper evidence. Retain a smoke test only
 4. It is cheaper than the substantive validation it precedes.
 5. Its pass/fail outcome changes the next action.
 
-Use the smallest effective set, typically one test per distinct critical path. Remove repeated invocations with the same coverage, ceremonial “can run” checks after the same path already passed, and speculative tests for cases excluded by the method or data contract.
+Use the smallest effective set, typically one test per distinct critical path. Remove repeated invocations with the same coverage, ceremonial "can run" checks after the same path already passed, and speculative tests for cases excluded by the method or data contract.
 
 Do not:
 
@@ -52,5 +52,5 @@ Before publication-facing output, verify:
 - simplified development runs are absent from manuscript claims and final tables;
 - smoke tests are absent from the evidence narrative unless the paper studies testing itself;
 - necessary ablations are labeled as ablations rather than alternate main methods;
-- any unresolved version mismatch is reported as a warning with no automatic file change.
+- any unresolved version mismatch is reported as a warning with no automatic file change;
 - manuscript prose and display labels describe the method naturally without exposing internal confirmation or publication-readiness status.

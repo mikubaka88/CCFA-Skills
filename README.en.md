@@ -1,232 +1,242 @@
-﻿<h1 align="center">CCFA Skills</h1>
+<div align="center">
 
-<p align="center"><strong>A skill family for shaping the research storyline of CCF-A papers.</strong></p>
+<h1>CCFA Skills</h1>
 
-<p align="center">
-  <a href="README.md">简体中文</a> ·
-  <strong>English</strong> ·
-  <a href="README.zh-TW.md">繁體中文</a>
-</p>
+**A skill family for shaping the research storyline of CCF-A papers.**
 
-<p align="center">
-  <img src="assets/ccfaskills.png" alt="CCFA Skills visual identity" width="100%">
-</p>
+[Simplified Chinese](README.md) · [English](README.en.md) · [Traditional Chinese](README.zh-TW.md)
+
+<img src="assets/ccfaskills.png" alt="CCFA Skills logo" width="560">
 
 ---
 
-<div align="center">
-  <p>
-    <span style="color:#334155"><em>"The structure of the prose becomes the structure of the scientific argument."</em></span><br>
-    <sub>George D. Gopen and Judith A. Swan, <a href="https://www.cs.tufts.edu/comp/150FP/archive/george-gopen/sci.html"><em>The Science of Scientific Writing</em></a></sub>
-  </p>
-  <p>
-    <span style="color:#2563eb"><em>"The very process of science is centered around communication."</em></span><br>
-    <sub>Yann LeCun and James M. Manyika, <a href="https://www.amacad.org/publication/daedalus/learning-abstractions-conversation-yann-lecun"><em>Learning Abstractions</em></a></sub>
-  </p>
+*“The structure of the prose becomes the structure of the scientific argument.”*<br>
+George D. Gopen and Judith A. Swan, [*The Science of Scientific Writing*](https://www.cs.tufts.edu/comp/150FP/archive/george-gopen/sci.html)
+
+*“The very process of science is centered around communication.”*<br>
+Yann LeCun and James M. Manyika, [*Learning Abstractions*](https://www.amacad.org/publication/daedalus/learning-abstractions-conversation-yann-lecun)
+
 </div>
 
-A strong paper is rarely defined by the final PDF alone. What matters is the research storyline behind it: an unstable idea finds its position through literature, earns credibility through experiments, becomes a legible argument through writing, and is refined again through review and rebuttal. The hard part is not only drafting one introduction paragraph. The hard part is keeping the idea, evidence, experiments, narrative, and response aligned around the same research question.
+At two in the morning, the experiment finally finishes. The new result is better than expected, yet reopening the manuscript reveals the harder problem. The sharp question that began the project is buried beneath related work. The method section no longer quite matches the mechanism in the code. A new experiment answers the previous review, but pulls the argument in another direction. Every part seems to have improved, while the paper as a whole has become less clear.
 
-CCFA Skills starts from that observation. It treats a CCF-A paper project as a research storyline that can be maintained, audited, and advanced over time, rather than as a one-shot text generation task. An idea should be shaped before it is defended. Experiments should serve explicit claims rather than merely fill tables. Writing should preserve evidence boundaries. A rebuttal should not be an improvised answer at the end of the process, but a traceable bridge to revision and resubmission.
+Many promising projects are weakened not by a poor idea, but by what happens to that idea over time. Literature accumulates, result tables expand, and the author repeatedly switches between researcher, writer, and reviewer. The original insight gradually disappears beneath local revisions. One long prompt cannot reliably preserve all these relationships because retrieval must remain faithful to sources, experiments to protocols, writing to the argument, and review to independent judgment.
 
-The central insight is that paper quality comes from the quality of continuous decisions. The current family has 17 runtime roles and puts `ccf-humanization` first for manuscript and publication-facing experiment artifacts: fluent, natural, and rigorous academic prose; separate user-review warnings; minimal effective smoke tests; and no generic SHA-256 provenance ritual. Method completeness is checked internally, while the paper describes the actual method directly instead of exposing engineering-status language such as “confirmed” or “approved.”
+CCFA Skills grew from this problem. We treat a paper as a research storyline that must remain coherent while it changes, not as a document waiting to be filled. Seventeen specialized skills accompany the work from idea, literature, and experiments to writing, visualization, review, rebuttal, and submission. As the work passes between them, the link between question, evidence, and conclusion remains intact, so the paper can evolve without forgetting why it deserved to be written.
 
-## v0.8 Visual Demos
+<p align="center">
+  <img src="assets/ccfa-skills-hero.svg" alt="CCFA Skills family overview" width="100%">
+</p>
 
-v0.8 preserves the existing 17-skill architecture and paper-project lifecycle. It strengthens two cross-cutting capabilities: `ccf-humanization` as the first preflight, and `ccf-visual-composer` for content-grounded scientific architecture prompts, confirmed generation, structure QA, and editable SVG/PDF reconstruction. In the three demos, only the titles are in Simplified Chinese; internal modules, labels, and sentences remain in English. Ordinary English follows natural title or sentence case, while acronyms and initialisms such as CCF, GPT, QA, SVG, PDF, AI, PNG, and SHA-256 remain uppercase.
+## Quick start
 
-![CCFA v0.8 dual-upgrade concept map](assets/v0.8/ccfa-two-upgrades-overview.zh-CN.png)
+Choose the agent you use:
 
-The concrete Transformer examples show how `Visual Composer` replaces a generic black box with an inspectable encoder-decoder topology, while `CCF Humanization` removes defensive prose and duplicated smoke checks, checks method completeness internally, describes the actual method naturally, and keeps review warnings outside the paper.
+[Codex](docs/getting-started/CODEX.md) · [Claude Code](docs/getting-started/CLAUDE_CODE.md) · [Cursor](docs/getting-started/CURSOR.md) · [Gemini CLI](docs/getting-started/GEMINI_CLI.md) · [Other agents](docs/getting-started/OTHER_AGENTS.md) · [Automatic updates](docs/getting-started/AUTO_UPDATE.md)
 
-![Visual Composer Transformer Chinese demo](assets/v0.8/visual-composer-transformer-demo.zh-CN.png)
-
-![CCF Humanization Transformer Chinese-title demo](assets/v0.8/ccf-humanization-transformer-demo.zh-CN.png)
-
-![CCFA skill family logic](assets/ccfa-skills-architecture.svg)
-
-## Workflow
-
-The default paper-project loop is:
-
-```text
-humanization preflight
-  -> project scaffold
-  -> workflow orchestration
-  -> idea optimization
-  -> idea review
-  -> literature monitoring / competitor tracking
-  -> literature search
-  -> experiment design
-  -> visual composition
-  -> writing exemplar extraction (optional)
-  -> venue-aware writing
-  -> scientific/writing review
-  -> integrity audit
-  -> submission package check
-  -> rebuttal / revision ledger / resubmission
-```
-
-`ccfa.yaml` is the shared project-state file. It records `target_venue`, `stage`, `artifacts`, `claims`, `experiments`, `reviews`, `revision_ledger`, and `submission_checks`, so skills can hand off without overwriting each other's files.
-
-![Workflow](assets/ccfa-skills-workflow.svg)
-
-## Runtime Skills
-
-| Stage | Skill | Starts when | Main output | Do not use for |
-| --- | --- | --- | --- | --- |
-| Priority preflight | `ccf-humanization` | Remove defensive writing, isolate warnings, deduplicate smoke tests, disable generic SHA-256 requirements, or block simplified methods from publication artifacts. | Humanized artifact, internal method-version gate, separate warning ledger. | Concealing material evidence, writing the paper, designing experiments, or overriding mandatory disclosures. |
-| Setup | `ccf-project-scaffolder` | Create a paper project, copy templates, initialize `ccfa.yaml`. | Project tree, template files, initial state. | Research content generation. |
-| Planning | `ccf-pipeline-orchestrator` | Plan stages, gates, artifact status, next owner. | Workflow plan, gates, handoff. | Writing, review, search, experiments, rebuttal. |
-| Idea shaping | `ccf-idea-optimizer` | Explore, rescue, or concretize a rough idea or vague direction. | Problem-gap-insight-method-evidence brief, rescue routes, minimum testable question. | Ranking multiple ideas. |
-| Idea gate | `ccf-idea-reviewer` | Explicitly score, rank, stress-test, or triage ideas. | Scores, risks, stage-aware development potential. | Brainstorming or developing one rough idea further. |
-| Monitoring | `ccf-literature-monitor` | Track new papers, competitors, arXiv/OpenReview/venue feeds, or ask whether recent work overlaps an idea. | Monitoring report, overlap levels, RELAX/RESEARCH/FOLLOW-UP flags, handoff signals. | Deep related-work search, citation audit, or final idea scoring. |
-| Evidence | `ccf-literature-searcher` | Search related work, prior art, datasets, benchmarks, and open gaps. | Literature notes, opportunity map, evidence gaps, related-work structure. | Auditing already cited papers or treating related work as a final idea kill gate. |
-| Experiments | `ccf-experiment-designer` | Design baselines, metrics, ablations, robustness checks. | Protocols, baseline matrix, result templates, evidence-bound figure/table specs. | Inventing results or drawing docs diagrams. |
-| Scientific visuals | `ccf-visual-composer` | Create reproducible data figures and content-grounded method/model/system architecture diagrams, including confirmed GPT Image 2 drafts and editable SVG/PDF reconstruction. | Visual contract, plot code, architecture prompt, confirmed generated draft, semantic SVG/vector PDF, caption plan, render QA ledger. | Designing experiments, inventing results/components, writing prose as the main task, final submission compliance. |
-| Exemplar | `ccf-paper-to-exemplar` | Convert user-provided paper PDFs into reusable writing exemplar cards. | Exemplar cards, writing patterns, venue tags, writer index updates. | Writing papers or performing review. |
-| Manuscript | `ccf-paper-writer` | Draft, revise, polish, compress, create venue- and length-aware LaTeX, make presentations. | Manuscript text, format-preserving edits, compressed text, page budget, slides/poster/talk. | Full review, integrity audit, submission check, rebuttal. |
-| Review | `ccf-paper-reviewer` | Run scientific review, writing review, scoring, AC/meta-review. | Review report, risk table, revision priorities. | Rewriting the manuscript directly. |
-| Integrity | `ccf-integrity-auditor` | Check claims, numbers, tables/figures, citations, BibTeX. | Claim-support table, numeric consistency report, citation audit. | Broad literature search or full paper review. |
-| Submission | `ccf-submission-checker` | Check venue rules, pages, anonymity, PDF metadata, artifacts. | Submission package report, LaTeX/PDF build result, artifact checklist. | Polishing manuscript content. |
-| Response | `ccf-rebuttal-writer` | Draft rebuttal, response letter, revision ledger, resubmission plan. | Rebuttal text, reviewer-response table, ledger. | Ordinary manuscript writing. |
-| Governance | `ccf-common` | Maintain routing, evidence/privacy policy, source registry, artifact contracts. | Shared policy and validation controls. | Ordinary research tasks. |
-| Maintenance | `ccf-skill-forger` | Maintain skills, docs, SVGs, validation, release. | Updated skills, docs, diagrams, release commits. | Research writing, review, experiments. |
-
-![Runtime catalog](assets/ccfa-skills-catalog.svg)
-
-## Routing Boundaries
-
-| User intent | Use | Do not use |
-| --- | --- | --- |
-| Remove defensive writing, keep warnings outside files, trim repeated smoke tests, or prevent simplified methods from entering publication artifacts | `ccf-humanization` | `ccf-paper-reviewer` |
-| Make a rough idea concrete or find a rescue route | `ccf-idea-optimizer` | `ccf-idea-reviewer` |
-| Explicitly score, rank, or select ideas | `ccf-idea-reviewer` | `ccf-idea-optimizer` |
-| Monitor new papers, competitors, or recent similar ideas | `ccf-literature-monitor` | `ccf-literature-searcher` |
-| Find new papers, datasets, benchmarks, or open gaps | `ccf-literature-searcher` | `ccf-integrity-auditor` |
-| Verify already cited papers | `ccf-integrity-auditor` | `ccf-literature-searcher` |
-| Design experiments, metrics, baselines, and result evidence specs | `ccf-experiment-designer` | `ccf-paper-writer` |
-| Compose data figures or content-grounded method/architecture diagrams and editable SVG/PDF | `ccf-visual-composer` | `ccf-experiment-designer` |
-| Convert a PDF into a writing exemplar | `ccf-paper-to-exemplar` | `ccf-paper-writer` |
-| Draft, polish, compress, preserve source format | `ccf-paper-writer` | `ccf-paper-reviewer` |
-| Judge acceptance risk | `ccf-paper-reviewer` | `ccf-paper-writer` |
-| Check pages, anonymity, PDF, metadata, artifacts | `ccf-submission-checker` | `ccf-paper-writer` |
-| Answer reviewers and maintain revision ledger | `ccf-rebuttal-writer` | `ccf-paper-reviewer` |
-| Maintain docs diagrams or skills | `ccf-skill-forger` | `ccf-experiment-designer` |
-
-![Routing boundaries](assets/ccfa-skills-routing.svg)
-
-## Merged Helper Capabilities
-
-Do not install these old names as standalone runtime skills:
-
-```text
-ccf-workflow-planner
-ccf-paper-compressor
-ccf-writing-reviewer
-ccf-citation-auditor
-ccf-figure-table-builder
-ccf-artifact-packager
-ccf-venue-format-guide
-ccf-resubmission-adapter
-ccf-paper-presenter
-ccf-doc-diagram-designer
-```
-
-| Merged capability | Current owner |
-| --- | --- |
-| Workflow planning | `ccf-pipeline-orchestrator` |
-| Compression, slides, poster, talk, Q&A | `ccf-paper-writer` |
-| Writing review | `ccf-paper-reviewer` |
-| Citation audit | `ccf-integrity-auditor` |
-| Result evidence/specs | `ccf-experiment-designer` |
-| Publication figure/table layout, Python plotting recipes, palettes, captions, render QA | `ccf-visual-composer` |
-| Artifact package and venue format | `ccf-submission-checker` |
-| Resubmission adaptation | `ccf-rebuttal-writer` |
-| Documentation SVGs | `ccf-skill-forger` |
-
-## Artifact Contract
-
-![Artifact contract](assets/ccfa-skills-artifacts.svg)
-
-`ccfa.yaml` is a status spine, not the whole paper. Concrete outputs still live in idea briefs, literature notes, experiment plans, visual contracts, Python plotting scripts, manuscripts, review reports, integrity audits, submission checks, and revision ledgers. Review and audit skills diagnose; writing changes go back to `ccf-paper-writer`; visual layout and plotting changes go to `ccf-visual-composer`.
-
-## Output Policy
-
-- Writing, polishing, compression, and presentation tasks should follow the user's requested output format.
-- If the user provides LaTeX, preserve LaTeX; if the user provides Markdown, preserve Markdown.
-- From-scratch manuscript requests read the target venue guide and page budget first; if missing, use the NeurIPS fallback.
-- Submission-style full drafts should target the venue's main-body length. Underfilled drafts are expanded by `ccf-paper-writer`; overfilled drafts are compressed by `ccf-paper-writer`; final page compliance is checked by `ccf-submission-checker`.
-- Non-review skills should produce concrete, information-dense artifacts.
-- Review, audit, and submission-gate skills may remain more structured because their value is traceable diagnosis.
-- No skill may invent results, citations, official rules, or reviewer conclusions.
-
-![Review and audit boundaries](assets/ccfa-skills-review-boundaries.svg)
-
-## Venue Guides
-
-Venue-specific LaTeX/template information is reference material:
-
-```text
-ccf-paper-writer/references/venue-guides/index.md
-ccf-paper-writer/references/venue-guides/<venue>.md
-```
-
-Use `ccf-paper-writer` for venue-aware manuscript writing. Use `ccf-submission-checker` for page limits, anonymity, PDF metadata, camera-ready checks, and artifact readiness.
-
-## Install
-
-Full install:
-
-```bash
-git clone https://github.com/mikubaka88/CCFA-Skills.git
-mkdir -p "$CODEX_HOME/skills"
-cp -R CCFA-Skills/ccf-* "$CODEX_HOME/skills/"
-```
-
-Partial install must include `ccf-common`:
-
-```bash
-skills=(ccf-common ccf-humanization ccf-paper-writer ccf-visual-composer ccf-paper-reviewer ccf-submission-checker)
-mkdir -p "$CODEX_HOME/skills"
-for s in "${skills[@]}"; do cp -R "$s" "$CODEX_HOME/skills/"; done
-```
-
-PowerShell:
+One-line installation for Codex:
 
 ```powershell
-$skills = @("ccf-common", "ccf-humanization", "ccf-paper-writer", "ccf-visual-composer", "ccf-paper-reviewer", "ccf-submission-checker")
-New-Item -ItemType Directory -Force "$env:CODEX_HOME\skills" | Out-Null
-foreach ($s in $skills) { Copy-Item -Recurse -Force $s "$env:CODEX_HOME\skills\" }
+npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes --copy
 ```
 
-![Installation sets](assets/ccfa-skills-installation.svg)
+Then describe the research problem in ordinary language:
 
-## Further Reading
-
-To understand why the family is designed this way, read these in order:
-
-| Document | When to read it |
-| --- | --- |
-| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Understand the main chain, governance layer, artifact state, and revision loop. |
-| [docs/SKILLS_CATALOG.md](docs/SKILLS_CATALOG.md) | Check each skill's startup condition, boundary, and common conflict cases. |
-| [docs/INSTALLATION_MATRIX.md](docs/INSTALLATION_MATRIX.md) | Decide which skills are required for partial installation. |
-| [docs/NAMING_AND_MERGE_AUDIT.md](docs/NAMING_AND_MERGE_AUDIT.md) | Understand why helper skills were merged and how naming conflicts were reduced. |
-| [AGENT_GUIDE.md](AGENT_GUIDE.md) | Operational guide for owner selection, artifact handoff, and overwrite avoidance. |
-| [demo/attention-is-all-you-need/](demo/attention-is-all-you-need/) | See a complete ICLR-style closed-loop example. |
-
-## Demo
-
-`demo/attention-is-all-you-need/` is an optional ICLR-style closed-loop demo showing idea extraction, idea review, LaTeX writing, visual-composer SVG plotting examples, review, integrity audit, submission check, and rebuttal.
-
-![Attention demo](assets/ccfa-skills-demo-attention.svg)
-
-## Validation
-
-```bash
-python ccf-common/scripts/check_v04.py
-python ccf-common/scripts/check_markdown_links.py
-python ccf-common/scripts/check_sources.py
-python ccf-common/scripts/check_path_privacy.py .
-python tools/build_ccfa_diagrams.py
+```text
+Review and rank these three ideas, and identify the most likely rejection reason for each.
+Find recent work, benchmarks, and published baselines for temporal visual reasoning.
+Design the main experiments, ablations, and robustness evidence for this paper without inventing results.
+Rewrite the method section in a CVPR style while preserving equations, terminology, and citations.
+Draw the method architecture, create an aesthetic draft first, and then ask whether to rebuild it as PPTX.
 ```
+
+## Why a family of skills
+
+The difficulties of paper research are connected, but they do not require the same kind of reasoning.
+
+| What researchers encounter | How CCFA Skills responds |
+|---|---|
+| Retrieval, experiments, writing, and review compete inside one conversation | The skill best suited to the current question leads; adjacent capabilities join only when useful |
+| Literature facts, experimental values, and manuscript claims drift apart | Sources, experiment design, and whole-paper consistency remain distinct responsibilities |
+| A revision begins to sound like a review response full of caveats and internal status language | Writing forms the argument; Humanization restores direct and natural academic prose |
+| Each review round changes its focus, obscuring whether the manuscript actually improved | Current publication readiness and progress over the previous version are considered separately |
+| Architecture figures are either plain box diagrams or attractive but impossible to edit | A content-aware visual draft comes first, followed by optional SVG, PDF, or PPTX reconstruction |
+| More installed skills create more noise instead of better work | Only capabilities relevant to the present question enter the conversation |
+
+## What we value
+
+- **The research question comes before the tool.** Judging an idea is different from developing it. Designing evidence is different from drawing a figure. Each step remains centered on the question it must answer.
+- **Evidence keeps its provenance.** Literature, protocols, values, claims, figures, and citations do not collapse into plausible prose. A missing fact stays missing until it is found or verified.
+- **A paper should sound academic, not defensive.** Humanization removes ritual caveats, mechanical enumeration, excessive em dashes, and internal process language while preserving material limitations and disclosures.
+- **Review remains independent from revision.** The Reviewer judges; the Writer revises. Diagnosis comes before repair, so the manuscript does not argue with its own evaluation.
+- **Scientific figures should explain and invite attention.** Quantitative plots remain reproducible. Method figures first explore a visual language suited to their content, then become editable when the user chooses.
+- **Exemplars provide direction rather than a template.** When users supply target papers, CCFA learns their narrative rhythm, paragraph roles, and evidence organization without copying sentences or forcing one style onto every project.
+
+## The family
+
+![CCFA Skills family architecture](assets/ccfa-skills-architecture.svg)
+
+Each request is led by the skill whose judgment it needs most. Other skills do not compete for the same task; they contribute only when the work reaches their domain. For example, `ccf-paper-writer` shapes the prose while `ccf-humanization` keeps its voice natural. `ccf-experiment-designer` decides what a result table must demonstrate, and `ccf-visual-composer` turns that information into a readable figure.
+
+### The 17 core skills
+
+| Research moment | Skill | What it contributes |
+|---|---|---|
+| Family coordination | `ccf-common` | Understands requests, coordinates responsibilities, and protects evidence and privacy boundaries |
+| Project direction | `ccf-pipeline-orchestrator` | Clarifies goals, stages, decisive milestones, and the next move |
+| Project beginning | `ccf-project-scaffolder` | Prepares the paper workspace, templates, and research-material structure |
+| Idea judgment | `ccf-idea-reviewer` | Compares ideas and evaluates novelty, risk, and venue fit |
+| Idea development | `ccf-idea-optimizer` | Turns a rough direction into a problem, insight, method, and evidence path |
+| Literature search | `ccf-literature-searcher` | Finds related work, datasets, benchmarks, and published baselines |
+| Frontier tracking | `ccf-literature-monitor` | Watches new papers, nearby work, and changes in the field |
+| Experiment design | `ccf-experiment-designer` | Designs main comparisons, ablations, robustness studies, and result structures |
+| Integrity | `ccf-integrity-auditor` | Checks claims, values, terminology, figures, and citations together |
+| Paper review | `ccf-paper-reviewer` | Provides independent scientific review, version comparison, and readiness judgment |
+| Paper writing | `ccf-paper-writer` | Drafts, rewrites, polishes, and compresses manuscript text |
+| Academic voice | `ccf-humanization` | Removes defensive and mechanical prose without weakening rigor |
+| Author response | `ccf-rebuttal-writer` | Organizes rebuttals, response letters, and revision records |
+| Scientific visuals | `ccf-visual-composer` | Creates plots, visual tables, method figures, and editable versions |
+| Submission | `ccf-submission-checker` | Checks templates, page limits, anonymity, PDFs, and supplementary material |
+| Exemplar learning | `ccf-paper-to-exemplar` | Distills controllable writing patterns from papers supplied by the user |
+| Family maintenance | `ccf-skill-forger` | Improves skills, resolves conflicts, and validates releases |
+
+The complete responsibility map:
+
+![Skill catalog by responsibility](assets/ccfa-skills-catalog.svg)
+
+## From idea to submission
+
+![Default research journey](assets/ccfa-skills-workflow.svg)
+
+This is not a pipeline that everyone must enter at the beginning. You may arrive with a half-formed idea, a result table that resists interpretation, a method reviewers repeatedly misunderstand, or a PDF that is nearly ready to submit. CCFA Skills begins where you are and brings in only the help that matters there.
+
+## Visual examples
+
+These are research visuals rather than release-announcement graphics. Each figure uses a visual language suited to its reading context.
+
+### Paper method architecture
+
+The figure below extracts the computational relationships from `output/DynTrace.pdf` and draws on the treatment of hierarchy, density, and mechanism in LLaVA-4D Figure 2. Inputs and visual processing sit at the bottom, geometry-grounded evidence and the DTV/DTG branches form the middle, and token integration, the MLLM, and the answer appear at the top. We borrow a way of explaining mechanisms, not the source model or its exact composition.
+
+![Paper method architecture](assets/visual-showcase/dyntrace-paper-mechanism-llava4d-reference.png)
+
+**How it was made:** The DynTrace paper was distilled into mechanism relationships and representation–operation pairs. The composition language of LLaVA-4D Figure 2 then guided a GPT Image 2 draft, followed by a check that the method remained complete. The displayed artifact is a PNG visual draft; after composition approval, it can be rebuilt as semantic SVG, vector PDF, or native-object PPTX.
+
+<details>
+<summary>Reference figure, source, and composition principles</summary>
+
+![LLaVA-4D Figure 2 reference](assets/visual-showcase/references/llava-4d-figure-2-iclr-2026.png)
+
+Reference: Hanyu Zhou and Gim Hee Lee, [*LLaVA-4D: Embedding SpatioTemporal Prompt into LMMs for 4D Scene Understanding*](https://arxiv.org/abs/2505.12253), Figure 2; see also the [OpenReview page](https://openreview.net/forum?id=URpbmVEsqB). The screenshot is included only for non-commercial study of academic composition and visual style. Copyright remains with the authors; please contact the maintainer for removal if it raises any rights concern.
+
+- A paper figure should make its inputs, representations, operations, branches, integration, and output easy to follow.
+- Video frames, optical flow, masks, 3D trajectories, DT-Tokens, and the temporal graph carry method meaning rather than decoration.
+- Ordinary English uses natural capitalization; Qwen3-VL, WAFT, SAM3, DTV, DTG, MLLM, 3D, and 4D retain their canonical forms.
+
+</details>
+
+### PPT/Poster
+
+The two earlier visual explorations remain below. They are better suited to slides, project posters, and README overviews, so they are not presented as top-conference method figures.
+
+#### GPT Image 2 concept draft
+
+![GPT Image 2 concept draft](assets/visual-showcase/dyntrace-method-architecture-gpt-image-2.png)
+
+**How it was made:** The three-stage DynTrace method was translated into a vivid visual story built around video, trajectories, and graph structure, then explored with GPT Image 2.
+
+#### Reference-guided PPT/Poster
+
+![Reference-guided PPT/Poster](assets/visual-showcase/dyntrace-ppt-poster-reference-driven.png)
+
+**How it was made:** Reference composition principles were added to the three-stage content so that headings, color fields, and visual anchors would read naturally in a presentation or poster.
+
+### Data-analysis figures
+
+The following figures come from reproducible `ccf-visual-composer` drawing recipes. Their values demonstrate visual forms and are not reported paper findings.
+
+| Composite figure | Heatmap |
+|---|---|
+| ![Composite figure](assets/visual-showcase/showcase-13-composite-analysis-dashboard.svg) | ![Heatmap](assets/visual-showcase/showcase-03-evidence-coverage-heatmap.svg) |
+| **Volcano plot** | **Bar chart** |
+| ![Volcano plot](assets/visual-showcase/showcase-11-volcano-candidate-screen.svg) | ![Bar chart](assets/visual-showcase/showcase-10-grouped-benchmark-bars.svg) |
+| **Slopegraph** | **Radial chart** |
+| ![Slopegraph](assets/visual-showcase/showcase-02-revision-lift-slopegraph.svg) | ![Radial chart](assets/visual-showcase/showcase-06-readiness-radial-scorecard.svg) |
+
+More examples are available in [`assets/visual-showcase/`](assets/visual-showcase/).
+
+## Keeping the writing natural
+
+`ccf-paper-writer` can learn from exemplars chosen by the user. It studies how an effective paper frames its problem, unfolds its method, arranges evidence, and controls pace. It does not copy source sentences or turn one paper into a template for every field.
+
+`ccf-humanization` removes habits that obscure the scholarship: defensive framing, repeated caveats, forced three-part lists, excessive em dashes, synonym cycling, and narration about internal version status. Facts that materially affect the claim, reproducibility, ethics, or venue requirements remain visible. Questions that require an authorial decision are raised separately rather than quietly inserted into the manuscript.
+
+Review answers two different questions:
+
+![Review and revision scoring](assets/ccfa-skills-review-boundaries.svg)
+
+- **Is the current manuscript ready for its target venue?** This measures the remaining distance to the publication standard.
+- **Did the revision make genuine progress?** This compares what the new version resolved and what new problems it may have introduced.
+
+## Figures that remain editable
+
+![Visual delivery](assets/ccfa-skills-artifacts.svg)
+
+Quantitative figures begin with reproducible code and traceable data. Method, system, and architecture figures usually begin with GPT Image 2 exploring a visual language that suits the content. The user then chooses whether to continue toward editable SVG, vector PDF, or PPTX. Common concepts use a coherent open-source icon family, while method-specific icons are generated and cleaned separately. In PPTX, text, boxes, nodes, and connectors remain native objects wherever possible, so the final figure can still be meaningfully revised.
+
+When a user does not want GPT Image 2 or explicitly prefers code-first drawing, `ccf-visual-composer` uses a pure-SVG route and labels it clearly.
+
+## Distinct roles, shared story
+
+![Skill collaboration boundaries](assets/ccfa-skills-routing.svg)
+
+Clear responsibilities keep each judgment trustworthy:
+
+| Your request | Responsible skill | What it deliberately avoids |
+|---|---|---|
+| Score and rank ideas | `ccf-idea-reviewer` | Does not turn a low-scoring idea into a full method during evaluation |
+| Develop one rough idea | `ccf-idea-optimizer` | Does not make ranking its primary goal |
+| Find benchmarks and published results | `ccf-literature-searcher` | Does not invent an experiment conclusion |
+| Choose baselines, metrics, and ablations | `ccf-experiment-designer` | Does not alter or fabricate results |
+| Review, score, and diagnose | `ccf-paper-reviewer` | Does not rewrite the manuscript while judging it |
+| Rewrite, polish, and compress | `ccf-paper-writer` | Does not conduct a new scientific review under the name of editing |
+| Draw figures, tables, and PPTX | `ccf-visual-composer` | Does not choose datasets, metrics, or values |
+
+## Repository
+
+```text
+CCFA-Skills/
+├── ccf-common/                 # Shared family guidance
+├── ccf-*/SKILL.md              # Entry points for 17 skills
+├── ccf-*/references/           # References read when needed
+├── ccf-*/scripts/              # Reproducible operations
+├── assets/                     # README visuals and figure examples
+├── evaluation/                 # Regression and ablation results
+├── tools/build_ccfa_diagrams.py
+└── 实验结果.md
+```
+
+Longer guidance lives in `references/`, while repeatable work belongs in `scripts/`. Iterative artifacts keep stable names so that a new version replaces the previous one instead of leaving behind a trail of indistinguishable attempts.
+
+## Maintenance and validation
+
+```powershell
+python ccf-common\scripts\check_v04.py
+python ccf-common\scripts\check_path_privacy.py
+python ccf-common\scripts\check_markdown_links.py
+python ccf-common\scripts\check_sources.py
+```
+
+These checks confirm that all 17 skills can be discovered, their responsibilities remain clear, documentation links resolve, and public files contain no machine-specific paths or private information. Experiment and efficiency results are summarized in [实验结果.md](实验结果.md).
+
+## Commitments
+
+- Never invent experimental results, citations, method components, or venue rules.
+- Read only the private manuscript or unpublished material needed for the task.
+- Use external retrieval and image generation with user authorization and minimal disclosure.
+- Respect the user's decision to disable any skill.
+- Explain the rubric, comparison target, evidence, and uncertainty behind every automated score.
+
+## Acknowledgments
+
+Thanks to [Research-Paper-Writing-Skills](https://github.com/Master-cai/Research-Paper-Writing-Skills) for contributing to the open ecosystem of academic-writing skills.

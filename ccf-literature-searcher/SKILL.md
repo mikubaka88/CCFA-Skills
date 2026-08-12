@@ -1,6 +1,6 @@
 ---
 name: ccf-literature-searcher
-description: "Search and screen literature, related work, datasets, benchmarks, citation evidence, and research opportunity maps for CCF workflows. Use for literature search, related work, prior art, benchmark search, direction scouting, 文献检索, 相关工作, benchmark搜索, 方向调研. Do not audit only already-cited references or write the manuscript as the main task."
+description: "Search and screen external literature, related work, datasets, benchmarks, citation candidates, and research opportunity maps for CCF workflows. Use when external retrieval is the requested deliverable: literature search, related work discovery, prior art, benchmark search, direction scouting, 文献检索, 相关工作, benchmark搜索, 方向调研. Do not own supplied-result table schemas, experiment evidence structure, full manuscript review, already-cited-only audits, or manuscript writing."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -42,7 +42,8 @@ In standard mode, complete this checklist before final output. In quick mode, ru
 8. Every claim about a paper is traceable to the linked source or marked as inferred.
 9. For idea-stage searches, each closest-work cluster includes what is already covered, what remains under-tested, and at least one possible differentiation or rescue route.
 10. A literature-search folder is written when file access is available and the user asked for a reusable report or standard workflow.
-11. Optional handoff to `ccf-literature-monitor`, `ccf-paper-writer`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-experiment-designer`, or `ccf-paper-reviewer` follows CCFA handoff mode.
+11. When the search feeds idea optimization, an idea-grounding packet separates source-supported observations from inferred gaps and includes mechanism primitives, protocol anchors, cross-source conflict/open-gap relations, and confidence.
+12. Optional handoff to `ccf-literature-monitor`, `ccf-paper-writer`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-experiment-designer`, or `ccf-paper-reviewer` follows CCFA handoff mode.
 
 ## Workflow
 
@@ -65,11 +66,12 @@ literature-search-YYYYMMDD-<topic-slug>/
   papers.md
   papers.csv
   search-notes.md
+  idea-grounding.md  # include when the search feeds idea optimization
 ```
 
 8. If the search feeds another module, provide a handoff summary:
    - For writing: closest-work groups, novelty gaps, citation cautions.
-   - For idea optimization: stale/overcrowded directions, open gaps, timely pivots, and minimum viable research questions.
+   - For idea optimization: a compact idea-grounding packet with evidence cards, mechanism primitives, protocol anchors, gap/conflict relations, stale/overcrowded directions, timely pivots, and minimum viable research questions. Keep whole abstracts and generic background out of the handoff.
    - For idea review: novelty confidence and likely prior-art risks.
    - For literature monitoring: watch queries, tracked competitors, and recurring overlap signals.
    - For experiment design: datasets, baselines, metrics, benchmark protocols.

@@ -12,6 +12,8 @@ Input materials reviewed:
 Search basis:
 Report file:
 Reviewer mode:
+Manuscript version / comparison range:
+Frozen comparison contract ID (when applicable):
 ```
 
 ## 2. Desk Rejection Assessment
@@ -187,6 +189,16 @@ Use:
 Raising the score would require:
 Lowering the score would be triggered by:
 Concerns unlikely to change before submission:
+```
+
+For version-comparison mode, append these fields inside this section:
+
+```text
+Relative progress:
+Absolute readiness:
+Confidence and comparability:
+New issue provenance:
+Traceable score decreases:
 ```
 
 ## 16. Action Plan And CCFA Handoffs

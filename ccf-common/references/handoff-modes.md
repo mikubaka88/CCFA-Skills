@@ -14,6 +14,10 @@ metadata:
 
 Use `task-modes.md` for quick/standard execution mode. This file controls sibling-skill transitions.
 
+## One Owner Before Handoffs
+
+Select one primary owner from the user's requested deliverable before considering handoffs. The `handoff` metadata in a skill registry is a reachability list, not a list of skills to activate. Do not load a sibling merely because it could improve a later stage, appears in a checklist, or is named in a handoff field. A sibling joins the current request only when the user explicitly requests its deliverable, the active owner reaches a concrete missing capability during execution, or the narrow Humanization preflight below applies. When a prompt asks only for assessment, raw planning, retrieval, routing, or visual rendering, keep sidecars empty unless the user explicitly asks for a second deliverable.
+
 ## Mode Values
 
 **PARTIAL (Recommended)** is the default. Ask only when a transition changes the research stage, may change idea scope, enters full paper review, enters rebuttal execution, requires browsing with sensitive material, creates reusable files, or changes appendix/delete policy. Do not ask again for light local risk scans, route checks, or a sibling skill the user explicitly named.
@@ -24,7 +28,7 @@ Use `task-modes.md` for quick/standard execution mode. This file controls siblin
 
 ## Always-On Boundaries
 
-- `ccf-humanization` runs without an extra handoff question before manuscript-facing writing or publication-facing experiment output. Warning-class concerns remain outside artifacts and make no file changes until the user approves a concrete edit.
+- `ccf-humanization` runs without an extra handoff question before manuscript-facing writing or final publication-facing experiment prose, tables, captions, or method descriptions. It does not auto-run for raw experiment planning, retrieval, review, auditing, routing, or visual rendering without publication prose. Warning-class concerns remain outside artifacts and make no file changes until the user approves a concrete edit.
 - A user denylist wins in every mode.
 - `ccf-paper-writer` must preserve topic, core problem, method mechanism, experiment setting, numerical results, and conclusion direction unless the user explicitly authorizes idea-scope changes.
 - `ccf-experiment-designer` must never invent experimental results, benchmark ranks, numerical improvements, statistical significance, or user-study outcomes.

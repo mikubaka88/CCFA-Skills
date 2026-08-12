@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2400" height="710" viewBox="0 0 2400 710">
+  <style>
+    .title{font:700 30px 'Segoe UI',Arial,sans-serif;fill:#0F172A}.sub{font:400 16px 'Segoe UI',Arial,sans-serif;fill:#475569}
+    .head{font:700 21px 'Segoe UI',Arial,sans-serif;fill:#0F172A}.meta{font:500 15px 'Segoe UI',Arial,sans-serif;fill:#334155}
+  </style>
+  <rect width="2400" height="680" fill="#FFFFFF"/>
+  <text x="30" y="42" class="title">DynTrace skill ablation, replicate A</text>
+  <text x="30" y="70" class="sub">Same PDF, prompt, model, and renderer; only the loaded skill context changes.</text>
+  <g transform="translate(20 96)"><rect width="760" height="575" rx="14" fill="#F8FAFC" stroke="#CBD5E1"/><text x="22" y="34" class="head">No skills</text><image x="0" y="52" width="760" height="428" preserveAspectRatio="xMidYMid meet" xlink:href="dyntrace-no-skills-a.png"/><text x="22" y="510" class="meta">Score 8.50 · 180.3 s · 261,877 token</text><text x="22" y="540" class="meta">Plus allocation: $5 × 261,877 / Q_week</text></g>
+  <g transform="translate(820 96)"><rect width="760" height="575" rx="14" fill="#FFF7F3" stroke="#D97757" stroke-width="2"/><text x="22" y="34" class="head">Full skills</text><image x="0" y="52" width="760" height="428" preserveAspectRatio="xMidYMid meet" xlink:href="dyntrace-full-skills-a.png"/><text x="22" y="510" class="meta">Score 8.85 · &gt;919.6 s · &gt;658,933 token</text><text x="22" y="540" class="meta">Plus allocation: &gt;$5 × 658,933 / Q_week</text></g>
+  <g transform="translate(1620 96)"><rect width="760" height="575" rx="14" fill="#F8FAFC" stroke="#94A3B8"/><text x="22" y="34" class="head">w/o Visual Composer</text><image x="0" y="52" width="760" height="428" preserveAspectRatio="xMidYMid meet" xlink:href="dyntrace-without-visual-a.png"/><text x="22" y="510" class="meta">Score 7.88 · 280.7 s · 621,621 token</text><text x="22" y="540" class="meta">Plus allocation: $5 × 621,621 / Q_week</text></g>
+  <text x="30" y="700" class="sub">Token = input + output; Full skills A is a lower bound because render QA reached the 10-minute ceiling before returning final usage.</text>
+</svg>

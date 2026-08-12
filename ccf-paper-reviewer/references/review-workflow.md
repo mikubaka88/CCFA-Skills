@@ -64,10 +64,10 @@ Report location:
 - If a local paper path exists, create `ccfa-review-reports/` beside that file or top-level manuscript folder.
 - Otherwise create `ccfa-review-reports/` under the current working directory.
 
-Filename:
+Canonical filename:
 
 ```text
-YYYY-MM-DD-<paper-slug>-<venue>-conference-review.md
+<paper-slug>-<venue>-review.md
 ```
 
-Use lowercase ASCII for the slug; replace spaces and punctuation with hyphens. If the title is unknown, use `untitled-paper`.
+Use lowercase ASCII for the slug; replace spaces and punctuation with hyphens. If the title is unknown, use `untitled-paper`. Put review date, manuscript version, and review round in report metadata. Overwrite the canonical report on ordinary reruns and rely on version control for rollback. Create snapshots only when the user requests them or an external process requires an immutable record.

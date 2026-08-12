@@ -263,20 +263,38 @@ sources:
     title: Academic Research Skills
     url: https://github.com/Imbad0202/academic-research-skills
     source_type: background_method
-    used_by: [ccf-common, ccf-idea-optimizer, ccf-idea-reviewer, ccf-paper-writer]
+    used_by: [ccf-common, ccf-idea-optimizer, ccf-idea-reviewer, ccf-paper-writer, ccf-paper-reviewer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-08-11
     stale_after_days: 365
-    notes: Related skill direction, not an authoritative venue source.
+    notes: Workflow reference for academic writing-quality checks and re-review precommitment. CCFA adapts compact principles for precise prose, stable criteria, and issue provenance without copying the repository's large artifact chain.
+  - id: skill-deslop
+    title: Skill Deslop For Scientific Writing
+    url: https://github.com/stephenturner/skill-deslop
+    source_type: background_method
+    used_by: [ccf-humanization, ccf-paper-writer]
+    recorded_at: 2026-08-11
+    verified_at: 2026-08-11
+    stale_after_days: 365
+    notes: Conceptual reference for removing formulaic scientific-writing patterns, filler, false agency, and repetitive sentence structures while preserving disciplinary conventions; do not copy wording or optimize for detector evasion.
   - id: nature-skills
     title: Nature Skills
     url: https://github.com/Yuan1z0825/nature-skills
     source_type: background_method
     used_by: [ccf-common, ccf-paper-writer, ccf-paper-reviewer, ccf-visual-composer]
     recorded_at: 2026-06-06
-    verified_at: null
+    verified_at: 2026-08-12
     stale_after_days: 365
     notes: Related skill family for high-standard paper writing and style workflow comparison; not an authoritative CCF venue source.
+  - id: vercel-agent-skills-cli
+    title: Vercel Agent Skills CLI
+    url: https://github.com/vercel-labs/skills
+    source_type: background_method
+    used_by: [ccf-common, ccf-skill-forger]
+    recorded_at: 2026-08-12
+    verified_at: 2026-08-12
+    stale_after_days: 180
+    notes: Installation and update command reference for Codex, Claude Code, Cursor, Gemini CLI, and other Agent Skills clients.
   - id: nature-figure-skill
     title: Nature Figure Skill
     url: https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-figure/README.md
@@ -470,7 +488,7 @@ sources:
     title: LLaVA-4D OpenReview
     url: https://openreview.net/forum?id=URpbmVEsqB
     source_type: paper_or_proceeding
-    used_by: [ccf-paper-writer]
+    used_by: [ccf-paper-writer, ccf-visual-composer, ccf-skill-forger]
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
@@ -479,9 +497,9 @@ sources:
     title: LLaVA-4D arXiv
     url: https://arxiv.org/abs/2505.12253
     source_type: paper_or_proceeding
-    used_by: [ccf-paper-writer]
+    used_by: [ccf-paper-writer, ccf-visual-composer, ccf-skill-forger]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-08-12
     stale_after_days: 365
     notes: User-custom writing-format exemplar source record.
   - id: vggt-cvf
@@ -826,3 +844,138 @@ sources:
     verified_at: 2026-06-06
     stale_after_days: 3650
     notes: Official NeurIPS 2017 paper PDF used for demo/attention-is-all-you-need official BLEU, training schedule, model configuration, and complexity table values.
+  - id: livefigure-editable-scientific-illustration
+    title: "LiveFigure: Generating Editable Scientific Illustration with VLM Agents"
+    url: https://arxiv.org/abs/2605.23527
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-08-09
+    verified_at: 2026-08-09
+    stale_after_days: 365
+    notes: Blueprint-first reference induction, PowerPoint-native procedural generation, isolated icon assets, and rendered visual diagnosis.
+  - id: autofigure-edit-editable-svg
+    title: "AutoFigure-Edit: Generating Editable Scientific Illustration"
+    url: https://arxiv.org/abs/2603.06674
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-08-09
+    verified_at: 2026-08-09
+    stale_after_days: 365
+    notes: Reference-guided style adaptation and native editable SVG generation.
+  - id: scifig-editable-figure-generation
+    title: "SciFig: Towards Automating Editable Figure Generation for Scientific Papers"
+    url: https://arxiv.org/abs/2601.04390
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-08-09
+    verified_at: 2026-08-09
+    stale_after_days: 365
+    notes: Hierarchical composition and editable methodology-figure generation from scientific text.
+  - id: pptxgenjs-shapes
+    title: PptxGenJS Shapes Documentation
+    url: https://gitbrent.github.io/PptxGenJS/docs/api-shapes.html
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-08-09
+    verified_at: 2026-08-09
+    stale_after_days: 365
+    notes: Native PowerPoint shapes, text-bearing shapes, coordinates, styling, and stable object names for deterministic PPTX reconstruction.
+  - id: microsoft-edit-svg-office
+    title: Edit SVG Images in Microsoft 365
+    url: https://support.microsoft.com/en-us/office/graphics-visuals/edit-svg-images-in-microsoft-365
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-08-09
+    verified_at: 2026-08-09
+    stale_after_days: 365
+    notes: Official support for inserting, formatting, and converting SVG graphics to Office shapes in supported Microsoft 365 applications.
+  - id: lucide-icons
+    title: Lucide Icon Toolkit
+    url: https://github.com/lucide-icons/lucide
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-08-09
+    verified_at: 2026-08-09
+    stale_after_days: 365
+    notes: Coherent open-source SVG icon family for common scientific-diagram concepts; record the applicable license with delivered assets.
+  - id: material-icons-svg
+    title: Material Design Icons SVG Repository
+    url: https://material-icons.github.io/material-icons/
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-08-09
+    verified_at: 2026-08-09
+    stale_after_days: 365
+    notes: Alternative coherent SVG icon family with multiple visual variants under Apache License 2.0.
+  - id: svg2pptx-native-shapes
+    title: SVG to PowerPoint Shape Converter
+    url: https://github.com/benouinirachid/svg2pptx
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-08-10
+    verified_at: 2026-08-10
+    stale_after_days: 365
+    notes: MIT-licensed SVG parser that reconstructs rectangles, circles, lines, polygons, paths, groups, and live text as native PowerPoint objects; gradients and filters require QA or fallback reconstruction.
+  - id: ai-scientist-v2
+    title: The AI Scientist-v2
+    url: https://github.com/SakanaAI/AI-Scientist-v2
+    source_type: background_method
+    used_by: [ccf-idea-optimizer]
+    recorded_at: 2026-08-11
+    verified_at: 2026-08-11
+    stale_after_days: 365
+    notes: Workflow reference for progressive agentic tree search, structured idea generation, novelty checking, reflection, and experiment-branch management; do not copy target ideas or templates.
+  - id: rd-agent
+    title: Microsoft R&D-Agent
+    url: https://github.com/microsoft/RD-Agent
+    source_type: background_method
+    used_by: [ccf-idea-optimizer]
+    recorded_at: 2026-08-11
+    verified_at: 2026-08-11
+    stale_after_days: 365
+    notes: Workflow reference for hypothesis, implementation, real feedback, accumulated knowledge, and iterative research-development evolution.
+  - id: storm
+    title: STORM Knowledge Curation System
+    url: https://github.com/stanford-oval/storm
+    source_type: background_method
+    used_by: [ccf-literature-searcher, ccf-idea-optimizer]
+    recorded_at: 2026-08-11
+    verified_at: 2026-08-11
+    stale_after_days: 365
+    notes: Workflow reference for perspective-guided question decomposition, source-grounded follow-up questions, and dynamic concept organization.
+  - id: gpt-researcher
+    title: GPT Researcher
+    url: https://github.com/assafelovic/gpt-researcher
+    source_type: background_method
+    used_by: [ccf-literature-searcher, ccf-idea-optimizer]
+    recorded_at: 2026-08-11
+    verified_at: 2026-08-11
+    stale_after_days: 365
+    notes: Workflow reference for planner-executor separation, recursive breadth-depth research, concurrent retrieval, and scoped context aggregation.
+  - id: paper-qa2
+    title: PaperQA2
+    url: https://github.com/Future-House/paper-qa
+    source_type: background_method
+    used_by: [ccf-literature-searcher, ccf-idea-optimizer]
+    recorded_at: 2026-08-11
+    verified_at: 2026-08-11
+    stale_after_days: 365
+    notes: Workflow reference for scientific-document retrieval, hybrid evidence selection, reranking, contextual compression, and citation-grounded synthesis.
+  - id: ai-researcher
+    title: AI-Researcher
+    url: https://github.com/HKUDS/AI-Researcher
+    source_type: background_method
+    used_by: [ccf-literature-searcher, ccf-idea-optimizer]
+    recorded_at: 2026-08-11
+    verified_at: 2026-08-11
+    stale_after_days: 365
+    notes: Workflow reference for reference-based ideation, resource collection and filtering, and staged literature-to-algorithm development.
+  - id: arbor-agent
+    title: Arbor Autonomous Research Agent
+    url: https://github.com/RUC-NLPIR/Arbor
+    source_type: background_method
+    used_by: [ccf-idea-optimizer]
+    recorded_at: 2026-08-11
+    verified_at: 2026-08-11
+    stale_after_days: 180
+    notes: Recent workflow reference for a durable hypothesis tree, observe-ideate-select-backprop cycles, branch-level novelty checks, and evidence-preserving pruning.

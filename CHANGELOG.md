@@ -1,5 +1,16 @@
 ﻿# Changelog
 
+## v0.9.0 - 2026-08-13
+
+- Refined family-wide skill selection so one task has one clear owner and adjacent skills join only when they materially improve the result, reducing conflicting instructions and unnecessary context.
+- Strengthened academic writing guidance with natural terminology, controlled dash use, preserved user-provided exemplars, isolated warnings, and separate judgments for current readiness and improvement over the previous version.
+- Expanded `ccf-visual-composer` around GPT Image 2-first method and architecture figures, reference-guided composition, custom icon creation, paper-versus-presentation styles, and genuinely editable SVG, vector PDF, and PPTX reconstruction.
+- Reorganized the evaluation report around skill ablations, visual comparisons, model-level regression, latency, token use, and cost, with sampled checks for the optimized family behavior.
+- Rewrote the Simplified Chinese, English, and Traditional Chinese README files around the research story, family responsibilities, real visual examples, and clearer non-engineering language.
+- Added separate installation and automatic-update guides for Codex, Claude Code, Cursor, Gemini CLI, and other compatible agents.
+- Added the DynTrace paper architecture, GPT Image 2 concept, PPT/poster exploration, and LLaVA-4D reference figure to the visual showcase with source and usage notes.
+- Rebuilt all 27 documentation diagrams in three languages, added language-specific hero figures, and corrected English hero and workflow layouts to prevent text and connector overlap.
+
 ## v0.8.0 - 2026-08-07
 
 - Added `ccf-humanization` as the first-priority manuscript/experiment preflight for direct academic prose, warning-only non-injection, generic SHA-256/checksum removal, effective non-duplicative smoke scope, and confirmed full publication methods.

@@ -13,6 +13,7 @@ Track or paper type:
 Raw idea:
 Problem owner / audience:
 Closest known work:
+Available literature packet / source set:
 Available data / code / compute:
 Expected method ingredients:
 Expected evidence:
@@ -49,6 +50,8 @@ Why now:
 Main risk:
 Best venue fit:
 ```
+
+When a literature packet is present, also record the strongest source-backed limitation, reusable mechanism primitive, and protocol anchor. Keep source facts separate from the proposed idea's inferred gap.
 
 Hard rule: if the root challenge is only "existing methods perform poorly", refine it into a technical, scientific, empirical, human-centered, or systems bottleneck.
 

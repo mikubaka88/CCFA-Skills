@@ -16,10 +16,17 @@ Visual QA is based on rendered output, not source optimism. When source files ex
 - Numeric precision, units, sample size, confidence intervals, and metric direction match the manuscript.
 - Source data or scripts are traceable enough for later integrity audit.
 - Architecture nodes, groups, and connections match the supplied method; no plausible-looking component was invented.
+- A paper architecture figure exposes representations, operators, branches, merges, and outputs; it is not a set of explanatory stage cards, a dashboard, a README hero, or a PPT/Poster graphic.
+- Paper-figure QA rejects large stage banners, repeated callout bubbles, decorative hero titles, oversized generic icons, and prose-heavy cards that do not correspond to computations.
 - Architecture arrows have correct direction and semantics, and training/inference boundaries remain truthful.
 - Generated-image labels match the approved label inventory; malformed text is corrected during semantic SVG reconstruction.
 - An editable SVG contains live text and selectable vector groups rather than a full-page embedded or auto-traced raster.
 - A requested vector PDF is exported from the reconstructed vector source, with SVG retained as the canonical editable artifact.
+- Public icons use a coherent family and recorded license; custom icons remain separate assets with clean alpha edges, no background halo, no embedded text, and no hallucinated internal detail.
+- The layout follows explicit alignment lines and spacing tokens; information boxes with the same role share dimensions or baselines unless hierarchy requires a visible exception.
+- A requested PPTX contains live text, native boxes/nodes/connectors, semantic groups, and separately selectable icon assets rather than one full-slide image.
+- PPTX editability is reported per asset: native shape, SVG graphic convertible to Office shapes, or isolated raster that is movable but not vector-editable.
+- The PPTX is rendered to a preview and inspected for clipping, font substitution, connector drift, transparency fringes, and z-order errors.
 
 ## QA Ledger
 

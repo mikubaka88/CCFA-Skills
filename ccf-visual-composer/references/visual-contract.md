@@ -17,9 +17,12 @@ Figure prototype or table type:
 Panel or table map:
 Architecture topology / typed connections:
 Exact label inventory:
+Icon inventory: native primitive / public SVG / custom asset
+Reference-layout sources and extracted composition principles:
 Caption role:
 Manuscript placement:
 Output formats:
+PPTX editability target: native / SVG-convertible / isolated raster
 Traceability:
 ```
 
@@ -54,15 +57,17 @@ Traceability:
 - Mark training-only and inference-only elements explicitly; do not collapse them into a misleading single path.
 - Use the strongest visual emphasis for the actual contribution, not for generic encoders, databases, or decorative icons.
 - Keep an exact label inventory for generation QA and later editable SVG reconstruction.
+- Plan icon semantics before rendering. Prefer native primitives or one coherent public SVG family; reserve custom generation for method-specific concepts.
+- Record layout references and only the transferable composition principles extracted from them; do not copy exact arrangements, palettes, or icons.
+- When PPTX is requested, define which elements must be native-editable and which custom assets may remain separately movable raster objects.
 
 ## Stateful Iteration
 
-When a project directory exists and the task is larger than one artifact, keep visual state in a local working folder:
+When a project directory exists and the task is larger than one artifact, keep only the generated state needed to continue or reproduce the deliverable:
 
 ```text
 visual-composer/visual-contract.md
-visual-composer/qa-ledger.md
-visual-composer/iteration-log.md
+visual-composer/qa-ledger.md  # only when QA evidence must persist
 ```
 
-Use the files as working state, not as conversation memory. If repeated tweaks do not fix a problem, pivot the structure: split a table, use a full-width float, change the chart family, reduce panel count, or move secondary material to appendix.
+Overwrite each canonical state file on the next iteration. Do not create numbered prompts, attempt folders, render histories, or an iteration log unless the user explicitly requests an audit trail. User inputs and immutable evidence remain outside this overwrite rule. If repeated tweaks do not fix a problem, pivot the structure: split a table, use a full-width float, change the chart family, reduce panel count, or move secondary material to appendix.

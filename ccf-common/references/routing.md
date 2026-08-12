@@ -2,11 +2,22 @@
 
 Route by the user's primary intent. Do not activate every downstream skill just because it may become useful later.
 
+## Single-Owner Invariant
+
+Choose exactly one primary owner for each user-requested deliverable. A skill's handoff list declares possible next-stage owners; it is not permission to load them together. Add a sidecar only when the current request itself needs a distinct cross-cutting preflight or explicitly combines two deliverables. Future usefulness, checklist completeness, or a broad end-to-end workflow is not enough.
+
+Resolve common collisions by the requested deliverable:
+
+- Revised, polished, compressed, or newly drafted prose -> `ccf-paper-writer`; assessment, scoring, issue diagnosis, or version comparison without rewriting -> `ccf-paper-reviewer`. If the request says full review, scientific review, scoring, assessment-only, or no rewrite, choose reviewer.
+- External source discovery -> `ccf-literature-searcher`; end-to-end manuscript assessment remains `ccf-paper-reviewer`, which may request search only when current evidence is actually needed. Supplied-result evidence schemas and result-table structure belong to `ccf-experiment-designer`, not search.
+- Datasets, baselines, metrics, ablations, evidence schemas, and what a result table should contain -> `ccf-experiment-designer`; plotting, styling, layout, rendering, result-table color/readability improvement, or editable reconstruction from supplied content/values -> `ccf-visual-composer`.
+- `ccf-humanization` is a sidecar only for manuscript-facing writing or final publication-facing experiment prose/tables/captions. It is never the primary owner and is not loaded for raw experiment planning, retrieval, review, auditing, routing, visual rendering, or assessment-only tasks without publication prose.
+
 The current runtime surface contains 17 installable `ccf-*` skills plus the LaTeX/template reference tree. Removed helper names must not be installed as standalone skills.
 
 ## Priority Overlay
 
-`ccf-humanization` has first priority for manuscript-facing and publication-facing experiment outputs. Run it as a preflight before `ccf-paper-writer` or `ccf-experiment-designer`, then return ownership to the content skill. It removes defensive prose and unproductive test sprawl, enforces confirmed full methods, and keeps judgment-sensitive warnings outside artifacts. It does not replace the writer/designer or authorize hiding material evidence.
+`ccf-humanization` has first priority for manuscript-facing writing and final publication-facing experiment prose, tables, captions, or method descriptions. Run it as a sidecar preflight, then return ownership to the content skill. Do not load it for raw experiment planning or evidence-schema design. It removes defensive prose and unproductive test sprawl, enforces confirmed full methods, and keeps judgment-sensitive warnings outside artifacts. It does not replace the writer/designer or authorize hiding material evidence.
 
 ## Canonical Runtime Skills
 
@@ -20,10 +31,10 @@ The current runtime surface contains 17 installable `ccf-*` skills plus the LaTe
 | Monitor recent papers, arXiv/OpenReview/venue feeds, labs, competitors, and recurring novelty threats. | `ccf-literature-monitor` | arxiv-watch, venue-watch, novelty-check, trend-scouting, competitor-tracking | Does not replace deep related-work search, citation audit, or final idea scoring. |
 | Search literature, prior art, datasets, benchmarks, citation evidence, and opportunity gaps. | `ccf-literature-searcher` | search, screening, opportunity map | Does not audit only already cited papers or act as a final idea kill gate. |
 | Design experiments and real-result tables/figures. | `ccf-experiment-designer` | experiment design, result templates, result figures/tables | Does not invent results. |
-| Compose publication-grade data figures/tables and scientific method/architecture diagrams, including content-derived GPT Image 2 prompts, confirmed generation, and editable SVG/PDF reconstruction. | `ccf-visual-composer` | visual-contract, figure-design, architecture-generation, editable-reconstruction, python-plotting, table-design, layout-integration, render-qa | Does not design experiments, invent results/components, write manuscript prose, or perform final submission compliance. |
+| Compose publication-grade data figures/tables and scientific method/architecture diagrams, using GPT Image 2 as the default architecture/schematic renderer, followed by optional editable SVG/PDF/PPTX reconstruction; use pure SVG first only on explicit opt-out. | `ccf-visual-composer` | visual-contract, figure-design, architecture-generation, pure-svg-generation, editable-reconstruction, python-plotting, table-design, layout-integration, render-qa | Does not design experiments, invent results/components, write manuscript prose, or perform final submission compliance. |
 | Draft, revise, polish, compress, and presentation-adapt paper text. | `ccf-paper-writer` | writing, polishing, compression, venue-aware LaTeX drafting, slides/poster/talk/Q&A | Preserves user format for edits; does not run full review or rebuttal. |
 | Convert user-provided paper PDFs into reusable writing exemplar cards. | `ccf-paper-to-exemplar` | exemplar extraction, writing-pattern cards, custom exemplar registration | Does not write papers or perform review. |
-| Review manuscripts scientifically and stylistically. | `ccf-paper-reviewer` | scientific review, writing review, format-facing review, AC/meta-review | Does not rewrite or rebut. |
+| Review manuscripts scientifically and stylistically, including score drift and cross-version comparison with separate relative-progress and absolute-readiness scorecards. | `ccf-paper-reviewer` | scientific review, writing review, format-facing review, version comparison, AC/meta-review | Does not combine the two scorecards, rewrite, rebut, or own the revision ledger. |
 | Audit evidence integrity, numbers, figures/tables, and existing citations. | `ccf-integrity-auditor` | claim audit, numeric audit, citation audit | Does not replace review or broad literature search. |
 | Check venue rules, LaTeX/PDF package, anonymity, metadata, and artifacts. | `ccf-submission-checker` | venue format, package check, artifact/reproducibility | Does not polish content. |
 | Write rebuttals, revision ledgers, response letters, and resubmission plans. | `ccf-rebuttal-writer` | rebuttal, revision ledger, response letter, resubmission | Does not trigger for ordinary writing. |
@@ -92,11 +103,12 @@ For manuscript writing from only an idea, `ccf-paper-writer` checks the venue gu
 | 根据真实结果规划论文图表的数据和证据结构 | `ccf-experiment-designer` |
 | 优化图表排版 / 选择论文配色 / 多面板 figure 放正文里 | `ccf-visual-composer` |
 | 用 Python 画漂亮数据分析图 / 创造有趣但可信的论文图 | `ccf-visual-composer` |
-| 根据论文方法生成架构图 / 调用 GPT Image 2 / 转成可编辑 SVG 或 PDF | `ccf-visual-composer` |
+| 根据论文方法生成架构图 / 默认调用 GPT Image 2 / 确认后转成可编辑 SVG、PDF 或 PPTX / 明确要求纯 SVG | `ccf-visual-composer` |
 | 把这篇 PDF 做成写作范例 / 添加 exemplar | `ccf-paper-to-exemplar` |
 | 润色 introduction 或压缩到页数限制 | `ccf-paper-writer` |
 | 把论文做成 slides 和 Q&A | `ccf-paper-writer` |
 | 完整审稿、逐段写作评审或 LaTeX 表达检查 | `ccf-paper-reviewer` |
+| 对比论文新旧版本、检查复审分数漂移或 moving-target review | `ccf-paper-reviewer` |
 | 检查 claim、数字、引用是否一致且有支撑 | `ccf-integrity-auditor` |
 | NeurIPS page limit / template / anonymity / artifact checklist | `ccf-submission-checker` |
 | 根据 R1/R2 写 rebuttal 并维护修改表 | `ccf-rebuttal-writer` |

@@ -1,6 +1,6 @@
 ---
 name: ccf-experiment-designer
-description: "Design CCF paper evidence packages: datasets, baselines, metrics, ablations, robustness tests, result-table templates, and real-result figure/table presentation. Use for experiment design, benchmark planning, baseline selection, ablation design, result tables, publication figures from supplied numbers, 设计实验, 对比实验, 消融, 结果图表. Do not invent results."
+description: "Own experiment evidence semantics: decide datasets, baselines, metrics, ablations, robustness tests, chart evidence, and exactly what rows or columns a result table should contain. Use for experiment design, benchmark planning, supplied-result evidence structure, result-table schema, chart-spec semantics, 设计实验, 对比实验, 消融, 结果表证据结构. Do not search literature as the main deliverable, visually beautify or render an already specified table/figure, improve layout/colors/readability, or invent results."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -16,7 +16,7 @@ metadata:
 
 **CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode`, `../ccf-common/references/handoff-modes.md`, and `../ccf-common/references/task-modes.md`.
 
-Run `ccf-humanization` as the first publication-facing experiment preflight. Load `../ccf-humanization/references/experiment-discipline.md`, minimize smoke tests to unique changed critical paths, and allow only internally confirmed full method versions in manuscript text, final tables, captions, and claimed comparisons. In publication-facing wording, name the method and scientifically relevant configuration naturally without exposing confirmation, approval, or readiness status. Put version conflicts or necessary exceptions in a separate user-review warning; do not modify experiment or manuscript files merely to encode the warning.
+Run `ccf-humanization` as the first publication-facing experiment preflight only when this skill produces or revises publication-facing prose, final manuscript tables/captions, or a publication method description. Do not load it for raw protocol planning, dataset/baseline/metric selection, execution queues, or evidence-schema design. When it applies, load `../ccf-humanization/references/experiment-discipline.md`, minimize smoke tests to unique changed critical paths, and allow only internally confirmed full method versions in manuscript text, final tables, captions, and claimed comparisons. In publication-facing wording, name the method and scientifically relevant configuration naturally without exposing confirmation, approval, or readiness status. Put version conflicts or necessary exceptions in a separate user-review warning; do not modify experiment or manuscript files merely to encode the warning.
 
 ## Core Rule
 

@@ -68,6 +68,10 @@ Use 1-5:
 
 Low confidence changes certainty, not automatically the score.
 
+## Cross-Version Calibration
+
+For re-review or manuscript-version comparison, load `version-comparison.md`. Freeze dimensions, weights, anchors, reviewer roles, thresholds, and evidence standard before comparing versions. Report relative progress, current absolute readiness, and comparison confidence separately. Every decrease must be traceable to a current-version regression or newly revealed evidence. Previously undetected issues apply consistently to both versions rather than silently lowering only the current score.
+
 ## Consistency Check
 
 Before finalizing scores:
@@ -77,6 +81,7 @@ Before finalizing scores:
 3. Are strength claims backed by exact manuscript evidence?
 4. Are score-change conditions concrete and feasible?
 5. Is the score calibrated to the named venue rather than generic positivity?
+6. For version comparison, did both versions use the same frozen contract and did every decrease pass the provenance rule?
 
 ## Mandatory Scorecard Output
 

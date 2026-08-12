@@ -1,0 +1,11 @@
+dimension,judge,candidate,baseline,tasks,wins,ties,losses,inconsistent,incomplete,win_rate
+idea,deepseek-v4-flash,gpt-5.5,deepseek-r1,201,194,0,0,7,0,0.965174
+idea,deepseek-v4-flash,gpt-5.5,o4-mini,201,146,1,8,46,0,0.726368
+idea,gpt-5.5,deepseek-v4-flash,deepseek-r1,201,196,0,2,3,0,0.975124
+idea,gpt-5.5,deepseek-v4-flash,o4-mini,201,174,0,15,12,0,0.865672
+writing,deepseek-v4-flash,gpt-5.5,claude-3.7-sonnet,10,9,0,0,1,0,0.900000
+writing,deepseek-v4-flash,gpt-5.5,gemini-2.5-pro,10,9,0,0,1,0,0.900000
+writing,deepseek-v4-flash,gpt-5.5,o4-mini,10,10,0,0,0,0,1.000000
+writing,gpt-5.5,deepseek-v4-flash,claude-3.7-sonnet,10,10,0,0,0,0,1.000000
+writing,gpt-5.5,deepseek-v4-flash,gemini-2.5-pro,10,9,0,0,1,0,0.900000
+writing,gpt-5.5,deepseek-v4-flash,o4-mini,10,9,0,0,1,0,0.900000

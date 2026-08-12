@@ -1,7 +1,7 @@
 {
   "name": "ccfa-skills",
-  "version": "0.8.0",
-  "description": "CCFA CCF paper-project workflow skill family.",
+  "version": "0.9.0",
+  "description": "A coordinated skill family for CCF research papers.",
   "author": {
     "name": "CCFA Skills maintainers"
   },
@@ -17,8 +17,8 @@
   ],
   "interface": {
     "displayName": "CCFA Skills",
-    "shortDescription": "CCF paper-project workflow skills.",
-    "longDescription": "A governed 17-skill ccf-* family for CCF/NeurIPS paper projects, led by a humanization preflight for direct academic prose, warning isolation, efficient smoke scope, and confirmed full publication methods, followed by idea, evidence, visuals, writing, review, submission, and rebuttal owners.",
+    "shortDescription": "Research skills from idea to submission.",
+    "longDescription": "Seventeen focused skills help researchers develop ideas, gather evidence, design experiments, write and review manuscripts, create scientific figures, and prepare submissions while preserving a coherent research story.",
     "developerName": "CCFA Skills maintainers",
     "category": "Productivity",
     "capabilities": [
@@ -33,6 +33,6 @@
       "experiment-discipline"
     ],
     "brandColor": "#1F6F8B",
-    "defaultPrompt": "Use ccf-humanization first for manuscript or publication-facing experiment artifacts, then use the appropriate canonical ccf-* owner. Keep warnings outside files and preserve material evidence."
+    "defaultPrompt": "Choose the CCFA skill that best matches the research task, preserve evidence and terminology, and use Humanization when refining publication prose."
   }
 }

@@ -1,0 +1,7 @@
+experiment,condition_or_model,n,quality_score,ci95_low,ci95_high,preferred_rate,mean_seconds,consumed_tokens,token_scope,current_cost_usd_or_formula,plus_weekly_pool_usd,plus_weekly_token_quota,api_equivalent_usd,editable_svg_rate,native_pptx_rate,generation_route,notes
+dyntrace_skill_ablation,no-skills,2,8.482500,,,,161.8045,213406,recorded input plus output,5*213406/Q_week,5,Q_week,,1.0000,,pure-svg,Plus allocation
+dyntrace_skill_ablation,full-skills,2,8.692500,,,,>614.8375,>531231,recorded input plus output lower bound,>5*531231/Q_week,5,Q_week,,1.0000,,pure-svg,Replicate A render-QA timeout; lower-bound efficiency
+dyntrace_skill_ablation,without-visual-composer,2,8.005000,,,,301.2730,659456,recorded input plus output,5*659456/Q_week,5,Q_week,,1.0000,,pure-svg,Plus allocation
+figurebench_subset20,deepseek-v4-flash,20,7.678125,7.362500,7.993750,0.5500,198.3235,931639,recorded input plus output,0.156592,,,,1.0000,1.0000,pure-svg,Balanced 5 each across blog paper survey textbook; GPT Image 2 not used
+figurebench_subset20,gpt-5.5,20,6.366875,5.406875,7.190000,0.3500,100.2885,443501,recorded input plus output,5*443501/Q_week,5,Q_week,3.313803,1.0000,1.0000,pure-svg,Balanced 5 each across blog paper survey textbook; GPT Image 2 not used
+figurebench_paired,deepseek-v4-flash_minus_gpt-5.5,20,1.311250,0.435625,2.321250,0.7500,,,,,,,,,,pure-svg,15 wins 2 ties 3 losses; exact sign p=0.007538

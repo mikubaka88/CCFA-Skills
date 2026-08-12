@@ -8,6 +8,8 @@ For a full experiment plan, dataset/baseline search, benchmark protocol, or resu
 
 Design experiments to answer the reviewer question, "Does the evidence test the central claim?" Do not add experiments for volume. Every experiment should defend novelty, soundness, significance, generalization, efficiency, or scope.
 
+When literature is available, start from compatible protocol anchors in the idea-grounding packet. Do not produce a generic benchmark list that is disconnected from the closest work, and do not treat reported public numbers as newly measured results.
+
 ## Experiment Matrix
 
 For each major claim, create:
@@ -24,6 +26,13 @@ Failure analysis:
 Expected reviewer concern answered:
 ```
 
+Add two links for each new method claim:
+
+```text
+Closest protocol anchor:
+Discriminating test: what result would separate the proposed mechanism from the closest alternative?
+```
+
 ## Baseline Rules
 
 - Include the strongest close prior work when feasible.
@@ -31,6 +40,7 @@ Expected reviewer concern answered:
 - Explain why any missing baseline cannot be run.
 - Avoid unfair adaptation, extra data, or hidden tuning advantages.
 - Add simple baselines that test whether the core mechanism is necessary.
+- Prefer mechanism-level competitors and public methods that address the same gap over comparisons dominated by a weaker foundation model.
 
 ## Ablation Rules
 
@@ -41,6 +51,7 @@ Use ablations to test mechanism, not only performance drops:
 - Vary the key hyperparameter or threshold.
 - Show when the method fails.
 - Include qualitative or diagnostic evidence when numeric metrics hide behavior.
+- For transferred or combined mechanisms, test the named compatibility condition rather than ablating components mechanically.
 
 ## Venue-Specific Evidence
 

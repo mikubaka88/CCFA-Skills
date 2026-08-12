@@ -12,6 +12,14 @@ Every review-style output must separate three values:
 
 For each score of 3 or below, include the deduction and the condition that would move the score. Do not give a number without an evidence basis.
 
+For manuscript re-review or cross-version comparison, freeze rubric dimensions, weights, anchors, reviewer roles, thresholds, and evidence standard before rescoring. Evaluate both versions under that contract. Keep two scorecards and one confidence statement separate:
+
+1. **Relative-progress scorecard:** score the historical and current versions with the same frozen dimension scale, report every per-dimension delta and the weighted delta, and classify progress as `regressed`, `unchanged`, or `improved`. This scorecard answers only whether the revision improved the manuscript.
+2. **Absolute-readiness scorecard:** assess the current manuscript against the target venue's publication standard and report its calibrated overall score or stance. This scorecard answers only how close the current manuscript is to acceptance quality.
+3. **Confidence and comparability:** report evidence coverage, missing materials, reviewer consistency, and any external standard change. Do not fold this into either score.
+
+Never average, add, or otherwise fuse the two scorecards. A revision may have a positive progress delta and still receive a low readiness score. Classify new concerns as revision regressions, previously undetected issues, newly revealed evidence, or external standard changes. A progress-score decrease must cite a current-version regression or newly revealed evidence; a latent issue already present applies consistently to both versions.
+
 ```text
 Dimension:
 Score:

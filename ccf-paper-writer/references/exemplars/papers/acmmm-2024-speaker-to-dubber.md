@@ -122,7 +122,7 @@ and global scene information, at the level of video frames. Recent works [12, 23
 complexity and limited scale of movie dubbing datasets constrain the pronunciation accuracy of learned models.
 
 
-From Speaker to Dubber: Movie Dubbing with Prosody and Duration Consistency Learning ACM MM, 2024, Melbourne, Australia � you know how I feel .
+From Speaker to Dubber: Movie Dubbing with Prosody and Duration Consistency Learning ACM MM, 2024, Melbourne, Australia - you know how I feel .
 
 Dubbing Script Mel Decoder Vocoder Duration Consistency Reasoning Phoneme-level Acoustics Feature Reference Audio Lip Motion Encoder Emotion Encoder Lip Extraction [Y UW1 N … F IY1 L] Phoneme Sequence G2P Pretrained Phoneme Encoder Pitch Predictor Energy Predictor K,V Prosody Consistency Learning Large Text-to-Speech Corpus Variance Adaptor Mel Decoder Vocoder LMLM LTTS Multi-task Speaker Pre-training Mel-Timbre Encoder Timbre-Adaptive Layer Norm Timbre Feature Length Regulator Timbre Feature TALN Output Dubbing Video Frame-level Lip Motion Feature Phoneme & Position Phoneme Target AA1 AH0 EH1 Grapheme2Phoneme (G2P) MLM Predict Phoneme Encoder Multi-head Attention Output Speech
 
