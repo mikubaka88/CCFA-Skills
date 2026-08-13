@@ -18,6 +18,19 @@ Yann LeCun and James M. Manyika, [*Learning Abstractions*](https://www.amacad.or
 
 </div>
 
+## Table of contents
+
+- [Quick start](#quick-start)
+- [Why a family of skills](#why-a-family-of-skills)
+- [The family and its 17 core skills](#the-family)
+- [From idea to submission](#from-idea-to-submission)
+- [Visual examples](#visual-examples)
+- [Keeping the writing natural](#keeping-the-writing-natural)
+- [Figures that remain editable](#figures-that-remain-editable)
+- [Distinct roles, shared story](#distinct-roles-shared-story)
+- [Repository and maintenance](#repository)
+- [Star history](#star-history)
+
 At two in the morning, the experiment finally finishes. The new result is better than expected, yet reopening the manuscript reveals the harder problem. The sharp question that began the project is buried beneath related work. The method section no longer quite matches the mechanism in the code. A new experiment answers the previous review, but pulls the argument in another direction. Every part seems to have improved, while the paper as a whole has become less clear.
 
 Many promising projects are weakened not by a poor idea, but by what happens to that idea over time. Literature accumulates, result tables expand, and the author repeatedly switches between researcher, writer, and reviewer. The original insight gradually disappears beneath local revisions. One long prompt cannot reliably preserve all these relationships because retrieval must remain faithful to sources, experiments to protocols, writing to the argument, and review to independent judgment.
@@ -240,3 +253,7 @@ These checks confirm that all 17 skills can be discovered, their responsibilitie
 ## Acknowledgments
 
 Thanks to [Research-Paper-Writing-Skills](https://github.com/Master-cai/Research-Paper-Writing-Skills) for contributing to the open ecosystem of academic-writing skills.
+
+## Star history
+
+[![GitHub star history for CCFA Skills](assets/ccfa-skills-star-history.svg)](https://github.com/mikubaka88/CCFA-Skills/stargazers)

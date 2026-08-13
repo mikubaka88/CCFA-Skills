@@ -9,7 +9,8 @@
 - Rewrote the Simplified Chinese, English, and Traditional Chinese README files around the research story, family responsibilities, real visual examples, and clearer non-engineering language.
 - Added separate installation and automatic-update guides for Codex, Claude Code, Cursor, Gemini CLI, and other compatible agents.
 - Added the DynTrace paper architecture, GPT Image 2 concept, PPT/poster exploration, and LLaVA-4D reference figure to the visual showcase with source and usage notes.
-- Rebuilt all 27 documentation diagrams in three languages, added language-specific hero figures, and corrected English hero and workflow layouts to prevent text and connector overlap.
+- Rebuilt all 30 documentation diagrams in three languages, added language-specific hero figures, and corrected English hero and workflow layouts to prevent text and connector overlap.
+- Added multilingual README navigation and a comic-style Star history chart backed by daily GitHub Stargazers API data through 2026-08-13.
 
 ## v0.8.0 - 2026-08-07
 

@@ -18,6 +18,19 @@ Yann LeCun and James M. Manyika, [*Learning Abstractions*](https://www.amacad.or
 
 </div>
 
+## 目录
+
+- [快速开始](#快速开始)
+- [为什么需要一个 skill 家族](#为什么需要一个-skill-家族)
+- [家族架构与核心 skills](#家族架构)
+- [从 idea 到投稿](#从-idea-到投稿)
+- [绘图示例](#绘图示例)
+- [写作如何保持自然](#写作如何保持自然)
+- [让图既好看，也能继续修改](#让图既好看也能继续修改)
+- [各司其职，彼此接力](#各司其职彼此接力)
+- [安装、维护与验证](#仓库结构)
+- [Star 旅程](#star-旅程)
+
 凌晨两点，实验终于结束，新的结果比预期更好。可是重新打开稿件时，真正棘手的问题才显现出来：最初那个清晰而有力的研究问题已经埋进冗长的 related work，方法描述与代码中的实际机制出现偏差；新补的实验回应了上一轮审稿意见，却让论证分成几条彼此疏离的线索。每个局部似乎都更完善了，整篇论文反而更难读懂。
 
 许多有潜力的研究最终未能充分展现价值，并不是因为 idea 不够好，而是因为它在漫长的推进中逐渐失去了清晰的轮廓。文献越积越多，实验表格不断扩张，作者还要在研究、写作和审稿视角之间反复切换。一个无所不包的长 prompt 很难同时做好这些事情，因为检索需要忠于来源，实验需要遵循协议，写作需要围绕论证展开，审稿则必须保持独立判断。
@@ -242,3 +255,7 @@ python ccf-common\scripts\check_sources.py
 ## 致谢
 
 感谢 [Research-Paper-Writing-Skills](https://github.com/Master-cai/Research-Paper-Writing-Skills) 对学术写作 skill 开源生态的贡献。
+
+## Star 旅程
+
+[![CCFA Skills 的 GitHub 星标增长曲线](assets/ccfa-skills-star-history.zh-CN.svg)](https://github.com/mikubaka88/CCFA-Skills/stargazers)

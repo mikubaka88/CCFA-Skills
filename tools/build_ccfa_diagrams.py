@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 from html import escape
 from pathlib import Path
 
@@ -99,6 +100,18 @@ GROUPS = {
     "delivery": ["ccf-visual-composer", "ccf-submission-checker", "ccf-paper-to-exemplar"],
     "maintenance": ["ccf-skill-forger"],
 }
+
+
+# Daily cumulative GitHub stars from the public Stargazers API, UTC.
+# Snapshot: 2026-08-13. The first point is the repository creation baseline.
+STAR_HISTORY_TOTALS = [
+    0, 107, 130, 142, 151, 176, 192, 210, 217, 223, 227, 291, 350, 389,
+    404, 411, 425, 445, 459, 481, 510, 535, 558, 576, 595, 617, 628,
+    640, 658, 676, 689, 701, 721, 739, 769, 790, 812, 827, 841, 858,
+    879, 890, 904, 919, 926, 932, 940, 949, 957, 968, 981, 987, 994,
+    1002, 1018, 1038, 1171, 1313, 1350, 1397, 1426, 1453, 1468, 1504,
+    1542, 1557, 1586, 1610, 1635, 1661, 1662,
+]
 
 
 def tr(role: str, lang: str) -> str:
@@ -519,6 +532,122 @@ def build_installation(lang: str) -> None:
     write_svg("ccfa-skills-installation", lang, svg(1200, 430, "\n".join(body)))
 
 
+def build_star_history(lang: str) -> None:
+    copy = {
+        "en": {
+            "title": "Our open-source journey, one star at a time",
+            "subtitle": "Cumulative GitHub stars since the repository opened",
+            "milestone": "The first 1,000",
+            "peak": "+142 in one day",
+            "final": "1,662 stars!",
+            "bubble": "Thank you for helping the family grow!",
+            "cta": "If CCFA Skills helps your research, leave a star for the next chapter.",
+            "source": "Source: GitHub Stargazers API · UTC · updated 2026-08-13",
+            "axis": "Cumulative stars",
+        },
+        "zh-CN": {
+            "title": "开源旅程，由每一颗星共同写成",
+            "subtitle": "仓库公开以来的 GitHub 累计星标",
+            "milestone": "跨过 1,000 颗星",
+            "peak": "单日新增 142",
+            "final": "1,662 颗星！",
+            "bubble": "谢谢你陪这个家族一起成长！",
+            "cta": "如果 CCFA Skills 帮到了你的研究，欢迎为下一章点亮一颗 Star。",
+            "source": "数据来源：GitHub Stargazers API · UTC · 更新于 2026-08-13",
+            "axis": "累计星标",
+        },
+        "zh-TW": {
+            "title": "開源旅程，由每一顆星共同寫成",
+            "subtitle": "儲存庫公開以來的 GitHub 累計星標",
+            "milestone": "跨過 1,000 顆星",
+            "peak": "單日新增 142",
+            "final": "1,662 顆星！",
+            "bubble": "謝謝你陪這個家族一起成長！",
+            "cta": "如果 CCFA Skills 幫助了你的研究，歡迎為下一章點亮一顆 Star。",
+            "source": "資料來源：GitHub Stargazers API · UTC · 更新於 2026-08-13",
+            "axis": "累計星標",
+        },
+    }[lang]
+
+    plot_left, plot_right = 120, 1280
+    plot_top, plot_bottom = 145, 470
+    max_value = 1700
+    count = len(STAR_HISTORY_TOTALS)
+
+    def point(index: int, value: int) -> tuple[float, float]:
+        x = plot_left + index * (plot_right - plot_left) / (count - 1)
+        y = plot_bottom - value * (plot_bottom - plot_top) / max_value
+        return x, y
+
+    points = [point(i, value) for i, value in enumerate(STAR_HISTORY_TOTALS)]
+    curve = "M " + " L ".join(f"{x:.1f} {y:.1f}" for x, y in points)
+    area = curve + f" L {plot_right} {plot_bottom} L {plot_left} {plot_bottom} Z"
+
+    def star_points(cx: float, cy: float, outer: float, inner: float) -> str:
+        coords = []
+        for i in range(10):
+            angle = -math.pi / 2 + i * math.pi / 5
+            radius = outer if i % 2 == 0 else inner
+            coords.append(f"{cx + radius * math.cos(angle):.1f},{cy + radius * math.sin(angle):.1f}")
+        return " ".join(coords)
+
+    body = [
+        f'<desc>{escape(copy["source"])}</desc>',
+        text(70, 62, copy["title"], 32, 900),
+        text(70, 92, copy["subtitle"], 16, 550, PALETTE["muted"]),
+        text(72, 126, copy["axis"], 13, 750, PALETTE["purple2"]),
+    ]
+
+    for tick in [0, 500, 1000, 1500]:
+        _, y = point(0, tick)
+        body.append(line(plot_left, int(y), plot_right, int(y), PALETTE["line"], 1.2, False))
+        body.append(text(plot_left - 18, int(y) + 5, f"{tick:,}", 12, 650, PALETTE["muted"], "end"))
+
+    body.extend([
+        f'<path d="{area}" fill="#E9DFFF" opacity="0.48" stroke="none"/>',
+        path(curve, "#233044", 6.5, False),
+        path(curve, PALETTE["purple2"], 3.8, False),
+    ])
+
+    for index, label in [(0, "Jun 4"), (27, "Jul 1"), (58, "Aug 1"), (70, "Aug 13")]:
+        x, _ = point(index, STAR_HISTORY_TOTALS[index])
+        body.append(line(int(x), plot_bottom, int(x), plot_bottom + 8, PALETTE["muted"], 1.3, False))
+        body.append(text(int(x), plot_bottom + 29, label, 12, 650, PALETTE["muted"], "middle"))
+
+    milestone_index = next(i for i, value in enumerate(STAR_HISTORY_TOTALS) if value >= 1000)
+    mx, my = points[milestone_index]
+    px, py = points[57]
+    fx, fy = points[-1]
+    body.extend([
+        circle(int(mx), int(my), 7, PALETTE["white"], PALETTE["purple2"], 3.0),
+        line(int(mx), int(my) - 10, int(mx) - 55, int(my) - 58, PALETTE["purple2"], 1.8, False),
+        rect(int(mx) - 190, int(my) - 105, 165, 42, PALETTE["white"], PALETTE["purple2"], 16, 'filter="url(#softShadow)"'),
+        text(int(mx) - 107, int(my) - 78, copy["milestone"], 13, 800, anchor="middle"),
+        circle(int(px), int(py), 7, PALETTE["white"], PALETTE["orange2"], 3.0),
+        rect(int(px) - 92, int(py) - 82, 184, 40, PALETTE["orange"], PALETTE["orange2"], 16),
+        text(int(px), int(py) - 56, copy["peak"], 13, 800, anchor="middle"),
+    ])
+
+    # A small hand-drawn star mascot marks the current endpoint.
+    mascot_x, mascot_y = fx - 8, fy - 8
+    body.extend([
+        f'<polygon points="{star_points(mascot_x, mascot_y, 31, 14)}" fill="#F7D154" stroke="#233044" stroke-width="3.2" stroke-linejoin="round"/>',
+        circle(int(mascot_x - 8), int(mascot_y - 2), 2, PALETTE["ink"], PALETTE["ink"], 1.0),
+        circle(int(mascot_x + 8), int(mascot_y - 2), 2, PALETTE["ink"], PALETTE["ink"], 1.0),
+        path(f"M {mascot_x - 8:.1f} {mascot_y + 8:.1f} Q {mascot_x:.1f} {mascot_y + 15:.1f} {mascot_x + 9:.1f} {mascot_y + 7:.1f}", PALETTE["ink"], 2.0, False),
+        path(f"M {mascot_x - 26:.1f} {mascot_y + 5:.1f} Q {mascot_x - 44:.1f} {mascot_y + 14:.1f} {mascot_x - 50:.1f} {mascot_y + 2:.1f}", PALETTE["ink"], 2.0, False),
+        path(f"M {mascot_x + 25:.1f} {mascot_y + 5:.1f} Q {mascot_x + 43:.1f} {mascot_y + 13:.1f} {mascot_x + 48:.1f} {mascot_y - 1:.1f}", PALETTE["ink"], 2.0, False),
+        rect(960, 60, 330, 62, PALETTE["white"], PALETTE["ink"], 22, 'filter="url(#softShadow)"'),
+        text(1125, 88, copy["final"], 18, 900, anchor="middle"),
+        text(1125, 110, copy["bubble"], 12, 650, PALETTE["muted"], "middle"),
+        path(f"M 1230 122 Q 1250 135 {mascot_x - 15:.1f} {mascot_y - 24:.1f}", PALETTE["ink"], 2.0, False),
+        rect(220, 525, 960, 52, "#FFF7DA", "#F0C84D", 24),
+        text(700, 557, copy["cta"], 15, 800, PALETTE["ink"], "middle"),
+        text(70, 613, copy["source"], 12, 550, PALETTE["muted"]),
+    ])
+    write_svg("ccfa-skills-star-history", lang, svg(1400, 640, "\n".join(body)))
+
+
 def build_demo(lang: str) -> None:
     title = {"en": "Demo: attention study routing", "zh-CN": "Demo：注意力研究路由", "zh-TW": "Demo：注意力研究路由"}[lang]
     stages = {
@@ -552,6 +681,7 @@ BUILDERS = [
     build_artifacts,
     build_review,
     build_installation,
+    build_star_history,
     build_demo,
 ]
 
