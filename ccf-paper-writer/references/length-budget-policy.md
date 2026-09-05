@@ -6,7 +6,7 @@ Use this file whenever drafting, expanding, compressing, or submission-preparing
 
 A venue-aware paper draft should target the venue's usable main-body budget, not merely compile. A short idea is not permission to produce a short paper when the user asked for a submission manuscript. Expand with evidence-bound content, `TBD` placeholders, and concrete experiment/analysis scaffolds rather than inventing results.
 
-**Critical: "page limit" in most AI conferences (ICLR, NeurIPS, ICML, CVPR) means main text only. References, appendix, acknowledgements, and standalone limitations sections are EXCLUDED from the count.** Your main text should fill the full budget. Do not leave1-2 pages of unused budget "to be safe"---reviewers will notice an underfilled paper.
+Determine exactly which sections count from the target venue/year/track rules. Do not assume references, appendices, acknowledgements, or limitations are excluded universally. Use the budget for substantive explanation, not page-filling or imagined reviewer reactions.
 
 ## Budget Setup
 
@@ -35,7 +35,7 @@ Default draft targets:
 Slight mismatch is acceptable:
 
 - Under target by <= 15%: acceptable for an internal draft if all required sections have substantive content.
-- Under target by > 15%: run expansion before calling it a full manuscript.
+- Under target by > 15%: inspect for missing substantive content. Expand supported explanations and planned evidence where useful; if evidence is insufficient, report the draft gap instead of padding.
 - Over target by <= 10%: acceptable for a draft; schedule compression.
 - Over target by > 10%: immediately run a standard compression pass or produce a cut plan before review.
 
@@ -104,11 +104,11 @@ When a manuscript is under target, expand in this priority order---each step add
 When writing a TeX file and a LaTeX engine is available:
 
 1. Compile once to measure pages.
-2. If citations/labels/outlines changed, rerun until stable.
+2. Use normal bibliography/reference passes or a build tool such as latexmk. Investigate persistent errors or changing references rather than rerunning indefinitely.
 3. Compare the PDF page count with the target budget.
-4. If under target, expand high-value sections.
+4. If under target, expand actual explanatory gaps using supplied science; do not manufacture content to occupy pages.
 5. If over target, run `references/compression-rules.md`.
-6. Recompile after substantial expansion or compression.
+6. Recompile after relevant changes. Stop when the requested draft is complete and relevant checks pass. If another pass makes no substantive progress, change the approach or name the concrete unresolved issue; do not run a page-count loop without progress.
 
 If compilation is unavailable, estimate with section budgets and mark page count as `not compiled`.
 

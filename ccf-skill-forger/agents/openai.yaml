@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Skill Forger"
   short_description: "Maintain CCFA skills, routing, governance docs, release checks, and generated documentation SVG diagrams."
-  default_prompt: "Use $ccf-skill-forger for CCFA skill maintenance, routing conflict cleanup, Markdown docs, generated SVG diagrams, and release validation."
+  default_prompt: "Use $ccf-skill-forger to update the authorized existing skill surfaces, reconcile conflicting rules, and validate structure, scripts, resources, and relevant behavior without unrequested additions."

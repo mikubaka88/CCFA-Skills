@@ -23,7 +23,7 @@ Run enough checks to avoid fabrication and obvious dead ends, but do not apply s
 - full experiment design,
 - full-section or paper-length compression,
 - rebuttal plans, TeX files, or multi-reviewer responses,
-- any workflow that will feed another CCFA module.
+- substantial multi-deliverable workflows; a small artifact remains quick even if another skill will later read it.
 
 Run the skill's full mandatory checklist internally. Surface skipped items only when the user asked for an audit, the task is review-related, or the omission changes the reliability of the answer.
 
@@ -48,8 +48,8 @@ Unresolved:
 ## Mode Selection
 
 1. If the user asks to explore, brainstorm, find directions, rescue a direction, try variants, or says the idea is rough, use exploratory mode unless they explicitly ask for strict scoring.
-2. If the user explicitly says quick, fast, 简单检查, 快速润色, quick polish, or "不用完整 checklist", use quick mode unless the task is high-stakes or broad enough to require standard.
-3. If the user says standard, full, final, submission-ready, checklist-audit, score-risk, 全面检查, 投稿前, or wants a reusable folder/file, use standard mode.
+2. If the user explicitly asks for quick or narrow work, preserve that scope. Do the relevant accuracy checks; name a material coverage limit instead of silently escalating to full review.
+3. If the user says standard, full, final, submission-ready, checklist-audit, score-risk, 全面检查, or 投稿前, use standard mode. Creating a small reusable file alone does not require the full workflow.
 4. If the user gives only one paragraph for polishing, default to quick mode.
 5. If the user gives a full section, manuscript, review set, literature search, or experiment plan, default to standard mode, except early idea/literature scouting should stay exploratory until the user asks for a hard decision.
 6. Safety rules never become quick or exploratory: do not invent evidence or results, do not expose private text in searches without authorization, preserve idea scope unless authorized, and apply source-quality exclusions in literature search.
@@ -58,13 +58,13 @@ Unresolved:
 
 For non-review skills, the user's requested output shape wins over the skill's default report shape. If the user asks for LaTeX, Markdown, a table, a direct rewrite, a short answer, a file, Chinese prose, English prose, or a specific section structure, produce that format first and put internal checks behind it.
 
-Review-related skills may keep stricter fixed formats because their value is diagnosis, scoring, and traceable criticism. `ccf-paper-reviewer`, `ccf-idea-reviewer`, and integrity/submission gate checks should remain more structured than writing, search, planning, or experiment-design outputs.
+Review-related skills use structured evidence, scoring, and traceable criticism when applicable, while honoring an explicit user schema or concise requested format. `ccf-paper-reviewer`, `ccf-idea-reviewer`, and integrity/submission gate checks should remain more structured than writing, search, planning, or experiment-design outputs.
 
 When `ccf-idea-reviewer` is used on an early seed, separate `current conference readiness` from `development potential`. A low current score means the seed is not ready, not that the direction is dead. Use `abandon` only when the idea has no testable claim and no plausible reformulation after at least one concrete rescue attempt.
 
 For broad requests such as "完整流程", "完整文章", "详细报告", "用所有 skills", "full paper", "full review", or "closed loop", do not return fragments. Produce complete artifacts with enough concrete content to be useful: full drafts rather than abstract-only samples, filled tables rather than headings only, reviewer comments with evidence rather than generic risks, and handoff packets that name files, claims, blockers, and next actions.
 
-For submission-style manuscript requests, "complete" also means length-aware. The writing owner should establish the target venue's page/word budget, aim near that budget, expand underfilled drafts with evidence-bound content, and compress overfilled drafts before final/submission checks.
+For submission-style manuscript requests, "complete" also means length-aware. The writing owner should establish the target venue's page/word budget, use the budget to allocate substantive content, fill actual explanatory gaps, and compress overfilled drafts. Page occupancy alone does not justify padding, invented method detail, or an unbounded compile loop.
 
 For editing, polishing, compression, and local revision, preserve the user's existing format and markup unless the user explicitly asks for restructuring. Do not convert LaTeX into a checklist report, Markdown into a different outline, or a paragraph into a table just because the skill has a template.
 
@@ -83,7 +83,7 @@ Before returning a visible artifact, every CCFA skill should do one quick self-r
 3. Review and audit outputs include concrete evidence, severity, score or pass/fail status, and action conditions where applicable.
 4. Writing outputs preserve the user's source format unless restructuring was requested.
 5. Chinese and English punctuation are used consistently; mixed punctuation is allowed only when required by code, LaTeX, citations, or filenames.
-6. The argument flow is clear: problem -> reason -> consequence -> action, or broader claim -> evidence -> limitation -> next step.
+6. The argument flow is clear: problem -> reason -> consequence -> action, or scientific question -> mechanism or observation -> supported interpretation.
 7. No generic filler remains where a concrete location, artifact, or action is required.
 
 ## Minimal Status
@@ -96,3 +96,23 @@ Checks run:
 Checks skipped:
 Unresolved risks:
 ```
+
+## Execution And Context
+
+Keep the active goal, requested artifacts, authorization, evidence locations, completed work, and next action available across long tasks. Reuse existing `ccfa.yaml`, canonical reports, and handoff fields when persistence is needed; do not create extra process files for a short task or a no-new-files request. New user messages usually steer the active task: update the affected requirements, preserve valid completed work, answer a side question briefly, and resume. Replace the goal only when the user cancels it or asks for an incompatible task.
+
+Load the owner's entry and only the reference sections needed for this mode. Treat a reference list as navigation, not a read-all checklist. Reuse shared policy already in context; reload when the file changed or the relevant rule was lost in compaction. Read source ranges located by search before loading a whole PDF extraction, library, venue guide, or report. A full scientific review or complete exemplar analysis still requires coverage of the relevant full source, read in coherent sections.
+
+Use one representation of each fact: a source table, current specification, or existing report. Link to it in downstream work instead of copying full abstracts, tool logs, manuscript passages, and prior reports into every handoff. Give tools the smallest sufficient input and request targeted output; show counts, relevant rows, errors, and locations before raw dumps. Do not truncate evidence needed to assess a claim or silently lower requested coverage.
+
+For a revision, inspect the changed passage, panel, data series, or issue plus its affected dependencies. Reuse unchanged source verification, chart layout, bibliography, and established scientific context. Broaden the check when a changed premise affects the whole artifact. A new source version or changed evidence invalidates dependent conclusions; a color or spelling edit does not.
+
+When durable context is needed, update the existing report/specification with the active goal, constraints, current paths, verified findings, unresolved decisions, and next action. After compaction, recover that compact state and inspect referenced material as needed; do not re-extract or rescore unchanged inputs by default. Keep generated files under `artifact-contracts.md`; token reduction must not create a second uncontrolled set of context files. Return file links and a concise change report when files are the deliverable, unless the user also requests the full content in the conversation.
+
+Batch independent read-only searches and checks when the host supports it. Keep dependent decisions, shared-file edits, and approvals sequential. If the host permits subagents, delegate only bounded independent work that improves coverage or elapsed time while the owner has useful work to do. Give each delegate the relevant inputs, output contract, and write boundary; integrate evidence before concluding. Do not claim independent reviewers when using role perspectives in a single pass. Small local edits do not need delegation.
+
+Validate the requested outcome and changed paths. After relevant checks pass, repeat them only for a new change, failure, or unresolved concern. A missing tool limits the dependent verification, not unrelated authorized work. Distinguish not checked from failed. Do not fabricate verification or claim a running background task unless a real scheduler or job exists.
+
+## GPT-6 Adaptation
+
+The GPT-6 Astra guidance consulted on 2026-09-05 emphasizes authorization-aware follow-through, clear skill priority, explicit delegation conditions, direct writing, and proportionate verification. These execution rules remain portable to other supported agents. Keep model choice and reasoning effort in the host; compare effort on representative tasks rather than pinning every skill to a maximum. Skills do not enable API async execution, caching, compaction, or mid-turn steering by declaring them in Markdown. Use only capabilities actually exposed by the host. Official provenance is recorded with the skill-authoring sources in `source-registry.yaml`.

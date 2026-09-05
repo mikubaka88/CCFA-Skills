@@ -29,7 +29,7 @@ The bundled library must remain:
 
 ## How To Adapt
 
-1. Start from the visual contract: claim, reviewer question, source data, and intended placement.
+1. Reuse the relevant visual contract: scientific question, supplied data, intended size, and placement. Import a selected recipe; read only its signature or implementation when needed. Do not load the full library or rebuild an existing plotting pipeline for a local change.
 2. Pick a recipe by evidence shape, not by aesthetics.
 3. Keep the proposed method color stable across all generated figures.
 4. Use typographic hierarchy: large title, strong panel titles, compact axis text, and direct labels for the main evidence.
@@ -37,7 +37,7 @@ The bundled library must remain:
 6. Use direct labels whenever possible; do not make reviewers decode a legend for the main message.
 7. For composite figures, combine 2-5 coordinated panels only when each panel answers a distinct reviewer question.
 8. If the recipe does not fit the evidence, compose a new one using the same primitives: canvas, axis, direct labels, semantic palette, and source note.
-9. Save source data next to generated figures or name the upstream file in the caption.
+9. Read the canonical upstream data by path instead of copying the dataset into each figure folder. Keep authoring code, reusable assets, and build previews at the paths resolved by the shared artifact contract. Save each requested export at its canonical destination and update it in place. Reuse one data load and theme for a figure batch; regenerate only affected panels/exports after a local change.
 
 ## Custom Plot Invention Prompt
 
@@ -61,7 +61,7 @@ Then design a plot grammar:
 - Anchor: the first visual object the reader should inspect.
 - Contrast: color, alignment, slope, position, or grouping.
 - Context: uncertainty, baseline, scale, or source note.
-- Constraint: what the visual refuses to claim.
+- Scope: the evaluated settings and statistical meaning needed to interpret the visual.
 
 ## Composite Dashboard Rules
 

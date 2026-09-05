@@ -25,18 +25,18 @@ Prefer `native` for the complete information structure. Use `svg-convertible` fo
 
 For an existing semantic SVG, the MIT-licensed `svg2pptx` converter is an available deterministic native-object route. Validate the installed version on a representative sample before batch conversion. Normalize percentage-only root dimensions to the numeric `viewBox` width and height in a separate conversion source, preserve the original SVG, and record the conversion. Its gradients, filters, and Bezier approximation are limitations to inspect in the rendered PPTX; reconstruct affected elements with native shapes when the converted slide diverges materially. A successful file write alone is insufficient: inspect shape counts, live-text counts, picture-shape counts, slide bounds, and a rendered preview.
 
-## Delivery Package
+## Delivery Package (Requested Formats And Necessary Sources Only)
 
 ```text
 figure.pptx
-preview.png or preview.pdf
+build/preview.png or build/preview.pdf
 assets/icons/*.svg or *.png
-icon-manifest.yaml
-element-map.md
+source/figure.js or the existing authoring source
+source/spec.md  # only when continuing/reproducing the figure needs it
 figure.svg and figure.pdf when requested
 ```
 
-The element map identifies slide dimensions, semantic groups, fonts, palette, icon editability levels, and any unavoidable limitation. Preserve source SVGs even when they are also inserted into the PPTX.
+Keep dimensions, semantic groups, fonts, palette, icon provenance/editability, and material limitations in the authoring source or existing specification. Preserve source SVG assets used by the authoring code. Reuse an existing element map or manifest; create a separate one only when requested or required by downstream tooling. Normalize converter input under `build/`, update it in place, and preserve the canonical original SVG. A local correction updates the authoring source and dependent requested formats without another concept-generation pass.
 
 ## PPTX QA
 

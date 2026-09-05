@@ -25,7 +25,7 @@ Output: one isolated icon, no text
 
 Generate one icon concept per asset rather than asking an image model to improvise icons inside the whole architecture figure. Request a simple silhouette, few semantic parts, flat color, no lettering, no scene, no texture, no particles, no glow, no pseudo-data, and no decorative circuitry. Inspect the result at its final display size. Reject ambiguous shapes, excess detail, false arrows, accidental labels, duplicated parts, and any visual that implies unsupported method behavior.
 
-If the generator does not return reliable transparency, use a flat high-contrast key background and the installed image-generation workflow's chroma-key removal utility. Inspect alpha edges over both light and dark test backgrounds; remove halos and stray pixels. Keep the original and cleaned icon as separate assets.
+If the generator does not return reliable transparency, use a flat high-contrast key background and the installed image-generation workflow's chroma-key removal utility. Inspect alpha edges over both light and dark test backgrounds; remove halos and stray pixels. Retain one cleaned canonical asset. Keep its generated source only when needed to reproduce the cleanup, under the same working directory; do not retain every failed candidate.
 
 ## Normalization
 
@@ -42,6 +42,6 @@ If the generator does not return reliable transparency, use a flat high-contrast
 - A transparent PNG is independently movable, resizable, replaceable, and croppable, but it is not vector-editable.
 - If full vector editability is required for a custom icon, redraw its simple geometry as SVG paths or native shapes. Do not auto-trace a noisy bitmap and label the result cleanly editable.
 
-Deliver an icon manifest with `asset_id`, semantic role, type, source or custom prompt, license, editability level, and file path.
+Reuse an existing suitable icon before searching or generating another. Keep `asset_id`, semantic role, source/license, editability, and canonical path in the existing specification or source comments. Deliver a separate icon manifest only when requested or required for the package. Reuse the same asset across SVG/PDF/PPTX exports.
 
 Research basis is registered in `../../ccf-common/references/source-registry.yaml` under `lucide-icons`, `material-icons-svg`, `microsoft-edit-svg-office`, and `livefigure-editable-scientific-illustration`.

@@ -1,6 +1,6 @@
 {
   "name": "ccfa-skills",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "A coordinated skill family for CCF research papers.",
   "skills_root": ".",
   "catalog": "docs/SKILLS_CATALOG.md",

@@ -1,6 +1,6 @@
 ---
 name: ccf-literature-monitor
-description: "Monitor arXiv, OpenReview, conference feeds, labs, projects, and competitor papers for new work that may overlap with a user's idea. Use for arxiv-watch, novelty-check, trend-scouting, competitor-tracking, paper tracking, 竞品监控, 新论文追踪, 论文跟踪, 类似 idea 监控. Link findings to ccf-literature-searcher, ccf-idea-reviewer, ccf-idea-optimizer, ccf-paper-writer, and ccf-integrity-auditor."
+description: "Scan recent arXiv/OpenReview papers, venue feeds, labs, and competitors for overlap. Use for 竞品监控, 新论文追踪, 论文跟踪, and recurring novelty watch. Give dated evidence and changes since the prior scan. Broad related-work retrieval belongs to ccf-literature-searcher."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -51,8 +51,8 @@ Load `../ccf-common/references/review-output-standards.md` when monitor results 
 3. Choose the mode and time window. If the user says "latest", "recent", "new", "this week", or "today", verify the current date and use an explicit date range.
 4. Execute the requested monitoring mode using public-safe queries and source-quality exclusions from the shared policy.
 5. Classify overlaps by problem, mechanism, evidence, benchmark, dataset, claim, and venue positioning.
-6. Report findings with precise implications for other CCFA skills.
-7. Offer optional handoff to `ccf-literature-searcher` for deep retrieval, `ccf-idea-reviewer` for score impact, `ccf-idea-optimizer` for differentiation, or `ccf-paper-writer` for related-work integration.
+6. Report new or materially changed findings, with precise implications for the requested research decision. Use existing report history to avoid presenting the same paper as new.
+7. Execute already requested downstream work through its owner; otherwise offer optional handoff to `ccf-literature-searcher` for deep retrieval, `ccf-idea-reviewer` for score impact, `ccf-idea-optimizer` for differentiation, or `ccf-paper-writer` for related-work integration.
 
 ## Output Contract
 
@@ -92,3 +92,7 @@ For each monitoring execution, report in this structure:
 - `references/monitoring-workflow.md` — Workflow, api-key-management, search strategy.
 - `references/report-template.md` — Output template and formatting.
 - `../ccf-common/references/source-registry.yaml` — Competitor and arxiv links.
+
+## Execution And Persistence
+
+Distinguish a single scan from recurring monitoring. A recurring report format is not a scheduler: claim ongoing monitoring only after an actual authorized scheduled job exists. Record the time window and coverage; an empty scan is not proof of novelty. Deduplicate by stable paper identity and version, separating first publication from revisions. Batch independent feeds when supported; preserve real monitoring history under `../ccf-common/references/artifact-contracts.md`. Follow no-new-files and existing project-state authorization.

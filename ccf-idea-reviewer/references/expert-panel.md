@@ -1,6 +1,6 @@
 # Expert Panel
 
-Use this file for role-specific idea review. Keep roles independent before aggregating.
+Use this file for role-specific idea review. Independent reviews require separate calls permitted by the host. Otherwise use clearly labeled single-agent role perspectives and consolidate overlapping findings; do not represent them as independent votes.
 
 Each expert must write as a strict reviewer, not as a generic coach. Do not use generic praise or generic concern. Every role must name a concrete claim, mechanism, closest-work risk, evidence gap, or venue criterion. After the strict concern, each role must name the smallest repair or evidence test that would change its judgment; if no repair exists, explain why.
 

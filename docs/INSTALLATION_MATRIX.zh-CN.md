@@ -1,6 +1,6 @@
 # CCFA 安装矩阵
 
-可以只安装部分 skills，但任何子集都必须包含 `ccf-common`。
+可以只安装部分 skills，但任何子集都必须包含 `ccf-common`。下表列出任务负责人；还需保留所用模式读取的相邻资源：审稿、实验、脚手架和投稿模式可能读取 `ccf-paper-writer/references/`，模板模式需要安装根目录下相邻的 `ccf-latex-templates/`，旧版写作转换命令依赖 `ccf-paper-to-exemplar/scripts/convert.py`。资源依赖不代表授权运行对应 skill。完整仓库或插件布局保留这些路径；仅复制 skill 的安装器还需同步所需资源树。
 
 ## 硬规则
 

@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Idea Reviewer"
   short_description: "Strictly score, rank, compare, and triage early CCF research ideas with prior-art awareness and venue-fit risk."
-  default_prompt: "Use $ccf-idea-reviewer for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."
+  default_prompt: "Use $ccf-idea-reviewer to assess or rank the requested ideas against closest work. Separate readiness, development potential, and confidence; tie deductions and repair conditions to evidence."

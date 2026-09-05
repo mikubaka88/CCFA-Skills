@@ -1,6 +1,6 @@
 # CCFA 安裝矩陣
 
-可以只安裝部分 skills，但任何子集都必須包含 `ccf-common`。
+可以只安裝部分 skills，但任何子集都必須包含 `ccf-common`。 下表列出任務負責人；還需保留所用模式讀取的相鄰資源：審稿、實驗、腳手架與投稿模式可能讀取 `ccf-paper-writer/references/`，模板模式需要安裝根目錄下相鄰的 `ccf-latex-templates/`，舊版寫作轉換命令依賴 `ccf-paper-to-exemplar/scripts/convert.py`。資源依賴不代表授權執行對應 skill。完整倉庫或外掛保留這些路徑；僅複製 skill 的安裝器還需同步所需資源樹。
 
 ## 硬規則
 

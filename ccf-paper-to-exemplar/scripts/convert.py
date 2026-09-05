@@ -1,14 +1,17 @@
-﻿"""Convert research paper PDFs to distilled markdown exemplar cards.
+"""Convert research paper PDFs to distilled markdown exemplar cards.
 
 Usage:
- python convert.py paper.pdf --venue CVPR
- python convert.py *.pdf --output-dir cards/ --set-default
+ python convert.py paper.pdf --venue CVPR --full-text
+ python convert.py paper-a.pdf paper-b.pdf --output-dir cards/ --full-text --set-default
 
 For each PDF, produces a distilled .md card with writing-pattern analysis.
 Pass --full-text to also save the complete extracted text.
 """
 
-import argparse, os, re, sys
+import argparse, re, sys
+from os import replace
+from tempfile import NamedTemporaryFile
+import unicodedata
 from pathlib import Path
 
 
@@ -19,18 +22,17 @@ def _check_pymupdf():
         print('ERROR: pymupdf not installed. Run: pip install pymupdf', file=sys.stderr)
         sys.exit(1)
 
-_check_pymupdf()
-import pymupdf
-
-
 def extract_text(pdf_path):
-    doc = pymupdf.open(pdf_path)
+    import pymupdf
+
     parts = []
-    for i, page in enumerate(doc,1):
-        t = page.get_text('text')
-        if t.strip():
-            parts.append('## Page ' + str(i) + chr(10) + chr(10) + t)
-    doc.close()
+    with pymupdf.open(pdf_path) as doc:
+        for i, page in enumerate(doc,1):
+            t = page.get_text('text')
+            if t.strip():
+                parts.append('## Page ' + str(i) + chr(10) + chr(10) + t)
+    if not parts:
+        raise ValueError('No extractable text; inspect the PDF or use an authorized OCR workflow.')
     return chr(10) + chr(10).join(parts)
 
 
@@ -43,9 +45,9 @@ def clean_text(text):
 
 
 def slugify(name):
-    name = name.lower()
-    name = re.sub(r'[^a-z0-9]+', '-', name)
-    return name.strip('-')
+    name = unicodedata.normalize('NFKC', name).lower().replace('_', '-')
+    name = re.sub(r'[^\w]+', '-', name, flags=re.UNICODE)
+    return name.strip('-') or 'paper'
 
 
 def detect_venue(text, user_venue):
@@ -118,6 +120,23 @@ def make_card(meta):
     return chr(10).join(out)
 
 
+def write_current(path, text):
+    """Replace one generated text artifact after a complete sibling write."""
+    path = Path(path).resolve()
+    if path.is_file() and path.read_text(encoding='utf-8') == text:
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = None
+    try:
+        with NamedTemporaryFile(mode='w', encoding='utf-8', newline='\n', dir=path.parent, prefix=f'.{path.name}.', suffix='.tmp', delete=False) as handle:
+            temporary = Path(handle.name)
+            handle.write(text)
+        replace(temporary, path)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+
+
 def main():
     parser = argparse.ArgumentParser(description='Convert PDFs to exemplar cards')
     parser.add_argument('pdf', nargs='+', help='PDF files to convert')
@@ -125,14 +144,21 @@ def main():
     parser.add_argument('--output-dir', default='.', help='Output directory')
     parser.add_argument('--set-default', action='store_true', help='Print default-exemplar registration instructions')
     parser.add_argument('--full-text', action='store_true', help='Also save full extracted text')
+    parser.add_argument('--full-text-dir', help='Extracted-text cache directory; defaults to --output-dir')
     args = parser.parse_args()
+    _check_pymupdf()
+    slugs = [slugify(Path(pdf).stem) for pdf in args.pdf]
+    if len({slug.casefold() for slug in slugs}) != len(slugs):
+        parser.error('Input names map to the same card filename; convert them to distinct authorized directories.')
     out_dir = Path(args.output_dir)
-    out_dir.mkdir(parents=True, exist_ok=True)
+    text_dir = Path(args.full_text_dir) if args.full_text_dir else out_dir
     results = []
+    failures = 0
     for pdf_path in args.pdf:
         pdf_file = Path(pdf_path)
         if not pdf_file.exists():
             print('Not found:', pdf_file)
+            failures += 1
             continue
         print('Processing:', pdf_file.name)
         try:
@@ -140,6 +166,7 @@ def main():
             text = clean_text(text)
         except Exception as e:
             print(' ERROR:', e)
+            failures += 1
             continue
         venue = detect_venue(text, args.venue)
         secs = detect_sections(text)
@@ -147,12 +174,21 @@ def main():
         card = make_card(meta)
         slug = slugify(pdf_file.stem)
         card_path = out_dir / (slug + '.md')
-        card_path.write_text(card, encoding='utf-8')
-        print(' Card ->', card_path)
-        if args.full_text:
-            full_path = out_dir / (slug + '.full.md')
-            full_path.write_text(text, encoding='utf-8')
-            print(' Full text ->', full_path)
+        try:
+            # Refresh extraction first; never erase a completed human/agent analysis.
+            if args.full_text:
+                full_path = text_dir / (slug + '.full.md')
+                write_current(full_path, text)
+                print(' Full text ->', full_path)
+            if card_path.exists():
+                print(' Reusing existing card; review it against the current source ->', card_path)
+            else:
+                write_current(card_path, card)
+                print(' Card skeleton ->', card_path)
+        except OSError as e:
+            print(' ERROR writing current artifacts:', e)
+            failures += 1
+            continue
         results.append(slug)
     print()
     print('Done.', len(results), 'PDF(s) processed.')
@@ -164,9 +200,10 @@ def main():
         print('2. Update index: ccf-paper-writer/references/exemplars/index.md')
         print('3. Set as default: ccf-paper-writer/references/custom-format/default-user-format.md')
     print()
-    print('IMPORTANT: Cards contain [ANALYZE] placeholders.')
+    print('IMPORTANT: New card skeletons contain [ANALYZE] placeholders; existing cards are preserved.')
     print('Fill them in by reading the full extracted text.')
+    return 1 if failures else 0
 
 
 if __name__ == '__main__':
-    main()
+    raise SystemExit(main())

@@ -1,4 +1,4 @@
-﻿# CCFA Skills Catalog
+# CCFA Skills Catalog
 
 This catalog is the public trigger-conflict index for the current CCFA family. If this document conflicts with a skill's `SKILL.md`, `SKILL.md` is authoritative.
 
@@ -8,7 +8,7 @@ This catalog is the public trigger-conflict index for the current CCFA family. I
 
 | Skill | Stage | Startup condition | 中文触发 | Included modes | Do not use for |
 | --- | --- | --- | --- | --- | --- |
-| `ccf-humanization` | Priority overlay | Run first for manuscript-facing or publication-facing experiment artifacts that need direct academic prose, warning isolation, minimal smoke scope, or confirmed full methods. | 去防御性写作、删除低概率 case 堆砌、warning 不注入文件、禁用通用 SHA-256、精简 smoke、论文只保留确认的完整方法。 | manuscript-humanization, experiment-humanization, warning-only | Concealing material evidence, fabricating results, writing the paper, designing experiments, or overriding mandatory disclosures. |
+| `ccf-humanization` | Priority overlay | Apply alongside the owner for publication prose: remove defenses while preserving facts, method identity, and calibrated uncertainty. | 按科学信息改写、删除审稿预判和空泛自辩、保留真实边界与证据、仅对未决科研问题提醒。 | manuscript-humanization, experiment-humanization, warning-only | Concealing material evidence, fabricating results, writing the paper, designing experiments, or overriding mandatory disclosures. |
 | `ccf-project-scaffolder` | Setup | Create project folders, copy/select templates, initialize `ccfa.yaml`. | 创建论文项目、复制模板、初始化 `ccfa.yaml`。 | scaffold | Research content generation. |
 | `ccf-pipeline-orchestrator` | Planning | Plan workflow, decompose tasks, coordinate gates and handoffs. | 拆任务、排阶段、定 gate、决定下一个 owner。 | planning, status, gate | Writing, review, search, experiment design, rebuttal. |
 | `ccf-idea-optimizer` | Idea | Explore, rescue, and turn rough directions into problem-gap-insight-method-evidence plans. | 优化粗 idea、具象化研究思路、找方向、救方向、形成 problem-gap-insight。 | exploratory idea shaping, rescue routes | Ranking multiple ideas as the main task. |
@@ -16,7 +16,7 @@ This catalog is the public trigger-conflict index for the current CCFA family. I
 | `ccf-literature-monitor` | Monitoring | Track recent arXiv/OpenReview/venue papers, labs, competitors, and novelty-threat signals. | 竞品监控、新论文追踪、最近有没有类似 idea、arXiv/会议动态。 | arxiv-watch, venue-watch, novelty-check, trend-scouting, competitor-tracking | Deep related-work search, citation audit, or final idea scoring. |
 | `ccf-literature-searcher` | Evidence | Search and screen literature, prior art, datasets, benchmarks, and opportunity gaps. | 检索相关工作、prior art、数据集、benchmark、方向调研、open gap。 | search, screening, opportunity map | Auditing only already cited papers or acting as a final idea kill gate. |
 | `ccf-experiment-designer` | Evidence | Design experiments and build real-result tables/figures. | 设计实验、baseline、metric、消融、结果表和真实结果图。 | experiment design, result templates, result figures/tables | Inventing results or drawing CCFA docs diagrams. |
-| `ccf-visual-composer` | Visual evidence | Compose publication-grade data figures/tables and scientific method/architecture diagrams; use GPT Image 2 as the default first-pass renderer, then offer editable SVG/PDF/PPTX reconstruction; use pure SVG first only on explicit opt-out. | 数据图表、方法/模型/系统架构图、科研绘图 prompt、默认 GPT Image 2 成图、确认后可编辑 SVG/PDF/PPTX 重建、明确拒绝时纯 SVG、caption、正文嵌入、视觉 QA。 | visual-contract, figure-design, architecture-generation, pure-svg-generation, editable-reconstruction, python-plotting, table-design, layout-integration, render-qa | Designing experiments, inventing results/components, writing manuscript prose as the main task, or final submission compliance. |
+| `ccf-visual-composer` | Visual evidence | Compose publication-grade data figures/tables and scientific method/architecture diagrams; use GPT Image 2 as the default first-pass renderer, then complete requested editable SVG/PDF/PPTX reconstruction; use pure SVG first only on explicit opt-out. | 数据图表、方法/模型/系统架构图、科研绘图 prompt、默认 GPT Image 2 成图、按请求继续可编辑 SVG/PDF/PPTX 重建、明确拒绝时纯 SVG、caption、正文嵌入、视觉 QA。 | visual-contract, figure-design, architecture-generation, pure-svg-generation, editable-reconstruction, python-plotting, table-design, layout-integration, render-qa | Designing experiments, inventing results/components, writing manuscript prose as the main task, or final submission compliance. |
 | `ccf-paper-to-exemplar` | Writing support | Convert paper PDFs into reusable writing exemplar cards for `ccf-paper-writer`. | 把论文 PDF 转成写作范例卡、建立个人 exemplar 库。 | exemplar extraction, style-pattern cards, custom exemplar registration | Writing papers or performing review. |
 | `ccf-paper-writer` | Manuscript | Draft, revise, polish, compress, preserve source format during edits, create venue- and length-aware LaTeX manuscripts from ideas, and presentation-adapt paper text. | 写作、润色、压缩；保留原格式；只有 idea 时按目标会议 LaTeX 和篇幅预算起草；缺省回退 NeurIPS。 | draft, polish, compression, venue-aware LaTeX drafting, page-budget drafting, presentation | Full review, evidence audit, package check, rebuttal. |
 | `ccf-paper-reviewer` | Review | Review manuscripts scientifically and stylistically. | 科学审稿、写作评审、格式风险、评分、AC/meta-review。 | scientific review, writing review, format-facing review | Rewriting manuscript text or drafting rebuttals. |
@@ -46,7 +46,7 @@ This catalog is the public trigger-conflict index for the current CCFA family. I
 ![Routing boundaries](../assets/ccfa-skills-routing.svg)
 
 - Non-review workflow skills should follow the user's requested output shape. Their internal checklists are safeguards, not mandatory visible report templates.
-- `ccf-humanization` runs first for manuscript/experiment publication artifacts, but content ownership remains with `ccf-paper-writer` or `ccf-experiment-designer`. Warnings are separate and make no file change until approved.
+- `ccf-humanization` runs first for manuscript/experiment publication artifacts, but content ownership remains with `ccf-paper-writer` or `ccf-experiment-designer`. Style edits and evidence-faithful corrections continue under existing authorization. Only unresolved scientific decisions pause the dependent change; established material facts remain in the paper.
 - Review, audit, and submission-gate skills may remain structured because their job is traceable diagnosis and pass/fail risk control.
 - Full-workflow and full-paper prompts should produce dense artifacts, not route summaries. A manuscript request should leave a manuscript; a closed-loop request should leave idea review, writing draft, review, audit, rebuttal, and submission-check artifacts.
 - Idea exploration, rescue, and shaping go to `ccf-idea-optimizer`; explicit scoring/ranking goes to `ccf-idea-reviewer`.
@@ -67,3 +67,5 @@ The legacy per-venue runtime layer remains reference-only:
 - `ccf-paper-writer/references/venue-guides/<venue>.md`
 
 Use `ccf-paper-writer` for venue-aware manuscript text and `ccf-submission-checker` for venue/package compliance.
+
+All file-producing modes follow the shared artifact contract: existing destinations first, stable task/artifact working directories, current-file updates, and preserved source evidence. A local visual update reuses its editable source and assets. Reference loading and checks are scoped to the current mode and affected dependencies; full requested scientific coverage is preserved.

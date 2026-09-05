@@ -4,7 +4,7 @@ Route by the user's primary intent. Do not activate every downstream skill just 
 
 ## Single-Owner Invariant
 
-Choose exactly one primary owner for each user-requested deliverable. A skill's handoff list declares possible next-stage owners; it is not permission to load them together. Add a sidecar only when the current request itself needs a distinct cross-cutting preflight or explicitly combines two deliverables. Future usefulness, checklist completeness, or a broad end-to-end workflow is not enough.
+Choose exactly one primary owner for each user-requested deliverable. A skill's handoff list declares possible next-stage owners; it is not permission to load them together. Add a sidecar only when the current request itself needs a distinct cross-cutting preflight or explicitly combines two deliverables. Future usefulness or checklist completeness alone is not enough. For an explicitly requested end-to-end workflow, assign one owner to each concrete deliverable and execute the authorized chain.
 
 Resolve common collisions by the requested deliverable:
 
@@ -17,7 +17,7 @@ The current runtime surface contains 17 installable `ccf-*` skills plus the LaTe
 
 ## Priority Overlay
 
-`ccf-humanization` has first priority for manuscript-facing writing and final publication-facing experiment prose, tables, captions, or method descriptions. Run it as a sidecar preflight, then return ownership to the content skill. Do not load it for raw experiment planning or evidence-schema design. It removes defensive prose and unproductive test sprawl, enforces confirmed full methods, and keeps judgment-sensitive warnings outside artifacts. It does not replace the writer/designer or authorize hiding material evidence.
+`ccf-humanization` has first priority for manuscript-facing writing and final publication-facing experiment prose, tables, captions, or method descriptions. Run it as a sidecar preflight, then return ownership to the content skill. Do not load it for raw experiment planning or evidence-schema design. It replaces defensive framing with direct scientific content, preserves material facts and calibrated uncertainty, and keeps only unresolved scientific decisions in concise external warnings. Full-method checks apply to reported experimental comparisons. It does not replace the writer/designer or authorize hiding material evidence.
 
 ## Canonical Runtime Skills
 
@@ -31,7 +31,7 @@ The current runtime surface contains 17 installable `ccf-*` skills plus the LaTe
 | Monitor recent papers, arXiv/OpenReview/venue feeds, labs, competitors, and recurring novelty threats. | `ccf-literature-monitor` | arxiv-watch, venue-watch, novelty-check, trend-scouting, competitor-tracking | Does not replace deep related-work search, citation audit, or final idea scoring. |
 | Search literature, prior art, datasets, benchmarks, citation evidence, and opportunity gaps. | `ccf-literature-searcher` | search, screening, opportunity map | Does not audit only already cited papers or act as a final idea kill gate. |
 | Design experiments and real-result tables/figures. | `ccf-experiment-designer` | experiment design, result templates, result figures/tables | Does not invent results. |
-| Compose publication-grade data figures/tables and scientific method/architecture diagrams, using GPT Image 2 as the default architecture/schematic renderer, followed by optional editable SVG/PDF/PPTX reconstruction; use pure SVG first only on explicit opt-out. | `ccf-visual-composer` | visual-contract, figure-design, architecture-generation, pure-svg-generation, editable-reconstruction, python-plotting, table-design, layout-integration, render-qa | Does not design experiments, invent results/components, write manuscript prose, or perform final submission compliance. |
+| Compose publication-grade data figures/tables and scientific method/architecture diagrams, using GPT Image 2 as the default architecture/schematic renderer, followed by requested editable SVG/PDF/PPTX reconstruction or an optional offer; use pure SVG first only on explicit opt-out. | `ccf-visual-composer` | visual-contract, figure-design, architecture-generation, pure-svg-generation, editable-reconstruction, python-plotting, table-design, layout-integration, render-qa | Does not design experiments, invent results/components, write manuscript prose, or perform final submission compliance. |
 | Draft, revise, polish, compress, and presentation-adapt paper text. | `ccf-paper-writer` | writing, polishing, compression, venue-aware LaTeX drafting, slides/poster/talk/Q&A | Preserves user format for edits; does not run full review or rebuttal. |
 | Convert user-provided paper PDFs into reusable writing exemplar cards. | `ccf-paper-to-exemplar` | exemplar extraction, writing-pattern cards, custom exemplar registration | Does not write papers or perform review. |
 | Review manuscripts scientifically and stylistically, including score drift and cross-version comparison with separate relative-progress and absolute-readiness scorecards. | `ccf-paper-reviewer` | scientific review, writing review, format-facing review, version comparison, AC/meta-review | Does not combine the two scorecards, rewrite, rebut, or own the revision ledger. |
@@ -44,7 +44,7 @@ The current runtime surface contains 17 installable `ccf-*` skills plus the LaTe
 ## Default Paper Project Flow
 
 ```text
-Priority preflight: ccf-humanization
+Conditional prose preflight: ccf-humanization (at the writing stage)
 
 ccf-project-scaffolder
   -> ccf-pipeline-orchestrator

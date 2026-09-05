@@ -1,4 +1,4 @@
-﻿# Exemplar Index
+# Exemplar Index
 
 Use this index when the user asks for CCF A-level paper writing, best-paper style, venue-specific adaptation, default user-custom writing, or examples from strong papers. Load only the cards that match the target paper. Do not load every card by default.
 
@@ -15,13 +15,13 @@ These two cards are user-custom writing-format sources. Do not treat them as ord
 
 ## Selection Rule
 
-Pick at most 2-4 cards:
+Start with the one best-matching card when style adaptation is needed; load only its relevant sections. Add cards only to answer a distinct writing question, up to four for a full manuscript. This index does not require exemplars for a local edit:
 
 - Use the custom-format cards first when no target venue is specified.
 - Use same venue or venue family first when a target venue is specified.
 - Use same evidence type second: theorem, benchmark, user study, system, dataset, or ablation-heavy model.
 - Use same story shape third: new task, new benchmark, new model family, new capability, or new evaluation economy.
-- Add one contrast card only when it improves reviewer-proofing.
+- Add a contrast card only when it resolves a concrete story or evidence-presentation choice.
 
 Use cards to borrow writing moves, not claims, wordings, examples, or technical content.
 

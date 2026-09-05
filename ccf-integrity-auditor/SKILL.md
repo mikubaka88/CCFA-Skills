@@ -1,6 +1,6 @@
 ---
 name: ccf-integrity-auditor
-description: "Audit CCF paper integrity: claim-support alignment, result-to-claim consistency, numeric consistency, terminology consistency, figure/table-to-text consistency, existing citation existence, BibTeX metadata, and citation-context support. Use for evidence audit, citation audit, consistency check, 引用核验, claim审计, 数字一致性. Do not perform full scientific review or broad literature search."
+description: "Audit existing CCF claims, numbers, terminology, and citations against supplied or verified evidence. Use for 引用核验, claim审计, 数字一致性, and BibTeX/context checks. Full scientific review belongs to ccf-paper-reviewer; new literature discovery belongs to ccf-literature-searcher."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -27,8 +27,8 @@ Trace each important claim to supplied evidence, each number to supplied results
 
 1. Identify supplied manuscript, figures/tables/results, bibliography, `ccfa.yaml`, and requested audit mode.
 2. Build a claim-evidence matrix and mark each claim as supported, partially supported, unsupported, overstated, or unclear.
-3. Cross-check all reported values across text, tables, figures, captions, abstracts, and conclusions.
-4. For citation audit, verify only existing citations unless the user asks for new literature; broad search belongs to `ccf-literature-searcher`.
+3. Cross-check the reported values within the requested scope across text, tables, figures, captions, abstracts, and conclusions. Use deterministic arithmetic for deltas, units, metric direction, and rounding. Distinguish not comparable from inconsistent.
+4. For citation audit, verify the identity and context support of existing citations through primary sources; metadata existence alone does not establish support. Batch independent identifiers when possible. Seek new literature only when requested; broad discovery belongs to `ccf-literature-searcher`.
 5. For any questionable citation, separate metadata problems from context-support problems.
 6. Hand off to `ccf-paper-reviewer` for full scientific judgment and to `ccf-paper-writer` for safe wording edits.
 7. If the numbers and claims are consistent but the figure/table layout, caption placement, palette, float order, or rendered readability is weak, hand off to `ccf-visual-composer`.
@@ -47,3 +47,9 @@ Safe edit suggestions:
 Next CCFA owner:
 No-invention status:
 ```
+
+## Execution Boundaries
+
+Follow `../ccf-common/references/handoff-modes.md`, `../ccf-common/references/task-modes.md`, and `../ccf-common/references/privacy-and-evidence.md`. Finish the checkable portions when an attachment or source is missing. Report exact file/page/table locations, affected values or claims, evidence, and severity; mark unverified coverage separately from failures. An audit request does not authorize manuscript rewriting. Use existing authorization for explicitly requested fixes and preserve raw measurements.
+
+For file outputs, follow `../ccf-common/references/artifact-contracts.md`: resolve existing project paths first, keep generated working files under one stable task/artifact directory, and update canonical files in place. Load this shared policy only when files are written and it is not already in context.

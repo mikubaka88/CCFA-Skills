@@ -2,29 +2,20 @@
 
 Start every non-trivial figure or table with a contract. The contract keeps scientific meaning ahead of decoration and prevents panels from becoming disconnected result dumps.
 
-## Required Fields
+## Relevant Fields Only
+
+Reuse the existing source/specification. For a new non-trivial artifact, establish the core fields below internally; save them only for continuation or reproduction. A one-label or one-color edit does not require a new contract.
 
 ```text
-Artifact:
-Target venue / format:
-Core claim:
-Reviewer question:
-Evidence layer: main / mechanism / robustness / limitation / qualitative
-Source data:
-Source method / architecture content:
-Statistics / uncertainty:
-Figure prototype or table type:
-Panel or table map:
-Architecture topology / typed connections:
-Exact label inventory:
-Icon inventory: native primitive / public SVG / custom asset
-Reference-layout sources and extracted composition principles:
-Caption role:
-Manuscript placement:
-Output formats:
-PPTX editability target: native / SVG-convertible / isolated raster
-Traceability:
+Artifact and canonical paths:
+Scientific question / takeaway:
+Source data or method, with evidence locations:
+Final size / destination / requested formats:
+Relevant panel map or topology:
+Exact labels, units, and visual encodings:
 ```
+
+Add only mode-specific information: uncertainty and metric direction for quantitative evidence; node/edge semantics for architectures; float/caption placement for manuscript integration; icon provenance or editability levels when those assets are used; reference-layout principles only when a reference is actually used. Do not emit empty fields for unrelated formats. The architecture specification and this contract are the same state, not two documents to maintain.
 
 ## Evidence Hierarchy
 
@@ -45,7 +36,7 @@ Traceability:
 ## Table Map Rules
 
 - A table should compare, audit, or summarize evidence; it should not be a spreadsheet pasted into a paper.
-- Group rows/columns by reviewer question, dataset family, method family, or claim.
+- Group rows/columns by scientific question, dataset family, method family, or claim.
 - Use consistent metric direction, units, uncertainty, and numeric precision.
 - Move secondary columns to appendix when they weaken the main comparison.
 
@@ -63,11 +54,6 @@ Traceability:
 
 ## Stateful Iteration
 
-When a project directory exists and the task is larger than one artifact, keep only the generated state needed to continue or reproduce the deliverable:
+Follow `../../ccf-common/references/artifact-contracts.md` for path resolution. Reuse established `visual-composer/` paths; otherwise use `output/visual-composer/<figure-id>/`. For multiple figures, use distinct stable IDs. Preserve one current specification/source, reusable assets, and build preview per figure. Record a source path rather than duplicating supplied data. Keep QA findings in this specification only when persistence is needed; reuse an existing separate ledger if the project already has one.
 
-```text
-visual-composer/visual-contract.md
-visual-composer/qa-ledger.md  # only when QA evidence must persist
-```
-
-Overwrite each canonical state file on the next iteration. Do not create numbered prompts, attempt folders, render histories, or an iteration log unless the user explicitly requests an audit trail. User inputs and immutable evidence remain outside this overwrite rule. If repeated tweaks do not fix a problem, pivot the structure: split a table, use a full-width float, change the chart family, reduce panel count, or move secondary material to appendix.
+Update the relevant fields and exports after a change. Do not create numbered prompts, attempt folders, render histories, or an iteration log unless requested. Preserve user inputs and scientific evidence. Resolve repeated failures by changing the relevant structure or rendering approach; do not alter the scientific content to make the layout fit.

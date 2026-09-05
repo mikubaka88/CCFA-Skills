@@ -1,4 +1,4 @@
-﻿# Research Writing Patterns
+# Research Writing Patterns
 
 Use this file for full-paper drafting, section-specific rewriting, and exemplar-mode adaptation. It consolidates section-level writing patterns for CCFA while keeping venue routing, evidence policy, and artifact contracts in CCFA.
 
@@ -18,7 +18,7 @@ For broad writing tasks, produce the artifact first and make it substantial:
 
 Avoid empty "next steps" and generic warnings. A warning is useful only if it names the unsupported claim, missing evidence, affected section, and concrete fix.
 
-For underfilled full drafts, add substantive paper content before finishing: deeper problem setup, closest-work contrast, method mechanism, experiment protocol, analysis scaffolds, limitations, and reproducibility notes. Use `TBD` for missing evidence; do not pad with generic background.
+For underfilled full drafts, add substantive paper content before finishing: deeper problem setup, closest-work contrast, method mechanism, experiment protocol, analysis scaffolds and scientifically necessary reproducibility details. Add limitations only when observed, material, or required. Use `TBD` for missing evidence; do not pad with generic background.
 
 ## Natural Writing Style
 
@@ -30,7 +30,7 @@ CCF-A papers read as continuous prose arguments, not as annotated outlines. The 
 - Citations appear inside sentences as part of the argument, not as parenthetical interruptions.
 - Technical terms are defined once, used consistently, and never bolded in running text unless the venue template requires it.
 - Method descriptions follow a logical flow: problem, design rationale, mechanism, justification.
-- Experiments are narrated to answer reviewer questions, not to list results.
+- Experiments connect scientific questions, observations, and interpretation. Keep imagined reviewer objections out of the prose.
 
 ### What To Avoid
 
@@ -184,7 +184,7 @@ For each topic group:
 
 **Citation integration rules for Related Work:**
 
-- Every named paradigm or thread gets at least3 citations.
+- Each discussed paradigm or thread has the relevant primary sources needed to support the comparison; do not fill a fixed citation quota.
 - The closest competitor must be cited and discussed explicitly, not hidden in a list.
 - If any claim about prior work cannot be verified, route to `ccf-literature-searcher` before writing.
 - Do not cite a paper only because it is famous; every citation must serve the argument.

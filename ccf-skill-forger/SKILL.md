@@ -1,6 +1,6 @@
 ---
 name: ccf-skill-forger
-description: "Design, create, update, validate, and audit Codex/CCFA skills, trigger wording, resources, references, scripts, path privacy, family governance, and CCFA documentation SVG diagrams. Use for skill maintenance, new skill creation, routing conflict cleanup, Markdown/SVG docs maintenance, and release validation. Do not perform research writing or review work."
+description: "Maintain and audit Codex/CCFA skills, triggers, references, scripts, docs/SVG diagrams, installation dependencies, and release validation. Use for skill维护, GPT model adaptation, and family routing cleanup. Do not perform research writing or review."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -45,9 +45,11 @@ python '<skill-creator-dir>/scripts/init_skill.py' <skill-name> --path '<skills-
 
 5. Write `SKILL.md` before filling optional resources. Put all "when to use" trigger wording in the YAML `description`; the body is loaded only after trigger selection. Use imperative instructions and avoid user-facing tutorial prose.
 6. Add resources that directly support the skill. Remove placeholder files and unused directories. Test any script by running it on a small representative example.
-7. Validate and iterate. Run the available validator, then inspect manually for trigger quality, resource links, naming, and excessive context. Use realistic future prompts to decide whether the skill actually helps.
+7. Validate changed behavior and structure using the existing family checks. Compare SKILL.md, agent prompts, registry, shared rules, and docs for conflicts. Check real YAML metadata, syntax of existing scripts, resource dependencies, and representative task boundaries; distinguish static checks from actual model evaluation. Preserve public paths and command compatibility. Do not add new files, dependencies, or evaluations when the user limits work to existing surfaces.
 8. Run `ccf-common/scripts/check_path_privacy.py` before finishing CCFA-family maintenance. Replace any committed local absolute path or username with `$CODEX_HOME`, `$HOME`, a repo-relative path, or a non-identifying placeholder.
 9. For CCFA documentation diagrams, update `../tools/build_ccfa_diagrams.py`, regenerate all language variants, and screenshot-check rendered SVG output. Use `references/svg-style-guide.md`; do not hand-edit generated SVGs unless the same change is backported to the generator.
+
+For model adaptation, use current official guidance and store its provenance in the existing source registry. Remove conflicting or redundant instructions before adding new ones. Keep model settings and API-only capabilities in the host; do not hard-code a model in every skill or claim gains without representative comparisons.
 
 ## Reference Files
 
@@ -60,4 +62,6 @@ Load these files only when the task calls for them:
 
 ## Output Style
 
-When creating a skill, give the user a concise scheme before editing, then create the files. After creation, report the skill name, location, key files, and validation result. If validation cannot run because a local dependency is missing, say exactly what failed and perform the manual checks from `references/design-checklist.md`.
+Use an already approved scheme without another confirmation. For an explicit plan-only request, stop after the reviewable proposal; for authorized maintenance, implement it in the requested existing files. After creation, report the skill name, location, key files, and validation result. If validation cannot run because a local dependency is missing, say exactly what failed and perform the manual checks from `references/design-checklist.md`.
+
+For file outputs, follow `../ccf-common/references/artifact-contracts.md`: resolve existing project paths first, keep generated working files under one stable task/artifact directory, and update canonical files in place. Load this shared policy only when files are written and it is not already in context.

@@ -2,6 +2,12 @@
 
 Visual QA is based on rendered output, not source optimism. When source files exist, compile or render and inspect the pages or exported images that contain the target figures/tables.
 
+## Scope And Reuse
+
+Run the applicable checks below, not every format's checklist. A numeric chart needs data/axis/uncertainty checks; an architecture needs topology/label checks; PPTX checks apply only to PPTX. For a local revision, inspect the changed region plus affected dependencies at intended size. Reuse unchanged inspections; a shared font, scale, or layout change warrants broader coverage.
+
+Use one current build preview per artifact under the shared working directory. Open it once for a meaningful change and inspect a targeted crop when a specific detail remains uncertain. Reuse an existing QA record; persist only unresolved or decision-relevant findings needed to continue. Do not produce a screenshot or report for each checklist bullet. Keep checking until the requested quality is met or a concrete tool/evidence limitation is identified.
+
 ## Checks
 
 - No clipped axis labels, legends, panel labels, captions, or table notes.
@@ -30,7 +36,7 @@ Visual QA is based on rendered output, not source optimism. When source files ex
 
 ## QA Ledger
 
-Use this table for non-trivial QA:
+Use this table inside the current specification/report only when QA findings must persist; do not create another ledger by default:
 
 ```text
 | Issue | Artifact | Page/section | Severity | Fix | Owner | Status |
@@ -47,7 +53,7 @@ Severity:
 
 If two tactical tweaks fail, change structure rather than keep nudging fonts or spacing. Examples: split the table, move robustness to appendix, switch to a more appropriate chart family, use a full-width float, remove redundant panels, or redraw labels directly.
 
-After three unresolved high-severity visual issues, escalate to the next owner instead of silently continuing:
+Route a concrete dependency to its owner as soon as that evidence is needed; continue unaffected visual fixes. An issue count alone does not justify stopping:
 
 - missing or unsupported data -> `ccf-experiment-designer`
 - claim/number mismatch -> `ccf-integrity-auditor`

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check manuscript prose for repeated, mechanical writing patterns.
+"""Locate defensive and mechanical prose for context-aware humanization.
 
 The checker is deliberately non-mutating. It reads one file or stdin and emits
 text or JSON, allowing callers to keep the result ephemeral.
@@ -64,26 +64,42 @@ FORMULAIC_PATTERNS = {
     "first_second_third": r"\bfirst(?:ly)?\b.{0,300}\bsecond(?:ly)?\b.{0,300}\bthird(?:ly)?\b",
     "three_labels": r"(?:^|\n)\s*(?:1[.)]|first[:,]).*(?:\n|.){0,500}(?:2[.)]|second[:,]).*(?:\n|.){0,500}(?:3[.)]|third[:,])",
 }
+DEFENSIVE_PATTERNS = {
+    "imagined_reviewer": r"\b(?:to\s+)?(?:address|avoid|preempt|pre-empt|anticipate)\s+(?:any\s+|potential\s+|possible\s+)?reviewer(?:s['’]?)?\s+(?:concerns?|criticism|objections?|questions?)\b|(?:为(?:了)?避免|为回应|为打消|考虑到)审稿人[^。！？\n]{0,24}(?:质疑|担忧|顾虑)",
+    "apologetic_framing": r"\bwe\s+(?:merely|only)\s+(?:offer|propose|provide)\b|\b(?:merely|just)\s+(?:a\s+)?(?:simple|incremental|minor)\s+(?:extension|improvement|modification)\b|(?:尽管|虽然)[^。！？\n]{0,30}(?:只是|仅仅是)(?:一个)?(?:简单|微小|增量)",
+    "denial_led_scope": r"\bwe\s+(?:do not|don't)\s+(?:claim|intend|aim|seek)\s+to\b|\b(?:our|the)\s+(?:goal|aim|intention)\s+is\s+not\s+to\b|我们(?:并不|并非|不)(?:试图|旨在|声称)",
+    "generic_disclaimer": r"\b(?:not\s+without\s+(?:its\s+)?limitations|as\s+with\s+any\s+(?:method|model|approach)|cannot\s+guarantee\s+(?:universal|general|all)|do\s+not\s+guarantee\s+universal)\b|(?:并非没有局限|任何方法都有局限|不能保证[^。！？\n]{0,25}(?:所有|任何|普遍)|不保证[^。！？\n]{0,25}(?:所有|普遍))",
+    "empty_assurance": r"\b(?:to\s+ensure|we\s+(?:carefully\s+)?ensure)\s+(?:the\s+|a\s+)?(?:fair(?:ness)?\s+and\s+rigor(?:ous)?|rigor(?:ous)?\s+and\s+fair(?:ness)?)\b|\bto\s+avoid\s+(?:any\s+|possible\s+)?misunderstanding\b|(?:为确保|为了保证)(?:论文|研究|实验|评估)的?(?:严谨性|科学性)|为避免(?:可能的)?误解",
+    "stacked_hedging": r"\b(?:may|might|could)\s+(?:potentially|possibly|perhaps)\b|\b(?:seems?|appears?)\s+to\s+(?:potentially|possibly)\b|(?:或许可能|可能潜在地|似乎可能表明)",
+    "engineering_status": r"\b(?:confirmed\s+(?:full\s+)?(?:version|method|configuration|baseline)|approved\s+configuration|publication-ready\s+(?:method|version|configuration))\b|(?:经过确认的完整版本|已批准的配置|通过内部(?:门禁|检查)的(?:方法|版本))",
+}
 
 
 def _read_text(path: str | None) -> str:
     if path:
-        return Path(path).read_text(encoding="utf-8")
+        return Path(path).read_text(encoding="utf-8-sig")
     return sys.stdin.read()
 
 
 def _prose_only(text: str) -> str:
-    text = re.sub(r"```.*?```", " ", text, flags=re.S)
-    text = re.sub(r"\\begin\{(?:verbatim|lstlisting|minted|equation\*?|align\*?)\}.*?\\end\{[^}]+\}", " ", text, flags=re.S)
-    # Markdown tables and HTML figure tags are document structure, not authored
-    # prose. Ignoring their delimiter runs prevents `| --- |` from being
-    # misclassified as em dashes and keeps numeric table cells out of sentence
-    # rhythm checks.
-    text = re.sub(r"^\s*\|.*\|\s*$", " ", text, flags=re.M)
-    text = re.sub(r"<[^>]+>", " ", text)
-    text = re.sub(r"^\s*(?:---+|___+|\*\*\*+)\s*$", " ", text, flags=re.M)
-    text = re.sub(r"\\begin\{quote\}.*?\\end\{quote\}", " ", text, flags=re.S)
-    text = re.sub(r'“[^”]*”|"[^"\n]*"|‘[^’]*’', " ", text)
+    # Preserve offsets and newlines so every diagnostic points into the source.
+    # Code, equations, comments, table structure and direct quotations are not
+    # authored narrative. This is a heuristic filter, not a complete TeX parser.
+    patterns = (
+        r"```.*?```|~~~.*?~~~",
+        r"`[^`\n]+`",
+        r"\\begin\{(?P<env>verbatim|lstlisting|minted|equation\*?|align\*?|quote|quotation)\}.*?\\end\{(?P=env)\}",
+        r"(?<!\\)\$\$.*?(?<!\\)\$\$|(?<!\\)\$[^$\n]*(?<!\\)\$",
+        r"\\\[.*?\\\]|\\\(.*?\\\)",
+        r"(?m)(?<![\\\d])%[^\n]*",
+        r"(?m)^[ \t]*\|[^\n]*\|[ \t]*$",
+        r"<[^>]+>",
+        r"(?m)^[ \t]*(?:---+|___+|\*\*\*+)[ \t]*$",
+        r"(?m)^[ \t]*>[^\n]*$",
+        r'“[^”]*”|"[^"\n]*"|‘[^’]*’',
+    )
+    for pattern in patterns:
+        text = re.sub(pattern, lambda m: re.sub(r"[^\n]", " ", m.group(0)), text, flags=re.S)
     return text
 
 
@@ -92,7 +108,7 @@ def _words(text: str) -> list[str]:
 
 
 def _sentences(text: str) -> list[str]:
-    return [s.strip() for s in re.split(r"(?<=[.!?。！？])\s+", text) if len(_words(s)) >= 3]
+    return [s.strip() for s in re.split(r"(?<=[.!?])\s+|(?<=[。！？])\s*", text) if len(_words(s)) >= 3]
 
 
 def _line_number(text: str, position: int) -> int:
@@ -114,7 +130,7 @@ def inspect(text: str, scope: str) -> dict:
             "message": f"Authored prose contains {em_dash_count} em dashes; {scope} limit is {limit}.",
         })
 
-    for pattern in OPENING_FILLER:
+    for pattern in [*OPENING_FILLER, r"需要(?:强调|指出|说明)的是|值得(?:注意|强调|一提)的是"]:
         for match in re.finditer(pattern, prose, flags=re.I):
             issues.append({
                 "code": "opening_filler",
@@ -122,6 +138,17 @@ def inspect(text: str, scope: str) -> dict:
                 "line": _line_number(prose, match.start()),
                 "text": match.group(0),
                 "message": "Delete the throat-clearing opener if the following clause stands directly.",
+            })
+
+    for category, pattern in DEFENSIVE_PATTERNS.items():
+        for match in re.finditer(pattern, prose, flags=re.I):
+            issues.append({
+                "code": "defensive_framing",
+                "severity": "warning",
+                "pattern": category,
+                "line": _line_number(prose, match.start()),
+                "text": match.group(0),
+                "message": "State the supported scientific payload directly or delete empty self-defense; preserve material facts, meaningful uncertainty, and required disclosures.",
             })
 
     lower = prose.lower()
@@ -200,7 +227,10 @@ def _render_text(result: dict) -> str:
         f"{status}: {result['word_count']} words; em dashes {result['em_dash_count']}/{result['em_dash_limit']}; {result['issue_count']} issue(s)."
     ]
     for issue in result["issues"]:
-        lines.append(f"- {issue['severity'].upper()} {issue['code']}: {issue['message']}")
+        location = f" line {issue['line']}" if "line" in issue else ""
+        excerpt = f" [{issue['text']}]" if "text" in issue else ""
+        pattern = f"/{issue['pattern']}" if "pattern" in issue else ""
+        lines.append(f"- {issue['severity'].upper()} {issue['code']}{pattern}{location}{excerpt}: {issue['message']}")
     return "\n".join(lines)
 
 
@@ -209,7 +239,7 @@ def main() -> int:
     parser.add_argument("path", nargs="?", help="UTF-8 manuscript path; omit to read stdin")
     parser.add_argument("--scope", choices=("paper", "section", "paragraph"), default="paper")
     parser.add_argument("--format", choices=("text", "json"), default="text")
-    parser.add_argument("--strict", action="store_true", help="Return exit code 1 when an error or warning is found")
+    parser.add_argument("--strict", action="store_true", help="Return 1 for error/warning candidates; matches still require contextual judgment")
     args = parser.parse_args()
 
     result = inspect(_read_text(args.path), args.scope)

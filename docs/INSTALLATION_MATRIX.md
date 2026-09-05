@@ -1,6 +1,6 @@
 # CCFA Installation Matrix
 
-Partial installation is supported, but `ccf-common` must be installed with every subset.
+Partial installation is supported, but `ccf-common` must be installed with every subset. The sets below describe task owners. Also retain the sibling resource directories read by the selected modes: reviewer, experiment, scaffolding, and submission modes can read `ccf-paper-writer/references/`; template modes need `ccf-latex-templates/` beside the installed skills. The legacy writer converter uses `ccf-paper-to-exemplar/scripts/convert.py`. A resource dependency does not authorize running its owning skill. A full repository/plugin layout preserves these paths; a skill-only installer may need the resource trees copied as well.
 
 ## Hard Rules
 

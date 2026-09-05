@@ -13,9 +13,12 @@ from __future__ import annotations
 from dataclasses import dataclass
 from html import escape
 from math import cos, exp, log10, pi, sin, sqrt, tau
+from os import replace
 from pathlib import Path
 from statistics import mean, pstdev
+from tempfile import NamedTemporaryFile
 from typing import Iterable, Sequence
+from xml.etree import ElementTree
 
 
 PALETTES = {
@@ -115,9 +118,25 @@ class Canvas:
 
 
 def save_svg(svg: str, path: str | Path) -> Path:
+    """Publish a valid candidate in place without truncating the previous SVG."""
+    root = ElementTree.fromstring(svg)
+    if root.tag not in {"svg", "{http://www.w3.org/2000/svg}svg"}:
+        raise ValueError("Expected an SVG document")
     target = Path(path)
-    target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(svg, encoding="utf-8")
+    # Keep an existing symlinked authoring path intact.
+    destination = target.resolve()
+    if destination.is_file() and destination.read_text(encoding="utf-8") == svg:
+        return target
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    temporary = None
+    try:
+        with NamedTemporaryFile(mode="w", encoding="utf-8", newline="\n", dir=destination.parent, prefix=f".{destination.name}.", suffix=".tmp", delete=False) as handle:
+            temporary = Path(handle.name)
+            handle.write(svg)
+        replace(temporary, destination)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
     return target
 
 

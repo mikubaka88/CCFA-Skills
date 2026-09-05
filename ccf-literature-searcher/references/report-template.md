@@ -7,14 +7,16 @@ Use this file when writing a literature-search folder.
 Default:
 
 ```text
-literature-search-YYYYMMDD-<topic-slug>/
+output/literature-search/<topic-slug>/
   papers.md
-  papers.csv
-  search-notes.md
+  papers.csv        # only for requested structured export or downstream reuse
+  search-notes.md    # only when provenance must persist separately
   idea-grounding.md  # only when feeding idea optimization
 ```
 
-If the user provides a project directory, write the folder there. Otherwise use the current workspace. If file writing is unavailable, return the same sections in the final answer.
+Resolve the project root through `../../ccf-common/references/artifact-contracts.md`. Reuse an existing search folder, including older dated names, and update its current report in place. Store the date and paper versions inside the report. Keep needed downloads/extractions under its `cache/`; do not create a new dated folder for each retry. If file writing is unavailable or prohibited, return the requested evidence in context.
+
+The sections and columns below are a menu for the requested report. Omit unrequested scoring and empty sections. Keep one screened source set and derive a CSV only when useful; do not repeat the complete paper table and abstracts in search notes or downstream handoffs.
 
 ## papers.md
 

@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Pipeline Orchestrator"
   short_description: "Plan workflow, decompose tasks, coordinate stages, gates, artifacts, handoffs, and ccfa.yaml state."
-  default_prompt: "Use $ccf-pipeline-orchestrator for project workflow planning and place $ccf-humanization before manuscript or publication-facing experiment handoffs."
+  default_prompt: "Use $ccf-pipeline-orchestrator to plan the requested workflow or coordinate explicitly authorized execution through specialist owners. Preserve current project state, completed work, and the latest user constraints. Carry canonical paths and changed requirements across handoffs; reuse current artifacts and avoid duplicate process files."

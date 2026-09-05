@@ -34,7 +34,7 @@ Use score movement conservatively. Prefer ranges such as `+0.5 to +1 overall` on
 
 ## Multi-Reviewer Panel
 
-Panel reviewers must be independent before synthesis. Each role should inspect a different failure mode, use evidence from the idea, paper, manuscript text, or searched source, and state uncertainty when evidence is missing.
+When using actual independent reviewer calls, keep them independent before synthesis. If the host lacks or disallows delegation, use clearly labeled role-based perspectives within one agent; do not claim independent validation or empirical consensus. Each selected role should inspect a relevant distinct failure mode, use evidence from the idea, paper, manuscript text, or searched source, and state uncertainty when evidence is missing.
 
 Required discipline:
 

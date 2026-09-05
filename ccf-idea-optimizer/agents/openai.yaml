@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Idea Optimizer"
   short_description: "Turn rough CCF research directions into concrete problem, gap, insight, method, novelty, and evidence plans."
-  default_prompt: "Use $ccf-idea-optimizer for its owned CCFA workflow. Respect trigger boundaries, artifact ownership, evidence limits, and handoff rules."
+  default_prompt: "Use $ccf-idea-optimizer to develop the research problem, causal insight, mechanism, and minimum convincing evidence. Ground novelty when needed, explore meaningful alternatives, and keep unrequested numeric scoring out of the result."

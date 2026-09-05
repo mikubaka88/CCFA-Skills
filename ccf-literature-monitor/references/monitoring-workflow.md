@@ -13,7 +13,7 @@
 - Fetch recent papers in target categories or from the requested venues/labs.
 - For each high-relevance candidate, read at least the title and abstract. Do not claim high overlap without checking the abstract and, when accessible, the introduction or method summary.
 - If the user has specific keywords, add them to the search or use them as filters after the broad search.
-- Deduplicate by normalized title and stable URL.
+- Deduplicate by DOI/arXiv identity and normalized title; distinguish a new paper from a new version. Compare with prior reports when available and record the actual scanned date window.
 
 ## 3. Overlap Detection
 
@@ -51,8 +51,8 @@ Overlap score (0-5):
 
 ## 5. Follow-up and Persistence
 
-- Store the monitoring output in the project directory or `output/literature-monitor/` when file output is requested or a project folder exists.
-- Propose a summary for `ccfa.yaml` under `artifacts.literature_monitor_last_run`; do not silently overwrite project state unless explicitly asked.
+- Store reports only when file output is requested or necessary within the authorized workflow; honor no-new-files. Preserve dated monitoring history when it serves the requested recurring watch. A report does not create a scheduler.
+- Propose a summary for `ccfa.yaml` using existing monitoring fields such as `last_monitoring_report`; do not silently overwrite project state unless explicitly asked.
 - Flag conflicting papers for next use: add them to the project literature cache.
 
 ## 6. Handoff Rules

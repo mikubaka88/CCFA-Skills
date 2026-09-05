@@ -182,7 +182,7 @@ More examples are available in [`assets/visual-showcase/`](assets/visual-showcas
 
 `ccf-paper-writer` can learn from exemplars chosen by the user. It studies how an effective paper frames its problem, unfolds its method, arranges evidence, and controls pace. It does not copy source sentences or turn one paper into a template for every field.
 
-`ccf-humanization` removes habits that obscure the scholarship: defensive framing, repeated caveats, forced three-part lists, excessive em dashes, synonym cycling, and narration about internal version status. Facts that materially affect the claim, reproducibility, ethics, or venue requirements remain visible. Questions that require an authorial decision are raised separately rather than quietly inserted into the manuscript.
+`ccf-humanization` checks what scientific information each sentence contributes: state supported facts directly, qualify genuine uncertainty accurately, and delete empty defenses. It removes imagined reviewer objections, apologies for the contribution, repeated caveats, ritual endings, and internal status narration. Paragraphs do not need an appended limitation or future-work sentence. Observed failures, scope conditions, reproducibility details, and required disclosures remain visible; only concrete unresolved scientific decisions need a separate warning.
 
 Review answers two different questions:
 
@@ -195,7 +195,7 @@ Review answers two different questions:
 
 ![Visual delivery](assets/ccfa-skills-artifacts.svg)
 
-Quantitative figures begin with reproducible code and traceable data. Method, system, and architecture figures usually begin with GPT Image 2 exploring a visual language that suits the content. The user then chooses whether to continue toward editable SVG, vector PDF, or PPTX. Common concepts use a coherent open-source icon family, while method-specific icons are generated and cleaned separately. In PPTX, text, boxes, nodes, and connectors remain native objects wherever possible, so the final figure can still be meaningfully revised.
+Quantitative figures begin with reproducible code and traceable data. Method, system, and architecture figures usually begin with GPT Image 2 exploring a visual language that suits the content. Requested editable SVG, vector PDF, or PPTX deliverables continue under the existing authorization; additional formats can be offered when useful. Existing editable figures are revised in their authoring source, with only affected exports rebuilt; local text, color, spacing, value, or format changes do not restart image generation. Common concepts use a coherent open-source icon family, while method-specific icons are generated and cleaned separately. In PPTX, text, boxes, nodes, and connectors remain native objects wherever possible, so the final figure can still be meaningfully revised.
 
 When a user does not want GPT Image 2 or explicitly prefers code-first drawing, `ccf-visual-composer` uses a pure-SVG route and labels it clearly.
 
@@ -231,6 +231,10 @@ CCFA-Skills/
 
 Longer guidance lives in `references/`, while repeatable work belongs in `scripts/`. Iterative artifacts keep stable names so that a new version replaces the previous one instead of leaving behind a trail of indistinguishable attempts.
 
+Load references by task mode: local prose edits do not load entire exemplar bundles, figure updates do not read every drawing guide, and verified sources/extractions are reused while their versions remain applicable. Handoffs carry canonical paths, evidence locations, and changes instead of repeating full texts and logs. Full reviews still cover the evidence needed for the requested assessment.
+
+Working files follow explicit user paths, existing `ccfa.yaml` mappings, and established project directories first. Otherwise use `output/<task>/<artifact-id>/`, creating `source/`, `assets/`, `cache/`, and `build/` only as needed. Each figure has a stable ID; iterations update the current files. Preserve raw data, submission archives, and required comparison baselines. Failed generation retains the usable result and does not relabel stale exports as current. See the [artifact contract](ccf-common/references/artifact-contracts.md).
+
 ## Maintenance and validation
 
 ```powershell
@@ -241,6 +245,8 @@ python ccf-common\scripts\check_sources.py
 ```
 
 These checks confirm that all 17 skills can be discovered, their responsibilities remain clear, documentation links resolve, and public files contain no machine-specific paths or private information. Experiment and efficiency results are summarized in [实验结果.md](实验结果.md).
+
+`0.10.0` validates instructions, structure, and script behavior; historical experiments do not measure GPT-6 token or quality gains.
 
 ## Commitments
 

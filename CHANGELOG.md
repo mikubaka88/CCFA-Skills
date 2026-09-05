@@ -1,4 +1,17 @@
-﻿# Changelog
+# Changelog
+
+## v0.10.0 - 2026-09-05
+
+- Updated all 17 existing skill entries and 16 existing agent prompts for concise routing, mode-specific reference loading, persistent authorization, bounded execution, and proportionate checks, using current official GPT-6 Astra and skill-authoring guidance.
+- Strengthened humanization around scientific information: remove imagined reviewer objections, contribution apologies, empty assurances, stacked hedges, and ritual caveats while preserving supported facts, real uncertainty, negative findings, and required disclosures. Removed conflicting forced-limitation and reviewer-defense instructions from writing references.
+- Aligned workflow handoffs and requested editable visuals with existing authorization; corrected scaffolding initialization and conditional publication-prose preflight.
+- Improved the existing prose checker with bilingual defensive-language candidates, source-line locations, and code/math/quotation exclusions. Repaired the legacy PDF-to-exemplar command, reused the canonical converter, and handled extraction failures and filename collisions.
+- Strengthened the existing validator with YAML, resource, Python syntax, project/plugin contract, prose, and version-comparison regression checks. Declared the Codex skill root explicitly without moving packages.
+- Made visual work incremental: existing editable sources, palettes, and icons are reused; only affected requested formats are exported and inspected. Consolidated overlapping specifications, prompts, wireframes, asset inventories, and QA records, with reference loading scoped by mode.
+- Unified intermediate-file placement under existing project paths or stable task/artifact working directories. Source/assets/cache/build folders are created on demand; current files update in place while raw evidence and required history are preserved.
+- Removed citation-count-driven retrieval, redundant report/export defaults, and mandatory exemplar-bundle loading. Literature updates reuse existing topic folders; full scientific assessments retain necessary source coverage.
+- Made SVG/text publication atomic and unchanged-content writes reusable. Exemplar conversion preserves completed cards and supports an optional `--full-text-dir` cache destination while retaining existing CLI defaults.
+- Preserved the 17-skill directory layout, shared metadata fields, project schema, template tree, generated diagrams, and historical evaluation data. No files or dependencies added. Static checks do not establish a GPT-6 quality or speed gain; no new model A/B benchmark or client installation test is claimed.
 
 ## v0.9.0 - 2026-08-13
 

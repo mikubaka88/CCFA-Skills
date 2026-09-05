@@ -1,6 +1,6 @@
 # Reviewer Panel
 
-Use independent reviewer perspectives before writing the AC/meta-review. Do not let one perspective contaminate another before synthesis.
+Use the relevant reviewer perspectives before writing the AC/meta-review. When separate agent calls are permitted and justified, keep their evidence passes independent until synthesis. Otherwise label the result as a single-agent review with multiple role perspectives; do not claim independent reviewers or empirical agreement.
 
 Do not force reviewers to disagree, praise, or reject. Each reviewer must ground its stance in manuscript evidence, supplied artifacts, or searched sources. If the evidence is insufficient, say `insufficient evidence` and name the missing artifact or check.
 

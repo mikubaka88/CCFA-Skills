@@ -72,7 +72,7 @@ Keep the body actionable:
 - Start with the operating principle or quick workflow.
 - Use imperative instructions.
 - Reference bundled resources with relative paths.
-- Keep the main file under 500 lines.
+- Keep the entry compact and front-load the primary trigger and its nearest routing boundary. Measure entry size and mode-specific reference loading; being under 500 lines alone is not evidence of efficient context use.
 - Move variant-specific details into one-level-deep files under `references/`.
 - Include command snippets only when they are reusable and safe.
 
@@ -84,7 +84,9 @@ Check these before finishing:
 - `name` uses only lowercase letters, digits, and hyphens.
 - `description` is non-empty, specific, and trigger-rich.
 - `SKILL.md` has no unfinished placeholders.
-- Referenced files exist.
+- Referenced files exist, including sibling resource dependencies in supported installation subsets.
+- Parse frontmatter and agent configuration as YAML; preserve the five shared control fields and their types. Validate plugin roots, routing entries, Python syntax, and meaningful behavioral regressions with the existing validators.
+- Keep model-specific claims tied to current official sources. Distinguish static validation from a measured model comparison; do not relabel historical evaluation data.
 - CCFA family skills preserve the shared `ccf_skill_controls` keys and use `ccf-common` for routing, handoff, privacy, and source-registry policy.
 - No committed file contains personal absolute paths, usernames, expanded local skill roots, or machine-specific command examples.
 - `ccf-common/scripts/check_path_privacy.py` passes when run at the repository root.

@@ -1,6 +1,6 @@
 # Storyline Blueprint
 
-Use this before drafting, after major section edits, and whenever the user asks for storyline generation, scientific storytelling, narrative design, paper/story structure, research insight framing, or claim generation.
+Use this for full-manuscript organization, substantial introductions, or explicitly requested storyline design. Ordinary polishing and bounded abstracts use the compact arc in the writer entry.
 
 CCF-A writing should make the paper's scientific logic easy for reviewers to reconstruct. A storyline is not an outline, a marketing angle, or a list of modules. It is the single explanatory logic that makes the research necessary, plausible, evidenced, and worth remembering.
 
@@ -46,14 +46,14 @@ Proposed method/mechanism:
 Contribution type(s):
 Evidence ladder:
 Expected central claim:
-Known limitations:
-Likely reviewer doubts:
+Material assumptions or observed limitations:
+Unresolved evidence decisions:
 Novelty status: searched / partially searched / user-provided / unsearched
 ```
 
 ## Multi-Expert Storyline Generation Framework
 
-Use the full framework when the user asks to generate, repair, compare, or substantially redesign a story. For ordinary drafting or local polishing, use the compact story fields and section roles below.
+Use the full framework only when multiple substantially different storylines are needed for an explicitly requested comparison or redesign. For ordinary drafting or local polishing, use the compact story fields and section roles below.
 
 ### Stage 0: Material And Boundary Intake
 
@@ -80,7 +80,7 @@ Hard rules:
 
 ### Stage 1: Independent Expert Storyline Generation
 
-Generate independent candidate storylines before synthesis. Do not let one role's preferred framing dominate the others.
+Develop distinct candidate storylines before synthesis. Use independent subagents only when the host permits them and the task benefits from separate perspectives; otherwise describe the output as role-based analysis, not independent reviews.
 
 Each expert must output a candidate with:
 
@@ -235,7 +235,7 @@ Fusion rules:
 4. Organize experiments as an evidence ladder for the claim.
 5. Remove candidate fragments that create a second main story.
 6. Weaken or mark claims that exceed supplied evidence.
-7. Preserve useful expert disagreement as limitations, reviewer risks, or future work.
+7. Resolve disagreement against the original evidence. Carry a limitation into prose only when it is scientifically material; do not convert hypothetical objections into paper content.
 
 Fusion output:
 
@@ -349,9 +349,9 @@ Typical order:
 2. Validate the main effect against strong baselines.
 3. Test the mechanism through ablation, proof, or diagnostic analysis.
 4. Test generalization, robustness, scale, or transfer.
-5. Show boundary conditions, failure cases, or limitations.
+5. Explain observed boundary conditions or failure cases when they change the supported interpretation. This is conditional, not a required closing move.
 
-Each evidence item must answer a reviewer question:
+Each evidence item must answer a scientific question:
 
 ```text
 Reviewer question:
@@ -367,7 +367,7 @@ Build one central claim and a small set of subclaims.
 Central claim format:
 
 ```text
-This work shows that [core insight/mechanism] enables [capability/understanding] for [scope], supported by [evidence types], while limited by [boundary].
+[Mechanism or observation] establishes [supported finding] in [studied setting]. Add a material boundary where needed, not as a mandatory trailing disclaimer.
 ```
 
 Subclaim map:
@@ -392,7 +392,7 @@ End with what the community should remember:
 - new design principle,
 - new limitation of prior assumptions.
 
-Then bound it honestly. A good boundary increases trust; it should not secretly undercut the central claim.
+State a boundary only when it changes interpretation or is required. Preserve actual negative findings without apologetic framing; do not append a generic caution or future-work paragraph.
 
 ## Compact Core Story Arc
 
@@ -404,7 +404,7 @@ Use this compact arc for ordinary drafting:
 4. The paper introduces a core insight that addresses that reason.
 5. The method implements the insight through necessary modules or formal steps.
 6. Evidence validates each major claim in a causal order.
-7. Limitations bound the claim without defeating it.
+7. Material assumptions and observed limits are explained where they affect the finding.
 
 ## Contribution Types
 
@@ -455,9 +455,9 @@ Run these after writing or revising a section:
    - Check whether Abstract, Introduction, Method, and Experiments tell the same story.
    - Ensure contributions in Introduction are validated in Experiments.
    - Ensure limitations do not contradict contribution claims.
-5. Reviewer-risk register:
-   - Record likely objections.
-   - Mark each as addressed by writing, evidence, new experiment, or limitation.
+5. Evidence gaps:
+   - Identify concrete unsupported claims or actual review findings relevant to the revision.
+   - Resolve them through accurate text or existing evidence; isolate decisions requiring new research. Do not invent likely objections.
 
 ## Claim-Evidence Matrix
 

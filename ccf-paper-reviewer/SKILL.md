@@ -1,6 +1,6 @@
 ---
 name: ccf-paper-reviewer
-description: "Own assessment-only manuscript deliverables without rewriting: full scientific review, scoring, reviewer reports, issue diagnosis, AC/meta-review, readiness judgment, writing/format review, and cross-version comparison. Use for full review, scientific review, do not rewrite, assessment-only, paper review, score drift, moving-target review, 完整审稿, 不要改写, 模拟审稿, 论文评分, 版本对比, 复审一致性, 写作评审, LaTeX检查. Requests for revised or polished prose, including rewrite based on reviews with no new review, belong to ccf-paper-writer; rebuttals belong to ccf-rebuttal-writer; visual/table styling belongs to ccf-visual-composer."
+description: "Assess CCF manuscripts without rewriting: scientific/writing review, scoring, readiness, and version comparison. Use for 完整审稿, 不要改写, 论文评分, 写作评审, and 版本对比. Requested manuscript rewrites belong to ccf-paper-writer; rebuttal and visual redesign have separate owners."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -40,11 +40,11 @@ Do not write rebuttal text or directly maintain the revision ledger; route revie
 1. Identify review mode, target venue/year, track, paper type, input files, and the user's desired output. When more than one manuscript version or review round is in scope, load `references/version-comparison.md` before scoring.
 2. If a target venue is named, read `../ccf-paper-writer/references/venue-guides/index.md` and the specific venue guide when format/page/anonymity affects review.
 3. Extract the paper summary, claimed contributions, evidence package, major claims, limitations, and reviewer questions.
-4. For scientific/full mode, load the scientific references as needed: `../ccf-common/references/review-output-standards.md`, `references/review-workflow.md`, `references/universal-review-rubric.md`, `references/venue-review-styles.md`, `references/reviewer-panel.md`, `references/calibration-and-rank.md`, and `references/desk-checks.md`.
+4. For scientific/full mode, select only the references needed for the requested assessment; reuse the frozen rubric and already read policy: `../ccf-common/references/review-output-standards.md`, `references/review-workflow.md`, `references/universal-review-rubric.md`, `references/venue-review-styles.md`, `references/reviewer-panel.md`, `references/calibration-and-rank.md`, and `references/desk-checks.md`.
 5. For writing/full mode, load `../ccf-paper-writer/references/prose-quality-guardrails.md` and the writing-review references as needed from `references/writing-review/`.
 6. Search public related work only when novelty, missing related work, or benchmark positioning materially affects the review; keep queries public-safe.
 7. Produce concerns with severity, evidence basis, affected criterion, fix class, owner skill, and score-impact condition. Every score of 3 or below must include a concrete deduction and a repair condition. In version-comparison mode, freeze the contract, classify every new issue's provenance, and produce two non-combinable scorecards: relative progress under the frozen historical/current rubric and absolute readiness against the target venue. Report confidence separately.
-8. For standard scientific/full mode, write or overwrite the canonical Markdown report in `ccfa-review-reports/` when a local paper path exists; otherwise return the report in the current context. Follow `../ccf-common/references/artifact-contracts.md`; do not make a dated report per iteration.
+8. For standard scientific/full mode, write or overwrite the canonical Markdown report in `ccfa-review-reports/` when a local paper path exists and file output is within scope; otherwise return the report in the current context. Honor explicit no-new-files and exact-output requests. Follow `../ccf-common/references/artifact-contracts.md`; do not make a dated report per iteration.
 
 ## Output Contracts
 
@@ -110,3 +110,7 @@ Next owner:
 - `references/writing-review/`: paragraph review, writing rubric, LaTeX/format audit, and revision actions.
 - `../ccf-paper-writer/references/prose-quality-guardrails.md`: prose anti-patterns and cohesion checks for writing review.
 - `../ccf-common/references/review-output-standards.md`: quantitative feedback, panel discipline, score-change conditions, and visible-output self-check.
+
+## Evidence And Execution
+
+Use distinct reviewer perspectives for a standard full assessment; delegate independent evidence slices only when the host permits it and the task benefits. Label a single-agent role simulation honestly. Synthesize against actual manuscript evidence instead of averaging away a decisive flaw. Keep role reports compact and consolidate duplicate concerns. Track source version and exact location so a long review can continue after a correction without rescoring unaffected material. Report missing evidence as a coverage limit, not an invented defect. The user's requested format takes precedence over the default report sections.

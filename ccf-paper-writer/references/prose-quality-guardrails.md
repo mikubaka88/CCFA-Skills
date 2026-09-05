@@ -2,7 +2,7 @@
 
 Use this file for manuscript drafting, polishing, compression, abstract writing, introduction writing, paragraph review, and response text that may be copied into a paper. The goal is not to make prose decorative. The goal is to make every sentence serve the scientific argument.
 
-Apply `../../ccf-humanization/references/humanization-policy.md` first. Keep warning-only concerns outside source files and do not add defensive prose, generic limitations, or improbable case lists as a substitute for academic content.
+Apply `../../ccf-humanization/references/humanization-policy.md` first. Use its sentence-decision procedure and bilingual repairs. Preserve actual material limitations in direct scientific prose. Keep only unresolved scientific decisions in a short external warning; discard hypothetical reviewer concerns and empty caveats.
 
 These checks improve precision, rhythm, and readability. They are writing-quality controls, not detector-evasion methods.
 
@@ -84,7 +84,7 @@ Claims must match the available support:
 
 ### Abstract
 
-The abstract must include task, gap, insight or method, evidence, and scope. It may include key numbers, but the abstract should not read like a results table in prose. If more than half of the abstract is numeric comparison, rewrite it around the scientific contribution and keep only the decisive evidence.
+The abstract should connect task, gap, insight or method, and evidence. Express scope in these statements when needed; do not append a mandatory disclaimer. It may include key numbers, but the abstract should not read like a results table in prose. If more than half of the abstract is numeric comparison, rewrite it around the scientific contribution and keep only the decisive evidence.
 
 ### Introduction
 
@@ -105,7 +105,7 @@ Do not list results as disconnected numbers. Each paragraph should answer a ques
 
 ### Conclusion
 
-Do not introduce new claims or return to broad motivation. Close on the core insight, strongest support, and honest scope.
+Do not introduce new claims or return to broad motivation. Close on the core insight and strongest support within the studied setting. Add a limitation or future-work sentence only if it contributes a specific material point or is required.
 
 ## Final Prose Self-Audit
 
@@ -121,4 +121,5 @@ Before calling writing ready, scan for:
 - Any visible third-person narration about the paper or reviewer.
 - Any punctuation pattern doing the work of logic.
 - Any paragraph whose sentences all have the same length or template.
-- Any hard failure or review signal defined by the humanization policy and reported by `scripts/check_prose_quality.py`.
+- Any denial-led positioning, empty assurance, stacked hedge, imagined reviewer, or repeated cautionary ending flagged by `scripts/check_prose_quality.py`; inspect its scientific function before changing it.
+- Any real assumption, negative result, comparison constraint, or uncertainty lost during revision.

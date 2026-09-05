@@ -1,4 +1,4 @@
-﻿# Output Style Policy
+# Output Style Policy
 
 Use this reference when the requested writing output could conflict with the default CCFA reporting shape.
 
@@ -51,7 +51,7 @@ Do not use the main answer for generic process narration. The first visible arti
 - name the section affected,
 - name the next owner only when a handoff is useful.
 
-For full workflow demos, every skill should leave a concrete artifact rather than a one-line description.
+For full workflow demos, produce the requested concrete artifacts. Several skills may improve the same canonical artifact; do not require a separate process file from each skill.
 
 ## Citation Format Rules
 
@@ -63,13 +63,13 @@ Every manuscript must follow these citation formatting rules:
 
 3. **Group with purpose:** When citing multiple works, group them by what they share: "Contrastive objectives [9,10,11]" rather than dumping "Several works [1,2,3,4,5,6,7,8] have studied this."
 
-4. **One citation per claim:** Do not repeat the same citation in consecutive sentences. If two sentences draw on the same source, merge them or rephrase.
+4. **Clear attribution:** Avoid redundant citation clusters when a single reference clearly supports connected statements. Repeat a citation when needed to keep attribution unambiguous; do not merge distinct claims solely to reduce citation count.
 
 5. **Bib file as source of truth:** Every `\cite{}` key must exist in the project `.bib` file. Never write a citation from memory.
 
 6. **No bold labels:** Do not use `\textbf{Concept:}` or `\textit{Label:}` as paragraph scaffolding. Write prose paragraphs with topic sentences and logical flow. The only exceptions are venue-mandated section headings or checklist items.
 
-7. **Citation density:** Check per-section minimums from `references/citation-workflow.md`. An AI/ML/CV/NLP paper with fewer than25 total references is under-cited. Count them before calling a draft complete.
+7. **Citation coverage:** Follow `references/citation-workflow.md` for support of closest work, borrowed mechanisms, datasets, and comparisons. Do not add papers or expand prose to meet a numeric quota. Reuse verified entries and preserve unrelated bibliography content.
 
 ## Flexible Suggestions
 

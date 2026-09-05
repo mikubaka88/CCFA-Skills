@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Rebuttal Writer"
   short_description: "Write concise, non-defensive rebuttals, response letters, revision ledgers, and conservative resubmission adaptation plans."
-  default_prompt: "Use $ccf-rebuttal-writer for reviewer responses, AC/meta-review replies, revision ledgers, and resubmission adaptation."
+  default_prompt: "Use $ccf-rebuttal-writer to answer actual reviewer concerns with supplied evidence and feasible revisions. Keep promises, completed edits, and new evidence distinct in the existing revision ledger."

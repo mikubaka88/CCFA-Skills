@@ -1,6 +1,6 @@
 ---
 name: ccf-project-scaffolder
-description: "Create CCF paper project folders, select or copy LaTeX templates, initialize ccfa.yaml, and prepare artifact directories. Use for project scaffolding, folder/template setup, and reproducible workspace setup. Do not plan workflow stages/gates only, coordinate handoffs, or generate research content."
+description: "Initialize CCF project folders, LaTeX templates, artifact directories, and ccfa.yaml. Use for 项目初始化, 目录搭建, template setup, and reproducible workspace scaffolding. Preserve existing files. Workflow planning belongs to ccf-pipeline-orchestrator; research content belongs to its specialist owner."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -14,39 +14,21 @@ metadata:
 
 ## Invocation Controls
 
-**CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode`, `../ccf-common/references/handoff-modes.md`, `../ccf-common/references/task-modes.md`, and `../ccf-common/references/skill-trigger-registry.yaml`.
-
-Treat private manuscripts, reviews, drafts, results, code, and project state as private user material. Do not browse with private text unless the user authorizes it or the shared privacy/evidence policy allows a safe transformed query.
+**CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode`, `../ccf-common/references/handoff-modes.md`, and `../ccf-common/references/task-modes.md`. A scaffold request authorizes the necessary local structure; a dry-run or no-new-files request limits changes accordingly.
 
 ## Core Rule
 
-Create structure and metadata only. Prefer the target venue guide index for template discovery, then initialize `ccfa.yaml` from `assets/ccfa.yaml` with explicit placeholders.
-
-## Inputs
-
-Project name, target venue, output directory, template preference, and optional paper type.
+Create the requested project structure, template, and state without inventing research content. Preserve existing user files and complete compatible missing pieces instead of replacing an established project.
 
 ## Workflow
 
-1. Identify quick or standard mode from the request, available artifacts, and deadline pressure.
-2. Check `../ccf-common/references/skill-trigger-registry.yaml` for ownership boundaries before absorbing adjacent work.
-3. Read `ccfa.yaml` when it exists. If absent, continue with supplied artifacts and report that project-state tracking is unavailable.
-4. Execute only this skill's owned task. Mark missing evidence, stale venue rules, missing files, or authorization gaps explicitly.
-5. Produce the requested scaffold result and name the next owning skill when handoff is needed.
+1. Resolve the project location, venue, requested folders, and existing artifacts from the conversation and filesystem. Infer routine directory names; ask only about a consequential unresolved location or overwrite choice.
+2. Select the matching template through `../ccf-paper-writer/references/venue-guides/index.md`. Verify that the template and its supporting style/assets are available. Use supplied templates when requested; identify unavailable dependencies precisely instead of copying an incomplete template.
+3. Resolve final artifacts and the working root through `../ccf-common/references/artifact-contracts.md`. Create only needed directories and templates, with source/assets/cache/build subdirectories on demand. Preserve existing layout; do not migrate user files or overwrite a manuscript, bibliography, or configuration to refresh a scaffold.
+4. If `ccfa.yaml` is absent and initialization is requested, copy `assets/ccfa.yaml`, preserve the required fields in `../ccf-common/references/ccfa-yaml-contract.md`, and fill only supplied project metadata. Existing state is read and updated only within the requested scope; unknown research fields remain explicit placeholders.
+5. Check the created paths, template references, and YAML. A build is useful when a runnable template was requested and an engine is available; do not run research experiments or final submission checks for directory setup.
+6. Report the actual created/updated paths and any concrete missing dependency. For a dry run, return the proposed tree and actions without writing files.
 
-## Quick And Standard Modes
+## Boundaries
 
-- Quick mode: answer the narrow request with the minimum relevant checklist and a compact risk note.
-- Standard mode: produce the full table/checklist, artifact-state notes, boundary checks, and handoff recommendations.
-
-## Adaptive Output Contract
-
-If files were created or copied, report the directory tree, template paths, initialized `ccfa.yaml`, and next-step handoff. If the user only asks for a dry-run plan or install subset, return that requested shape instead. Do not force a full checklist for a small scaffold command.
-
-## Handoff
-
-Handoff to `ccf-pipeline-orchestrator` for stage management, `ccf-paper-writer` for manuscript work, and `ccf-submission-checker` for build checks.
-
-## Forbidden
-
-Do not invent title, abstract, claims, experiments, or citations unless the user explicitly supplies them.
+Use `../ccf-common/references/artifact-contracts.md` for file ownership. Project workflow planning belongs to `ccf-pipeline-orchestrator`, manuscript prose to `ccf-paper-writer`, and final package checks to `ccf-submission-checker`. Do not invent a title, abstract, claim, experiment, or citation.

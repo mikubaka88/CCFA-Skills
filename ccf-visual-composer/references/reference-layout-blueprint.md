@@ -35,6 +35,6 @@ Boxes are not mandatory. Use containers only for true semantic groups; a sequenc
 
 ## Anti-Imitation Boundary
 
-Do not reproduce a reference's exact node placement, icon set, distinctive palette, proprietary artwork, labels, or decorative signature. Do not use a screenshot as a hidden template or final background. Keep source links in the working provenance record; deliver the new wireframe and the principles distilled from the references.
+Do not reproduce a reference's exact node placement, icon set, distinctive palette, proprietary artwork, labels, or decorative signature. Do not use a screenshot as a hidden template or final background. Keep source links and useful composition principles in the existing specification. Deliver a separate wireframe only when it is requested; otherwise use it as internal planning. Search additional references only when supplied or already inspected examples do not resolve a concrete layout decision.
 
 Research basis is registered in `../../ccf-common/references/source-registry.yaml` under `livefigure-editable-scientific-illustration`, `autofigure-edit-editable-svg`, and `scifig-editable-figure-generation`.

@@ -1,6 +1,6 @@
 ---
 name: ccf-literature-searcher
-description: "Search and screen external literature, related work, datasets, benchmarks, citation candidates, and research opportunity maps for CCF workflows. Use when external retrieval is the requested deliverable: literature search, related work discovery, prior art, benchmark search, direction scouting, 文献检索, 相关工作, benchmark搜索, 方向调研. Do not own supplied-result table schemas, experiment evidence structure, full manuscript review, already-cited-only audits, or manuscript writing."
+description: "Find and verify external literature, prior art, datasets, benchmarks, and citation candidates. Use for 文献检索, 相关工作, benchmark搜索, and research opportunity maps. Recurring recent-paper watch belongs to ccf-literature-monitor; existing-citation audits, manuscript assessment, and result schemas have separate owners."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -16,7 +16,7 @@ metadata:
 
 **CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode` and `../ccf-common/references/handoff-modes.md`. Use `../ccf-common/references/routing.md` to keep literature search separate from idea optimization, manuscript writing, experiment design, paper review, and rebuttal.
 
-Load `../ccf-common/references/task-modes.md` before deciding exploratory, quick, or standard mode. Use exploratory mode for early direction scouting, "看看还有没有机会", "这个方向是不是被做完了", or literature search meant to feed idea optimization rather than a final novelty verdict. Use quick mode for a narrow related-work scan or a small set of candidate citations. Use standard mode for Related Work, Introduction, mature idea novelty grounding, benchmark discovery, experiment design, or any task that will feed another CCFA module.
+Load `../ccf-common/references/task-modes.md` before deciding exploratory, quick, or standard mode. Use exploratory mode for early direction scouting, "看看还有没有机会", "这个方向是不是被做完了", or literature search meant to feed idea optimization rather than a final novelty verdict. Use quick mode for a narrow related-work scan or a small set of candidate citations. Use standard mode for Related Work, Introduction, mature idea novelty grounding, benchmark discovery, experiment design, or substantial multi-deliverable work. A small citation lookup stays quick even if a writer will use it.
 
 If the user asks for recurring watch, latest-paper monitoring, competitor tracking, "recently any similar idea", arXiv/OpenReview feed scans, or lab/project tracking, route to `ccf-literature-monitor` by the shared handoff mode. Use this skill for deep retrieval, closest-work clustering, related-work structure, benchmark/dataset discovery, and citation candidates.
 
@@ -37,7 +37,7 @@ In standard mode, complete this checklist before final output. In quick mode, ru
 3. Sources prioritize primary or high-confidence venues: official proceedings, arXiv/OpenReview when appropriate, ACL Anthology, CVF, PMLR, ACM, IEEE, USENIX, DBLP, Semantic Scholar, OpenAlex, Crossref, and venue or project pages.
 4. Candidate papers are deduplicated by title and linked to a stable URL.
 5. Each included paper has venue/year/source status, paper type, and relevance rationale.
-6. Paper quality is scored on insight, completeness, and experimental numeric evidence. Pure benchmark papers skip the numeric-results score and receive a benchmark-quality note instead.
+6. Score paper quality on insight, completeness, and experimental numeric evidence only when requested or useful for substantial screening, and only to the extent the inspected text supports it. Pure benchmark papers skip the numeric-results score and receive a benchmark-quality note instead.
 7. Paper type is one of `pure benchmark`, `pure method`, `method + benchmark`, `survey`, `system/tool`, `theory/proof`, or `other`.
 8. Every claim about a paper is traceable to the linked source or marked as inferred.
 9. For idea-stage searches, each closest-work cluster includes what is already covered, what remains under-tested, and at least one possible differentiation or rescue route.
@@ -49,27 +49,29 @@ In standard mode, complete this checklist before final output. In quick mode, ru
 
 1. Identify the search purpose: Related Work, Introduction support, novelty check, direction scouting, idea optimization, idea review, experiment design, benchmark/dataset discovery, or reviewer-risk diagnosis.
 2. Create public queries from the user's topic. If the topic is too private or underspecified, ask only for non-sensitive keywords or infer broad keywords with lower confidence.
-3. Load `references/search-and-scoring.md`. Search breadth depends on mode:
+3. Load `references/search-and-scoring.md`. Use these search ranges as starting budgets, not quotas. Stop when the requested clusters, closest competitors, and evidence needs are covered and further retrieval adds no material information; broaden when a specific gap remains. Search breadth defaults:
    - Exploratory: 10-20 screened candidates, 5-10 final papers or clusters, plus opportunity gaps.
    - Quick: 6-10 screened candidates, 3-6 final papers.
    - Standard: 15-30 screened candidates, 8-15 final papers unless the user requests another size.
 4. Search discovery indexes first, then verify candidates through stable paper pages or official proceedings when possible. Use broad web search only to find primary links; do not rely on snippets for final claims.
 5. Filter by influence and fit. Prefer CCF-A/B conferences, top-field conferences, strong journals, widely used benchmarks, or recent high-signal preprints from credible groups. Exclude low-quality, predatory, inaccessible, or policy-excluded sources. For exploratory searches, include one or two "near miss" or negative-signal clusters if they reveal an open gap, failed assumption, outdated benchmark, missing user group, or neglected system constraint.
-6. Classify each paper with the paper-type taxonomy and score it:
+6. Classify papers as needed for screening. Score inspected papers only when requested or decision-relevant, using these dimensions:
    - `insight`: how clear and non-obvious the central idea is.
    - `completeness`: method/evaluation/proof/dataset/reproducibility coverage.
    - `experimental numeric evidence`: strength and relevance of reported numerical evidence; mark `N/A benchmark` for pure benchmark papers.
-7. Write the search folder using `references/report-template.md`. Default folder name:
+7. Write files only when reusable output is requested or needed within the authorized workflow. Honor no-new-files constraints. Reuse an existing canonical search folder for an update; otherwise use `references/report-template.md` with the default folder name:
 
 ```text
-literature-search-YYYYMMDD-<topic-slug>/
+output/literature-search/<topic-slug>/
   papers.md
-  papers.csv
-  search-notes.md
+  papers.csv        # only when structured reuse/export is needed
+  search-notes.md    # only when queries/coverage must persist separately
   idea-grounding.md  # include when the search feeds idea optimization
 ```
 
-8. If the search feeds another module, provide a handoff summary:
+Reuse an existing dated or custom search folder instead of renaming it. Store the current search date and source versions inside the report; do not create a new folder for an ordinary update. Derive requested Markdown/CSV views from one screened source set rather than writing independent copies. Skip empty or unrequested score columns and generic status sections.
+
+8. If the search feeds another module, provide a compact handoff with canonical source paths and only decision-relevant evidence:
    - For writing: closest-work groups, novelty gaps, citation cautions.
    - For idea optimization: a compact idea-grounding packet with evidence cards, mechanism primitives, protocol anchors, gap/conflict relations, stale/overcrowded directions, timely pivots, and minimum viable research questions. Keep whole abstracts and generic background out of the handoff.
    - For idea review: novelty confidence and likely prior-art risks.
@@ -89,7 +91,6 @@ Queries used:
 Source policy:
 Folder written:
 Top paper table:
-Excluded source notes:
 Closest-work clusters:
 Opportunity map:
 Quality-score rationale:
@@ -116,3 +117,9 @@ Load only what is needed:
 
 - `references/search-and-scoring.md`: Use for source policy, source-quality exclusions, source tiers, paper-type taxonomy, and scoring anchors.
 - `references/report-template.md`: Use when writing the literature-search folder files.
+
+## Retrieval Execution
+
+Batch independent public-safe query clusters when supported, then deduplicate by DOI/arXiv identifier and normalized title before deeper reading. Verify important claims in the actual paper or primary page, not snippets. Track inspected sections and publication/version status. Do not score an unread method or treat inaccessible results as absent. An unavailable source limits that claim; continue with available primary evidence and report the relevant coverage gap.
+
+For file outputs, follow `../ccf-common/references/artifact-contracts.md`: resolve existing project paths first, keep generated working files under one stable task/artifact directory, and update canonical files in place. Load this shared policy only when files are written and it is not already in context.

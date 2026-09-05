@@ -9,7 +9,7 @@ Use this for one paragraph, one small subsection, or single-pass polish:
 - Venue or style assumption is clear enough for the local edit.
 - Paragraph or subsection role is identified.
 - Technical meaning, results, datasets, baselines, and conclusion direction are preserved.
-- Local claims are supported, softened, or flagged.
+- Local claims accurately express supplied evidence; retain justified uncertainty without reflexively softening every result.
 - No citation, result, experiment, or reviewer impact is invented.
 - Prose follows `prose-quality-guardrails.md`: no defensive framing, label-heavy symbols, number-only abstract style, third-person manuscript voice, or punctuation-driven structure.
 - Short edited prose has no avoidable em dash, throat-clearing opener, forced triad, synonym cycling, or repeated sentence template.
@@ -50,7 +50,7 @@ Use the remaining checklist sections for full sections, whole papers, score-risk
 Every major output must preserve this chain:
 
 ```text
-task -> gap -> root challenge -> insight -> method mechanism -> evidence -> limitation
+task -> gap -> root challenge -> insight -> method mechanism -> evidence -> supported implication
 ```
 
 Check:
@@ -61,7 +61,7 @@ Check:
 - The insight explains why the proposed method should work.
 - The method mechanism connects to the insight.
 - The evidence package tests the central claim.
-- The limitation bounds the claim honestly.
+- Material assumptions and observed limitations are retained at the relevant location; no generic caveat is required.
 
 ## Section Revision Checklist
 
@@ -89,7 +89,7 @@ Use with `prose-quality-guardrails.md` before calling a draft polished:
 - Throat-clearing openers are removed when the following clause can stand directly.
 - Contributions and arguments use their natural number of parts instead of forced three-item lists.
 - Canonical technical terms remain stable; near-synonyms are not rotated for surface variety.
-- No five-sentence run falls into a five-word length band because of repeated syntax.
+- Nearly uniform sentence runs have been reviewed for readability; keep justified procedural or comparative parallelism.
 - Long compound sentences are split when they mix motivation, mechanism, evidence, and conclusion.
 - Canonical terms are used consistently across abstract, introduction, method, experiments, and conclusion.
 - Strong claims avoid hype and are scoped to available evidence.
@@ -117,7 +117,7 @@ Rules:
 
 ## Reviewer-Risk Checklist
 
-Scan for:
+Use only for requested review-related revision or concrete evidence gaps, not as a source of hypothetical objections for ordinary writing. Scan applicable issues:
 
 - unclear contribution,
 - weak novelty positioning,
@@ -154,14 +154,14 @@ Do not call a paper or section ready until:
 - The target venue/custom format is clear.
 - The global story is internally consistent.
 - The prose quality checklist has no high-risk pattern remaining.
-- `scripts/check_prose_quality.py --strict` has no error or warning for a full section or paper when local execution is available; advisory terms have been reviewed in context.
+- `scripts/check_prose_quality.py` candidate locations have been reviewed in context. Correct defensive prose and punctuation violations; keep justified scientific language. A warning-free `--strict` run is not required for publication readiness.
 - Central claims have visible support.
 - Closest prior work and strongest baselines are handled.
 - Venue-specific evidence is visible in the main paper.
 - Limitations are honest and bounded.
 - Reproducibility and ethics details are present where relevant.
 - No high-severity issue remains unlabeled.
-- The final answer states passed checks, skipped checks, and unresolved risks.
+- Return the requested prose or files first. Mention only material unresolved evidence or requested validation; omit routine process reports.
 
 ## Minimal Checklist Status
 

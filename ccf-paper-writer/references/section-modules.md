@@ -1,6 +1,6 @@
 ﻿# Section Modules
 
-Use this file when drafting, rewriting, or checking a specific paper section. Always connect section writing back to `references/storyline-blueprint.md`.
+Use this file when drafting, rewriting, or checking a specific paper section. Use `storyline-blueprint.md` only when global narrative decisions are needed; reuse an established story for local edits.
 
 Use the steps below as internal writing control unless the user asks to see the plan. For direct polishing, line editing, compression, or LaTeX revision, return the revised text in the user's original format rather than exposing paragraph-role analysis.
 
@@ -16,13 +16,13 @@ For any section:
 4. Check local flow: one paragraph, one message.
 5. Check global flow: section supports the main story and venue plan.
 6. Check prose quality: stable terminology, no unsupported hype, no unnecessary repeated concepts, and varied sentence rhythm.
-7. Update claim-evidence and reviewer-risk maps.
+7. Check affected claim-evidence links. Do not create a reviewer-risk map for ordinary section writing.
 
 Show steps 1-2 only when the user requested a plan, outline, diagnosis, or explanation.
 
 ## Section-Length Guidance (ICLR/NeurIPS/ICML, ~9-page main text)
 
-These are real-world ranges based on analysis of published CCF-A papers. Use as guidelines, not strict rules — a section may be1 page longer or shorter depending on the paper type.
+These are planning heuristics for an illustrative AI/ML manuscript. Adapt them to the actual venue, paper type, and supplied content; they are not acceptance criteria.
 
 | Section | Typical Range | Notes |
 | --- | --- | --- |
@@ -35,9 +35,9 @@ These are real-world ranges based on analysis of published CCF-A papers. Use as 
 | Discussion / Analysis |0.5--1.0 page | Architecture-level analysis, failure modes, limitations. |
 | Conclusion |0.2--0.4 page | Restate insight and evidence; no new claims. |
 
-**Key rule:** The Method and Experiments sections together should fill4.0--6.5 pages. If they are shorter, the paper is empty. If they are much longer, it is likely a systems or benchmark paper. Do not let the Introduction balloon while Method stays skeletal.
+Give Method and Experiments enough space to explain the work and its evidence. Their length depends on the contribution; page occupancy alone does not establish completeness.
 
-**Underfilled check:** If the main text (before bibliography) is below7.5 pages, expand Method and Experiments first. Do not pad the Introduction or Related Work.
+For an underfilled draft, inspect Method and Experiments for actual explanatory gaps. Expand supported content and clearly planned evidence; do not pad to a fixed page count.
 
 ## Abstract
 
@@ -49,7 +49,7 @@ Recommended moves:
 2. Specific gap or technical challenge.
 3. Core insight or contribution.
 4. Method mechanism at a high level.
-5. Evidence summary with cautious claims.
+5. Decisive evidence and the interpretation it supports, with calibrated uncertainty only where needed.
 
 Checks:
 
@@ -73,7 +73,7 @@ Recommended paragraph roles:
 Citation rules:
 
 - Every prior-work claim in the introduction must have a citation. A paragraph that describes what "existing methods" do without citing any is incomplete.
-- The introduction should carry12-20 citations total. Count them before calling the section done. If below8, the paper is under-cited.
+- Cover the relevant foundations, closest approaches, and gap with verified citations. Citation count alone is not a completeness criterion.
 - Use natural citation weaving: claim first, citation second. "Large-scale pretraining on web-scale data [4,5] has become the dominant paradigm..." not "Brown et al. [4] and Chowdhery et al. [5] proposed..."
 - Do not use more than one "Author et al. [N]" as a sentence subject per paragraph. Prefer "Self-attention mechanisms [1]..." over "Vaswani et al. [1] proposed..."
 
@@ -82,9 +82,9 @@ Checks:
 - Does the core challenge appear early enough?
 - Is the root technical reason explicit?
 - Does the introduction avoid defensive or incremental framing?
-- Are prior methods used to motivate the gap rather than dumped as citations? Count the citations: if under12, expand the prior-work ladder.
+- Do cited prior methods explain the actual gap and closest alternatives? Avoid expanding literature only to meet a citation count.
 - Do contribution bullets map to Method and Experiments?
-- Would a skeptical reviewer understand why the work is not a small patch?
+- Does the reader understand the mechanism-level difference and what it enables?
 
 ## Related Work
 
@@ -98,8 +98,8 @@ Recommended structure:
 
 Citation rules:
 
-- Each topic group must cite3-8 distinct works. A group with fewer than3 citations is a placeholder, not a completed discussion.
-- The entire Related Work section should carry20-35 citations for a typical CCF-A paper. Count before calling it done.
+- Each topic group needs the works that support its argument; a narrow topic may need only one decisive source.
+- Size Related Work by relevant coverage, not a fixed citation quota.
 - Every factual claim about a research thread must be supported by specific citations, not vague references to "prior work."
 - Do not cite a paper simply because it is famous in the field. Every cited paper must be relevant to the specific point being made.
 - The closest competitor must be cited and discussed explicitly in its own sentence or paragraph. Do not bury it in a citation list.
@@ -110,7 +110,7 @@ Checks:
 - If closest work is unknown or fast-moving, use `ccf-literature-searcher` through the CCFA handoff mode rather than inventing citations.
 - Is the distinction technical, not marketing language?
 - Does Related Work prepare the reader for the Method?
-- Are citations complete for all background claims? Every topic group should cite3+ works; if any group has fewer, expand or merge groups.
+- Are factual prior-work claims supported and the closest competitor discussed explicitly?
 
 ## Method
 
@@ -134,7 +134,7 @@ Recommended structure:
 Citation rules:
 
 - Any borrowed component, architecture, or technique must cite its original source. Do not describe a well-known module as if it were original.
-- Method sections typically need5-12 citations: one for each borrowed module, one for the base architecture, one for the training objective if adapted, and one for the optimization method.
+- Cite borrowed modules, the base architecture, and adapted objectives or optimization methods where relevant; use evidence coverage rather than a citation quota.
 - When describing a novel module, cite the closest prior module it builds on or replaces. This helps reviewers understand the novelty.
 
 Style rule:
@@ -153,7 +153,7 @@ Checks:
 
 ## Experiments
 
-Goal: prove the claims reviewers care about.
+Goal: test the central scientific claims and explain the observations.
 
 Recommended structure:
 
@@ -162,12 +162,12 @@ Recommended structure:
 3. Ablation: answer why it works.
 4. Analysis: answer when it works, when it fails, and how robust it is.
 5. Qualitative or case studies when the venue expects them.
-6. Limitations or failure cases if not placed elsewhere.
+6. Material observed limitations or failure cases at the relevant location, or in a required dedicated section.
 
 Citation rules:
 
 - Every baseline, dataset, and metric must be cited. A results table without baseline citations signals incomplete work.
-- Experiments sections typically need5-10 citations. Count them: if below5, add citations for datasets, metrics, and key baselines.
+- Cite the datasets, nontrivial metrics, and baselines actually used. Do not add irrelevant citations to reach a quota.
 - When comparing against prior published results, cite both the method paper and the source of the specific numbers being compared.
 - Do not cite a baseline without having its results to compare against unless it is marked as future work.
 
@@ -215,14 +215,14 @@ Recommended moves:
 1. Restate problem and core method.
 2. State the key insight or contribution.
 3. Summarize strongest evidence.
-4. Bound limitations.
-5. Point to future work without adding new claims.
+4. Include a specific material boundary only when it changes the takeaway or is required.
+5. Include future work only for a concrete useful direction, not as a required closing ritual.
 
 Checks:
 
 - Does it match the paper's actual evidence?
 - Does it avoid introducing new technical material?
-- Does the limitation sound like scope boundary rather than hidden fatal flaw?
+- Are retained qualifications scientifically necessary, and is the final takeaway supported?
 
 ## Limitations, Ethics, Broader Impact
 
@@ -233,7 +233,7 @@ Checks:
 - Are limitations specific and bounded?
 - Are datasets, human subjects, privacy, security, misuse, bias, or environmental concerns addressed when relevant?
 - Are claims weakened where the limitation narrows validity?
-- Does the section improve reviewer trust rather than read like boilerplate?
+- Does each statement identify a concrete assumption, observation, consequence, or required disclosure?
 
 ## Small Paragraph Edit Mode
 
