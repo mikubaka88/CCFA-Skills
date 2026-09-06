@@ -37,7 +37,7 @@ Do not write rebuttal text or directly maintain the revision ledger; route revie
 
 ## Workflow
 
-1. Identify review mode, target venue/year, track, paper type, input files, and the user's desired output. For standard review, load `references/fixed-output-format.md` before composing the report; it owns the CSPaper-inspired presentation structure. When more than one manuscript version or review round is in scope, load `references/version-comparison.md` before scoring.
+1. Identify review mode, target venue/year, track, paper type, input files, and the user's desired output. Load `references/fixed-output-format.md` before composing the report; it owns detailed/brief selection and the CSPaper-inspired presentation structure. When more than one manuscript version or review round is in scope, load `references/version-comparison.md` before scoring.
 2. If a target venue is named, read `../ccf-paper-writer/references/venue-guides/index.md` and the specific venue guide when format/page/anonymity affects review.
 3. Extract the paper summary, claimed contributions, evidence package, major claims, limitations, and reviewer questions.
 4. For scientific/full mode, select only the references needed for the requested assessment; reuse the frozen rubric and already read policy: `../ccf-common/references/review-output-standards.md`, `references/review-workflow.md`, `references/universal-review-rubric.md`, `references/venue-review-styles.md`, `references/reviewer-panel.md`, `references/calibration-and-rank.md`, and `references/desk-checks.md`.
@@ -48,29 +48,11 @@ Do not write rebuttal text or directly maintain the revision ledger; route revie
 
 ## Output Contracts
 
-For standard review, follow `references/fixed-output-format.md`:
-
-```text
-Compact metadata: venue, mode, source version, reviewed materials, coverage
-1. 预审判断 / Desk Rejection Assessment
-2. 预期评审结果 / Expected Review Outcome
-   Stance, summary, strengths, anchored weaknesses, questions, synthesis, actions
-3. 关键维度评分 / Critical Reviewer Ratings
-   Applicable dimensions, overall judgment, confidence, change conditions
-```
+Follow `references/fixed-output-format.md`. Default to its detailed report, developing each applicable section with inspected evidence. Use its brief version only for an explicit brevity request or restrictive user format. A short prompt, no-score request, or narrow review scope does not select brief output. Presentation length does not change evidence standards or authorize additional review scope.
 
 Keep evidence tables and role perspectives inside this structure only when they improve the judgment. Do not emit a separate report for every audit or role. Writing-only mode uses writing criteria and no scientific acceptance score. This is a CCFA report inspired by CSPaper, not a CSPaper-generated result or a claim to its calibration.
 
-For quick review:
-
-```text
-Mode:
-Likely stance:
-Top concerns:
-Immediate fixes:
-Missing checks:
-Next owner:
-```
+For an explicitly requested brief review, use the template's five blocks: verdict, strengths, concerns, ratings/confidence, and next actions. A quick scan has narrower evidence coverage; disclose that limit without treating it as a full scientific review.
 
 For version comparison:
 

@@ -29,18 +29,18 @@ Every consequential criticism identifies the affected idea statement or assumpti
 ## Workflow
 
 1. Identify the requested judgment, concept, audience, available sources, and any explicit scope extension. Reuse conversation context; ask only for a missing decision that changes the assessment. Do not ask for experimental materials merely to start idea review.
-2. Load `references/strict-idea-review.md` for standard assessment, including qualitative judgments. Normalize problem → gap → insight → mechanism; keep experimental planning outside default intake.
+2. Load `references/strict-idea-review.md` for report selection and assessment, including qualitative judgments. Normalize problem → gap → insight → mechanism; keep experimental planning outside default intake.
 3. Ground decisive novelty claims through public-safe retrieval under `../ccf-common/references/privacy-and-evidence.md`, unless browsing is forbidden. Reuse prior verified sources and record searched, partially searched, supplied-only, or unsearched coverage. Inspect relevant primary-source content before claiming overlap.
 4. Assess distinct conceptual perspectives using `references/expert-panel.md`; combine duplicate issues under stable IDs. Experiment reviewers are optional for a requested extension. Use independent calls only if permitted and useful, and label single-agent perspectives honestly.
 5. For standard scoring, load `references/rubric.md`, `references/calibration.md`, and `../ccf-common/references/review-output-standards.md`. Use the six conceptual dimensions and assessed-weight coverage. Honor no-score requests with qualitative judgments; low confidence is not a low score.
 6. Distinguish decisive conceptual flaws from repairable gaps and unanswered questions. Compare multiple ideas under a common scope and rubric. Re-review changed assumptions and unresolved concerns without imposing new experiment criteria.
-7. Deliver the three-part report from `strict-idea-review.md`: idea scope, expected research value and concerns, then dimension ratings and development actions. Put requested optimization or experiment work in its own authorized deliverable.
+7. Deliver the detailed report from `strict-idea-review.md` by default; use its brief version only for an explicit brevity request or restrictive user format. Put requested optimization or experiment work in its own authorized deliverable.
 
 ## Output Contract
 
-For standard review, use the CSPaper-inspired structure defined in `references/strict-idea-review.md`; do not substitute a generic coaching response or manuscript acceptance report. State the conceptual verdict, prior-art delta, anchored concerns, applicable scorecard, development potential, confidence, and concrete refinements without repeating the same criticism.
+Use the CSPaper-inspired structure defined in `references/strict-idea-review.md`; do not substitute a generic coaching response or manuscript acceptance report. State the conceptual verdict, prior-art delta, anchored concerns, applicable scorecard, development potential, confidence, and concrete refinements without repeating the same criticism. A rough seed, short prompt, or no-score request does not select brief output or authorize experiment assessment.
 
-For quick judgment, give verdict, decisive basis, uncertainty, and a next conceptual clarification. No forced scores or experimental checklist. Recommendations remain `accept-to-develop`, `revise`, `pivot-with-rescue-route`, `abandon`, or `needs-literature-search`.
+For an explicitly requested brief judgment, use the template's five blocks and retain the same concept-only boundary. No forced scores or experimental checklist. Recommendations remain `accept-to-develop`, `revise`, `pivot-with-rescue-route`, `abandon`, or `needs-literature-search`.
 
 ## References
 

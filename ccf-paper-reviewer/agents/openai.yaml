@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Paper Reviewer"
   short_description: "Review manuscript evidence with a structured report."
-  default_prompt: "Use $ccf-paper-reviewer to assess this manuscript in the CSPaper-inspired three-part format, with anchored concerns, applicable ratings, confidence, and preserved version-comparison criteria."
+  default_prompt: "Use $ccf-paper-reviewer to assess this manuscript using the default detailed CSPaper-inspired report, or brief format when requested, with anchored concerns, applicable ratings, confidence, and preserved version-comparison criteria."

@@ -36,7 +36,7 @@ Run the skill's full mandatory checklist internally. Surface skipped items only 
 - a quick idea-risk note,
 - a short reviewer-risk note.
 
-Quick mode does not require the full mandatory checklist. Run the local subset only and keep the visible output short. Use a compact status only when it helps the user understand risk:
+Quick mode does not require the full mandatory checklist. Run the local subset only. Idea and manuscript reviewers select detailed/brief presentation through their report templates: narrow scope alone does not request brevity. For other skills, keep quick output short. Use a compact status only when it helps the user understand risk:
 
 ```text
 Mode: quick

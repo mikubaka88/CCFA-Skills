@@ -57,7 +57,7 @@ Do not score before writing the core strengths and weaknesses.
 
 ## Report Generation
 
-In standard mode, use the three-part structure in `fixed-output-format.md`, unless the user specifies another format. Consolidate consequential findings in one concerns table and verify their correctness, significance, and source support. Scientific findings require evidence; a question or missing input is not automatically a defect. Preserve stable concern IDs when checking a revision.
+Use the detailed structure in `fixed-output-format.md` by default, or its brief version for an explicit brevity request; an exact user format takes precedence. Consolidate consequential findings under stable concern IDs and verify their correctness, significance, and source support. Scientific findings require evidence; a question or missing input is not automatically a defect. Preserve concern IDs when checking a revision.
 
 Report location:
 

@@ -36,7 +36,7 @@ Use score movement conservatively. Prefer ranges such as `+0.5 to +1 overall` on
 
 ## Report Structure And Finding Quality
 
-Standard manuscript reports use `../../ccf-paper-reviewer/references/fixed-output-format.md`; standard concept reports use `../../ccf-idea-reviewer/references/strict-idea-review.md`. Each adapts CSPaper's three-part organization to its scope. The role blocks below are available components within that report, not extra mandatory reports.
+Manuscript reports use `../../ccf-paper-reviewer/references/fixed-output-format.md`; concept reports use `../../ccf-idea-reviewer/references/strict-idea-review.md`. Each expands CSPaper's public organization into a scope-appropriate detailed report by default, with a brief version for explicit brevity requests. The role blocks below are available components within that report, not extra mandatory reports.
 
 Give each material concern a stable ID and one complete explanation: claim/location, inspected basis, why it matters, and a change condition. Check correctness, decision relevance, and support before retaining it. Distinguish a demonstrated contradiction, missing support for an asserted result, and unavailable input. Questions are not established defects. Do not inflate severity to sound strict.
 

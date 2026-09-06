@@ -1,6 +1,6 @@
 # Manuscript Review Perspectives
 
-Use perspectives to test the conclusion against distinct evidence. For standard scientific/full review, synthesize them inside the Expected Review Outcome section of `fixed-output-format.md`; do not create one mandatory full report or numeric score per role.
+Use perspectives to test the conclusion against distinct evidence. For scientific/full review, synthesize them in the reviewer-perspectives section of the detailed report or within the brief report's findings in `fixed-output-format.md`; do not create one mandatory full report or numeric score per role.
 
 ## Evidence Lenses
 
