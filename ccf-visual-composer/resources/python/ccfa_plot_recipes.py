@@ -338,14 +338,20 @@ def grouped_bar_chart(
     theme = theme or Theme(width=940, height=560)
     palette = list(palette or PALETTES["ccfa"])
     values = [float(row[key]) for row in rows for key in series_keys]
-    lo, hi = 0.0, max(values) * 1.16 if values else 1.0
+    lo = min(0.0, min(values, default=0.0)) * 1.16
+    hi = max(0.0, max(values, default=0.0)) * 1.16
+    if lo == hi:
+        hi = 1.0
     c = Canvas(theme.width, theme.height, theme)
     c.label_block(title, subtitle, note)
     left, right, top, bottom = 82, theme.width - 42, 132, theme.height - 92
+    zero_y = _scale(0.0, lo, hi, bottom, top)
     for frac in (0, 0.25, 0.5, 0.75, 1.0):
         y = _scale(lo + (hi - lo) * frac, lo, hi, bottom, top)
         c.line(left, y, right, y, theme.grid, 0.9, 0.82)
         c.text(left - 12, y + 4, _pretty(lo + (hi - lo) * frac), 11, 500, theme.muted, "end")
+    if lo < 0 < hi:
+        c.line(left, zero_y, right, zero_y, theme.muted, 1.2)
     group_w = (right - left) / max(1, len(rows))
     bar_w = min(26, group_w * 0.68 / max(1, len(series_keys)))
     for i, row in enumerate(rows):
@@ -353,12 +359,14 @@ def grouped_bar_chart(
         c.text(gx, bottom + 28, str(row[group_key]), 12, 720, theme.ink, "middle")
         for j, key in enumerate(series_keys):
             value = float(row[key])
-            h = bottom - _scale(value, lo, hi, bottom, top)
+            value_y = _scale(value, lo, hi, bottom, top)
+            h = abs(value_y - zero_y)
             x = gx - bar_w * len(series_keys) / 2 + j * bar_w
             color = palette[j % len(palette)]
-            c.rect(x + 2, bottom - h, bar_w - 4, h, color, "none", 6, 0.92)
-            if value > hi * 0.72:
-                c.text(x + bar_w / 2, bottom - h - 8, f"{_pretty(value)}{unit}", 10, 720, theme.ink, "middle")
+            c.rect(x + 2, min(value_y, zero_y), bar_w - 4, h, color, "none", 6, 0.92)
+            if abs(value) > max(abs(lo), hi) * 0.72:
+                label_y = value_y - 8 if value > 0 else value_y + 18
+                c.text(x + bar_w / 2, label_y, f"{_pretty(value)}{unit}", 10, 720, theme.ink, "middle")
     legend_x = left
     legend_y = top - 34
     for j, key in enumerate(series_keys):
