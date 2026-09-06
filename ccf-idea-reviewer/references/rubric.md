@@ -1,110 +1,43 @@
 # Idea Review Rubric
 
-Use 1-5 scores for each dimension. Score only the problem and method idea, not manuscript prose.
+Use this rubric for concept-level assessment, with or without requested numeric scores. Judge the problem, novelty, insight, and mechanism. Experimental results, baselines, ablations, benchmark coverage, reproducibility packages, and submission completeness are outside the default scope. Their absence must not lower an idea score or trigger a request for experiments.
 
-When novelty, insight, or acceptance potential is decision-critical, apply `strict-idea-review.md` first. If closest work was not searched, cap novelty at 3 and mark confidence low unless the user supplies credible prior-art coverage.
+## Default Dimensions
 
-Score current readiness, not the user's worth or the absolute future of the direction. For rough seeds, include a separate development-potential label. A score of 2-3 often means "not ready without redesign"; it does not automatically mean "do not pursue."
+| Dimension | Weight | Question |
+| --- | ---: | --- |
+| Problem importance and specificity | 20 | Is there a concrete, consequential research problem? |
+| Novelty against closest work | 25 | What remains new after accounting for verified prior work? |
+| Conceptual insight | 20 | Is there a non-obvious explanation, formulation, or connection? |
+| Mechanism and logical soundness | 20 | Do the assumptions and proposed mechanism coherently address the problem? |
+| Elegance and component necessity | 10 | Does each component contribute to the central idea? |
+| Audience and contribution fit | 5 | Would the intended community value this contribution if realized? |
 
-## Weighted Dimensions
+Weights sum to 100. Method soundness here means conceptual coherence, not demonstrated empirical effectiveness. Distinguish a mechanism that contradicts its own assumptions from a mechanism that has simply not been tested. Conceptual testability means the claim has a discernible meaning and could in principle be wrong; it does not require designing experiments or demanding a completed proof.
 
-| Dimension | Weight |
-| --- | ---: |
-| Problem importance | 12 |
-| Novelty against likely prior work | 14 |
-| Conceptual innovation | 12 |
-| Method soundness | 14 |
-| Elegance and simplicity | 8 |
-| Feasibility under resources | 8 |
-| Experimental convincibility | 10 |
-| Venue and audience fit | 8 |
-| Timeliness and topic heat | 6 |
-| Risk-adjusted acceptance potential | 8 |
+## Scoring And Coverage
 
-Weights sum to 100. Adjust only when an official venue review form makes a dimension clearly more important, and state the adjustment.
+Standard assessment includes the six-dimension scorecard unless the user asks for no scores. Quick qualitative judgment uses the same criteria without forcing a numeric table.
 
-## Quantitative Feedback Output
+| Dimension | Weight | Score (1-5) | Basis / concern ID | Change condition |
+| --- | ---: | ---: | --- | --- |
 
-For standard idea review, output both a dimension scorecard and an aggregate score. Use:
+Use `not assessed` for a criterion whose basis cannot be inspected, and `N/A` for a criterion outside the agreed scope. Neither is zero. Calculate `weighted score = sum(score * weight) / sum(assessed weights)` and show assessed weight coverage. If no criteria can be assessed, omit the aggregate. Report overall confidence separately. Do not compare totals across ideas with materially different coverage as if they were equivalent.
 
-```text
-Weighted score (1-5) = sum(dimension score * weight) / 100
-Optional overall score (1-10) = weighted score * 2
-```
+Unsearched novelty stays unassessed or provisional when credible supplied prior-art evidence exists. Do not impose an arbitrary low novelty score merely because retrieval is unavailable. A known overlap can lower novelty; missing knowledge lowers confidence. Standard novelty judgments use `strict-idea-review.md` for grounding.
 
-Do not treat the weighted score as an acceptance probability. The score is a decision aid that must be read with fatal risks, literature-search status, and development potential.
+## Anchors
 
-Include this table:
+- **5:** A compelling concept with a specific problem, substantive differentiation, and a coherent mechanism on this dimension.
+- **4:** A strong concept with one localized, repairable gap.
+- **3:** A plausible concept with a material ambiguity or modest differentiation that needs a concrete refinement.
+- **2:** A demonstrated conceptual weakness, close-work overlap, or contradictory assumption.
+- **1:** The current formulation fails on this dimension for an identified reason.
 
-| Dimension | Weight | Score (1-5) | Confidence (1-5) | Deduction / evidence basis | Repair condition |
-| --- | ---: | ---: | ---: | --- | --- |
-| Problem importance | 12 |  |  |  |  |
-| Novelty against likely prior work | 14 |  |  |  |  |
-| Conceptual innovation | 12 |  |  |  |  |
-| Method soundness | 14 |  |  |  |  |
-| Elegance and simplicity | 8 |  |  |  |  |
-| Feasibility under resources | 8 |  |  |  |  |
-| Experimental convincibility | 10 |  |  |  |  |
-| Venue and audience fit | 8 |  |  |  |  |
-| Timeliness and topic heat | 6 |  |  |  |  |
-| Risk-adjusted acceptance potential | 8 |  |  |  |  |
+Every deduction cites the relevant idea statement, assumption, or verified source and explains what would change the judgment. Missing experimental work is not a conceptual defect.
 
-Then report:
+## Requested Extensions And Historical Comparisons
 
-```text
-Weighted final score:
-Current conference readiness:
-Development potential:
-Confidence:
-Score-change conditions:
-```
+Assess experiment design, empirical evidence, or execution resources only when the user requests that extension. Place it in a separate optional block; do not silently add its score to the conceptual total. Full experiment design belongs to `ccf-experiment-designer`; assessment of manuscript results belongs to `ccf-paper-reviewer`.
 
-Every score of 3 or below must name the exact claim, missing mechanism, closest-work risk, missing evidence, or venue criterion that caused the deduction.
-
-## Score Anchors
-
-### 5
-
-Clear CCF-A-level signal. The problem is important, the insight is non-obvious, the method has a defensible mechanism, closest-work comparison leaves a meaningful novelty delta, and the evidence package can decisively test the claim.
-
-### 4
-
-Promising. The idea has a real contribution and mostly coherent mechanism, but one material gap remains in novelty grounding, method detail, feasibility, or evidence design. The gap is repairable without changing the central idea.
-
-### 3
-
-Borderline. The idea may become publishable only after substantial refinement. The current problem-method chain leaves important doubts, the novelty delta is thin or unsearched, or the insight is more incremental than the framing suggests.
-
-### 2
-
-Weak in its current form. The idea is likely incremental, under-motivated, poorly grounded, internally inconsistent, or difficult to validate. A strict reviewer would probably reject the current version unless the problem, mechanism, or differentiation is changed. Still name the most plausible repair route if one exists.
-
-### 1
-
-Fatal for the current formulation. The problem is not important for the venue, closest work likely already covers the contribution, the method is unsound, the components conflict, or the central claim is untestable. Use `abandon` only if no credible reformulation remains.
-
-## Dimension Guidance
-
-- Problem importance: audience, stakes, bottleneck, and nontriviality. Penalize vague "important application" claims without a named bottleneck.
-- Novelty: distance from closest work; mark uncertainty separately from low novelty. Do not score above 3 when closest work was not checked and novelty is central.
-- Conceptual innovation: new insight, formulation, mechanism, benchmark, theory, or system design. Penalize pure module recombination unless the combination creates a new capability or explanation.
-- Method soundness: assumptions, mechanism, feasibility, and plausible correctness. Penalize architectures whose components optimize incompatible objectives.
-- Elegance: simplicity, necessity of components, and explanatory power.
-- Feasibility: data, compute, implementation, timeline, and expertise.
-- Experimental convincibility: ability to produce evidence that would change reviewer belief. "Run more experiments" is not enough; identify decisive baselines, ablations, datasets, proofs, systems measurements, or user studies.
-- Venue fit: match to target community, track, and contribution taste.
-- Timeliness: why now, relation to active questions, and risk of saturation.
-- Acceptance potential: score after considering fatal risks and likely reviewer disagreement.
-
-## Deduction Format
-
-For every score <= 3, include:
-
-```text
-Dimension:
-Deduction:
-Anchor: closest work / missing mechanism / missing evidence / venue criterion / internal contradiction
-Why it matters:
-Repair condition:
-Development-potential effect:
-```
+The previous ten-dimension rubric included experimental convincibility and acceptance potential. Preserve existing historical reports and their frozen rubric when comparing versions. Mark a switch to this six-dimension rubric explicitly and rescore both concepts under the same scope before reporting a delta. Do not interpret the new concept score as the old publication-readiness score.

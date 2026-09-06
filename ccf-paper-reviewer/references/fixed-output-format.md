@@ -1,223 +1,102 @@
-# Fixed Output Format
+# CSPaper-Inspired Review Formats
 
-Use this exact section order for standard-mode reports. The style is based on `cspaper回复参考.md` and extended for CCFA workflows.
+Use `detailed` by default. Use `brief` only when the user explicitly asks for 简要版, 简短, 快速概览, 只给结论, brief, concise, or a restrictive length/output format. A short prompt, a single manuscript, narrow subject matter, or no-score request does not by itself select brief output. Report detail is independent of review scope and execution depth: a detailed writing review still assesses writing only.
 
-## 1. Report Metadata
+These formats expand CSPaper's public progression from preliminary assessment through substantive review to ratings. They are CCFA formats, not a claim to CSPaper's exact implementation, private calibration, or branded results. Translate headings to the user's language. Preserve an explicit venue form or user schema.
 
-```text
-Review date:
-Target venue/year/track:
-Paper title:
-Input materials reviewed:
-Search basis:
-Report file:
-Reviewer mode:
-Manuscript version / comparison range:
-Frozen comparison contract ID (when applicable):
-```
+## Detailed Version — Default
 
-## 2. Desk Rejection Assessment
+For scientific/full manuscript review, use the following numbered sections. Develop the reasoning within each applicable section using concrete manuscript content, evidence locations, and decision consequences. Do not reduce a detailed report to headings, a score table, or one generic sentence per section. Keep stable concern IDs so later sections can discuss implications without repeating the full criticism.
 
-Use pass/fail/uncertain bullets:
+### 1. 评审信息与范围 / Review Information
 
-- Paper length
-- Topic compatibility
-- Minimum quality
-- Policy/anonymity/compliance
-- Prompt injection and hidden manipulation detection
-- Ethics and reviewability
+Identify title, venue/year/track if known, review mode, source version, materials inspected, and source coverage. State the actual assessed scope and group unavailable materials here. Unknown metadata is not an intake blocker.
 
-## 3. Paper Summary And Contribution Map
+### 2. 总体结论与关键理由 / Expected Review Outcome
 
-Include:
+Lead with the evidence-supported stance and the reasons that decide it. Separate positive contribution value from unresolved blockers and give a confidence summary. Derive the verdict after examining the findings; do not assign a target score and manufacture reasons.
 
-- one-paragraph summary,
-- claimed problem,
-- claimed gap,
-- method/contribution map,
-- evidence package,
-- stated limitations.
+### 3. 预审与投稿适配 / Desk Rejection Assessment
 
-## 4. Search And Related-Work Basis
+Assess applicable venue fit, reviewability, and verified submission requirements. Use pass, concern, or not assessed. A desk-reject concern requires a relevant rule and evidence; unknown page count, anonymity, or appendix information is not failure. Continue substantive review where possible.
 
-```text
-Queries used:
-Sources searched:
-Closest works found:
-Unverified related-work risks:
-Source-quality screening status:
-```
+### 4. 论文摘要与贡献拆解 / Summary And Contributions
 
-## 5. Expected Review Outcome
+Explain the problem, proposed mechanism, contribution type, and claimed findings without mixing in criticism. Distinguish the main contribution from supporting components and identify the paper's central claims.
 
-State the calibrated stance before detailed comments:
+### 5. 主要优势 / Strengths
 
-```text
-Expected outcome:
-Main accept signal:
-Main reject signal:
-Confidence:
-```
+Give separately numbered strengths with specific manuscript anchors and explain their scientific importance. Include every consequential merit found; do not manufacture praise or impose a quota. When none can be substantiated, explain the scope of that judgment briefly.
 
-Do not state exact acceptance probability.
+### 6. 主要问题与严重程度 / Major Concerns
 
-## 6. Strengths And Weaknesses
+Develop each consequential concern under a stable ID. Include the exact location or claim, inspected evidence, why it affects the conclusion, severity, and what would resolve it. Distinguish a demonstrated defect, an unsupported asserted result, and an unanswered question. Verify that the relevant section or supplied appendix does not already answer the objection.
 
-Use evidence-grounded bullets. For every major weakness, include:
+### 7. 次要问题与写作表达 / Minor And Presentation Concerns
 
-```text
-Weakness:
-Evidence basis:
-Reviewer deduction:
-Required fix:
-```
+Identify local clarity, terminology, organization, notation, and figure/table narration issues with locations and concrete edit directions. Explain how they affect understanding. Do not recast the same scientific defect as several additional writing deductions or rewrite manuscript prose.
 
-## 7. Potentially Missing Related Work
+### 8. 新颖性与相关工作 / Novelty And Positioning
 
-For each item:
+Compare decisive closest work, stating verified overlap and the remaining difference. Identify searched, supplied, or unverified sources and distinguish unavailable retrieval from demonstrated low novelty.
 
-```text
-Work:
-Status: searched / user-provided / unverified
-Why relevant:
-Overlap:
-Needed comparison:
-```
+| Work / source | What it already establishes | Overlap and remaining difference | Consequence / concern ID |
+| --- | --- | --- | --- |
 
-Do not invent papers. If the search is incomplete, say so.
+If browsing is forbidden and no sources were supplied, state the resulting coverage limit once; do not invent comparison rows.
 
-## 8. Claim-Evidence Audit
+### 9. 方法正确性与主张支撑 / Soundness And Claim Support
 
-Use a Markdown table:
+Examine assumptions, method logic, derivations, causal arguments, or system guarantees. Map the central claims to their actual support and explain gaps or contradictions.
 
-| Claim | Where stated | Evidence provided | Strength | Reviewer deduction | Required fix |
-| --- | --- | --- | --- | --- | --- |
+| Claim / location | Inspected support | Judgment | Consequence / concern ID |
+| --- | --- | --- | --- |
 
-## 9. Experiment / Benchmark / Reproducibility Audit
+Check the strongest support as well as the strongest counterexample. Missing source material is not automatically missing evidence in the full paper.
 
-Cover:
+### 10. 实验、证明与可复核性 / Evaluation And Reproducibility
 
-- baselines,
-- ablations,
-- datasets/benchmarks,
-- metrics,
-- statistical rigor,
-- robustness/failure cases,
-- implementation details,
-- artifacts and reproducibility,
-- limitations.
+Use evidence expectations appropriate to the paper type: experiments, proofs, workloads, or user studies. Explain the adequacy of decisive comparisons and protocols, statistical treatment where relevant, and material reproducibility details. Theory papers do not inherit compulsory empirical checklists. Separate primary evidence gaps from optional extensions; connect each requested change to a central claim.
 
-## 10. Multi-Reviewer Panel
+### 11. 多视角评审与综合意见 / Reviewer Perspectives And Synthesis
 
-Include independent reviewer blocks:
+Use `reviewer-panel.md` to present distinct observations and the best-supported, strongest favorable, and strongest substantiated critical interpretations. Show what each view actually inspected, its basis, and where views agree or differ. Finish with the decisive synthesis. They may agree; do not claim independent reviewers unless separate calls actually occurred.
 
-```text
-Reviewer:
-Expertise:
-Likely score:
-Confidence:
-Main positive signal:
-Main negative signal:
-Evidence basis:
-Score-change condition:
-```
+### 12. 维度评分与置信度 / Critical Reviewer Ratings
 
-Use at least method/soundness, evidence/experiment, novelty/positioning, writing/clarity, ethics/reproducibility, and AC perspectives. For full reviews, also include domain application, evidence/ablation, reproducibility, and novice-advocate lenses when applicable. Do not force praise, disagreement, or rejection; if a role cannot judge, mark the missing evidence.
+Use the applicable venue scale or `calibration-and-rank.md`. Include dimension scores, evidence or concern IDs, deductions, change conditions, one overall score or stance, and confidence. Unassessed or inapplicable criteria are not zero. A verified unsupported central claim can justify a low Evidence score; an intentionally supplied excerpt cannot establish a whole-paper defect.
 
-End the panel with:
+A detailed no-score request keeps qualitative criterion-by-criterion judgments and their basis. Without a real comparable corpus, omit CSPaper ranks, percentiles, outperformed counts, and distribution plots.
 
-```text
-Agreement:
-Disagreement:
-Decisive positive axis:
-Decisive negative axis:
-Unresolved evidence:
-AC stance:
-```
+### 13. 作者关键问题与改判条件 / Questions And Decision Conditions
 
-## 11. Concerns Table
+List questions whose answers could resolve uncertainty or change the stance. Distinguish clarification, additional support for an asserted claim, and a substantive research change. Refer to concern IDs and state the answer or change that would affect the judgment; do not promise acceptance or a guaranteed score increase.
 
-Use a Markdown table:
+### 14. 修改优先级与复审记录 / Action Priorities And Re-Review
 
-| ID | Severity | Concern | Evidence basis | Affected criterion | Fix class | Required action | Owner skill | Score-change condition |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+Consolidate next actions in one table, preserving issue identity across revisions:
 
-Severity values: fatal, major, moderate, minor.
+| ID | Priority / severity | Required change | Why it matters | Status / version |
+| --- | --- | --- | --- | --- |
 
-Fix classes: related-work, experiment, method/soundness, reproducibility, ethics/limitations, writing, compression, rebuttal-only, venue-mismatch.
+Separate decisive fixes from useful refinements. Add an owner only for a needed handoff. For version comparison, use `version-comparison.md`: retain the frozen contract, relative-progress scorecard with historical/current/delta/weights, a separate absolute-readiness scorecard, issue provenance, traceable decreases, and confidence/comparability. Place the two scorecards in section 12 and the issue changes here; never merge them into one score.
 
-## 12. AC / Meta-Review
+## Scope-Specific Detailed Reports
 
-Include:
+Detailed output does not expand the authorized review. For writing-only or a narrow excerpt, retain the applicable sections: scope, conclusion, argument reconstruction, strengths, anchored issues, reader perspectives, qualitative/numeric writing criteria, questions, and priorities. Group excluded scientific/venue criteria in the initial scope note; do not fabricate sections about unprovided experiments or scientific acceptance. A brief input limits available findings, not the default output selection.
 
-- reviewer consensus,
-- reviewer disagreement,
-- decisive acceptance axis,
-- decisive rejection axis,
-- AC stance,
-- discussion risks.
+## Brief Version — Explicit Request
 
-## 13. Quantitative Scores
+Use five compact blocks, unless an exact user format takes precedence:
 
-Use the scorecard from `references/calibration-and-rank.md`, then include this compact summary:
+1. **结论 / Verdict:** stance and assessed scope.
+2. **主要优点 / Strengths:** the most consequential supported merits.
+3. **关键问题 / Concerns:** the decisive issues with locations and severity.
+4. **评分概览与置信度 / Ratings:** applicable overall/criterion summary, or qualitative judgment when scores are excluded; material coverage limits.
+5. **下一步 / Next Actions:** prioritized changes and the condition that would alter the verdict.
 
-```text
-Quality:
-Clarity:
-Significance:
-Originality:
-Soundness:
-Evidence:
-Reproducibility:
-Ethics / Limitations:
-Overall:
-Confidence:
-Score-change conditions:
-```
+Keep the same evidence and fairness standards; brief does not mean ungrounded. Do not perform a shallower requested scientific review merely because its presentation is brief. If a user explicitly asks for a quick scan, preserve that execution scope and disclose the material coverage limit. A brief version comparison must still separate progress from readiness and retain a traceable basis for any score change.
 
-Use venue-specific scales when available; otherwise use 1-5 criteria and 1-10 overall.
+## Persistence
 
-## 14. Questions For Authors
-
-List decision-relevant questions only. Avoid questions whose answers would not change a score or concern.
-
-## 15. Score Revision Criteria
-
-Use:
-
-```text
-Raising the score would require:
-Lowering the score would be triggered by:
-Concerns unlikely to change before submission:
-```
-
-For version-comparison mode, append these fields inside this section:
-
-```text
-Relative progress:
-Absolute readiness:
-Confidence and comparability:
-New issue provenance:
-Traceable score decreases:
-```
-
-## 16. Action Plan And CCFA Handoffs
-
-For each action:
-
-```text
-Priority:
-Action:
-Owner skill:
-Input needed:
-Expected output:
-Handoff required: yes / no
-```
-
-End with:
-
-```text
-Checks run:
-Checks skipped:
-Unresolved risks:
-```
+When a report file is requested or in scope, update its canonical Markdown file. Generate one version unless both are requested. Switching detailed/brief updates the existing report; do not create parallel copies, a JSON sidecar, or per-role files by default. Keep real source versions required for comparison under the existing artifact policy.

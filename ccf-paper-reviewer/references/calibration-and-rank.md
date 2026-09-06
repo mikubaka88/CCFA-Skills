@@ -48,13 +48,7 @@ Anchors:
 
 ## CSPaper-Style Relative Interpretation
 
-When the user asks for rank, review rank, or cohort-relative quality:
-
-- State that the interpretation is approximate and not an official cutoff.
-- Use bands: bottom, below average, average/borderline, above average, strong, top-tier.
-- Explain what evidence would move the paper to the next band.
-- Do not claim exact acceptance probability.
-- Do not claim exact percentile unless the user provides a calibrated comparison set.
+When the user asks for rank or cohort-relative quality, require an inspectable comparable set, common rubric, and declared cohort. Report only the rank supported by those inputs. Without them, use the absolute stance anchors above and omit relative bands, percentiles, outperformed counts, and distribution plots. CSPaper's public rank method depends on its own cohort and calibration; a CCFA score is not interchangeable with it.
 
 ## Confidence
 
@@ -85,7 +79,7 @@ Before finalizing scores:
 
 ## Mandatory Scorecard Output
 
-After every review, output the following structured scorecard. Do not skip dimensions. Keep prose concise unless the user requests a detailed rationale.
+For standard scientific/full review, put this scorecard inside the Critical Reviewer Ratings section of `fixed-output-format.md`. Use an explicit venue form when available. For writing-only or narrow assessment, use only its applicable criteria; honor no-score requests with qualitative judgments. If the available material cannot support an overall numerical judgment, give an evidence-limited stance and coverage instead of filling the Overall field with a guessed number. A verified central contradiction can support a negative stance even when other dimensions remain unassessed.
 
 ```markdown
 ## Scorecard
@@ -108,10 +102,10 @@ After every review, output the following structured scorecard. Do not skip dimen
 
 ## Scoring Rules
 
-1. All dimensions must be scored. Do not skip dimensions because they are inconvenient. If a dimension genuinely does not apply, score it by the closest applicable standard and state the limitation.
+1. Assess each applicable dimension. Use `N/A` for an inapplicable criterion and `not assessed` when necessary material was not supplied; neither is zero. Do not invent a substitute score for a criterion outside scope. Missing support for an actual manuscript claim can justify a low Evidence score; unavailable excerpts do not establish a whole-paper defect.
 2. Each score must be backed by at least one verifiable manuscript reference. Do not write "The paper is not well organized." Write "Section 3.1 (para 2) introduces a method without naming or motivating the insight and fails to separate the differential contribution from the components. 3/5 clarity."
 3. Evidence means manuscript evidence, not promise. 1/5 evidence means the cited evidence is either not present or not persuasive. 5/5 means evidence is conclusive and includes ablations, robustness, and failure analysis.
-4. Confidence is not a dimension score. Confidence is an estimate of how well evidence can be assessed without guesswork. Use 1/5 when there are almost no verifiable evidence citations or when an appendix/code is missing. Use 5/5 when all evidence is verifiable against the manuscript.
+4. Confidence reflects how well the relevant claims could be checked and familiarity with the closest work. Identify which decisive judgment an unavailable appendix or code prevents; its absence alone does not force confidence to 1/5. Separate confidence from quality and scientific stance.
 5. Never round scores. If the paper is between 6 and 7, pick one and explain why the tie-breaker is decisive.
 
 ## Score-Change Conditions

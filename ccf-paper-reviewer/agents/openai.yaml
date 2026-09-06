@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Paper Reviewer"
-  short_description: "Review manuscripts scientifically and stylistically: scores, reviewer panel, AC/meta-review, paragraph logic, prose anti-patterns, and format risks."
-  default_prompt: "Use $ccf-paper-reviewer for the requested manuscript assessment without rewriting. Ground findings in exact evidence; preserve frozen comparison criteria and separate progress, readiness, and confidence."
+  short_description: "Review manuscript evidence with a structured report."
+  default_prompt: "Use $ccf-paper-reviewer to assess this manuscript in the CSPaper-inspired three-part format, with anchored concerns, applicable ratings, confidence, and preserved version-comparison criteria."

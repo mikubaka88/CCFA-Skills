@@ -23,11 +23,11 @@ Score each dimension on 1-5 when enough text is available.
 Weights sum to 100. Compute:
 
 ```text
-Writing score (1-5) = sum(dimension score * weight) / 100
+Writing score (1-5) = sum(assessed dimension score * weight) / sum(assessed weights)
 Writing risk band = low / moderate / high / severe
 ```
 
-Do not present the writing score as an acceptance probability. It measures communication risk and reviewer readability, not scientific validity.
+Mark inapplicable criteria `N/A` and unavailable text `not assessed`; neither is zero. Show assessed weight coverage for a partial score and omit the aggregate if no dimension can be assessed. Preserve frozen weights for an existing version comparison. Do not present the writing score as an acceptance probability. It measures communication risk and reviewer readability, not scientific validity.
 
 ## Quantitative Writing Feedback
 
@@ -100,7 +100,7 @@ Apply `../../../ccf-paper-writer/references/prose-quality-guardrails.md`. Flag t
 
 ## Writing Review Panel
 
-Use these independent roles for standard writing review:
+Use the relevant perspectives below within the standard report. Call them independent only when separate reviewer calls were actually performed:
 
 - **Storyline reviewer:** checks problem -> gap -> root challenge -> insight -> evidence progression.
 - **Skeptical reviewer-reader:** checks where the prose makes the work look weaker, more incremental, or less supported than it is.

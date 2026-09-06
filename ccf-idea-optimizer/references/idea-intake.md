@@ -86,4 +86,4 @@ For several drafts, normalize all ideas first, then compare optimization routes.
 4. Best CCF-A venue fit.
 5. Lowest serious-risk count after one realistic iteration.
 
-Do not produce numeric scores, investment recommendations, winner labels, or strict rankings here. Prefer "best development route" and "backup route" over "winner/loser" language. If the user explicitly asks to score, rank, select, or strictly review ideas, route to `ccf-idea-reviewer`.
+Do not produce numeric scores, investment recommendations, winner labels, or strict rankings here. Prefer "best development route" and "backup route" over "winner/loser" language. If the user asks to judge, score, rank, select, or review ideas, including “靠谱吗”, “值得做吗”, or “创新够不够” without numeric scores, route that assessment to `ccf-idea-reviewer`.

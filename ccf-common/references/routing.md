@@ -8,6 +8,8 @@ Choose exactly one primary owner for each user-requested deliverable. A skill's 
 
 Resolve common collisions by the requested deliverable:
 
+- Judge a research concept (“思路审核”, “靠谱吗”, “值得做吗”, “创新够不够”, or mechanism logic) -> `ccf-idea-reviewer`, without requiring scores. Judge manuscript evidence, completeness, writing, or revision readiness -> `ccf-paper-reviewer`. A full PDF can still be input to concept-only review. Idea review excludes experiment assessment by default; manuscript scientific review evaluates the evidence supporting its claims. Develop an idea -> `ccf-idea-optimizer`. A combined request has each deliverable handled by its owner.
+
 - Revised, polished, compressed, or newly drafted prose -> `ccf-paper-writer`; assessment, scoring, issue diagnosis, or version comparison without rewriting -> `ccf-paper-reviewer`. If the request says full review, scientific review, scoring, assessment-only, or no rewrite, choose reviewer.
 - External source discovery -> `ccf-literature-searcher`; end-to-end manuscript assessment remains `ccf-paper-reviewer`, which may request search only when current evidence is actually needed. Supplied-result evidence schemas and result-table structure belong to `ccf-experiment-designer`, not search.
 - Datasets, baselines, metrics, ablations, evidence schemas, and what a result table should contain -> `ccf-experiment-designer`; plotting, styling, layout, rendering, result-table color/readability improvement, or editable reconstruction from supplied content/values -> `ccf-visual-composer`.
@@ -27,7 +29,7 @@ The current runtime surface contains 17 installable `ccf-*` skills plus the LaTe
 | Create project folders, copy/select templates, initialize `ccfa.yaml`. | `ccf-project-scaffolder` | scaffold | Does not create research content. |
 | Plan workflow, decompose tasks, coordinate stages/gates/handoffs. | `ccf-pipeline-orchestrator` | planning, status, gate | Does not perform downstream research work. |
 | Explore, rescue, or turn a rough direction into a problem-gap-insight-method-evidence plan. | `ccf-idea-optimizer` | exploratory idea shaping, rescue routes | Does not rank multiple ideas as the main task. |
-| Score, compare, rank, and triage early ideas when the user explicitly asks for judgment. | `ccf-idea-reviewer` | idea scoring, stage-aware triage | Does not brainstorm directions or optimize a single idea as the main task. |
+| Assess research value, novelty, insight, and mechanism, including natural qualitative judgments without scores. | `ccf-idea-reviewer` | concept assessment, idea scoring/ranking, stage-aware triage | Experiments are outside default scope; development and manuscript evidence review have separate owners. |
 | Monitor recent papers, arXiv/OpenReview/venue feeds, labs, competitors, and recurring novelty threats. | `ccf-literature-monitor` | arxiv-watch, venue-watch, novelty-check, trend-scouting, competitor-tracking | Does not replace deep related-work search, citation audit, or final idea scoring. |
 | Search literature, prior art, datasets, benchmarks, citation evidence, and opportunity gaps. | `ccf-literature-searcher` | search, screening, opportunity map | Does not audit only already cited papers or act as a final idea kill gate. |
 | Design experiments and real-result tables/figures. | `ccf-experiment-designer` | experiment design, result templates, result figures/tables | Does not invent results. |
@@ -96,7 +98,10 @@ For manuscript writing from only an idea, `ccf-paper-writer` checks the venue gu
 | 去掉防御性写作 / 不要把 warning 注入论文 / 精简重复 smoke / 论文只用确认的完整方法 | `ccf-humanization` |
 | 先帮我把论文项目流程和下一步拆清楚 | `ccf-pipeline-orchestrator` |
 | 优化一个 NeurIPS idea / 找几个可做方向 / 这个方向还能怎么救 | `ccf-idea-optimizer` |
-| 给三个 idea 评分排名 / 明确让我严格取舍 | `ccf-idea-reviewer` |
+| 给三个 idea 评分排名 / 这个思路靠谱吗 / 值得做吗 / 创新够不够 | `ccf-idea-reviewer` |
+| 这份完整 PDF 只审核心思路，不看实验 | `ccf-idea-reviewer` |
+| 想法还很粗糙，先判断逻辑是否成立，不用打分 | `ccf-idea-reviewer` |
+| 先判断思路是否值得做，再帮我完善 | `ccf-idea-reviewer`, then `ccf-idea-optimizer` |
 | 监控竞品 / 追踪新论文 / 最近有没有类似 idea | `ccf-literature-monitor` |
 | 搜索 related work、benchmark 和还有哪些 open gap | `ccf-literature-searcher` |
 | 设计对比实验、消融和结果表 | `ccf-experiment-designer` |
@@ -107,7 +112,7 @@ For manuscript writing from only an idea, `ccf-paper-writer` checks the venue gu
 | 把这篇 PDF 做成写作范例 / 添加 exemplar | `ccf-paper-to-exemplar` |
 | 润色 introduction 或压缩到页数限制 | `ccf-paper-writer` |
 | 把论文做成 slides 和 Q&A | `ccf-paper-writer` |
-| 完整审稿、逐段写作评审或 LaTeX 表达检查 | `ccf-paper-reviewer` |
+| 完整审稿 / 稿件有什么硬伤 / 结论站得住吗 / 逐段写作评审 | `ccf-paper-reviewer` |
 | 对比论文新旧版本、检查复审分数漂移或 moving-target review | `ccf-paper-reviewer` |
 | 检查 claim、数字、引用是否一致且有支撑 | `ccf-integrity-auditor` |
 | NeurIPS page limit / template / anonymity / artifact checklist | `ccf-submission-checker` |

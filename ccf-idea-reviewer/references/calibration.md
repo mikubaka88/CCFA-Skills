@@ -1,89 +1,36 @@
-# Calibration
+# Idea Calibration
 
-Use this file after scoring dimensions.
-
-## Weighted Score
-
-Compute:
-
-```text
-weighted_score = sum(score_i * weight_i) / 100
-```
-
-Report the result on a 1-5 scale and optionally convert to a 100-point table for readability.
+Use after the concept assessment in `rubric.md`. Keep concept quality, development potential, and confidence separate. An idea recommendation concerns further research, not conference acceptance or submission readiness.
 
 ## Recommendation Bands
 
-- 4.3-5.0: `accept-to-develop`. Develop aggressively only after closest-work comparison and evidence planning support the central claim.
-- 3.7-4.2: `revise`. Promising, but one or two named score blockers must be fixed.
-- 3.0-3.6: `pivot-with-rescue-route`. Keep the best ingredient but change problem, method, evidence, or venue.
-- 1.0-2.9: `high-risk reformulate` by default; use `abandon` only if no testable claim and no plausible rescue route remain.
-- Any score with high novelty uncertainty: `needs-literature-search` if novelty is decision-critical.
+For an adequately covered weighted 1-5 concept score:
 
-## Fatal Gates
+- `>= 4.3`: `accept-to-develop`; the concept merits development.
+- `>= 3.7 and < 4.3`: `revise`; resolve the identified conceptual gap.
+- `>= 3.0 and < 3.7`: `pivot-with-rescue-route`; retain the useful ingredient and change the weak formulation or mechanism.
+- `< 3.0`: consider a concrete reformulation; use `abandon` only if no meaningful central claim or plausible rescue remains.
 
-Apply these after the weighted score:
+Bands are a diagnostic default. An evidenced decisive flaw can override the average, with its concern ID and reason. Missing experiments, results, benchmarks, or an implementation are not override conditions.
 
-- Novelty <= 2 with high confidence: cap recommendation at `pivot-with-rescue-route`.
-- Novelty unknown and no closest-work search: cap recommendation at `needs-literature-search` unless the user asked for quick mode only.
-- Method soundness <= 2: cap recommendation at `pivot-with-rescue-route`.
-- Experimental convincibility <= 2 and no alternative proof/study/system evidence: cap at `pivot-with-rescue-route`.
-- Venue fit <= 2: recommend venue switch or pivot.
-- Feasibility <= 2 under fixed deadline: cap at `pivot-with-rescue-route`; use `abandon` only if constraints make every rescue route infeasible.
-- No identifiable insight beyond applying known modules: cap recommendation at `pivot-with-rescue-route`.
-- Internal mechanism conflict: cap recommendation at `pivot-with-rescue-route` until resolved.
+When novelty is decisive and insufficiently grounded, use `needs-literature-search` as the unresolved decision rather than treating the idea as rejected. A partial aggregate may describe assessed dimensions but cannot justify a definitive cross-idea ranking.
 
-## Confidence Labels
+## Decision Conditions
 
-Use:
+- Verified prior work covers the same problem and mechanism: identify the remaining difference; pivot if no substantive difference remains.
+- Contradictory assumptions or a mechanism that cannot produce the claimed effect even in principle: name the contradiction and the smallest repair.
+- A vague claim: seek the missing definition or relation; do not substitute an experiment checklist.
+- Audience mismatch: separate contribution value from the choice of venue.
+- Explicit fixed resource constraints: assess feasibility in the requested extension, keeping it separate from intrinsic concept quality.
 
-- High: close work, venue fit, and evidence feasibility are well grounded.
-- Medium: most inputs are available but literature or resources remain partially uncertain.
-- Low: idea is vague, venue is unknown, or closest prior work was not checked.
+## Development Potential And Confidence
 
-Do not lower the idea score merely because confidence is low. Lower confidence separately and recommend the next check.
+Development potential is high when a specific conceptual repair preserves the central problem, medium when the best ingredient survives a substantial reframing, and low when little remains after considering the strongest rescue route. State the decisive reason.
 
-## Development Potential
+Confidence reflects inspected prior work and how well the supplied concept specifies its assumptions and mechanism. It is not a second quality score. Do not lower a concept score solely because experiments have not been performed or information is unavailable.
 
-Report development potential separately from the weighted score:
+## Multiple Ideas And Re-Review
 
-- High: a clear rescue route could make the idea competitive without changing the core problem.
-- Medium: the best ingredient is useful, but the problem, mechanism, venue, or evidence path must change.
-- Low: only a narrow fragment is reusable, or the user should switch to a different direction after one final check.
+Normalize candidates before comparing them. Use the same dimensions, source standard, and experimental scope. Rank from substantiated differences, then identify the preferred route and any consequential unresolved distinction. Do not force a winner from incomparable coverage.
 
-Do not use low development potential as a substitute for evidence. Name the exact condition that would make the direction worth another iteration or worth stopping.
-
-## Fixability Table
-
-```text
-Issue:
-Affected dimension:
-Severity: high / medium / low
-Fix class:
-Can fix before writing? yes / partly / no
-Required evidence or design change:
-Risk-reduction condition:
-Development-potential impact:
-Owner skill: ccf-literature-searcher / ccf-idea-optimizer / ccf-experiment-designer / ccf-paper-writer / ccf-paper-reviewer
-```
-
-## Multi-Idea Tournament
-
-For multiple drafts:
-
-1. Normalize every idea first.
-2. Score independently before comparing.
-3. Apply fatal gates.
-4. Prefer the idea with the strongest fixable path, not just highest average.
-5. Keep one backup idea if it has lower novelty risk or better feasibility.
-6. If all ideas are weak, still return the best salvageable ingredient and one next search/design test before recommending the user stop.
-
-## Fairness Rules
-
-- Do not reward hype without mechanism or evidence.
-- Do not punish niche ideas if the target venue values depth and rigor.
-- Separate "novelty unknown" from "low novelty".
-- Do not require experiments for theory ideas, proofs for empirical ideas, or user studies for non-HCI ideas.
-- Penalize unsupported acceptance claims, not ambitious but testable ideas.
-- Do not hide a reject-level problem under "future work".
-- Do not say "worth pursuing" without naming the exact condition under which it becomes worth pursuing.
+On revision, preserve concern IDs and mark resolved, partly resolved, unresolved, or newly discovered. Recheck changed assumptions and unresolved conceptual issues; do not introduce experimental criteria halfway through a concept comparison. Retain the previous rubric for an existing comparison contract or explicitly establish a new common baseline.

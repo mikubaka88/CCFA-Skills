@@ -1,6 +1,6 @@
 ---
 name: ccf-paper-reviewer
-description: "Assess CCF manuscripts without rewriting: scientific/writing review, scoring, readiness, and version comparison. Use for 完整审稿, 不要改写, 论文评分, 写作评审, and 版本对比. Requested manuscript rewrites belong to ccf-paper-writer; rebuttal and visual redesign have separate owners."
+description: "Review manuscript claims, evidence, and writing without rewriting. Use for 文章审核, 审稿, 稿件有什么硬伤, 结论站得住吗, 投稿成熟度, writing review, and version comparison. Return a CSPaper-inspired structured review; scores need not be explicitly requested. Concept-only judgment belongs to ccf-idea-reviewer even with a full PDF; requested prose edits belong to ccf-paper-writer."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -16,7 +16,7 @@ metadata:
 
 **CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode`, `../ccf-common/references/handoff-modes.md`, and `../ccf-common/references/task-modes.md`.
 
-Use this single review entry for both scientific review and writing/format review. Select a review mode instead of routing to a separate writing-review skill:
+Select this owner when the requested judgment concerns manuscript evidence, scientific completeness, or presentation; a complete PDF alone does not override a concept-only request. Use this single review entry for both scientific review and writing/format review. Select a review mode instead of routing to a separate writing-review skill:
 
 - `scientific`: novelty, soundness, evidence, experiments, related work, reproducibility, ethics, scores, reviewer panel, and AC/meta-review.
 - `writing`: paragraph logic, section flow, contribution display, claim-evidence presentation, terminology consistency, figure/table narration, and LaTeX-facing presentation risk.
@@ -37,36 +37,29 @@ Do not write rebuttal text or directly maintain the revision ledger; route revie
 
 ## Workflow
 
-1. Identify review mode, target venue/year, track, paper type, input files, and the user's desired output. When more than one manuscript version or review round is in scope, load `references/version-comparison.md` before scoring.
+1. Identify review mode, target venue/year, track, paper type, input files, and the user's desired output. For standard review, load `references/fixed-output-format.md` before composing the report; it owns the CSPaper-inspired presentation structure. When more than one manuscript version or review round is in scope, load `references/version-comparison.md` before scoring.
 2. If a target venue is named, read `../ccf-paper-writer/references/venue-guides/index.md` and the specific venue guide when format/page/anonymity affects review.
 3. Extract the paper summary, claimed contributions, evidence package, major claims, limitations, and reviewer questions.
 4. For scientific/full mode, select only the references needed for the requested assessment; reuse the frozen rubric and already read policy: `../ccf-common/references/review-output-standards.md`, `references/review-workflow.md`, `references/universal-review-rubric.md`, `references/venue-review-styles.md`, `references/reviewer-panel.md`, `references/calibration-and-rank.md`, and `references/desk-checks.md`.
 5. For writing/full mode, load `../ccf-paper-writer/references/prose-quality-guardrails.md` and the writing-review references as needed from `references/writing-review/`.
 6. Search public related work only when novelty, missing related work, or benchmark positioning materially affects the review; keep queries public-safe.
-7. Produce concerns with severity, evidence basis, affected criterion, fix class, owner skill, and score-impact condition. Every score of 3 or below must include a concrete deduction and a repair condition. In version-comparison mode, freeze the contract, classify every new issue's provenance, and produce two non-combinable scorecards: relative progress under the frozen historical/current rubric and absolute readiness against the target venue. Report confidence separately.
+7. Assign stable concern IDs with severity, exact location, evidence basis, affected criterion, and judgment-change condition. Verify each major finding for correctness, decision relevance, and sufficient support; inspect the cited section and relevant appendix before calling something missing. Separate a demonstrated flaw from material not supplied. Add a fix owner only when an actual handoff is needed. Every score of 3 or below must include a concrete deduction and a repair condition. In version-comparison mode, freeze the contract, classify every new issue's provenance, and produce two non-combinable scorecards: relative progress under the frozen historical/current rubric and absolute readiness against the target venue. Report confidence separately.
 8. For standard scientific/full mode, write or overwrite the canonical Markdown report in `ccfa-review-reports/` when a local paper path exists and file output is within scope; otherwise return the report in the current context. Honor explicit no-new-files and exact-output requests. Follow `../ccf-common/references/artifact-contracts.md`; do not make a dated report per iteration.
 
 ## Output Contracts
 
-For standard review:
+For standard review, follow `references/fixed-output-format.md`:
 
 ```text
-Mode:
-Venue and assumptions:
-Paper summary:
-Likely stance and calibrated score:
-Quantitative scorecard:
-Top strengths:
-Major/fatal concerns:
-Writing and presentation concerns:
-Format/venue concerns:
-Multi-reviewer panel:
-Concern-to-action table:
-Recommended next CCFA owner:
-Checks run:
-Unresolved or unverified:
-Output self-check:
+Compact metadata: venue, mode, source version, reviewed materials, coverage
+1. 预审判断 / Desk Rejection Assessment
+2. 预期评审结果 / Expected Review Outcome
+   Stance, summary, strengths, anchored weaknesses, questions, synthesis, actions
+3. 关键维度评分 / Critical Reviewer Ratings
+   Applicable dimensions, overall judgment, confidence, change conditions
 ```
+
+Keep evidence tables and role perspectives inside this structure only when they improve the judgment. Do not emit a separate report for every audit or role. Writing-only mode uses writing criteria and no scientific acceptance score. This is a CCFA report inspired by CSPaper, not a CSPaper-generated result or a claim to its calibration.
 
 For quick review:
 

@@ -98,7 +98,7 @@ npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes -
 | 家族协调 | `ccf-common` | 理解请求，协调分工，统一证据与隐私规则 |
 | 项目推进 | `ccf-pipeline-orchestrator` | 梳理目标、阶段、关键节点与下一步 |
 | 项目起步 | `ccf-project-scaffolder` | 准备论文目录、模板与研究材料空间 |
-| 选题判断 | `ccf-idea-reviewer` | 比较多个 idea，评估新颖性、风险与 venue fit |
+| 选题判断 | `ccf-idea-reviewer` | 判断思路价值、创新与机制逻辑，默认不审核实验 |
 | 选题发展 | `ccf-idea-optimizer` | 把模糊方向发展成问题、洞察、方法与证据路径 |
 | 文献检索 | `ccf-literature-searcher` | 寻找相关工作、数据集、benchmark 与公开 baseline |
 | 前沿追踪 | `ccf-literature-monitor` | 关注新论文、相近工作与研究方向的最新变化 |
@@ -184,7 +184,11 @@ npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes -
 
 `ccf-humanization` 逐句判断表达承载了什么科学信息：有事实就直接陈述，有真实不确定性就准确限定，没有信息的自辩直接删除。它清理审稿人预判、贡献自我降格、重复 caveat、机械结尾和内部版本旁白，不再要求每段补局限性或未来工作。实际失败、适用条件、复现信息与必要披露仍保留；仅对证据无法解决的具体科研决策单独提醒。
 
-评审同时回答两个不同的问题：
+思路审核与文章审核按判断对象区分：“这个方向值得做吗”由 `ccf-idea-reviewer` 处理，无需指定评分；“稿件结论是否站得住”由 `ccf-paper-reviewer` 处理。即使输入完整 PDF，只看核心思路的请求也保持概念审核。思路评分聚焦问题、创新、洞察、机制、简洁性与受众价值，实验仅在明确要求时单独评估。
+
+标准报告参考 [CSPaper 的公开结构](https://cspaper.org/op/20260212.0001v1)：文章审核采用“预审判断 → 预期评审结果 → 关键维度评分”，思路审核采用“思路定位 → 研究价值与关键意见 → 维度评分与发展建议”。意见绑定具体位置、依据与稳定编号，复审追踪问题是否解决；不会生成缺乏真实参照集的百分位排名。详见[文章报告模板](ccf-paper-reviewer/references/fixed-output-format.md)与[思路审核协议](ccf-idea-reviewer/references/strict-idea-review.md)。
+
+文章复审同时回答两个不同的问题：
 
 ![评审与修订评分](assets/ccfa-skills-review-boundaries.zh-CN.svg)
 
@@ -207,7 +211,7 @@ npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes -
 
 | 你的请求 | 负责的 Skill | 明确不负责 |
 |---|---|---|
-| 给 idea 评分、排序 | `ccf-idea-reviewer` | 不在评分时继续扩写方法 |
+| 思路靠谱吗、值得做吗、创新够不够、评分排序 | `ccf-idea-reviewer` | 默认只审概念，不因缺少实验扣分 |
 | 发展一个模糊 idea | `ccf-idea-optimizer` | 不把排名当成主要目标 |
 | 搜 benchmark 与公开结果 | `ccf-literature-searcher` | 不替实验结果作结论 |
 | 设计 baseline、指标与消融 | `ccf-experiment-designer` | 不改动或虚构结果 |

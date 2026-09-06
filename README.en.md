@@ -98,7 +98,7 @@ Each request is led by the skill whose judgment it needs most. Other skills do n
 | Family coordination | `ccf-common` | Understands requests, coordinates responsibilities, and protects evidence and privacy boundaries |
 | Project direction | `ccf-pipeline-orchestrator` | Clarifies goals, stages, decisive milestones, and the next move |
 | Project beginning | `ccf-project-scaffolder` | Prepares the paper workspace, templates, and research-material structure |
-| Idea judgment | `ccf-idea-reviewer` | Compares ideas and evaluates novelty, risk, and venue fit |
+| Idea judgment | `ccf-idea-reviewer` | Judges idea value, novelty, and mechanism; excludes experiments by default |
 | Idea development | `ccf-idea-optimizer` | Turns a rough direction into a problem, insight, method, and evidence path |
 | Literature search | `ccf-literature-searcher` | Finds related work, datasets, benchmarks, and published baselines |
 | Frontier tracking | `ccf-literature-monitor` | Watches new papers, nearby work, and changes in the field |
@@ -184,7 +184,11 @@ More examples are available in [`assets/visual-showcase/`](assets/visual-showcas
 
 `ccf-humanization` checks what scientific information each sentence contributes: state supported facts directly, qualify genuine uncertainty accurately, and delete empty defenses. It removes imagined reviewer objections, apologies for the contribution, repeated caveats, ritual endings, and internal status narration. Paragraphs do not need an appended limitation or future-work sentence. Observed failures, scope conditions, reproducibility details, and required disclosures remain visible; only concrete unresolved scientific decisions need a separate warning.
 
-Review answers two different questions:
+Route by the requested judgment: “Is this direction worth pursuing?” uses `ccf-idea-reviewer` without needing an explicit score request; “Does this manuscript support its conclusions?” uses `ccf-paper-reviewer`. A full PDF can still receive concept-only review. Idea ratings cover problem value, novelty, insight, mechanism, elegance, and audience fit; experiments are assessed separately only when requested.
+
+Standard reports follow [CSPaper's public organization](https://cspaper.org/op/20260212.0001v1): manuscript review uses Desk Rejection Assessment → Expected Review Outcome → Critical Reviewer Ratings; idea review uses Idea Scope → Expected Research Value → Ratings and Development. Findings carry specific evidence locations and stable IDs for revision tracking. Percentile ranks require a real comparable corpus. See the [manuscript report format](ccf-paper-reviewer/references/fixed-output-format.md) and [idea-review protocol](ccf-idea-reviewer/references/strict-idea-review.md).
+
+Manuscript re-review answers two different questions:
 
 ![Review and revision scoring](assets/ccfa-skills-review-boundaries.svg)
 
@@ -207,7 +211,7 @@ Clear responsibilities keep each judgment trustworthy:
 
 | Your request | Responsible skill | What it deliberately avoids |
 |---|---|---|
-| Score and rank ideas | `ccf-idea-reviewer` | Does not turn a low-scoring idea into a full method during evaluation |
+| Is this idea worthwhile, novel, or coherent? Score or compare ideas | `ccf-idea-reviewer` | Concept review by default; missing experiments do not lower its score |
 | Develop one rough idea | `ccf-idea-optimizer` | Does not make ranking its primary goal |
 | Find benchmarks and published results | `ccf-literature-searcher` | Does not invent an experiment conclusion |
 | Choose baselines, metrics, and ablations | `ccf-experiment-designer` | Does not alter or fabricate results |

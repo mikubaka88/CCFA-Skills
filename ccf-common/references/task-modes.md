@@ -47,7 +47,7 @@ Unresolved:
 
 ## Mode Selection
 
-1. If the user asks to explore, brainstorm, find directions, rescue a direction, try variants, or says the idea is rough, use exploratory mode unless they explicitly ask for strict scoring.
+1. If the requested deliverable is exploration, brainstorming, direction discovery, rescue, or development, use exploratory mode. A rough input does not override a request to judge whether the idea is worthwhile, novel, or logically sound; those requests use idea review even without scores.
 2. If the user explicitly asks for quick or narrow work, preserve that scope. Do the relevant accuracy checks; name a material coverage limit instead of silently escalating to full review.
 3. If the user says standard, full, final, submission-ready, checklist-audit, score-risk, 全面检查, or 投稿前, use standard mode. Creating a small reusable file alone does not require the full workflow.
 4. If the user gives only one paragraph for polishing, default to quick mode.
@@ -60,7 +60,7 @@ For non-review skills, the user's requested output shape wins over the skill's d
 
 Review-related skills use structured evidence, scoring, and traceable criticism when applicable, while honoring an explicit user schema or concise requested format. `ccf-paper-reviewer`, `ccf-idea-reviewer`, and integrity/submission gate checks should remain more structured than writing, search, planning, or experiment-design outputs.
 
-When `ccf-idea-reviewer` is used on an early seed, separate `current conference readiness` from `development potential`. A low current score means the seed is not ready, not that the direction is dead. Use `abandon` only when the idea has no testable claim and no plausible reformulation after at least one concrete rescue attempt.
+For `ccf-idea-reviewer`, separate concept quality, development potential, and confidence. Experimental completion and publication readiness are outside default concept review; do not require experimental material or penalize its absence. Assess experiments or execution feasibility only as a requested extension. Use `abandon` only when no meaningful central claim or plausible reformulation remains after a concrete rescue attempt.
 
 For broad requests such as "完整流程", "完整文章", "详细报告", "用所有 skills", "full paper", "full review", or "closed loop", do not return fragments. Produce complete artifacts with enough concrete content to be useful: full drafts rather than abstract-only samples, filled tables rather than headings only, reviewer comments with evidence rather than generic risks, and handoff packets that name files, claims, blockers, and next actions.
 

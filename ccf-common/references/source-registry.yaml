@@ -182,20 +182,20 @@ sources:
     title: CSPaper Review
     url: https://cspaper.org/op/20260212.0001v1
     source_type: background_method
-    used_by: [ccf-paper-reviewer]
+    used_by: [ccf-paper-reviewer, ccf-idea-reviewer]
     recorded_at: 2026-06-05
-    verified_at: 2026-06-05
+    verified_at: 2026-09-06
     stale_after_days: 365
-    notes: Conceptual inspiration only; do not claim exact calibration from it.
+    notes: Public paper section 2 documents desk rejection assessment, expected review outcome, and critical reviewer ratings. Adapt that organization to manuscript and concept scope; do not copy score-conditioned role generation or claim CSPaper calibration.
   - id: cspaper-review-rank
     title: CSPaper Review Rank
     url: https://cspaper.org/articles/introducing-review-rank
     source_type: background_method
     used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
-    verified_at: 2026-06-05
+    verified_at: 2026-09-06
     stale_after_days: 365
-    notes: Use only for approximate cohort-relative interpretation; never exact percentiles without data.
+    notes: Rank depends on a real same-agent review cohort and frozen calibration. Omit percentiles, outperformed counts, and rank visualizations when no comparable corpus is available.
   - id: stanford-agentic-reviewer
     title: Stanford Agentic Reviewer Technical Overview
     url: https://paperreview.ai/tech-overview
@@ -231,7 +231,7 @@ sources:
     recorded_at: 2026-06-05
     verified_at: null
     stale_after_days: 365
-    notes: Local format reference for fixed conference-review report structure.
+    notes: Historical private format provenance only. Current runtime structure is self-contained in fixed-output-format.md and grounded in the public cspaper-review source; do not require this unavailable private file.
   - id: darpa-heilmeier
     title: DARPA Heilmeier Catechism
     url: https://www.darpa.mil/about/heilmeier-catechism
@@ -452,11 +452,11 @@ sources:
     title: Auto Claude Code Research In Sleep
     url: https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep
     source_type: background_method
-    used_by: [ccf-common, ccf-idea-optimizer, ccf-idea-reviewer, ccf-pipeline-orchestrator]
+    used_by: [ccf-common, ccf-idea-optimizer, ccf-idea-reviewer, ccf-pipeline-orchestrator, ccf-paper-reviewer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-09-06
     stale_after_days: 365
-    notes: Related agent workflow, not an authoritative venue source.
+    notes: Inspected skills/research-review/SKILL.md for primary-artifact verification and unresolved-issue follow-up. Adopt scoped concern continuity, not mandatory cross-model tools, experimental review of ideas, rejection-first prompts, or round-by-round file proliferation.
   - id: research-paper-writing-skills-master-cai
     title: Research Paper Writing Skills
     url: https://github.com/Master-cai/Research-Paper-Writing-Skills
@@ -1006,3 +1006,30 @@ sources:
     verified_at: 2026-09-05
     stale_after_days: 90
     notes: Explicit manifest skills path and plugin packaging; retaining the existing repository root is a CCFA implementation choice.
+  - id: academic-research-skills-review
+    title: Academic Research Skills Review Templates
+    url: https://github.com/Imbad0202/academic-research-skills/blob/main/academic-paper-reviewer/templates/peer_review_report_template.md
+    source_type: background_method
+    used_by: [ccf-paper-reviewer, ccf-idea-reviewer]
+    recorded_at: 2026-09-06
+    verified_at: 2026-09-06
+    stale_after_days: 365
+    notes: Adapt stable finding IDs, evidence anchors, and decision-relevant severity. Preserve CCFA scope and compact output rather than importing its orchestration, gates, or template text. Popularity is discovery evidence, not review-quality validation.
+  - id: ai-scientist-review-code
+    title: AI Scientist Structured Review Implementation
+    url: https://github.com/SakanaAI/AI-Scientist/blob/main/ai_scientist/perform_review.py
+    source_type: background_method
+    used_by: [ccf-paper-reviewer]
+    recorded_at: 2026-09-06
+    verified_at: 2026-09-06
+    stale_after_days: 365
+    notes: Adapt explicit summary, strengths, weaknesses, questions, ratings, and confidence fields. Do not copy historical venue scales, forced binary decisions, uncertainty-to-rejection prompts, or exposed reasoning blocks.
+  - id: cmu-peerreview-bench
+    title: CMU Paper Reviewer PeerReview Bench Evaluation
+    url: https://github.com/prometheus-eval/cmu-paper-reviewer/blob/main/peerreview_bench/evaluation/README.md
+    source_type: background_method
+    used_by: [ccf-paper-reviewer, ccf-idea-reviewer]
+    recorded_at: 2026-09-06
+    verified_at: 2026-09-06
+    stale_after_days: 365
+    notes: Review findings for correctness, significance, and sufficient evidence; distinguish issue coverage from false accusations. Benchmark methodology reference only, not a high-star selection or a claim that CCFA ran this benchmark.

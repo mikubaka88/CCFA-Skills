@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased - review refinement (version remains 0.10.0)
+
+- Made natural concept judgments and manuscript assessments select their respective reviewers without requiring numeric-score wording. A full PDF can still receive concept-only review.
+- Replaced the default idea rubric with six conceptual dimensions. Experimental completeness, results, baselines, ablations, and submission readiness no longer affect default idea scores; requested experiment/feasibility extensions remain separate.
+- Reworked standard reports around CSPaper's public three-part organization, with a scope-appropriate idea variant and explicit template loading. Consolidated duplicate audit/role reports while preserving manuscript version-comparison contracts and historical evaluations.
+- Adapted evidence anchors, stable concern IDs, revision follow-up, explicit rating fields, and finding-quality checks from inspected open-source review projects. Recorded public provenance; no third-party runtime, dependency, calibration model, or benchmark result was imported.
+- Updated three-language README guidance and shared routing, modes, and score rules. Existing package names, directory layout, and plugin version remain unchanged.
+
 ## v0.10.0 - 2026-09-05
 
 - Updated all 17 existing skill entries and 16 existing agent prompts for concise routing, mode-specific reference loading, persistent authorization, bounded execution, and proportionate checks, using current official GPT-6 Astra and skill-authoring guidance.

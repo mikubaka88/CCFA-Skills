@@ -1,6 +1,6 @@
 # Desk Checks
 
-Use this file before full review scoring. Desk checks are not cosmetic; any fail or uncertain item must appear in the report.
+Use this file for applicable submission/reviewability checks in scientific/full manuscript review. The first section of `fixed-output-format.md` reports substantiated consequential concerns. Unknown metadata is not a failed gate; group unavailable checks in a compact scope note only when they limit the judgment. Partial and writing-only review do not inherit whole-paper submission requirements.
 
 ## Check Format
 
@@ -14,7 +14,7 @@ Consequence:
 Required action:
 ```
 
-## Required Checks
+## Applicable Checks
 
 ### Paper Length
 

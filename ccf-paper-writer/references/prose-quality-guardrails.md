@@ -2,7 +2,7 @@
 
 Use this file for manuscript drafting, polishing, compression, abstract writing, introduction writing, paragraph review, and response text that may be copied into a paper. The goal is not to make prose decorative. The goal is to make every sentence serve the scientific argument.
 
-Apply `../../ccf-humanization/references/humanization-policy.md` first. Use its sentence-decision procedure and bilingual repairs. Preserve actual material limitations in direct scientific prose. Keep only unresolved scientific decisions in a short external warning; discard hypothetical reviewer concerns and empty caveats.
+For manuscript drafting or revision, apply `../../ccf-humanization/references/humanization-policy.md` first and use its sentence-decision procedure and bilingual repairs. Preserve material limitations in direct scientific prose; keep only unresolved scientific decisions in an external warning. For assessment-only paragraph or writing review, use the relevant prose criteria diagnostically: do not activate the Humanization workflow, rewrite text, or create a warning artifact merely because this reference is loaded.
 
 These checks improve precision, rhythm, and readability. They are writing-quality controls, not detector-evasion methods.
 
@@ -32,7 +32,7 @@ Avoid these unless the venue, discipline, or user explicitly requires them:
 
 ## Measurable Pattern Controls
 
-The authoritative punctuation limits, opening-filler patterns, precision-word list, enumeration rule, synonym rule, and rhythm thresholds live in `../../ccf-humanization/references/humanization-policy.md`. Apply that policy after the scientific content is correct; do not restate or locally override its thresholds here.
+The punctuation and pattern definitions live in `../../ccf-humanization/references/humanization-policy.md`. Load only the relevant definitions when a specific writing judgment needs them. Apply its editing procedure only during authorized prose changes; assessment-only review reports the diagnosed issue without entering that workflow.
 
 For a full section or paper, run `../scripts/check_prose_quality.py`. The script is non-mutating and can read a path or standard input, so it does not require an intermediate report file. Treat its findings as writing signals governed by the humanization policy, not as detector-evasion targets.
 

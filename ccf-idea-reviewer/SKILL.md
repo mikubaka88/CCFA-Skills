@@ -1,6 +1,6 @@
 ---
 name: ccf-idea-reviewer
-description: "Assess, score, rank, and compare early CCF research ideas when judgment is explicitly requested. Use for idea评分, 选题排名, 严格评审, and acceptance-potential triage. Ground novelty in prior work. Unscored brainstorming and idea development belong to ccf-idea-optimizer; full manuscripts belong to ccf-paper-reviewer."
+description: "Assess research ideas for value, novelty, insight, and mechanism. Use for 思路审核, 靠谱吗, 值得做吗, 创新够不够, idea review, scoring, and ranking; no numeric-score request is needed. Default to concept-only review without experiment assessment, including ideas extracted from manuscripts. Developing an idea belongs to ccf-idea-optimizer; evaluating manuscript evidence or writing belongs to ccf-paper-reviewer."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -14,38 +14,40 @@ metadata:
 
 ## Invocation Controls
 
-**CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode`, `../ccf-common/references/handoff-modes.md`, and `../ccf-common/references/task-modes.md`. Use this skill for explicitly requested idea assessment, scoring, ranking, or strict selection. Development without scoring belongs to `ccf-idea-optimizer`.
+**CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode`, `../ccf-common/references/handoff-modes.md`, and `../ccf-common/references/task-modes.md`. Infer assessment from the requested judgment; an exact skill name, review keyword, or numeric score is unnecessary. A rough idea can still receive a serious concept assessment.
+
+Choose by the object of judgment, not file type: a PDF supplied for “只看核心思路” remains idea review. Use `ccf-idea-optimizer` for requested development and `ccf-paper-reviewer` for manuscript evidence, scientific completeness, writing, or version readiness. Execute an explicitly combined review/development task through its respective owners without another permission round.
 
 ## Core Rule
 
-Judge the research problem and mechanism against the closest relevant work and required evidence. Every material criticism names the affected claim, its basis, why it matters, and a concrete repair or pivot condition. Separate current conference readiness, development potential, and confidence. Unknown novelty is not proven novelty or automatic rejection.
+Judge problem importance, novelty against closest work, conceptual insight, mechanism coherence, elegance, and audience fit. Default to concept-only scope. Do not grade experiments, demand baselines/ablations/results, assess implementation resources, or lower the verdict because research is unfinished. Add experiment or feasibility assessment only when the user requests that extension, keeping it separate from the concept score.
 
-Do not review prose, rewrite a manuscript, fabricate prior art/results, simulate reviewer consensus, or promise acceptance probabilities. Use `abandon` only when there is no testable central claim or plausible reformulation after a concrete rescue attempt.
+Distinguish a logical contradiction from an untested hypothesis. A meaningful claim can be assessed before experimental validation. Separate concept quality, development potential, and confidence; do not turn uncertain novelty into demonstrated overlap or submission readiness into idea quality.
+
+Every consequential criticism identifies the affected idea statement or assumption, its inspected basis, its significance, and the smallest repair. Do not fabricate prior art, results, reviewer agreement, or acceptance probability. Use `abandon` only after identifying why no meaningful formulation or plausible rescue remains.
 
 ## Workflow
 
-1. Identify the requested judgment, venue/family, field, maturity, and available evidence. Normalize each idea into problem, gap, insight, mechanism, expected evidence, and constraints. Ask only when a missing decision changes the verdict; otherwise label the assumption and proceed.
-2. For standard scoring, load `references/strict-idea-review.md` and ground the closest work through public-safe retrieval under `../ccf-common/references/privacy-and-evidence.md`. Necessary literature verification is part of the requested assessment unless browsing is forbidden. Mark source coverage as searched, partially searched, supplied-only, or unsearched.
-3. Build the closest-work comparison and state what remains after subtracting prior art. Verify current official venue criteria when their exact year/track affects the judgment. Do not score from search snippets.
-4. Use `references/expert-panel.md` and `../ccf-common/references/review-output-standards.md` for the relevant field, method, experiment, venue, and prior-art perspectives. Independent subagents are optional when permitted and useful; a single-pass role analysis must not be described as independent empirical agreement. Do not force praise, disagreement, or rejection.
-5. Load `references/rubric.md` and `references/calibration.md` for requested numeric scoring. Apply the dimensions and weights consistently; mark non-applicable criteria with reasons and follow the calibration rule. Scores of 3 or below need a deduction, evidence basis, and repair condition. Confidence stays separate.
-6. Separate fatal concerns from repairable gaps. For each non-develop recommendation, identify the smallest credible change in problem framing, mechanism, grounding, evidence, feasibility, or venue. In multiple-idea ranking, apply the same rubric and evidence standard across candidates.
-7. Deliver the requested score/ranking and concrete actions. Perform optimization or full experiment design only when included in the request; otherwise provide a concise optional next step. Honor skill denylists without simulating a denied workflow.
+1. Identify the requested judgment, concept, audience, available sources, and any explicit scope extension. Reuse conversation context; ask only for a missing decision that changes the assessment. Do not ask for experimental materials merely to start idea review.
+2. Load `references/strict-idea-review.md` for standard assessment, including qualitative judgments. Normalize problem → gap → insight → mechanism; keep experimental planning outside default intake.
+3. Ground decisive novelty claims through public-safe retrieval under `../ccf-common/references/privacy-and-evidence.md`, unless browsing is forbidden. Reuse prior verified sources and record searched, partially searched, supplied-only, or unsearched coverage. Inspect relevant primary-source content before claiming overlap.
+4. Assess distinct conceptual perspectives using `references/expert-panel.md`; combine duplicate issues under stable IDs. Experiment reviewers are optional for a requested extension. Use independent calls only if permitted and useful, and label single-agent perspectives honestly.
+5. For standard scoring, load `references/rubric.md`, `references/calibration.md`, and `../ccf-common/references/review-output-standards.md`. Use the six conceptual dimensions and assessed-weight coverage. Honor no-score requests with qualitative judgments; low confidence is not a low score.
+6. Distinguish decisive conceptual flaws from repairable gaps and unanswered questions. Compare multiple ideas under a common scope and rubric. Re-review changed assumptions and unresolved concerns without imposing new experiment criteria.
+7. Deliver the three-part report from `strict-idea-review.md`: idea scope, expected research value and concerns, then dimension ratings and development actions. Put requested optimization or experiment work in its own authorized deliverable.
 
-## Output Contracts
+## Output Contract
 
-For standard scoring, put the verdict/ranking first, followed by the closest-work delta, scorecard, confidence, decisive concerns with evidence, role-specific findings, and repair/score-change conditions. Avoid repeating the same concern in several boilerplate sections. Preserve an explicit user schema or concise format.
+For standard review, use the CSPaper-inspired structure defined in `references/strict-idea-review.md`; do not substitute a generic coaching response or manuscript acceptance report. State the conceptual verdict, prior-art delta, anchored concerns, applicable scorecard, development potential, confidence, and concrete refinements without repeating the same criticism.
 
-For quick triage, give the strongest ingredient, main evidenced risks, novelty confidence, development potential, and next deciding evidence. Do not present a quick scan as a full literature-backed review.
-
-Recommendations remain `accept-to-develop`, `revise`, `pivot-with-rescue-route`, `abandon`, or `needs-literature-search`. Conditional score movement is diagnostic, never a promised reviewer response.
+For quick judgment, give verdict, decisive basis, uncertainty, and a next conceptual clarification. No forced scores or experimental checklist. Recommendations remain `accept-to-develop`, `revise`, `pivot-with-rescue-route`, `abandon`, or `needs-literature-search`.
 
 ## References
 
-- `references/strict-idea-review.md`: closest-work subtraction and strict criteria.
-- `references/expert-panel.md`: perspective-specific assessment.
-- `references/rubric.md`, `references/calibration.md`: dimensions, anchors, weighting, and recommendations.
-- `references/source-notes.md`: provenance and official criteria.
-- `../ccf-common/references/review-output-standards.md`: confidence, panel discipline, and score-change conditions.
+- `references/strict-idea-review.md`: standard report structure, grounding, and scope.
+- `references/rubric.md`, `references/calibration.md`: concept dimensions, weights, coverage, and decision conditions.
+- `references/expert-panel.md`: distinct conceptual perspectives and optional requested extensions.
+- `references/source-notes.md`: public provenance and reuse boundaries.
+- `../ccf-common/references/review-output-standards.md`: evidence, scoring, and concern continuity.
 
-For file outputs, follow `../ccf-common/references/artifact-contracts.md`: resolve existing project paths first, keep generated working files under one stable task/artifact directory, and update canonical files in place. Load this shared policy only when files are written and it is not already in context.
+For file outputs, follow `../ccf-common/references/artifact-contracts.md`: reuse the established report path, keep intermediate files under one stable task directory, and update current files in place. Load this policy only when writing files and it is not already in context.

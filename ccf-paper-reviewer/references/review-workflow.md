@@ -21,7 +21,7 @@ If local source is available, inspect files before asking questions. If only pas
 
 ## Reading Passes
 
-Run four passes:
+Cover these four reading purposes while reusing the extracted source and exact locations; they do not require four full rereads:
 
 1. Desk pass: title, abstract, venue fit, policy/reviewability risks, hidden instructions, and obvious incompleteness.
 2. Contribution pass: problem, gap, method, claims, contribution type, audience, and limitation statements.
@@ -57,12 +57,12 @@ Do not score before writing the core strengths and weaknesses.
 
 ## Report Generation
 
-In standard mode, use `fixed-output-format.md` exactly. The report must be written as Markdown and must include a concerns table.
+In standard mode, use the three-part structure in `fixed-output-format.md`, unless the user specifies another format. Consolidate consequential findings in one concerns table and verify their correctness, significance, and source support. Scientific findings require evidence; a question or missing input is not automatically a defect. Preserve stable concern IDs when checking a revision.
 
 Report location:
 
-- If a local paper path exists, create `ccfa-review-reports/` beside that file or top-level manuscript folder.
-- Otherwise create `ccfa-review-reports/` under the current working directory.
+- Resolve an existing requested report path first. If file output is in scope and a local paper path exists, use `ccfa-review-reports/` beside that file or top-level manuscript folder.
+- Otherwise return the review in the conversation unless the user requests a saved report. Honor no-new-files and exact-output constraints.
 
 Canonical filename:
 

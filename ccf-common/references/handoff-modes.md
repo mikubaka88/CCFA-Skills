@@ -26,7 +26,7 @@ Route a misselected skill directly to the correct owner when the user's intent i
 
 | Situation | Decision |
 | --- | --- |
-| User requests a deliverable or explicitly names its skill | Select its owner and execute within scope in every mode. |
+| User requests a deliverable or explicitly names its skill | Select its owner and execute within scope in every mode. Natural questions such as “思路靠谱吗” or “稿件有什么硬伤” already request assessment; no exact skill name or score request is required. |
 | Public-safe literature verification is necessary for a requested novelty assessment, citation, or current-policy check | Search or use the search owner unless browsing is forbidden; no redundant question. |
 | User requests search plus experiment design, review plus revision, or another combined workflow | Complete each requested deliverable using its owner and existing authorization. |
 | A local file is the requested output or an essential reproducible source | Create/update the authorized target; respect explicit no-new-files or plan-only constraints. |

@@ -1,130 +1,99 @@
 # Strict Idea Review Protocol
 
-Use this file when the user asks for idea scoring, idea ranking, novelty risk, investment decisions, or `standard` mode review. The goal is to prevent generic reviewer prose.
+Use for concept judgment, novelty assessment, investment decisions, comparison, and standard idea review. Natural requests such as “这个思路靠谱吗”, “值得做吗”, “创新够不够”, and “逻辑有没有硬伤” request assessment even without the words score or review.
 
-## Standard-Mode Search Requirement
+## Scope
 
-In standard mode, search for related literature before giving a strong novelty, insight, or acceptance-potential judgment unless the user explicitly forbids browsing or privacy constraints prevent safe searching.
+Default to the research problem, prior-art difference, insight, mechanism, and contribution. Review these even when they are embedded in a full manuscript. Do not evaluate experiment completion, results, baselines, ablations, datasets, statistical significance, code release, or paper formatting unless the user requests that extension. Missing experiments do not justify a low score, rejection, or a mandatory follow-up question.
 
-Search process:
+Distinguish conceptual soundness from empirical validation. A contradictory assumption is reviewable now; whether an untested mechanism performs well remains a hypothesis and is not an automatic defect.
 
-1. Convert the idea into public-safe keywords: problem, setting, method family, claimed mechanism, dataset/benchmark, target venue family, and 2-3 likely synonyms.
-2. Do not paste confidential user wording into a search query when the idea is unpublished and specific. Query generic public keywords first. If exact private wording is necessary, ask before using it.
-3. Prefer authoritative and high-impact sources: official proceedings, OpenReview, arXiv only when needed for fast-moving fields, ACM/IEEE/USENIX/ACL Anthology/CVF/PMLR/NeurIPS/ICLR/AAAI pages, DBLP, Semantic Scholar, OpenAlex, and major journal publishers. Apply the shared source-quality exclusions.
-4. Record 3-8 closest works or state why fewer were found.
-5. Separate `not searched`, `searched but weak coverage`, and `searched with closest-work confidence`.
+## Grounding
 
-If no search was performed, the final recommendation must either be `needs-literature-search` or carry low novelty confidence. Do not say "high novelty" without a search-backed nearest-neighbor comparison or strong user-provided prior-art evidence.
+For standard novelty judgments, verify the closest public work unless browsing is forbidden or no public-safe query is possible. Query public problem and method terms under `../../ccf-common/references/privacy-and-evidence.md`. Reuse already verified sources; do not retrieve a fixed number of papers to fill a quota.
 
-## Closest-Work Table
+Read the relevant method or claim before asserting overlap. For each decisive source record its link, what it already does, the overlap, and the remaining conceptual difference. Mark coverage as searched, partially searched, supplied-only, or unsearched. A lack of retrieval is uncertainty; a demonstrated overlap is a finding.
 
-Include this table in standard mode:
+## Output Selection
 
-```text
-Closest work:
-Venue/year:
-Link/source:
-What it already does:
-Overlap with user idea:
-Remaining novelty delta:
-Risk to the idea: fatal / high / medium / low
-Needed differentiation:
-```
+Use `detailed` by default, including natural assessment requests such as “靠谱吗” and “值得做吗”. Use `brief` only when the user explicitly asks for 简要版, 简短, 快速概览, 只给结论, brief, concise, or a restrictive length/output format. A rough seed, one idea, limited evidence, or “不用打分” does not imply brief output. Output detail and evidence-search depth are separate choices.
 
-## No-Filler Rule
+Expand CSPaper's public review progression into the concept-specific sections below. This is a CCFA adaptation, not CSPaper's private scoring system. Translate headings to the user's language and preserve an explicit user schema.
 
-Do not output generic comments such as:
+## Detailed Version — Default
 
-- "有一定创新性"
-- "建议进一步完善"
-- "需要更多实验"
-- "创新性不足"
-- "方法描述不够清楚"
-- "related work 需要加强"
+Develop each applicable section using the supplied concept and inspected prior art. A detailed report should contain substantive judgments and their basis, not just an outline or an unexplained scorecard. Keep unavailable inputs in one scope note and do not invent content to populate sections.
 
-unless each phrase is immediately followed by:
+### 1. 思路信息与评审范围 / Idea Information
 
-```text
-Exact claim or mechanism under review:
-Closest prior art or missing evidence:
-Why a strict reviewer would deduct:
-Concrete repair or pivot:
-What would change the score:
-```
+Identify the idea, source version, intended problem and audience, and prior-art coverage. State concept-only scope once. Do not add submission, experiment, or implementation-completeness gates.
 
-Every major criticism must have at least one anchor:
+### 2. 总体判断与发展潜力 / Verdict And Potential
 
-- a searched paper or known literature line,
-- a venue criterion,
-- a missing mechanism,
-- a missing baseline/evidence path,
-- a contradiction inside the proposed idea,
-- or a resource/feasibility constraint.
+Lead with accept-to-develop, revise, pivot-with-rescue-route, abandon, or needs-literature-search. Explain the deciding reasons and separate current concept quality, development potential, and confidence. This judgment concerns further research, not conference acceptance.
 
-## Harsh Reviewer Lens
+### 3. 问题定义与研究价值 / Problem And Value
 
-Act as a strict target-venue or target-journal reviewer. Be professional, but do not soften the verdict with motivational padding. Prefer short, diagnostic sentences.
+Assess whether the problem is specific, the bottleneck meaningful, the assumptions appropriate, and the intended benefit scientifically valuable. Explain who would benefit and what remains unclear without inventing an application or resource constraint.
 
-Strict does not mean terminal. For early ideas, state `current conference readiness` and `development potential` separately. A close prior-art hit, missing mechanism, or missing benchmark is a blocker for the current version, not proof that the direction cannot become publishable. Before recommending `abandon`, name the best possible rescue route and explain why it still fails.
+### 4. 核心洞察与贡献拆解 / Insight And Contribution
 
-Judge the idea through these axes:
+Reconstruct problem → insight → mechanism → intended contribution. Identify the non-obvious idea, what is merely an implementation component, and what the community would learn if the concept were realized. Planned effects remain hypotheses.
 
-1. Insight: Is there a non-obvious observation that would teach the community something, or is it a wrapper around known components?
-2. Problem: Is the bottleneck important, current, and specific enough for the target venue?
-3. Method mechanism: Is there a causal or algorithmic reason the method should work?
-4. Novelty delta: What exactly remains new after subtracting closest work?
-5. Elegance: Are the components necessary, coherent, and mutually compatible?
-6. Evidence path: Can decisive experiments, proofs, user studies, benchmarks, or systems measurements test the central claim?
-7. Feasibility: Can the user plausibly execute it with available data, compute, engineering effort, and timeline?
-8. Venue taste: Would the venue see this as a main-track contribution or as a workshop/application variant?
+### 5. 最近工作与创新差异 / Prior Art And Novelty
 
-## Stage-Aware Verdict Rule
+Inspect decisive closest work and explain what remains after subtracting known contributions.
 
-Use this distinction whenever the idea is a seed, direction, or partial sketch:
+| Closest work / source | Existing idea or mechanism | Overlap | Remaining conceptual difference | Judgment |
+| --- | --- | --- | --- | --- |
 
-```text
-Current conference readiness: high / medium / low
-Development potential: high / medium / low
-Main reason it is not ready:
-Best rescue route:
-Evidence needed to decide:
-```
+Unsearched novelty stays uncertain; do not treat an empty comparison table as low novelty. If sources are unavailable, give the coverage limit and the precise comparison still needed instead of invented rows.
 
-Do not mark `abandon` for:
+### 6. 方法机制、假设与逻辑 / Mechanism And Assumptions
 
-- novelty not yet searched,
-- a crowded topic with a plausible narrower bottleneck,
-- missing experiments when a decisive evidence path can be named,
-- vague mechanism when a concrete mechanism family can be proposed,
-- venue mismatch when another venue family may fit.
+Explain how the proposed intervention could address the bottleneck, whether components are necessary and compatible, and whether assumptions support the conclusion. Use a derivation or counterexample when it resolves a conceptual question. Distinguish a demonstrable contradiction from an untested hypothesis; do not demand experiments or a completed proof to make this distinction.
 
-Mark `abandon` only when the idea has no testable central claim, the closest work already covers the same problem and mechanism, and no meaningful problem/method/evidence reframing remains.
+### 7. 主要优势与可保留成分 / Strengths
 
-## Required Verdict Shape
+Number the substantive merits, anchor them in the idea or a verified source, and explain their significance. Identify ingredients worth preserving even if another part needs revision. Do not invent praise or force a minimum count.
 
-For one idea in standard mode, use:
+### 8. 主要缺陷与概念风险 / Conceptual Concerns
 
-```text
-Verdict first:
-Search basis:
-Normalized idea:
-Closest prior art table:
-Novelty delta:
-Serious blockers:
-Development potential:
-Dimension scores:
-Strict reviewer comments:
-Repair plan:
-Evidence that would change my score:
-Final recommendation:
-```
+Assign stable IDs. For each material concern, give the exact claim or assumption, inspected basis, why it matters, severity, and the smallest conceptual repair. Distinguish a known flaw from missing definitions or unanswered questions. Missing experiments, results, baselines, or ablations are outside this section's default scope.
 
-For multiple ideas, first run the closest-work and serious-risk scan independently, then rank by serious-risk-adjusted score. Do not rank by buzzword appeal.
+### 9. 多视角意见与综合判断 / Perspectives And Synthesis
 
-## Score Guardrails
+Use `expert-panel.md` for problem/field, prior-art, mechanism/logic, and contribution/audience perspectives. Give distinct findings and a reasoned synthesis; do not repeat each full criticism or force disagreement. No experiment reviewer is included by default. Label single-agent perspectives honestly.
 
-- Cap novelty at 3 if closest work was not searched and novelty is decision-critical.
-- Cap acceptance potential at 3 if the method mechanism is unclear.
-- Cap recommendation at `pivot` if closest prior art already solves the central problem with a similar mechanism. If a different evidence setting, assumption, user group, system constraint, or theory angle could still be meaningful, name that rescue route.
-- Cap recommendation at `pivot` if the only novelty is applying a known method to a new dataset without a venue-valued insight.
-- Mark as `abandon` only when the idea has no testable central claim and no plausible reformulation after the best rescue route has been considered.
+### 10. 六维评分与置信度 / Concept Ratings
+
+Use the six conceptual dimensions and weights in `rubric.md`, with evidence or concern IDs, deductions, change conditions, assessed-weight coverage, and confidence. Apply `calibration.md` consistently. Unassessed criteria are not zero. For a no-score request, retain qualitative judgments for the same applicable dimensions instead of dropping this analysis or switching to brief output.
+
+### 11. 关键问题与改判条件 / Questions And Change Conditions
+
+Identify definitions, assumptions, prior-art distinctions, or concept choices that could change the verdict. Separate answerable clarifications from actual conceptual redesign. Do not replace these with a mandatory experimental plan or an acceptance prediction.
+
+### 12. 概念修改优先级与发展建议 / Development Priorities
+
+| ID | Priority | Conceptual refinement | What it preserves or repairs | Judgment-change condition |
+| --- | --- | --- | --- | --- |
+
+Explain the most useful next conceptual refinement and any meaningful rescue route. Recommendations are not authorization to rewrite the idea unless development was also requested. Preserve concern IDs and status on re-review; keep historical rubric changes explicit.
+
+An explicitly requested experiment or feasibility assessment appears as a separate extension after the conceptual report. It does not silently change these six scores. Detailed output alone never authorizes that extension.
+
+## Brief Version — Explicit Request
+
+Use five compact blocks, unless an exact user format takes precedence:
+
+1. **判断 / Verdict:** conceptual recommendation and development potential.
+2. **主要优点 / Strengths:** the most consequential merits and their basis.
+3. **关键问题 / Concerns:** decisive conceptual flaws or unanswered questions with anchors.
+4. **评分概览与置信度 / Ratings:** an applicable score summary or qualitative judgment, plus novelty/source coverage.
+5. **下一步 / Next Step:** the conceptual clarification or repair most likely to change the verdict.
+
+Keep the same concept-only boundary and evidence standards. A brief presentation can summarize a standard literature-grounded assessment; a user-requested quick scan has narrower coverage and must not be labeled a full novelty review. Do not infer either brevity or a shallow search from a short user prompt alone.
+
+## Revision And Persistence
+
+Preserve concern IDs, source versions, and the agreed rubric. Check whether the changed problem or mechanism resolves the previous objection; do not move from concept quality to submission completeness during re-review. Generate one output version unless both are requested. When saving a report, switch detailed/brief in the same canonical artifact instead of making automatic duplicate files.

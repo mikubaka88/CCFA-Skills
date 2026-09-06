@@ -4,13 +4,15 @@ Use this shared reference when a CCFA skill produces review, scoring, risk diagn
 
 ## Quantitative Feedback
 
-Every review-style output must separate three values:
+When scores are appropriate, separate three values. Honor qualitative or no-score requests; selecting a reviewer does not require a numeric-score request:
 
 - **Criterion score:** how strong the artifact is on one dimension, normally 1-5 unless the venue defines another scale.
 - **Overall score or stance:** the calibrated decision-level result, normally 1-10 for paper review and weighted 1-5 or 1-10 for idea review.
 - **Confidence:** how much inspectable evidence was available for the judgment; low confidence does not automatically mean a low score.
 
-For each score of 3 or below, include the deduction and the condition that would move the score. Do not give a number without an evidence basis.
+For each score of 3 or below on a 1-5 dimension scale, include the deduction and the condition that would move the score; use the corresponding low band on another scale. Do not give a number without an evidence basis. Use `N/A` for inapplicable criteria and `not assessed` for unavailable evidence; neither is zero. An unsupported claim identified in the reviewed material remains a substantive finding.
+
+Idea review uses the conceptual rubric in `../../ccf-idea-reviewer/references/rubric.md`: no default experiment, result-completeness, or submission-readiness score. Manuscript scientific review checks actual claim support; writing-only review stays within writing criteria. Do not import a full-paper rubric merely because the input is a PDF.
 
 For manuscript re-review or cross-version comparison, freeze rubric dimensions, weights, anchors, reviewer roles, thresholds, and evidence standard before rescoring. Evaluate both versions under that contract. Keep two scorecards and one confidence statement separate:
 
@@ -31,6 +33,14 @@ Expected score movement:
 ```
 
 Use score movement conservatively. Prefer ranges such as `+0.5 to +1 overall` only when a concrete change is likely to affect the calibrated stance. Do not claim acceptance probability.
+
+## Report Structure And Finding Quality
+
+Standard manuscript reports use `../../ccf-paper-reviewer/references/fixed-output-format.md`; standard concept reports use `../../ccf-idea-reviewer/references/strict-idea-review.md`. Each adapts CSPaper's three-part organization to its scope. The role blocks below are available components within that report, not extra mandatory reports.
+
+Give each material concern a stable ID and one complete explanation: claim/location, inspected basis, why it matters, and a change condition. Check correctness, decision relevance, and support before retaining it. Distinguish a demonstrated contradiction, missing support for an asserted result, and unavailable input. Questions are not established defects. Do not inflate severity to sound strict.
+
+Before saying something is absent, inspect the relevant supplied section and appendix or identify the coverage limit. On revision, verify changed material and unresolved concern IDs; retain resolved status and classify new findings. Do not duplicate the same objection in role reports, scorecards, and action tables.
 
 ## Multi-Reviewer Panel
 

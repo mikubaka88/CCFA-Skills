@@ -1,6 +1,6 @@
 ---
 name: ccf-idea-optimizer
-description: "Develop and optimize rough CCF research ideas into problems, insights, mechanisms, and evidence plans. Use for 优化idea, 具象化idea, 找方向, 方向探索, and rescue routes without requested scoring. Explicit numeric scoring/ranking belongs to ccf-idea-reviewer; manuscript edits belong to ccf-paper-writer."
+description: "Develop and optimize rough CCF research ideas into problems, insights, mechanisms, and evidence plans. Use for 优化idea, 具象化idea, 找方向, 方向探索, and rescue routes when development is the requested deliverable. Judging whether an idea is worthwhile, novel, or coherent belongs to ccf-idea-reviewer even without scores; manuscript edits belong to ccf-paper-writer."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -36,7 +36,7 @@ Preserve the user's theme and constraints. Vary framing or mechanism within the 
 4. When sources are available, use `references/literature-grounded-evolution.md` to retain compact evidence cards, mechanism primitives, protocol anchors, and unresolved relations. Keep source locations rather than loading whole abstracts repeatedly. Trace borrowed ideas and inferred gaps separately.
 5. For an underdetermined direction, use `references/frontier-ideation.md` to generate meaningfully different candidates. Three to five is a starting range, not a quota; one well-specified idea needs targeted improvement, not a forced tournament. Keep meaningful lineage and operations such as refine, combine, transfer, invert, or instrument internally.
 6. Use `references/problem-method-blueprint.md` to connect problem, root challenge, insight, mechanism, assumptions, and expected observation. Check incompatible data assumptions, objectives, or resources. Keep the strongest route and a genuinely different fallback when useful.
-7. Challenge the route against the closest-overlap concern and its weakest evidence link. Revise only for a material weakness; do not repeat self-critique that merely paraphrases the idea. Development selection can be internal; numeric ranking belongs to an explicitly requested `ccf-idea-reviewer` task.
+7. Challenge the route against the closest-overlap concern and its weakest evidence link. Revise only for a material weakness; do not repeat self-critique that merely paraphrases the idea. Development selection can be internal; a requested assessment, including “靠谱吗” or “值得做吗” without scores, belongs to `ccf-idea-reviewer`.
 8. Use `references/experiment-design.md` to outline the minimum convincing evidence for the central claim: compatible datasets, baselines, metrics, and discriminating tests. A full execution protocol belongs to `ccf-experiment-designer` when requested. Planned results remain predictions to test, not evidence.
 9. Return the developed idea in the user's requested shape. For a weak seed, distinguish current weakness from development potential and identify a concrete rescue or reformulation before recommending abandonment. If a required decision remains open, explain the exact evidence needed and finish the independent parts.
 

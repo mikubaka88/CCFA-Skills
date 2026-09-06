@@ -23,7 +23,7 @@ Do not combine the scorecards into a single number. The readiness score may stay
 
 ## Frozen Comparison Contract
 
-Before inspecting the revised manuscript, record or inherit:
+Record or inherit the comparison contract before scoring, and before inspecting the revision when materials can be separated. If both versions are already in the prompt, do not claim a blinded comparison; establish the common rubric before assigning scores:
 
 - target venue, year, track, and paper type;
 - rubric dimensions and anchors;
@@ -91,4 +91,4 @@ Confidence and comparability:
 
 Write the comparison into the canonical review report. Return ledger-ready issue rows and hand them to `ccf-rebuttal-writer`, which owns updates to the canonical revision ledger. Do not create phase reports, response-reconciliation sidecars, or per-round copies unless the user explicitly asks for them.
 
-When structured validation is useful, pass an internal JSON object to `../scripts/validate_version_comparison.py` through standard input. The validator does not create files.
+When structured validation is useful, pass an internal JSON object to `../scripts/validate_version_comparison.py` through standard input. The validator does not create files. For a new comparison with partial materials, freeze the common assessable dimensions for the numeric contract and report omitted criteria and coverage separately. Do not encode `N/A` as zero or silently drop dimensions from an inherited contract; when inherited criteria cannot be assessed, report that numeric comparison is unavailable and provide the scoped findings.

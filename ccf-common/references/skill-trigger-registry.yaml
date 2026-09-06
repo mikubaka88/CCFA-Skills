@@ -1,5 +1,5 @@
 schema_version: 4
-generated_at: 2026-09-05
+generated_at: 2026-09-06
 authority: SKILL.md wins if this registry conflicts with a skill body.
 naming_policy: canonical runtime names use ccf-<object>-<role/action>; ccf-common is the governance exception.
 runtime_skill_count: 17
@@ -17,12 +17,12 @@ skills:
     exclude: "Does not create folders/templates as the main task or perform downstream writing, review, search, experiment design, or rebuttal."
     handoff: "All owning workflow skills"
   - name: ccf-idea-optimizer
-    trigger: "Develop and optimize rough CCF research ideas into problems, insights, mechanisms, and evidence plans. Use for 优化idea, 具象化idea, 找方向, 方向探索, and rescue routes without requested scoring. Explicit numeric scoring/ranking belongs to ccf-idea-reviewer; manuscript edits belong to ccf-paper-writer."
+    trigger: "Develop and optimize rough CCF research ideas into problems, insights, mechanisms, and evidence plans. Use for 优化idea, 具象化idea, 找方向, 方向探索, and rescue routes when development is the requested deliverable. Judging whether an idea is worthwhile, novel, or coherent belongs to ccf-idea-reviewer even without scores; manuscript edits belong to ccf-paper-writer."
     exclude: "Does not rank or score multiple ideas as the main task."
     handoff: "ccf-idea-reviewer, ccf-literature-monitor, ccf-literature-searcher, ccf-experiment-designer, ccf-paper-writer"
   - name: ccf-idea-reviewer
-    trigger: "Assess, score, rank, and compare early CCF research ideas when judgment is explicitly requested. Use for idea评分, 选题排名, 严格评审, and acceptance-potential triage. Ground novelty in prior work. Unscored brainstorming and idea development belong to ccf-idea-optimizer; full manuscripts belong to ccf-paper-reviewer."
-    exclude: "Does not brainstorm directions, polish manuscripts, develop a fuzzy idea with no score, or optimize a single idea as the main task."
+    trigger: "Assess research ideas for value, novelty, insight, and mechanism. Use for 思路审核, 靠谱吗, 值得做吗, 创新够不够, idea review, scoring, and ranking; no numeric-score request is needed. Default to concept-only review without experiment assessment, including ideas extracted from manuscripts. Developing an idea belongs to ccf-idea-optimizer; evaluating manuscript evidence or writing belongs to ccf-paper-reviewer."
+    exclude: "Does not develop ideas as the main deliverable or assess manuscript prose; experiment assessment is outside default scope. Qualitative concept judgment does not require scores."
     handoff: "ccf-idea-optimizer, ccf-literature-monitor, ccf-literature-searcher"
   - name: ccf-literature-monitor
     trigger: "Scan recent arXiv/OpenReview papers, venue feeds, labs, and competitors for overlap. Use for 竞品监控, 新论文追踪, 论文跟踪, and recurring novelty watch. Give dated evidence and changes since the prior scan. Broad related-work retrieval belongs to ccf-literature-searcher."
@@ -49,7 +49,7 @@ skills:
     exclude: "Does not perform full review, scientific review, scoring, assessment-only diagnosis, evidence audit, package check, or rebuttal."
     handoff: "ccf-humanization, ccf-literature-monitor, ccf-literature-searcher, ccf-experiment-designer, ccf-visual-composer, ccf-paper-reviewer, ccf-submission-checker, ccf-rebuttal-writer"
   - name: ccf-paper-reviewer
-    trigger: "Assess CCF manuscripts without rewriting: scientific/writing review, scoring, readiness, and version comparison. Use for 完整审稿, 不要改写, 论文评分, 写作评审, and 版本对比. Requested manuscript rewrites belong to ccf-paper-writer; rebuttal and visual redesign have separate owners."
+    trigger: "Review manuscript claims, evidence, and writing without rewriting. Use for 文章审核, 审稿, 稿件有什么硬伤, 结论站得住吗, 投稿成熟度, writing review, and version comparison. Return a CSPaper-inspired structured review; scores need not be explicitly requested. Concept-only judgment belongs to ccf-idea-reviewer even with a full PDF; requested prose edits belong to ccf-paper-writer."
     exclude: "Does not rewrite the manuscript, handle review-motivated rewrites when no new review is requested, draft rebuttals, own the revision ledger, or style/render visual tables."
     handoff: "ccf-paper-writer, ccf-experiment-designer, ccf-integrity-auditor, ccf-submission-checker, ccf-rebuttal-writer"
   - name: ccf-integrity-auditor
