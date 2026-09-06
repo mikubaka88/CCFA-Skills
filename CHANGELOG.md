@@ -11,6 +11,7 @@
 - Unified intermediate-file placement under existing project paths or stable task/artifact working directories. Source/assets/cache/build folders are created on demand; current files update in place while raw evidence and required history are preserved.
 - Removed citation-count-driven retrieval, redundant report/export defaults, and mandatory exemplar-bundle loading. Literature updates reuse existing topic folders; full scientific assessments retain necessary source coverage.
 - Made SVG/text publication atomic and unchanged-content writes reusable. Exemplar conversion preserves completed cards and supports an optional `--full-text-dir` cache destination while retaining existing CLI defaults.
+- Switched all three README Star sections to automatically refreshed light/dark history charts and a live count badge; retained the dated local SVG snapshots and documented cache latency. No scheduled commits or new workflow files are required.
 - Preserved the 17-skill directory layout, shared metadata fields, project schema, template tree, generated diagrams, and historical evaluation data. No files or dependencies added. Static checks do not establish a GPT-6 quality or speed gain; no new model A/B benchmark or client installation test is claimed.
 
 ## v0.9.0 - 2026-08-13

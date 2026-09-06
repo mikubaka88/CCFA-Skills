@@ -262,4 +262,16 @@ Thanks to [Research-Paper-Writing-Skills](https://github.com/Master-cai/Research
 
 ## Star history
 
-[![GitHub star history for CCFA Skills](assets/ccfa-skills-star-history.svg)](https://github.com/mikubaka88/CCFA-Skills/stargazers)
+[![GitHub Stars](https://img.shields.io/github/stars/mikubaka88/CCFA-Skills?style=flat-square&label=Stars)](https://github.com/mikubaka88/CCFA-Skills/stargazers)
+
+<a href="https://www.star-history.com/?repos=mikubaka88%2FCCFA-Skills&amp;type=date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=mikubaka88/CCFA-Skills&amp;type=Date&amp;theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=mikubaka88/CCFA-Skills&amp;type=Date" />
+    <img alt="GitHub star history for CCFA Skills" src="https://api.star-history.com/svg?repos=mikubaka88/CCFA-Skills&amp;type=Date" width="800" />
+  </picture>
+</a>
+
+The chart updates through Star History and the count badge through Shields.io. Service and GitHub image caches can delay changes; the chart is typically cached for about 24 hours, so it is not a second-by-second live feed. Click the chart for the interactive page.
+
+[View the 2026-08-13 historical snapshot (available offline)](assets/ccfa-skills-star-history.svg)

@@ -262,4 +262,16 @@ python ccf-common\scripts\check_sources.py
 
 ## Star 旅程
 
-[![CCFA Skills 的 GitHub 星標成長曲線](assets/ccfa-skills-star-history.zh-TW.svg)](https://github.com/mikubaka88/CCFA-Skills/stargazers)
+[![GitHub Stars](https://img.shields.io/github/stars/mikubaka88/CCFA-Skills?style=flat-square&label=Stars)](https://github.com/mikubaka88/CCFA-Skills/stargazers)
+
+<a href="https://www.star-history.com/?repos=mikubaka88%2FCCFA-Skills&amp;type=date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=mikubaka88/CCFA-Skills&amp;type=Date&amp;theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=mikubaka88/CCFA-Skills&amp;type=Date" />
+    <img alt="CCFA Skills 的 GitHub 星標成長曲線" src="https://api.star-history.com/svg?repos=mikubaka88/CCFA-Skills&amp;type=Date" width="800" />
+  </picture>
+</a>
+
+曲線由 Star History 自動更新，計數徽章由 Shields.io 自動更新。服務與 GitHub 圖片快取可能延遲顯示，曲線通常快取約 24 小時，因此不是秒級即時；點擊圖表可開啟互動頁面。
+
+[查看 2026-08-13 歷史快照（離線可用）](assets/ccfa-skills-star-history.zh-TW.svg)
