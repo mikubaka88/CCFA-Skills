@@ -8,12 +8,14 @@ import contextlib
 import copy
 import io
 import json
+import math
 import re
 import runpy
 import sys
 import tempfile
 from pathlib import Path
 from unittest.mock import patch
+from xml.etree import ElementTree
 
 import yaml
 
@@ -392,6 +394,47 @@ def check_review_regressions(errors: list[str]) -> None:
         fail(errors, f"review validator could not run regression cases: {type(exc).__name__}: {exc}")
 
 
+def check_plot_regressions(errors: list[str]) -> None:
+    """Check grouped bars against zero, signed values, and plot bounds."""
+    try:
+        plots = runpy.run_path(str(ROOT / "ccf-visual-composer/resources/python/ccfa_plot_recipes.py"), run_name="ccfa_plot_check")
+        cases = (
+            ("all zero", [0, 0], 468.0),
+            ("positive", [1, 2], 468.0),
+            ("positive and zero", [0, 2], 468.0),
+            ("mixed signs", [-1, 0, 1], 300.0),
+            ("asymmetric signs", [-1, 0, 2], 356.0),
+            ("negative", [-2, -1], 132.0),
+            ("negative and zero", [-2, 0], 132.0),
+            ("empty", [], 468.0),
+        )
+        for name, values, baseline in cases:
+            rows = [{"group": str(index), "value": value} for index, value in enumerate(values)]
+            svg = plots["grouped_bar_chart"](rows, "group", ["value"], "Regression fixture")
+            root = ElementTree.fromstring(svg)
+            bars = [node for node in root.findall("{http://www.w3.org/2000/svg}rect") if node.get("opacity") == "0.920"]
+            if len(bars) != len(values):
+                fail(errors, f"grouped bars ({name}): incorrect bar count")
+                continue
+            heights_per_unit = []
+            for value, bar in zip(values, bars):
+                y, height = float(bar.attrib["y"]), float(bar.attrib["height"])
+                if not all(math.isfinite(number) for number in (y, height)) or height < 0 or y < 131.99 or y + height > 468.01:
+                    fail(errors, f"grouped bars ({name}): invalid geometry or bar outside plot bounds")
+                if value == 0:
+                    if height != 0 or not math.isclose(y, baseline, abs_tol=0.01):
+                        fail(errors, f"grouped bars ({name}): zero must have no height at the baseline")
+                else:
+                    anchor = y + height if value > 0 else y
+                    if height <= 0 or not math.isclose(anchor, baseline, abs_tol=0.01):
+                        fail(errors, f"grouped bars ({name}): bar must extend from zero in the value's direction")
+                    heights_per_unit.append(height / abs(value))
+            if heights_per_unit and max(heights_per_unit) - min(heights_per_unit) > 0.01:
+                fail(errors, f"grouped bars ({name}): bar heights must be proportional to magnitude")
+    except Exception as exc:
+        fail(errors, f"plot regression failed: {type(exc).__name__}: {exc}")
+
+
 def check_artifact_regressions(errors: list[str]) -> None:
     """Exercise current-file updates in one managed temporary directory."""
     try:
@@ -472,6 +515,7 @@ def main() -> int:
     check_project_and_plugins(errors)
     check_prose_regressions(errors)
     check_review_regressions(errors)
+    check_plot_regressions(errors)
     check_artifact_regressions(errors)
     if errors:
         print("CCFA validation failed:")
