@@ -43,7 +43,7 @@ Build skills as compact operational guidance for another Codex session. Keep `SK
 python '<skill-creator-dir>/scripts/init_skill.py' <skill-name> --path '<skills-dir>' --resources references,scripts
 ```
 
-5. Write `SKILL.md` before filling optional resources. Put all "when to use" trigger wording in the YAML `description`; the body is loaded only after trigger selection. Use imperative instructions and avoid user-facing tutorial prose.
+5. Write `SKILL.md` before filling optional resources. Put all "when to use" trigger wording in the YAML `description`; the body is loaded only after trigger selection. Apply the functional-naming rule in shared task modes to method introductions and report titles while preserving source records and narrative content. Use imperative instructions and avoid user-facing tutorial prose.
 6. Add resources that directly support the skill. Remove placeholder files and unused directories. Test any script by running it on a small representative example.
 7. Validate changed behavior and structure using the existing family checks. Compare SKILL.md, agent prompts, registry, shared rules, and docs for conflicts. Check real YAML metadata, syntax of existing scripts, resource dependencies, and representative task boundaries; distinguish static checks from actual model evaluation. Preserve public paths and command compatibility. Do not add new files, dependencies, or evaluations when the user limits work to existing surfaces.
 8. Run `ccf-common/scripts/check_path_privacy.py` before finishing CCFA-family maintenance. Replace any committed local absolute path or username with `$CODEX_HOME`, `$HOME`, a repo-relative path, or a non-identifying placeholder.

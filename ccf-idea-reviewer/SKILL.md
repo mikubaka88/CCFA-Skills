@@ -38,7 +38,7 @@ Every consequential criticism identifies the affected idea statement or assumpti
 
 ## Output Contract
 
-Use the CSPaper-inspired structure defined in `references/strict-idea-review.md`; do not substitute a generic coaching response or manuscript acceptance report. State the conceptual verdict, prior-art delta, anchored concerns, applicable scorecard, development potential, confidence, and concrete refinements without repeating the same criticism. A rough seed, short prompt, or no-score request does not select brief output or authorize experiment assessment.
+Use the concept-review structure defined in `references/strict-idea-review.md`; do not substitute a generic coaching response or manuscript acceptance report. State the conceptual verdict, prior-art delta, anchored concerns, applicable scorecard, development potential, confidence, and concrete refinements without repeating the same criticism. A rough seed, short prompt, or no-score request does not select brief output or authorize experiment assessment.
 
 For an explicitly requested brief judgment, use the template's five blocks and retain the same concept-only boundary. No forced scores or experimental checklist. Recommendations remain `accept-to-develop`, `revise`, `pivot-with-rescue-route`, `abandon`, or `needs-literature-search`.
 

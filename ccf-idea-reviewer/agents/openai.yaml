@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Idea Reviewer"
   short_description: "Assess idea value, novelty, and conceptual soundness."
-  default_prompt: "Use $ccf-idea-reviewer to judge this idea with a CSPaper-inspired concept review: problem, novelty, insight, and mechanism; exclude experiment assessment unless requested."
+  default_prompt: "Use $ccf-idea-reviewer to judge this idea with a structured concept review: problem, novelty, insight, and mechanism; exclude experiment assessment unless requested."

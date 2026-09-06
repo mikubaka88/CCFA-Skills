@@ -1,8 +1,8 @@
-# CSPaper-Inspired Review Formats
+# Manuscript Review Formats
 
 Use `detailed` by default. Use `brief` only when the user explicitly asks for 简要版, 简短, 快速概览, 只给结论, brief, concise, or a restrictive length/output format. A short prompt, a single manuscript, narrow subject matter, or no-score request does not by itself select brief output. Report detail is independent of review scope and execution depth: a detailed writing review still assesses writing only.
 
-These formats expand CSPaper's public progression from preliminary assessment through substantive review to ratings. They are CCFA formats, not a claim to CSPaper's exact implementation, private calibration, or branded results. Translate headings to the user's language. Preserve an explicit venue form or user schema.
+These formats organize review scope, substantive findings, ratings, and revision priorities. Translate headings to the user's language. Preserve an explicit venue form or user schema.
 
 ## Detailed Version — Default
 
@@ -66,7 +66,7 @@ Use `reviewer-panel.md` to present distinct observations and the best-supported,
 
 Use the applicable venue scale or `calibration-and-rank.md`. Include dimension scores, evidence or concern IDs, deductions, change conditions, one overall score or stance, and confidence. Unassessed or inapplicable criteria are not zero. A verified unsupported central claim can justify a low Evidence score; an intentionally supplied excerpt cannot establish a whole-paper defect.
 
-A detailed no-score request keeps qualitative criterion-by-criterion judgments and their basis. Without a real comparable corpus, omit CSPaper ranks, percentiles, outperformed counts, and distribution plots.
+A detailed no-score request keeps qualitative criterion-by-criterion judgments and their basis. Without a real comparable corpus, omit ranks, percentiles, outperformed counts, and distribution plots.
 
 ### 13. 作者关键问题与改判条件 / Questions And Decision Conditions
 

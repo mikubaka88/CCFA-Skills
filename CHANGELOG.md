@@ -2,9 +2,11 @@
 
 ## Unreleased - review refinement (version remains 0.10.0)
 
+- Use functional names in method introductions, skill descriptions, invocation prompts, and report titles while preserving source references, acknowledgments, quotations, and narrative context.
+
 - Made natural concept judgments and manuscript assessments select their respective reviewers without requiring numeric-score wording. A full PDF can still receive concept-only review.
 - Replaced the default idea rubric with six conceptual dimensions. Experimental completeness, results, baselines, ablations, and submission readiness no longer affect default idea scores; requested experiment/feasibility extensions remain separate.
-- Expanded CSPaper's public assessment, substantive-review, and rating organization into detailed manuscript and concept reports by default, with brief output on explicit request. Aligned templates, entry instructions, and agent prompts; consolidated duplicate audit/role reports while preserving manuscript version-comparison contracts and historical evaluations.
+- Organized assessment scope, substantive findings, and ratings into detailed manuscript and concept reports by default, with brief output on explicit request. Aligned templates, entry instructions, and agent prompts; consolidated duplicate audit/role reports while preserving manuscript version-comparison contracts and historical evaluations.
 - Adapted evidence anchors, stable concern IDs, revision follow-up, explicit rating fields, and finding-quality checks from inspected open-source review projects. Recorded public provenance; no third-party runtime, dependency, calibration model, or benchmark result was imported.
 - Updated three-language README guidance and shared routing, modes, and score rules. Existing package names, directory layout, and plugin version remain unchanged.
 

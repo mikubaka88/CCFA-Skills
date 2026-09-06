@@ -18,7 +18,7 @@ Read the relevant method or claim before asserting overlap. For each decisive so
 
 Use `detailed` by default, including natural assessment requests such as “靠谱吗” and “值得做吗”. Use `brief` only when the user explicitly asks for 简要版, 简短, 快速概览, 只给结论, brief, concise, or a restrictive length/output format. A rough seed, one idea, limited evidence, or “不用打分” does not imply brief output. Output detail and evidence-search depth are separate choices.
 
-Expand CSPaper's public review progression into the concept-specific sections below. This is a CCFA adaptation, not CSPaper's private scoring system. Translate headings to the user's language and preserve an explicit user schema.
+Use the concept-specific sections below to organize the assessment, conceptual ratings, and development priorities. Translate headings to the user's language and preserve an explicit user schema.
 
 ## Detailed Version — Default
 

@@ -56,6 +56,8 @@ Unresolved:
 
 ## Output Flexibility
 
+Use functional naming for CCFA method and feature introductions, report names, and invocation prompts. Keep competing-product style claims out of those descriptions. Preserve source attribution, acknowledgments, quotations, reference examples, and license notices in their appropriate sections.
+
 For non-review skills, the user's requested output shape wins over the skill's default report shape. If the user asks for LaTeX, Markdown, a table, a direct rewrite, a short answer, a file, Chinese prose, English prose, or a specific section structure, produce that format first and put internal checks behind it.
 
 Review-related skills use structured evidence, scoring, and traceable criticism when applicable, while honoring an explicit user schema or concise requested format. `ccf-paper-reviewer`, `ccf-idea-reviewer`, and integrity/submission gate checks should remain more structured than writing, search, planning, or experiment-design outputs.

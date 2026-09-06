@@ -1,6 +1,6 @@
 ---
 name: ccf-paper-reviewer
-description: "Review manuscript claims, evidence, and writing without rewriting. Use for 文章审核, 审稿, 稿件有什么硬伤, 结论站得住吗, 投稿成熟度, writing review, and version comparison. Return a CSPaper-inspired structured review; scores need not be explicitly requested. Concept-only judgment belongs to ccf-idea-reviewer even with a full PDF; requested prose edits belong to ccf-paper-writer."
+description: "Review manuscript claims, evidence, and writing without rewriting. Use for 文章审核, 审稿, 稿件有什么硬伤, 结论站得住吗, 投稿成熟度, writing review, and version comparison. Return a structured scientific or writing review; scores need not be explicitly requested. Concept-only judgment belongs to ccf-idea-reviewer even with a full PDF; requested prose edits belong to ccf-paper-writer."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -37,7 +37,7 @@ Do not write rebuttal text or directly maintain the revision ledger; route revie
 
 ## Workflow
 
-1. Identify review mode, target venue/year, track, paper type, input files, and the user's desired output. Load `references/fixed-output-format.md` before composing the report; it owns detailed/brief selection and the CSPaper-inspired presentation structure. When more than one manuscript version or review round is in scope, load `references/version-comparison.md` before scoring.
+1. Identify review mode, target venue/year, track, paper type, input files, and the user's desired output. Load `references/fixed-output-format.md` before composing the report; it owns detailed/brief selection and the structured presentation. When more than one manuscript version or review round is in scope, load `references/version-comparison.md` before scoring.
 2. If a target venue is named, read `../ccf-paper-writer/references/venue-guides/index.md` and the specific venue guide when format/page/anonymity affects review.
 3. Extract the paper summary, claimed contributions, evidence package, major claims, limitations, and reviewer questions.
 4. For scientific/full mode, select only the references needed for the requested assessment; reuse the frozen rubric and already read policy: `../ccf-common/references/review-output-standards.md`, `references/review-workflow.md`, `references/universal-review-rubric.md`, `references/venue-review-styles.md`, `references/reviewer-panel.md`, `references/calibration-and-rank.md`, and `references/desk-checks.md`.
@@ -50,7 +50,7 @@ Do not write rebuttal text or directly maintain the revision ledger; route revie
 
 Follow `references/fixed-output-format.md`. Default to its detailed report, developing each applicable section with inspected evidence. Use its brief version only for an explicit brevity request or restrictive user format. A short prompt, no-score request, or narrow review scope does not select brief output. Presentation length does not change evidence standards or authorize additional review scope.
 
-Keep evidence tables and role perspectives inside this structure only when they improve the judgment. Do not emit a separate report for every audit or role. Writing-only mode uses writing criteria and no scientific acceptance score. This is a CCFA report inspired by CSPaper, not a CSPaper-generated result or a claim to its calibration.
+Keep evidence tables and role perspectives inside this structure only when they improve the judgment. Do not emit a separate report for every audit or role. Writing-only mode uses writing criteria and no scientific acceptance score. Use functional report titles and the stated review scope. Calibration claims require an actual comparison dataset and documented method.
 
 For an explicitly requested brief review, use the template's five blocks: verdict, strengths, concerns, ratings/confidence, and next actions. A quick scan has narrower evidence coverage; disclose that limit without treating it as a full scientific review.
 

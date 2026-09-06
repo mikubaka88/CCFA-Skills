@@ -129,11 +129,11 @@ npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes -
 
 ### 论文方法架构图
 
-下图从 `output/DynTrace.pdf` 中提取计算关系，并借鉴 LLaVA-4D Figure 2 组织层次、信息密度与方法机制的方式。输入与视觉处理位于底部，几何证据和 DTV/DTG 分支构成中层，token 融合、MLLM 与答案位于顶部。我们借鉴的是论文图讲清机制的方法，而不是复制其中的模型内容或版面。
+下图从 `output/DynTrace.pdf` 中提取计算关系，以分层布局呈现方法机制与信息流。输入与视觉处理位于底部，几何证据和 DTV/DTG 分支构成中层，token 融合、MLLM 与答案位于顶部。各层按计算依赖连接，便于沿信息流阅读完整方法。
 
 ![论文方法架构图](assets/visual-showcase/dyntrace-paper-mechanism-llava4d-reference.png)
 
-**成图方式：** 先从 DynTrace 论文中提炼机制关系，梳理每种表示及其对应操作，再参考 LLaVA-4D Figure 2 的论文构图语言，由 GPT Image 2 生成，并核对方法信息是否完整。当前展示的是 PNG 视觉稿；构图确认后，可继续重建为 SVG、矢量 PDF 或由原生对象组成的 PPTX。
+**成图方式：** 先从 DynTrace 论文中提炼机制关系，梳理每种表示及其对应操作，由 GPT Image 2 生成分层架构图，并核对方法信息是否完整。当前展示的是 PNG 视觉稿；构图确认后，可继续重建为 SVG、矢量 PDF 或由原生对象组成的 PPTX。
 
 <details>
 <summary>查看参考图、出处与构图原则</summary>
@@ -186,7 +186,7 @@ npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes -
 
 思路审核与文章审核按判断对象区分：“这个方向值得做吗”由 `ccf-idea-reviewer` 处理，无需指定评分；“稿件结论是否站得住”由 `ccf-paper-reviewer` 处理。即使输入完整 PDF，只看核心思路的请求也保持概念审核。思路评分聚焦问题、创新、洞察、机制、简洁性与受众价值，实验仅在明确要求时单独评估。
 
-报告参考 [CSPaper 的公开结构](https://cspaper.org/op/20260212.0001v1)，默认输出详细版，明确要求简要时使用简要版。文章审核展开贡献、优缺点、相关工作、方法与证据、多视角意见、评分及修改优先级；思路审核展开问题价值、创新差异、机制逻辑与发展建议，默认不评实验。意见绑定具体位置、依据与稳定编号，复审追踪问题是否解决；不会生成缺乏真实参照集的百分位排名。详见[文章报告模板](ccf-paper-reviewer/references/fixed-output-format.md)与[思路审核协议](ccf-idea-reviewer/references/strict-idea-review.md)。
+结构化审核报告默认输出详细版，明确要求简要时使用简要版。文章审核展开贡献、优缺点、相关工作、方法与证据、多视角意见、评分及修改优先级；思路审核展开问题价值、创新差异、机制逻辑与发展建议，默认不评实验。意见绑定具体位置、依据与稳定编号，复审追踪问题是否解决；不会生成缺乏真实参照集的百分位排名。详见[文章报告模板](ccf-paper-reviewer/references/fixed-output-format.md)与[思路审核协议](ccf-idea-reviewer/references/strict-idea-review.md)。
 
 文章复审同时回答两个不同的问题：
 

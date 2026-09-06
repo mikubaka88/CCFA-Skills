@@ -1,6 +1,6 @@
 # Calibration And Rank
 
-Use this file for scores, calibrated stance, confidence, and CSPaper-style relative interpretation.
+Use this file for scores, calibrated stance, confidence, and cohort-relative interpretation.
 
 ## Default Overall Scale
 
@@ -46,9 +46,9 @@ Anchors:
 - Lean reject: one major concern or multiple moderate concerns; overall usually 4.
 - Clear reject: fatal technical, novelty, evidence, policy, or venue issue; overall usually 1-3.
 
-## CSPaper-Style Relative Interpretation
+## Cohort-Relative Interpretation
 
-When the user asks for rank or cohort-relative quality, require an inspectable comparable set, common rubric, and declared cohort. Report only the rank supported by those inputs. Without them, use the absolute stance anchors above and omit relative bands, percentiles, outperformed counts, and distribution plots. CSPaper's public rank method depends on its own cohort and calibration; a CCFA score is not interchangeable with it.
+When the user asks for rank or cohort-relative quality, require an inspectable comparable set, common rubric, and declared cohort. Report only the rank supported by those inputs. Without them, use the absolute stance anchors above and omit relative bands, percentiles, outperformed counts, and distribution plots. Scores from different cohorts or calibration methods are not interchangeable.
 
 ## Confidence
 
