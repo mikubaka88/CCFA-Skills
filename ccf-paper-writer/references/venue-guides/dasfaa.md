@@ -8,7 +8,7 @@
 | Venue family | DB |
 | CCF tier | CCF-B |
 | Template path | `ccf-latex-templates/DASFAA/llncs.cls` |
-| Official URL | https://www |
+| Official URL | https://dasfaa2026.github.io/ |
 | Last verified | Legacy migration on 2026-06-06; official policy must be rechecked before submission. |
 | Source status | Migrated local guide; not independently reverified in v0.4.0. |
 
@@ -24,7 +24,7 @@
 # DASFAA 2026 Conference Writing Skill
 
 **CCF-B | DB | Publisher: Springer**
-**Conference:** https://www DASFAA2026.org
+**Conference:** https://dasfaa2026.github.io/
 **Template:** `DASFAA/llncs.cls` (Springer LNCS)
 
 ## Document Setup
@@ -32,7 +32,7 @@
 ### Preamble Structure
 
 ```latex
-\documentclass[envcountsame, r運行]{llncs}
+\documentclass[envcountsame, runningheads]{llncs}
 
 \usepackage{llncsdoc}
 \usepackage{makeidx}
@@ -57,7 +57,7 @@
 
 ## Page Limits
 
-|| Section | Limit |
+| Section | Limit |
 |---------|-------|
 | Main paper | **15 pages** |
 | References | No specific limit |
