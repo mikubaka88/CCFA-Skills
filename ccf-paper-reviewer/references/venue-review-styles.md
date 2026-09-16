@@ -39,12 +39,17 @@ Review emphasis:
 
 Primary dimensions: value to the community, new knowledge, soundness, novelty, significance, clarity, and discussion responsiveness.
 
-Review emphasis:
+For 2027, use source records `iclr-2027-reviewer-guidelines` and `iclr-2027-ai-reviewers`. Keep CCFA's fixed report profile and seven-dimension rubric unless the user supplies a verified official form.
 
 - Ask whether the submission brings sufficient value to the community.
-- Prioritize conceptual clarity, representation/learning insight, empirical soundness, and clear distinction from prior work.
-- For revision planning, identify which clarifications could reasonably raise a reviewer score.
-- Penalize claims that are impressive in wording but not grounded in evidence or theory.
+- Ground the recommendation in the research question, motivation/prior work, support for claims, and significance. Assess theory, empirical work, and other contributions on their own evidence; a missing SOTA win alone is not a rejection reason.
+- Lead with the one or two reasons driving the recommendation, while retaining every material concern. Group duplicate symptoms under stable finding IDs. Additional experiments must resolve a specific central claim; avoid peripheral requests and separate optional improvements from decision blockers. Do not shorten the required evidence inspection or change the fixed report headings.
+- Reassess resolved concerns after discussion; explain any change in recommendation using new evidence.
+- Verify dates against the current author guidelines: the 2027 reviewer FAQ contains an inconsistent deadline example. Do not turn its stale example into a mandatory comparison cutoff.
+
+### ICLR 2027 Official Review Assistance
+
+Distinguish an author's internal manuscript pre-review from an assigned official review or meta-review. For an official assignment, verify the current AI-review policy before generating or editing review text. Work from the human reviewer's own initial assessment; do not generate that initial self-report or invent independent reading. If it is missing, request it before drafting the official review. AI-assisted editing requires disclosure, the original assessment, and the interaction record, including inputs across iterative turns. Preserve these in the existing task paths and keep the final judgment consistent with the human assessment; flag substantive changes for the reviewer. Internal author pre-review continues under the normal CCFA contract and does not require an official-review self-report.
 
 ## ACL / ARR
 

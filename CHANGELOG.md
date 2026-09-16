@@ -4,6 +4,7 @@
 
 Plugin version remains `0.10.0`.
 
+- Add a minimal ICLR 2027 adaptation in existing guides: verified author/reviewer/AI-use policies, exact-year template selection, truthful disclosure checks, and decision-relevant review emphasis. Correct legacy ICLR anonymity, layout, and unsupported LaTeX commands; retain historical 2026 templates. Keep the fixed review profiles, 17-skill architecture, and plugin version unchanged.
 - Restore mandatory family-wide preflight in the order `ccf-humanization` -> `ccf-common` -> specialist. Apply it to review, retrieval, visuals, planning, and maintenance as well as writing; reuse active rules without recursive startup or duplicate reports. Detailed editing/experiment modes remain conditional. Align entrypoints, discovery prompts, routing, docs, and all partial-install subsets.
 - Use project-root `ccfa-workfiles/<purpose>/<artifact-id>/` for new working directories instead of nesting them in a generic application output folder. Preserve established task paths and avoid collisions with unrelated folders.
 - Make skill ownership accountable for integration rather than isolated execution. Complete applicable prerequisites and material specialist checks, reuse valid evidence, and revisit affected dependencies after changes.

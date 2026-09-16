@@ -43,6 +43,8 @@ Yann LeCun and James M. Manyika, [*Learning Abstractions*](https://www.amacad.or
 
 ## 快速开始
 
+**ICLR 2027 适配更新（2026-09-16）**：按官方指南校准匿名、页数、年份模板和 AI 使用声明检查；评审聚焦影响结论的证据与问题，沿用固定报告结构。[适配细节](ccf-paper-writer/references/venue-guides/iclr.md) · [更新记录](CHANGELOG.md)。版本仍为 `0.10.0`。
+
 选择你正在使用的 Agent：
 
 [Codex 安装](docs/getting-started/CODEX.md) · [Claude Code 安装](docs/getting-started/CLAUDE_CODE.md) · [Cursor 安装](docs/getting-started/CURSOR.md) · [Gemini CLI 安装](docs/getting-started/GEMINI_CLI.md) · [其他 Agent](docs/getting-started/OTHER_AGENTS.md) · [自动更新](docs/getting-started/AUTO_UPDATE.md)

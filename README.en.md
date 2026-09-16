@@ -43,6 +43,8 @@ CCFA Skills grew from this problem. We treat a paper as a research storyline tha
 
 ## Quick start
 
+**ICLR 2027 adaptation (2026-09-16)**: updated anonymity, page-budget, year-specific template, and AI-use disclosure checks against official guidance. Reviews focus on decision-relevant evidence and concerns within the existing fixed report structure. [Details](ccf-paper-writer/references/venue-guides/iclr.md) · [Changelog](CHANGELOG.md). Version remains `0.10.0`.
+
 Choose the agent you use:
 
 [Codex](docs/getting-started/CODEX.md) · [Claude Code](docs/getting-started/CLAUDE_CODE.md) · [Cursor](docs/getting-started/CURSOR.md) · [Gemini CLI](docs/getting-started/GEMINI_CLI.md) · [Other agents](docs/getting-started/OTHER_AGENTS.md) · [Automatic updates](docs/getting-started/AUTO_UPDATE.md)

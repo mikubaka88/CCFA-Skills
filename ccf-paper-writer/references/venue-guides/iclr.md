@@ -7,10 +7,10 @@
 | Venue slug | `iclr` |
 | Venue family | AI |
 | CCF tier | CCF-A |
-| Template path | `ccf-latex-templates/ICLR/iclr2026_conference.sty` |
-| Official URL | https://iclr.cc/Conferences/2026/AuthorGuide |
-| Last verified | 2026-06-06 against ICLR 2026 Author Guide. |
-| Source status | Official author-guide verified for anonymity/page-limit basics; recheck before real submission. |
+| Template | ICLR 2027 official style bundle; obtain it from the Author Guidelines before building. The bundled local style is for 2026 only. |
+| Official URL | https://iclr.cc/Conferences/2027/AuthorGuidelines |
+| Last verified | 2026-09-16 against the 2027 author/reviewer policies and official style bundle. |
+| Source status | Year-specific guidance verified; recheck official policy before real submission. |
 
 ## Usage Boundary
 
@@ -18,21 +18,26 @@
 - Use `ccf-paper-writer` for actual paper writing and polishing.
 - Use `ccf-paper-reviewer` or `ccf-submission-checker` for format audit, depending on whether the task is manuscript-facing or submission-package-facing.
 - Verify current-year official rules before final submission.
+- Select the requested year explicitly. The examples below target 2027; do not rename the bundled 2026 style or silently use it for 2027. Download the complete official bundle, including its bibliography style, into the task's established source directory and preserve project build paths.
 
-## Migrated Venue Notes
+## ICLR 2027 Adaptation
 
-# ICLR 2026 Conference Writing Skill
+Verified source records: `iclr-2027-author-guidelines`, `iclr-2027-reviewer-guidelines`, `iclr-2027-ai-authors`, `iclr-2027-ai-reviewers`, and `iclr-2027-style-files` in the shared source registry. Read only the policy relevant to the task.
 
-**CCF-A | AI | Publisher: OpenReview**
-**Conference:** https://iclr.cc
-**Template:** `ccf-latex-templates/ICLR/iclr2026_conference.sty`
+- Abstract deadline: September 18, 2026; full paper: September 25, 2026, both 23:59 AoE. Use the current Author Guidelines for dates; the reviewer FAQ still contains a conflicting September 16 example.
+- Keep required prerequisites and all material review findings. Prioritize issues that can change the recommendation; avoid unrelated experiments and citation lists. Preserve the existing CCFA review structure and contribution-aware rubric.
+- See the AI-use requirements below when drafting or checking a full submission. An author's internal pre-review remains distinct from an official assigned review.
 
-## IMPORTANT: ICLR 2026 Is Double-Blind During Review
+### Existing ICLR 2026 Projects
 
-ICLR uses OpenReview, but the 2026 author guide states that submissions are double-blind during review.
+Keep `ccf-latex-templates/ICLR/iclr2026_conference.sty` for projects explicitly targeting 2026, with the default review mode and `\iclrfinalcopy` for camera-ready. Use the complete matching official bundle when dependencies are missing or rendered headers differ. Consult the existing `iclr-2026-author-guide` source record for historical policy. Do not impose the 2027 AI-disclosure rules on a 2026 project.
+
+## Double-Blind Review
+
+ICLR 2027 reviews are double-blind; OpenReview hosting does not make the submission non-anonymous.
 
 This means:
-1. Use the default `iclr2026_conference` style for under-review submissions; add `\iclrfinalcopy` only after acceptance.
+1. Use the default `iclr2027_conference` style for under-review submissions; add `\iclrfinalcopy` only for camera-ready.
 2. Do not include author names, affiliations, acknowledgments, funding details, or identifying project links in the submitted PDF.
 3. Cite prior work, including the authors' own public work, in the third person when needed.
 4. Keep private code, supplementary, and artifact links anonymized until the venue permits de-anonymization.
@@ -43,17 +48,18 @@ This means:
 ### Preamble Structure
 
 ```latex
-% === MODE SELECTION ===
-\usepackage{iclr2026_conference}              % For submission/review
-% OR:
-\usepackage{iclr2026_conference}
-\iclrfinalcopy                                % Camera-ready after acceptance
+\documentclass{article}
+\usepackage{iclr2027_conference,times}         % Submission/review
+% \iclrfinalcopy                              % Enable only for camera-ready
 
 % Additional packages:
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{amsthm}                            % If theorem environments are used
+\newtheorem{assumption}{Assumption}
+\newtheorem{theorem}{Theorem}
 \usepackage{hyperref}
 \usepackage{url}
 ```
@@ -80,10 +86,16 @@ Use `\ificlrfinal` for content that differs between versions:
 
 ## Page Limits
 
-- ICLR 2026 submission: 9 pages for the main text, excluding references and appendix.
+- ICLR 2027 submission: 9 pages for the main text, excluding references and appendix.
 - Discussion and camera-ready versions: 10 pages for the main text, excluding references and appendix.
 - Appendices and supplementary material are allowed but must follow current official instructions.
 - Always re-check the official Author Guide before real submission.
+
+## AI Use Statement (2027)
+
+Include the mandatory AI-use section and consistent submission-form answers, including when no disclosable use occurred. The section is outside the main-text budget; the official template limits it to one page. Record actual assistance and human checks, not blanket assurances. Required disclosure covers, among other tasks, hypotheses, methods/experiments, method implementation, proofs, data processing, result interpretation, and translation; figure creation and readability editing are recommended disclosures. Check the full official task list for borderline cases. Do not assume translation is exempt polishing.
+
+Use the existing manuscript and task history; create no separate ledger by default. Ask only for missing usage facts needed to finalize the statement; leave those facts explicitly unresolved meanwhile. Humanization and compression must retain the disclosure and its substance. Never invent non-use or completed human verification.
 
 ## Title and Author Formatting
 
@@ -99,11 +111,14 @@ Use `\ificlrfinal` for content that differs between versions:
 ### Affiliation Formatting
 
 ```latex
-\affiliation{%
-  \normalfont \centering
-  \textbf{Institution Name} \\
-  Address Line \\
-  City, Country
+% Camera-ready author block; submission uses the anonymous block above.
+\author{
+  Author Name \\
+  Institution Name \\
+  \texttt{author@example.org}
+  \And
+  Coauthor Name \\
+  Institution Name
 }
 ```
 
@@ -111,31 +126,22 @@ Use `\ificlrfinal` for content that differs between versions:
 
 ```latex
 \begin{abstract}
-Your abstract here. ICLR abstracts are typically 150-300 words.
+Your abstract here. Follow the current submission form's length constraint.
 Explain the problem, approach, and main contributions.
 ICLR reviewers read abstracts carefully — make it compelling.
 \end{abstract}
 
-\keywords{keyword1 \and keyword2 \and keyword3}
 ```
 
-## Two-Column Layout (Optional)
+Supply keywords in the submission form when requested. The official style does not define a `\keywords` command.
 
-For two-column title format:
-```latex
-\twocoltitle[
-  \centering
-  \begin{tabular}{c}
-    Your Title Here \\
-    \hline
-    \author{Name1 \And Name2 \AND Name3}
-  \end{tabular}
-]
-```
+## Layout
+
+Use the official single-column layout and `\maketitle`. Keep the style's margins, font sizes, and line spacing. Align figures to the available text width without shrinking labels below readability.
 
 ## Recommended ICLR Paper Structure
 
-ICLR values clear, well-motivated papers with strong empirical and/or theoretical contributions.
+ICLR values clear, well-motivated papers with strong empirical and/or theoretical contributions. Adapt the outline to the actual contribution; empirical sections and SOTA claims are not universal requirements. Replace illustrative claims only with supplied evidence.
 
 ```latex
 \section{Introduction}
@@ -197,11 +203,11 @@ The remainder of this paper is organized as follows...
 
 ## References (natbib with authoryear)
 
-`iclr2026_conference` uses `natbib` with `authoryear` style by default:
+The official style uses `natbib` with author-year citations:
 
 ```latex
 % In document:
-\bibliographystyle{iclr2026_conference}
+\bibliographystyle{iclr2027_conference}
 \bibliography{references}
 
 % Citations:
@@ -212,24 +218,16 @@ The remainder of this paper is organized as follows...
 ## Figures and Tables
 
 ```latex
-% Figure: include in single column or full width
-\begin{figure}[t]
+% Figure within the official single-column text width
+\begin{figure}[htbp]
   \centering
   \includegraphics[width=0.8\linewidth]{figure}
   \caption{Figure caption here.}
   \label{fig:example}
 \end{figure}
 
-% For full-width figure:
-\begin{figure*}[t]
-  \centering
-  \includegraphics[width=0.9\textwidth]{figure}
-  \caption{Full-width figure caption.}
-  \label{fig:wide}
-\end{figure*}
-
 % Table with booktabs:
-\begin{table}
+\begin{table}[htbp]
   \caption{Table caption above.}
   \label{tab:example}
   \centering
@@ -264,14 +262,14 @@ The remainder of this paper is organized as follows...
 [State your assumptions clearly]
 \end{assumption}
 
-\begin{convergence}
+\begin{theorem}
 \label{them:main}
 Under Assumption \ref{assum:1}, the algorithm converges at rate...
-\end{convergence}
+\end{theorem}
 
-\begin{Proof}
-[Proof here]
-\end{Proof}
+\begin{proof}
+State the proof here.
+\end{proof}
 ```
 
 ### Experimental Rigor
@@ -280,12 +278,7 @@ Under Assumption \ref{assum:1}, the algorithm converges at rate...
 \section{Experiments}
 
 \subsection{Setup}
-\textbf{Datasets:} We evaluate on standard benchmarks:
-\begin{itemize}
-    \item \textbf{CIFAR-10}: 50K training, 10K test images.
-    \item \textbf{ImageNet}: 1.2M training, 50K validation images.
-    \item \textbf{GLUE}: 9 NLU tasks.
-\end{itemize}
+\textbf{Datasets:} [Actual datasets, splits, preprocessing, and metrics.]
 
 \textbf{Baselines:} We compare against:
 \begin{itemize}
@@ -294,16 +287,12 @@ Under Assumption \ref{assum:1}, the algorithm converges at rate...
     \item Ablation variants of our method
 \end{itemize}
 
-\textbf{Implementation:} PyTorch. All experiments on NVIDIA A100 GPUs.
-Learning rate: 1e-3, batch size: 256, trained for 100 epochs.
-Hyperparameters selected via validation set tuning.
+\textbf{Implementation:} [Actual software, hardware, and tuning protocol.]
 
-\textbf{Statistics:} Results are mean $\pm$ std over 5 seeds.
-Statistical significance via paired t-test.
+\textbf{Statistics:} [Actual runs and appropriate uncertainty estimates.]
 
 \subsection{Main Results}
-\autoref{tab:main} shows our method achieves state-of-the-art
-across all benchmarks, improving over previous best by X\%.
+[Describe only the supplied results and the comparisons they support.]
 
 \subsection{Ablation Study}
 \autoref{tab:ablation} shows the contribution of each component.
@@ -311,32 +300,23 @@ across all benchmarks, improving over previous best by X\%.
 
 ## OpenReview-Specific Requirements
 
-Since papers are **not anonymous**:
-
-1. **Include author information** — required for submission
-2. **PDF metadata** — should contain author names
-3. **Self-citations** — no special anonymization needed
-4. **Dual submissions** — must be declared on OpenReview
-5. **Camera-ready** — update with final author information
+Keep the review PDF, metadata, and supplementary material anonymous. Author identities belong in the private submission-form fields, not in the review PDF. Restore the author block only for camera-ready.
 
 ### Dual Submission Policy
 
 ICLR has strict dual submission rules:
 - Cannot submit the same paper to ICLR and another venue simultaneously
-- Must withdraw from other venues if accepted at ICLR
-- Can submit to arXiv before ICLR deadline (encouraged)
+- Withdrawing only after acceptance does not cure a prohibited parallel submission
+- Posting a preprint on arXiv is permitted
 - Check current CFP for exact rules
 
 ### Preprint/ArXiv Policy
 
-ICLR allows (and often encourages) posting preprints on arXiv:
-- No special anonymization needed
-- Can cite your own arXiv preprint
-- arXiv posting is encouraged for reproducibility
+An arXiv preprint can coexist with anonymous review. Cite relevant prior work in third person and keep identifying cross-links out of the submitted version.
 
 ## Rebuttal Period
 
-ICLR has a mandatory rebuttal period where authors can respond to reviews.
+ICLR has an author discussion period. Use `ccf-rebuttal-writer` for responses grounded in the actual review and revision. The sketch below is conditional: include an action or result only after verifying it occurred.
 
 ### Rebuttal Structure
 
@@ -349,19 +329,16 @@ We thank the reviewers for their thoughtful comments and detailed feedback.
 We appreciate this observation. To address this concern, we:
 
 \begin{itemize}
-    \item Added new experiments showing Z (see Figure X in this response)
-    \item Clarified our approach in the revised paper
-    \item Acknowledged this limitation in the conclusion
+    \item [Answer the concern using available evidence and its location.]
+    \item [Identify any completed manuscript change and its location.]
+    \item [State a remaining limitation when it affects the claim.]
 \end{itemize}
 
 \textbf{Regarding the comparison with method A:}
-We have added method A to our comparison. Results show our method
-outperforms A by X\% on the primary metric.
+[Report an actual comparison, or explain what remains untested.]
 
 \textbf{Regarding the theoretical assumptions:}
-The reviewer raises an important point. We have added a more
-rigorous analysis in the appendix showing that the assumption can
-be relaxed to...
+[Explain the supported assumptions and any verified proof correction.]
 ```
 
 ### Rebuttal Best Practices
@@ -383,10 +360,8 @@ be relaxed to...
 ## Camera-Ready Compilation
 
 ```latex
-% Change from:
-\usepackage[submission]{iclr2026_conference}
-% To:
-\usepackage[final]{iclr2026_conference}
+\usepackage{iclr2027_conference,times}
+\iclrfinalcopy
 ```
 
 For camera-ready:
@@ -398,7 +373,7 @@ For camera-ready:
 
 ### Camera-Ready Checklist
 
-- [ ] Changed to `\usepackage[final]{iclr2026_conference}`
+- [ ] Enabled `\iclrfinalcopy` with the correct year's style
 - [ ] All author information complete and correct
 - [ ] Acknowledgments section added
 - [ ] Funding disclosures included
@@ -408,32 +383,30 @@ For camera-ready:
 ## Formatting Rules
 
 - **Paper size:** US Letter
-- **Font:** Times New Roman (automatic)
+- **Font:** Times family via the official preamble's `times` package
 - **Text:** 10pt
 - **Margins:** Standard conference margins
-- **Columns:** Two-column format
+- **Columns:** Single-column format
 - **Line spacing:** Check style file defaults
 
 ## Submission Process
 
-1. Submit PDF to OpenReview: https://openreview.net/group?id=ICLR.cc/2026/Conference
-2. Paper becomes publicly visible with author info
-3. Reviewers may be anonymous
-4. Author response period available
-5. Final camera-ready after acceptance
+1. Use the exact year's OpenReview portal from its Author Guidelines.
+2. Check current author-registration, quota, and reciprocal-review requirements before final readiness.
+3. Check the anonymous PDF and supplementary package, including required disclosures.
+4. Author response and camera-ready follow the venue's stage-specific instructions.
 
 ## Checklist Before Submission
 
-- [ ] Author information clearly visible
+- [ ] Author identities hidden in the review PDF, metadata, and supplementary material
 - [ ] PDF compiles without errors
 - [ ] Abstract is clear and compelling
-- [ ] Keywords properly set
+- [ ] Required AI-use section and submission-form answers complete and consistent
 - [ ] References in correct format
 - [ ] Figures/tables properly formatted
 - [ ] No confidential information that shouldn't be public
-- [ ] Dual submissions declared on OpenReview
+- [ ] No prohibited concurrent archival submission
 - [ ] All notation defined before use
 - [ ] Baselines properly documented
-- [ ] Statistical significance tested
-- [ ] Ablation studies included
+- [ ] Uncertainty and ablations support the claims where applicable
 - [ ] Reproducibility details provided

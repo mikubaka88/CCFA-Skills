@@ -217,8 +217,12 @@ ccf-latex-templates/
 
 ### ICLR 2026
 ```latex
-\usepackage[submission]{iclr2026_conference}
+\documentclass{article}
+\usepackage{iclr2026_conference,times}
+% \iclrfinalcopy % Enable only for camera-ready
 ```
+
+For ICLR 2027, obtain the complete official bundle through the [ICLR venue guide](../ccf-paper-writer/references/venue-guides/iclr.md), including `iclr2027_conference.sty` and its `.bst`. The local 2026 file remains for historical projects; renaming it does not adapt the template.
 
 ### MICRO 2026
 ```latex
