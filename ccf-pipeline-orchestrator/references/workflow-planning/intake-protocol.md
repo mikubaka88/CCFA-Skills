@@ -61,9 +61,9 @@ Use public-safe queries unless the user explicitly authorizes exact private text
 
 Return one of:
 
-- `single-task`: one CCFA skill can handle the request directly;
-- `multi-stage`: several CCFA skills should run in order;
+- `single-task`: one integrating owner delivers the result with necessary specialist contributions;
+- `multi-stage`: several artifacts or gates have dependencies and distinct integrating owners;
 - `too-broad`: split into subprojects before any downstream work;
 - `unclear`: one must-know question remains.
 
-When the scope is multi-stage, identify the first stage and the handoff condition for the next stage.
+For either scope, identify relevant prerequisites and reuse valid completed work. Resolve missing or conflicting evidence before dependent conclusions; in multi-stage work, name the responsible owners and evidence-based handoff conditions. A specialist contribution does not itself require a new stage or full report.

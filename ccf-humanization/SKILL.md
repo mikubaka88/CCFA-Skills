@@ -1,6 +1,6 @@
 ---
 name: ccf-humanization
-description: "Remove defensive academic prose while preserving evidence, uncertainty, and source format. Use for 去防御性, 论文人性化, apologetic framing, imagined reviewer objections, and repetitive caveats. A writing sidecar; never the primary research owner. Do not auto-run for raw planning, review, retrieval, audit, or visual rendering without prose."
+description: "Required first preflight before every CCFA skill, including research, review, retrieval, experiments, visuals, and maintenance. Keep reasoning and communication direct, remove empty defensive framing, and preserve evidence and uncertainty. Also use for 去防御性 and 论文人性化. Apply prose edits only within the authorized task; specialist skills retain ownership."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -14,13 +14,23 @@ metadata:
 
 ## Family File Contract
 
-Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse existing paths; otherwise use `output/ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse explicit or established task paths; otherwise use project-root `ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+
+## Collaboration Contract
+
+This is the first required family preflight. Apply the baseline below, then activate [ccf-common](../ccf-common/SKILL.md) before specialist work. The two preflights bootstrap once without recursively re-entering each other; reuse applicable rules across contributors.
+
+Keep one integrating owner and actively use other skills to resolve missing prerequisites or check material findings. Reuse applicable evidence; do not skip necessary groundwork to save tokens. Before finalizing, integrate contributions and verify affected results. Follow the conditional [cooperation routes](../ccf-common/references/routing.md); avoid unrelated stages and duplicate reports.
 
 ## Invocation Controls
 
 **CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode`, `../ccf-common/references/handoff-modes.md`, and `../ccf-common/references/task-modes.md`.
 
-Use this as the highest-priority preflight for manuscript prose, including explicitly requested humanization. In a combined writing task, the writer remains the primary owner. Do not auto-load for raw experiment planning, retrieval, review, auditing, routing, or visual rendering without publication prose. Follow user intent and existing authorization; a style preflight does not open a new research stage.
+Activate this first for every CCFA task and contributor, including planning, retrieval, review, auditing, rendering, scaffolding, and maintenance. Apply the family baseline below before `ccf-common` and specialist execution. Reuse an already loaded, applicable baseline at handoffs; refresh changed or lost rules. Prose editing and experiment checks depend on the actual task, but baseline activation is universal. Specialist skills retain ownership and explicit user/host constraints still apply.
+
+## Family Baseline
+
+Read and apply this entry's baseline before specialist work. Communicate the concrete task, evidence, and decisions directly; avoid imagined objections, empty assurances, repetitive warnings, and unnecessary process narration. Preserve real risks, critical review findings, uncertainty, scientific facts, source quotations, and mandatory checks. Do not turn critical assessment into praise or change scores to sound less defensive. Review-only tasks diagnose without rewriting; non-prose tasks apply these rules without inventing a prose-edit pass. Enable only relevant detailed modes below. This preflight creates no report, warning file, or separate agent by default.
 
 ## Core Rule
 
@@ -32,11 +42,14 @@ Keep method confirmation and version-gate status internal. Describe the actual m
 
 ## Modes
 
+- `family-preflight`: always apply the baseline before any CCFA specialist; no manuscript or experiment artifact is required.
 - `manuscript-humanization`: revise defensive prose while preserving scientific content and source format.
 - `experiment-humanization`: apply the same prose standard to final experiment descriptions and tables; preserve full-method comparisons and labeled ablations.
 - `warning-only`: identify a concrete unresolved scientific decision without modifying its dependent artifact.
 
 ## Workflow
+
+For `family-preflight`, apply the baseline, ensure `ccf-common` is active, and continue the requested specialist task. The following editing workflow applies only when the task includes relevant prose or experiment artifacts; do not run it merely to complete the universal preflight.
 
 1. Identify the requested artifact, existing authorization, and whether the input is prose, a proposed design, or reported results. Read `references/humanization-policy.md` for the sentence decisions and bilingual repair examples.
 2. Recover each paragraph's scientific message. State the observation, operation, assumption, or inference directly. Delete empty self-defense instead of moving it into a warning block.

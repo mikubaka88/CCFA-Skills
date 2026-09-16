@@ -11,6 +11,7 @@ Audience:
 Inputs:
 Constraints:
 Success criteria:
+Prerequisites satisfied / missing / conflicting:
 Recommended approach:
 Next CCFA skill:
 Handoff condition:
@@ -32,6 +33,8 @@ Available Inputs:
 Constraints And Privacy Boundary:
 
 Success Criteria:
+
+Prerequisites And Reusable Evidence:
 
 Scope Diagnosis:
 

@@ -89,7 +89,7 @@ The difficulties of paper research are connected, but they do not require the sa
 
 ![CCFA Skills family architecture](assets/ccfa-skills-architecture.svg)
 
-Each request is led by the skill whose judgment it needs most. Other skills do not compete for the same task; they contribute only when the work reaches their domain. For example, `ccf-paper-writer` shapes the prose while `ccf-humanization` keeps its voice natural. `ccf-experiment-designer` decides what a result table must demonstrate, and `ccf-visual-composer` turns that information into a readable figure.
+Every CCFA task activates `ccf-humanization` first, then `ccf-common`, before the specialist, including retrieval, review, visuals, experiments, and maintenance. Humanization keeps communication direct and evidence-faithful; Common applies scope, collaboration, evidence, and file rules. Reuse active rules across contributors and refresh only changed or missing context. Detailed rewriting and experiment checks depend on the actual task, without duplicate preflight reports. Specialists retain ownership and integrate necessary contributions.
 
 ### The 17 core skills
 
@@ -213,7 +213,7 @@ When a user does not want GPT Image 2 or explicitly prefers code-first drawing, 
 
 ![Skill collaboration boundaries](assets/ccfa-skills-routing.svg)
 
-Clear responsibilities keep each judgment trustworthy:
+Each artifact has an owner responsible for integration and delivery. Other skills contribute according to prerequisites and quality needs; role boundaries support necessary collaboration:
 
 | Your request | Responsible skill | What it deliberately avoids |
 |---|---|---|
@@ -222,7 +222,7 @@ Clear responsibilities keep each judgment trustworthy:
 | Find benchmarks and published results | `ccf-literature-searcher` | Does not invent an experiment conclusion |
 | Choose baselines, metrics, and ablations | `ccf-experiment-designer` | Does not alter or fabricate results |
 | Review, score, and diagnose | `ccf-paper-reviewer` | Does not rewrite the manuscript while judging it |
-| Rewrite, polish, and compress | `ccf-paper-writer` | Does not conduct a new scientific review under the name of editing |
+| Rewrite, polish, and compress | `ccf-paper-writer` | Does not change the scientific problem, method, or conclusion without authorization |
 | Draw figures, tables, and PPTX | `ccf-visual-composer` | Does not choose datasets, metrics, or values |
 
 ## Repository
@@ -241,9 +241,9 @@ CCFA-Skills/
 
 Longer guidance lives in `references/`, while repeatable work belongs in `scripts/`. Iterative artifacts keep stable names so that a new version replaces the previous one instead of leaving behind a trail of indistinguishable attempts.
 
-Load references by task mode: local prose edits do not load entire exemplar bundles, and verified sources/extractions are reused while applicable. Each artifact has one owner; a helper returns its result to that owner, while a requested next artifact may transfer ownership. Carry the goal, authorization, evidence version, paths, and next action across skills without repeating intake or starting optional review/rewrite cycles. Full reviews retain their required evidence coverage. See the [handoff rules](ccf-common/references/handoff-modes.md).
+Work backward from the result to its prerequisites: closest-work evidence before novelty judgments, claims and citation support before substantive writing, and data semantics/topology before scientific rendering. Use the relevant skills to resolve missing, conflicting, or stale evidence; reuse valid checks. Verify affected arguments after substantial revisions and integrate fixes before delivery. Concept review still does not require completed experiments. Internal contributions return focused findings; requested reviews retain their fixed templates and full scoped coverage. Save tokens on repeated retrieval, duplicate reports, irrelevant references, and repeated intake, while completing necessary groundwork. See [cooperation routes](ccf-common/references/routing.md) and [handoff rules](ccf-common/references/handoff-modes.md).
 
-The file contract now leads all 17 skill entrypoints. Explicit user paths, existing project mappings, and established folders take priority. New tasks default to `output/ccfa-workfiles/<purpose>/<artifact-id>/`: for example, `figures/method-overview/`, `reviews/paper-short-title/`, or `literature/retrieval-memory/` beneath `ccfa-workfiles/`. The name identifies both the kind of work and its subject.
+The file contract leads all 17 skill entrypoints. Explicit paths, this artifact's existing mappings, and established task folders take priority. New tasks use a dedicated project-root `ccfa-workfiles/<purpose>/<artifact-id>/`, outside generic `output/` folders. Examples include `figures/method-overview/`, `reviews/paper-short-title/`, and `literature/retrieval-memory/`. If the name belongs to unrelated material, use a stable `ccfa-workfiles-<project-id>/` rather than merging or overwriting contents.
 
 Create `source/` (reusable authoring files), `assets/` (reference/icon assets), `cache/` (downloads/extractions), and `build/` (current previews/logs) only when needed. Skills working on the same artifact share its directory and update current files. Avoid ambiguous new names such as `temp`, `misc`, or `final-final`. Remove only verified disposable files created by the task; retain original evidence, editable sources, requested outputs, and necessary comparison baselines. Failed builds preserve usable results. Existing folders are not migrated to adopt the new default; see the [artifact contract](ccf-common/references/artifact-contracts.md).
 

@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Experiment Designer"
   short_description: "Design experiments and build evidence-bound result tables/figure specs from supplied real values; never invent results."
-  default_prompt: "Use $ccf-experiment-designer for claim-driven protocols and real-result evidence schemas. Skip Humanization for raw planning; apply $ccf-humanization only to final manuscript prose, tables, or captions. Preserve supplied values and clearly separate planned studies from completed comparisons."
+  default_prompt: "Activate $ccf-humanization first and $ccf-common second, then use $ccf-experiment-designer for claim-driven protocols and real-result evidence schemas. Raw planning keeps both preflights active; detailed prose and experiment checks depend on the task. Preserve supplied values and separate planned studies from completed comparisons."

@@ -7,7 +7,7 @@ Use this file when writing a literature-search folder.
 Default:
 
 ```text
-output/ccfa-workfiles/literature/<topic-slug>/
+ccfa-workfiles/literature/<topic-slug>/
   papers.md
   papers.csv        # only for requested structured export or downstream reuse
   search-notes.md    # only when provenance must persist separately

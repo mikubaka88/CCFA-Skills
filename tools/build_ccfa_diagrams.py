@@ -185,7 +185,7 @@ text {{ font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif
 def write_svg(name: str, lang: str, content: str) -> None:
     ASSETS.mkdir(exist_ok=True)
     path = ASSETS / f"{name}{LANG[lang]['suffix']}.svg"
-    path.write_text(content, encoding="utf-8")
+    path.write_bytes(content.encode("utf-8"))
 
 
 def build_hero(lang: str) -> None:
@@ -312,10 +312,10 @@ def build_architecture(lang: str) -> None:
             ("研究交付", "繪圖 · 範文 · 投稿檢查"),
         ],
     }[lang]
-    route_title = {"en": "Understand the task", "zh-CN": "理解任务", "zh-TW": "理解任務"}[lang]
-    owner_rule = {"en": "one task · one owner", "zh-CN": "每项任务 · 明确负责", "zh-TW": "每項任務 · 明確負責"}[lang]
+    route_title = {"en": "Family preflight", "zh-CN": "统一前置", "zh-TW": "統一前置"}[lang]
+    owner_rule = {"en": "Owner integrates", "zh-CN": "主责整合", "zh-TW": "主責整合"}[lang]
     sidecar = {"en": "Supporting checks", "zh-CN": "辅助检查", "zh-TW": "輔助檢查"}[lang]
-    artifact = {"en": "Traceable result", "zh-CN": "可追溯成果", "zh-TW": "可追溯成果"}[lang]
+    artifact = {"en": "Traced result", "zh-CN": "可追溯成果", "zh-TW": "可追溯成果"}[lang]
     owner_label = {"en": ("Owner", "skill"), "zh-CN": ("主责", "模块"), "zh-TW": ("主責", "模組")}[lang]
     footer = {
         "en": "Project planning · Project setup · Skill family maintenance",
@@ -330,7 +330,8 @@ def build_architecture(lang: str) -> None:
         circle(182, 330, 31, PALETTE["white"], PALETTE["blue2"], 2.0),
         text(182, 337, "↗", 26, 900, PALETTE["blue2"], "middle"),
         text(182, 388, route_title, 19, 850, anchor="middle"),
-        text(182, 418, "ccf-common", 14, 700, PALETTE["muted"], "middle"),
+        text(182, 411, "1. ccf-humanization", 13, 700, PALETTE["muted"], "middle"),
+        text(182, 431, "2. ccf-common", 13, 700, PALETTE["muted"], "middle"),
         path("M 275 360 C 330 360 340 205 400 205", PALETTE["blue2"], 3.0, True),
         path("M 275 360 C 330 360 340 325 400 325", PALETTE["green2"], 3.0, True),
         path("M 275 360 C 330 360 340 445 400 445", PALETTE["red2"], 3.0, True),

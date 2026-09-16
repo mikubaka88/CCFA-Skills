@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Common"
-  short_description: "Shared governance for the CCFA family: routing, trigger registry, task modes, handoff modes, source registry, privacy/evidence policy, ccfa.yaml, and artifact contracts."
-  default_prompt: "Use $ccf-common to maintain shared CCFA rules, preserve the family structure, and reconcile routing, authorization, evidence, and artifact contracts within the requested scope."
+  short_description: "Required CCFA preflight for routing, evidence, scope, and artifacts"
+  default_prompt: "Use $ccf-humanization first, then $ccf-common before any CCFA specialist. Apply shared scope, routing, prerequisite, evidence, handoff, and file controls; reuse applicable active rules. Preserve specialist ownership and run governance maintenance only when the user requests family maintenance."

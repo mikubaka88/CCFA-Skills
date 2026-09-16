@@ -36,7 +36,7 @@ Run the skill's full mandatory checklist internally. Surface skipped items only 
 - a quick idea-risk note,
 - a short reviewer-risk note.
 
-Quick mode does not require the full mandatory checklist. Run the local subset only. Idea and manuscript reviewers select detailed/brief presentation through their report templates: narrow scope alone does not request brevity. For other skills, keep quick output short. Use a compact status only when it helps the user understand risk:
+Quick mode runs the relevant local checks and prerequisites rather than the full checklist. Necessary evidence does not become optional to save tokens; reuse it or resolve the missing dependency. Idea and manuscript reviewers select detailed/brief presentation through their report templates: narrow scope alone does not request brevity. For other skills, keep quick output short. Use a compact status only when it helps the user understand risk:
 
 ```text
 Mode: quick
@@ -103,11 +103,11 @@ Unresolved risks:
 
 Keep the active goal, requested artifacts, authorization, evidence locations, completed work, and next action available across long tasks. Reuse existing `ccfa.yaml`, canonical reports, and handoff fields when persistence is needed; do not create extra process files for a short task or a no-new-files request. New user messages usually steer the active task: update the affected requirements, preserve valid completed work, answer a side question briefly, and resume. Replace the goal only when the user cancels it or asks for an incompatible task.
 
-Load the owner's entry and only the reference sections needed for this mode. Treat a reference list as navigation, not a read-all checklist. Reuse shared policy already in context; reload when the file changed or the relevant rule was lost in compaction. Read source ranges located by search before loading a whole PDF extraction, library, venue guide, or report. A full scientific review or complete exemplar analysis still requires coverage of the relevant full source, read in coherent sections.
+Before the owner's work, read and apply `ccf-humanization` then `ccf-common`; these preflights apply in quick, exploratory, and standard modes. Reuse applicable active rules across contributors rather than rerunning complete workflows. Then load the owner's entry and only relevant reference sections. A reference list is navigation, not a read-all checklist. Reload changed or lost rules after compaction. Read located source ranges before a whole extraction or library; full scientific review and complete exemplar analysis still require coverage of the relevant full source in coherent sections.
 
 Use one representation of each fact: a source table, current specification, or existing report. Link to it in downstream work instead of copying full abstracts, tool logs, manuscript passages, and prior reports into every handoff. Give tools the smallest sufficient input and request targeted output; show counts, relevant rows, errors, and locations before raw dumps. Do not truncate evidence needed to assess a claim or silently lower requested coverage.
 
-For cross-skill work, use the compact continuity/return contract in `handoff-modes.md`. Transfer only the missing context, changed evidence, and next action; retain the original goal and working paths. Task depth belongs to the requested artifact: a quick helper lookup does not reduce a full review's coverage, and helping another skill does not automatically turn a local lookup into a standard report.
+For cross-skill work, use `routing.md` for prerequisite selection and `handoff-modes.md` for evidence transfer and integration. Keep the goal, prerequisite status, and working paths; pass the concrete question, relevant evidence, and completion condition. A quick helper lookup does not reduce a full review's coverage, and a bounded contribution needs no standalone full report. Reduce duplicate retrieval, repeated intake, irrelevant references, and unused reports before reducing evidence coverage. Do not optimize for the fewest skill calls: a contribution is worthwhile when it can resolve a material gap or improve the requested result.
 
 For a revision, inspect the changed passage, panel, data series, or issue plus its affected dependencies. Reuse unchanged source verification, chart layout, bibliography, and established scientific context. Broaden the check when a changed premise affects the whole artifact. A new source version or changed evidence invalidates dependent conclusions; a color or spelling edit does not.
 

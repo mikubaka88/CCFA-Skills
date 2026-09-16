@@ -36,7 +36,7 @@ Use score movement conservatively. State the evidence or change that could alter
 
 ## Report Structure And Finding Quality
 
-Manuscript reports use `../../ccf-paper-reviewer/references/fixed-output-format.md`; concept reports use `../../ccf-idea-reviewer/references/strict-idea-review.md`. Each defines a scope-appropriate detailed report by default, with a brief version for explicit brevity requests. The role blocks below are available components within that report, not extra mandatory reports.
+User-requested manuscript reports use `../../ccf-paper-reviewer/references/fixed-output-format.md`; concept reports use `../../ccf-idea-reviewer/references/strict-idea-review.md`. Each defines a detailed default and an explicit brief mode. A bounded internal contribution to another artifact returns its inspected scope, evidence-backed findings, unresolved concerns, and completion conditions to the integrating owner; it need not generate a separate scorecard or full report. This does not reduce the scope or structure of a requested review. The role blocks below are components, not extra mandatory reports.
 
 Give each material concern a stable ID and one complete explanation: claim/location, inspected basis, why it matters, and a change condition. Check correctness, decision relevance, and support before retaining it. Distinguish a demonstrated contradiction, missing support for an asserted result, and unavailable input. Questions are not established defects. Do not inflate severity to sound strict.
 

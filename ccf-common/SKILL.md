@@ -1,6 +1,6 @@
 ---
 name: ccf-common
-description: "Maintain shared CCFA routing, handoffs, task modes, evidence rules, sources, and artifact contracts. Use only for skill-family maintenance and auditing. Ordinary research tasks belong to their specialist skills."
+description: "Required shared preflight for every CCFA skill after ccf-humanization: apply routing, scope, prerequisites, evidence rules, handoffs, and artifact contracts. Also maintain and audit these shared rules. Research deliverables remain with their specialist owners."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -14,19 +14,29 @@ metadata:
 
 ## Family File Contract
 
-Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse existing paths; otherwise use `output/ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](references/artifact-contracts.md) and reuse the same paths across skill transitions.
+Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse explicit or established task paths; otherwise use project-root `ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](references/artifact-contracts.md) and reuse the same paths across skill transitions.
+
+## Collaboration Contract
+
+Before applying these shared controls, activate [ccf-humanization](../ccf-humanization/SKILL.md) unless its baseline is already active. Apply this entry once, then continue specialist work; do not recursively re-enter either preflight. Reuse applicable rules across contributors.
+
+Keep one integrating owner and actively use other skills to resolve missing prerequisites or check material findings. Reuse applicable evidence; do not skip necessary groundwork to save tokens. Before finalizing, integrate contributions and verify affected results. Follow the conditional [cooperation routes](references/routing.md); avoid unrelated stages and duplicate reports.
 
 ## Core Rule
 
-This is the shared control module for the CCFA Skills family. Do not use it as a user-facing research assistant module. Use it to keep routing, handoff behavior, source provenance, private-material handling, and score-risk language consistent across `ccf-*` skills and `ccf-skill-forger`.
+This is the shared control module activated before every CCFA specialist, after `ccf-humanization`. It sets the task's scope, integrating owner, relevant prerequisites, evidence boundaries, and file paths while specialist skills produce research deliverables. Applying these controls does not run the maintenance workflow or require a governance report.
 
 ## Invocation Controls
 
-**CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode` and `references/handoff-modes.md`. This skill provides shared policy only; route ordinary research tasks to the owning skill in `references/routing.md`.
+**CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode` and `references/handoff-modes.md`. On a direct invocation, ensure Humanization's baseline has been read before applying these controls. Do not recursively restart either preflight. Reuse applicable rules across contributors and read only the shared references needed for the current decision.
+
+## Family Preflight
+
+Resolve the requested result, scope/permissions, integrating owner, and missing or reusable prerequisites. Use `references/routing.md` for collaboration and `references/handoff-modes.md` for transitions. Apply evidence/privacy rules when handling sources or private material, artifact rules before file work, and review standards when assessing. Reuse loaded rules and known paths; create no intake form or state file merely to activate this skill. Continue the specialist task once the applicable controls are established. Reserve the maintenance workflow below for actual family-maintenance requests.
 
 ## Shared Controls
 
-Load only the file needed for the current maintenance task:
+Load only the references needed for the current preflight decision or maintenance task:
 
 - `references/routing.md`: Use to resolve which CCFA skill owns a request and to avoid trigger overlap.
 - `references/task-modes.md`: Use for exploratory/quick/standard depth, authorization-aware continuation, selective context, host-supported parallel work, and GPT-6 adaptation.
@@ -54,7 +64,7 @@ Load only the file needed for the current maintenance task:
 
 ## Output Contract
 
-When auditing or updating CCFA skills, report:
+For ordinary preflight, return control to the specialist without a separate report. When auditing or updating CCFA skills, report:
 
 ```text
 Routing impact:

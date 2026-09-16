@@ -8,7 +8,7 @@ This catalog is the public trigger-conflict index for the current CCFA family. I
 
 | Skill | Stage | Startup condition | 中文触发 | Included modes | Do not use for |
 | --- | --- | --- | --- | --- | --- |
-| `ccf-humanization` | Priority overlay | Apply alongside the owner for publication prose: remove defenses while preserving facts, method identity, and calibrated uncertainty. | 按科学信息改写、删除审稿预判和空泛自辩、保留真实边界与证据、仅对未决科研问题提醒。 | manuscript-humanization, experiment-humanization, warning-only | Concealing material evidence, fabricating results, writing the paper, designing experiments, or overriding mandatory disclosures. |
+| `ccf-humanization` | First preflight | Activate before every CCFA skill; keep communication direct while preserving evidence and rigorous criticism. Detailed editing depends on scope. | 所有技能执行前优先启用；去防御性、保留真实证据与严谨判断。 | family-preflight, manuscript-humanization, experiment-humanization, warning-only | Concealing evidence, softening valid criticism, fabricating results, or rewriting without authorization. |
 | `ccf-project-scaffolder` | Setup | Create project folders, copy/select templates, initialize `ccfa.yaml`. | 创建论文项目、复制模板、初始化 `ccfa.yaml`。 | scaffold | Research content generation. |
 | `ccf-pipeline-orchestrator` | Planning | Plan workflow, decompose tasks, coordinate gates and handoffs. | 拆任务、排阶段、定 gate、决定下一个 owner。 | planning, status, gate | Writing, review, search, experiment design, rebuttal. |
 | `ccf-idea-optimizer` | Idea | Explore, rescue, and turn rough directions into problem-gap-insight-method-evidence plans. | 优化粗 idea、具象化研究思路、找方向、救方向、形成 problem-gap-insight。 | exploratory idea shaping, rescue routes | Ranking multiple ideas as the main task. |
@@ -23,7 +23,7 @@ This catalog is the public trigger-conflict index for the current CCFA family. I
 | `ccf-integrity-auditor` | Audit | Audit claims, numbers, figures/tables, citations, and BibTeX. | 审计 claim、数字、图表、引用、BibTeX 和上下文支撑。 | claim audit, numeric audit, citation audit | Full scientific review or broad literature search. |
 | `ccf-submission-checker` | Submission | Check venue rules, LaTeX/PDF package, anonymity, metadata, artifacts. | 查会议格式、模板页数、匿名、PDF metadata、artifact/reproducibility。 | venue format, package check, artifact | Polishing manuscript content. |
 | `ccf-rebuttal-writer` | Post-review | Write rebuttals, response letters, revision ledgers, resubmission plans. | 写 rebuttal、response letter、revision ledger、保守重投计划。 | rebuttal, ledger, response letter, resubmission | Ordinary manuscript writing. |
-| `ccf-common` | Governance | Maintain shared routing, source registry, privacy/evidence policy, artifact contracts. | 维护共享路由、source registry、隐私/证据策略、artifact 合约。 | governance | Ordinary research work. |
+| `ccf-common` | Shared preflight | Activate after Humanization before every specialist; apply shared scope, routing, prerequisites, evidence, and artifact rules. | 所有技能执行前启用共享规则；兼顾家族规则维护。 | family-preflight, governance | Taking over research deliverables or running maintenance merely because it was activated. |
 | `ccf-skill-forger` | Maintenance | Maintain skills, routing, docs, SVG diagrams, validation, and releases. | 维护 skills、路由、README、SVG、校验和 release。 | skill maintenance, docs/SVG maintenance | Research writing, review, or experiments. |
 
 ## Merged Entries
@@ -46,7 +46,7 @@ This catalog is the public trigger-conflict index for the current CCFA family. I
 ![Routing boundaries](../assets/ccfa-skills-routing.svg)
 
 - Non-review workflow skills should follow the user's requested output shape. Their internal checklists are safeguards, not mandatory visible report templates.
-- `ccf-humanization` runs first for manuscript/experiment publication artifacts, but content ownership remains with `ccf-paper-writer` or `ccf-experiment-designer`. Style edits and evidence-faithful corrections continue under existing authorization. Only unresolved scientific decisions pause the dependent change; established material facts remain in the paper.
+- Every CCFA skill receives `ccf-humanization` first and `ccf-common` second. Reuse applicable active rules across contributors without recursive startup. Detailed rewriting and experiment checks remain conditional; assessment-only work preserves the assessed artifact and rigorous criticism. Specialist ownership and explicit scope remain intact.
 - Review, audit, and submission-gate skills may remain structured because their job is traceable diagnosis and pass/fail risk control.
 - Full-workflow and full-paper prompts should produce dense artifacts, not route summaries. A manuscript request should leave a manuscript; a closed-loop request should leave idea review, writing draft, review, audit, rebuttal, and submission-check artifacts.
 - Idea exploration, rescue, and shaping go to `ccf-idea-optimizer`; concept judgment, including natural questions without score wording, goes to `ccf-idea-reviewer`. Route by the requested judgment even when a full manuscript is supplied. Idea and paper reports use separate detailed review structures by default, with brief output on explicit request; only manuscript scientific review evaluates experiment completeness by default.

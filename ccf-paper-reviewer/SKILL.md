@@ -14,7 +14,13 @@ metadata:
 
 ## Family File Contract
 
-Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse existing paths; otherwise use `output/ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse explicit or established task paths; otherwise use project-root `ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+
+## Collaboration Contract
+
+Before specialist execution, read and apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md). At every handoff, reuse their applicable active rules or refresh missing/changed ones. Both preflights are required even without prose; detailed editing, experiment, and maintenance modes run only when relevant.
+
+Keep one integrating owner and actively use other skills to resolve missing prerequisites or check material findings. Reuse applicable evidence; do not skip necessary groundwork to save tokens. Before finalizing, integrate contributions and verify affected results. Follow the conditional [cooperation routes](../ccf-common/references/routing.md); avoid unrelated stages and duplicate reports.
 
 ## Invocation Controls
 
@@ -41,16 +47,20 @@ Do not write rebuttal text or directly maintain the revision ledger; route revie
 
 ## Workflow
 
-1. Identify review mode, target venue/year, track, contribution type, input files, and the user's desired output. Load `references/fixed-output-format.md` before composing the report; it owns the fixed fourteen-section scientific/full profile, nine-section writing profile, and five-section brief profile. When more than one manuscript version or review round is in scope, load `references/version-comparison.md` before scoring.
+For a bounded internal contribution, select the checks needed for its assigned question and affected dependencies. Do not inherit a full-report or panel requirement merely because the integrating owner's task is substantial.
+
+1. Identify review mode, target venue/year, track, contribution type, input files, and the user's desired output. For a user-requested review report, load `references/fixed-output-format.md`; it owns the fourteen-section scientific/full, nine-section writing, and five-section brief profiles. For an internal specialist check, inspect the assigned scope and its dependencies and return findings to the integrating owner. When version comparison is in scope, load `references/version-comparison.md` before scoring.
 2. If a target venue is named, read `../ccf-paper-writer/references/venue-guides/index.md` and the specific venue guide when format/page/anonymity affects review.
 3. Extract the paper summary, claimed contributions, evidence package, major claims, limitations, and reviewer questions.
 4. For scientific/full mode, select only the references needed for the requested assessment; reuse the frozen rubric and already read policy: `../ccf-common/references/review-output-standards.md`, `references/review-workflow.md`, `references/universal-review-rubric.md`, `references/venue-review-styles.md`, `references/reviewer-panel.md`, `references/calibration-and-rank.md`, and `references/desk-checks.md`.
 5. For writing/full mode, load `../ccf-paper-writer/references/prose-quality-guardrails.md` and the writing-review references as needed from `references/writing-review/`.
-6. Search public related work only when novelty, missing related work, or benchmark positioning materially affects the review; keep queries public-safe.
+6. Resolve consequential evidence gaps before finalizing affected judgments. Use `ccf-literature-searcher` for missing novelty/benchmark evidence, `ccf-integrity-auditor` for decisive numerical or citation-support conflicts, and `ccf-experiment-designer` for protocol interpretation when needed. Keep searches public-safe and respect supplied-evidence-only limits. Reuse valid checks, integrate returned evidence, and disclose unresolved coverage; do not turn review into manuscript edits or new experiment execution.
 7. Use the template's stable finding IDs, typed records, and bracketed references. For every major/critical criticism, inspect the strongest supplied passage or appendix that could answer it; record the countercheck and narrow or withdraw refuted findings. Separate a demonstrated flaw, unsupported claim, and clarification. Use `references/calibration-and-rank.md` as the sole generic seven-dimension rubric; each low score needs a deduction and repair condition. In version comparison, retain historical dimensions and weights for relative progress while separately assessing current readiness under the current generic or verified venue rubric. Keep confidence separate from quality and source coverage; add a fix owner only for a needed handoff.
-8. For standard scientific/full mode, write or overwrite the canonical Markdown report in `ccfa-review-reports/` when a local paper path exists and file output is within scope; otherwise return the report in the current context. Honor explicit no-new-files and exact-output requests. Follow `../ccf-common/references/artifact-contracts.md`; do not make a dated report per iteration.
+8. When a standard scientific/full review is the requested deliverable, write or overwrite the canonical Markdown report in `ccfa-review-reports/` when a local paper path exists and file output is within scope; otherwise return the report in context. Honor explicit no-new-files and exact-output requests. Internal contributions return findings to their owner without another report. Follow `../ccf-common/references/artifact-contracts.md`; do not make a dated report per iteration.
 
 ## Output Contracts
+
+For a bounded internal check contributing to another skill's artifact, return inspected scope, evidence-anchored findings, resolved/open concern IDs, and completion conditions without a separate full report. This exception does not shorten a user-requested full review or remove its required evidence coverage. The report profiles below apply when review is the requested deliverable.
 
 Follow `references/fixed-output-format.md`, preserving the selected profile's section names and order. Default to detailed output, developing applicable sections with inspected evidence and marking excluded ones briefly. Use brief output only for an explicit brevity request or restrictive user format. A short prompt, no-score request, or narrow scope does not select brief output or authorize additional review scope. Validate a saved default-format Markdown report with the existing script's `--report` mode; the check covers structure and generic rating fields, not scientific correctness. Explicit venue/user forms keep their own schema.
 

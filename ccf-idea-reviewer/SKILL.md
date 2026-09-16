@@ -14,7 +14,13 @@ metadata:
 
 ## Family File Contract
 
-Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse existing paths; otherwise use `output/ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse explicit or established task paths; otherwise use project-root `ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+
+## Collaboration Contract
+
+Before specialist execution, read and apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md). At every handoff, reuse their applicable active rules or refresh missing/changed ones. Both preflights are required even without prose; detailed editing, experiment, and maintenance modes run only when relevant.
+
+Keep one integrating owner and actively use other skills to resolve missing prerequisites or check material findings. Reuse applicable evidence; do not skip necessary groundwork to save tokens. Before finalizing, integrate contributions and verify affected results. Follow the conditional [cooperation routes](../ccf-common/references/routing.md); avoid unrelated stages and duplicate reports.
 
 ## Invocation Controls
 
@@ -32,15 +38,19 @@ Every consequential criticism identifies the affected idea statement or assumpti
 
 ## Workflow
 
+For an internal contribution, run the checks needed for its assigned conceptual question and evidence dependencies, then return findings under the internal output contract. The complete workflow and report apply to a user-requested idea review.
+
 1. Identify the requested judgment, concept, audience, available sources, and any explicit scope extension. Reuse conversation context; ask only for a missing decision that changes the assessment. Do not ask for experimental materials merely to start idea review.
 2. Load `references/strict-idea-review.md` for report selection and assessment, including qualitative judgments. Normalize problem → gap → insight → mechanism; keep experimental planning outside default intake.
-3. Ground decisive novelty claims through public-safe retrieval under `../ccf-common/references/privacy-and-evidence.md`, unless browsing is forbidden. Reuse prior verified sources and record searched, partially searched, supplied-only, or unsearched coverage. Inspect relevant primary-source content before claiming overlap.
+3. Ground decisive novelty claims through public-safe retrieval under `../ccf-common/references/privacy-and-evidence.md`, unless browsing is forbidden. Use `ccf-literature-searcher` to resolve missing closest-work evidence and integrate its mechanism comparison before the verdict. Reuse applicable verified sources and record searched, partially searched, supplied-only, or unsearched coverage. Inspect relevant primary-source content before claiming overlap; missing experimental results are not a concept-review prerequisite.
 4. Assess distinct conceptual perspectives using `references/expert-panel.md`; combine duplicate issues under stable IDs. Experiment reviewers are optional for a requested extension. Use independent calls only if permitted and useful, and label single-agent perspectives honestly.
 5. For standard scoring, load `references/rubric.md`, `references/calibration.md`, and `../ccf-common/references/review-output-standards.md`. Use the six conceptual dimensions and assessed-weight coverage. Honor no-score requests with qualitative judgments; low confidence is not a low score.
 6. Distinguish decisive conceptual flaws from repairable gaps and unanswered questions. Compare multiple ideas under a common scope and rubric. Re-review changed assumptions and unresolved concerns without imposing new experiment criteria.
-7. Deliver the detailed report from `strict-idea-review.md` by default; use its brief version only for an explicit brevity request or restrictive user format. Put requested optimization or experiment work in its own authorized deliverable.
+7. For a user-requested review, deliver the detailed report from `strict-idea-review.md` by default; use its brief version only for an explicit brevity request or restrictive user format. Put requested optimization or experiment work in its own authorized deliverable.
 
 ## Output Contract
+
+For a bounded internal concept check requested by another skill, return the inspected concept, evidence-backed findings, unresolved questions, and completion conditions to its owner. Do not create a standalone score report or develop a replacement idea. A user-requested idea review retains the report requirements below, including its detailed default and concept-only scope.
 
 Use the concept-review structure defined in `references/strict-idea-review.md`; do not substitute a generic coaching response or manuscript acceptance report. State the conceptual verdict, prior-art delta, anchored concerns, applicable scorecard, development potential, confidence, and concrete refinements without repeating the same criticism. A rough seed, short prompt, or no-score request does not select brief output or authorize experiment assessment.
 

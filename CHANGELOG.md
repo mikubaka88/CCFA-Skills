@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+Plugin version remains `0.10.0`.
+
+- Restore mandatory family-wide preflight in the order `ccf-humanization` -> `ccf-common` -> specialist. Apply it to review, retrieval, visuals, planning, and maintenance as well as writing; reuse active rules without recursive startup or duplicate reports. Detailed editing/experiment modes remain conditional. Align entrypoints, discovery prompts, routing, docs, and all partial-install subsets.
+- Use project-root `ccfa-workfiles/<purpose>/<artifact-id>/` for new working directories instead of nesting them in a generic application output folder. Preserve established task paths and avoid collisions with unrelated folders.
+- Make skill ownership accountable for integration rather than isolated execution. Complete applicable prerequisites and material specialist checks, reuse valid evidence, and revisit affected dependencies after changes.
+- Clarify conditional collaboration for idea grounding, substantial writing, review, experiment design, visuals, and rebuttals. Internal specialist findings stay compact; requested reviews retain their fixed templates and full scoped coverage. Preserve concept-only idea review and explicit user limits.
+- Synchronize family entrypoints, routing, handoffs, planning guidance, and the three README variants without changing the 17-skill architecture, public CLI contracts, or project-state schema. The maintained-text check excludes the new working cache, with a regression covering that boundary.
+
 ## v0.10.0-r2 - 2026-09-16
 
 Plugin version remains `0.10.0`; `r2` identifies this release revision without replacing the original `v0.10.0` tag.

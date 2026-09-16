@@ -25,8 +25,9 @@ text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
 <rect x="90" y="275" width="185" height="170" rx="35" fill="#DDEBFF" stroke="#D9E1F2" stroke-width="1.4" />
 <circle cx="182" cy="330" r="31" fill="#FFFFFF" stroke="#7AA7FF" stroke-width="2.0" />
 <text x="182" y="337" font-size="26" font-weight="900" fill="#7AA7FF" text-anchor="middle">↗</text>
-<text x="182" y="388" font-size="19" font-weight="850" fill="#233044" text-anchor="middle">理解任务</text>
-<text x="182" y="418" font-size="14" font-weight="700" fill="#667085" text-anchor="middle">ccf-common</text>
+<text x="182" y="388" font-size="19" font-weight="850" fill="#233044" text-anchor="middle">统一前置</text>
+<text x="182" y="411" font-size="13" font-weight="700" fill="#667085" text-anchor="middle">1. ccf-humanization</text>
+<text x="182" y="431" font-size="13" font-weight="700" fill="#667085" text-anchor="middle">2. ccf-common</text>
 <path d="M 275 360 C 330 360 340 205 400 205" fill="none" stroke="#7AA7FF" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
 <path d="M 275 360 C 330 360 340 325 400 325" fill="none" stroke="#58C58A" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
 <path d="M 275 360 C 330 360 340 445 400 445" fill="none" stroke="#FF8A8A" stroke-width="3.0" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
@@ -56,7 +57,7 @@ text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
 <text x="480" y="588" font-size="13" font-weight="650" fill="#667085" text-anchor="start">绘图 · 范文 · 投稿检查</text>
 <path d="M 870 565 C 920 565 920 360 960 360" fill="none" stroke="#FFB552" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
 <rect x="970" y="250" width="165" height="220" rx="34" fill="#F4F0FF" stroke="#9D7BFF" stroke-width="1.4" />
-<text x="1052" y="292" font-size="15" font-weight="850" fill="#233044" text-anchor="middle">每项任务 · 明确负责</text>
+<text x="1052" y="292" font-size="15" font-weight="850" fill="#233044" text-anchor="middle">主责整合</text>
 <circle cx="1052" cy="355" r="46" fill="#FFFFFF" stroke="#9D7BFF" stroke-width="2.2" />
 <text x="1052" y="349" font-size="16" font-weight="900" fill="#9D7BFF" text-anchor="middle">主责</text>
 <text x="1052" y="371" font-size="13" font-weight="750" fill="#667085" text-anchor="middle">模块</text>

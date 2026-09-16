@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Humanization"
-  short_description: "Remove defensive prose and enforce publication-faithful methods"
-  default_prompt: "Use $ccf-humanization to replace defensive manuscript prose with direct scientific content. Remove imagined objections, apologetic framing, empty assurances, and repeated caveats; preserve material facts, uncertainty, terminology, and source format. Return the requested text without a routine process report."
+  short_description: "Required first CCFA preflight; direct, evidence-faithful expression"
+  default_prompt: "Use $ccf-humanization first for every CCFA task, then apply $ccf-common before specialist work. Keep communication direct and preserve facts, uncertainty, and rigorous criticism. Apply prose editing only within the authorized scope. Reuse applicable preflight rules across contributors without recursive activation or routine process reports."

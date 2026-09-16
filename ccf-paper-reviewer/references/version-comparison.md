@@ -47,7 +47,7 @@ For subjective pairwise judgments, inspect both orders when feasible: historical
 
 ## Ledger-Ready Issue Records
 
-The project retains one canonical ledger. The reviewer returns ledger-ready rows with stable IDs; `ccf-rebuttal-writer` updates that ledger in place. Each issue needs these fields:
+Retain stable issue records in the canonical review report. When a revision ledger already belongs to the authorized workflow or the user requests one, the reviewer returns ledger-ready rows and `ccf-rebuttal-writer` updates that ledger in place. Review or review-plus-revision alone does not require a new ledger or response stage. Each issue record needs these fields:
 
 | Field | Allowed values or meaning |
 | --- | --- |
@@ -91,7 +91,7 @@ Absolute-readiness scorecard:
 Confidence and comparability:
 ```
 
-Write the comparison into the canonical review report. Return ledger-ready issue rows and hand them to `ccf-rebuttal-writer`, which owns updates to the canonical revision ledger. Do not create phase reports, response-reconciliation sidecars, or per-round copies unless the user explicitly asks for them.
+Write the comparison and issue status into the canonical review report. If ledger maintenance is in scope, send those rows to `ccf-rebuttal-writer` for the existing canonical ledger; otherwise preserve them in the report and pass relevant findings directly to the revision owner. Do not create phase reports, response-reconciliation sidecars, or per-round copies unless requested.
 
 When structured validation is useful, pass an internal JSON object to `../scripts/validate_version_comparison.py` through standard input. The validator does not create files. For a new comparison with partial materials, freeze the common assessable dimensions for the numeric contract and report omitted criteria and coverage separately. Do not encode `N/A` as zero or silently drop dimensions from an inherited contract; when inherited criteria cannot be assessed, report that numeric comparison is unavailable and provide the scoped findings.
 

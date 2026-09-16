@@ -297,7 +297,7 @@ def check_resources_and_scripts(errors: list[str]) -> None:
 def check_text_encodings(errors: list[str]) -> None:
     """Reject damaged maintained text without guessing or rewriting its encoding."""
     suffixes = {".md", ".py", ".yaml", ".yml", ".json", ".svg", ".tex", ".bib", ".cls", ".sty", ".txt", ".rst", ".bst", ".csv", ".toml", ".ps1", ".sh", ".cfg", ".def", ".dtx", ".bbx", ".cbx", ".xml", ".html", ".css", ".js", ".ts", ".lua", ".ist", ".bbl", ".latex"}
-    excluded = {".git", "output", "__pycache__", ".pytest_cache", "node_modules", ".venv", "venv"}
+    excluded = {".git", "output", "ccfa-workfiles", "__pycache__", ".pytest_cache", "node_modules", ".venv", "venv"}
     for directory, children, filenames in os.walk(ROOT):
         children[:] = [name for name in children if name not in excluded]
         for filename in filenames:
@@ -363,11 +363,16 @@ def check_encoding_regressions(errors: list[str]) -> None:
             source.write_bytes(b"\xff")
             replacement = work / "lost.md"
             replacement.write_bytes("lost \ufffd text".encode("utf-8"))
+            cache = work / "ccfa-workfiles" / "literature" / "fixture" / "cache"
+            cache.mkdir(parents=True)
+            (cache / "raw-extraction.md").write_bytes(b"\xff")
             detected = []
             with patch.dict(check_text_encodings.__globals__, {"ROOT": work}):
                 check_text_encodings(detected)
             if not any("invalid UTF-8" in item for item in detected) or not any("U+FFFD" in item for item in detected):
                 raise AssertionError("encoding checker missed a damaged text fixture")
+            if any("raw-extraction.md" in item for item in detected):
+                raise AssertionError("working cache was treated as maintained skill text")
     except Exception as exc:
         fail(errors, f"encoding regression failed: {type(exc).__name__}: {exc}")
 

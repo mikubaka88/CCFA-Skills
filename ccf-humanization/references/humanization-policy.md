@@ -1,5 +1,9 @@
 # Humanization Policy
 
+## Family-Wide Baseline
+
+Activate Humanization before every CCFA skill, then apply Common's controls. Use direct, evidence-faithful reasoning and communication in planning, retrieval, review, audit, drawing, and maintenance as well as writing. Preserve critical findings, meaningful uncertainty, source quotations, and required checks. Activation does not authorize changing an assessed manuscript or replacing scientific judgment with agreeable wording. Reuse this baseline at handoffs; the sentence-editing procedure below is conditional on authorized prose work.
+
 ## Manuscript Standard
 
 Write from the scientific work itself: the problem, insight, mechanism, observations, and what they establish. Use the strongest wording supported by the supplied evidence. Write for a reader trying to understand the work. Do not draft an answer to an imagined hostile reviewer and then decorate it as a paper.

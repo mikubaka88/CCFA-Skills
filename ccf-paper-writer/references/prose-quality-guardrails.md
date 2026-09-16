@@ -2,7 +2,7 @@
 
 Use this file for manuscript drafting, polishing, compression, abstract writing, introduction writing, paragraph review, and response text that may be copied into a paper. The goal is not to make prose decorative. The goal is to make every sentence serve the scientific argument.
 
-For manuscript drafting or revision, apply `../../ccf-humanization/references/humanization-policy.md` first and use its sentence-decision procedure and bilingual repairs. Preserve material limitations in direct scientific prose; keep only unresolved scientific decisions in an external warning. For assessment-only paragraph or writing review, use the relevant prose criteria diagnostically: do not activate the Humanization workflow, rewrite text, or create a warning artifact merely because this reference is loaded.
+Humanization's family baseline is active for both writing and assessment. For manuscript drafting or revision, apply `../../ccf-humanization/references/humanization-policy.md` and its sentence-decision procedure and bilingual repairs. Preserve material limitations; keep only unresolved scientific decisions in an external warning. For assessment-only review, use prose criteria diagnostically without rewriting assessed text or creating a warning artifact merely because this reference is loaded.
 
 These checks improve precision, rhythm, and readability. They are writing-quality controls, not detector-evasion methods.
 

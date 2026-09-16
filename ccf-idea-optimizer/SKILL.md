@@ -14,7 +14,13 @@ metadata:
 
 ## Family File Contract
 
-Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse existing paths; otherwise use `output/ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse explicit or established task paths; otherwise use project-root `ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+
+## Collaboration Contract
+
+Before specialist execution, read and apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md). At every handoff, reuse their applicable active rules or refresh missing/changed ones. Both preflights are required even without prose; detailed editing, experiment, and maintenance modes run only when relevant.
+
+Keep one integrating owner and actively use other skills to resolve missing prerequisites or check material findings. Reuse applicable evidence; do not skip necessary groundwork to save tokens. Before finalizing, integrate contributions and verify affected results. Follow the conditional [cooperation routes](../ccf-common/references/routing.md); avoid unrelated stages and duplicate reports.
 
 ## Invocation Controls
 
@@ -40,7 +46,7 @@ Preserve the user's theme and constraints. Vary framing or mechanism within the 
 4. When sources are available, use `references/literature-grounded-evolution.md` to retain compact evidence cards, mechanism primitives, protocol anchors, and unresolved relations. Keep source locations rather than loading whole abstracts repeatedly. Trace borrowed ideas and inferred gaps separately.
 5. For an underdetermined direction, use `references/frontier-ideation.md` to generate meaningfully different candidates. Three to five is a starting range, not a quota; one well-specified idea needs targeted improvement, not a forced tournament. Keep meaningful lineage and operations such as refine, combine, transfer, invert, or instrument internally.
 6. Use `references/problem-method-blueprint.md` to connect problem, root challenge, insight, mechanism, assumptions, and expected observation. Check incompatible data assumptions, objectives, or resources. Keep the strongest route and a genuinely different fallback when useful.
-7. Challenge the route against the closest-overlap concern and its weakest evidence link. Revise only for a material weakness; do not repeat self-critique that merely paraphrases the idea. Development selection can be internal; a requested assessment, including “靠谱吗” or “值得做吗” without scores, belongs to `ccf-idea-reviewer`.
+7. Challenge the route against the closest-overlap concern and its weakest evidence link. Use `ccf-idea-reviewer` for a focused conceptual check when a material value, novelty, or mechanism uncertainty remains; integrate its findings and verify the revised route. Reuse applicable checks and avoid critique that merely paraphrases the idea. A user-requested standalone assessment, including “靠谱吗” or “值得做吗” without scores, remains the reviewer's deliverable.
 8. Use `references/experiment-design.md` to outline the minimum convincing evidence for the central claim: compatible datasets, baselines, metrics, and discriminating tests. A full execution protocol belongs to `ccf-experiment-designer` when requested. Planned results remain predictions to test, not evidence.
 9. Return the developed idea in the user's requested shape. For a weak seed, distinguish current weakness from development potential and identify a concrete rescue or reformulation before recommending abandonment. If a required decision remains open, explain the exact evidence needed and finish the independent parts.
 
@@ -48,7 +54,7 @@ Preserve the user's theme and constraints. Vary framing or mechanism within the 
 
 Return an idea card, options, mechanism blueprint, or roadmap as requested. A standard plan contains the problem, source-backed gap, insight, method, contribution type, evidence plan, closest-work difference, material assumptions, and next decision. Include candidate alternatives only when developed and useful. Keep branch bookkeeping, reviewer simulation, and generic checklist status out of publication prose.
 
-Do not switch to scoring, full review, or manuscript writing merely because the idea could benefit from it. If the user requests a combined workflow, use each deliverable's owner without another authorization round.
+Use necessary grounding and conceptual checks within development; do not turn their internal findings into an unrequested score report or manuscript. For a combined requested workflow, complete each deliverable with its owner under existing authorization.
 
 ## References
 

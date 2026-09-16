@@ -14,13 +14,19 @@ metadata:
 
 ## Family File Contract
 
-Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse existing paths; otherwise use `output/ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse explicit or established task paths; otherwise use project-root `ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+
+## Collaboration Contract
+
+Before specialist execution, read and apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md). At every handoff, reuse their applicable active rules or refresh missing/changed ones. Both preflights are required even without prose; detailed editing, experiment, and maintenance modes run only when relevant.
+
+Keep one integrating owner and actively use other skills to resolve missing prerequisites or check material findings. Reuse applicable evidence; do not skip necessary groundwork to save tokens. Before finalizing, integrate contributions and verify affected results. Follow the conditional [cooperation routes](../ccf-common/references/routing.md); avoid unrelated stages and duplicate reports.
 
 ## Invocation Controls
 
 **CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode`, `../ccf-common/references/handoff-modes.md`, and `../ccf-common/references/task-modes.md`.
 
-Run `ccf-humanization` as the first publication-facing experiment preflight only when this skill produces or revises publication-facing prose, final manuscript tables/captions, or a publication method description. Do not load it for raw protocol planning, dataset/baseline/metric selection, execution queues, or evidence-schema design. When it applies, load `../ccf-humanization/references/experiment-discipline.md`, minimize smoke tests to unique changed critical paths, and allow only internally confirmed full method versions in manuscript text, final tables, captions, and claimed comparisons. In publication-facing wording, name the method and scientifically relevant configuration naturally without exposing confirmation, approval, or readiness status. Put version conflicts or necessary exceptions in a separate user-review warning; do not modify experiment or manuscript files merely to encode the warning.
+Activate Humanization and Common before all experiment work, including raw protocol planning and evidence schemas. When producing publication prose/tables/captions or changing executable experiments, load `../ccf-humanization/references/experiment-discipline.md` as applicable, minimize smoke tests to unique changed critical paths, and verify complete method configurations for reported comparisons. These detailed checks are conditional; the family baseline is not. Describe the method and scientifically relevant configuration without exposing internal approval status. Keep unresolved version decisions outside publication artifacts without hiding material facts.
 
 ## Core Rule
 
@@ -34,15 +40,15 @@ Design the smallest sufficient experiment package that distinguishes the central
 
 ## Workflow
 
-1. Identify the requested output first. For raw protocol planning, dataset/baseline/metric selection, or evidence schemas, skip Humanization. Apply its preflight only to manuscript prose or final publication tables/captions. Establish the central claims and available evidence before any method-version check.
+1. Identify the requested output after both family preflights. Raw protocol planning and evidence schemas use Humanization's baseline without a manuscript rewrite. Select detailed prose/experiment checks only when applicable, and establish claims and available evidence before method-version checks.
 2. Extract the storyline from the idea or draft. Reuse the supplied claim/mechanism description. Read `../ccf-paper-writer/references/storyline-blueprint.md` only when the central claim needs clarification, not for an already specified result table.
 3. Map every major claim to sufficient evidence, dataset/workload, confirmed baseline, metric, and mechanism-relevant ablation. Add robustness or failure tests only when observed, plausible, claim-relevant, or venue-required; do not enumerate remote defensive cases.
-4. If datasets or baselines are unknown, use public-safe search or hand off to `ccf-literature-searcher`; mark uncertainty instead of guessing.
+4. Resolve missing dataset, baseline, metric, or protocol provenance through `ccf-literature-searcher` before fixing dependent comparisons. Verify compatibility with the central claim. For a consequential unresolved claim-to-test mismatch, request a focused `ccf-paper-reviewer` check and integrate its findings; do not create a full review report for a protocol question. Mark unavailable evidence instead of guessing.
 5. Load `references/evidence-design.md` for substantive protocol design or `references/result-templates.md` for table/schema work. Do not load both for a small task unless both are needed.
 6. For result presentation, preserve units, seeds, confidence intervals, dataset names, metric direction, and confirmed method version/configuration. Mark missing values explicitly; never fill them with simplified runs.
 7. If executable experiment code is actually changed, retain only non-duplicative smoke tests for those critical paths. Planning or formatting alone does not call for smoke tests. Keep them outside publication evidence and do not use them as substitutes for full experiments.
-8. Hand off to `ccf-visual-composer` for publication-grade figure/table layout, palettes, panel maps, captions, manuscript integration, and render QA.
-9. Hand off to `ccf-paper-writer` for manuscript prose, `ccf-integrity-auditor` for number/claim consistency, and `ccf-submission-checker` for package or artifact readiness.
+8. Use `ccf-visual-composer` when the requested deliverable includes visual composition, layout, or rendering. Supply real values, units, uncertainty, metric direction, and caption facts; integrate and check the returned figure/table. A raw evidence schema does not require rendering.
+9. Before finalizing reported comparisons, reconcile claims, numbers, and configurations; use `ccf-integrity-auditor` for material unresolved conflicts. Use `ccf-paper-writer` for needed manuscript prose and `ccf-submission-checker` when package readiness is in scope. These are conditional contributions, not stages to run for every plan.
 
 ## Adaptive Output Contract
 

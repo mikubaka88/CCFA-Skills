@@ -89,7 +89,7 @@ npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes -
 
 ![CCFA Skills 家族架構](assets/ccfa-skills-architecture.zh-TW.svg)
 
-每一次請求都由最適合它的 skill 負責。其他 skills 不會重複處理同一項任務，只會在需要時提供相鄰能力。例如，`ccf-paper-writer` 負責正文寫作，`ccf-humanization` 幫助語言保持自然；`ccf-experiment-designer` 決定實驗表需要回答什麼問題，`ccf-visual-composer` 再把這些資訊轉化為清楚的圖表。
+所有 CCFA 任務都先啟用 `ccf-humanization`，再啟用 `ccf-common`，然後進入具體技能；檢索、評審、繪圖、實驗與維護也遵循此順序。前者統一自然、直接且保留真實證據的表達，後者落實協作、範圍、證據和檔案規則。同一任務交接時重用已生效規則，只更新變化或遺失的部分；詳細改寫與實驗檢查依實際任務執行，不重複產生前置報告。各技能繼續負責自己的產物並整合必要協作。
 
 ### 17 個核心 skills
 
@@ -213,7 +213,7 @@ npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes -
 
 ![技能協作邊界](assets/ccfa-skills-routing.zh-TW.svg)
 
-清楚的分工讓每項判斷保持可信：
+每個產物有一位負責整合與交付的主責技能，其他技能依前置依賴和品質需要參與。分工不限制必要協作：
 
 | 你的請求 | 負責的 Skill | 明確不負責 |
 |---|---|---|
@@ -222,7 +222,7 @@ npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes -
 | 搜 benchmark 與公開結果 | `ccf-literature-searcher` | 不代替實驗結果作出結論 |
 | 設計 baseline、指標與消融 | `ccf-experiment-designer` | 不改動或虛構結果 |
 | 評審、評分與診斷 | `ccf-paper-reviewer` | 不在評審過程中改寫正文 |
-| 改寫、潤飾與壓縮 | `ccf-paper-writer` | 不在改寫時重新評價研究 |
+| 改寫、潤飾與壓縮 | `ccf-paper-writer` | 不擅自改變研究問題、方法和結論 |
 | 繪製圖表與 PPTX | `ccf-visual-composer` | 不選擇資料集、指標或數字 |
 
 ## 倉庫結構
@@ -241,9 +241,9 @@ CCFA-Skills/
 
 較長的規則放在 `references/`，可重複執行的操作放在 `scripts/`。迭代過程沿用固定檔名，由新版本覆蓋舊版本，避免堆積難以辨認的過程文件。
 
-依任務模式讀取參考資料：小段潤色不載入整套範例，單圖調整不讀取所有繪圖指南，既有文獻與提取文字在來源版本不變時重用。每個產物由一個 skill 負責，檢索等輔助任務完成後返回原負責者；只有下一項已請求的產物才切換負責者。交接沿用目標、授權範圍、證據版本、檔案路徑和下一步，不重複詢問已知資訊，也不預設啟動額外審稿或改寫。完整審稿仍保留必要的全文證據覆蓋，詳見[交接規則](ccf-common/references/handoff-modes.md)。
+協作從最終結果回推前置條件：判斷創新性前核對近鄰工作，實質性寫作前釐清主張、證據和引用，科學繪圖前確認資料含義與方法結構。缺失、衝突或過期的依據交給相應技能補齊；既有且仍適用的證據直接重用。實質性改寫後檢查受影響的論證，解決問題後再交付；思路審核仍不要求實驗完成。內部協作回傳相關發現，正式審稿保留固定模板和必要的全文涵蓋。節省 token 的重點是重複檢索、重複報告、無關參考和重複詢問，不是省略前置工作。詳見[協作路由](ccf-common/references/routing.md)與[交接規則](ccf-common/references/handoff-modes.md)。
 
-檔案約束已前置到全部 17 個 skill 入口。中間檔案優先沿用使用者指定路徑、`ccfa.yaml` 對應和專案既有目錄；新任務預設使用 `output/ccfa-workfiles/<任務用途>/<具體產物>/`。例如 `figures/method-overview/` 表示方法圖工作檔案，`reviews/paper-short-title/` 表示該論文的評審工作檔案，`literature/retrieval-memory/` 表示該主題的檢索材料，均位於 `ccfa-workfiles/` 下。
+檔案約束已前置到全部 17 個 skill 入口。中間檔案優先沿用使用者指定路徑、該產物的 `ccfa.yaml` 對應和既有任務目錄；新任務使用專案根目錄下獨立的 `ccfa-workfiles/<任務用途>/<具體產物>/`，不嵌套在通用 `output/` 中。例如 `figures/method-overview/`、`reviews/paper-short-title/`、`literature/retrieval-memory/` 分別存放方法圖、論文評審和主題檢索的工作檔案。若同名目錄已被其他用途占用，採用穩定的 `ccfa-workfiles-<專案名>/`，不混用或覆蓋。
 
 需要時才建立 `source/`（可重用來源檔案）、`assets/`（參考與圖示）、`cache/`（下載與提取快取）、`build/`（目前預覽與建置日誌）。同一產物跨 skill 共用目錄，普通迭代更新原檔，不使用含義不明的 `temp`、`misc` 或 `final-final`。完成後清理本任務產生且已確認可丟棄的過程檔案，保留原始資料、可編輯來源、最終產物及必要對比證據；失敗生成不覆蓋可用結果。既有目錄不因新命名規則被搬遷，完整規則見[產物合約](ccf-common/references/artifact-contracts.md)。
 
