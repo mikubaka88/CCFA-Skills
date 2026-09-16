@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import math
+import sys
 from html import escape
 from pathlib import Path
 
@@ -687,6 +688,10 @@ BUILDERS = [
 
 
 def main() -> None:
+    # Standalone reports and redirected diagnostics use UTF-8 on every platform.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="strict")
     for lang in LANG:
         for builder in BUILDERS:
             builder(lang)

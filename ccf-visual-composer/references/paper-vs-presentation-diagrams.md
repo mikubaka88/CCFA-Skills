@@ -12,7 +12,7 @@ Prefer:
 - compact operator labels attached to the transformation they perform;
 - one dominant computation path with accurately placed branches and merges;
 - thin connectors whose source and destination are unambiguous;
-- open whitespace and light semantic grouping rather than large stage panels;
+- compact semantic grouping with enough whitespace for labels, edges, and meaningful separation;
 - short labels, mathematical notation, and a caption outside the image;
 - visual emphasis proportional to methodological novelty.
 
@@ -26,7 +26,7 @@ Reject as paper-style output when the figure is dominated by:
 - connector arrows that indicate a general narrative rather than a defined data transformation;
 - more space devoted to decoration or prose than to representations and operations.
 
-Use a publication figure at its expected paper width as the QA viewport. If labels, arrows, tensors, or branch relationships become unreadable at that size, simplify the topology or move explanation to the caption.
+Use a publication figure at its expected paper width as the QA viewport. If labels, arrows, tensors, or branch relationships become unreadable, simplify redundant presentation, move explanations to the caption, or reflow a local detail while preserving the scientific topology. Choose the canvas ratio for that layout; do not force the figure into a square or stretch its objects.
 
 ## Presentation Or Poster Graphic
 
@@ -48,7 +48,7 @@ Principles to borrow:
 Features that must not be copied:
 ```
 
-Do not reduce the reference to palette adjectives. The primary value of a paper reference is how it makes computations and representations inspectable. Do not reproduce its exact layout, content, icons, token colors, or distinctive artwork.
+Do not reduce the reference to palette adjectives. Observe how computations and representations become inspectable, and use requested layout relationships or supplied template geometry. Preserve the target paper's science and authorized asset boundaries. Choose a coordinated preset from `adaptive-architecture-style.md` when a new visual direction is needed; venue suggestions are not official rules.
 
 ## Paper-Mechanism Acceptance Gate
 

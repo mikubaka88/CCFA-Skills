@@ -17,18 +17,23 @@ Use 1-10 when the venue does not specify a scale:
 - 2: strong reject.
 - 1: desk-reject-level or unreviewable.
 
+## Canonical Scientific Criteria
+
+This is the single definition of the `generic-7` scientific rubric, including its order and display names. Use integer criterion scores of 1-5. The report template, universal audit, and validator refer here; do not maintain another dimension list or weight these dimensions by default.
+
+| Key | English label | 中文名称 | Evidence for a strong assessment | Evidence for a weak assessment |
+| --- | --- | --- | --- | --- |
+| novelty | Novelty | 新颖性 | A nontrivial new contribution or insight, with a verified difference from the closest work. | Demonstrated overlap, an overstated novelty claim, or an unclear contribution. |
+| soundness | Soundness | 正确性 | Valid assumptions, derivations, algorithms, implementation, or study design for the stated claim. | An identified logical contradiction, invalid assumption, proof gap, or flawed evaluation protocol. |
+| evidence | Evidence | 证据 | Adequate, inspectable support matched to the claims and contribution type: proofs, experiments, analysis, studies, or workloads. | A central asserted claim is unsupported or contradicted by the inspected material. |
+| significance | Significance | 意义 | Meaningful new knowledge, capability, framing, data, or practical value for the target community. | A substantiated mismatch between the claimed importance and the actual contribution. |
+| clarity | Clarity | 清晰度 | The contribution, mechanism, evidence, and boundaries are recoverable from the manuscript. | Specific organization, notation, or explanation defects obstruct understanding. |
+| reproducibility | Reproducibility | 可复核性 | Enough definitions, proof steps, protocols, data/artifact details, or study documentation to check the claims. | Identified omissions prevent a relevant claim from being independently assessed. |
+| ethics_limitations | Ethics / Limitations | 伦理与局限 | Relevant risks and material limitations are handled in the work and its disclosure. | An observed material risk or limitation is unaddressed; a policy concern cites an applicable verified rule. |
+
+`Originality` is an alias for `Novelty`, not an extra score. `Positioning / Related work` supplies evidence for Novelty; do not deduct twice for the same overlap. `Quality` is a synthesis in the overall judgment, not an eighth generic criterion. A verified venue form may use these names or different scales; preserve that form, label its venue/year/track, and do not silently convert it into generic scores. Historical frozen comparison rubrics remain unchanged.
+
 ## Criterion Scale
-
-Use 1-5 for:
-
-- Quality,
-- Clarity,
-- Significance,
-- Originality,
-- Soundness,
-- Evidence,
-- Reproducibility,
-- Ethics / Limitations.
 
 Anchors:
 
@@ -52,15 +57,15 @@ When the user asks for rank or cohort-relative quality, require an inspectable c
 
 ## Confidence
 
-Use 1-5:
+Use integer confidence scores of 1-5 for the judgment actually made:
 
-- 5: full paper, appendix, venue criteria, and relevant related-work search available.
-- 4: full paper available; minor missing context.
-- 3: main paper available but appendix/code/current policy incomplete.
-- 2: partial draft or section-only review.
-- 1: abstract/proposal only or weak domain match.
+- 5: decisive evidence and counterarguments were checked; relevant domain knowledge supports the assessment and little material uncertainty remains.
+- 4: the main judgment is well checked; minor uncertainty is unlikely to change it.
+- 3: a material assumption, source, or interpretation remains unresolved and could change the judgment.
+- 2: substantial uncertainty remains about a decisive point or the reviewer's relevant expertise.
+- 1: the available basis is too weak for more than a tentative assessment.
 
-Low confidence changes certainty, not automatically the score.
+State materials inspected and unavailable separately in report scope. A complete PDF does not establish high confidence by itself; a short excerpt can support a high-confidence local finding without supporting a whole-paper verdict. Identify which judgment a missing appendix, source, or artifact prevents. Low confidence changes certainty, not automatically the quality score. Use `not assessed` when no judgment was made.
 
 ## Cross-Version Calibration
 
@@ -79,34 +84,30 @@ Before finalizing scores:
 
 ## Mandatory Scorecard Output
 
-For standard scientific/full review, put this scorecard inside the Critical Reviewer Ratings section of `fixed-output-format.md`. Use an explicit venue form when available. For writing-only or narrow assessment, use only its applicable criteria; honor no-score requests with qualitative judgments. If the available material cannot support an overall numerical judgment, give an evidence-limited stance and coverage instead of filling the Overall field with a guessed number. A verified central contradiction can support a negative stance even when other dimensions remain unassessed.
+For standard scientific/full review, put this scorecard inside the Critical Reviewer Ratings section of `fixed-output-format.md`. Use an explicit venue form when available. A scientific review of a narrow excerpt retains all seven rows, marking unassessed or inapplicable criteria with their status and reason. Writing-only assessment uses the separate writing rubric, never this scientific scorecard. Honor no-score requests with qualitative judgments. If available material cannot support an overall numerical judgment, put `not assessed` in Overall and explain the evidence-limited stance and coverage. A verified central contradiction can support a negative stance even when other dimensions remain unassessed.
 
 ```markdown
-## Scorecard
+### Scorecard
 
 | Dimension | Score (1-5) | Confidence (1-5) | Evidence basis | Deduction / score-change condition |
 |:---|:---:|:---:|:---|:---|
-| Novelty | [1-5] | [1-5] | [section/paragraph/line ref] | [deduction and repair condition] |
-| Soundness | [1-5] | [1-5] | [section/paragraph/line ref] | [deduction and repair condition] |
-| Evidence | [1-5] | [1-5] | [section/paragraph/line ref] | [deduction and repair condition] |
-| Significance | [1-5] | [1-5] | [section/paragraph/line ref] | [deduction and repair condition] |
-| Clarity | [1-5] | [1-5] | [section/paragraph/line ref] | [deduction and repair condition] |
-| Reproducibility | [1-5] | [1-5] | [section/paragraph/line ref] | [deduction and repair condition] |
-| Ethics / Limitations | [1-5] | [1-5] | [section/paragraph/line ref] | [deduction and repair condition] |
+| [canonical dimension] | [1-5 or status] | [1-5 or status] | [section/paragraph/line ref] | [deduction and repair condition] |
 
 **Overall:** [1-10]  | **Scholarly Confidence:** [1-5]
 
 **Recommendation:** [accept/weak-accept/borderline/weak-reject/reject]
-**Verdict:** [What condition(s) would raise or lower the score by 1 point?]
+**Verdict:** [What evidence would change the judgment, and why?]
 ```
+
+Expand the row into exactly the seven dimensions in the canonical table, in that order, using its English label, Chinese label, or `English label / 中文名称`. Keep all seven rows in a generic detailed scientific/full report. Use `N/A` with a reason for an inapplicable dimension and `not assessed` with a reason for an unassessed one; never use 0. In a no-score report, replace the Score column with Judgment and keep the same rows with qualitative findings. A detailed report retains one Overall field and one Scholarly Confidence field, qualitative when requested. In version comparison, the current-readiness confidence may instead appear once under Confidence And Comparability; do not duplicate it. Brief reports may summarize applicable ratings without reproducing the full table. Writing reports use their writing rubric instead.
 
 ## Scoring Rules
 
 1. Assess each applicable dimension. Use `N/A` for an inapplicable criterion and `not assessed` when necessary material was not supplied; neither is zero. Do not invent a substitute score for a criterion outside scope. Missing support for an actual manuscript claim can justify a low Evidence score; unavailable excerpts do not establish a whole-paper defect.
 2. Each score must be backed by at least one verifiable manuscript reference. Do not write "The paper is not well organized." Write "Section 3.1 (para 2) introduces a method without naming or motivating the insight and fails to separate the differential contribution from the components. 3/5 clarity."
-3. Evidence means manuscript evidence, not promise. 1/5 evidence means the cited evidence is either not present or not persuasive. 5/5 means evidence is conclusive and includes ablations, robustness, and failure analysis.
+3. Evidence means inspected support, not a promise. A high score requires support sufficient for the central claims and contribution type. A theory paper may earn it through rigorous proofs; a qualitative study through appropriate analysis; an empirical mechanism claim may need a decisive ablation. Do not impose ablations, robustness tests, dataset counts, or SOTA wins on every contribution. Unavailable input alone is not evidence of a missing result.
 4. Confidence reflects how well the relevant claims could be checked and familiarity with the closest work. Identify which decisive judgment an unavailable appendix or code prevents; its absence alone does not force confidence to 1/5. Separate confidence from quality and scientific stance.
-5. Never round scores. If the paper is between 6 and 7, pick one and explain why the tie-breaker is decisive.
+5. Select one anchored integer for generic criterion, overall, and confidence scores; do not round an average of reviewer votes. If the paper is between 6 and 7, explain the decisive tie-breaker. A venue's verified scale takes precedence. Weighted progress deltas and writing composites may be fractional; they are not generic overall ratings.
 
 ## Score-Change Conditions
 
@@ -114,6 +115,6 @@ After the scorecard, include a compact condition table:
 
 | Change | Condition | Likely affected dimensions | Expected movement |
 | --- | --- | --- | --- |
-| Raise score | [concrete evidence/edit] | [dimensions] | [+0.5/+1 overall or dimension-only] |
-| Lower score | [failure revealed by closer inspection] | [dimensions] | [-0.5/-1 overall or fatal] |
+| Raise score | [concrete evidence/edit] | [dimensions] | [could move to the next stated anchor; not guaranteed] |
+| Lower score | [failure revealed by closer inspection] | [dimensions] | [could move to a lower stated anchor or change the stance] |
 | No quick change | [issue requiring new result or new method] | [dimensions] | [unlikely before submission] |

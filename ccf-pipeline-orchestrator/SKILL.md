@@ -12,22 +12,27 @@ metadata:
 
 # CCF Pipeline Orchestrator
 
+## Family File Contract
+
+Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse existing paths; otherwise use `output/ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+
 ## Core Rule
 
 Operate as the project coordinator and workflow planner. Clarify the goal, map the current stage, update or read `ccfa.yaml`, define gates, and name the next owner skill. Specialist skills own downstream outputs. For a plan-only request, return the plan. For explicitly requested end-to-end execution, coordinate the authorized owners through completion rather than stopping after naming the next skill. Follow `../ccf-common/references/task-modes.md`: if the user asks for a short plan, checklist, YAML update, table, or narrative roadmap, use that visible shape instead of forcing a fixed report.
 
-Place `ccf-humanization` before any handoff that will write manuscript text or create publication-facing experiment artifacts. This priority preflight does not replace the downstream owner and requires no extra handoff question.
+Apply `ccf-humanization` within the owning writing stage when producing manuscript or final publication-facing prose/captions. Reuse its policy and prior decisions; do not repeat a separate preflight at every handoff. Raw experiment planning and visual rendering without prose skip it.
 
 Follow `../ccf-common/references/handoff-modes.md` and `../ccf-common/references/artifact-contracts.md`. Later user corrections normally steer the active project: preserve valid completed work, update affected requirements, and continue. Do not invent completed stages or automatic background jobs.
 
 ## Workflow
 
 1. Identify target venue, current stage, available artifacts, constraints, deadline pressure, and the user's immediate goal.
-2. Read `ccfa.yaml` when available; if absent, continue with supplied artifacts and report that project-state tracking is unavailable.
+2. Read `ccfa.yaml` when available; if absent, continue with supplied artifacts. Do not require setup or create project state merely to route work; disclose its absence only when it limits requested tracking.
 3. For unclear projects, use `references/workflow-planning/intake-protocol.md`, `approach-options.md`, and `design-brief-template.md`.
-4. Classify the next owner: `ccf-project-scaffolder`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, or `ccf-rebuttal-writer`. Prefix `ccf-humanization` when the output will enter a manuscript or publication-facing experiment artifact.
+4. Assign requested deliverables to owners using `../ccf-common/references/routing.md`. Select only necessary stages and distinguish helper work from a transfer to the next artifact's owner. Apply Humanization only at a relevant prose stage.
 5. Define the gate: required input, output artifact, pass condition, blocker, and handoff.
-6. Resolve canonical input/output and working paths before each file-producing handoff. Reuse the current artifact and hand off changed requirements plus source locations, not duplicated full reports. Keep independent owners from writing the same file concurrently. Update existing `ccfa.yaml` stage/gate fields when project-state maintenance is authorized; preserve unrelated fields and the existing contract. For a planning-only request, propose the update without writing. Reuse existing artifact/state fields for the current goal, evidence locations, completed work, and next step when continuation needs it.
+6. Use the continuity/return contract in `../ccf-common/references/handoff-modes.md`: carry current scope, evidence/version, canonical paths, edit ownership, and the exact next action. Update existing `ccfa.yaml` stage/gate fields only when state maintenance is authorized; preserve unrelated fields and schema. A planning-only request proposes changes without writing.
+7. Integrate helper results before continuing. Advance a gate from actual evidence, preserve completed work, and keep blocked dependencies separate from executable stages. Finish once the requested outputs and relevant checks are complete; do not cycle through owners without new input or an unresolved action.
 
 ## Adaptive Output Contract
 

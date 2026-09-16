@@ -16,6 +16,27 @@ Choose one primary owner for each requested deliverable. A registry handoff list
 
 Route a misselected skill directly to the correct owner when the user's intent is clear. Do not stop at a scope note or require an exact `$skill-name` invocation.
 
+## Continuity And Return
+
+Distinguish a bounded helper request from a new stage. A helper resolves a concrete missing capability and returns to the original deliverable owner; a stage transition transfers responsibility for the next requested deliverable. Loading skill guidance does not itself create a separate agent, background job, or user-visible report. Use the current session unless separately permitted delegation has a concrete benefit. Do not insert the orchestrator into an ordinary two-skill task merely to manage the transition.
+
+Carry a compact handoff in context, reusing the existing project state or report only when persistence is needed:
+
+| Carry forward | Contents needed by the receiver |
+| --- | --- |
+| Task and boundary | Requested result, mode/format, authorization, exclusions, skill denylist, and relevant privacy limits. |
+| Evidence | Canonical input paths or supplied text, source version and anchors, verified findings, and unresolved facts. |
+| Artifact ownership | Canonical output, existing working directory, permitted edit surface, and receiving owner. A helper also has a return owner. |
+| Work remaining | What is already complete, the exact unresolved action, and the condition for returning or completing the stage. |
+
+Omit irrelevant fields and reuse information already available; do not emit an intake form or create a handoff file, duplicate report, or per-skill working directory by default. Preserve citation keys, claim/concern IDs, units, scientific topology, and supplied values across owners. A short prose edit needs only the text, its constraints, and the requested change.
+
+The receiver checks that the referenced input/version is still applicable, reads the needed evidence, and completes the assigned scope without asking for information already present. A previous check may be reused only for the same source and relevant assumptions. Inspect changes and affected dependencies; do not treat an upstream summary as proof of an unverified claim. Refer to `artifact-contracts.md` for shared paths and single-writer ownership.
+
+Return the result or changed paths, relevant verification, and any precise blocker to the owner. The owner integrates it and continues the original request. An empty search, unavailable optional tool, or unsupported claim limits that dependent step; continue supported work and report the actual gap. Do not bounce the same unresolved request between skills without changed input, evidence, or a concrete new action. Ask once for a genuinely required decision, then resume from the existing state when it arrives.
+
+Humanization shares the content owner's artifact and evidence. Apply its prose decisions within drafting and the final relevant check; do not restart it as a separate review at every transition. After all requested deliverables and applicable checks are complete, return the result without starting an optional review, rewrite, or rebuttal cycle.
+
 ## Mode Values
 
 - **PARTIAL (Recommended):** complete the authorized scope. Ask when an optional transition introduces a new deliverable, changes the research claim or experiment protocol, discloses private material beyond authorization, or changes an unapproved deletion/appendix policy.
@@ -30,7 +51,7 @@ Route a misselected skill directly to the correct owner when the user's intent i
 | Public-safe literature verification is necessary for a requested novelty assessment, citation, or current-policy check | Search or use the search owner unless browsing is forbidden; no redundant question. |
 | User requests search plus experiment design, review plus revision, or another combined workflow | Complete each requested deliverable using its owner and existing authorization. |
 | A local file is the requested output or an essential reproducible source | Create/update the authorized target; respect explicit no-new-files or plan-only constraints. |
-| Optional idea scoring, full review, rewrite, or new experiment outside the request | PARTIAL/FULL ask; OFF may continue only within the permitted research scope. |
+| Optional idea scoring, full review, rewrite, or new experiment outside the request | Offer it only when useful; obtain authorization before expanding scope in every mode. OFF removes handoff questions for work already within scope. |
 | Manuscript prose or final publication experiment prose/tables/captions | Apply Humanization without an extra question. Raw planning, assessment, retrieval, and rendering without prose skip it. |
 | Warning identifies an unknown result or research decision | Pause the affected claim/change; continue independent work. Known material facts and ordinary accurate edits do not require new approval. |
 | User already requested editable SVG/PDF/PPTX reconstruction | Complete it; optional additional formats can be offered without delaying requested formats. |

@@ -8,6 +8,7 @@ Record:
 
 ```text
 Venue/year/track:
+Contribution type:
 Field:
 Paper title or slug:
 Input format: pdf / tex / markdown / pasted text / folder
@@ -17,7 +18,7 @@ Privacy boundary:
 Search permission:
 ```
 
-If local source is available, inspect files before asking questions. If only pasted text is available, review the provided scope and mark confidence accordingly.
+If local source is available, inspect files before asking questions. If only pasted text is available, review that scope and state coverage separately from confidence in the actual local findings.
 
 ## Reading Passes
 
@@ -39,6 +40,7 @@ Rules:
 - Prefer proceedings, OpenReview, CVF, PMLR, ACL Anthology, ACM, IEEE, USENIX, DBLP, Semantic Scholar, OpenAlex, arXiv, project pages, and benchmark pages.
 - Apply the shared source-quality exclusions to search, scoring, and final recommendations.
 - Mark every missing-related-work item as `searched`, `user-provided`, or `unverified`.
+- Search only to resolve material novelty/positioning questions; reuse verified sources. Do not require a minimum number of searches, papers, annotations, or tool calls.
 
 ## Audits
 
@@ -53,11 +55,11 @@ Produce these audits before scores:
 - ethics and limitations,
 - clarity as it affects reviewability.
 
-Do not score before writing the core strengths and weaknesses.
+Use the canonical scientific dimensions in `calibration-and-rank.md`; the audits above are evidence-gathering lenses, not additional scores. Before scoring, revisit every major/critical criticism and inspect the strongest passage, proof, appendix, or source that could answer it. Record the countercheck in the finding, narrow or withdraw a refuted concern, and preserve unresolved uncertainty as a question. Reuse extracted evidence and check only the passages needed; do not mandate another full-paper pass.
 
 ## Report Generation
 
-Use the detailed structure in `fixed-output-format.md` by default, or its brief version for an explicit brevity request; an exact user format takes precedence. Consolidate consequential findings under stable concern IDs and verify their correctness, significance, and source support. Scientific findings require evidence; a question or missing input is not automatically a defect. Preserve concern IDs when checking a revision.
+Use the detailed structure in `fixed-output-format.md` by default, or its brief version for an explicit brevity request; an exact user format takes precedence. Consolidate consequential findings under stable concern IDs and verify their correctness, significance, and source support. Use that reference's fixed finding fields and bracketed ID references. Scientific findings require evidence; a question or missing input is not automatically a defect. Preserve concern IDs when checking a revision.
 
 Report location:
 
@@ -71,3 +73,5 @@ Canonical filename:
 ```
 
 Use lowercase ASCII for the slug; replace spaces and punctuation with hyphens. If the title is unknown, use `untitled-paper`. Put review date, manuscript version, and review round in report metadata. Overwrite the canonical report on ordinary reruns and rely on version control for rollback. Create snapshots only when the user requests them or an external process requires an immutable record.
+
+Validate a saved default-format report with the existing Markdown checker described in `fixed-output-format.md` after substantive evidence review. A structural pass is not a claim of scientific correctness.

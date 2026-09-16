@@ -10,6 +10,10 @@ from pathlib import Path
 
 
 def main() -> int:
+    # Standalone reports and redirected diagnostics use UTF-8 on every platform.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="strict")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("pdf_path", nargs="?", help="Single PDF file")
     parser.add_argument("--batch", help="Directory of PDFs")

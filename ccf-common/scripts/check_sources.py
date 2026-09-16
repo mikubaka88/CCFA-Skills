@@ -62,6 +62,10 @@ def check_url(url, timeout):
 
 
 def main():
+    # Standalone reports and redirected diagnostics use UTF-8 on every platform.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="strict")
     parser = argparse.ArgumentParser(description="Validate ccf-common/references/source-registry.yaml")
     parser.add_argument(
         "registry",
@@ -74,7 +78,10 @@ def main():
     args = parser.parse_args()
 
     registry_path = Path(args.registry)
-    data = yaml.safe_load(registry_path.read_text(encoding="utf-8"))
+    try:
+        data = yaml.safe_load(registry_path.read_text(encoding="utf-8-sig"))
+    except (OSError, UnicodeError, yaml.YAMLError) as exc:
+        parser.error(f"Cannot read UTF-8 registry: {exc}")
     sources = data.get("sources", []) if isinstance(data, dict) else []
 
     errors = []

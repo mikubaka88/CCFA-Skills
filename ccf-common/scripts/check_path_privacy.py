@@ -86,6 +86,10 @@ def read_text(path: Path):
 
 
 def main():
+    # Standalone reports and redirected diagnostics use UTF-8 on every platform.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="strict")
     parser = argparse.ArgumentParser(description="Scan text files for personal local paths or private tokens.")
     parser.add_argument("root", nargs="?", default=".", help="Repository root to scan")
     args = parser.parse_args()

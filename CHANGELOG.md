@@ -1,6 +1,21 @@
 # Changelog
 
-## Unreleased - review refinement (version remains 0.10.0)
+## v0.10.0-r2 - 2026-09-16
+
+Plugin version remains `0.10.0`; `r2` identifies this release revision without replacing the original `v0.10.0` tag.
+
+- Included the upstream DASFAA guide correction for its official URL, LNCS `runningheads` option, and table syntax.
+
+- Audited maintained text for invalid UTF-8 and replacement characters. Made CLI output and text-input pipes explicitly UTF-8, accepted UTF-8 BOM inputs, and stopped hiding decoding failures in link checks. Added Chinese path/text regressions, CJK font fallback guidance, and process-scoped PowerShell examples without changing the system locale.
+
+- Promoted the shared file contract to the top of all 17 skill entrypoints. New working directories use descriptive `output/ccfa-workfiles/<purpose>/<artifact-id>/` names; existing paths remain valid. Skills share artifact paths and preserve source evidence while removing only their own verified disposable intermediates.
+- Clarified helper return versus next-stage ownership, compact context transfer, and completion conditions. Removed redundant file-output confirmation and first-stage stopping rules, corrected qualitative idea-review routing, and scoped helper searches without mandatory paper-count quotas. Kept the existing skill architecture, metadata, and version.
+
+- Consolidated manuscript review into fixed detailed/writing/brief structures and one seven-criterion scientific scorecard; aligned contribution-aware evidence, confidence, and frozen historical comparisons. Extended the existing validator to inspect Markdown report structure and finding references without requiring another output file.
+- Added content-fit compact layout, cross-block alignment, final-size type checks, five coordinated visual presets, and protected selected-object edits. Aspect ratio follows the paper and method; no square default. Conference examples guide design choices without claiming official styles. Inspected public reference workflows and example images without importing external code, assets, or dependencies.
+
+- Refined reference-guided drawing with explicit alignment, scaled pixel gaps, final-size typography, a visible-text inventory, and coherent scientific illustrations. Removed arbitrary prompt-length caps while keeping local edits incremental. Raster precision remains a target, with exact geometry and live fonts checked in requested editable outputs.
+- Set the plotting theme default to Times New Roman, retained explicit font overrides including Comic Sans MS, and exposed seven existing showcase palettes without changing earlier palette values or recipe signatures. Preserved the GPT Image-first, pure-SVG, quantitative-code, and editable-export routes, the 17-skill structure, and current-file artifact handling.
 
 - Use functional names in method introductions, skill descriptions, invocation prompts, and report titles while preserving source references, acknowledgments, quotations, and narrative context.
 

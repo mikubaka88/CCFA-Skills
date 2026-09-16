@@ -525,5 +525,9 @@ def build() -> list[Path]:
 
 
 if __name__ == "__main__":
+    # Standalone reports and redirected diagnostics use UTF-8 on every platform.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="strict")
     for path in build():
         print(path.relative_to(ROOT).as_posix())

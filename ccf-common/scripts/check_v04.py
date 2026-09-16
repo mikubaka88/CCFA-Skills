@@ -8,8 +8,10 @@ import contextlib
 import copy
 import io
 import json
+import os
 import re
 import runpy
+import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -292,6 +294,84 @@ def check_resources_and_scripts(errors: list[str]) -> None:
                 fail(errors, f"{path.relative_to(ROOT)}: missing or external resource: {token}")
 
 
+def check_text_encodings(errors: list[str]) -> None:
+    """Reject damaged maintained text without guessing or rewriting its encoding."""
+    suffixes = {".md", ".py", ".yaml", ".yml", ".json", ".svg", ".tex", ".bib", ".cls", ".sty", ".txt", ".rst", ".bst", ".csv", ".toml", ".ps1", ".sh", ".cfg", ".def", ".dtx", ".bbx", ".cbx", ".xml", ".html", ".css", ".js", ".ts", ".lua", ".ist", ".bbl", ".latex"}
+    excluded = {".git", "output", "__pycache__", ".pytest_cache", "node_modules", ".venv", "venv"}
+    for directory, children, filenames in os.walk(ROOT):
+        children[:] = [name for name in children if name not in excluded]
+        for filename in filenames:
+            path = Path(directory) / filename
+            if path.suffix.lower() not in suffixes:
+                continue
+            try:
+                text = read(path)
+            except UnicodeError as exc:
+                fail(errors, f"{path.relative_to(ROOT)}: invalid UTF-8: {exc}")
+                continue
+            if "\ufffd" in text:
+                fail(errors, f"{path.relative_to(ROOT)}: contains U+FFFD replacement characters; inspect the source")
+
+
+def check_encoding_regressions(errors: list[str]) -> None:
+    """Exercise actual UTF-8 pipes/files under legacy standard-stream encodings."""
+    try:
+        prose = ROOT / "ccf-paper-writer/scripts/check_prose_quality.py"
+        review = ROOT / "ccf-paper-reviewer/scripts/validate_version_comparison.py"
+        phrase = "为避免审稿人对中文𠮷🔬的质疑"
+        payload = (phrase + "，我们核对了繁體中文与简体中文。\n").encode("utf-8")
+        with tempfile.TemporaryDirectory(prefix="ccfa-encoding-") as temporary:
+            work = Path(temporary).resolve()
+            if not work.is_relative_to(Path(tempfile.gettempdir()).resolve()):
+                raise ValueError("encoding fixture escaped the managed temporary root")
+            source = work / "中文稿件𠮷.md"
+            source.write_bytes(b"\xef\xbb\xbf" + payload)
+
+            def run(script, arguments=(), data=None, legacy="gbk"):
+                env = dict(os.environ, PYTHONIOENCODING=legacy, PYTHONUTF8="0")
+                result = subprocess.run([sys.executable, str(script), *map(str, arguments)], input=data, capture_output=True, env=env, timeout=30)
+                return result.returncode, result.stdout.decode("utf-8"), result.stderr.decode("utf-8")
+
+            for legacy in ("ascii", "gbk"):
+                for arguments, data in ((("--format", "json"), payload), ((source, "--format", "json"), None)):
+                    code, out, err = run(prose, arguments, data, legacy)
+                    if code or err or not any(item.get("text") == phrase for item in json.loads(out)["issues"]):
+                        raise AssertionError(f"Chinese prose changed through {legacy} file/pipe I/O")
+            code, _, err = run(prose, ("--format", "json"), "中文".encode("gbk"))
+            if code != 2 or "Cannot read UTF-8 input" not in err:
+                raise AssertionError("invalid UTF-8 input was silently accepted or replaced")
+
+            # A BOM must not turn a valid JSON document into an input error.
+            comparison = work / "复审输入𠮷.json"
+            comparison.write_bytes(b"\xef\xbb\xbf{}")
+            for arguments, data in (((comparison, "--format", "json"), None), (("--format", "json"), comparison.read_bytes())):
+                code, out, err = run(review, arguments, data)
+                findings = json.loads(out)["errors"]
+                if code != 1 or err or not findings or any(item.startswith("input error:") for item in findings):
+                    raise AssertionError("UTF-8 BOM JSON did not reach comparison validation")
+            code, out, err = run(review, ("--report", "--format", "json"), ("## 1. 错误标题𠮷🔬\n中文内容\n").encode("utf-8"), "ascii")
+            if code != 1 or err or "错误标题𠮷🔬" not in out:
+                raise AssertionError("Chinese review diagnostics did not survive redirected UTF-8 output")
+
+            registry = work / "中文来源𠮷.yaml"
+            registry.write_bytes(b"\xef\xbb\xbf" + "sources: []\n".encode("utf-8"))
+            code, out, err = run(ROOT / "ccf-common/scripts/check_sources.py", (registry,), legacy="ascii")
+            if code or err or registry.name not in out:
+                raise AssertionError("registry CLI lost a Chinese path or rejected a UTF-8 BOM")
+
+            # The repository checker must catch both invalid bytes and already-lost text.
+            source.write_bytes(b"\xff")
+            replacement = work / "lost.md"
+            replacement.write_bytes("lost \ufffd text".encode("utf-8"))
+            detected = []
+            with patch.dict(check_text_encodings.__globals__, {"ROOT": work}):
+                check_text_encodings(detected)
+            if not any("invalid UTF-8" in item for item in detected) or not any("U+FFFD" in item for item in detected):
+                raise AssertionError("encoding checker missed a damaged text fixture")
+    except Exception as exc:
+        fail(errors, f"encoding regression failed: {type(exc).__name__}: {exc}")
+
+
 def check_project_and_plugins(errors: list[str]) -> None:
     required = {"version", "project", "target_venue", "stage", "artifacts", "claims", "experiments", "reviews", "revision_ledger", "submission_checks"}
     for rel in ("ccf-project-scaffolder/assets/ccfa.yaml", "demo/attention-is-all-you-need/ccfa.yaml"):
@@ -364,7 +444,8 @@ def check_prose_regressions(errors: list[str]) -> None:
 def check_review_regressions(errors: list[str]) -> None:
     """Keep progress, readiness, and attributable regressions separate."""
     try:
-        validate = runpy.run_path(str(ROOT / "ccf-paper-reviewer/scripts/validate_version_comparison.py"), run_name="ccfa_review_check")["validate"]
+        review_tools = runpy.run_path(str(ROOT / "ccf-paper-reviewer/scripts/validate_version_comparison.py"), run_name="ccfa_review_check")
+        validate = review_tools["validate"]
         sample = {
             "contract": {"id": "frozen", "venue": "test", "scale": "1-10", "dimensions": ["soundness"], "weights": {"soundness": 1}, "reviewer_roles": ["method"], "thresholds": {"ready": 6}, "evidence_standard": "supplied evidence"},
             "relative_progress_scorecard": {"historical": {"soundness": 2}, "current": {"soundness": 3}, "deltas": {"soundness": 1}, "weighted_delta": 1, "classification": "improved"},
@@ -388,6 +469,135 @@ def check_review_regressions(errors: list[str]) -> None:
         issue["origin"] = "previously_undetected"
         if not validate(regression):
             fail(errors, "review validator penalizes only the current version for a latent shared issue")
+
+        criteria = review_tools["_canonical_criteria"]()
+        independent_readiness = copy.deepcopy(sample)
+        independent_readiness["absolute_readiness_scorecard"].update(
+            rubric="generic-7", current_dimension_scores={key: 4 for key, _, _ in criteria})
+        independent_readiness["absolute_readiness_scorecard"]["current_dimension_scores"]["ethics_limitations"] = "N/A"
+        if validate(independent_readiness):
+            fail(errors, "review validator forces a new readiness rubric into the frozen historical dimensions")
+        invalid_readiness = copy.deepcopy(independent_readiness)
+        invalid_readiness["absolute_readiness_scorecard"]["current_dimension_scores"]["ethics_limitations"] = 0
+        if not validate(invalid_readiness):
+            fail(errors, "review validator accepts zero as unassessed generic readiness")
+
+        check_report = review_tools["validate_report"]
+        finding = """### C001: A located concern
+Type: clarification
+Severity: major
+Location: Section 3, paragraph 2
+Evidence: The claim has two possible readings.
+Countercheck: The supplied appendix resolves one reading but not the other.
+Judgment: Clarification could change the assessment.
+Criterion: Soundness
+Resolution: Identify which reading the claim asserts.
+Status: unresolved
+"""
+
+        def report(mode="scientific", detail="detailed", no_scores=False, chinese=False):
+            parts = ["# Review fixture"]
+            headings = review_tools["_profile_headings"](mode, detail)
+            for number, labels in headings:
+                english = next(label for label in labels if label.isascii())
+                label = next(label for label in labels if not label.isascii() and " / " not in label) if chinese else english
+                parts.append(f"## {number}. {label}")
+                concern_section = 3 if detail == "brief" else 5 if mode == "writing" else 6
+                ratings_section = 4 if detail == "brief" else 7 if mode == "writing" else 12
+                if number == concern_section:
+                    parts.append(finding)
+                elif number == ratings_section:
+                    table = ["| Dimension | Judgment | Confidence | Evidence basis | Deduction / score-change condition |" if no_scores else
+                             "| Dimension | Score (1-5) | Confidence (1-5) | Evidence basis | Deduction / score-change condition |",
+                             "| --- | --- | --- | --- | --- |"]
+                    for key, english_label, chinese_label in criteria:
+                        dimension = chinese_label if chinese else english_label
+                        score = "Supported" if no_scores else "4"
+                        confidence = "Well checked" if no_scores else "4"
+                        if key == "ethics_limitations":
+                            score = confidence = "N/A"
+                        table.append(f"| {dimension} | {score} | {confidence} | Section 3; [C001] | Reassess after clarification. |")
+                    table.append("**Overall:** evidence-limited stance | **Scholarly Confidence:** moderate" if no_scores else
+                                 "**Overall:** 6 | **Scholarly Confidence:** 4")
+                    if mode == "writing":
+                        parts.append("Writing criteria are not scientifically scored in this fixture.")
+                    elif mode == "version-comparison":
+                        parts.extend(["### Relative Progress / 相对进步", "Historical dimensions remain frozen.",
+                                      "### Absolute Readiness / 绝对成熟度", "\n".join(table),
+                                      "### Confidence And Comparability / 置信度与可比性", "Separate evidence coverage."])
+                    elif detail == "brief":
+                        parts.append(table[-1])
+                    else:
+                        parts.append("\n".join(table))
+                else:
+                    parts.append("Scope-specific structural fixture; see [C001].")
+            return "\n\n".join(parts) + "\n"
+
+        good = report()
+        bold_fields = finding
+        bilingual_fields = finding
+        chinese_fields = finding
+        for key, chinese in review_tools["FINDING_FIELDS"].items():
+            label = key.title()
+            bold_fields = bold_fields.replace(f"{label}:", f"- **{label}:**")
+            bilingual_fields = bilingual_fields.replace(f"{label}:", f"- **{chinese} / {label}:**")
+            chinese_fields = chinese_fields.replace(f"{label}:", f"**{chinese}：**")
+        comparison_confidence = report(mode="version-comparison").replace(" | **Scholarly Confidence:** 4", "").replace(
+            "Separate evidence coverage.", "**Scholarly Confidence:** 4\nSeparate evidence coverage.")
+        valid_profiles = [
+            (good, {}), (report(mode="full"), {"mode": "full"}),
+            (report(chinese=True), {}),
+            (good.replace(finding, bold_fields), {}),
+            (good.replace(finding, bilingual_fields).replace("**Overall:**", "**Overall / 总分:**").replace("**Scholarly Confidence:**", "**总体置信度 / Scholarly Confidence:**"), {}),
+            (good.replace(finding, chinese_fields), {}),
+            (report(no_scores=True), {"no_scores": True}),
+            (report(mode="writing"), {"mode": "writing"}),
+            (report(detail="brief"), {"detail": "brief"}),
+            (report(mode="writing", detail="brief"), {"mode": "writing", "detail": "brief"}),
+            (report(mode="version-comparison"), {"mode": "version-comparison"}),
+            (comparison_confidence, {"mode": "version-comparison"}),
+            (report(mode="version-comparison", detail="brief"), {"mode": "version-comparison", "detail": "brief"}),
+            (good.replace("C001", "R1"), {}),
+            (good.replace("# Review fixture", "# Review fixture\n\n```text\n## 99. Quoted heading\n[C999]\n```\n> [C998]"), {}),
+            (good.replace("| Novelty | 4 |", "| Originality | 3.5 |"), {"rubric": "external"}),
+        ]
+        for text, options in valid_profiles:
+            findings = check_report(text, **options)
+            if findings:
+                fail(errors, f"review report validator rejects a valid profile {options}: {findings}")
+        invalid_reports = {
+            "renamed heading": good.replace("## 2. Expected Review Outcome", "## 2. Different heading"),
+            "reordered heading": good.replace("## 2. Expected Review Outcome", "## 5. Strengths"),
+            "missing section": good.replace("## 3. Desk Rejection Assessment", "### Desk Rejection Assessment"),
+            "empty section": good.replace("## 3. Desk Rejection Assessment\n\nScope-specific structural fixture; see [C001].", "## 3. Desk Rejection Assessment"),
+            "undefined ID": good + "\nSee [C999].\n",
+            "duplicate ID": good.replace(finding, finding + "\n" + finding),
+            "missing evidence field": good.replace("Evidence: The claim has two possible readings.\n", ""),
+            "unsupported finding type": good.replace("Type: clarification", "Type: definitely_wrong"),
+            "invalid severity": good.replace("Severity: major", "Severity: severe"),
+            "zero criterion": good.replace("| Novelty | 4 |", "| Novelty | 0 |"),
+            "fractional criterion": good.replace("| Novelty | 4 |", "| Novelty | 3.5 |"),
+            "missing dimension": "\n".join(line for line in good.splitlines() if not line.startswith("| Novelty |")),
+            "alias dimension": good.replace("| Novelty |", "| Originality |"),
+            "invented dimension": good.replace("| Novelty |", "| Quality |"),
+            "wrong table width": good.replace("| Novelty | 4 | 4 |", "| Novelty | 4 |"),
+            "broken separator": good.replace("| --- | --- | --- | --- | --- |", "| - | - | - | - | - |"),
+            "N/A as zero": good.replace("| N/A | N/A |", "| 0 | N/A |"),
+            "N/A decorated with zero": good.replace("| N/A | N/A |", "| N/A (0) | N/A |"),
+            "zero overall": good.replace("**Overall:** 6", "**Overall:** 0"),
+            "missing overall": good.replace("**Overall:** 6 | ", ""),
+            "missing overall confidence": good.replace(" | **Scholarly Confidence:** 4", ""),
+            "empty overall confidence": good.replace("**Scholarly Confidence:** 4", "**Scholarly Confidence:**"),
+            "fractional overall": good.replace("**Overall:** 6", "**Overall:** 6.5"),
+            "out-of-range confidence": good.replace("**Scholarly Confidence:** 4", "**Scholarly Confidence:** 6"),
+        }
+        for label, text in invalid_reports.items():
+            if not check_report(text):
+                fail(errors, f"review report validator accepts {label}")
+        if not check_report(good, no_scores=True):
+            fail(errors, "review report validator accepts numeric scores in a qualitative report")
+        if not check_report(report(mode="version-comparison").replace("### Absolute Readiness / 绝对成熟度", "### Combined score"), mode="version-comparison"):
+            fail(errors, "review report validator accepts fused comparison scorecard headings")
     except Exception as exc:
         fail(errors, f"review validator could not run regression cases: {type(exc).__name__}: {exc}")
 
@@ -397,12 +607,12 @@ def check_artifact_regressions(errors: list[str]) -> None:
     try:
         plots = runpy.run_path(str(ROOT / "ccf-visual-composer/resources/python/ccfa_plot_recipes.py"), run_name="ccfa_plot_check")
         convert = runpy.run_path(str(ROOT / "ccf-paper-to-exemplar/scripts/convert.py"), run_name="ccfa_convert_check")
-        svg = '<svg xmlns="http://www.w3.org/2000/svg"><text>Current figure</text></svg>'
+        svg = '<svg xmlns="http://www.w3.org/2000/svg"><text>Current figure 中文𠮷🔬與繁體</text></svg>'
         with tempfile.TemporaryDirectory(prefix="ccfa-validation-") as temporary:
             work = Path(temporary).resolve()
             if not work.is_relative_to(Path(tempfile.gettempdir()).resolve()):
                 raise ValueError("validation directory escaped the managed temporary root")
-            target = work / "figures" / "main.svg"
+            target = work / "figures" / "中文图𠮷.svg"
             save = plots["save_svg"]
             save(svg, target)
             if target.read_text(encoding="utf-8") != svg:
@@ -429,25 +639,27 @@ def check_artifact_regressions(errors: list[str]) -> None:
             if len(list(target.parent.iterdir())) != 1 or "Changed" not in target.read_text(encoding="utf-8"):
                 raise AssertionError("SVG iteration did not replace the single canonical artifact")
 
-            source = work / "paper.pdf"
+            source = work / "论文𠮷.pdf"
             source.write_bytes(b"fixture; extraction is supplied by the test")
             cards = work / "cards"
             cards.mkdir()
-            card = cards / "paper.md"
+            card = cards / "论文𠮷.md"
             card.write_text("# Completed analysis\nRetain the supplied writing insight.\n", encoding="utf-8")
             cache = work / "cache"
             main = convert["main"]
             output = io.StringIO()
             argv = ["convert.py", str(source), "--output-dir", str(cards), "--full-text", "--full-text-dir", str(cache)]
-            with patch.object(sys, "argv", argv), patch.dict(main.__globals__, {"_check_pymupdf": lambda: None, "extract_text": lambda path: "## Page 1\n\nAbstract\nCurrent source."}), contextlib.redirect_stdout(output):
+            with patch.object(sys, "argv", argv), patch.dict(main.__globals__, {"_check_pymupdf": lambda: None, "extract_text": lambda path: "## Page 1\n\nAbstract\nCurrent source. 中文𠮷🔬與繁體。"}), contextlib.redirect_stdout(output):
                 if main() != 0:
                     raise AssertionError("exemplar refresh failed")
             if not card.read_text(encoding="utf-8").startswith("# Completed analysis"):
                 raise AssertionError("extraction overwrote a completed exemplar card")
-            extracted = cache / "paper.full.md"
-            if not extracted.is_file() or (cards / "paper.full.md").exists():
+            extracted = cache / "论文𠮷.full.md"
+            if not extracted.is_file() or (cards / "论文𠮷.full.md").exists():
                 raise AssertionError("explicit extraction cache location was ignored")
             previous = extracted.read_text(encoding="utf-8")
+            if "中文𠮷🔬與繁體" not in previous:
+                raise AssertionError("exemplar extraction changed Chinese text")
             write = convert["write_current"]
             with patch.dict(write.__globals__, {"replace": lambda *args: (_ for _ in ()).throw(OSError("simulated text export failure"))}):
                 try:
@@ -463,12 +675,18 @@ def check_artifact_regressions(errors: list[str]) -> None:
 
 
 def main() -> int:
+    # Standalone reports and redirected diagnostics use UTF-8 on every platform.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="strict")
     errors: list[str] = []
     names = check_skills(errors)
     check_registry(names, errors)
     check_venue_guides(errors)
     check_required_files(errors)
     check_resources_and_scripts(errors)
+    check_text_encodings(errors)
+    check_encoding_regressions(errors)
     check_project_and_plugins(errors)
     check_prose_regressions(errors)
     check_review_regressions(errors)

@@ -12,6 +12,10 @@ metadata:
 
 # CCF Integrity Auditor
 
+## Family File Contract
+
+Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse existing paths; otherwise use `output/ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+
 ## Core Rule
 
 Trace each important claim to supplied evidence, each number to supplied results, and each citation to a real cited work and a supported citation context. Mark unsupported items instead of repairing them by invention.
@@ -51,5 +55,3 @@ No-invention status:
 ## Execution Boundaries
 
 Follow `../ccf-common/references/handoff-modes.md`, `../ccf-common/references/task-modes.md`, and `../ccf-common/references/privacy-and-evidence.md`. Finish the checkable portions when an attachment or source is missing. Report exact file/page/table locations, affected values or claims, evidence, and severity; mark unverified coverage separately from failures. An audit request does not authorize manuscript rewriting. Use existing authorization for explicitly requested fixes and preserve raw measurements.
-
-For file outputs, follow `../ccf-common/references/artifact-contracts.md`: resolve existing project paths first, keep generated working files under one stable task/artifact directory, and update canonical files in place. Load this shared policy only when files are written and it is not already in context.

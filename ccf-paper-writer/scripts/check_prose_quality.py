@@ -78,7 +78,9 @@ DEFENSIVE_PATTERNS = {
 def _read_text(path: str | None) -> str:
     if path:
         return Path(path).read_text(encoding="utf-8-sig")
-    return sys.stdin.read()
+    if hasattr(sys.stdin, "buffer"):
+        return sys.stdin.buffer.read().decode("utf-8-sig")
+    return sys.stdin.read().removeprefix("\ufeff")
 
 
 def _prose_only(text: str) -> str:
@@ -235,6 +237,10 @@ def _render_text(result: dict) -> str:
 
 
 def main() -> int:
+    # Standalone reports and redirected diagnostics use UTF-8 on every platform.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="strict")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("path", nargs="?", help="UTF-8 manuscript path; omit to read stdin")
     parser.add_argument("--scope", choices=("paper", "section", "paragraph"), default="paper")
@@ -242,7 +248,10 @@ def main() -> int:
     parser.add_argument("--strict", action="store_true", help="Return 1 for error/warning candidates; matches still require contextual judgment")
     args = parser.parse_args()
 
-    result = inspect(_read_text(args.path), args.scope)
+    try:
+        result = inspect(_read_text(args.path), args.scope)
+    except (OSError, UnicodeError) as exc:
+        parser.error(f"Cannot read UTF-8 input: {exc}")
     if args.format == "json":
         print(json.dumps(result, ensure_ascii=False, indent=2))
     else:

@@ -4,8 +4,8 @@ Color is evidence encoding, not decoration. Choose palettes that remain legible 
 
 ## Default Palette Policy
 
-- Categorical default: Okabe-Ito Color Universal Design.
-- Journal-style categorical accent: ggsci NPG only when the paper needs a polished multi-series palette and accessibility still passes.
+- Categorical evidence default: Okabe-Ito Color Universal Design; keep existing approved mappings. For method illustrations, use the established CCFA palette or a content-fit variant below.
+- Alternative categorical set: ggsci NPG when its series remain distinguishable at final size.
 - Sequential and diverging maps: prefer perceptually uniform scientific colour maps such as batlow, lajolla, tokyo, oslo, vik, roma, broc, or cork.
 - Discrete alternatives: use ColorBrewer families that pass colorblind/print checks.
 - Never use rainbow or jet for ordered scientific quantities.
@@ -29,6 +29,24 @@ Neutral manuscript support:
 ```text
 #222222 #666666 #A6A6A6 #D9D9D9 #F2F2F2
 ```
+
+## CCFA Palette Variants
+
+The seven existing showcase color sets are also available through `PALETTES` in the plotting library. All previous palette keys and values remain valid; variants broaden choice without changing established semantic mappings.
+
+| Palette key | Hex sequence | Useful visual character |
+| --- | --- | --- |
+| `ccfa_gem` | `#174A7C` `#D95F02` `#1B9E77` `#7570B3` `#E7298A` `#66A61E` `#E6AB02` | Clear blue/orange with green and violet accents; distinct branches. |
+| `ccfa_nocturne` | `#0E2A47` `#28587B` `#9FB798` `#F2C14E` `#F78154` `#B4436C` | Deep blue, sage, amber, and coral; strong hierarchy on a light canvas. |
+| `ccfa_ceramic` | `#264653` `#2A9D8F` `#E9C46A` `#F4A261` `#E76F51` `#8AB17D` | Teal, sand, and terracotta; warm scientific objects and calm group regions. |
+| `ccfa_orchid` | `#3B1F5E` `#6A4C93` `#B565A7` `#E56B6F` `#EAAC8B` `#355070` | Plum, mauve, and peach; contribution emphasis with subdued context. |
+| `ccfa_arctic` | `#063B63` `#0B7285` `#38A3A5` `#80ED99` `#F4D35E` `#EE964B` | Blue/teal with lime and amber; spatial or temporal representations. |
+| `ccfa_wine` | `#5F0F40` `#9A031E` `#FB8B24` `#E36414` `#0F4C5C` `#6A994E` | Burgundy, orange, and dark teal; a warm focal mechanism with cool support. |
+| `ccfa_ink` | `#111827` `#374151` `#1D4ED8` `#059669` `#D97706` `#BE123C` | Dark neutrals with blue, green, and warm accents; restrained comparisons. |
+
+Choose a palette for the figure's reading context, then assign roles explicitly: dark ink, contribution, supporting branches, neutral context, and light group fills. A method diagram usually needs 2-4 chromatic roles, not every swatch. Use an 8-15% accent tint over white for group backgrounds and dark text above it. Related figures keep the same role mapping; do not rotate palettes just to make each figure different.
+
+These variants are starting sets, not certified color-vision-safe combinations. Pale swatches are better for fills than thin lines or text. Add non-color channels for adjacent similar hues. Categorical result plots may need more distinct series than a method diagram; never merge categories to meet a color budget. Ordered quantities still use a suitable sequential/diverging map. Choose actual colors once and include their hex values in the image prompt instead of relying on palette names.
 
 ## Semantic Color Rules
 

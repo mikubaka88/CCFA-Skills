@@ -12,6 +12,10 @@ metadata:
 
 # CCF Literature Searcher
 
+## Family File Contract
+
+Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse existing paths; otherwise use `output/ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+
 ## Invocation Controls
 
 **CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode` and `../ccf-common/references/handoff-modes.md`. Use `../ccf-common/references/routing.md` to keep literature search separate from idea optimization, manuscript writing, experiment design, paper review, and rebuttal.
@@ -41,7 +45,7 @@ In standard mode, complete this checklist before final output. In quick mode, ru
 7. Paper type is one of `pure benchmark`, `pure method`, `method + benchmark`, `survey`, `system/tool`, `theory/proof`, or `other`.
 8. Every claim about a paper is traceable to the linked source or marked as inferred.
 9. For idea-stage searches, each closest-work cluster includes what is already covered, what remains under-tested, and at least one possible differentiation or rescue route.
-10. A literature-search folder is written when file access is available and the user asked for a reusable report or standard workflow.
+10. Write a literature-search folder only when reusable output is requested or needed for the authorized work. A bounded helper lookup can return verified evidence in context without a separate report.
 11. When the search feeds idea optimization, an idea-grounding packet separates source-supported observations from inferred gaps and includes mechanism primitives, protocol anchors, cross-source conflict/open-gap relations, and confidence.
 12. Optional handoff to `ccf-literature-monitor`, `ccf-paper-writer`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-experiment-designer`, or `ccf-paper-reviewer` follows CCFA handoff mode.
 
@@ -53,6 +57,8 @@ In standard mode, complete this checklist before final output. In quick mode, ru
    - Exploratory: 10-20 screened candidates, 5-10 final papers or clusters, plus opportunity gaps.
    - Quick: 6-10 screened candidates, 3-6 final papers.
    - Standard: 15-30 screened candidates, 8-15 final papers unless the user requests another size.
+
+   These are planning ranges for standalone searches, not quotas. A helper lookup retrieves only the sources needed to resolve its assigned question and returns to the requesting owner. Honor a requested breadth; do not repeat verified searches or collect extra papers merely to reach a default count.
 4. Search discovery indexes first, then verify candidates through stable paper pages or official proceedings when possible. Use broad web search only to find primary links; do not rely on snippets for final claims.
 5. Filter by influence and fit. Prefer CCF-A/B conferences, top-field conferences, strong journals, widely used benchmarks, or recent high-signal preprints from credible groups. Exclude low-quality, predatory, inaccessible, or policy-excluded sources. For exploratory searches, include one or two "near miss" or negative-signal clusters if they reveal an open gap, failed assumption, outdated benchmark, missing user group, or neglected system constraint.
 6. Classify papers as needed for screening. Score inspected papers only when requested or decision-relevant, using these dimensions:
@@ -62,7 +68,7 @@ In standard mode, complete this checklist before final output. In quick mode, ru
 7. Write files only when reusable output is requested or needed within the authorized workflow. Honor no-new-files constraints. Reuse an existing canonical search folder for an update; otherwise use `references/report-template.md` with the default folder name:
 
 ```text
-output/literature-search/<topic-slug>/
+output/ccfa-workfiles/literature/<topic-slug>/
   papers.md
   papers.csv        # only when structured reuse/export is needed
   search-notes.md    # only when queries/coverage must persist separately
@@ -121,5 +127,3 @@ Load only what is needed:
 ## Retrieval Execution
 
 Batch independent public-safe query clusters when supported, then deduplicate by DOI/arXiv identifier and normalized title before deeper reading. Verify important claims in the actual paper or primary page, not snippets. Track inspected sections and publication/version status. Do not score an unread method or treat inaccessible results as absent. An unavailable source limits that claim; continue with available primary evidence and report the relevant coverage gap.
-
-For file outputs, follow `../ccf-common/references/artifact-contracts.md`: resolve existing project paths first, keep generated working files under one stable task/artifact directory, and update canonical files in place. Load this shared policy only when files are written and it is not already in context.

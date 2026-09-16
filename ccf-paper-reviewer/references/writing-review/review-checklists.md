@@ -19,8 +19,8 @@ Use this file to prevent omissions during manuscript writing review, paragraph-b
 - Paragraph issues are tied to role, takeaway, logic, evidence, redundancy, and concrete edit action.
 - Global motivation and problem-gap-root-challenge chain are checked.
 - Claim-evidence alignment is included for major claims.
-- Quantitative writing scorecard is produced when enough text is available.
-- Writing-review panel roles are run independently before synthesis in standard mode.
+- The fixed writing profile and applicable writing scorecard from `../fixed-output-format.md` are used; no-score requests receive qualitative criteria.
+- Reader perspectives are consolidated inside the writing profile; label them independent only when separate calls were permitted and actually performed.
 - Terminology, notation, datasets, models, and contribution wording are checked across sections.
 - Prose quality guardrails are checked: no defensive/incremental framing, label-heavy shorthand, number-only abstracts, formula dumping, third-person manuscript voice, punctuation-driven structure, unsupported hype, or overlong compound sentences.
 - Related work is checked for closest-work positioning, not citation-list volume.
@@ -53,17 +53,7 @@ Use this file to prevent omissions during manuscript writing review, paragraph-b
 
 ## Quick Writing Scan
 
-Use this compact structure when the user only wants a quick diagnosis:
-
-```text
-Scope:
-Quick verdict:
-Main reviewer confusion:
-Top 3 writing risks:
-Exact edit actions:
-Unresolved materials:
-Checklist status:
-```
+Use the five-section brief profile in `../fixed-output-format.md` when the user explicitly requests a quick diagnosis. Keep the selected writing scope and evidence-coverage limit in its verdict block; place confusion, located risks, and edit actions in the applicable blocks. Do not create a competing seven-block quick-scan report.
 
 ## Revision Planning Checklist
 
@@ -76,7 +66,7 @@ Checklist status:
 
 ## Scientific Review Redirect
 
-If the user explicitly asks for paper scoring, simulated reviewers, AC/meta-review, full scientific review, novelty/soundness/evidence review, or acceptance-style risk, stop the writing checklist and route to `ccf-paper-reviewer` under the CCFA handoff mode.
+Select scientific/full mode in this same skill only when scientific assessment is requested. Writing scores, reader perspectives, or writing-risk assessment alone do not expand writing-only scope. Concept-only judgment remains with `ccf-idea-reviewer`.
 
 ## Minimal Checklist Status
 

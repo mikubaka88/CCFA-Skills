@@ -1,6 +1,6 @@
 # Venue Review Styles
 
-Use this file after identifying the target venue or CCF-A family. Treat it as a weighting and evidence selector. If current-year policy, page limits, or official review forms matter, verify the official venue page first.
+Use this file after identifying the target venue or CCF-A family. Treat it as an evidence selector, not a substitute official form or a second generic rubric. Use the canonical seven dimensions in `calibration-and-rank.md` unless a verified venue form or frozen comparison contract specifies otherwise. If current-year policy, page limits, or official review forms matter, verify the official venue page first.
 
 ## AAAI
 
@@ -21,7 +21,7 @@ Review emphasis:
 
 - Match standards to contribution type: theory, dataset/evaluation, benchmark, concept/feasibility, empirical method, negative result, or analysis.
 - Do not require SOTA empirical wins for theory-only papers, but require correctness and clear assumptions.
-- For empirical work, require fair baselines, ablations, robustness, and honest limitations.
+- For empirical work, inspect fair comparisons and honest limitations; request ablations or robustness tests when they resolve a particular central claim.
 - Strong papers explain why others will use, build on, or learn from the result.
 
 ## ICML
@@ -64,7 +64,7 @@ Primary dimensions: novelty, technical quality, empirical validation, visual evi
 Review emphasis:
 
 - Treat figures, qualitative examples, failure cases, and visual comparisons as evidence, not decoration.
-- Require strong recent baselines, ablations, cross-dataset tests, robustness, and fair protocol.
+- Inspect the closest relevant baselines and fair protocol; request ablations, cross-dataset tests, or robustness checks when required by the paper's specific claims.
 - Penalize cherry-picked visuals, missing failure analysis, low-resolution or unreadable figures, and unclear relation to close CV work.
 - Reward inspectable evidence and concise claims tied to benchmarks and visual examples.
 

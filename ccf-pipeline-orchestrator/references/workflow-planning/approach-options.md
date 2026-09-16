@@ -28,7 +28,7 @@ Use these routes when they match the user's goal:
 - `Idea selection`: `ccf-idea-reviewer` -> optional `ccf-literature-searcher` -> optional `ccf-idea-optimizer`.
 - `Novelty grounding`: `ccf-literature-searcher` -> `ccf-idea-optimizer` or `ccf-paper-writer`.
 - `Experiment story`: `ccf-experiment-designer` -> `ccf-paper-writer`.
-- `Manuscript improvement`: `ccf-paper-writer` -> `ccf-paper-reviewer` -> `ccf-paper-writer`.
+- `Manuscript improvement`: `ccf-paper-writer` directly for requested edits; `ccf-paper-reviewer` -> `ccf-paper-writer` when both assessment and revision are requested. Do not insert a review cycle into ordinary polishing.
 - `Page limit`: `ccf-paper-writer` compression mode.
 - `Post-review response`: `ccf-rebuttal-writer` -> optional writing or experiment handoff.
 
@@ -57,4 +57,4 @@ Output produced:
 Handoff condition:
 ```
 
-Stop at the first stage unless the user explicitly asks for the full workflow brief.
+For a planning-only request, return the requested stage plan without executing it. For authorized multi-stage work, complete each requested stage and integrate helper results; do not stop at the first skill boundary or expand into optional stages. Use the shared continuity/return contract in `../../../ccf-common/references/handoff-modes.md`.

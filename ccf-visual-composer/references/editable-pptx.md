@@ -14,8 +14,8 @@ Prefer `native` for the complete information structure. Use `svg-convertible` fo
 
 ## Reconstruction Workflow
 
-1. Set the user-requested page size; otherwise use a standard 16:9 canvas and record dimensions.
-2. Recreate the approved reference-layout blueprint on a modular grid with explicit margins, alignment lines, and spacing tokens.
+1. Use the user-requested page size or approved figure aspect ratio. A standalone editable paper figure keeps its content-fit bounds; a requested presentation slide may use 16:9 when no size is specified. Do not add empty slide margins merely to place a paper figure on a slide template.
+2. Recreate the approved reference-layout blueprint with the chosen margins, alignment lines, and spacing tokens from `visual-contract.md`. Convert design coordinates once with `slide_inches / canvas_pixels`; set native font sizes in points using the same scale. Use the selected Times New Roman or Comic Sans MS family unless the user/venue specifies another, and check for substitution before export.
 3. Build stages, boxes, nodes, labels, arrows, and connectors as native objects. Keep text live and connectors anchored where the authoring library permits.
 4. Group objects by semantic module, use stable z-order, and give groups or assets meaningful names in the accompanying element map.
 5. Insert public icons as separate SVG assets. Build simple method-specific icons from native shapes or SVG paths; use a cleaned transparent PNG only for custom icons whose intended appearance cannot be preserved otherwise.
@@ -37,6 +37,8 @@ figure.svg and figure.pdf when requested
 ```
 
 Keep dimensions, semantic groups, fonts, palette, icon provenance/editability, and material limitations in the authoring source or existing specification. Preserve source SVG assets used by the authoring code. Reuse an existing element map or manifest; create a separate one only when requested or required by downstream tooling. Normalize converter input under `build/`, update it in place, and preserve the canonical original SVG. A local correction updates the authoring source and dependent requested formats without another concept-generation pass.
+
+Resolve a selected object from the actual current source and slide, using stable group/shape names or native IDs when available. Screenshot annotations are location hints, not native object IDs. Before replacing an export, check whether the user manually changed it since the source/export pair was last inspected; preserve and reconcile those edits instead of overwriting them from stale source. Move attached connector endpoints with their object and keep unaffected groups fixed. Reuse the current source record for any identity/version notes rather than adding a mandatory tracking file.
 
 ## PPTX QA
 

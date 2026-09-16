@@ -31,8 +31,8 @@ The bundled library must remain:
 
 1. Reuse the relevant visual contract: scientific question, supplied data, intended size, and placement. Import a selected recipe; read only its signature or implementation when needed. Do not load the full library or rebuild an existing plotting pipeline for a local change.
 2. Pick a recipe by evidence shape, not by aesthetics.
-3. Keep the proposed method color stable across all generated figures.
-4. Use typographic hierarchy: large title, strong panel titles, compact axis text, and direct labels for the main evidence.
+3. Keep the proposed method color stable across related figures. Existing palettes remain available; `ccfa_gem`, `ccfa_nocturne`, `ccfa_ceramic`, `ccfa_orchid`, `ccfa_arctic`, `ccfa_wine`, and `ccfa_ink` expose the established showcase alternatives. See `palette-and-accessibility.md` only when choosing or changing color roles.
+4. Use the final-size typography and spacing rules in `visual-contract.md`. `Theme` defaults to Times New Roman; for a comic treatment, pass `Theme(font="Comic Sans MS, cursive")`. Keep a single primary family, readable axis labels, and restrained headings. Avoid duplicating a manuscript caption as a large internal title.
 5. Use natural title or sentence case for ordinary visible English, while preserving canonical uppercase acronyms and initialisms such as `CCF`, `AI`, `QA`, `SVG`, and `PDF`. Never use all caps for complete ordinary-language titles, panel names, legends, axes, annotations, badges, or table headers; use font weight, size, color, or spacing for emphasis instead.
 6. Use direct labels whenever possible; do not make reviewers decode a legend for the main message.
 7. For composite figures, combine 2-5 coordinated panels only when each panel answers a distinct reviewer question.

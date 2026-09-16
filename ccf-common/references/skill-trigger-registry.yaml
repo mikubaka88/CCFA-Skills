@@ -1,5 +1,5 @@
 schema_version: 4
-generated_at: 2026-09-06
+generated_at: 2026-09-16
 authority: SKILL.md wins if this registry conflicts with a skill body.
 naming_policy: canonical runtime names use ccf-<object>-<role/action>; ccf-common is the governance exception.
 runtime_skill_count: 17
@@ -31,7 +31,7 @@ skills:
   - name: ccf-literature-searcher
     trigger: "Find and verify external literature, prior art, datasets, benchmarks, and citation candidates. Use for 文献检索, 相关工作, benchmark搜索, and research opportunity maps. Recurring recent-paper watch belongs to ccf-literature-monitor; existing-citation audits, manuscript assessment, and result schemas have separate owners."
     exclude: "Does not own supplied-result table schemas, experiment evidence structure, full manuscript review, already-cited-only audits, or manuscript writing."
-    handoff: "ccf-idea-optimizer, ccf-idea-reviewer, ccf-experiment-designer, ccf-paper-writer, ccf-integrity-auditor"
+    handoff: "ccf-idea-optimizer, ccf-idea-reviewer, ccf-experiment-designer, ccf-paper-writer, ccf-paper-reviewer, ccf-integrity-auditor"
   - name: ccf-experiment-designer
     trigger: "Design CCF experiment protocols and evidence schemas: datasets, baselines, metrics, ablations, and result-table contents. Use for 设计实验, 消融, benchmark planning, and 结果表证据结构. Preserve real values. Table styling/rendering belongs to ccf-visual-composer; broad retrieval belongs to ccf-literature-searcher."
     exclude: "Does not invent results, draw docs diagrams, search literature as the main deliverable, or improve layout/colors/readability of an already specified table/figure."
@@ -51,7 +51,7 @@ skills:
   - name: ccf-paper-reviewer
     trigger: "Review manuscript claims, evidence, and writing without rewriting. Use for 文章审核, 审稿, 稿件有什么硬伤, 结论站得住吗, 投稿成熟度, writing review, and version comparison. Return a structured scientific or writing review; scores need not be explicitly requested. Concept-only judgment belongs to ccf-idea-reviewer even with a full PDF; requested prose edits belong to ccf-paper-writer."
     exclude: "Does not rewrite the manuscript, handle review-motivated rewrites when no new review is requested, draft rebuttals, own the revision ledger, or style/render visual tables."
-    handoff: "ccf-paper-writer, ccf-experiment-designer, ccf-integrity-auditor, ccf-submission-checker, ccf-rebuttal-writer"
+    handoff: "ccf-paper-writer, ccf-experiment-designer, ccf-literature-searcher, ccf-integrity-auditor, ccf-submission-checker, ccf-rebuttal-writer"
   - name: ccf-integrity-auditor
     trigger: "Audit existing CCF claims, numbers, terminology, and citations against supplied or verified evidence. Use for 引用核验, claim审计, 数字一致性, and BibTeX/context checks. Full scientific review belongs to ccf-paper-reviewer; new literature discovery belongs to ccf-literature-searcher."
     exclude: "Does not replace full review or broad literature search."

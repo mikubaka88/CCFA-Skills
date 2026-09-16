@@ -12,6 +12,10 @@ metadata:
 
 # CCF Common
 
+## Family File Contract
+
+Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse existing paths; otherwise use `output/ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](references/artifact-contracts.md) and reuse the same paths across skill transitions.
+
 ## Core Rule
 
 This is the shared control module for the CCFA Skills family. Do not use it as a user-facing research assistant module. Use it to keep routing, handoff behavior, source provenance, private-material handling, and score-risk language consistent across `ccf-*` skills and `ccf-skill-forger`.
@@ -32,7 +36,7 @@ Load only the file needed for the current maintenance task:
 - `references/source-registry.yaml`: Use as the shared source inventory for venue rules, review methods, exemplar records, and research-workflow references.
 - `references/ccf-a-venue-map.md`: Use when a non-writing skill needs venue-family mapping without depending on `ccf-paper-writer`.
 - `references/skill-trigger-registry.yaml`: Use as the canonical trigger registry; compare descriptions and agent prompts with the same ownership boundaries.
-- `references/artifact-contracts.md`: Use whenever a skill creates or revises files; it defines ownership, canonical paths, overwrite-in-place defaults, and the narrow cases that require retained history.
+- `references/artifact-contracts.md`: Use whenever a skill creates or revises files; it defines ownership, canonical paths, minimal intermediate-file generation, overwrite-in-place defaults, task-scoped cleanup, and required retained history.
 - `references/ccfa-yaml-contract.md`: Use for the shared `ccfa.yaml` project-state schema.
 
 ## Maintenance Workflow
@@ -42,7 +46,7 @@ Load only the file needed for the current maintenance task:
 3. Use `references/task-modes.md` before changing checklist strictness, quick polishing, standard review, or output contracts.
 4. Use `references/review-output-standards.md` before changing scorecards, reviewer panels, score-risk language, or final output self-check rules.
 5. Use `references/privacy-and-evidence.md` before adding any browsing, citation, novelty, scoring, experiment-result, compression, or rebuttal instruction.
-6. Use `references/artifact-contracts.md` before changing generated filenames, revision behavior, report folders, caches, attempt archives, or ledgers. Default to one canonical artifact per deliverable and update it in place.
+6. Use `references/artifact-contracts.md` before changing generated filenames, revision behavior, report folders, caches, attempt archives, or ledgers. Default to one canonical artifact per deliverable, one stable working directory per task/artifact, and cleanup of task-created disposable files before delivery. Preserve required evidence and other tasks' files.
 7. Never commit personal absolute paths, usernames, expanded home directories, private local skill roots, or machine-specific command examples. Use `$CODEX_HOME`, `$HOME`, repo-relative paths, or non-identifying placeholders.
 8. Put new public sources in `references/source-registry.yaml`; do not duplicate long URL lists in sibling `source-notes.md` files. Local references must use repo-relative or non-identifying `local:`/`repo:` identifiers, not machine paths.
 9. Run `scripts/check_sources.py` after source-registry edits. The script reports issues only and must not rewrite registry files.

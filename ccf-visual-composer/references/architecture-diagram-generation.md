@@ -15,6 +15,8 @@ Training/inference boundaries, supervision, and iteration:
 Contribution emphasis and evidence-backed encodings:
 Exact short labels, equations, and acronym handling:
 Reading path / layout / existing assets:
+Design canvas, panel bounds, alignment anchors, and spacing tokens:
+Primary font, final-size label scale, and illustration treatment:
 Source locations and unresolved scientific information:
 ```
 
@@ -26,9 +28,9 @@ For a paper, apply `paper-vs-presentation-diagrams.md`: show scientific objects 
 
 | Topology | Suitable layout |
 | --- | --- |
-| Sequential stages | Aligned flow with detail near the operation it explains. |
+| Sequential stages | Compact aligned flow; place a local expansion beside its parent operation instead of extending the whole canvas. |
 | Hierarchy | Nested semantic groups with explicit containment. |
-| Multiple branches/modalities | Synchronized lanes that merge at the actual integration point. |
+| Multiple branches/modalities | Aligned lanes with shared entry/exit anchors, consistent label baselines, and the actual integration point. |
 | Iteration or agents | State, loop direction, stop condition, and feedback edge. |
 | Training versus inference | Clearly distinguished paths; no inference-time training supervision. |
 | Retrieval or memory | Query, storage/index, retrieved content, and consuming operator. |
@@ -36,23 +38,27 @@ For a paper, apply `paper-vs-presentation-diagrams.md`: show scientific objects 
 
 Use representations, tensors, graphs, frames, or trajectories only when grounded in the method. Load `reference-layout-blueprint.md` only for actual reference-based composition. Reuse established layout and style for an update.
 
+For a new design, choose one applicable preset from `adaptive-architecture-style.md`. Allocate compact panel areas after establishing the final-size type scale. Keep scientific node/edge relationships separate from presentation groups: visual adjacency is not a connection, and a detail inset is not a repeated execution. Check whole-figure occupied bounds before asking the image model to elaborate objects.
+
 ## 3. Prompt Specificity
 
-For a detailed user prompt, preserve it and append only genuinely missing refinement. `adaptive-architecture-style.md` permits at most 110 English words and no more than 35% of the original prompt length for the style suffix, selecting at most three useful principles. Omit duplicated clauses. A partial prompt needs only missing scientific relationships or output constraints; manuscript-only input needs a content-derived prompt.
+For a detailed user prompt, preserve it and append only genuinely missing refinement. Follow `adaptive-architecture-style.md`: local edits need a delta; a layout redesign needs sufficient geometry and typography, without an arbitrary word ceiling. A partial prompt needs missing scientific relationships or output constraints; manuscript-only input needs a content-derived prompt. Resolve the layout and font tokens from `visual-contract.md` once, then include their chosen values rather than the whole reference document.
 
 Use the following compact structure for a new prompt, merging empty or redundant blocks:
 
 ```text
 OUTPUT: Destination, final size/aspect ratio, background, and scientific takeaway.
+REFERENCES: Input image order and role; observed layout relationships to retain or adapt.
 STRUCTURE: Supported modules, representations, operations, reading order, and groups.
 CONNECTIONS: Exact source/target relationships, directions, and semantic line types.
-ENCODING: Contribution emphasis, training/inference distinctions, palette, and hierarchy.
-TEXT: Exact short labels and equations; source-verified acronym expansions or acronyms only.
-STYLE: Content-fit scientific illustration with readable typography, alignment, and whitespace.
+LAYOUT: Content-fit aspect ratio, nominal canvas, compact panel bounds, shared baselines/edges across blocks, chosen gaps, padding, icon slots, and reserved connector lanes.
+ENCODING: Contribution emphasis, training/inference distinctions, semantic palette roles with hex values.
+TEXT: Only the quoted visible-label inventory and necessary equations; exact primary font, final-size label scale, weight, and placement.
+ILLUSTRATIONS: Scientific objects, viewpoint, coherent detail/material treatment, and invariants across repeated assets; keep them inside the planned slots.
 CONSTRAINTS: Preserve the specified science; no invented components, metrics, equations, or acronym expansions; no watermarks, illegible microtext, or decorative flows.
 ```
 
-Use natural sentence/title case for ordinary text and preserve canonical uppercase acronyms. Reserve label/equation slots for accurate editable reconstruction when raster text is unreliable. Do not expand the prompt into multiple restatements of the same node inventory or style rules. Preserve user-required wording and image-tool input requirements.
+Use natural sentence/title case for ordinary text and preserve canonical uppercase acronyms. Do not render prompt headings, spacing measurements, explanatory prose, or extra numbers as figure labels. Treat coordinates as generation targets, not proof of exact geometry. Allow visual invention in faithful scientific objects and local detail while keeping labels, topology, positions, and palette roles stable. Do not repeat the same inventory in several blocks. Preserve user-required wording and image-tool input requirements.
 
 ## 4. Authorized Default Generation
 
@@ -62,9 +68,13 @@ A diagram request authorizes its necessary generation stage. Show a brief diagra
 
 Generate one complete candidate by default. Requested alternatives may share the same verified specification and assets. An existing source change, additional export, or local edit does not restart this default concept stage.
 
+Use the requested or content-derived aspect ratio and an adequate canvas when the host exposes size controls. Do not default to 1:1 or to a single landscape size. The 1536 px width in the spacing guide is a scaling reference, not an aspect-ratio requirement. When quality controls are exposed, use medium/high for a detailed final diagram; low is appropriate for an explicitly rough composition check. Do not invent unavailable tool parameters. GPT Image 2 already uses high input fidelity; do not pass an unsupported `input_fidelity` option. Follow current host capabilities for transparency and dimensions.
+
 ## 5. Inspect And Correct The Draft
 
 Compare the actual rendered draft with the specification: missing/invented/renamed modules, edge direction and semantics, training/inference boundaries, exact labels/acronyms, equations, contribution emphasis, crop safety, and final-size legibility.
+
+Inspect the whole figure for hierarchy and balance, then its final-size labels and illustration details. Compare repeated gaps, row alignment, icon optical sizes, and text density with the contract. Correct specific defects with a local request such as aligning the named row or removing a duplicated label; explicitly preserve accepted topology, text, colors, and surrounding objects. Raster-only delivery still requires repairing malformed text through the image-editing workflow; do not leave a known defect for an unrequested future SVG.
 
 If scientific composition is wrong, make a targeted correction to the prompt or image using the host workflow. If editable reconstruction is already requested and the composition is usable, repair labels, equations, alignment, and local geometry in the vector/native source instead of regenerating a whole raster to fix typography. Preserve accepted topology, layout, and reusable icons.
 
@@ -91,3 +101,5 @@ Strict editability alone does not opt out of the default raster concept for a ne
 ## 8. Applicable QA
 
 Use the shared `render-qa.md` checks for the requested output only. A paper mechanism figure must expose its representations and computation; presentation decoration must not replace scientific structure. Confirm that all delivered formats communicate the same data, topology, labels, and hierarchy. Inspect vector/native editability for requested editable formats and actual rendered appearance at final size. A successful export or XML parse alone does not verify either scientific correctness or visual quality.
+
+Official capability and prompting references are registered in `../../ccf-common/references/source-registry.yaml` under `openai-image-generation-guide` and `openai-image-prompting-guide`. The CCFA layout tokens are working design defaults, not OpenAI guarantees.

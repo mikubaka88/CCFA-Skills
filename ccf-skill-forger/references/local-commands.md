@@ -42,7 +42,24 @@ Add only resource directories that are needed:
 python (Join-Path $SkillCreatorScripts 'init_skill.py') my-skill --path $SkillsRoot --resources scripts,references,assets
 ```
 
-## PowerShell Quoting
+## PowerShell Encoding And Quoting
+
+For Chinese file content and native pipelines, make UTF-8 explicit. These settings apply to the current shell/process; do not rewrite the user's profile or change the system locale:
+
+```powershell
+$OutputEncoding = [System.Text.UTF8Encoding]::new($false)
+[Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false)
+Get-Content -Raw -Encoding UTF8 -LiteralPath 'manuscript/section.md'
+python -X utf8 'ccf-paper-writer/scripts/check_prose_quality.py' 'manuscript/section.md' --format json
+```
+
+Prefer passing an existing file path directly. When writing UTF-8 without a BOM in Windows PowerShell 5.1, use an explicit writer with the actual Unicode string:
+
+```powershell
+[System.IO.File]::WriteAllText($TargetPath, $Text, [System.Text.UTF8Encoding]::new($false))
+```
+
+Do not route Chinese through an ASCII/ANSI pipeline or rely on implicit `Out-File`, `>` or `>>` defaults. If the terminal alone looks wrong, inspect the file bytes before rewriting it. The family CLIs emit UTF-8 even when the platform default is GBK; their text-input pipelines accept UTF-8 with or without BOM. For subprocess capture, decode those bytes as UTF-8. Preserve a supplied legacy encoding only when its consumer requires it and the source encoding has been verified.
 
 In PowerShell, `$skill-name` inside double quotes can be treated as a variable expression. Use single quotes for interface values that contain `$`:
 
@@ -69,6 +86,6 @@ Use these commands to review a skill without noisy output:
 ```powershell
 $SkillPath = Join-Path $SkillsRoot 'my-skill'
 Get-ChildItem -Force -Recurse -Name -LiteralPath $SkillPath
-Get-Content -Raw -LiteralPath (Join-Path $SkillPath 'SKILL.md')
-Get-Content -Raw -LiteralPath (Join-Path $SkillPath 'agents/openai.yaml')
+Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $SkillPath 'SKILL.md')
+Get-Content -Raw -Encoding UTF8 -LiteralPath (Join-Path $SkillPath 'agents/openai.yaml')
 ```

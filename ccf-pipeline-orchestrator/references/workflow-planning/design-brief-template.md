@@ -50,13 +50,13 @@ What Not To Do Yet:
 
 ## What Not To Do Yet
 
-Use this section to prevent premature downstream work:
+Use this section for actual scope limits and unresolved dependencies; it is not a default stop list:
 
-- do not optimize the idea until the target contribution type is clear;
+- infer or clarify the contribution type while developing an idea; do not demand a completed research brief first;
 - do not search with private wording unless authorized;
-- do not design experiments before the central claim is stable;
-- do not write manuscript prose before claims and evidence are aligned;
-- do not compress before the user decides appendix/delete policy;
+- tie proposed experiments to explicit candidate claims and mark unsettled choices;
+- draft supported prose while keeping unavailable evidence explicit; never invent it to complete a stage;
+- preserve supplied compression/deletion constraints and ask only about a consequential unresolved choice;
 - do not draft rebuttal unless real reviewer comments or explicit rebuttal intent exist.
 
 ## File Output
@@ -67,4 +67,4 @@ If the user explicitly asks for a saved brief, use a short filename such as:
 ccfa-brief-<topic>.md
 ```
 
-Keep the file in the user's requested location. If no location is given, ask once before writing because reusable file generation is a CCFA handoff-sensitive action.
+Keep the file in the user's requested location. For authorized file output with no explicit path, reuse the existing project/report location or the default in `../../../ccf-common/references/artifact-contracts.md`; do not ask merely because a file is reusable or a skill transition is involved. Ask only if an unresolved destination or overwrite choice materially changes the task. A plan-only or no-new-files request remains within that scope.

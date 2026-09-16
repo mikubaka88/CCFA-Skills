@@ -12,6 +12,10 @@ metadata:
 
 # CCF Skill Forger
 
+## Family File Contract
+
+Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse existing paths; otherwise use `output/ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+
 ## Invocation Controls
 
 **CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode` and `../ccf-common/references/handoff-modes.md` when maintaining the CCFA skill family.
@@ -63,5 +67,3 @@ Load these files only when the task calls for them:
 ## Output Style
 
 Use an already approved scheme without another confirmation. For an explicit plan-only request, stop after the reviewable proposal; for authorized maintenance, implement it in the requested existing files. After creation, report the skill name, location, key files, and validation result. If validation cannot run because a local dependency is missing, say exactly what failed and perform the manual checks from `references/design-checklist.md`.
-
-For file outputs, follow `../ccf-common/references/artifact-contracts.md`: resolve existing project paths first, keep generated working files under one stable task/artifact directory, and update canonical files in place. Load this shared policy only when files are written and it is not already in context.

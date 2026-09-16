@@ -49,7 +49,7 @@ sources:
     source_type: review_guideline
     used_by: [ccf-paper-reviewer, ccf-idea-optimizer, ccf-idea-reviewer]
     recorded_at: 2026-06-05
-    verified_at: 2026-06-05
+    verified_at: 2026-09-16
     stale_after_days: 180
     notes: Use for quality, clarity, significance, originality, and contribution-type review framing.
   - id: neurips-2024-reviewer-guidelines
@@ -76,7 +76,7 @@ sources:
     source_type: review_guideline
     used_by: [ccf-paper-reviewer, ccf-idea-optimizer, ccf-idea-reviewer]
     recorded_at: 2026-06-05
-    verified_at: 2026-06-05
+    verified_at: 2026-09-16
     stale_after_days: 180
     notes: Use for ICLR value-to-community and new-knowledge framing.
   - id: iclr-2026-author-guide
@@ -1033,3 +1033,57 @@ sources:
     verified_at: 2026-09-06
     stale_after_days: 365
     notes: Review findings for correctness, significance, and sufficient evidence; distinguish issue coverage from false accusations. Benchmark methodology reference only, not a high-star selection or a claim that CCFA ran this benchmark.
+  - id: openai-image-generation-guide
+    title: OpenAI Image Generation Guide
+    url: https://developers.openai.com/api/docs/guides/image-generation
+    source_type: background_method
+    used_by: [ccf-visual-composer, ccf-skill-forger]
+    recorded_at: 2026-09-06
+    verified_at: 2026-09-06
+    stale_after_days: 90
+    notes: Current generation/editing capabilities and limitations; respect host-exposed controls and do not claim guaranteed raster typography or geometry.
+  - id: openai-image-prompting-guide
+    title: OpenAI GPT Image Generation Models Prompting Guide
+    url: https://developers.openai.com/cookbook/examples/multimodal/image-gen-models-prompting-guide
+    source_type: background_method
+    used_by: [ccf-visual-composer, ccf-skill-forger]
+    recorded_at: 2026-09-06
+    verified_at: 2026-09-06
+    stale_after_days: 90
+    notes: Official guidance for explicit composition, reference roles, exact text, and iterative image edits. CCFA spacing tokens and palette choices are local design defaults.
+  - id: astradraw-visual-workflow
+    title: AstraDraw Reference-Guided Scientific Figure Workflow
+    url: https://github.com/IamJerryXu/AstraDraw
+    source_type: background_method
+    used_by: [ccf-visual-composer, ccf-skill-forger]
+    recorded_at: 2026-09-16
+    verified_at: 2026-09-16
+    stale_after_days: 180
+    notes: Inspected commit cc13467d3b5fe9404267e723327bf383664d96ab, art-direction/design-prior/selected-edit guidance, and conditional-flow, planar-ripple, and manifold previews. Informs coordinated presets, reference responsibilities, detail-view semantics, and protected edits. No upstream code or artwork is redistributed; cached images are inspection references, not new CCFA showcase assets.
+  - id: d2-grid-layout
+    title: D2 Grid Diagram Layout
+    url: https://d2lang.com/tour/grid-diagrams/
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-09-16
+    verified_at: 2026-09-16
+    stale_after_days: 180
+    notes: Reference for row/column grouping, explicit gaps, and content-aware cell bounds. Layout principles only; no runtime dependency or automatic routing guarantee.
+  - id: elk-layered-layout
+    title: Eclipse Layout Kernel Layered Layout
+    url: https://eclipse.dev/elk/reference/algorithms/org-eclipse-elk-layered.html
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-09-16
+    verified_at: 2026-09-16
+    stale_after_days: 180
+    notes: Reference for shared ports, edge routing, layered groups, and compaction. CCFA uses explicit geometry guidance without adding a layout-engine dependency.
+  - id: openreview-default-review-form
+    title: OpenReview Default Review Form
+    url: https://docs.openreview.net/reference/default-forms/default-review-form
+    source_type: background_method
+    used_by: [ccf-paper-reviewer, ccf-skill-forger]
+    recorded_at: 2026-09-16
+    verified_at: 2026-09-16
+    stale_after_days: 180
+    notes: Reference for explicit fields, order, types, and rating choices. A platform default form is not the official form of every conference; verified venue/year/track forms override the CCFA generic report.

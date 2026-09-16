@@ -12,6 +12,10 @@ metadata:
 
 # Paper-to-Exemplar
 
+## Family File Contract
+
+Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse existing paths; otherwise use `output/ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+
 ## Scope And Shared Controls
 
 Distill supplied paper PDFs into reusable writing patterns, preserving source attribution and scientific meaning. This skill owns exemplar cards; manuscript drafting belongs to `ccf-paper-writer`, visual reconstruction to `ccf-visual-composer`, and scientific review to `ccf-paper-reviewer`.

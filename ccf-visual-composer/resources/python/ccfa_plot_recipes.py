@@ -25,6 +25,13 @@ PALETTES = {
     "okabe_ito": ["#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7", "#000000"],
     "npg": ["#E64B35", "#4DBBD5", "#00A087", "#3C5488", "#F39B7F", "#8491B4", "#91D1C2", "#DC0000", "#7E6148", "#B09C85"],
     "ccfa": ["#1F6F8B", "#D2673D", "#6657A8", "#2A9D8F", "#B58B2A", "#BA4C5E", "#477AA6", "#5D6977"],
+    "ccfa_gem": ["#174A7C", "#D95F02", "#1B9E77", "#7570B3", "#E7298A", "#66A61E", "#E6AB02"],
+    "ccfa_nocturne": ["#0E2A47", "#28587B", "#9FB798", "#F2C14E", "#F78154", "#B4436C"],
+    "ccfa_ceramic": ["#264653", "#2A9D8F", "#E9C46A", "#F4A261", "#E76F51", "#8AB17D"],
+    "ccfa_orchid": ["#3B1F5E", "#6A4C93", "#B565A7", "#E56B6F", "#EAAC8B", "#355070"],
+    "ccfa_arctic": ["#063B63", "#0B7285", "#38A3A5", "#80ED99", "#F4D35E", "#EE964B"],
+    "ccfa_wine": ["#5F0F40", "#9A031E", "#FB8B24", "#E36414", "#0F4C5C", "#6A994E"],
+    "ccfa_ink": ["#111827", "#374151", "#1D4ED8", "#059669", "#D97706", "#BE123C"],
     "sequential_blue": ["#F7FBFF", "#DEEBF7", "#C6DBEF", "#9ECAE1", "#6BAED6", "#3182BD", "#08519C"],
     "sequential_mint": ["#F7FCF5", "#E5F5E0", "#C7E9C0", "#A1D99B", "#74C476", "#31A354", "#006D2C"],
     "diverging_cork": ["#6C2E67", "#B2669E", "#E6C5DE", "#F7F7F7", "#BFD9CA", "#5DAA86", "#0B6B53"],
@@ -42,7 +49,7 @@ class Theme:
     grid: str = "#DCE4EC"
     panel: str = "#FFFFFF"
     accent: str = "#1F6F8B"
-    font: str = "Inter, Segoe UI, Arial, sans-serif"
+    font: str = "Times New Roman, Times, Noto Serif CJK SC, Source Han Serif SC, SimSun, serif"
     mono: str = "Consolas, Menlo, monospace"
 
 
@@ -125,7 +132,7 @@ def save_svg(svg: str, path: str | Path) -> Path:
     target = Path(path)
     # Keep an existing symlinked authoring path intact.
     destination = target.resolve()
-    if destination.is_file() and destination.read_text(encoding="utf-8") == svg:
+    if destination.is_file() and destination.read_text(encoding="utf-8-sig") == svg:
         return target
     destination.parent.mkdir(parents=True, exist_ok=True)
     temporary = None

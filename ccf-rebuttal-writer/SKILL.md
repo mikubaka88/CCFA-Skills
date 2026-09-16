@@ -12,6 +12,10 @@ metadata:
 
 # CCF Rebuttal Writer
 
+## Family File Contract
+
+Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse existing paths; otherwise use `output/ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+
 ## Core Rule
 
 Handle post-review communication and revision accountability. Responses must be calm, factual, evidence-grounded, and promise only feasible changes. Resubmission adaptation is conservative by default: no new experiments and no bibliography changes unless the user explicitly authorizes them. Follow the user's requested response format: plain text, TeX, reviewer-by-reviewer, issue-grouped, table-first, or short response.
@@ -63,5 +67,3 @@ Checklist status:
 ## Authorized Response Work
 
 Follow `../ccf-common/references/handoff-modes.md` and `../ccf-common/references/task-modes.md`. A requested response plus revision authorizes both deliverables through their owners. Group duplicate comments while preserving reviewer attribution and answer coverage. Distinguish supplied results, planned experiments, promised revisions, and completed edits; verify an edit's location before claiming it was made. Preserve word budgets and respond to actual concerns without gratuitous apologies, imagined objections, or defensive repetition. A concise factual clarification is not a scientific concession. Reply drafting does not authorize posting or submission.
-
-For file outputs, follow `../ccf-common/references/artifact-contracts.md`: resolve existing project paths first, keep generated working files under one stable task/artifact directory, and update canonical files in place. Load this shared policy only when files are written and it is not already in context.

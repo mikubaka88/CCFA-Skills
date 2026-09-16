@@ -12,6 +12,10 @@ metadata:
 
 # CCF Visual Composer
 
+## Family File Contract
+
+Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse existing paths; otherwise use `output/ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+
 ## Invocation Controls
 
 **CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode`, `../ccf-common/references/handoff-modes.md`, and `../ccf-common/references/task-modes.md`. Reuse shared rules already in context.
@@ -23,6 +27,8 @@ For a new scientific method or architecture concept, GPT Image 2 remains the def
 Create readable visuals from supplied content. Preserve values, units, uncertainty, exact labels, method modules, and typed connections. Quantitative plots use reproducible code. Missing data or topology requires the relevant evidence owner; do not invent it to complete a composition. Preserve scientific terminology and canonical uppercase acronyms; use natural case for ordinary labels.
 
 Classify the destination as paper mechanism figure, presentation/poster, or README/outreach. Paper figures show representations and computation. Choose visual grammar from the method, not a fixed stage-card template.
+
+For new compositions, use `references/visual-contract.md`: a compact content-fit canvas, shared alignment anchors, scaled gaps, and typography checked at final size. Do not default to a square or force a fixed aspect ratio. Times New Roman is the default; Comic Sans MS serves a requested comic treatment, subject to user/venue typography. For a new visual direction, choose one functional preset from `references/adaptive-architecture-style.md`. Inspect supplied references, allocate space by explanatory importance, and keep only necessary labels/numbers.
 
 ## Modes And Selective References
 
@@ -47,10 +53,10 @@ Use `references/palette-and-accessibility.md` only when choosing or changing col
 1. Resolve the requested artifact, existing source, final size, destination, formats, and scientific takeaway. For file work, read `../ccf-common/references/artifact-contracts.md` once and resolve canonical output and working paths before rendering. Keep unrelated figures in separate stable working directories; honor existing project paths.
 2. Reuse an existing specification or form the relevant visual-contract fields internally. One specification holds topology, exact labels, data locations, layout, style, and required provenance. Do not save separate overlapping contracts, prompt drafts, wireframes, icon manifests, and QA logs by default. A minor edit needs only the requested change and its dependencies.
 3. Select the smallest rendering route that completes the task. A new architecture concept uses the default image workflow. For an existing SVG, PPTX, or plot script, directly edit that authoring source and export affected requested formats; do not run a new raster concept pass for a label, color, spacing, data, or export change. Raster edits follow the host image-editing workflow and use the existing image as reference.
-4. Preserve a detailed user prompt and add only missing content or a compact style refinement. Reuse approved topology, layout tokens, and assets. Start with one complete candidate unless alternatives are requested. Search new visual references or generate custom icons only to resolve a specific unmet need.
-5. Inspect the draft. Correct local vector/native text and layout directly during authorized reconstruction; reserve raster regeneration for material composition/topology failures or a requested new visual direction. If two attempts fail to fix the same defect, diagnose the cause and change the relevant strategy. Never stop merely at an attempt count while a feasible correction remains.
+4. Preserve a detailed user prompt and add missing constraints once. For a full redesign, include the reference roles, layout geometry, text inventory, typography, and palette needed to make it concrete; do not truncate these to an arbitrary word limit. Reuse approved topology, layout tokens, and assets. Start with one complete candidate unless alternatives are requested. Search or generate assets only to resolve a specific unmet need.
+5. Inspect the draft against the layout and scientific contract. Correct vector/native text and geometry during requested reconstruction; for raster delivery, use a targeted image edit for text, spacing, or illustration defects and preserve accepted regions. If two attempts fail to fix the same defect, diagnose the cause and change the relevant strategy. Never stop merely at an attempt count while a feasible correction remains.
 6. Build requested editable outputs as semantic groups, live text, shapes, and typed connectors. Do not embed a whole raster and claim editability. Keep unavoidable raster assets separate and describe their actual editability. Generate downstream PDF/PPTX from the canonical authoring source without lossy round trips; retain only necessary reusable source and assets.
-7. Check changed outputs at intended size for data/topology, labels, clipping, contrast, fonts, and requested editability. Render affected pages/slides first; perform a broader check only when a changed shared style or layout affects them. Save one current preview under the working build directory. Do not repeatedly reopen unchanged previews or regenerate already satisfactory outputs for marginal stylistic alternatives.
+7. Check changed outputs for data/topology, whole-figure compactness, shared edges/baselines, final-size text, clipping, contrast, and requested editability. A local edit also checks attached connectors and protected regions. Render affected pages/slides first; broaden only when a changed shared style/layout affects them. Save one current preview under the working build directory; reuse satisfactory inspections.
 8. Finish the requested deliverable and check file placement, current exports, and disposable temporary files. New data/protocol decisions belong to `ccf-experiment-designer`, manuscript prose to `ccf-paper-writer`, and claim mismatches to `ccf-integrity-auditor`; keep unaffected authorized work moving.
 
 ## Output Contract

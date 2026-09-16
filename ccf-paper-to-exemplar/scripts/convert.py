@@ -123,7 +123,7 @@ def make_card(meta):
 def write_current(path, text):
     """Replace one generated text artifact after a complete sibling write."""
     path = Path(path).resolve()
-    if path.is_file() and path.read_text(encoding='utf-8') == text:
+    if path.is_file() and path.read_text(encoding='utf-8-sig') == text:
         return
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = None
@@ -138,6 +138,10 @@ def write_current(path, text):
 
 
 def main():
+    # Standalone reports and redirected diagnostics use UTF-8 on every platform.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="strict")
     parser = argparse.ArgumentParser(description='Convert PDFs to exemplar cards')
     parser.add_argument('pdf', nargs='+', help='PDF files to convert')
     parser.add_argument('--venue', help='Target venue, e.g. CVPR, NeurIPS, ICLR')

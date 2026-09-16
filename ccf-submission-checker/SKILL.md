@@ -12,6 +12,10 @@ metadata:
 
 # CCF Submission Checker
 
+## Family File Contract
+
+Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse existing paths; otherwise use `output/ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+
 ## Core Rule
 
 Treat submission as a build, venue-policy, page-budget, and artifact-readiness gate. Use local venue guides for expected rules, then require official-policy freshness for final decisions. Do not rewrite paper content.
@@ -50,5 +54,3 @@ Next CCFA owner:
 ## Check Scope
 
 Follow `../ccf-common/references/handoff-modes.md` and `../ccf-common/references/task-modes.md`. Run checks relevant to the requested mode and actual artifacts. Distinguish pass, fail, not applicable, and not verified; missing tools do not imply passing or failure. Record the official rule URL and the date checked. Reuse the project build configuration and place generated logs/previews in the established or shared task build directory. Update the canonical readiness report in place and distinguish old PDFs from successful current builds. Recheck only affected build surfaces after a fix. Underfilling a page budget alone is not a venue violation. Do not upload or submit files merely because a readiness check was requested.
-
-For file outputs, follow `../ccf-common/references/artifact-contracts.md`: resolve existing project paths first, keep generated working files under one stable task/artifact directory, and update canonical files in place. Load this shared policy only when files are written and it is not already in context.

@@ -6,6 +6,8 @@ Route by the user's primary intent. Do not activate every downstream skill just 
 
 Choose exactly one primary owner for each user-requested deliverable. A skill's handoff list declares possible next-stage owners; it is not permission to load them together. Add a sidecar only when the current request itself needs a distinct cross-cutting preflight or explicitly combines two deliverables. Future usefulness or checklist completeness alone is not enough. For an explicitly requested end-to-end workflow, assign one owner to each concrete deliverable and execute the authorized chain.
 
+Use the continuity/return contract in `handoff-modes.md` for actual cooperation: helpers return to the current owner; only a requested next-stage artifact transfers ownership. Reading a shared rule does not activate `ccf-common` as another research stage. Explicit user scope overrides any illustrative workflow below.
+
 Resolve common collisions by the requested deliverable:
 
 - Judge a research concept (“思路审核”, “靠谱吗”, “值得做吗”, “创新够不够”, or mechanism logic) -> `ccf-idea-reviewer`, without requiring scores. Judge manuscript evidence, completeness, writing, or revision readiness -> `ccf-paper-reviewer`. A full PDF can still be input to concept-only review. Idea review excludes experiment assessment by default; manuscript scientific review evaluates the evidence supporting its claims. Develop an idea -> `ccf-idea-optimizer`. A combined request has each deliverable handled by its owner.
@@ -43,28 +45,21 @@ The current runtime surface contains 17 installable `ccf-*` skills plus the LaTe
 | Shared routing, source registry, privacy/evidence, artifact contracts. | `ccf-common` | governance | Not an ordinary research task skill. |
 | Maintain skills, docs, SVG diagrams, routing, validation, and releases. | `ccf-skill-forger` | skill maintenance, docs/SVG maintenance, release validation | Does not do research writing or review. |
 
-## Default Paper Project Flow
+## Compose Only The Requested Workflow
 
-```text
-Conditional prose preflight: ccf-humanization (at the writing stage)
+Start at the stage supported by the user's materials. Choose dependencies by the missing evidence or requested output; the skill catalog is not an execution order. Existing projects need no new scaffold, writing needs no automatic review, and a review needs no automatic rebuttal. Add monitoring, exemplar extraction, audit, or submission checks only when their specific capability is requested or necessary.
 
-ccf-project-scaffolder
-  -> ccf-pipeline-orchestrator
-  -> ccf-idea-optimizer
-  -> ccf-idea-reviewer
-  -> ccf-literature-monitor
-  -> ccf-literature-searcher
-  -> ccf-experiment-designer
-  -> ccf-visual-composer
-  -> ccf-paper-to-exemplar (optional style-reference sidecar)
-  -> ccf-paper-writer
-  -> ccf-paper-reviewer
-  -> ccf-integrity-auditor
-  -> ccf-submission-checker
-  -> ccf-rebuttal-writer
+| Requested outcome | Minimal useful cooperation |
+| --- | --- |
+| Judge an idea, then improve it | Idea reviewer -> idea optimizer using the same concept and identified issues; exclude experimental assessment unless requested. |
+| Write related work with missing sources | Paper writer -> a bounded literature search -> paper writer; reuse verified citation keys and source locations. |
+| Polish supplied prose | Paper writer with Humanization in the same edit; no review report, new research stage, or separate prose copy. |
+| Design experiments and render the supplied results | Experiment designer establishes protocols/evidence fields -> visual composer renders actual values; missing results remain missing. |
+| Improve an existing figure or table | Visual composer directly; return a scientific ambiguity to the content owner only if it blocks a faithful edit. |
+| Review and revise a manuscript | Paper reviewer -> paper writer with stable concern IDs and evidence anchors. Verify the changes; run another full review only if requested or a material changed premise requires it. |
+| Write a rebuttal and make the requested revisions | Rebuttal writer coordinates response/ledger with paper-writer edits; verify actual edits before reporting them as completed. |
 
-Governance: ccf-common / ccf-skill-forger
-```
+Use the orchestrator for requested planning or substantive coordination and the scaffolder for requested setup. A helper's final response is intermediate to the active task; the deliverable owner integrates it before responding to the user.
 
 ## Merged Capability Map
 

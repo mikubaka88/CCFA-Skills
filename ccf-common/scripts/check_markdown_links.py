@@ -42,12 +42,20 @@ def normalize_target(raw: str) -> str | None:
 
 
 def main() -> int:
+    # Standalone reports and redirected diagnostics use UTF-8 on every platform.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="strict")
     errors: list[str] = []
     checked = 0
     for path in sorted(ROOT.rglob("*.md")):
         if ".git" in path.parts:
             continue
-        text = strip_fenced_code(path.read_text(encoding="utf-8", errors="replace"))
+        try:
+            text = strip_fenced_code(path.read_text(encoding="utf-8-sig"))
+        except UnicodeDecodeError as exc:
+            errors.append(f"{path.relative_to(ROOT)}: invalid UTF-8 at byte {exc.start}; verify the source encoding")
+            continue
         for match in LINK_RE.finditer(text):
             target = normalize_target(match.group(1))
             if target is None:

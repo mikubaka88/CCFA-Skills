@@ -12,6 +12,10 @@ metadata:
 
 # CCF Paper Reviewer
 
+## Family File Contract
+
+Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse existing paths; otherwise use `output/ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+
 ## Invocation Controls
 
 **CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode`, `../ccf-common/references/handoff-modes.md`, and `../ccf-common/references/task-modes.md`.
@@ -37,18 +41,18 @@ Do not write rebuttal text or directly maintain the revision ledger; route revie
 
 ## Workflow
 
-1. Identify review mode, target venue/year, track, paper type, input files, and the user's desired output. Load `references/fixed-output-format.md` before composing the report; it owns detailed/brief selection and the structured presentation. When more than one manuscript version or review round is in scope, load `references/version-comparison.md` before scoring.
+1. Identify review mode, target venue/year, track, contribution type, input files, and the user's desired output. Load `references/fixed-output-format.md` before composing the report; it owns the fixed fourteen-section scientific/full profile, nine-section writing profile, and five-section brief profile. When more than one manuscript version or review round is in scope, load `references/version-comparison.md` before scoring.
 2. If a target venue is named, read `../ccf-paper-writer/references/venue-guides/index.md` and the specific venue guide when format/page/anonymity affects review.
 3. Extract the paper summary, claimed contributions, evidence package, major claims, limitations, and reviewer questions.
 4. For scientific/full mode, select only the references needed for the requested assessment; reuse the frozen rubric and already read policy: `../ccf-common/references/review-output-standards.md`, `references/review-workflow.md`, `references/universal-review-rubric.md`, `references/venue-review-styles.md`, `references/reviewer-panel.md`, `references/calibration-and-rank.md`, and `references/desk-checks.md`.
 5. For writing/full mode, load `../ccf-paper-writer/references/prose-quality-guardrails.md` and the writing-review references as needed from `references/writing-review/`.
 6. Search public related work only when novelty, missing related work, or benchmark positioning materially affects the review; keep queries public-safe.
-7. Assign stable concern IDs with severity, exact location, evidence basis, affected criterion, and judgment-change condition. Verify each major finding for correctness, decision relevance, and sufficient support; inspect the cited section and relevant appendix before calling something missing. Separate a demonstrated flaw from material not supplied. Add a fix owner only when an actual handoff is needed. Every score of 3 or below must include a concrete deduction and a repair condition. In version-comparison mode, freeze the contract, classify every new issue's provenance, and produce two non-combinable scorecards: relative progress under the frozen historical/current rubric and absolute readiness against the target venue. Report confidence separately.
+7. Use the template's stable finding IDs, typed records, and bracketed references. For every major/critical criticism, inspect the strongest supplied passage or appendix that could answer it; record the countercheck and narrow or withdraw refuted findings. Separate a demonstrated flaw, unsupported claim, and clarification. Use `references/calibration-and-rank.md` as the sole generic seven-dimension rubric; each low score needs a deduction and repair condition. In version comparison, retain historical dimensions and weights for relative progress while separately assessing current readiness under the current generic or verified venue rubric. Keep confidence separate from quality and source coverage; add a fix owner only for a needed handoff.
 8. For standard scientific/full mode, write or overwrite the canonical Markdown report in `ccfa-review-reports/` when a local paper path exists and file output is within scope; otherwise return the report in the current context. Honor explicit no-new-files and exact-output requests. Follow `../ccf-common/references/artifact-contracts.md`; do not make a dated report per iteration.
 
 ## Output Contracts
 
-Follow `references/fixed-output-format.md`. Default to its detailed report, developing each applicable section with inspected evidence. Use its brief version only for an explicit brevity request or restrictive user format. A short prompt, no-score request, or narrow review scope does not select brief output. Presentation length does not change evidence standards or authorize additional review scope.
+Follow `references/fixed-output-format.md`, preserving the selected profile's section names and order. Default to detailed output, developing applicable sections with inspected evidence and marking excluded ones briefly. Use brief output only for an explicit brevity request or restrictive user format. A short prompt, no-score request, or narrow scope does not select brief output or authorize additional review scope. Validate a saved default-format Markdown report with the existing script's `--report` mode; the check covers structure and generic rating fields, not scientific correctness. Explicit venue/user forms keep their own schema.
 
 Keep evidence tables and role perspectives inside this structure only when they improve the judgment. Do not emit a separate report for every audit or role. Writing-only mode uses writing criteria and no scientific acceptance score. Use functional report titles and the stated review scope. Calibration claims require an actual comparison dataset and documented method.
 
@@ -80,7 +84,7 @@ Next owner:
 - `references/reviewer-panel.md`: simulated reviewers and AC/meta-review.
 - `references/calibration-and-rank.md`: scores, ranks, and confidence.
 - `references/version-comparison.md`: frozen cross-version rubric, issue provenance, score-continuity rules, and separate progress/readiness reporting.
-- `scripts/validate_version_comparison.py`: deterministic validation of a structured comparison contract and its score changes.
+- `scripts/validate_version_comparison.py`: compatible JSON comparison validation and direct Markdown report checks (`--report`); no sidecar files.
 - `references/desk-checks.md`: desk and policy checks.
 - `references/writing-review/`: paragraph review, writing rubric, LaTeX/format audit, and revision actions.
 - `../ccf-paper-writer/references/prose-quality-guardrails.md`: prose anti-patterns and cohesion checks for writing review.
