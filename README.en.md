@@ -22,7 +22,7 @@ Yann LeCun and James M. Manyika, [*Learning Abstractions*](https://www.amacad.or
 
 - [Quick start](#quick-start)
 - [Why a family of skills](#why-a-family-of-skills)
-- [The family and its 17 core skills](#the-family)
+- [The family and its 18 core skills](#the-family)
 - [From idea to submission](#from-idea-to-submission)
 - [Visual examples](#visual-examples)
 - [Keeping the writing natural](#keeping-the-writing-natural)
@@ -35,7 +35,7 @@ At two in the morning, the experiment finally finishes. The new result is better
 
 Many promising projects are weakened not by a poor idea, but by what happens to that idea over time. Literature accumulates, result tables expand, and the author repeatedly switches between researcher, writer, and reviewer. The original insight gradually disappears beneath local revisions. One long prompt cannot reliably preserve all these relationships because retrieval must remain faithful to sources, experiments to protocols, writing to the argument, and review to independent judgment.
 
-CCFA Skills grew from this problem. We treat a paper as a research storyline that must remain coherent while it changes, not as a document waiting to be filled. Seventeen specialized skills accompany the work from idea, literature, and experiments to writing, visualization, review, rebuttal, and submission. As the work passes between them, the link between question, evidence, and conclusion remains intact, so the paper can evolve without forgetting why it deserved to be written.
+CCFA Skills grew from this problem. We treat a paper as a research storyline that must remain coherent while it changes, not as a document waiting to be filled. Eighteen specialized skills accompany the work from idea, literature, and experiments to writing, visualization, review, rebuttal, and submission. As the work passes between them, the link between question, evidence, and conclusion remains intact, so the paper can evolve without forgetting why it deserved to be written.
 
 <p align="center">
   <img src="assets/ccfa-skills-hero.svg" alt="CCFA Skills family overview" width="100%">
@@ -93,7 +93,7 @@ The difficulties of paper research are connected, but they do not require the sa
 
 Every CCFA task activates `ccf-humanization` first, then `ccf-common`, before the specialist, including retrieval, review, visuals, experiments, and maintenance. Humanization keeps communication direct and evidence-faithful; Common applies scope, collaboration, evidence, and file rules. Reuse active rules across contributors and refresh only changed or missing context. Detailed rewriting and experiment checks depend on the actual task, without duplicate preflight reports. Specialists retain ownership and integrate necessary contributions.
 
-### The 17 core skills
+### The 18 core skills
 
 | Research moment | Skill | What it contributes |
 |---|---|---|
@@ -106,6 +106,7 @@ Every CCFA task activates `ccf-humanization` first, then `ccf-common`, before th
 | Frontier tracking | `ccf-literature-monitor` | Watches new papers, nearby work, and changes in the field |
 | Experiment design | `ccf-experiment-designer` | Designs main comparisons, ablations, robustness studies, and result structures |
 | Integrity | `ccf-integrity-auditor` | Checks claims, values, terminology, figures, and citations together |
+| Paper comprehension | `ccf-paper-xray` | Reads one paper closely enough to retell the authors' reasoning: the real starting point, load-bearing versus decorative design, and formulas grounded in worked examples |
 | Paper review | `ccf-paper-reviewer` | Provides independent scientific review, version comparison, and readiness judgment |
 | Paper writing | `ccf-paper-writer` | Drafts, rewrites, polishes, and compresses manuscript text |
 | Academic voice | `ccf-humanization` | Removes defensive and mechanical prose without weakening rigor |
@@ -232,7 +233,7 @@ Each artifact has an owner responsible for integration and delivery. Other skill
 ```text
 CCFA-Skills/
 ├── ccf-common/                 # Shared family guidance
-├── ccf-*/SKILL.md              # Entry points for 17 skills
+├── ccf-*/SKILL.md              # Entry points for 18 skills
 ├── ccf-*/references/           # References read when needed
 ├── ccf-*/scripts/              # Reproducible operations
 ├── assets/                     # README visuals and figure examples
@@ -245,7 +246,7 @@ Longer guidance lives in `references/`, while repeatable work belongs in `script
 
 Work backward from the result to its prerequisites: closest-work evidence before novelty judgments, claims and citation support before substantive writing, and data semantics/topology before scientific rendering. Use the relevant skills to resolve missing, conflicting, or stale evidence; reuse valid checks. Verify affected arguments after substantial revisions and integrate fixes before delivery. Concept review still does not require completed experiments. Internal contributions return focused findings; requested reviews retain their fixed templates and full scoped coverage. Save tokens on repeated retrieval, duplicate reports, irrelevant references, and repeated intake, while completing necessary groundwork. See [cooperation routes](ccf-common/references/routing.md) and [handoff rules](ccf-common/references/handoff-modes.md).
 
-The file contract leads all 17 skill entrypoints. Explicit paths, this artifact's existing mappings, and established task folders take priority. New tasks use a dedicated project-root `ccfa-workfiles/<purpose>/<artifact-id>/`, outside generic `output/` folders. Examples include `figures/method-overview/`, `reviews/paper-short-title/`, and `literature/retrieval-memory/`. If the name belongs to unrelated material, use a stable `ccfa-workfiles-<project-id>/` rather than merging or overwriting contents.
+The file contract leads all 18 skill entrypoints. Explicit paths, this artifact's existing mappings, and established task folders take priority. New tasks use a dedicated project-root `ccfa-workfiles/<purpose>/<artifact-id>/`, outside generic `output/` folders. Examples include `figures/method-overview/`, `reviews/paper-short-title/`, and `literature/retrieval-memory/`. If the name belongs to unrelated material, use a stable `ccfa-workfiles-<project-id>/` rather than merging or overwriting contents.
 
 Create `source/` (reusable authoring files), `assets/` (reference/icon assets), `cache/` (downloads/extractions), and `build/` (current previews/logs) only when needed. Skills working on the same artifact share its directory and update current files. Avoid ambiguous new names such as `temp`, `misc`, or `final-final`. Remove only verified disposable files created by the task; retain original evidence, editable sources, requested outputs, and necessary comparison baselines. Failed builds preserve usable results. Existing folders are not migrated to adopt the new default; see the [artifact contract](ccf-common/references/artifact-contracts.md).
 
@@ -260,7 +261,7 @@ python ccf-common\scripts\check_markdown_links.py
 python ccf-common\scripts\check_sources.py
 ```
 
-These checks confirm that all 17 skills can be discovered, their responsibilities remain clear, documentation links resolve, and public files contain no machine-specific paths or private information. Experiment and efficiency results are summarized in [实验结果.md](实验结果.md).
+These checks confirm that all 18 skills can be discovered, their responsibilities remain clear, documentation links resolve, and public files contain no machine-specific paths or private information. Experiment and efficiency results are summarized in [实验结果.md](实验结果.md).
 
 `0.10.0` validates instructions, structure, and script behavior; historical experiments do not measure GPT-6 token or quality gains.
 

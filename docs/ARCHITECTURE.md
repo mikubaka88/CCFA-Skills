@@ -11,7 +11,7 @@ The family has four layers:
 | Layer | Purpose | Skills |
 | --- | --- | --- |
 | First family preflight | Before every skill, keep communication direct and evidence-faithful; apply detailed prose/experiment modes when relevant. | `ccf-humanization` |
-| Research production chain | Move a paper project from project setup to rebuttal. | `ccf-project-scaffolder`, `ccf-pipeline-orchestrator`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, `ccf-rebuttal-writer` |
+| Research production chain | Move a paper project from project setup to rebuttal. | `ccf-project-scaffolder`, `ccf-pipeline-orchestrator`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-to-exemplar`, `ccf-paper-xray`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, `ccf-rebuttal-writer` |
 | Shared family preflight | After Humanization and before every specialist, establish scope, routing, prerequisites, evidence, and artifact controls. | `ccf-common` |
 | Family maintenance | Maintain skills, docs, generated SVGs, validation, and releases. | `ccf-skill-forger` |
 
@@ -70,6 +70,7 @@ The family intentionally merged helper skills into owner modes. `ccf-visual-comp
 | Literature monitoring | `ccf-literature-monitor` | Tracks recent papers, venue feeds, labs, and competitors; deep retrieval stays with literature search. |
 | Compression and presentations | `ccf-paper-writer` | Changes manuscript-derived text; does not judge acceptance risk. |
 | Exemplar extraction | `ccf-paper-to-exemplar` | Converts PDFs into writing pattern cards; does not draft or review manuscripts. |
+| Single-paper comprehension | `ccf-paper-xray` | Reconstructs how one paper's authors got there and how far its evidence reaches; issues no verdict, score, or novelty judgement. |
 | Writing review | `ccf-paper-reviewer` | Diagnoses writing and format-facing risk; does not rewrite unless handed back to writer. |
 | Citation audit | `ccf-integrity-auditor` | Checks existing citations; broad discovery stays with literature search. |
 | Result evidence and specs | `ccf-experiment-designer` | Uses real results; never invents numbers. |

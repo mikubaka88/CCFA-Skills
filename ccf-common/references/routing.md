@@ -40,6 +40,7 @@ Humanization removes empty self-defense while preserving material facts, rigorou
 | Compose publication-grade data figures/tables and scientific method/architecture diagrams, using GPT Image 2 as the default architecture/schematic renderer, followed by requested editable SVG/PDF/PPTX reconstruction or an optional offer; use pure SVG first only on explicit opt-out. | `ccf-visual-composer` | visual-contract, figure-design, architecture-generation, pure-svg-generation, editable-reconstruction, python-plotting, table-design, layout-integration, render-qa | Does not design experiments, invent results/components, write manuscript prose, or perform final submission compliance. |
 | Draft, revise, polish, compress, and presentation-adapt paper text. | `ccf-paper-writer` | writing, polishing, compression, venue-aware LaTeX drafting, slides/poster/talk/Q&A | Preserves user format for edits; does not run full review or rebuttal. |
 | Convert user-provided paper PDFs into reusable writing exemplar cards. | `ccf-paper-to-exemplar` | exemplar extraction, writing-pattern cards, custom exemplar registration | Does not write papers or perform review. |
+| Read one supplied paper closely and reconstruct how its authors got there; separate load-bearing design from decoration, ground key formulas in worked micro-examples, and check the evidence boundary. | `ccf-paper-xray` | close reading, research-path reconstruction, worked-example grounding, evidence-boundary checks | Does not issue review verdicts or scores, extract writing exemplars, search literature, design experiments, render figures, or edit manuscript prose. |
 | Review manuscripts scientifically and stylistically, including score drift and cross-version comparison with separate relative-progress and absolute-readiness scorecards. | `ccf-paper-reviewer` | scientific review, writing review, format-facing review, version comparison, AC/meta-review | Does not combine the two scorecards, rewrite, rebut, or own the revision ledger. |
 | Audit evidence integrity, numbers, figures/tables, and existing citations. | `ccf-integrity-auditor` | claim audit, numeric audit, citation audit | Does not replace review or broad literature search. |
 | Check venue rules, LaTeX/PDF package, anonymity, metadata, and artifacts. | `ccf-submission-checker` | venue format, package check, artifact/reproducibility | Does not polish content. |
@@ -114,6 +115,7 @@ For manuscript writing from only an idea, `ccf-paper-writer` checks the venue gu
 | 用 Python 画漂亮数据分析图 / 创造有趣但可信的论文图 | `ccf-visual-composer` |
 | 根据论文方法生成架构图 / 默认调用 GPT Image 2 / 确认后转成可编辑 SVG、PDF 或 PPTX / 明确要求纯 SVG | `ccf-visual-composer` |
 | 把这篇 PDF 做成写作范例 / 添加 exemplar | `ccf-paper-to-exemplar` |
+| 精读论文 / 讲透这篇论文 / 作者为什么这么设计 / 这个公式怎么推出来的 | `ccf-paper-xray` |
 | 润色 introduction 或压缩到页数限制 | `ccf-paper-writer` |
 | 把论文做成 slides 和 Q&A | `ccf-paper-writer` |
 | 完整审稿 / 稿件有什么硬伤 / 结论站得住吗 / 逐段写作评审 | `ccf-paper-reviewer` |
