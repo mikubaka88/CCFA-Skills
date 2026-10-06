@@ -4,6 +4,8 @@
 
 Plugin version remains `0.10.0`.
 
+- Add `ccf-paper-xray` for close reading of one supplied paper: reconstruct the authors' actual starting point and the bet they placed, separate load-bearing design from decoration, ground the key formulas in worked micro-examples, and check the evidence boundary. It reports what the paper does and how far its evidence reaches, and issues no review verdict, score, or novelty judgement. Update the trigger registry, routing, catalog, architecture, naming audit, installation matrix, and the three README variants to 18 runtime skills; the validator now derives the expected count from its own skill set instead of a literal.
+
 - Add a minimal ICLR 2027 adaptation in existing guides: verified author/reviewer/AI-use policies, exact-year template selection, truthful disclosure checks, and decision-relevant review emphasis. Correct legacy ICLR anonymity, layout, and unsupported LaTeX commands; retain historical 2026 templates. Keep the fixed review profiles, 17-skill architecture, and plugin version unchanged.
 - Restore mandatory family-wide preflight in the order `ccf-humanization` -> `ccf-common` -> specialist. Apply it to review, retrieval, visuals, planning, and maintenance as well as writing; reuse active rules without recursive startup or duplicate reports. Detailed editing/experiment modes remain conditional. Align entrypoints, discovery prompts, routing, docs, and all partial-install subsets.
 - Use project-root `ccfa-workfiles/<purpose>/<artifact-id>/` for new working directories instead of nesting them in a generic application output folder. Preserve established task paths and avoid collisions with unrelated folders.

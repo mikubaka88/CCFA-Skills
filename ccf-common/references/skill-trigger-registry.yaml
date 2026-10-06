@@ -2,7 +2,7 @@ schema_version: 4
 generated_at: 2026-09-16
 authority: SKILL.md wins if this registry conflicts with a skill body.
 naming_policy: canonical runtime names use ccf-<object>-<role/action>; ccf-common is the governance exception.
-runtime_skill_count: 17
+runtime_skill_count: 18
 # Triggers/exclusions define primary ownership. Handoffs also support prerequisite
 # resolution and targeted checks; routing.md governs integration and scope.
 skills:
@@ -46,6 +46,10 @@ skills:
     trigger: "Distill supplied paper PDFs into writing exemplar cards and register a requested personal library. Use for PDF to writing exemplar, 写作范例, and reusable paper-writing patterns. Preserve source attribution and transfer writing logic only. Figure reconstruction, manuscript drafting, and review have separate owners."
     exclude: "Does not write papers, perform review, render figures, or reconstruct visuals."
     handoff: "ccf-paper-writer"
+  - name: ccf-paper-xray
+    trigger: "Read one supplied paper closely enough to reconstruct how its authors actually got there. Use for 精读论文, 讲透这篇论文, 把这篇读懂, 作者为什么这么设计, 这个公式怎么推出来的, and deep single-paper comprehension before building on, reviewing, or presenting that paper. Recover the real starting point and the bet the authors placed, separate load-bearing design from decoration, ground each key formula in a worked micro-example, and check the evidence boundary skeptically. Extracting writing patterns belongs to ccf-paper-to-exemplar; manuscript assessment and scores belong to ccf-paper-reviewer; literature discovery belongs to ccf-literature-searcher."
+    exclude: "Does not issue review verdicts or scores, extract writing exemplars, search literature, design experiments, render figures, or edit manuscript prose. Reading alone does not establish novelty, acceptance readiness, or a contribution claim."
+    handoff: "ccf-paper-writer, ccf-paper-reviewer, ccf-idea-optimizer, ccf-literature-searcher, ccf-integrity-auditor"
   - name: ccf-paper-writer
     trigger: "Draft, revise, polish, compress, or presentation-adapt CCF manuscript prose. Use for 写作, 润色论文, 改写, 压缩论文, abstracts, sections, slides, and rewrites based on reviews. Preserve supplied evidence and format. Assessment without rewriting belongs to ccf-paper-reviewer; rebuttal belongs to ccf-rebuttal-writer."
     exclude: "Does not perform full review, scientific review, scoring, assessment-only diagnosis, evidence audit, package check, or rebuttal."

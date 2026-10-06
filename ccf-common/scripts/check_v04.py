@@ -39,6 +39,7 @@ EXPECTED_SKILLS = {
     "ccf-skill-forger",
     "ccf-submission-checker",
     "ccf-paper-to-exemplar",
+    "ccf-paper-xray",
 }
 
 
@@ -167,7 +168,7 @@ def check_registry(skill_names: list[str], errors: list[str]) -> None:
     if not registered_order or registered_order[0] != "ccf-humanization":
         fail(errors, "ccf-humanization must be the first registry entry")
     if data.get("runtime_skill_count") != len(EXPECTED_SKILLS):
-        fail(errors, "skill-trigger-registry runtime_skill_count must be 17")
+        fail(errors, f"skill-trigger-registry runtime_skill_count must be {len(EXPECTED_SKILLS)}")
 
 
 def check_venue_guides(errors: list[str]) -> None:
@@ -401,7 +402,7 @@ def check_project_and_plugins(errors: list[str]) -> None:
                 continue
             discovered = {path.parent.name for path in base.glob("*/SKILL.md")}
             if discovered != EXPECTED_SKILLS:
-                fail(errors, f"{rel}: skill root does not expose the 17 family packages")
+                fail(errors, f"{rel}: skill root does not expose the {len(EXPECTED_SKILLS)} family packages")
             if rel.startswith(".claude-plugin"):
                 entries = manifest.get("entrypoints", [])
                 if not entries or entries[0] != "ccf-humanization" or set(entries) - EXPECTED_SKILLS:
