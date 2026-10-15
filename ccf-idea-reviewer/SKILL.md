@@ -14,13 +14,13 @@ metadata:
 
 ## Family File Contract
 
-Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse explicit or established task paths; otherwise use project-root `ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+Before file work, reuse canonical paths and one task/artifact working directory; default to project-root `ccfa-workfiles/<purpose>/<artifact-id>/`. Update in place, preserve inputs, and use UTF-8 with Chinese-text checks. Apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) for naming, ownership, and task-created cleanup; handoffs inherit these paths.
 
 ## Collaboration Contract
 
 Before specialist execution, read and apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md). At every handoff, reuse their applicable active rules or refresh missing/changed ones. Both preflights are required even without prose; detailed editing, experiment, and maintenance modes run only when relevant.
 
-Keep one integrating owner and actively use other skills to resolve missing prerequisites or check material findings. Reuse applicable evidence; do not skip necessary groundwork to save tokens. Before finalizing, integrate contributions and verify affected results. Follow the conditional [cooperation routes](../ccf-common/references/routing.md); avoid unrelated stages and duplicate reports.
+Integrate necessary specialist contributions under one owner; reuse valid prerequisites and verify affected results. Follow the [cooperation routes](../ccf-common/references/routing.md) without duplicate reports.
 
 ## Invocation Controls
 
@@ -35,6 +35,8 @@ Judge problem importance, novelty against closest work, conceptual insight, mech
 Distinguish a logical contradiction from an untested hypothesis. A meaningful claim can be assessed before experimental validation. Separate concept quality, development potential, and confidence; do not turn uncertain novelty into demonstrated overlap or submission readiness into idea quality.
 
 Every consequential criticism identifies the affected idea statement or assumption, its inspected basis, its significance, and the smallest repair. Do not fabricate prior art, results, reviewer agreement, or acceptance probability. Use `abandon` only after identifying why no meaningful formulation or plausible rescue remains.
+
+The smallest repair explains a diagnosis; it does not limit an authorized optimizer to incremental changes. Review changed assumptions and unresolved concerns; unchanged evidence does not require another full scorecard. Converge on resolved findings or the exact remaining discriminator, not repeated scoring until a preferred number appears.
 
 ## Workflow
 

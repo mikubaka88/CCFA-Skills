@@ -12,6 +12,8 @@ npx skills update --global --yes
 
 更新不会让已运行会话重新加载 skill。完成后请开启新会话。
 
+更新前先比较安装副本中的个人修改与仓库版本，将需要保留的改进合并或另存到明确的维护位置；不要用整目录覆盖代替差异核对。个人偏好保存在安装目录之外的 `$CODEX_HOME/ccfa/preferences.json`（未设置时为 `~/.codex/ccfa/preferences.json`）及项目 `.ccfa/preferences.json`，更新时保留。配置页与解析器随 `ccf-common` 一起更新，普通任务无需启动网页服务。
+
 ## Windows 任务计划
 
 ```powershell

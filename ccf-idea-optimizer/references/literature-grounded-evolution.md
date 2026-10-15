@@ -16,7 +16,7 @@ This workflow adapts useful primitives from public research agents: question dec
 
 ## Compact Research Memory
 
-Create no more than 4 evidence cards in quick mode, 8 in a normal standard task, or 12 for a genuinely multi-cluster topic. Each card contains:
+Keep a compact active set: around 4 evidence cards for quick work, 8 for standard work, or 12 for a multi-cluster topic are context-packing defaults, not retrieval quotas or evidence ceilings. Use fewer when sufficient and expand only when a missing relationship affects the requested decision. Reference already stored sources rather than duplicating them. Each useful card contains:
 
 ```text
 Source:
@@ -40,7 +40,7 @@ Build a small internal map with nodes for `problem`, `constraint`, `mechanism`, 
 - `depends-on`: a mechanism requires a resource or assumption;
 - `evaluated-by`: a protocol tests a claim or mechanism.
 
-Prefer gaps supported by at least two independent cards. Strong gap patterns include:
+Independent sources strengthen a gap claim when available; two cards are not an admission requirement for an idea. A single anomaly, theoretical inconsistency, or reasoned counterfactual may motivate an untested hypothesis. State the premise, mechanism, and discriminating prediction separately from verified prior-art claims. Strong gap patterns include:
 
 - shared assumption that fails in an important setting;
 - conflict between two successful mechanisms that suggests a missing condition;
@@ -69,29 +69,29 @@ Parent:
 Operator:
 Source-backed premise:
 New inference:
-Mechanism change:
-Discriminating experiment:
+Mechanism change and useful consequence:
+Discriminator: prediction / observation / proof / counterexample / test
 ```
 
-Reject branches whose novelty is only naming, component stacking, or target-paper reconstruction.
+Reject branches whose novelty is only naming, component stacking, or target-paper reconstruction. For a proposed component, explain what limitation it changes and what meaningful difference would disappear without it. This is a conceptual necessity check, not an automatic ablation request; clearer explanation, fewer assumptions, or lower cost can also be valuable contributions.
 
-## Development Selection And One-Step Evolution
+## Development Selection And Revision
 
 Compare candidates internally, without presenting numeric rankings unless the user explicitly requests review:
 
 1. Is the gap grounded and important?
 2. Does the mechanism causally address the root challenge?
 3. Is the new claim distinguishable from the closest work?
-4. Can one experiment falsify the central claim?
+4. What observation, proof, counterexample, or experiment would distinguish or falsify the central claim?
 5. Are data, compute, code, and timeline plausible?
 6. Would the result teach something if headline performance is modest?
 
-Keep the strongest route and one genuinely different fallback. Challenge the strongest route with:
+Develop the selected route and retain a genuinely different fallback when useful; an options request still receives the requested candidate set. Challenge the route where a material uncertainty remains:
 
 - `overlap challenge`: the closest source already covers more than assumed;
 - `evidence challenge`: the proposed protocol cannot isolate the new mechanism.
 
-Revise once only when a challenge is material. Stop when the route remains coherent, differentiated, and testable after the challenge; do not create repetitive reflection loops.
+Start with one material challenge and targeted revision, not a mandatory extra review. Continue necessary corrections when new evidence or a changed mechanism supports another step. Stop optional refinement once the requested result is coherent and further repetition would not change the decision; if a decisive gap remains, name its discriminator rather than hiding it. Carry the unresolved issue and attempted conditions across owners, without restarting the same challenge on each handoff.
 
 ## Experiment Bridge
 
@@ -99,13 +99,13 @@ Carry protocol anchors into the evidence plan:
 
 - compare against the closest mechanism-level baseline, not only a weak foundation model;
 - reuse public datasets, splits, metrics, and evaluation conventions only when settings are compatible;
-- add one discriminating ablation or counterfactual per new mechanism claim;
+- identify a discriminating observation, analysis, ablation, or counterfactual when it is needed for the central claim; compatible claims may share evidence and theory contributions may need no empirical experiment;
 - separate reported public results from results that must be measured;
 - use a new benchmark or metric only when existing protocols cannot test the claim.
 
 ## Context And Batch Discipline
 
-For large batches or cost-sensitive runs, use the compact path: up to 4 evidence cards, 3 branches, one development selection, one material challenge, and one final idea card. Reuse stable protocol anchors across candidates instead of repeating source summaries. More tokens are justified only when they add a new source relationship or change a design decision.
+For large batches or cost-sensitive runs, start with a compact working set and a few distinct branches; retain the requested number of useful outputs. Evidence-card counts and one-challenge defaults manage active context, not scientific coverage. Reuse stable protocol anchors and source summaries. Additional work should resolve a missing relation, repair a concrete defect, test a distinct mechanism, or complete the requested breadth; repetitive critique and score chasing add none of these.
 
 ## Audit Boundary
 

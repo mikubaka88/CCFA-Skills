@@ -2,11 +2,13 @@
 
 Use this for full-manuscript organization, substantial introductions, or explicitly requested storyline design. Ordinary polishing and bounded abstracts use the compact arc in the writer entry.
 
-CCF-A writing should make the paper's scientific logic easy for reviewers to reconstruct. A storyline is not an outline, a marketing angle, or a list of modules. It is the single explanatory logic that makes the research necessary, plausible, evidenced, and worth remembering.
+CCF-A writing should make the paper's scientific logic easy for reviewers to reconstruct. A storyline is not an outline, a marketing angle, or a list of modules. It is the coherent explanatory logic that makes the research necessary, plausible, evidenced, and worth remembering. Several connected motivations, observations, and claims can serve one theme; do not reduce a task, benchmark, and method contribution to one module.
+
+For new drafts, `materials-to-manuscript.md` controls material status, pending results, and content before page fitting. Evidence maps below distinguish available support from planned tests; a planned evidence ladder is not a set of observed findings.
 
 ## Storyline Definition
 
-A scientific storyline is the paper's central causal argument:
+A scientific storyline is the paper's coherent scientific argument:
 
 ```text
 scientific origin -> knowledge gap -> scientific tension -> fundamental question -> core insight -> method mechanism -> evidence ladder -> bounded claim
@@ -196,7 +198,7 @@ Dimensions:
 ```text
 Scientific Depth: Does it reach the root scientific question?
 Novelty: Does it create a new cognitive angle, not just a new wording?
-Logical Coherence: Do motivation, method, and experiments form a causal chain?
+Logical Coherence: Do the motivation, mechanism, and evidence support the same research claims?
 Narrative Quality: Is there scientific tension and reader curiosity?
 Claim Strength: Does the final claim represent the whole work and match evidence?
 ```
@@ -225,14 +227,14 @@ The final fusion role is:
 Chief Scientific Narrative Architect
 ```
 
-Responsibility: rebuild the final storyline from the original materials, expert candidates, and cross-review results. This is not a collage. It must identify the one hidden scientific logic behind all experiments.
+Responsibility: organize the original materials, candidate interpretations, and review findings around a shared scientific object. Retain related questions and observations when they explain distinct parts of the contribution.
 
 Fusion rules:
 
-1. Pick one dominant fundamental question.
-2. Pick one core insight that answers that question.
+1. Establish the shared scientific object and the related questions the work addresses.
+2. Retain the observations that explain those questions; do not force one insight when it erases part of the contribution.
 3. Organize the method as the natural implementation of the insight.
-4. Organize experiments as an evidence ladder for the claim.
+4. Organize supplied experiments as evidence for the claims, distinguishing planned tests from completed results.
 5. Remove candidate fragments that create a second main story.
 6. Weaken or mark claims that exceed supplied evidence.
 7. Resolve disagreement against the original evidence. Carry a limitation into prose only when it is scientifically material; do not convert hypothetical objections into paper content.
@@ -241,7 +243,7 @@ Fusion output:
 
 ```text
 Unified scientific origin:
-Single fundamental question:
+Related research questions:
 Core insight:
 Final story arc:
 Method organization:
@@ -291,7 +293,7 @@ Avoid generic gaps such as "existing methods are inaccurate" or "few works study
 
 ### 3. Fundamental Scientific Question
 
-State one question that drives the whole paper.
+Establish the shared scientific question or coherent set of related questions that drives the paper.
 
 The question should be:
 
@@ -300,7 +302,7 @@ The question should be:
 - connected to the method mechanism,
 - answerable by the evidence package.
 
-If there are several questions, choose the one that explains the rest. Put secondary questions into subclaims or experiments.
+If several questions are necessary, make their relationships explicit. A common theme does not require discarding distinct task, measurement, and modeling contributions.
 
 ### 4. Core Insight: What Changes
 
@@ -362,7 +364,7 @@ What would be weakened if this evidence failed:
 
 ### 7. Claim Construction: What Can Be Said
 
-Build one central claim and a small set of subclaims.
+Build a coherent set of claims expressing the whole contribution. Use a central claim with subclaims when that reflects the work, not as a compulsory restriction. Result-dependent claims remain unasserted until their evidence exists.
 
 Central claim format:
 
@@ -403,7 +405,7 @@ Use this compact arc for ordinary drafting:
 3. The gap has a root reason, not merely weak numbers.
 4. The paper introduces a core insight that addresses that reason.
 5. The method implements the insight through necessary modules or formal steps.
-6. Evidence validates each major claim in a causal order.
+6. Evidence addresses the major claims in the order needed to understand the argument.
 7. Material assumptions and observed limits are explained where they affect the finding.
 
 ## Contribution Types
@@ -429,9 +431,9 @@ Do not imply a stronger contribution type than the evidence supports.
 | --- | --- | --- |
 | Abstract | Compress the entire story | Does it include origin, gap, insight, method, and evidence without overclaiming? |
 | Introduction | Build scientific tension and reviewer curiosity | Does the challenge naturally lead to the insight and method? |
-| Related Work | Position novelty | Does each topic explain the gap the paper fills? |
+| Related Work | Position the research | Does each topic establish the relevant capability, assumption, or closest relationship without a forced superiority ending? |
 | Method | Make mechanism auditable | Can reviewers see how the method implements the insight? |
-| Experiments | Build belief | Does every major claim have evidence in a causal order? |
+| Experiments | Explain the evidence | Does each empirical claim have support, presented in a logically connected order? |
 | Figures/Tables | Make evidence inspectable | Does each visual answer one reviewer question? |
 | Limitations | Bound claims | Are limitations honest but not self-defeating? |
 | Conclusion | Leave final takeaway | Does it restate what the community now knows or can do? |
@@ -453,7 +455,7 @@ Run these after writing or revising a section:
    - Define terms before reuse.
 4. Cross-section continuity:
    - Check whether Abstract, Introduction, Method, and Experiments tell the same story.
-   - Ensure contributions in Introduction are validated in Experiments.
+   - Ensure empirical claims in Introduction have applicable evidence; proposed mechanisms and formal or dataset contributions use their appropriate support. Pending tests do not count as validation.
    - Ensure limitations do not contradict contribution claims.
 5. Evidence gaps:
    - Identify concrete unsupported claims or actual review findings relevant to the revision.

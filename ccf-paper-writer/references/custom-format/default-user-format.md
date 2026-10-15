@@ -1,6 +1,6 @@
-﻿# Default User-Custom Writing Format
+# Default User-Custom Writing Format
 
-Use this format whenever the user asks for paper writing, planning, polishing, or review but does not specify a target venue, journal, or conference. State the assumption: "No target venue was specified, so I am using the user-custom writing format."
+Use this format when the user requests it or an established project preference selects it. An unspecified venue alone does not activate it. Preserve a supplied document format; a new LaTeX manuscript without a usable target template follows the disclosed NeurIPS format fallback in `references/output-style-policy.md`. Do not impose a LaTeX template on Markdown or another requested format. Review remains owned by `ccf-paper-reviewer`.
 
 ## Source Exemplars
 
@@ -9,37 +9,33 @@ The current custom format is distilled from two user-provided exemplar cards:
 - ICLR family: `references/exemplars/cards/llava-4d.md`
 - CVPR: `references/exemplars/cards/vggt.md`
 
-These are not ordinary venue-best-paper defaults. They are the user's own preferred writing examples. Load both cards before drafting unless the user asks to exclude one.
+These are user-supplied writing references, not compulsory sources or venue requirements. Select a card only when its scientific object, evidence type, or writing question matches the current work; a task may need neither. Preserve source attribution. Transfer useful argument structure without copying scientific claims or wording.
 
 ## Writing Shape
 
-Use this structure:
+Choose useful functions from this structure according to the contribution; neither their count nor their paragraph allocation is fixed. `references/materials-to-manuscript.md` governs content-first drafting, evidence status, and later fitting:
 
 1. Task and capability gap: begin from a concrete capability the field cares about, then show why current systems fail in a physical, dynamic, geometric, or deployment-relevant setting.
 2. Prior-work ladder: present prior work as successive partial progress, not as a citation list.
 3. Root challenge: identify the missing representation, missing output family, missing temporal/spatial reasoning, or missing direct prediction path.
-4. Core insight: express one observation that makes the method feel inevitable.
+4. Scientific insight: explain the connected observations that motivate the actual contribution; retain multiple related insights when needed.
 5. Mechanism preview: name the main modules by their roles in the story.
-6. Evidence promise: map each contribution to a measurable task, ablation, benchmark, qualitative example, or downstream use.
-7. Boundary: explicitly avoid claims that require an actual target venue, uncollected experiments, or unsupported novelty.
+6. Evidence relation: connect claims to applicable supplied support. Distinguish planned evaluation from observed findings; not every contribution needs a model experiment.
+7. Scientific conditions: explain material assumptions where they affect interpretation, without appending a generic cautionary ending.
 
 ## Section Defaults
 
 Abstract:
 
-- One sentence for the capability gap.
-- One sentence for the limitation of current approaches.
-- Two to three sentences for method mechanism and outputs.
-- One sentence for dataset, benchmark, or evaluation package if present.
-- One sentence for results or expected evidence, calibrated to the actual proof available.
+- Explain the question, relevant gap, actual contribution, and mechanism at a readable level.
+- Describe a dataset, benchmark, or evaluation package only when supplied and relevant.
+- Include findings only when supported; planned evidence is not an observed result. Sentence count follows the content and requested length.
 
 Introduction:
 
-- Paragraph 1: field momentum and why the problem matters.
-- Paragraph 2: prior-work ladder and remaining failure mode.
-- Paragraph 3: root observation or design insight.
-- Paragraph 4: method overview with modules and output definitions.
-- Paragraph 5: contribution bullets, each linked to evidence.
+- Establish why the problem matters, relevant prior work, the scientific gap, and the observations motivating the contribution.
+- Introduce the actual method or other contribution with sufficient definitions.
+- Organize these functions into as many paragraphs as the argument needs. Contribution statements must match completed work or clearly proposed mechanisms.
 
 Method:
 
@@ -50,27 +46,23 @@ Method:
 
 Experiments:
 
-- Main comparison first.
-- Then ablations tied to contribution bullets.
-- Then qualitative examples that expose the motivating failure mode.
-- Then efficiency, scaling, or downstream evidence if claimed.
-- Then limitations and failure cases.
+- Follow the supplied design and contribution type; select comparisons, ablations, analyses, or case studies only when applicable.
+- Explain supported results in a logical order, including relevant negative findings.
+- For pending results, retain the authorized setup and table scaffold with missing values; do not generate outcome analysis. An explicitly deferred whole experiment section remains deferred.
 
 ## Quality Pass
 
-Apply one internal writing-quality pass after drafting. Check scientific meaning, evidence bounds, terminology, paragraph flow, and format fidelity. Do not simulate reviewers, assign scores, or expose an iterative critique transcript unless the user explicitly requests review. Route a separate scientific review to `ccf-paper-reviewer` instead of mixing it into ordinary writing.
+Apply one internal writing-quality pass after drafting. Check scientific meaning, evidence bounds, terminology, paragraph flow, and format fidelity. A substantial new draft or evidence change uses the writer entry's scoped reviewer handoff when not already covered; preserve phase and pending-result status. Do not automatically create a panel, acceptance score, or repeated critique transcript. An additional independent review follows the effective shared preferences.
 
 ## Citation Rules
 
 When using this custom format, follow the citation workflow in `references/citation-workflow.md`:
 
-- The introduction must carry12-20 citations woven naturally into the argument chain.
-- Related Work needs3-8 citations per topic group,20-35 total.
-- Every baseline, dataset, and borrowed module must be cited.
-- Use claim-first citation style: the sentence makes its point, then the bracket provides attribution.
-- Do not use "Author et al. [N]" as a sentence subject. Use the finding or method as the subject.
-- No `\textbf{Label:}` scaffolding in prose paragraphs. Write continuous arguments.
-- Count total citations before calling the draft complete: under25 for an AI/CV/NLP paper means under-cited.
+- Support substantive prior-work claims, borrowed mechanisms, and external datasets or baselines with verified sources.
+- Coverage follows the scientific argument and closest work, without section or total citation quotas.
+- Usually make the finding or method the subject; author-name subjects remain appropriate when attribution matters.
+- Define newly introduced resources directly and cite actual predecessors where applicable. Do not invent a source for the current work.
+- Follow `references/prose-quality-guardrails.md` for selective emphasis and useful brief headings.
 
 ## Output Contract
 

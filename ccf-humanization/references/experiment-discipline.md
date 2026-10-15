@@ -15,7 +15,9 @@ Confirmation source:
 Status: confirmed / provisional / simplified
 ```
 
-Only `confirmed` methods may enter publication artifacts as completed full-method comparisons. Keep `provisional` and `simplified` development runs out of those claims; explicitly planned studies and clearly labeled ablations remain valid. This includes toy, approximate, proxy, reduced-budget, debug, fewer-layer, lower-resolution, shortened-training, subset-only, mocked, emulated, and otherwise altered variants.
+Only `confirmed` methods may enter publication artifacts as completed full-method comparisons. Keep `provisional` and `simplified` development substitutes out of those claims; explicitly planned studies and clearly labeled ablations remain valid. Development substitutes include toy, debug, mocked, or altered runs used in place of the intended protocol, including unapproved reductions in budget, layers, resolution, training, or data.
+
+For an authorized, scientifically defined budget or scale comparison, verify the actual specified configuration and report it as that scoped comparison. A verified smaller configuration is not a development substitute merely because it is smaller; it must not be presented as another method's full configuration. Relabeling a toy/debug run does not establish a scientific protocol or make it publication evidence.
 
 The `confirmed` label is internal metadata. Do not copy `confirmed`, `approved`, `publication-ready`, gate status, confirmation source, or similar engineering language into manuscript prose, captions, or table labels. Once the gate passes, name the method and report only scientifically relevant configuration details. For example, write `Transformer Base with six encoder and six decoder layers`, not `the confirmed full Transformer Base version`.
 

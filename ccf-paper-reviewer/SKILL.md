@@ -14,13 +14,13 @@ metadata:
 
 ## Family File Contract
 
-Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse explicit or established task paths; otherwise use project-root `ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+Before file work, reuse canonical paths and one task/artifact working directory; default to project-root `ccfa-workfiles/<purpose>/<artifact-id>/`. Update in place, preserve inputs, and use UTF-8 with Chinese-text checks. Apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) for naming, ownership, and task-created cleanup; handoffs inherit these paths.
 
 ## Collaboration Contract
 
 Before specialist execution, read and apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md). At every handoff, reuse their applicable active rules or refresh missing/changed ones. Both preflights are required even without prose; detailed editing, experiment, and maintenance modes run only when relevant.
 
-Keep one integrating owner and actively use other skills to resolve missing prerequisites or check material findings. Reuse applicable evidence; do not skip necessary groundwork to save tokens. Before finalizing, integrate contributions and verify affected results. Follow the conditional [cooperation routes](../ccf-common/references/routing.md); avoid unrelated stages and duplicate reports.
+Integrate necessary specialist contributions under one owner; reuse valid prerequisites and verify affected results. Follow the [cooperation routes](../ccf-common/references/routing.md) without duplicate reports.
 
 ## Invocation Controls
 
@@ -48,6 +48,8 @@ Do not write rebuttal text or directly maintain the revision ledger; route revie
 ## Workflow
 
 For a bounded internal contribution, select the checks needed for its assigned question and affected dependencies. Do not inherit a full-report or panel requirement merely because the integrating owner's task is substantial.
+
+Identify the manuscript phase. A content-first or intentionally results-pending draft can be checked for scientific coherence, method clarity, terminology, literal sentence logic, and global alignment without imposing page limits or treating missing results as completed evidence. In an internal writing/alignment check, mark empirical adequacy `not assessed` when no results are supplied; do not invent an acceptance score or prescribe experiments outside scope. An empirical assertion without support remains a finding. A requested full submission review still reports evidence incompleteness and uses its normal rubric; phase awareness must not conceal it. `../ccf-paper-writer/references/materials-to-manuscript.md` defines the drafting contract.
 
 1. Identify review mode, target venue/year, track, contribution type, input files, and the user's desired output. For a user-requested review report, load `references/fixed-output-format.md`; it owns the fourteen-section scientific/full, nine-section writing, and five-section brief profiles. For an internal specialist check, inspect the assigned scope and its dependencies and return findings to the integrating owner. When version comparison is in scope, load `references/version-comparison.md` before scoring.
 2. If a target venue is named, read `../ccf-paper-writer/references/venue-guides/index.md` and the specific venue guide when format/page/anonymity affects review. For ICLR 2027, read the ICLR section of `references/venue-review-styles.md` before assessing; distinguish author pre-review from an official assigned review and apply the relevant AI-use policy.
@@ -102,4 +104,4 @@ Next owner:
 
 ## Evidence And Execution
 
-Use distinct reviewer perspectives for a standard full assessment; delegate independent evidence slices only when the host permits it and the task benefits. Label a single-agent role simulation honestly. Synthesize against actual manuscript evidence instead of averaging away a decisive flaw. Keep role reports compact and consolidate duplicate concerns. Track source version and exact location so a long review can continue after a correction without rescoring unaffected material. Report missing evidence as a coverage limit, not an invented defect. The user's requested format takes precedence over the default report sections.
+Use distinct reviewer perspectives for a standard full assessment; label a single-agent role simulation honestly. Apply the effective `independent_review` setting from `../ccf-common/references/preferences.md` to an additional independent pass, not to the primary review's evidence coverage or required counterchecks. Delegate only supported, useful evidence slices; an enabled preference never mandates a second full report or an indefinite review loop. Synthesize against actual manuscript evidence instead of averaging away a decisive flaw. Keep contributions compact and consolidate duplicate concerns. Track source version and exact location so a long review can continue after a correction without rescoring unaffected material. Report missing evidence as a coverage limit, not an invented defect. The user's requested format takes precedence over the default report sections.

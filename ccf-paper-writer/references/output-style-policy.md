@@ -8,9 +8,9 @@ Use this reference when the requested writing output could conflict with the def
 2. `ccf-humanization` direct-academic and warning-non-injection policy.
 3. Original source format for edit/polish/compression tasks.
 4. Target venue LaTeX format for from-scratch manuscript tasks.
-5. Target venue length/page budget for full-manuscript tasks.
-6. NeurIPS LaTeX fallback when the target venue is absent, unknown, or has no local guide.
-7. Compact user-review warning only after the main writing output and never injected into the artifact.
+5. Content-first drafting followed by alignment; venue length/page budget only during requested fitting.
+6. NeurIPS format fallback for a new LaTeX manuscript when no usable target template is specified. Preserve requested Markdown, custom formats, and supplied templates; a missing local venue guide does not override them.
+7. A compact note after the main writing output only for a remaining unresolved scientific decision or material evidence gap that needs the user's decision; never inject workflow warnings into the artifact.
 
 ## Edit And Polish
 
@@ -20,7 +20,7 @@ Preserve existing structure unless the user asks for restructuring:
 - Markdown headings, tables, lists, code fences, and links.
 - Paragraph count and section order when the request is "polish", "润色", "改写但不改结构", or "keep format".
 
-If a sentence contains an unsupported claim, narrow it accurately in place or add a short warning after the revised text. Do not inject defensive caveats or turn a polish request into a long review report.
+If a sentence overstates supplied evidence, revise it accurately within the authorized edit. Preserve verified negative results, assumptions, and comparison constraints as direct scientific content in the relevant passage. Only a remaining decision that requires unknown evidence or a change to the research claim warrants a short external note; identify that decision and continue unaffected work. Do not turn ordinary factual qualification into a warning or a polish request into a long review report.
 
 ## Canonical Revision Files
 
@@ -28,23 +28,11 @@ Use one canonical path for each requested manuscript or writing deliverable. Ord
 
 ## From Idea To Manuscript
 
-When the user has only an idea and asks to write a paper:
-
-1. Search `venue-guides/index.md` for the target venue.
-2. Read the specific venue guide when it exists.
-3. Draft a LaTeX manuscript using that venue's template conventions.
-4. Establish a page/word budget from `length-budget-policy.md`; for submission-style drafts, aim near the venue limit rather than producing a short skeleton.
-5. If the venue guide is missing or no venue is named, draft with the NeurIPS template path `ccf-latex-templates/NeurIPS/neurips_2026.tex`.
-6. Use `TBD` for missing results, citations, figures, or implementation details.
-7. For "完整文章", "full paper", "from scratch", or "投稿", include the normal paper parts for the target venue: abstract, introduction, background/related work or preliminaries, method, experiments, analysis/ablation, conclusion, references, and expected appendix/checklist placeholders. Include limitations, ethics, or reproducibility sections only when venue-required or scientifically material; do not invent defensive content to fill them.
-
-If the first draft is substantially below the venue budget, expand with useful missing content before declaring it complete. If it exceeds the budget, run compression locally because compression is owned by `ccf-paper-writer`.
-
-Do not block the draft because final venue policy may be stale. State the freshness risk briefly and route final compliance to `ccf-submission-checker`.
+Follow `materials-to-manuscript.md` for content-first drafting, result status, alignment, and the transition to page fitting. Use the requested format and venue template conventions; a NeurIPS template can be a disclosed fallback, not an initial page constraint. Resolve policy freshness and missing inputs through the relevant owner when needed, and route final compliance to `ccf-submission-checker`. Surface only material unresolved choices; do not append routine freshness or missing-input warnings to every draft.
 
 ## Information-Dense Writing
 
-Do not use the main answer for generic process narration. The first visible artifact should be the draft, revised text, table, review response, or file path requested by the user. Keep notes short and concrete:
+Do not use the main answer for generic process narration. The first visible artifact should be the draft, revised text, table, review response, or file path requested by the user. When a decision remains, keep its note short and concrete:
 
 - name the exact unsupported claim,
 - name the missing evidence or file,
@@ -55,21 +43,7 @@ For full workflow demos, produce the requested concrete artifacts. Several skill
 
 ## Citation Format Rules
 
-Every manuscript must follow these citation formatting rules:
-
-1. **Natural weaving:** Citations appear as part of the narrative. The claim precedes the citation bracket. A sentence should make sense if the brackets were removed.
-
-2. **No author-name subjects:** Do not use `Author et al. [N]` as the grammatical subject of a sentence. Use the method name, the finding, or the paradigm as the subject: "Self-attention [1]..." not "Vaswani et al. [1]..."
-
-3. **Group with purpose:** When citing multiple works, group them by what they share: "Contrastive objectives [9,10,11]" rather than dumping "Several works [1,2,3,4,5,6,7,8] have studied this."
-
-4. **Clear attribution:** Avoid redundant citation clusters when a single reference clearly supports connected statements. Repeat a citation when needed to keep attribution unambiguous; do not merge distinct claims solely to reduce citation count.
-
-5. **Bib file as source of truth:** Every `\cite{}` key must exist in the project `.bib` file. Never write a citation from memory.
-
-6. **No bold labels:** Do not use `\textbf{Concept:}` or `\textit{Label:}` as paragraph scaffolding. Write prose paragraphs with topic sentences and logical flow. The only exceptions are venue-mandated section headings or checklist items.
-
-7. **Citation coverage:** Follow `references/citation-workflow.md` for support of closest work, borrowed mechanisms, datasets, and comparisons. Do not add papers or expand prose to meet a numeric quota. Reuse verified entries and preserve unrelated bibliography content.
+Use `citation-workflow.md` as the source for attribution, verified entries, citation placement, and coverage. Preserve the project's citation style and keys. Prose emphasis follows `prose-quality-guardrails.md`; it is not a separate citation requirement.
 
 ## Flexible Suggestions
 

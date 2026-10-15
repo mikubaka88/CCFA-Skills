@@ -2,7 +2,7 @@
 
 Use this file to reduce length while preserving the paper's story, evidence, and venue fit.
 
-Compression is triggered when a manuscript exceeds the target venue budget or the user's requested word/page limit. It is the counterpart to `length-budget-policy.md`: underfilled manuscripts should be expanded, overfilled manuscripts should be compressed.
+Compression applies when the user requests it, specifies a word/page limit, or requests a submission-ready deliverable. For a new manuscript, complete the content and alignment check in `materials-to-manuscript.md` before fitting. Exceeding an eventual venue limit does not trigger compression during an unconstrained first draft. Use `length-budget-policy.md` for the active fitting constraint; expand only real explanatory gaps, not empty page area.
 
 ## Mode Selection
 

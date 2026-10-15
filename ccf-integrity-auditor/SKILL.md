@@ -14,13 +14,13 @@ metadata:
 
 ## Family File Contract
 
-Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse explicit or established task paths; otherwise use project-root `ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+Before file work, reuse canonical paths and one task/artifact working directory; default to project-root `ccfa-workfiles/<purpose>/<artifact-id>/`. Update in place, preserve inputs, and use UTF-8 with Chinese-text checks. Apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) for naming, ownership, and task-created cleanup; handoffs inherit these paths.
 
 ## Collaboration Contract
 
 Before specialist execution, read and apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md). At every handoff, reuse their applicable active rules or refresh missing/changed ones. Both preflights are required even without prose; detailed editing, experiment, and maintenance modes run only when relevant.
 
-Keep one integrating owner and actively use other skills to resolve missing prerequisites or check material findings. Reuse applicable evidence; do not skip necessary groundwork to save tokens. Before finalizing, integrate contributions and verify affected results. Follow the conditional [cooperation routes](../ccf-common/references/routing.md); avoid unrelated stages and duplicate reports.
+Integrate necessary specialist contributions under one owner; reuse valid prerequisites and verify affected results. Follow the [cooperation routes](../ccf-common/references/routing.md) without duplicate reports.
 
 ## Core Rule
 
@@ -36,14 +36,16 @@ Trace each important claim to supplied evidence, each number to supplied results
 ## Workflow
 
 1. Identify supplied manuscript, figures/tables/results, bibliography, `ccfa.yaml`, and requested audit mode.
-2. Build a claim-evidence matrix and mark each claim as supported, partially supported, unsupported, overstated, or unclear.
+2. For claim or full audits, map the relevant claims to evidence and mark each as supported, partially supported, unsupported, overstated, or unclear. Numeric and citation audits track their scoped values or citations; add claim rows only when needed to resolve a finding.
 3. Cross-check the reported values within the requested scope across text, tables, figures, captions, abstracts, and conclusions. Use deterministic arithmetic for deltas, units, metric direction, and rounding. Distinguish not comparable from inconsistent.
-4. For citation audit, verify the identity and context support of existing citations through primary sources; metadata existence alone does not establish support. Batch independent identifiers when possible. Seek new literature only when requested; broad discovery belongs to `ccf-literature-searcher`.
+4. For citation audit, verify the identity and context support of existing citations through primary sources; metadata existence alone does not establish support. Batch independent identifiers when possible and request only identity fields before reading the source passages needed for claim support. Reuse verified source versions and anchors; refresh affected findings when a citation, claim, or source version changes. Seek new literature only when requested; broad discovery belongs to `ccf-literature-searcher`.
 5. For any questionable citation, separate metadata problems from context-support problems.
 6. Hand off to `ccf-paper-reviewer` for full scientific judgment and to `ccf-paper-writer` for safe wording edits.
 7. If the numbers and claims are consistent but the figure/table layout, caption placement, palette, float order, or rendered readability is weak, hand off to `ccf-visual-composer`.
 
 ## Output Contract
+
+Include the fields relevant to the requested audit, with source locations and unresolved coverage. A bounded helper returns its findings to the owner without a separate full report.
 
 ```text
 Mode:
@@ -55,7 +57,7 @@ Citation-context findings:
 Severity:
 Safe edit suggestions:
 Next CCFA owner:
-No-invention status:
+Unverified scope:
 ```
 
 ## Execution Boundaries

@@ -14,13 +14,13 @@ metadata:
 
 ## Family File Contract
 
-Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse explicit or established task paths; otherwise use project-root `ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+Before file work, reuse canonical paths and one task/artifact working directory; default to project-root `ccfa-workfiles/<purpose>/<artifact-id>/`. Update in place, preserve inputs, and use UTF-8 with Chinese-text checks. Apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) for naming, ownership, and task-created cleanup; handoffs inherit these paths.
 
 ## Collaboration Contract
 
 This is the first required family preflight. Apply the baseline below, then activate [ccf-common](../ccf-common/SKILL.md) before specialist work. The two preflights bootstrap once without recursively re-entering each other; reuse applicable rules across contributors.
 
-Keep one integrating owner and actively use other skills to resolve missing prerequisites or check material findings. Reuse applicable evidence; do not skip necessary groundwork to save tokens. Before finalizing, integrate contributions and verify affected results. Follow the conditional [cooperation routes](../ccf-common/references/routing.md); avoid unrelated stages and duplicate reports.
+Integrate necessary specialist contributions under one owner; reuse valid prerequisites and verify affected results. Follow the [cooperation routes](../ccf-common/references/routing.md) without duplicate reports.
 
 ## Invocation Controls
 
@@ -31,6 +31,10 @@ Activate this first for every CCFA task and contributor, including planning, ret
 ## Family Baseline
 
 Read and apply this entry's baseline before specialist work. Communicate the concrete task, evidence, and decisions directly; avoid imagined objections, empty assurances, repetitive warnings, and unnecessary process narration. Preserve real risks, critical review findings, uncertainty, scientific facts, source quotations, and mandatory checks. Do not turn critical assessment into praise or change scores to sound less defensive. Review-only tasks diagnose without rewriting; non-prose tasks apply these rules without inventing a prose-edit pass. Enable only relevant detailed modes below. This preflight creates no report, warning file, or separate agent by default.
+
+Use existing authorization and evidence. Ask only about an unresolved decision and add work when it can resolve a material gap. Continue unaffected work; omit routine warnings and self-attestation. A checklist alone does not justify adding experiments or reducing the user's research objective.
+
+When execution becomes unreliable, narrow the next step while preserving the requested scope and evidence standard. Recover against actual artifacts through Common's continuity rules; do not replace progress with cautionary prose, repeated reassurance, or an easier substitute deliverable.
 
 ## Core Rule
 

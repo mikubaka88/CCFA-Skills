@@ -14,7 +14,7 @@ Strong research usually has:
 - Honest scope and limitations.
 - A result that would still teach something if the headline number were smaller.
 
-## Heilmeier-Style Questions
+## Research Questions
 
 Adapt these questions during idea optimization:
 
@@ -28,7 +28,7 @@ How much will it cost or require?
 How will progress and success be measured?
 ```
 
-## NSF-Style Merit
+## Intellectual Merit
 
 Use intellectual merit as the core idea test:
 
@@ -38,9 +38,9 @@ Use intellectual merit as the core idea test:
 
 Use broader impact only when it is real and venue-relevant. Do not add vague societal claims to compensate for weak technical contribution.
 
-## Hamming-Style Taste
+## Problem Choice
 
-Prefer ideas that touch important problems and where the user's current position gives them a credible angle. A technically perfect solution to an unimportant problem is unlikely to survive elite review. A difficult important problem needs a narrowed, attackable entry point.
+Prefer important problems where the user's current position offers a credible angle. Seek an attackable mechanism or decisive question within a difficult problem; do not automatically shrink its scientific ambition. Review readiness is one consideration, not a substitute for whether the result would advance understanding.
 
 ## Paper-Story Taste
 
@@ -63,7 +63,7 @@ CCF-A acceptance is not just "novel plus works". The idea should reduce reviewer
 - Why this venue?
 - What would fail if the central assumption is false?
 
-If the answer to any question is missing, optimize the idea before polishing text.
+Use a missing answer to identify the affected question. Resolve material conceptual gaps during idea development; authorized writing can continue on supported content without repeatedly restarting ideation. Do not optimize indefinitely for imagined reviewer objections.
 
 ## Frontier And Staleness Taste
 
@@ -82,3 +82,7 @@ Prefer directions that:
 - connect a strong method to a neglected but important constraint,
 - create a benchmark/protocol that changes what can be measured,
 - turn an empirical observation into a mechanism, theorem, or system design.
+
+## Acknowledgments
+
+The question framework draws on Heilmeier's research questions, NSF's intellectual-merit criteria, and Hamming's discussion of important problems. Their source records remain in the [shared registry](../../ccf-common/references/source-registry.yaml). These acknowledgments preserve provenance without naming CCFA's methods after another framework.

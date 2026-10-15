@@ -1,18 +1,18 @@
 # Experiment Design
 
-Use this file when turning an optimized idea into a minimum convincing evidence package for a CCF-A submission.
+Use this file when the requested idea-development deliverable includes an evidence plan for a CCF-A submission. Concept-only idea assessment does not activate experiment planning.
 
 For a full experiment plan, dataset/baseline search, benchmark protocol, or result-fill table, use `ccf-experiment-designer` through the CCFA handoff mode. This file is the local lightweight evidence planner for idea optimization.
 
 ## Evidence Principle
 
-Design experiments to answer the reviewer question, "Does the evidence test the central claim?" Do not add experiments for volume. Every experiment should defend novelty, soundness, significance, generalization, efficiency, or scope.
+Design experiments to answer the scientific question, "Does the evidence test the central claim?" Do not add experiments for volume. Every experiment should resolve a specific hypothesis, comparison, mechanism, or material scope question.
 
 When literature is available, start from compatible protocol anchors in the idea-grounding packet. Do not produce a generic benchmark list that is disconnected from the closest work, and do not treat reported public numbers as newly measured results.
 
 ## Experiment Matrix
 
-For each major claim, create:
+For each major claim, use the applicable fields; omit irrelevant categories rather than filling them with speculative tests:
 
 ```text
 Claim:
@@ -23,7 +23,7 @@ Metrics:
 Ablations:
 Stress or robustness tests:
 Failure analysis:
-Expected reviewer concern answered:
+Scientific question answered:
 ```
 
 Add two links for each new method claim:
@@ -46,10 +46,10 @@ Discriminating test: what result would separate the proposed mechanism from the 
 
 Use ablations to test mechanism, not only performance drops:
 
-- Remove each core component.
+- Remove a core component when this distinguishes its proposed mechanism from an alternative explanation.
 - Replace the proposed component with a plausible generic alternative.
 - Vary the key hyperparameter or threshold.
-- Show when the method fails.
+- Examine failure conditions when they resolve a claim or project decision and follow an observed issue or plausible mechanism; do not invent failure cases to fill a category.
 - Include qualitative or diagnostic evidence when numeric metrics hide behavior.
 - For transferred or combined mechanisms, test the named compatibility condition rather than ablating components mechanically.
 
@@ -66,12 +66,11 @@ Use ablations to test mechanism, not only performance drops:
 
 ## Minimum Convincing Package
 
-The minimum package should include:
+Choose evidence appropriate to the actual claim and paper type. These roles do not impose a fixed experiment package:
 
-1. Main result against close baselines.
-2. Mechanism ablation or proof of why the method works.
-3. Robustness, generalization, or stress test.
-4. Limitation or failure analysis.
-5. Reproducibility details sufficient for audit.
+1. Comparisons against relevant close baselines for comparative claims.
+2. Mechanism evidence through an ablation, analysis, or proof when required by the claim.
+3. Robustness, generalization, stress, or failure analysis only when it resolves a specific claim or project decision grounded in observations or a plausible mechanism, or satisfies a verified venue requirement.
+4. Reproducibility details for the planned or reported method, protocol, or proof as applicable.
 
-If this package cannot be built under the user's constraints, recommend narrowing the claim, changing venue, or pivoting the idea.
+If necessary evidence is infeasible under the user's constraints, identify the specific gap and feasible alternatives. Do not automatically narrow the research goal, change the venue, or pivot the idea to satisfy a generic package. A proposed route change must follow concrete evidence or a changed constraint and remain within the authorized development scope. Keep planned claims distinct from completed empirical conclusions, and continue unaffected work.

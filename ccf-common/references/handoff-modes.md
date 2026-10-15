@@ -2,6 +2,8 @@
 
 Every family skill preserves `metadata.ccf_skill_controls`: `handoff_question_mode`, `respect_session_denylists`, `protect_idea_scope_in_writing`, `private_material_safety`, and `shared_controls`. Modes remain `partial`, `full`, and `off`. `task-modes.md` controls work depth; this file controls transitions. All modes retain the required Humanization -> Common preflight before specialist work; handoff mode does not disable it.
 
+Carry the effective optional preferences from `preferences.md` with the active context. A saved preference is reused within its scope; it does not override current instructions, host permissions, or necessary prerequisites. Include the current drafting/review phase, relevant source version and evidence locations, unresolved finding IDs, affected dependencies, and completion condition when these change the receiving skill's decision. Keep this in the existing handoff or canonical report, not another manifest. When evidence changes, invalidate only dependent findings; never treat an old summary as freshly verified.
+
 ## Authorization Before Handoffs
 
 Follow host instructions and the user's current scope before skill defaults. Authorization persists across the conversation. A requested deliverable authorizes its necessary local steps even when the user does not name the implementing skill. Do not ask again merely because another skill owns a needed step, a reusable output file must be created, or a requested review crosses a research stage.
@@ -28,14 +30,32 @@ Carry a compact handoff in context, reusing the existing project state or report
 | Evidence | Canonical input paths or supplied text, source version and anchors, verified findings, and unresolved facts. |
 | Artifact ownership | Canonical output, existing working directory, permitted edit surface, and receiving owner. A helper also has a return owner. |
 | Work remaining | Applicable prerequisite status, the exact question/action, affected claims/artifacts, and what evidence will resolve it. |
+| Continuity when material | Current goal revision, route and decision-changing evidence, proposed/executed/verified status, and any pending recovery check. Reuse the existing context or state. |
+| Stalled work when material | Same unresolved question, tried hypotheses/conditions, observed result, and what would make another attempt informative. Carry the remaining optional scope; changing owner does not reset it. |
 
 Omit irrelevant fields and reuse information already available; do not emit an intake form or create a handoff file, duplicate report, or per-skill working directory by default. Preserve citation keys, claim/concern IDs, units, scientific topology, and supplied values across owners. A short prose edit needs only the text, its constraints, and the requested change.
 
 The receiver checks that the referenced input/version is still applicable, reads the needed evidence, and completes the assigned scope without asking for information already present. A previous check may be reused only for the same source and relevant assumptions. Inspect changes and affected dependencies; do not treat an upstream summary as proof of an unverified claim. Refer to `artifact-contracts.md` for shared paths and single-writer ownership.
 
+For lost context, conflicting state, or delayed contributions after a goal/source change, apply [continuity.md](continuity.md) to the affected work. Reconcile actual artifacts before repeating actions or accepting a completion claim; keep valid contributions and refresh only stale dependencies. A normal handoff with current evidence does not need a separate recovery workflow.
+
 Return the result or changed paths, evidence anchors, findings, and any precise blocker to the owner. Internal review/audit contributions return the assigned findings without a separate full report; user-requested reviews retain their required report and coverage. The owner integrates the contribution, resolves conflicts against source evidence, and verifies affected dependencies. A suggestion is not an implemented fix; an implemented fix is not automatically verified. An empty search or missing fact limits the dependent conclusion; continue supported work and report the actual gap. Do not bounce an unresolved request between skills without new evidence or a concrete action. Ask once for a required user decision, then resume from the existing state.
 
 Carry the active Humanization and Common rules across every transition. Read missing or changed entry rules before specialist execution; do not recursively restart their bootstrap or rerun complete workflows. Humanization's prose decisions apply within authorized writing and its final relevant check; its baseline also remains active for review, retrieval, and rendering. After requested deliverables and checks are complete, return the result without starting unrelated stages.
+
+## Actual Multi-Agent Execution
+
+Use this section only when the host exposes real subagents and delegation can improve the requested result or elapsed time. Skills are capabilities, not one-agent-per-skill assignments. Reuse the compact handoff above; do not create a parallel state format or a mandatory coordinator.
+
+| Task dependency | Assignment and integration |
+| --- | --- |
+| Independent retrieval or checks | Divide source ranges or concrete questions. Each helper returns findings, relevant conditions, and source/version anchors. Give results only to contributors that need them. |
+| Requested exploration of distinct mechanisms | Give generators the same goal, hard constraints, and relevant evidence. In the first pass, withhold other candidates and the owner's preferred answer so they can explore independently. Then compare mechanisms and discriminating predictions. A targeted repair of an existing idea may receive that idea directly. |
+| A tightly connected argument or shared artifact | Keep one integrating author. Delegate bounded evidence checks or independent sections only when their prerequisites are available; reconcile terminology and cross-section claims before delivery. Serialize edits to shared files. |
+
+State each helper's concrete question, sufficient inputs, completion condition, and write boundary. Required prerequisites still precede dependent work. Do not assign recursive delegation, full-history copying, repeated debates, or an arbitrary agent count by default. Optional extra candidates and reviews use the existing preferences; explicit requested breadth and necessary checks remain authorized with those extras off.
+
+The owner checks returned work against the current goal and source version, refreshes only affected stale tasks, and resolves disagreements using evidence. Several agents repeating one source do not supply independent corroboration; votes and self-reported confidence do not establish correctness. Stop extra discussion when it no longer changes the decision. Parallel work can reduce elapsed time while increasing total tokens; claim cost savings only when measured.
 
 ## Mode Values
 

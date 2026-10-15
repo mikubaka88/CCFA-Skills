@@ -12,8 +12,15 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
       - run: python -m pip install --upgrade pip pyyaml
       - run: python ccf-common/scripts/check_path_privacy.py .
       - run: python ccf-common/scripts/check_sources.py
       - run: python ccf-common/scripts/check_markdown_links.py
       - run: python ccf-common/scripts/check_v04.py
+      - run: python ccf-common/scripts/test_preferences.py
+      - run: python ccf-common/scripts/test_continuity.py
+      - run: node --check ccf-common/assets/configurator/app.js
+      - run: node ccf-common/scripts/test_configurator.js

@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import os
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -58,13 +59,47 @@ def private_token_patterns():
     return patterns
 
 
-def iter_files(root: Path):
+def git_candidates(root: Path):
+    """Return tracked and nonignored untracked paths, or None outside Git."""
+    try:
+        inside = subprocess.run(
+            ["git", "-C", str(root), "rev-parse", "--is-inside-work-tree"],
+            capture_output=True, timeout=15, check=False,
+        )
+        if inside.returncode or inside.stdout.strip() != b"true":
+            return None
+        inventory = subprocess.run(
+            ["git", "-C", str(root), "ls-files", "-z", "--cached", "--others", "--exclude-standard", "--", "."],
+            capture_output=True, timeout=30, check=False,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return None
+    if inventory.returncode:
+        # Fall back to a full walk rather than silently accepting an empty
+        # release inventory after a Git failure.
+        return None
+    return [root / os.fsdecode(name) for name in sorted(set(inventory.stdout.split(b"\x00"))) if name]
+
+
+def iter_files(root: Path, include_ignored: bool = False):
+    candidates = git_candidates(root)
+    seen = set()
+    if candidates is not None:
+        for path in candidates:
+            # Git-tracked files remain publication candidates even under a
+            # directory normally excluded from fallback filesystem walks.
+            if path.is_file() and path.suffix.lower() not in SKIP_SUFFIXES:
+                seen.add(path)
+                yield path
+        if not include_ignored:
+            return
     for path in root.rglob("*"):
-        if any(part in SKIP_DIRS for part in path.parts):
+        if any(part in SKIP_DIRS for part in path.relative_to(root).parts):
             continue
         if not path.is_file() or path.suffix.lower() in SKIP_SUFFIXES:
             continue
-        yield path
+        if path not in seen:
+            yield path
 
 
 def read_text(path: Path):
@@ -91,15 +126,19 @@ def main():
         if hasattr(stream, "reconfigure"):
             stream.reconfigure(encoding="utf-8", errors="strict")
     parser = argparse.ArgumentParser(description="Scan text files for personal local paths or private tokens.")
-    parser.add_argument("root", nargs="?", default=".", help="Repository root to scan")
+    parser.add_argument("root", nargs="?", default=".", help="Repository or directory to scan")
+    parser.add_argument("--include-ignored", action="store_true", help="Also scan ignored working files, retaining binary/cache exclusions")
     args = parser.parse_args()
 
     root = Path(args.root).resolve()
+    if not root.is_dir():
+        print("[ERROR] Scan root must be an existing directory.", file=sys.stderr)
+        return 2
     patterns = default_patterns() + private_token_patterns()
     findings = []
     scanned = 0
 
-    for path in iter_files(root):
+    for path in iter_files(root, include_ignored=args.include_ignored):
         text = read_text(path)
         if text is None:
             continue

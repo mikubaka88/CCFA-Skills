@@ -14,13 +14,13 @@ metadata:
 
 ## Family File Contract
 
-Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse explicit or established task paths; otherwise use project-root `ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+Before file work, reuse canonical paths and one task/artifact working directory; default to project-root `ccfa-workfiles/<purpose>/<artifact-id>/`. Update in place, preserve inputs, and use UTF-8 with Chinese-text checks. Apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) for naming, ownership, and task-created cleanup; handoffs inherit these paths.
 
 ## Collaboration Contract
 
 Before specialist execution, read and apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md). At every handoff, reuse their applicable active rules or refresh missing/changed ones. Both preflights are required even without prose; detailed editing, experiment, and maintenance modes run only when relevant.
 
-Keep one integrating owner and actively use other skills to resolve missing prerequisites or check material findings. Reuse applicable evidence; do not skip necessary groundwork to save tokens. Before finalizing, integrate contributions and verify affected results. Follow the conditional [cooperation routes](../ccf-common/references/routing.md); avoid unrelated stages and duplicate reports.
+Integrate necessary specialist contributions under one owner; reuse valid prerequisites and verify affected results. Follow the [cooperation routes](../ccf-common/references/routing.md) without duplicate reports.
 
 ## Core Rule
 
@@ -37,7 +37,7 @@ Follow `../ccf-common/references/handoff-modes.md` and `../ccf-common/references
 3. For unclear projects, use `references/workflow-planning/intake-protocol.md`, `approach-options.md`, and `design-brief-template.md`.
 4. Assign integrating owners using `../ccf-common/references/routing.md`. Work backward from the requested outcome to missing prerequisites and material checks, including upstream work not named by the user. Distinguish bounded contributions from next-artifact ownership; carry both active preflights throughout and apply detailed Humanization modes when relevant. Preserve explicit scope limits.
 5. Define each applicable gate through its required evidence, output, pass condition, blocker, and responsible skill. Mark prerequisites satisfied, missing, conflicting, or outside scope; reuse valid ones and resolve missing/conflicting ones before advancing dependent conclusions. Tool completion alone does not pass a gate.
-6. Use the continuity/return contract in `../ccf-common/references/handoff-modes.md`: carry current scope, evidence/version, canonical paths, edit ownership, and the exact next action. Update existing `ccfa.yaml` stage/gate fields only when state maintenance is authorized; preserve unrelated fields and schema. A planning-only request proposes changes without writing.
+6. Use `../ccf-common/references/handoff-modes.md` and, for long tasks or recovery, `../ccf-common/references/continuity.md`: carry the current goal, justified route, evidence/version, canonical paths, work status, and exact next action. Reconcile actual artifacts after lost context before resuming or replaying side effects. Apply explicit user changes and evidence-backed corrections within scope. Update existing `ccfa.yaml` stage/gate fields only when state maintenance is authorized; preserve unrelated fields and schema. A planning-only request proposes changes without writing.
 7. Integrate specialist results, resolve conflicts against source evidence, and check affected downstream conclusions. Advance gates from actual evidence; preserve valid completed work and continue independent stages around a blocker. Reopen only changed dependencies or unresolved findings. Finish when requested outputs and applicable prerequisites/checks are complete, or identify the precise dependent result that remains incomplete.
 
 ## Adaptive Output Contract

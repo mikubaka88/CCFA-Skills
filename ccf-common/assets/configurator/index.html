@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="no-referrer">
+  <title>CCFA-Skills · 研究偏好</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#preferences" data-i18n="skip">跳至偏好设置</a>
+  <div class="page-shell">
+    <header class="masthead">
+      <a class="brand" href="#" aria-label="CCFA-Skills">
+        <svg class="brand-mark" viewBox="0 0 40 40" fill="none" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="10" stroke="currentColor"/><path d="M26 12H16L10 20l6 8h10M20 12l-6 8 6 8M26 12l-6 8 6 8" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span class="brand-copy"><strong>CCFA-Skills</strong><small data-i18n="brandSub">研究偏好</small></span>
+      </a>
+      <div class="header-controls">
+        <span class="local-badge"><span></span><span data-i18n="local">本地配置</span></span>
+        <label class="select-wrap"><span class="sr-only" data-i18n="language">界面语言</span><select id="language" aria-label="界面语言"><option value="zh-CN">简体中文</option><option value="zh-TW">繁體中文</option><option value="en">English</option></select></label>
+        <label class="select-wrap theme-select"><span class="sr-only" data-i18n="theme">界面主题</span><select id="theme" aria-label="界面主题"><option value="system" data-i18n="themeSystem">◐ 跟随系统</option><option value="light" data-i18n="themeLight">☀ 日光</option><option value="dark" data-i18n="themeDark">☾ 夜航</option></select></label>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="tiny-line"></span><span data-i18n="eyebrow">为你的研究，调好节奏</span></div>
+          <h1 id="hero-title"><span data-i18n="heroLine1">把算力，</span><br><span data-i18n="heroLine2">用在值得的地方。</span></h1>
+          <p data-i18n="heroDesc">保持日常轻盈，让关键问题得到更多关注。你决定额外投入，CCFA-Skills 记住你的选择。</p>
+          <div class="hero-foot"><span class="hero-seal" aria-hidden="true">✳</span><span data-i18n="heroFoot">同一套研究标准，不同的投入节奏。</span></div>
+        </div>
+        <div class="orbital-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div>
+          <div class="orbit-cross cross-one"></div><div class="orbit-cross cross-two"></div>
+          <div class="orbital-sun"><span></span></div><div class="orbital-moon"></div>
+          <div class="orbit-point point-one"></div><div class="orbit-point point-two"></div><div class="orbit-point point-three"></div>
+          <span class="art-caption" data-i18n="artCaption">深度，由你掌握</span>
+          <span class="art-index">01 — 07</span>
+        </div>
+      </section>
+
+      <div id="mode-notice" class="notice" role="status"></div>
+
+      <section id="preferences" class="workspace" aria-labelledby="workspace-title">
+        <div class="workspace-heading">
+          <div><span class="section-kicker" data-i18n="sectionKicker">YOUR RESEARCH, YOUR RHYTHM</span><h2 id="workspace-title" data-i18n="workspaceTitle">设定你的研究节奏</h2></div>
+          <div class="scope-control" role="group" aria-label="配置范围" id="scope-control">
+            <button type="button" data-scope="user" aria-pressed="true" data-i18n="scopeUser">个人默认</button>
+            <button type="button" data-scope="project" aria-pressed="false" data-i18n="scopeProject">当前项目</button>
+          </div>
+        </div>
+        <p id="scope-description" class="scope-description"></p>
+
+        <div class="preset-strip">
+          <div class="preset-label"><span aria-hidden="true">↗</span><span data-i18n="presetTitle">从一种节奏开始</span></div>
+          <div class="presets" role="group" aria-label="预设方案" id="presets">
+            <button type="button" data-preset="lean"><span aria-hidden="true">☾</span><span data-i18n="presetLean">轻盈</span></button>
+            <button type="button" data-preset="balanced"><span aria-hidden="true">◐</span><span data-i18n="presetBalanced">均衡</span><small data-i18n="recommended">推荐</small></button>
+            <button type="button" data-preset="deep"><span aria-hidden="true">☀</span><span data-i18n="presetDeep">深入</span></button>
+          </div>
+          <span class="preset-note" data-i18n="presetNote">仅更新草稿</span>
+        </div>
+
+        <div class="workspace-grid">
+          <div class="settings-column">
+            <div class="settings-legend"><span data-i18n="enhancementTitle">可选增强</span><span data-i18n="legend">☾ 关闭 · ☀ 开启 · 按需触发</span></div>
+            <div id="feature-list" class="feature-list"></div>
+            <div class="baseline">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 3 8 3v6c0 4-4.5 7-8 9-3.5-2-8-5-8-9V6l8-3Z" stroke="currentColor" stroke-width="1.5"/><path d="m8 12 3 3 5-6" stroke="currentColor" stroke-width="1.5"/></svg>
+              <div><strong data-i18n="baselineTitle">研究底线，始终在线</strong><p data-i18n="baselineDesc">humanization → common 前置、必要核验、证据约束和交付检查始终执行。这些开关只控制额外投入。</p></div>
+            </div>
+            <details class="advanced-panel">
+              <summary><span data-i18n="advancedTitle">配置文件与继承</span><span class="details-icon" aria-hidden="true">＋</span></summary>
+              <p data-i18n="inheritDesc">仅保存你明确设置的字段。恢复继承后，项目跟随个人默认，个人默认跟随内置设置。</p>
+              <div class="advanced-actions"><button id="inherit-ui" class="text-button" type="button" data-i18n="inheritUi">语言与主题恢复继承</button><button id="reset" class="text-button" type="button" data-i18n="inheritAll">全部恢复继承</button></div>
+              <div class="file-actions"><button id="import" class="secondary-button" type="button" data-i18n="import">导入 JSON</button><button id="export" class="secondary-button" type="button" data-i18n="export">导出 JSON</button><button id="reload" class="text-button" type="button" data-i18n="reload">重新读取磁盘</button></div>
+              <input type="file" id="import-file" accept="application/json,.json" hidden>
+              <p id="file-help" class="file-help"></p>
+              <pre id="json-preview" tabindex="0" aria-label="配置 JSON"></pre>
+            </details>
+          </div>
+
+          <aside class="summary-column" aria-labelledby="summary-title">
+            <div class="summary-card">
+              <div class="summary-top"><span class="section-kicker" data-i18n="summaryKicker">投入概览</span><span class="live-dot" aria-hidden="true"></span></div>
+              <h3 id="summary-title" data-i18n="summaryTitle">让每次深入<br>都有理由。</h3>
+              <div class="summary-count"><strong id="on-count">0</strong><span><span data-i18n="onCountLabel">项增强已开启</span><small id="auto-count"></small></span></div>
+              <div class="summary-meter" aria-hidden="true"></div>
+              <p class="summary-copy" id="summary-copy"></p>
+              <div class="cost-keys"><div><span class="cost-icon" aria-hidden="true">↗</span><div><strong data-i18n="tokenTitle">Token</strong><p data-i18n="tokenDesc">更多检索内容、独立检查或图稿生成，会增加模型与工具投入。</p></div></div><div><span class="cost-icon" aria-hidden="true">◷</span><div><strong data-i18n="timeTitle">时间</strong><p data-i18n="timeDesc">额外调用与解析需要等待；实际变化取决于材料、任务和可用工具。</p></div></div></div>
+              <p class="estimate-note" data-i18n="estimateNote">这里显示投入方向，不估算 token 数量或固定耗时。</p>
+            </div>
+            <div class="priority-note"><span aria-hidden="true">↳</span><p data-i18n="priorityNote">当前明确指令优先，其次是项目设置、个人默认和内置设置。</p></div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer"><span><strong>CCFA-Skills</strong><span aria-hidden="true">/</span><span data-i18n="footer">把精力留给好问题。</span></span><span data-i18n="footerLocal">配置保存在本地 · 无外部请求</span></footer>
+  </div>
+
+  <div class="save-dock"><div class="save-dock-inner"><div class="save-state"><span id="state-dot" class="state-dot"></span><div><strong id="save-status" role="status" aria-live="polite"></strong><small id="save-detail"></small></div></div><button type="button" id="save" class="primary-button"><span data-i18n="save">保存偏好</span><span aria-hidden="true">↗</span></button></div></div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <div id="error" class="error-banner" role="alert" hidden><span id="error-text"></span><button type="button" id="dismiss-error" aria-label="关闭">×</button></div>
+</body>
+</html>

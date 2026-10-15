@@ -59,6 +59,8 @@ Retain stable issue records in the canonical review report. When a revision ledg
 | `evidence` | Section, paragraph, line, figure, table, result, or diff anchor. |
 | `score_effect` | Per-version dimension or overall delta, if any. |
 
+Record the source version once in the report's existing metadata and give each finding a stable ID. For a revision, inspect changed material and the claims, figures, tables, or conclusions that depend on it. Reuse unaffected verified findings; reopen an issue when its source, protocol, or relevant premise changes. A spelling or color edit alone does not invalidate scientific evidence. If a change alters the paper's central premise, widen the check accordingly. Keep this dependency information in existing issue records rather than creating a second tracking file.
+
 Apply provenance consistently:
 
 - `revision_regression` affects the current version because the revision introduced a concrete defect.

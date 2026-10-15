@@ -84,13 +84,14 @@ An elegant idea usually has:
 - A result that would teach the community something even if SOTA gains are modest.
 - A design that removes a bottleneck or reveals a simpler formulation, not merely a longer pipeline.
 
-## Fatal Idea Risks
+## Material Risks To Resolve
 
-Mark these early:
+Identify the affected assumption and evidence before deciding how a risk changes development:
 
-- The novelty collapses under a likely close paper.
-- The problem is too narrow for the target venue.
-- The method is a known trick with new terminology.
-- The central claim cannot be tested with available resources.
-- The evidence would require a dataset, proof, or system that cannot be built in time.
-- The idea depends on hidden assumptions reviewers will reject.
+- Verified closest-work overlap may remove a claimed contribution; a suspected close paper calls for a targeted comparison, not an automatic rejection.
+- A narrow problem may need a clearer important consequence or a different framing; audience fit and scientific value are distinct questions.
+- Renaming an established mechanism does not create novelty; identify a real causal difference or filter that candidate.
+- Missing resources, data, proof strategy, or time constrain execution. Separate that constraint from concept quality, and consider a different mechanism or discriminating analysis without silently reducing the user's goal.
+- An untested assumption is a question to resolve. An assumption contradicted by the setting is a concrete defect; imagined reviewer preferences are not evidence against it.
+
+Filter an impossible branch when the constraint is decisive. Repair valuable ingredients or explore a structurally different route when useful; do not require a rescue for every rejected branch or keep revisiting the same contradiction without new conditions.

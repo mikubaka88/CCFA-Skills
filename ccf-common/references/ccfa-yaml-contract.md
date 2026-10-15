@@ -2,6 +2,8 @@
 
 `ccfa.yaml` is the shared paper-project state file introduced in v0.4.0.
 
+Optional personal settings use the separate `.ccfa/preferences.json` described in `preferences.md`; they do not change this state schema or require creating `ccfa.yaml`. Existing projects without preferences retain the default behavior.
+
 Required top-level fields:
 
 - `version`
@@ -16,6 +18,8 @@ Required top-level fields:
 - `submission_checks`
 
 Only `ccf-project-scaffolder` should create it by default. `ccf-pipeline-orchestrator` may update stage and gate state. Other skills may read it and propose updates unless the user explicitly grants write permission.
+
+Task continuity does not change this ownership or schema. Use existing authorized fields/report context first; an optional task-local recovery record follows [continuity.md](continuity.md) and never grants additional project-state write permissions.
 
 Optional monitoring fields:
 

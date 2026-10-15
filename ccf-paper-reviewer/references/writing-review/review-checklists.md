@@ -22,18 +22,18 @@ Use this file to prevent omissions during manuscript writing review, paragraph-b
 - The fixed writing profile and applicable writing scorecard from `../fixed-output-format.md` are used; no-score requests receive qualitative criteria.
 - Reader perspectives are consolidated inside the writing profile; label them independent only when separate calls were permitted and actually performed.
 - Terminology, notation, datasets, models, and contribution wording are checked across sections.
-- Prose quality guardrails are checked: no defensive/incremental framing, label-heavy shorthand, number-only abstracts, formula dumping, third-person manuscript voice, punctuation-driven structure, unsupported hype, or overlong compound sentences.
+- Prose quality guardrails are checked in context: defensive/incremental framing, label-heavy shorthand, number-only abstracts, formula dumping, third-person manuscript voice, punctuation-driven structure, unsupported hype, or overlong compound sentences are diagnostic signals only when they harm the argument or its clarity. Preserve necessary qualifications, standard notation, and useful structure.
 - Related work is checked for closest-work positioning, not citation-list volume.
 - Figures/tables/captions/equations/algorithms are checked when present.
 - LaTeX/source/template issues are checked when source or snippets are available.
-- Weaknesses are ranked by severity and converted into concrete revision actions.
-- Checklist status is reported.
+- Weaknesses use the fixed finding record's `critical / major / minor` severity based on actual consequences and are converted into concrete revision actions; a word or style pattern alone cannot determine severity.
+- Routine checklist completion stays internal. Use the fixed writing profile without appending a separate checklist-status report or paragraph table unless the user requests one.
 
 ## Paragraph-By-Paragraph Checklist
 
 - Paragraph IDs are assigned by section.
 - Each high-impact paragraph has a current role and desired reviewer takeaway.
-- A paragraph is flagged when it mixes multiple jobs.
+- A paragraph is flagged when its combined roles obscure its main message or logical progression; a coherent paragraph may serve related roles.
 - Unsupported claims are tied to the exact missing citation/result/proof/example/qualification.
 - Repeated material is marked as cut, merge, move, or appendix candidate.
 - Transitions between paragraphs are checked for causal order.
@@ -68,7 +68,9 @@ Use the five-section brief profile in `../fixed-output-format.md` when the user 
 
 Select scientific/full mode in this same skill only when scientific assessment is requested. Writing scores, reader perspectives, or writing-risk assessment alone do not expand writing-only scope. Concept-only judgment remains with `ccf-idea-reviewer`.
 
-## Minimal Checklist Status
+## Optional Checklist Status
+
+Use the following only when the user requests an audit checklist or completion ledger. In the default writing profile, place material coverage limits in its scope field and unresolved findings in the relevant concern/action fields; do not add a status section.
 
 ```text
 Checklist status:

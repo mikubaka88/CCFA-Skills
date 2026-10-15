@@ -229,6 +229,16 @@ def check_required_files(errors: list[str]) -> None:
         "demo/attention-is-all-you-need/paper/iclr2026_conference.sty",
         "ccf-common/references/artifact-contracts.md",
         "ccf-common/references/ccfa-yaml-contract.md",
+        "ccf-common/references/preferences.md",
+        "ccf-common/scripts/preferences.py",
+        "ccf-common/scripts/test_preferences.py",
+        "ccf-common/references/continuity.md",
+        "ccf-common/scripts/continuity.py",
+        "ccf-common/scripts/test_continuity.py",
+        "ccf-common/scripts/test_configurator.js",
+        "ccf-common/assets/configurator/index.html",
+        "ccf-common/assets/configurator/styles.css",
+        "ccf-common/assets/configurator/app.js",
         "ccf-visual-composer/resources/python/ccfa_plot_recipes.py",
         "ccf-visual-composer/references/python-plot-recipes.md",
         "ccf-visual-composer/references/plot-inspiration-map.md",
@@ -442,6 +452,59 @@ def check_prose_regressions(errors: list[str]) -> None:
             fail(errors, "prose checker mistakes a Markdown percentage for a TeX comment")
         if not any(item["code"] == "em_dash_limit" for item in inspect("A — B — C — D — E.", "paper")["issues"]):
             fail(errors, "prose checker lost the full-paper punctuation preference")
+
+        signal_codes = {"semicolon_cluster", "semicolon_density", "repeated_contrast"}
+
+        def signals(text):
+            return [item for item in inspect(text, "paragraph")["issues"] if item["code"] in signal_codes]
+
+        for text in (
+            "The bound holds; equality requires the stated condition.",
+            "界限成立；等号要求给定条件。",
+            "We use current observations rather than future labels.",
+            "我们使用当前观测，而非未来标签。",
+            "word " * 160 + "; " + "word " * 160 + "; " + "word " * 160,
+        ):
+            if signals(text):
+                fail(errors, "prose checker overflags a short passage or isolated technical comparison")
+        for punctuation in (";", "；"):
+            text = "Context.\n\n" + punctuation.join(["保留当前状态", "读取局部记录", "更新节点表示", "预测目标标签"])
+            findings = signals(text)
+            if len(findings) != 1 or findings[0]["code"] != "semicolon_cluster" or findings[0]["severity"] != "advisory":
+                fail(errors, "prose checker missed a bilingual semicolon cluster")
+            elif len(findings[0]["locations"]) != 3 or any(loc["line"] != 3 or loc["column"] < 1 for loc in findings[0]["locations"]):
+                fail(errors, "prose checker lost punctuation source locations")
+        dense = "word " * 250 + "; " + "word " * 250 + ";"
+        findings = signals(dense)
+        if len(findings) != 1 or findings[0]["code"] != "semicolon_density" or findings[0]["count"] != 2:
+            fail(errors, "prose checker lost its sufficiently sized English density signal")
+        repeated = "We use local rather than global states; we keep recent rather than all records; we read current rather than future inputs; we predict labels."
+        chinese = "我们读取状态而不是标签。我们使用局部而非全局记录。这里不是未来信息而是当前观测。"
+        for text in (repeated, chinese):
+            matches = [item for item in signals(text) if item["code"] == "repeated_contrast"]
+            if len(matches) != 1 or matches[0]["count"] != 3 or matches[0]["severity"] != "advisory":
+                fail(errors, "prose checker missed repeated bilingual contrast framing")
+        for newline in ("\n", "\r\n"):
+            for blank in ("", "  ", "\t"):
+                separated = (newline + blank + newline).join(["We use local rather than global states; the record is bounded."] * 3)
+                if signals(separated):
+                    fail(errors, "prose checker merges separate paragraphs across blank lines")
+        protected = [
+            f"```text\n{repeated}\n```", f"> {repeated}", f'“{repeated}”',
+            "$" + repeated + "$", "\\begin{equation}" + repeated + "\\end{equation}",
+            "\\citep{" + repeated + "}", "[@source; " + repeated + "]",
+        ]
+        if any(signals(text) for text in protected):
+            fail(errors, "prose checker scans punctuation or contrasts in protected source regions")
+        result = subprocess.run(
+            [sys.executable, str(path), "--scope", "paragraph", "--format", "json", "--strict"],
+            input=repeated.encode("utf-8"), capture_output=True, timeout=30,
+        )
+        report = json.loads(result.stdout.decode("utf-8"))
+        if result.returncode or result.stderr or any(item["severity"] != "advisory" for item in report["issues"]):
+            fail(errors, "prose checker treats contextual punctuation signals as strict failures")
+        if set(report) != {"scope", "word_count", "em_dash_count", "em_dash_limit", "issue_count", "issues"}:
+            fail(errors, "prose checker changed its top-level output contract")
     except Exception as exc:
         fail(errors, f"prose checker could not run regression cases: {type(exc).__name__}: {exc}")
 
@@ -679,6 +742,128 @@ def check_artifact_regressions(errors: list[str]) -> None:
         fail(errors, f"artifact regression failed: {type(exc).__name__}: {exc}")
 
 
+def check_path_privacy_regressions(errors: list[str]) -> None:
+    """Scan release candidates, preserving tracked files and Unicode paths."""
+    try:
+        privacy = runpy.run_path(str(ROOT / "ccf-common/scripts/check_path_privacy.py"), run_name="ccfa_privacy_check")
+        iterate = privacy["iter_files"]
+        patterns = privacy["default_patterns"]()
+        private_text = "C:/" + privacy["WIN_HOME_DIR"] + "/fixture-person/private-paper.md\n"
+
+        def leaks(root, **options):
+            return {
+                path.relative_to(root).as_posix()
+                for path in iterate(root, **options)
+                if any(pattern.search(privacy["read_text"](path) or "") for _, pattern in patterns)
+            }
+
+        with tempfile.TemporaryDirectory(prefix="ccfa-privacy-validation-") as temporary:
+            work = Path(temporary)
+            exported = work / "导出目录"
+            exported.mkdir()
+            (exported / "文档.md").write_text(private_text, encoding="utf-8")
+            (exported / ".gitignore").write_text("*.md\n", encoding="utf-8")
+            if leaks(exported) != {"文档.md"}:
+                raise AssertionError("exported tree fallback skipped a real text file")
+            with patch.object(subprocess, "run", side_effect=FileNotFoundError("Git unavailable")):
+                if leaks(exported) != {"文档.md"}:
+                    raise AssertionError("missing Git prevented filesystem fallback")
+
+            repository = work / "项目𠮷"
+            repository.mkdir()
+            try:
+                initialized = subprocess.run(["git", "-C", str(repository), "init", "--quiet"], capture_output=True, timeout=15)
+            except FileNotFoundError:
+                # Exported installations may not have Git; fallback was tested.
+                return
+            if initialized.returncode:
+                raise AssertionError("temporary Git repository could not initialize")
+            (repository / ".gitignore").write_text("ignored/\ntracked-private.md\nnode_modules/\n", encoding="utf-8")
+            for relative in ("tracked-private.md", "untracked-private.md", "论文𠮷.md", "ignored/session.log", "node_modules/tracked.md"):
+                target = repository / relative
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text(private_text, encoding="utf-8")
+            subprocess.run(
+                ["git", "-C", str(repository), "add", "-f", "--", "tracked-private.md", "node_modules/tracked.md"],
+                capture_output=True, timeout=15, check=True,
+            )
+            expected = {"tracked-private.md", "untracked-private.md", "论文𠮷.md", "node_modules/tracked.md"}
+            if leaks(repository) != expected:
+                raise AssertionError("Git inventory missed published files or included ignored working logs")
+            expanded = leaks(repository, include_ignored=True)
+            if "ignored/session.log" not in expanded or not expected.issubset(expanded):
+                raise AssertionError("explicit ignored-file scan skipped working logs or release candidates")
+            if leaks(repository / "ignored", include_ignored=True) != {"session.log"}:
+                raise AssertionError("explicit working-directory scan did not inspect its contents")
+    except Exception as exc:
+        fail(errors, f"path privacy regression failed: {type(exc).__name__}: {exc}")
+
+
+def check_markdown_link_regressions(errors: list[str]) -> None:
+    """Exclude ignored backups without hiding published links or encoding errors."""
+    try:
+        links = runpy.run_path(str(ROOT / "ccf-common/scripts/check_markdown_links.py"), run_name="ccfa_links_check")
+        check = links["check_links"]
+        candidates = links["markdown_candidates"]
+
+        def put(root, relative, text="[missing](absent.md)\n"):
+            target = root / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(text, encoding="utf-8")
+
+        with tempfile.TemporaryDirectory(prefix="ccfa-links-validation-") as temporary:
+            work = Path(temporary)
+            exported = work / "导出𠮷"
+            exported.mkdir()
+            put(exported, "文档.md", "[目标](目标.md)\n")
+            put(exported, "目标.md", "# 有效目标\n")
+            put(exported, "broken.md")
+            put(exported, "ccfa-workfiles/task/installed-backup/partial.md")
+            put(exported, ".git/internal.md")
+            (exported / "invalid.md").write_bytes(b"\xff")
+            expected = {"文档.md", "目标.md", "broken.md", "invalid.md"}
+            if {path.relative_to(exported).as_posix() for path in candidates(exported)} != expected:
+                raise AssertionError("export fallback scanned generated workfiles or skipped real documents")
+            count, findings = check(exported)
+            if count != 2 or len(findings) != 2 or not any("broken.md: missing link" in finding for finding in findings) or not any("invalid.md: invalid UTF-8" in finding for finding in findings):
+                raise AssertionError("export fallback missed a broken link or strict UTF-8 failure")
+            with patch.object(subprocess, "run", side_effect=FileNotFoundError("Git unavailable")):
+                if check(exported) != (count, findings):
+                    raise AssertionError("missing Git prevented the same filesystem fallback")
+
+            repository = work / "项目𠮷"
+            repository.mkdir()
+            try:
+                initialized = subprocess.run(["git", "-C", str(repository), "init", "--quiet"], capture_output=True, timeout=15)
+            except FileNotFoundError:
+                return
+            if initialized.returncode:
+                raise AssertionError("temporary Git repository could not initialize")
+            put(repository, ".gitignore", "ccfa-workfiles/\nignored/\ntracked-ignored.md\n")
+            for relative in ("tracked-ignored.md", "untracked.md", "ccfa-workfiles/tracked.md", "ccfa-workfiles/task/installed-backup/partial.md", "ignored/partial.md"):
+                put(repository, relative)
+            put(repository, "文档.md", "[目标](目标.md)\n")
+            put(repository, "目标.md", "# 有效目标\n")
+            (repository / "invalid.md").write_bytes(b"\xff")
+            subprocess.run(
+                ["git", "-C", str(repository), "add", "-f", "--", "tracked-ignored.md", "ccfa-workfiles/tracked.md"],
+                capture_output=True, timeout=15, check=True,
+            )
+            expected = {"tracked-ignored.md", "untracked.md", "ccfa-workfiles/tracked.md", "文档.md", "目标.md", "invalid.md"}
+            if {path.relative_to(repository).as_posix() for path in candidates(repository)} != expected:
+                raise AssertionError("Git link inventory missed published files or included ignored backups")
+            count, findings = check(repository)
+            if count != 4 or len(findings) != 4:
+                raise AssertionError("Git link check missed tracked/untracked failures or scanned ignored backups")
+            for relative in ("tracked-ignored.md", "untracked.md", "ccfa-workfiles/tracked.md"):
+                if not any(f"{Path(relative)}: missing link" in finding for finding in findings):
+                    raise AssertionError(f"Git link check missed published broken link: {relative}")
+            if not any("invalid.md: invalid UTF-8" in finding for finding in findings):
+                raise AssertionError("Git link check accepted non-UTF-8 Markdown")
+    except Exception as exc:
+        fail(errors, f"Markdown link regression failed: {type(exc).__name__}: {exc}")
+
+
 def main() -> int:
     # Standalone reports and redirected diagnostics use UTF-8 on every platform.
     for stream in (sys.stdout, sys.stderr):
@@ -696,6 +881,8 @@ def main() -> int:
     check_prose_regressions(errors)
     check_review_regressions(errors)
     check_artifact_regressions(errors)
+    check_path_privacy_regressions(errors)
+    check_markdown_link_regressions(errors)
     if errors:
         print("CCFA validation failed:")
         for error in errors:

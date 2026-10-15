@@ -10,7 +10,7 @@ Start from the claim, not the table. Each experiment should answer one of these 
 - Why does the mechanism work?
 - Is the comparison fair and current?
 - Does the result generalize across settings?
-- What fails, when, and why, only when observed or material to the claimed scope?
+- What fails, when, and why, when the question is material to the claimed scope and grounded in observations or a plausible mechanism?
 - Can the work be reproduced or audited?
 - Does the evidence match the venue's expectations?
 
@@ -94,7 +94,7 @@ Useful ablations:
 - Replace a specialized component with a generic alternative.
 - Vary a key hyperparameter.
 - Change data scale, workload, or domain.
-- Test hard or failure cases only when plausible, observed, claim-relevant, or venue-required.
+- Test hard or failure cases only when they resolve a claim or project decision and follow an observed issue or plausible mechanism, or satisfy a verified venue requirement.
 - Analyze compute, memory, latency, or cost.
 
 ## Benchmark Or Dataset Design
@@ -119,14 +119,13 @@ Benchmark papers should be evaluated as benchmarks, not only as methods. Do not 
 
 ## Minimum Convincing Package
 
-For most CCF-A submissions:
+Select the smallest sufficient package for the actual claims and paper type. These are evidence roles, not compulsory experiments:
 
-1. Main comparison against close and strong baselines.
-2. Mechanism ablation or proof.
-3. Robustness/generalization/stress test.
-4. Claim-relevant robustness or failure analysis when needed.
-5. Reproducibility details for the confirmed full method.
+1. A fair comparison against relevant close and strong baselines when the work makes comparative claims.
+2. Mechanism evidence such as an ablation, analysis, or proof when the claim depends on that mechanism.
+3. Robustness, generalization, stress, or failure analysis only when it resolves a specific claim or project decision grounded in observations or a plausible mechanism, or satisfies a verified venue requirement.
+4. Reproducibility details for the reported method, protocol, or proof as applicable.
 
-If this package is infeasible, narrow the central claim before adding weaker experiments.
+For each proposed test, state which claim it resolves and why existing evidence is insufficient. If a necessary test is infeasible, identify the remaining evidence gap and feasible alternatives. Adjust the claim only when its available support requires it; a generic checklist or resource constraint alone does not authorize changing the research goal. Keep a planned claim distinct from a completed empirical conclusion, and continue unaffected work.
 
-Do not replace any publication method or baseline with a simplified, toy, approximate, proxy, reduced, or debug version. Do not add repeated smoke tests as evidence; retain only the smallest non-duplicative set that checks changed critical paths.
+Do not present a simplified, toy, approximate, proxy, reduced, or debug development run as the full publication method or baseline. A publication ablation must start from the confirmed full method, change the intended component under the authorized scientific protocol, and be reported only as an ablation. A predefined budget or scale comparison must likewise use its real specified protocol and be interpreted within that scope. Relabeling a toy/debug development run as a diagnostic does not make it publication evidence. Do not add repeated smoke tests as evidence; retain only the smallest non-duplicative set that checks changed critical paths.

@@ -7,6 +7,8 @@ These subsets provide the listed capabilities, not every possible helper. If the
 ## Hard Rules
 
 - Always install `ccf-common`; it carries shared routing, handoff, privacy, source, and artifact rules.
+- Retain `ccf-common/scripts/preferences.py` and `ccf-common/assets/configurator/` when copying Common. The optional local configurator needs Python 3.10+ and no extra packages; personal JSON settings stay outside installed skills. No preference file is required for default operation.
+- Keep Common's bundled continuity reference and `scripts/continuity.py` with the same installation. The optional read-only checker also uses Python 3.10+ with no extra packages; ordinary skill activation does not create a task-state file or launch checks.
 - Always install `ccf-humanization`; activate it first, then `ccf-common`, before every specialist. Reuse their active rules; detailed prose/experiment modes remain task-dependent.
 - Do not install merged helper names as runtime skills: `ccf-workflow-planner`, `ccf-paper-compressor`, `ccf-writing-reviewer`, `ccf-citation-auditor`, `ccf-figure-table-builder`, `ccf-artifact-packager`, `ccf-venue-format-guide`, `ccf-resubmission-adapter`, `ccf-paper-presenter`, `ccf-doc-diagram-designer`.
 - `ccf-experiment-designer` is only for experiment evidence and real paper-result tables/figure specs; `ccf-visual-composer` owns publication visual layout, bundled Python plotting recipes, palettes, captions, and render QA.

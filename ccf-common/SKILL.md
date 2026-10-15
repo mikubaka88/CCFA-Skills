@@ -34,6 +34,10 @@ This is the shared control module activated before every CCFA specialist, after 
 
 Resolve the requested result, scope/permissions, integrating owner, and missing or reusable prerequisites. Use `references/routing.md` for collaboration and `references/handoff-modes.md` for transitions. Apply evidence/privacy rules when handling sources or private material, artifact rules before file work, and review standards when assessing. Reuse loaded rules and known paths; create no intake form or state file merely to activate this skill. Continue the specialist task once the applicable controls are established. Reserve the maintenance workflow below for actual family-maintenance requests.
 
+Resolve preferences once with this skill's `scripts/preferences.py resolve`, adding `--project <established-root>` when a project is known; reuse the compact result across handoffs. No file means defaults, with no write or question. Current explicit instructions override project, user, and built-in defaults. These choices govern optional extra work only; necessary checks and preflights remain active. Read only relevant sections of [preferences.md](references/preferences.md) for enhancement triggers, first-time choices, configuration changes, or a missing resolver/error; do not load its whole guide or launch the web page on every task.
+
+Keep the current user goal, justified route, and next action distinct. Explore different mechanisms when the task calls for discovery; preserve the selected route during execution unless a material reason changes it. Distinguish proposed, executed, and verified work. After lost context or repeated drift, reconcile actual artifacts and take one bounded step without lowering the deliverable standard. Repeated work needs a new observation, changed hypothesis, or concrete repair. For long tasks, stalled progress, or material recovery, load [continuity.md](references/continuity.md); short tasks need no extra file or review call.
+
 ## Shared Controls
 
 Load only the references needed for the current preflight decision or maintenance task:
@@ -42,6 +46,8 @@ Load only the references needed for the current preflight decision or maintenanc
 - `references/task-modes.md`: Use for exploratory/quick/standard depth, authorization-aware continuation, selective context, host-supported parallel work, and GPT-6 adaptation.
 - `references/review-output-standards.md`: Use to keep numeric scoring, multi-reviewer panels, score-change conditions, and visible output quality consistent.
 - `references/handoff-modes.md`: Use to interpret `metadata.ccf_skill_controls.handoff_question_mode`.
+- `references/preferences.md`: Resolve remembered optional enhancements, precedence, and the local three-language configuration page; mandatory preflights and necessary checks remain active.
+- `references/continuity.md`: Preserve task intent through rerouting and recovery; use compact state and optional record validation only when useful.
 - `references/privacy-and-evidence.md`: Use when handling manuscripts, reviews, rebuttals, private drafts, literature searches, or evidence claims.
 - `references/source-registry.yaml`: Use as the shared source inventory for venue rules, review methods, exemplar records, and research-workflow references.
 - `references/ccf-a-venue-map.md`: Use when a non-writing skill needs venue-family mapping without depending on `ccf-paper-writer`.

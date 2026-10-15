@@ -14,6 +14,8 @@ For each score of 3 or below on a 1-5 dimension scale, include the deduction and
 
 Idea review uses the conceptual rubric in `../../ccf-idea-reviewer/references/rubric.md`: no default experiment, result-completeness, or submission-readiness score. Manuscript scientific review checks actual claim support; writing-only review stays within writing criteria. Do not import a full-paper rubric merely because the input is a PDF.
 
+Carry drafting phase into review. An internal alignment review of an intentionally results-pending initial draft evaluates explanation and consistency, not an imagined publication outcome; absent empirical adequacy is `not assessed`, not zero or a pass. It still flags any unsupported result assertion. A full submission review must state that empirical readiness is incomplete. A future venue page limit is not an active constraint on a content-first draft unless fitting was requested.
+
 For manuscript re-review or cross-version comparison, freeze rubric dimensions, weights, anchors, reviewer roles, thresholds, and evidence standard before rescoring. Evaluate both versions under that contract. Keep two scorecards and one confidence statement separate:
 
 1. **Relative-progress scorecard:** score the historical and current versions with the same frozen dimension scale, report every per-dimension delta and the weighted delta, and classify progress as `regressed`, `unchanged`, or `improved`. This scorecard answers only whether the revision improved the manuscript.
@@ -43,6 +45,8 @@ Give each material concern a stable ID and one complete explanation: claim/locat
 Before saying something is absent, inspect the relevant supplied section and appendix or identify the coverage limit. On revision, verify changed material and unresolved concern IDs; retain resolved status and classify new findings. Do not duplicate the same objection in role reports, scorecards, and action tables.
 
 ## Multi-Reviewer Panel
+
+An optional additional independent pass follows the effective `independent_review` preference in `preferences.md`; explicit user requests take priority. This does not switch off the primary review, evidence counterchecks, necessary specialist contributions, or fixed report structure. With `auto`, use a bounded independent pass only when a consequential unresolved interpretation can change the verdict. With `on`, prefer it for relevant substantial assessments, not for every local edit. Never expand concept-only review to experiment assessment merely because this preference is enabled.
 
 When using actual independent reviewer calls, keep them independent before synthesis. If the host lacks or disallows delegation, use clearly labeled role-based perspectives within one agent; do not claim independent validation or empirical consensus. Each selected role should inspect a relevant distinct failure mode, use evidence from the idea, paper, manuscript text, or searched source, and state uncertainty when evidence is missing.
 

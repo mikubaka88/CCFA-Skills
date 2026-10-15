@@ -1,4 +1,4 @@
-﻿# CCFA Routing
+# CCFA Routing
 
 Activate `ccf-humanization` first and `ccf-common` second before any CCFA specialist, including helpers, review, retrieval, visuals, and maintenance. Then route by the user's primary intent and necessary dependencies. These two universal preflights do not imply running every downstream skill.
 
@@ -36,7 +36,7 @@ Humanization removes empty self-defense while preserving material facts, rigorou
 | Assess research value, novelty, insight, and mechanism, including natural qualitative judgments without scores. | `ccf-idea-reviewer` | concept assessment, idea scoring/ranking, stage-aware triage | Experiments are outside default scope; development and manuscript evidence review have separate owners. |
 | Monitor recent papers, arXiv/OpenReview/venue feeds, labs, competitors, and recurring novelty threats. | `ccf-literature-monitor` | arxiv-watch, venue-watch, novelty-check, trend-scouting, competitor-tracking | Does not replace deep related-work search, citation audit, or final idea scoring. |
 | Search literature, prior art, datasets, benchmarks, citation evidence, and opportunity gaps. | `ccf-literature-searcher` | search, screening, opportunity map | Does not audit only already cited papers or act as a final idea kill gate. |
-| Design experiments and real-result tables/figures. | `ccf-experiment-designer` | experiment design, result templates, result figures/tables | Does not invent results. |
+| Design experiment protocols, result-table evidence schemas, and figure specifications. | `ccf-experiment-designer` | experiment design, result templates, evidence specifications | Preserves real values; styling and rendering belong to `ccf-visual-composer`. |
 | Compose publication-grade data figures/tables and scientific method/architecture diagrams, using GPT Image 2 as the default architecture/schematic renderer, followed by requested editable SVG/PDF/PPTX reconstruction or an optional offer; use pure SVG first only on explicit opt-out. | `ccf-visual-composer` | visual-contract, figure-design, architecture-generation, pure-svg-generation, editable-reconstruction, python-plotting, table-design, layout-integration, render-qa | Does not design experiments, invent results/components, write manuscript prose, or perform final submission compliance. |
 | Draft, revise, polish, compress, and presentation-adapt paper text. | `ccf-paper-writer` | writing, polishing, compression, venue-aware LaTeX drafting, slides/poster/talk/Q&A | Preserves user format for edits; does not run full review or rebuttal. |
 | Convert user-provided paper PDFs into reusable writing exemplar cards. | `ccf-paper-to-exemplar` | exemplar extraction, writing-pattern cards, custom exemplar registration | Does not write papers or perform review. |
@@ -93,7 +93,7 @@ Venue knowledge is reference material, not venue-specific runtime skills. Use:
 - `ccf-paper-writer/references/venue-guides/<venue>.md`
 - `ccf-submission-checker` for venue format, template, page-limit, anonymity, and package questions
 
-For manuscript writing from only an idea, `ccf-paper-writer` checks the venue guide first and drafts in that venue's LaTeX style. If no target venue guide exists or no venue is named, it uses the NeurIPS guide/template as the fallback and leaves final policy freshness to `ccf-submission-checker`.
+For manuscript writing from an idea or research documents, `ccf-paper-writer` establishes content and evidence status before drafting. It uses the requested venue's style, with a disclosed NeurIPS template fallback when needed, but does not impose an initial page budget merely because a venue is named. Content-first drafting, intentional result blanks, alignment, and later fitting follow `ccf-paper-writer/references/materials-to-manuscript.md`. Final policy freshness belongs to `ccf-submission-checker`.
 
 ## Smoke Prompts
 
@@ -115,6 +115,7 @@ For manuscript writing from only an idea, `ccf-paper-writer` checks the venue gu
 | 根据论文方法生成架构图 / 默认调用 GPT Image 2 / 确认后转成可编辑 SVG、PDF 或 PPTX / 明确要求纯 SVG | `ccf-visual-composer` |
 | 把这篇 PDF 做成写作范例 / 添加 exemplar | `ccf-paper-to-exemplar` |
 | 润色 introduction 或压缩到页数限制 | `ccf-paper-writer` |
+| 根据故事线、任务、benchmark、方法和实验设计写完整初稿，结果留空，先不考虑篇幅 | `ccf-paper-writer` content-first draft; result schema or citation help only as needed; alignment before later compression |
 | 把论文做成 slides 和 Q&A | `ccf-paper-writer` |
 | 完整审稿 / 稿件有什么硬伤 / 结论站得住吗 / 逐段写作评审 | `ccf-paper-reviewer` |
 | 对比论文新旧版本、检查复审分数漂移或 moving-target review | `ccf-paper-reviewer` |

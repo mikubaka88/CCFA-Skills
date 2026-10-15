@@ -2,6 +2,8 @@
 
 These contracts prevent CCFA skills from overwriting each other's work or accumulating unmanaged intermediate files. Read broadly, write narrowly.
 
+Personal configuration is not an intermediate research artifact: use the two fixed destinations in `preferences.md`. Keep test configuration, UI previews, and validation logs in the task's existing `ccfa-workfiles/` directory; never test saves against a user's actual preference file. Skill updates must preserve settings stored outside their installation tree.
+
 ## Resolve Paths Before Writing
 
 Apply this policy whenever any CCFA skill writes files. Resolve the project root from the user's path, existing `ccfa.yaml`, or established project layout; do not infer it from a tool's temporary working directory. Path priority is: explicit user destination, an existing mapping for this artifact, its established task directory, then the defaults below. Resolve relative paths against that project root. Preserve existing locations and references; this policy does not migrate or reorganize user files.
@@ -28,6 +30,8 @@ Create only needed files and subdirectories:
 This is a placement convention, not a folder-generation checklist. A one-file edit creates none of these by default. Do not scatter scratch scripts, downloaded PDFs, screenshots, prompts, logs, or conversion files at the repository root or next to final manuscript files. A tool may emit into its own managed location; reference that path when stable, or copy only the needed output into the chosen project location. Do not clean the tool's global output directory.
 
 Reuse existing `ccfa.yaml` artifact fields or the current report/specification when a durable path map is needed. Do not require a new manifest, process log, or state file for every task. Explicit no-new-files or exact-path requests override these defaults.
+
+When a long task needs recoverable execution state and no suitable authorized record exists, [continuity.md](continuity.md) permits one compact `source/task-state.json` in this task's existing working directory. Its integrating owner updates it in place only at meaningful transitions. It is an index to current artifacts and evidence, not a second source of truth, preference file, or extension of `ccfa.yaml`.
 
 ## Recognizable Folder Names
 

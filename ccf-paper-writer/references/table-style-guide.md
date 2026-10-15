@@ -1,14 +1,14 @@
 # Table Style Guide
 
-Use this file whenever drafting, revising, or beautifying LaTeX tables for CCF venue papers. These rules apply to all result tables, configuration tables, ablation tables, and comparison tables.
+Use this file for LaTeX result, configuration, ablation, and comparison tables. Venue requirements and the user's established layout take precedence over these defaults.
 
 ## Golden Rules
 
-1. Never use vertical rules (`|` in column specs or `\hline` for vertical lines).
-2. Use `\toprule`, `\midrule`, `\bottomrule` from `booktabs` — never `\hline`.
+1. Prefer a clear layout without vertical rules unless the required or established style uses them.
+2. Prefer `\toprule`, `\midrule`, `\bottomrule` from `booktabs` for horizontal rules when compatible with that style.
 3. Numbers in the same column must have the same number of decimal places.
-4. Every table must have exactly one message; if a table has two messages, split it.
-5. Caption goes above the table, states the setting and the main takeaway.
+4. Give each table a clear purpose; related comparisons can share grouped columns. Do not split a table solely to enforce a message count.
+5. Follow the required caption placement and state the setting and any supported takeaway.
 
 ## Required Packages
 
@@ -100,10 +100,10 @@ Use `\cmidrule(lr){2-4}` (with small left/right trim `(lr)`) instead of `\cline`
 
 ## Handling Narrow Columns
 
-When a column contains long single words that cause underfull hboxes, use one of these fixes **in priority order**:
+For visible overflow or poor spacing, choose an appropriate fix below. Inspect compiler warnings in the rendered table; an underfull hbox alone is not a defect.
 
 1. **Abbreviate**: shorten headers to an abbreviation and expand in the caption or table note.
-2. **Reduce font size**: wrap the tabular in `\small` or `\footnotesize`.
+2. **Adjust widths**: give long labels enough space while retaining readable numeric columns.
 3. **Allow ragged-right**: use `p{2.5cm}` with `\raggedright`:
 
 ```latex
@@ -115,7 +115,7 @@ When a column contains long single words that cause underfull hboxes, use one of
 ```
 
 4. **Rotate wide headers**: use `\makecell` or `\rotatebox`.
-5. **Hyphenate long monospace words**: in narrow columns, long identifiers like `ccf-experiment-designer` will overflow even with `\raggedright`. Abbreviate to a shorter form (e.g., `ccf-expt-designer`) and explain in the caption or a table note. Do not let the compiler produce overfull hboxes from unbreakable words.
+5. **Handle long identifiers**: allow appropriate breaks or use an explained abbreviation. Reduce font size only when the template permits it and readability remains adequate.
 
 ## Number and Precision Rules
 
@@ -140,21 +140,15 @@ Alternatively, underline second-best with `\underline{}`. Do not bold AND underl
 
 ## Column-Width Awareness
 
-In two-column conference formats (ICLR, NeurIPS, ICML, CVPR, ICCV, ACL, EMNLP, AAAI, etc.), a single column is approximately7.0--8.0 cm wide. Every table must fit within this width. Before writing any table:
-
-1. Estimate the number of columns and their typical widths.
-2. If the table would exceed7.5 cm, plan for one of the fixes below.
-3. For tables with4+ columns, immediately plan for \\small\ or \\footnotesize\ and abbreviated headers.
-
-A simple check: a column of numbers (e.g., \27.3\) needs about1.5 cm; a short word column (e.g., \Model\) needs about2.0 cm; a longer text column needs3.0+ cm. A three-column table \{l r r}\ fits easily. A five-column table \{l c c c c}\ often needs \\small\. A six-column table almost always needs \\small\ and abbreviated headers.
+Read the actual template and enclosing environment. Use the available `\linewidth`, `\columnwidth`, or `\textwidth` as appropriate, not a fixed width inferred from the conference name. Inspect the rendered table before changing font size or layout.
 
 ## Tables Too Wide for the Column
 
-In two-column formats, wide tables need special handling. In priority order:
+Choose among these options according to the actual layout:
 
-1. **Reduce font size**: `\small` or `\footnotesize` around the `tabular`.
-2. **Abbreviate headers**: `Seq. Ops` instead of `Sequential Operations`.
-3. **Use `table*` for full-width**: switches to single-column mode spanning both columns.
+1. **Shorten or wrap headers** while keeping terminology understandable.
+2. **Adjust column widths and spacing** without crowding the values.
+3. **Use `table*` in a two-column layout** when a full-width float is appropriate.
 
 ```latex
 \begin{table*}[t]
@@ -169,11 +163,11 @@ In two-column formats, wide tables need special handling. In priority order:
 \end{table*}
 ```
 
-4. **Reduce column separation**: `\setlength{\tabcolsep}{4pt}` before the tabular (default is6pt).
+4. **Reduce font size** only if permitted and still readable.
 
 ## Captions
 
-Captions go **above** the table. A good caption has three parts:
+Follow the venue and established user style for caption placement. State the content and necessary setting; include a takeaway only when results support it. The following is a functional example, not a required three-sentence pattern:
 
 ```latex
 \caption{What is shown. Condition or setting. Main takeaway or notable finding.}
@@ -199,18 +193,16 @@ Use `\multicolumn` to add notes below the table body:
 
 - Use `[t]` (top) for most tables — places the table at the top of a page.
 - Use `[h]` only for very small inline tables; LaTeX will convert it to `[ht]`.
-- Never use `[H]` (from the `float` package) in submission drafts — it breaks the venue template's page breaking.
-- If a table floats to the wrong section, let LaTeX handle it; the reviewer will find it.
+- Use forced placement only when compatible with the template and inspected layout.
+- Inspect float order and its relationship to the discussion; correct distant or misleading placement without overriding venue constraints.
 
 ## Quick Checklist Before Submitting
 
-- [ ] All tables use `booktabs` rules: `\toprule`, `\midrule`, `\bottomrule`.
-- [ ] No vertical rules anywhere.
-- [ ] No `\hline` anywhere.
+- [ ] Table rules match the required or established style; use `booktabs` defaults where appropriate.
 - [ ] All numbers in a column have the same decimal precision.
-- [ ] Caption is above the table, states what + where + key finding.
-- [ ] Every table answers exactly one reviewer question.
-- [ ] Best results are highlighted (bold or underline, consistent convention).
+- [ ] Caption placement is correct; its scope and any conclusion match the available evidence.
+- [ ] Each table has a clear scientific purpose.
+- [ ] Any best-result emphasis uses actual comparable measurements and a consistent convention; unknown cells are not ranked or highlighted.
 - [ ] Column alignment is logical: `l` for text, `c` for equal-width symbols/math, `r` for numbers.
-- [ ] No underfull or overfull hbox warnings from table rows.
-- [ ] Wide tables use `table*`, `\small`, or abbreviated headers — not squeezed columns.
+- [ ] No visible overflow, overlap, or distracting spacing remains; warnings have been inspected in context.
+- [ ] Table width and font size are readable in the actual layout.

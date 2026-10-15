@@ -1,6 +1,6 @@
 # Paragraph Review Protocol
 
-Use this file for full-paper, section-level, or "逐段审稿" requests. The output must show that the manuscript was read paragraph by paragraph.
+Use this file to inspect paragraphs during full-paper or section-level writing review, and for explicit "逐段审稿" requests. The default report follows the selected profile in `../fixed-output-format.md`; paragraph inspection does not require a second report or a complete paragraph ledger.
 
 ## Segmentation
 
@@ -32,9 +32,9 @@ For each paragraph, inspect:
 7. Prose discipline: whether the paragraph uses defensive framing, label-heavy symbols, formula dumping, third-person manuscript voice, punctuation-driven structure, unsupported hype, or overly uniform sentence rhythm.
 8. Edit action: keep, reorder, split, merge, cut, move, qualify, expand, or rewrite.
 
-## Required Table
+## Explicit Paragraph Review Table
 
-For standard mode, include a table like:
+When the user explicitly requests paragraph-by-paragraph output, include a table like:
 
 ```text
 ID:
@@ -42,26 +42,30 @@ Current role:
 Reviewer takeaway:
 Main problem:
 Concrete edit:
-Severity: high / medium / low
+Severity: critical / major / minor, or no issue
 ```
 
-Do not replace this table with a generic section summary.
+For that explicit request, do not replace the table with a generic section summary. Otherwise, place consequential located findings in the fixed writing profile and do not append an extra per-paragraph table.
 
-## High-Severity Paragraph Problems
+## Severity By Consequence
 
-Mark high severity when:
+Use the same `critical / major / minor` scale as the fixed finding record. `critical` means an established problem defeats the central argument or makes its essential meaning unreliable; `major` means it materially obstructs understanding or support for an important claim; `minor` means a local clarity or presentation issue. A sound paragraph has no issue, not a compulsory minor finding. In writing-only review, do not infer a scientific defect from wording alone; state the observed communication problem and keep scientific judgments within the requested scope.
+
+Inspect these signals in context and assign severity only after establishing their actual consequence:
 
 - the paragraph claims the central contribution but does not specify the novelty;
 - the paragraph makes a strong empirical claim without a result/table/figure reference;
 - terminology changes in a way that changes the meaning of the contribution;
 - the paragraph breaks the paper's story line or contradicts another section;
-- the paragraph relies on `Q1`/`C1`-style labels, dense formulas, or punctuation chains instead of natural logic;
-- the paragraph uses third-person manuscript narration or defensive phrasing that weakens the contribution;
+- labels, dense formulas, or punctuation chains obscure the actual logic; useful defined labels and necessary mathematics are not defects;
+- third-person manuscript narration or defensive phrasing displaces a concrete argument; conventional voice or an evidence-backed qualification is not automatically a problem;
 - a related-work paragraph omits the closest comparison axis;
 - a method paragraph introduces notation after using it;
 - an experiment paragraph reports numbers without interpreting what they prove;
 - a limitation or assumption is hidden after a broad claim.
 
+Do not promote a phrase match or material outside the supplied reading scope into a major or critical concern. A verified unsupported claim in the inspected manuscript can still be consequential; missing inputs alone establish a coverage limit. For consequential findings, inspect relevant supplied appendices and use the fixed finding record's evidence and countercheck requirements before retaining the concern.
+
 ## Output Discipline
 
-When the manuscript is long, prioritize all abstract/introduction/conclusion paragraphs, all contribution paragraphs, all method-definition paragraphs, and all experiment-result paragraphs. For lower-risk paragraphs, use compact grouped comments but still identify IDs.
+When the manuscript is long, prioritize all abstract/introduction/conclusion paragraphs, all contribution paragraphs, all method-definition paragraphs, and all experiment-result paragraphs. For explicit paragraph reviews, lower-risk paragraphs may receive compact grouped comments with IDs. For default reviews, report the consequential findings once in the fixed profile and keep routine checklist completion internal. State the actual reading scope when coverage is incomplete.

@@ -1,12 +1,18 @@
+<p align="center">
+  <a href="https://trendshift.io/repositories/151023?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-151023" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/151023/daily?language=TeX" alt="mikubaka88%2FCCFA-Skills | Trendshift" width="250" height="55"/></a> <a href="https://trendshift.io/repositories/151023?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-151023" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/151023/weekly?language=TeX" alt="mikubaka88%2FCCFA-Skills | Trendshift" width="250" height="55"/></a>
+</p>
+
 <div align="center">
 
-<h1>CCFA Skills</h1>
+<h1>CCFA-Skills</h1>
 
 **A skill family for shaping the research storyline of CCF-A papers.**
 
 [Simplified Chinese](README.md) · [English](README.en.md) · [Traditional Chinese](README.zh-TW.md)
 
-<img src="assets/ccfaskills.png" alt="CCFA Skills logo" width="560">
+**[Latest updates · 2026-10-15](#latest-updates)**
+
+<img src="assets/ccfaskills.png" alt="CCFA-Skills logo" width="560">
 
 ---
 
@@ -23,27 +29,27 @@ Yann LeCun and James M. Manyika, [*Learning Abstractions*](https://www.amacad.or
 - [Quick start](#quick-start)
 - [Why a family of skills](#why-a-family-of-skills)
 - [The family and its 17 core skills](#the-family)
+- [Day and night controls](#day-and-night-controls)
 - [From idea to submission](#from-idea-to-submission)
 - [Visual examples](#visual-examples)
 - [Keeping the writing natural](#keeping-the-writing-natural)
 - [Figures that remain editable](#figures-that-remain-editable)
 - [Distinct roles, shared story](#distinct-roles-shared-story)
 - [Repository and maintenance](#repository)
+- [Latest updates](#latest-updates)
 - [Star history](#star-history)
 
 At two in the morning, the experiment finally finishes. The new result is better than expected, yet reopening the manuscript reveals the harder problem. The sharp question that began the project is buried beneath related work. The method section no longer quite matches the mechanism in the code. A new experiment answers the previous review, but pulls the argument in another direction. Every part seems to have improved, while the paper as a whole has become less clear.
 
 Many promising projects are weakened not by a poor idea, but by what happens to that idea over time. Literature accumulates, result tables expand, and the author repeatedly switches between researcher, writer, and reviewer. The original insight gradually disappears beneath local revisions. One long prompt cannot reliably preserve all these relationships because retrieval must remain faithful to sources, experiments to protocols, writing to the argument, and review to independent judgment.
 
-CCFA Skills grew from this problem. We treat a paper as a research storyline that must remain coherent while it changes, not as a document waiting to be filled. Seventeen specialized skills accompany the work from idea, literature, and experiments to writing, visualization, review, rebuttal, and submission. As the work passes between them, the link between question, evidence, and conclusion remains intact, so the paper can evolve without forgetting why it deserved to be written.
+CCFA-Skills grew from this problem. We treat a paper as a research storyline that must remain coherent while it changes, not as a document waiting to be filled. Seventeen specialized skills accompany the work from idea, literature, and experiments to writing, visualization, review, rebuttal, and submission. As the work passes between them, the link between question, evidence, and conclusion remains intact, so the paper can evolve without forgetting why it deserved to be written.
 
 <p align="center">
-  <img src="assets/ccfa-skills-hero.svg" alt="CCFA Skills family overview" width="100%">
+  <img src="assets/ccfa-skills-hero.svg" alt="CCFA-Skills family overview" width="100%">
 </p>
 
 ## Quick start
-
-**ICLR 2027 adaptation (2026-09-16)**: updated anonymity, page-budget, year-specific template, and AI-use disclosure checks against official guidance. Reviews focus on decision-relevant evidence and concerns within the existing fixed report structure. [Details](ccf-paper-writer/references/venue-guides/iclr.md) · [Changelog](CHANGELOG.md). Version remains `0.10.0`.
 
 Choose the agent you use:
 
@@ -69,7 +75,7 @@ Draw the method architecture, create an aesthetic draft first, and then ask whet
 
 The difficulties of paper research are connected, but they do not require the same kind of reasoning.
 
-| What researchers encounter | How CCFA Skills responds |
+| What researchers encounter | How CCFA-Skills responds |
 |---|---|
 | Retrieval, experiments, writing, and review compete inside one conversation | The skill best suited to the current question leads; adjacent capabilities join only when useful |
 | Literature facts, experimental values, and manuscript claims drift apart | Sources, experiment design, and whole-paper consistency remain distinct responsibilities |
@@ -89,7 +95,7 @@ The difficulties of paper research are connected, but they do not require the sa
 
 ## The family
 
-![CCFA Skills family architecture](assets/ccfa-skills-architecture.svg)
+![CCFA-Skills family architecture](assets/ccfa-skills-architecture.svg)
 
 Every CCFA task activates `ccf-humanization` first, then `ccf-common`, before the specialist, including retrieval, review, visuals, experiments, and maintenance. Humanization keeps communication direct and evidence-faithful; Common applies scope, collaboration, evidence, and file rules. Reuse active rules across contributors and refresh only changed or missing context. Detailed rewriting and experiment checks depend on the actual task, without duplicate preflight reports. Specialists retain ownership and integrate necessary contributions.
 
@@ -119,11 +125,27 @@ The complete responsibility map:
 
 ![Skill catalog by responsibility](assets/ccfa-skills-catalog.svg)
 
+## Day and night controls
+
+Configure seven optional enhancements with moon/sun controls and an automatic mode: independent review, broader search, enhanced document parsing, figure alternatives, detailed process reports, alternative routes, and maintenance rule iteration. The last two default to off, allowing at most one alternative per unresolved decision or one additional rule candidate per maintenance task. Ordinary research does not rewrite skills automatically. The local page supports Simplified Chinese, Traditional Chinese, and English, with light, dark, and system themes. Each option explains its marginal token and time impact qualitatively; these are not metered usage or promised savings.
+
+From the repository root, run Python 3.10+ with no extra dependencies:
+
+```bash
+python ccf-common/scripts/preferences.py serve
+```
+
+The browser opens the local configurator. Add `--project path/to/paper` for project overrides, or `--no-browser` to print the launch URL. An installed copy can run its own `ccf-common/scripts/preferences.py`. User settings live at `$CODEX_HOME/ccfa/preferences.json`, falling back to `~/.codex/ccfa/preferences.json`; project overrides live at `.ccfa/preferences.json` in the paper root. Only chosen overrides are saved, outside installed skills, so skill updates preserve them.
+
+Moon disables optional extensions, sun enables them for relevant tasks, and automatic mode requires a concrete trigger. Current explicit instructions take precedence. Humanization → Common, necessary verification, and structured reviews remain active. Common resolves settings once per task and shares them at handoffs. Opening the page does not start research or invoke a model.
+
+The downloaded [static page](ccf-common/assets/configurator/index.html) also supports JSON import/edit/export. An export takes effect only after placing it at the configuration destination; the page distinguishes drafts, saved settings, and exported files. See the [preference contract](ccf-common/references/preferences.md) for details.
+
 ## From idea to submission
 
 ![Default research journey](assets/ccfa-skills-workflow.svg)
 
-This is not a pipeline that everyone must enter at the beginning. You may arrive with a half-formed idea, a result table that resists interpretation, a method reviewers repeatedly misunderstand, or a PDF that is nearly ready to submit. CCFA Skills begins where you are and brings in only the help that matters there.
+This is not a pipeline that everyone must enter at the beginning. You may arrive with a half-formed idea, a result table that resists interpretation, a method reviewers repeatedly misunderstand, or a PDF that is nearly ready to submit. CCFA-Skills begins where you are and brings in only the help that matters there.
 
 ## Visual examples
 
@@ -251,6 +273,40 @@ Create `source/` (reusable authoring files), `assets/` (reference/icon assets), 
 
 Chinese output uses explicit UTF-8 I/O with optional BOM support on input. Shell pipes, Unicode filenames, and glyph coverage are checked separately. Family validation includes Chinese and uncommon-character regressions and reports decoding errors rather than masking them with replacement characters. Figures retain the chosen Latin font and use an available CJK fallback.
 
+<a id="latest-updates"></a>
+
+## Latest updates: research progress, collaboration, and preferences
+
+**2026-10-15 · Version `0.10.0`**. This update improves five areas within the existing 17-skill family, fixed review templates, and project structure.
+
+### Resilience and task continuity
+
+Keep the current goal, route, and next action distinct. Recheck goals and constraints when changing routes, accepting a contributor's work, recovering context, and delivering results. When errors or task misalignment appear, narrow the next operation, preserve usable artifacts, and recover against actual files and evidence. A faulty summary does not automatically become a fact, and stale results need their conditions rechecked. Evidence can justify rerouting, and explicit user goal changes take effect immediately.
+
+Short tasks add no state file or evaluation call; long tasks can reuse one compact record. The [continuity rules](ccf-common/references/continuity.md) and read-only checker aim to limit drift and error propagation. They cannot identify hidden backend model changes. Current smoke tests have not measured a performance gain under real model degradation.
+
+### Multi-agent coordination
+
+When the host supports multiple agents, split independently executable work by its dependencies and keep one integrating owner. Idea exploration develops mechanisms independently before sharing relevant evidence, reducing anchoring on the first answer. Retrieval and verification can run in parallel; closely connected manuscript arguments retain one author. Contributions carry evidence locations and applicable versions. Repeated citations to one source do not count as independent verification, and a shared file's owner serializes its edits.
+
+Every delegation has a defined scope, completion condition, and write boundary. Update only tasks affected by a change. Avoid fixed debate rounds; optional independent review still follows user preferences. See [task modes](ccf-common/references/task-modes.md) and [handoffs](ccf-common/references/handoff-modes.md).
+
+### Personal preferences
+
+The [day and night configurator](#day-and-night-controls) offers seven `off / auto / on` enhancements, Simplified Chinese, Traditional Chinese, and English, plus light and dark themes. Each option explains its possible token and time impact. Project settings can override user preferences, and configuration stays outside installed skill folders. The page itself makes no external requests or model calls. Necessary prerequisites, evidence checks, and explicitly requested work remain active.
+
+### Innovation and writing logic
+
+Discovery compares different hypotheses and mechanisms; execution keeps the selected route stable. Proven invalid candidates can be discarded directly, while useful hypotheses can be distinguished through theory, counterexamples, observations, or experiments. An added module must explain which limitation it changes and what removing it would lose. Rescoring, renaming, or rewriting against unchanged evidence is not progress. Explicitly requested exploration is not capped by the optional alternative-route setting.
+
+Writing checks paragraph claims, relationships between sentences, and information order before polishing language. Reverse outlines expose gaps in the argument. Diagnostics for both semicolon forms and repeated clusters of `rather than` identify passages to inspect. Scientifically necessary comparisons, negation, limitations, and uncertainty remain intact. See [idea development](ccf-idea-optimizer/SKILL.md), [prose guidance](ccf-paper-writer/references/prose-quality-guardrails.md), and [Humanization](ccf-humanization/SKILL.md).
+
+### Ordered files and focused context
+
+Skills share the same artifact paths and working directory, updating current files during ordinary iteration. Detailed rules load only when relevant. Handoffs carry decision-relevant evidence and source locations, reducing repeated retrieval, reports, and context copies. Cleanup covers only confirmed disposable files created by the task; original material, editable sources, and necessary verification evidence remain. See [Repository](#repository) for paths and encoding rules.
+
+[Full changelog](CHANGELOG.md) · [Earlier ICLR 2027 adaptation](ccf-paper-writer/references/venue-guides/iclr.md)
+
 ## Maintenance and validation
 
 ```powershell
@@ -258,6 +314,12 @@ python ccf-common\scripts\check_v04.py
 python ccf-common\scripts\check_path_privacy.py
 python ccf-common\scripts\check_markdown_links.py
 python ccf-common\scripts\check_sources.py
+python ccf-common\scripts\check_markdown_links.py
+python ccf-common\scripts\check_sources.py
+python ccf-common\scripts\test_preferences.py
+python ccf-common\scripts\test_continuity.py
+node --check ccf-common/assets/configurator/app.js
+node ccf-common/scripts/test_configurator.js
 ```
 
 These checks confirm that all 17 skills can be discovered, their responsibilities remain clear, documentation links resolve, and public files contain no machine-specific paths or private information. Experiment and efficiency results are summarized in [实验结果.md](实验结果.md).
@@ -284,7 +346,7 @@ Thanks to [Research-Paper-Writing-Skills](https://github.com/Master-cai/Research
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=mikubaka88/CCFA-Skills&amp;type=Date&amp;theme=dark" />
     <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=mikubaka88/CCFA-Skills&amp;type=Date" />
-    <img alt="GitHub star history for CCFA Skills" src="https://api.star-history.com/svg?repos=mikubaka88/CCFA-Skills&amp;type=Date" width="800" />
+    <img alt="GitHub star history for CCFA-Skills" src="https://api.star-history.com/svg?repos=mikubaka88/CCFA-Skills&amp;type=Date" width="800" />
   </picture>
 </a>
 

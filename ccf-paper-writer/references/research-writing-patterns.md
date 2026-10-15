@@ -11,14 +11,14 @@ Always apply `prose-quality-guardrails.md` with this file. It is the authority f
 For broad writing tasks, produce the artifact first and make it substantial:
 
 - Full manuscript request: write a full LaTeX/Markdown manuscript, not only an abstract or outline.
-- Submission manuscript request: target the venue's page budget, not the minimum text needed to compile.
+- New manuscript request: complete the content and alignment checks before fitting pages; use `materials-to-manuscript.md` for results-pending drafts. Explicit submission-ready requests include a later fitting phase.
 - Section request: write the section, not only paragraph roles.
 - Revision request: provide revised text in source format plus only the necessary edit notes.
 - Exemplar request: show the source writing pattern, then adapt it into original text.
 
 Avoid empty "next steps" and generic warnings. A warning is useful only if it names the unsupported claim, missing evidence, affected section, and concrete fix.
 
-For underfilled full drafts, add substantive paper content before finishing: deeper problem setup, closest-work contrast, method mechanism, experiment protocol, analysis scaffolds and scientifically necessary reproducibility details. Add limitations only when observed, material, or required. Use `TBD` for missing evidence; do not pad with generic background.
+For drafts with explanatory gaps, add the supported problem definition, method computation, benchmark rationale, protocol, or scientific interpretation that is missing. Initial drafts have no page quota. Missing result values use `\emptycell` in LaTeX, with no outcome-dependent analysis. Keep unresolved facts outside manuscript prose, and add limitations only when material or required. Do not pad with generic background.
 
 ## Natural Writing Style
 
@@ -28,7 +28,7 @@ CCF-A papers read as continuous prose arguments, not as annotated outlines. The 
 
 - Each paragraph opens with a claim or observation, then supports it with evidence, reasoning, or citations.
 - Citations appear inside sentences as part of the argument, not as parenthetical interruptions.
-- Technical terms are defined once, used consistently, and never bolded in running text unless the venue template requires it.
+- Technical terms are defined when needed and used consistently. Emphasis is selective, not applied to every term.
 - Method descriptions follow a logical flow: problem, design rationale, mechanism, justification.
 - Experiments connect scientific questions, observations, and interpretation. Keep imagined reviewer objections out of the prose.
 
@@ -46,7 +46,7 @@ CCF-A papers read as continuous prose arguments, not as annotated outlines. The 
 
 - **Repeated motivation:** State the paper's core motivation once in the introduction and once in the conclusion. Do not re-motivate in every section.
 
-- **Over-bolded terms:** Do not bold every technical term. Use italics sparingly for the first definition only. Reserve bold for venue-mandated formatting (e.g., NeurIPS checklist headings).
+- **Over-bolded terms:** Do not bold every technical term. Use italics sparingly for initial formulations, and bold for contribution emphasis, actual best results, or useful brief headings in the established style.
 
 - **Question/claim labels as prose:** Avoid `Q1`, `Q2`, `C1`, `C2`, `RQ1`, and similar shorthand in the main narrative. Use natural names and sentence-level transitions unless the venue or study design explicitly requires labels.
 
@@ -148,39 +148,33 @@ Use backward reasoning before drafting:
 
 Then write forward:
 
-1. **Task/application/value** (cite2-4 field-defining works): Open with what the field can now do and why it matters. Do not use "Recently" or "In recent years" as the first words.
-2. **Prior methods and their progress** (cite3-6 works): Show the ladder of progress, not a flat list. Each sentence should name a capability gained, then cite the works that contributed it.
-3. **Remaining technical challenge with root reason** (cite1-2 closest works): Identify the gap and explain why it persists. The root reason must be technical, not just "nobody has tried this."
-4. **Insight and method preview** (0-1 citation if building on a known architecture): State the key observation that makes the solution possible. Preview the method in2-3 sentences.
-5. **Contributions and evidence preview:** Map each contribution to the experiment or analysis that validates it.
-
-An introduction should carry12-20 citations total. A well-cited introduction signals that the authors understand the field and have positioned their work honestly.
+Establish the scientific question and its importance, explain relevant progress, and identify the unresolved relationship and its reason. Develop the connected observations that motivate the actual task, benchmark, or mechanism. Introduce each contribution with a readable definition and its scientific role, then summarize applicable evidence. These functions can span different numbers of paragraphs. Use verified citations where claims need support, without per-paragraph or total citation quotas. Do not preview validation that has not occurred.
 
 Task-opening variants:
 
 - Niche task: define the task, then name applications. Cite the works that established the task.
 - Familiar task: start from application or scientific importance. Cite the breakthrough papers that created the current momentum.
 - New setting: start broad, then narrow to the exact input/output setting. Cite the closest related settings.
-- Challenge-first opening: expose the failure case in the first paragraph. Cite the work that reveals the failure or the standard method that fails.
+- Challenge-focused opening: explain the relevant phenomenon or capability gap, with evidence for any asserted failure.
 
 Challenge-chain variants:
 
-- Existing task: general challenge -> traditional line -> recent line -> remaining challenge. Each line gets1-3 citations.
+- Existing task: general challenge -> traditional line -> recent line -> remaining challenge, citing applicable primary evidence.
 - Existing task with historical insight: modern limitation -> classical insight -> why old line is insufficient -> new method.
-- Novel task: define the challenge and decompose it into two or three concrete obstacles.
+- New task: define the scientific challenge and its actual interrelated obstacles without fixing their number.
 
 Avoid naive-baseline framing. Do not make the paper sound like "we tried an obvious baseline and patched it." Frame the root technical issue and the non-obvious insight instead.
 
 ## Related Work Pattern
 
-Use2-4 focused topic groups. Each group cites3-8 distinct works. The total related-work section should carry20-35 citations for a typical CCF-A paper.
+Use focused topic groups whose coverage follows the scientific question, not a fixed group or citation count.
 
 For each topic group:
 
 1. **Topic scope:** Name the research thread and why it is relevant to this paper.
-2. **Representative methods:** Cite3-6 works with a shared observation about what they achieve. Do not list papers one-by-one: "A et al. [1] did X. B et al. [2] did Y." Instead: "Prior work has explored supervised pretraining [1,2], self-supervised objectives [3,4], and hybrid approaches [5,6] to improve feature quality."
-3. **Limitation tied to this paper exact challenge:** Explain what the group as a whole does not address, not what each individual paper fails at. The limitation must connect to the gap this paper fills.
-4. **Technical distinction:** State how this paper differs, using technical terms, not marketing language. "In contrast, our method eliminates the need for paired data by..." not "Unlike previous work, our method is superior."
+2. **Representative work:** Explain shared ideas and relevant differences with verified sources, not a paper-by-paper catalogue.
+3. **Relationship to the current question:** Describe the relevant capability, assumption, or unresolved issue accurately; a whole research thread need not share one limitation.
+4. **Technical positioning where needed:** Explain actual distinctions without a required comparison ending in every paragraph or a claim of superiority.
 
 **Citation integration rules for Related Work:**
 
@@ -191,7 +185,7 @@ For each topic group:
 
 ## Method Pattern
 
-Before writing Method, build a module table:
+Before writing Method, map its actual scientific mechanisms internally. A compact table can help when the structure warrants it; this is not a compulsory module inventory in the paper:
 
 | Module | Input | Operation | Output | Motivation | Technical advantage | Validated by |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -202,7 +196,7 @@ Each module subsection should contain:
 2. Design: representation, architecture, equation, algorithm, or data structure.
 3. Forward process: input -> step -> output.
 4. Technical advantage: why this design addresses the challenge.
-5. Validation pointer: ablation, theorem, analysis, or qualitative result.
+5. Applicable support: supplied ablation, theorem, analysis, or qualitative result; a planned test is not validation. Do not force every subsection to end with a validation sentence.
 
 Method clarity checks:
 
@@ -214,10 +208,10 @@ Method clarity checks:
 
 ## Experiment Pattern
 
-Experiments should answer three reviewer questions:
+Choose evaluation questions from the supplied research claims and experiment design. Typical roles include:
 
 1. Effectiveness: is the method better than strong baselines under fair protocols?
-2. Causality: which modules/design choices create the gain?
+2. Mechanism: what does the actual controlled comparison establish about a design choice?
 3. Generalization and limits: when does it work, fail, or become costly?
 
 Recommended section order:
@@ -226,7 +220,7 @@ Recommended section order:
 2. Main results: one table per primary claim.
 3. Ablation: remove/replace/disable major modules.
 4. Analysis: robustness, efficiency, sensitivity, qualitative examples, or failure cases.
-5. Limitations tied to evaluation scope.
+5. Material findings about the evaluated conditions when relevant, not a compulsory cautionary ending.
 
 Table/figure rules:
 
@@ -243,8 +237,8 @@ Table/figure rules:
 1. Restate problem and method.
 2. State the key insight.
 3. Summarize strongest evidence.
-4. Bound limitations as scope boundaries, not hidden fatal flaws.
-5. Name a concrete future direction without adding unsupported claims.
+4. State a material condition when it changes the interpretation; do not append boilerplate caveats.
+5. Include a future direction only when it adds a concrete useful implication. If empirical results are pending, summarize the established formulation and proposed mechanism without claiming success.
 
 ## End-Of-Draft Self-Review
 

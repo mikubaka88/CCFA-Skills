@@ -93,6 +93,8 @@ def _prose_only(text: str) -> str:
         r"\\begin\{(?P<env>verbatim|lstlisting|minted|equation\*?|align\*?|quote|quotation)\}.*?\\end\{(?P=env)\}",
         r"(?<!\\)\$\$.*?(?<!\\)\$\$|(?<!\\)\$[^$\n]*(?<!\\)\$",
         r"\\\[.*?\\\]|\\\(.*?\\\)",
+        r"\\(?:cite[pt]?|Cite[pt]?|autocite|parencite|textcite)\*?(?:\[[^\]\n]*\])*\{[^{}\n]*\}",
+        r"\[(?:[^\]\n]*@[^\]\n]*)\]",
         r"(?m)(?<![\\\d])%[^\n]*",
         r"(?m)^[ \t]*\|[^\n]*\|[ \t]*$",
         r"<[^>]+>",
@@ -115,6 +117,74 @@ def _sentences(text: str) -> list[str]:
 
 def _line_number(text: str, position: int) -> int:
     return text.count("\n", 0, position) + 1
+
+
+def _location(text: str, match: re.Match, offset: int = 0) -> dict:
+    position = offset + match.start()
+    return {
+        "line": _line_number(text, position),
+        "column": position - text.rfind("\n", 0, position),
+        "text": match.group(0),
+    }
+
+
+def _punctuation_signals(prose: str) -> list[dict]:
+    # Local signals work for English and Chinese without treating Chinese
+    # characters as English words. Sparse valid comparisons remain unflagged.
+    issues: list[dict] = []
+    clusters = []
+    english_words = 0
+    english_semicolons = []
+    contrast = r"\brather\s+than\b|而不是|而非|(?:并非|不是)[^。！？;\n；]{1,100}?而是"
+    for paragraph in re.finditer(r"[^\r\n]+(?:\r?\n(?![ \t]*\r?\n)[^\r\n]+)*", prose):
+        body = paragraph.group(0)
+        semicolons = list(re.finditer(r"[;；]", body))
+        locations = [_location(prose, match, paragraph.start()) for match in semicolons]
+        if len(semicolons) >= 3:
+            clusters.extend(locations)
+        words = _words(body)
+        english_count = sum(word[0].isascii() for word in words)
+        if words and english_count / len(words) >= 0.9:
+            english_words += english_count
+            english_semicolons.extend(locations)
+        matches = list(re.finditer(contrast, body, flags=re.I))
+        if len(matches) >= 3:
+            positions = [_location(prose, match, paragraph.start()) for match in matches]
+            issues.append({
+                "code": "repeated_contrast",
+                "severity": "advisory",
+                "line": positions[0]["line"],
+                "count": len(matches),
+                "locations": positions,
+                "message": "Review repeated contrast framing in this paragraph; retain real technical alternatives and repair sentence relations before varying wording.",
+            })
+
+    # Retain the existing density diagnostic, but apply its English-word rate
+    # only to a sufficiently large English sample. One semicolon in a short
+    # passage is not evidence of overuse. Emit one punctuation issue, not both
+    # a document-rate issue and duplicate paragraph issues.
+    rate = len(english_semicolons) * 1000 / english_words if english_words else 0.0
+    if english_words >= 500 and rate > 2:
+        issues.append({
+            "code": "semicolon_density",
+            "severity": "advisory",
+            "line": english_semicolons[0]["line"],
+            "count": len(english_semicolons),
+            "per_1000_words": round(rate, 2),
+            "locations": english_semicolons,
+            "local_clusters": clusters,
+            "message": "Review semicolon density above two per 1,000 English prose words in a sample of at least 500 words; retain punctuation that expresses useful relations.",
+        })
+    elif clusters:
+        issues.append({
+            "code": "semicolon_cluster",
+            "severity": "advisory",
+            "line": clusters[0]["line"],
+            "count": len(clusters),
+            "locations": clusters,
+            "message": "Review paragraphs with three or more semicolons; check whether each clause develops the paragraph's argument and retain justified parallel structure.",
+        })
+    return issues
 
 
 def inspect(text: str, scope: str) -> dict:
@@ -202,16 +272,7 @@ def inspect(text: str, scope: str) -> dict:
                 "message": "Review unusually uniform paragraph lengths; retain them when the genre requires regularity.",
             })
 
-    semicolons = prose.count(";")
-    semicolon_rate = (semicolons * 1000 / word_count) if word_count else 0.0
-    if semicolon_rate > 2:
-        issues.append({
-            "code": "semicolon_density",
-            "severity": "advisory",
-            "count": semicolons,
-            "per_1000_words": round(semicolon_rate, 2),
-            "message": "Review semicolon density above two per 1,000 prose words.",
-        })
+    issues.extend(_punctuation_signals(prose))
 
     return {
         "scope": scope,

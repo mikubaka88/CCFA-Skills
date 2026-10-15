@@ -1,125 +1,64 @@
 # Length Budget Policy
 
-Use this file whenever drafting, expanding, compressing, or submission-preparing a full manuscript.
+Load for explicit compression, fixed-length drafting, or submission preparation. A new content-first draft follows `materials-to-manuscript.md` and has no page quota.
 
-## Core Rule
+## Phase Before Budget
 
-A venue-aware paper draft should target the venue's usable main-body budget, not merely compile. A short idea is not permission to produce a short paper when the user asked for a submission manuscript. Expand with evidence-bound content, `TBD` placeholders, and concrete experiment/analysis scaffolds rather than inventing results.
+Complete the substantive scientific explanation and check alignment before reducing length. A named venue provides an audience and template, not an instruction to shorten the initial draft. An explicit request for a submission-ready or fixed-length paper authorizes fitting after the content check in the same task. A local word-count reduction stays local.
 
-Determine exactly which sections count from the target venue/year/track rules. Do not assume references, appendices, acknowledgements, or limitations are excluded universally. Use the budget for substantive explanation, not page-filling or imagined reviewer reactions.
+During content-first drafting, fix overflow, broken references, and unreadable formatting, but treat page count as informational. Do not expand or cut text to reach a percentage of a venue limit. Results-pending drafts can be content-complete within their requested scope without being evidence-complete.
 
-## Budget Setup
+## Establish The Actual Constraint
 
-Before full-manuscript drafting, establish:
+For the fitting phase, determine the target venue, year, track, template, counted sections, main-body limit, and any user exclusions. Verify current official rules through `ccf-submission-checker` when asserting compliance. A stale local guide can support provisional formatting, not a final page-limit claim.
 
-```text
-Target venue:
-Template / style:
-Main-body page limit:
-References counted? yes / no / unknown
-Appendix counted? yes / no / unknown
-Draft target:
-Allowed draft tolerance:
-Final submission target:
-```
-
-Use the venue guide first. If the local guide lacks a clear page limit, infer a draft target from the venue family and label it `policy-stale`; route final compliance to `ccf-submission-checker`.
-
-Default draft targets:
-
-- Strict page-limited submissions: aim for 85-100% of the main-body limit.
-- Early internal drafts: aim for 70-90% unless the user asks for a short proposal.
-- Demos or tutorials may be shorter only when the user explicitly requests a non-publication sample. A smoke test is never a manuscript-length category or publication method substitute.
-- Final submission: must be at or below the official limit after compression.
-
-Slight mismatch is acceptable:
-
-- Under target by <= 15%: acceptable for an internal draft if all required sections have substantive content.
-- Under target by > 15%: inspect for missing substantive content. Expand supported explanations and planned evidence where useful; if evidence is insufficient, report the draft gap instead of padding.
-- Over target by <= 10%: acceptable for a draft; schedule compression.
-- Over target by > 10%: immediately run a standard compression pass or produce a cut plan before review.
-
-## Section Budget
-
-For AI/ML/CV/NLP-style 8-10 page main-body papers:
-
-| Section | Typical share |
-| --- | ---: |
-| Abstract | 0.15-0.25 page |
-| Introduction | 1.0-1.5 pages |
-| Related Work / Background | 0.75-1.25 pages |
-| Method | 2.0-3.0 pages |
-| Experiments | 2.0-3.0 pages |
-| Analysis / Ablation / required scope boundaries | 0.75-1.5 pages |
-| Conclusion | 0.2-0.4 page |
-
-Adjust by venue family:
-
-- Systems/networking/security papers usually need more method, system design, threat model, implementation, and evaluation detail.
-- Theory papers need theorem statements, proof ideas, and technical overview in the main text.
-- HCI papers need research questions, participants, procedure, measures, ethics, and analysis method.
-- Database/mining papers need problem formalization, algorithm details, complexity, datasets, baselines, and scalability analysis.
-
-## Expansion Before Compression
-
-If a full manuscript is under target, expand in this order:
-
-1. Sharpen the Introduction challenge chain and contribution/evidence preview.
-2. Add a focused Related Work contrast with closest-work groups.
-3. Make the Method auditable: notation, module motivation, algorithm/pipeline, complexity, assumptions.
-4. Add experiment setup details: datasets, metrics, baselines, implementation, hyperparameters.
-5. Add main-result, ablation, robustness, and efficiency scaffolds using confirmed method versions.
-6. Add venue-required ethics/reproducibility material and appendix pointers where expected; do not add generic limitations or hypothetical failure cases for padding.
-
-Allowed expansion content:
-
-- Mechanism explanations derived from the user's idea.
-- `TBD` placeholders for missing results, figures, and citations.
-- Experiment-table templates with empty cells.
-- Evidence requirements and planned analyses.
-- Clearly marked assumptions.
-
-Forbidden expansion content:
-
-- Invented numerical results.
-- Invented citations or baselines.
-- Unsupported claims of novelty, superiority, or reviewer reaction.
-- Padding, generic field background, or repeated motivation.
-
-## Expansion Content Order
-
-When a manuscript is under target, expand in this priority order---each step adds substantive content, not filler:
-
-1. **Introduction bottleneck exposition:** explain why existing methods fail structurally, not just empirically. Add concrete path-length, complexity, or capability arguments.
-2. **Background/Preliminaries:** add formal problem definition, notation, and structural analysis (e.g., complexity tables, dependency path arguments).
-3. **Method detail:** add per-component motivation (why this module, what gap it fills), forward equations, and connection to the global insight.
-4. **Experiment setup:** add dataset statistics, preprocessing details, baselines with rationale, metric definitions, implementation notes.
-5. **Results and analysis:** add result tables, complexity comparisons, and ablation motivations using confirmed full methods.
-6. **Discussion:** add architecture-level analysis of why the method works and its evidenced regime of applicability.
-7. **Required disclosures:** add only venue-required or scientifically material scope, ethics, reproducibility, and impact content; route judgment-sensitive wording through `ccf-humanization`.
-8. **References:** ensure all cited works appear in the bibliography with complete metadata.
-
-## Compile And Adjust Loop
-
-When writing a TeX file and a LaTeX engine is available:
-
-1. Compile once to measure pages.
-2. Use normal bibliography/reference passes or a build tool such as latexmk. Investigate persistent errors or changing references rather than rerunning indefinitely.
-3. Compare the PDF page count with the target budget.
-4. If under target, expand actual explanatory gaps using supplied science; do not manufacture content to occupy pages.
-5. If over target, run `references/compression-rules.md`.
-6. Recompile after relevant changes. Stop when the requested draft is complete and relevant checks pass. If another pass makes no substantive progress, change the approach or name the concrete unresolved issue; do not run a page-count loop without progress.
-
-If compilation is unavailable, estimate with section budgets and mark page count as `not compiled`.
-
-## Output Status
-
-For full manuscripts, include or record:
+Record only useful fields in the existing context or project state:
 
 ```text
-Length budget:
-Current length:
-Status: underfilled / target-fit / draft-over / final-over / not compiled
-Expansion or compression action:
-Remaining evidence gaps:
+Phase:
+Requested length:
+Venue / year / track:
+Official counted sections:
+Protected sections and figures:
+Current length and build status:
 ```
+
+References, appendices, disclosures, acknowledgements, and limitations have venue-specific counting rules. Do not assume universal exclusions or impose a nine-page limit across papers.
+
+## Allocate By Contribution
+
+Assign space to scientific importance and explanatory dependencies, not a fixed section ratio. A benchmark paper needs room for task definition, construction, and evaluation meaning; a method paper needs core computation and learning/inference; theory needs statements and proof ideas; empirical or human-subject work needs its study design and analysis.
+
+Keep these in the main text:
+
+- The scientific question and contribution.
+- The observation and mechanism needed to understand the work.
+- Definitions and conditions needed to interpret the primary evidence.
+- The main empirical result or theoretical statement, when available.
+- Material comparison conditions and necessary pointers to supplementary details.
+
+Supporting derivations, full protocols, hyperparameters, extended tables, and secondary analyses can move to a referenced appendix. Delete repetition and irrelevant execution records rather than storing them in an appendix.
+
+## Fit Without Losing Explanation
+
+Use `compression-rules.md`. Remove repeated motivation, generic background, nominal padding, duplicate definitions, and number-by-number narration before cutting mechanisms or evidence interpretation. Preserve the source format and the user's protected sections/figures. Larger cuts need a section-level plan internally; do not repeatedly request approval already given.
+
+If a short paper has a real explanatory gap, add the supported missing explanation. Do not lengthen an adequate paper merely to occupy every page. Do not invent modules, assumptions, citations, experiments, or favorable interpretations. If results are missing, retain the authorized experiment scaffold with `\emptycell` values and no predicted findings.
+
+After cuts, recheck newly adjacent sentences and paragraphs. A removed definition, missing antecedent, unintroduced symbol, or broken connection is a compression regression even if the page count improves. Reconcile abstract, contributions, captions, appendix references, and conclusion where meaning changed.
+
+## Compile And Inspect
+
+When LaTeX tools are available:
+
+1. Compile with the existing build configuration and normal bibliography passes.
+2. Inspect counted pages, reference resolution, equation/table overflow, float order, caption readability, and appendix boundaries.
+3. Correct actual content/layout problems within the authorized scope.
+4. Recompile after relevant changes and inspect affected pages.
+5. Stop when the requested content and applicable formatting checks pass, or report the concrete remaining issue.
+
+Do not shrink template fonts or margins to evade limits, add filler to fix float whitespace, or loop without progress. If compilation is unavailable, say `not compiled`; an estimate is not verified compliance.
+
+## Delivery
+
+For a fitting task, report the canonical file, checked length, substantive moves/cuts, and remaining material issues. For a content-first task, report content completion and missing evidence without classifying the draft as underfilled or overfilled against an inactive budget.

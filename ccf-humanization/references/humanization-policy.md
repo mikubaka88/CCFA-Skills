@@ -60,9 +60,13 @@ State a recurring scope condition at its natural location and use cross-referenc
 
 - Begin with the scientific subject. Remove throat-clearing openers such as `It is important to note that`, `It is worth mentioning that`, `需要强调的是`, and `值得注意的是` when the following clause can stand directly.
 - Use familiar, precise academic language. Keep one canonical technical term instead of cycling through synonyms for stylistic variation.
+- Check literal sentence-to-sentence and paragraph-to-paragraph connections, including new nouns, pronoun antecedents, modifier scope, and comparisons. Familiar words with ambiguous technical meanings are not precise prose.
+- Prefer scientific relations and actual dependencies over mechanical ordinal lead-ins such as `First`, `Second`, `Finally`, “第一、第二” and “首先、其次、最后”. Keep them when a real ordered procedure or enumeration benefits from them. This is a prose preference, not a forbidden-word check; preserve mathematical indices, algorithm numbering, standard terms, and user/venue conventions.
+- Explain scientific relationships and actual computations instead of an execution log or a list of interfaces. Retain necessary structure and reproducibility facts; standard technical words are not banned simply because they also occur in engineering.
 - Do not force every argument into exactly three items. Choose structure from the content, preserving required enumerations and study questions.
 - Prefer zero em dashes in newly written or revised prose; allow at most three in a full paper, excluding direct quotations. LaTeX `---` counts in prose. Preserve numeric ranges, minus signs, citation keys, commands, and code.
-- Use varied sentence rhythm where it helps the argument. Regular procedure descriptions and parallel experimental comparisons may remain regular. Five sentences within a five-word length band, similar paragraph lengths, and more than two semicolons per 1,000 words are review signals, not mandatory rewrites.
+- Use varied sentence rhythm where it helps the argument. Regular procedures and parallel comparisons may remain regular. The checker treats five similar-length sentences, similar paragraph lengths, three or more `;`/`；` or repeated contrast forms in one paragraph as contextual review signals. Its two-semicolon-per-1,000-word signal applies only to samples of at least 500 English words drawn from predominantly English paragraphs, not to short passages or Chinese character counts. These thresholds locate candidates; they do not require rewrites.
+- Retain `rather than`, `而不是`, `而非`, and `不是…而是` when they distinguish real alternatives. For clustered contrasts, recover the paragraph's positive argument and actual sentence relationships before changing phrasing. Do not simply substitute synonyms or remove useful comparisons to clear a diagnostic.
 - Check inflated or vague terms such as `groundbreaking`, `pivotal`, `comprehensive`, `robust`, and `novel` against a concrete meaning and evidence. Retain standard terms such as `robust optimization` when technically correct.
 - Every strong claim needs an evidence path. Replace an unsupported broad assertion with the precise supported claim; do not surround it with reassurance, disclaimers, or unsupported stronger verbs.
 - Preserve the user's Markdown/LaTeX structure unless restructuring is requested. Do not insert internal warnings, hidden comments, prompt notes, or workflow metadata into manuscript files.
@@ -105,7 +109,7 @@ Read the revised prose once for its scientific argument, before counting surface
 - Uncertainty matches the evidence without stacked hedging or inflated certainty.
 - Assumptions, material negative results, protocol facts, and mandatory disclosures remain accurate.
 - Scientific identity and configuration replace confirmation/status narration.
-- Terminology, citations, numbers, equations, and requested structure are preserved.
+- Terminology, citations, numbers, units, equations, and requested structure are preserved. Reordering or translating prose also preserves who does what, conditions, negation, comparison direction, and the strength of evidence.
 - The em-dash preference and context-dependent pattern signals have been checked.
 
 For full sections or papers, use `ccf-paper-writer/scripts/check_prose_quality.py` for candidate locations. Fix real problems; keep justified scientific language even when a pattern matches. A clean script result alone does not establish natural prose, correctness, or publication readiness.

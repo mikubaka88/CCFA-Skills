@@ -7,6 +7,8 @@
 ## 硬规则
 
 - 一定安装 `ccf-common`：它保存共享路由、handoff、隐私、source registry 和 artifact 合约。
+- 复制 Common 时保留 `scripts/preferences.py` 和 `assets/configurator/`。可选的本地配置页只需要 Python 3.10+，无需额外依赖；个人 JSON 设置位于安装目录之外。没有配置文件也能按默认设置运行。
+- 同时保留 Common 内的连续性参考文档与 `scripts/continuity.py`。可选的只读检查器同样使用 Python 3.10+，无需额外依赖；普通 skill 启动不会创建任务状态文件或自动运行检查器。
 - 所有子集均须安装 `ccf-humanization`：任何具体技能执行前先启用它，再启用 `ccf-common`。交接复用已生效规则，详细写作与实验检查按任务需要执行。
 - 不要安装已经合并的旧 runtime 名称：`ccf-workflow-planner`、`ccf-paper-compressor`、`ccf-writing-reviewer`、`ccf-citation-auditor`、`ccf-figure-table-builder`、`ccf-artifact-packager`、`ccf-venue-format-guide`、`ccf-resubmission-adapter`、`ccf-paper-presenter`、`ccf-doc-diagram-designer`。
 - `ccf-experiment-designer` 只负责实验证据、真实结果表和 evidence-bound 图表规格；`ccf-visual-composer` 负责发表级图表排版、内置 Python 绘图配方、配色、caption、正文嵌入和渲染 QA。

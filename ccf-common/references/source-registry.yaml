@@ -7,6 +7,78 @@ default_stale_after_days:
   background_method: 730
   local_reference: 365
 sources:
+  - id: semantic-scholar-field-selection
+    title: Semantic Scholar Academic Graph API Tutorial
+    url: https://webflow.semanticscholar.org/product/api/tutorial
+    source_type: background_method
+    used_by: [ccf-literature-searcher, ccf-integrity-auditor]
+    recorded_at: 2026-10-15
+    verified_at: 2026-10-15
+    stale_after_days: 180
+    notes: Adapt stage-specific field projection and batched identifiers through available tools. Identity metadata does not establish claim support. No new API dependency or claimed cost reduction.
+  - id: paperqa-selective-evidence
+    title: PaperQA Scientific Document Retrieval And Multimodal Support
+    url: https://github.com/Future-House/paper-qa
+    source_type: background_method
+    used_by: [ccf-common, ccf-literature-searcher, ccf-paper-reviewer]
+    recorded_at: 2026-10-15
+    verified_at: 2026-10-15
+    stale_after_days: 180
+    notes: Adapt separation of source evidence and interpretation, source reuse, and optional page/image enrichment. Additional enrichment can add model calls. Do not import an index, vector database, agent loop, or entire runtime by default.
+  - id: mcp-selective-tool-discovery
+    title: MCP Client Best Practices
+    url: https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/docs/2026-07-28/develop/clients/client-best-practices.mdx
+    source_type: background_method
+    used_by: [ccf-common, ccf-skill-forger]
+    recorded_at: 2026-10-15
+    verified_at: 2026-10-15
+    stale_after_days: 180
+    notes: Prefer host-native discovery when a large tool surface justifies it; small known tool sets can be used directly. No extra discovery agent or mandatory MCP integration.
+  - id: rtk-targeted-tool-output
+    title: RTK Command Output Filtering
+    url: https://github.com/rtk-ai/rtk
+    source_type: background_method
+    used_by: [ccf-common, ccf-skill-forger]
+    recorded_at: 2026-10-15
+    verified_at: 2026-10-15
+    stale_after_days: 180
+    notes: Reference for filtering, grouping, and deduplicating diagnostics while retaining needed original evidence. No code, proxy, dependency, or upstream savings percentage is imported.
+  - id: skill-creator-behavioral-comparison
+    title: Anthropic Skill Creator Evaluation Workflow
+    url: https://github.com/anthropics/skills/blob/main/skills/skill-creator/SKILL.md
+    source_type: background_method
+    used_by: [ccf-skill-forger]
+    recorded_at: 2026-10-15
+    verified_at: 2026-10-15
+    stale_after_days: 180
+    notes: Adapt representative trigger cases and old/new comparisons with observed quality, time, and token data during maintenance. No extra benchmark runs in ordinary user tasks, copied evaluator, or implied measured performance gain.
+  - id: orchestra-ml-paper-writing
+    title: Orchestra Research ML Paper Writing Skill
+    url: https://github.com/Orchestra-Research/AI-Research-SKILLs/blob/main/20-ml-paper-writing/ml-paper-writing/SKILL.md
+    source_type: background_method
+    used_by: [ccf-paper-writer, ccf-skill-forger]
+    recorded_at: 2026-09-23
+    verified_at: 2026-09-23
+    stale_after_days: 365
+    notes: Inspected version 1.2.0. Adapt complete-draft delivery, contribution-to-evidence mapping, thematic related work, and verified citations. Do not import fixed abstract sentence counts, early page quotas, compulsory single-contribution framing, copied prose, or source claims about reviewer behavior. Repository popularity is not evidence of writing quality.
+  - id: kdense-imrad-structure
+    title: K-Dense Scientific Writing Structure Reference
+    url: https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/scientific-writing/references/imrad_structure.md
+    source_type: background_method
+    used_by: [ccf-paper-writer, ccf-skill-forger]
+    recorded_at: 2026-09-23
+    verified_at: 2026-09-23
+    stale_after_days: 365
+    notes: Adapt section responsibilities and study-dependent structure. Do not force biomedical IMRaD details or a universal heading sequence on ML, theory, or benchmark papers. Local materials-to-manuscript rules govern content-first drafting and pending results.
+  - id: kdense-scientific-writing-principles
+    title: K-Dense Scientific Writing Principles
+    url: https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/scientific-writing/references/writing_principles.md
+    source_type: background_method
+    used_by: [ccf-paper-writer, ccf-skill-forger]
+    recorded_at: 2026-09-23
+    verified_at: 2026-09-23
+    stale_after_days: 365
+    notes: Use scientific clarity, logical organization, and accurate attribution as editing criteria; adapt to user style and preserve actual uncertainty and evidence. No source text or code is redistributed.
   - id: ccf-directory
     title: CCF Recommended International Academic Conference And Journal Directory
     url: https://www.ccf.org.cn/Academic_Evaluation/By_category/
@@ -1132,3 +1204,102 @@ sources:
     verified_at: 2026-09-16
     stale_after_days: 180
     notes: Reference for explicit fields, order, types, and rating choices. A platform default form is not the official form of every conference; verified venue/year/track forms override the CCFA generic report.
+  - id: autoresearch-bounded-maintenance
+    title: Autoresearch Experiment Instructions
+    url: https://github.com/karpathy/autoresearch/blob/master/program.md
+    source_type: background_method
+    used_by: [ccf-common, ccf-skill-forger]
+    recorded_at: 2026-10-15
+    verified_at: 2026-10-15
+    stale_after_days: 180
+    notes: Informs fixed evaluation, a limited edit surface, and retaining or discarding a candidate from observed results. CCFA uses a bounded optional maintenance comparison; it does not import an indefinite experiment loop, GPU runtime, or repository-wide reset behavior.
+  - id: gepa-reflective-candidates
+    title: GEPA Reflective Candidate Optimization
+    url: https://github.com/gepa-ai/gepa
+    source_type: background_method
+    used_by: [ccf-skill-forger]
+    recorded_at: 2026-10-15
+    verified_at: 2026-10-15
+    stale_after_days: 180
+    notes: Reference for deriving candidate changes from concrete execution feedback and evaluating quality alongside cost. No GEPA dependency, copied optimizer, or measured CCFA performance gain is implied.
+  - id: langgraph-recovery-replay
+    title: LangGraph Checkpoint Replay And Time Travel
+    url: https://docs.langchain.com/oss/python/langgraph/use-time-travel
+    source_type: background_method
+    used_by: [ccf-common, ccf-pipeline-orchestrator]
+    recorded_at: 2026-10-15
+    verified_at: 2026-10-15
+    stale_after_days: 180
+    notes: Reference for checkpoint-based continuation and replay boundaries. CCFA rechecks actual artifacts and prior side effects before resuming; its optional task record adds no LangGraph dependency or automatic durable-execution guarantee.
+  - id: inherited-goal-drift
+    title: Inherited Goal Drift
+    url: https://arxiv.org/abs/2603.03258
+    source_type: background_method
+    used_by: [ccf-common, ccf-skill-forger]
+    recorded_at: 2026-10-15
+    verified_at: 2026-10-15
+    stale_after_days: 365
+    notes: Research motivation for checking inherited histories against current intent and actual evidence. Findings from limited models and simulated environments do not diagnose hidden provider changes or establish CCFA recovery performance.
+  - id: coevolve-evidence-transfer
+    title: Collaborative Principle Evolution via Evidence Transfer for Scientific Discovery
+    url: https://arxiv.org/abs/2609.35315
+    source_type: background_method
+    used_by: [ccf-common, ccf-idea-optimizer]
+    recorded_at: 2026-10-15
+    verified_at: 2026-10-15
+    stale_after_days: 365
+    notes: Preprint first submitted 2026-09-28. Informs preserving different branch hypotheses and sharing observations with their conditions. CCFA does not implement its posterior updates or claim its measured quality or speed gains.
+  - id: contextevo-decision-point-repair
+    title: Beyond Skill Evolution - Self-Evolving Context Management Policies for Long-Horizon Agent Harnesses
+    url: https://arxiv.org/abs/2609.34649
+    source_type: background_method
+    used_by: [ccf-common, ccf-skill-forger]
+    recorded_at: 2026-10-15
+    verified_at: 2026-10-15
+    stale_after_days: 365
+    notes: Preprint first submitted 2026-09-28. Informs local diagnosis of missing, stale, or contaminated context and maintenance-time failure-case replay. No automatic harness training, hidden-model detection, or CCFA performance gain is established.
+  - id: saige-dependency-aware-collaboration
+    title: Rethinking Multi-Agent Collaboration - When More Is Less
+    url: https://arxiv.org/abs/2609.19759
+    source_type: background_method
+    used_by: [ccf-common, ccf-pipeline-orchestrator]
+    recorded_at: 2026-10-15
+    verified_at: 2026-10-15
+    stale_after_days: 365
+    notes: Preprint first submitted 2026-09-17, revised 2026-09-18. Informs delegation by task dependencies and selective sharing. Experimental agent counts are not universal limits, and parallel execution does not imply lower total token use.
+  - id: scroll-recoverable-context
+    title: Context as an Environment - Programmatic Context Management for Long-Horizon Agents
+    url: https://arxiv.org/abs/2608.21690
+    source_type: background_method
+    used_by: [ccf-common]
+    recorded_at: 2026-10-15
+    verified_at: 2026-10-15
+    stale_after_days: 365
+    notes: Preprint first submitted 2026-08-21. Informs compact working context with precise recoverable source addresses. CCFA reuses existing artifacts or host history; it does not bundle the persistent execution environment or claim equivalent memory performance.
+  - id: paragraph-argument-reconstruction
+    title: Research Paper Writing - Reverse Outline And Sentence Relations
+    url: https://github.com/Master-cai/Research-Paper-Writing-Skills/blob/main/research-paper-writing/SKILL.md
+    source_type: background_method
+    used_by: [ccf-paper-writer, ccf-humanization]
+    recorded_at: 2026-10-15
+    verified_at: 2026-10-15
+    stale_after_days: 180
+    notes: Informs reconstructing paragraph claims and support from the actual draft and checking adjacent-sentence relations. Independently expressed in the existing editing pass; no mandatory extra report or fixed argument template is imported.
+  - id: nature-paragraph-flow
+    title: Nature Skills Paragraph Flow
+    url: https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-writing/references/paragraph-flow.md
+    source_type: background_method
+    used_by: [ccf-paper-writer]
+    recorded_at: 2026-10-15
+    verified_at: 2026-10-15
+    stale_after_days: 180
+    notes: Reference for paragraph-level reverse outlining and local connection repair. Related projects reuse some writing principles; repeated appearances are not independent validation of effectiveness.
+  - id: supervisor-proposition-level-polish
+    title: Supervisor Skills Paper Polish
+    url: https://github.com/HKUSTDial/Supervisor-Skills/blob/main/skills/paper-polish/SKILL.md
+    source_type: background_method
+    used_by: [ccf-paper-writer, ccf-humanization]
+    recorded_at: 2026-10-15
+    verified_at: 2026-10-15
+    stale_after_days: 180
+    notes: Informs recovering propositions before Chinese-to-English restructuring while preserving scientific meaning. Upstream skill is marked CC-BY-NC-SA-4.0; its text and code are not redistributed. CCFA independently states a scoped editing procedure and retains provenance here.

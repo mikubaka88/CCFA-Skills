@@ -16,11 +16,11 @@ Default voice:
 - Avoid third-person manuscript narration: "This paper proposes...", "The authors demonstrate...", "The reviewer will think...", or "The paper argues..." unless discussing another paper.
 - Keep reviewer-facing reasoning internal. The visible paper should persuade through logic and evidence, not through comments about what reviewers may want.
 
-## Forbidden Or High-Risk Patterns
+## Contextual Prose Signals
 
-Avoid these unless the venue, discipline, or user explicitly requires them:
+Inspect the following for their scientific function and effect on the reader. They are not a word blacklist or automatic rewrite triggers. Change a pattern when it adds empty defense, overstates evidence, or obscures the argument; preserve accurate uncertainty, negative findings, standard terminology, and useful disciplinary conventions.
 
-- Defensive or incremental framing: "we merely", "we only", "a simple extension", "despite being limited", "not much worse", or apology-like motivation. State the scientific reason and evidence instead.
+- Defensive or incremental framing: "we merely", "we only", "a simple extension", "despite being limited", "not much worse", or apology-like motivation when these substitute self-deprecation for a scientific point. State the scientific reason and evidence instead; keep terms such as "only" when they express a real condition or bound.
 - Label-heavy writing: `Q1`, `Q2`, `C1`, `C2`, `RQ1`, `H1`, `P1`, or similar symbols in running prose. Use natural names such as "the invariance question" or "the efficiency claim". If labels are necessary for a study, define them once and keep them out of ordinary narrative.
 - Formula and theorem dumping: dense theorem blocks, equation chains, or notation-heavy paragraphs without explanation. Each theorem, equation, and symbol must answer a specific question in the story.
 - Abstracts that are mostly numbers: numbers should validate the contribution, not replace motivation, insight, method, and scope.
@@ -38,27 +38,17 @@ For a full section or paper, run `../scripts/check_prose_quality.py`. The script
 
 ## Positive Writing Rules
 
-### Cohesion
+### Argument And Cohesion
 
-Every paragraph should have one retained message. Each sentence must do one of five jobs:
+Give each paragraph a retained message and develop its reason, mechanism, evidence, or necessary comparison. For a full section or a passage whose logic is unclear, briefly reconstruct the argument from the actual draft: name each paragraph's main point and check how it advances the section. Merge repetition, repair missing links from supplied material, and remove material with no function. This reverse outline is part of the existing edit, not an extra report, file, or model call. A bounded clear passage needs only a local check.
 
-1. State or narrow the message.
-2. Explain the mechanism or reason.
-3. Provide evidence, citation, or example.
-4. Contrast with an alternative.
-5. Transition to the next needed idea.
+For adjacent sentences, identify the actual relationship: reason, evidence, consequence, qualification, example, comparison, or necessary transition. If it is unclear, reorder or split the material, or explain the relationship supported by the source. Changing a connector does not repair missing logic; do not invent causality or evidence to make prose flow. Lead claims may precede their supporting explanation when the paragraph develops that support.
 
-If a sentence does none of these, cut it or rewrite it.
+Introduce new terms, variables, and comparators intelligibly; give pronouns specific antecedents. Where useful, start from information the reader already has and end on the new point that the next sentence develops. Keep subjects near their main verbs and use concrete actions where noun stacks hide the mechanism. These are repair options, not a required sentence template or a fixed sequence for every section.
 
-### Logical Progression
+When translating Chinese into English, first recover the propositions and their relationships, then compose the English argument. Preserve actors, operations, conditions, negation, comparison direction, quantities and units, citation support, and uncertainty. Do not follow Chinese clause order mechanically or supply an unstated causal link. After an addition, integrate it into the relevant paragraph and remove superseded or duplicate explanation instead of appending another summary of the same point.
 
-Build sections as progressive arguments:
-
-```text
-known context -> unresolved gap -> root cause -> insight -> method mechanism -> evidence -> bounded claim
-```
-
-Do not jump from motivation directly to method names. Do not assert a claim before the reader has seen the reason it should be true.
+Prefer actual dependencies over mechanical ordinal lead-ins such as `First`, `Second`, `Finally`, “第一、第二” and “首先、其次、最后”. Keep clear numbering for real ordered procedures or enumerations. Do not replace these words mechanically with `Moreover`; evaluate the relation conveyed by the sentence, not the presence of a word. Preserve equation indices, algorithm numbering, technical terms, and user or venue conventions.
 
 ### Terminology Discipline
 
@@ -66,6 +56,16 @@ Do not jump from motivation directly to method names. Do not assert a claim befo
 - Do not alternate synonyms just to avoid repetition.
 - Repeat a term only when needed for clarity; otherwise use sentence structure to carry continuity.
 - Align abstract, introduction, method, experiments, and conclusion wording for the same contribution.
+- Prefer familiar, precise field terminology and natural verb combinations. Do not use rare synonyms, invented compounds, or fashionable terms for sophistication. Keep technical terms even when long if they are necessary and defined.
+- Check agency, pronoun reference, modifier scope, comparator, and technical promises. Words such as `causal`, `optimal`, `invariant`, and `consistent` need their actual technical meaning, not a promotional interpretation.
+
+### Scientific Explanation
+
+Explain what is modeled or inferred, what information it depends on, and why the operation addresses the question. Do not substitute a sequence of interfaces, execution events, or names for that explanation. `pipeline`, `readout`, `head`, `stage`, and `component` are context checks, not forbidden standard terminology. Preserve a real structure and necessary reproducibility detail; avoiding engineering narration does not authorize omitting the method.
+
+Inspect empty importance announcements, `not merely ... but ...` contrasts, significance tails such as `highlighting its effectiveness`, abstract benefit stacks, nominalized actions, anonymous authority, mechanical three-part lists, and repeated rhetorical questions. State the concrete relationship or evidence; delete text with no scientific payload. Avoid changing passive voice, sentence lengths, or common words merely to simulate a human writer.
+
+Use each section at its proper level. Abstract and introduction give a readable scientific position, not a catalogue of all module acronyms and protocol fields. Contributions can begin with `We` and state actual work; experimental contribution language requires results. Prefer one canonical name per concept and a small number of meaningful abbreviations. Use bold and italics selectively, and retain useful brief run-in headings rather than multiplying numbered sublevels.
 
 ### Sentence Rhythm
 

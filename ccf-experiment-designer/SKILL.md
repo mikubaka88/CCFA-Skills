@@ -14,13 +14,13 @@ metadata:
 
 ## Family File Contract
 
-Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse explicit or established task paths; otherwise use project-root `ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+Before file work, reuse canonical paths and one task/artifact working directory; default to project-root `ccfa-workfiles/<purpose>/<artifact-id>/`. Update in place, preserve inputs, and use UTF-8 with Chinese-text checks. Apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) for naming, ownership, and task-created cleanup; handoffs inherit these paths.
 
 ## Collaboration Contract
 
 Before specialist execution, read and apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md). At every handoff, reuse their applicable active rules or refresh missing/changed ones. Both preflights are required even without prose; detailed editing, experiment, and maintenance modes run only when relevant.
 
-Keep one integrating owner and actively use other skills to resolve missing prerequisites or check material findings. Reuse applicable evidence; do not skip necessary groundwork to save tokens. Before finalizing, integrate contributions and verify affected results. Follow the conditional [cooperation routes](../ccf-common/references/routing.md); avoid unrelated stages and duplicate reports.
+Integrate necessary specialist contributions under one owner; reuse valid prerequisites and verify affected results. Follow the [cooperation routes](../ccf-common/references/routing.md) without duplicate reports.
 
 ## Invocation Controls
 
@@ -35,16 +35,17 @@ Design the smallest sufficient experiment package that distinguishes the central
 ## Modes
 
 - `design`: datasets, baselines, metrics, ablations, robustness, efficiency, failure analysis, and execution priority.
-- `result-template`: fill-in tables with `TBD` placeholders.
+- `result-template`: fill-in tables with `\emptycell` in LaTeX or `—` in Markdown; no invented outcomes.
 - `result-presentation`: result tables, figure evidence plans, chart specs, caption facts, and missing-value markers from supplied real results.
 
 ## Workflow
 
 1. Identify the requested output after both family preflights. Raw protocol planning and evidence schemas use Humanization's baseline without a manuscript rewrite. Select detailed prose/experiment checks only when applicable, and establish claims and available evidence before method-version checks.
 2. Extract the storyline from the idea or draft. Reuse the supplied claim/mechanism description. Read `../ccf-paper-writer/references/storyline-blueprint.md` only when the central claim needs clarification, not for an already specified result table.
-3. Map every major claim to sufficient evidence, dataset/workload, confirmed baseline, metric, and mechanism-relevant ablation. Add robustness or failure tests only when observed, plausible, claim-relevant, or venue-required; do not enumerate remote defensive cases.
-4. Resolve missing dataset, baseline, metric, or protocol provenance through `ccf-literature-searcher` before fixing dependent comparisons. Verify compatibility with the central claim. For a consequential unresolved claim-to-test mismatch, request a focused `ccf-paper-reviewer` check and integrate its findings; do not create a full review report for a protocol question. Mark unavailable evidence instead of guessing.
+3. Map each major claim to sufficient evidence for its contribution type: applicable datasets/workloads, comparison methods, metrics, and a discriminating ablation, analysis, proof, or study. Planned methods use supplied specifications; reported comparisons require verified configurations. Add robustness or failure tests only when they resolve a specific claim or project decision, grounded in an observed issue or a plausible mechanism, or satisfy a verified venue requirement. Plausibility alone does not justify an unrelated test; do not enumerate remote defensive cases.
+4. Resolve missing dataset, baseline, metric, or protocol provenance through `ccf-literature-searcher` when it affects a dependent comparison; reuse verified supplied sources first. A plan may identify an unresolved dependency without blocking independent design work. Verify compatibility with the central claim. For a consequential unresolved claim-to-test mismatch, request a focused `ccf-paper-reviewer` check and integrate its findings; do not create a full review report for a protocol question. Mark unavailable evidence instead of guessing, and do not narrow the research goal merely to fit a generic experiment checklist.
 5. Load `references/evidence-design.md` for substantive protocol design or `references/result-templates.md` for table/schema work. Do not load both for a small task unless both are needed.
+   For a results-pending manuscript, map the supplied design to its table schema without automatically adding experiments. Preserve planned versus completed protocol status, aggregation, and method identity. Leave outcome analysis blank and return the schema to the writer; pending values do not block drafting the rest of the paper. Every added test must answer a specific claim, comparison, or observed issue; omit irrelevant categories rather than filling them to complete a package.
 6. For result presentation, preserve units, seeds, confidence intervals, dataset names, metric direction, and confirmed method version/configuration. Mark missing values explicitly; never fill them with simplified runs.
 7. If executable experiment code is actually changed, retain only non-duplicative smoke tests for those critical paths. Planning or formatting alone does not call for smoke tests. Keep them outside publication evidence and do not use them as substitutes for full experiments.
 8. Use `ccf-visual-composer` when the requested deliverable includes visual composition, layout, or rendering. Supply real values, units, uncertainty, metric direction, and caption facts; integrate and check the returned figure/table. A raw evidence schema does not require rendering.
@@ -52,7 +53,7 @@ Design the smallest sufficient experiment package that distinguishes the central
 
 ## Adaptive Output Contract
 
-Return the requested artifact first. For a result table request, output the table. For a figure request, output the evidence-bound figure spec and caption facts, then name `ccf-visual-composer` as next owner for visual composition when needed. For a full experiment-design request, use this default structure:
+Return the requested artifact first. For a result table request, output the table. For a figure request, output the evidence-bound figure spec and caption facts, then name `ccf-visual-composer` as next owner for visual composition when needed. For a full experiment-design request, use the applicable fields below. Omit irrelevant or empty categories; smoke scope belongs only to changed executable code, and a handoff appears only when needed. Evidence integrity is a working rule, not a self-certification field.
 
 ```text
 Mode:
@@ -68,7 +69,6 @@ Smoke scope and deduplication:
 Result tables or figure specs:
 Missing values:
 Execution priority:
-No-fabrication status:
 Next CCFA owner:
 ```
 

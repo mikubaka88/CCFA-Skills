@@ -31,6 +31,8 @@ The writer may read those scorecards and apply the linked fixes, but must not re
 7. Overwrite the canonical manuscript artifact. Do not retain critique passes or numbered revision copies unless the user explicitly requests snapshots.
 8. Return unresolved findings to `ccf-paper-reviewer` for re-evaluation when the user requests a new score.
 
+Close a resolved concern when the changed passage and its affected evidence pass the relevant check. Reopen it for a changed source, assumption, artifact, or actual unresolved defect; do not cycle through wording changes and full reviews on unchanged evidence. A requested score target does not authorize endless rewrites or stronger unsupported claims. If the remaining score depends on missing evidence or a research choice, complete supported revisions and identify that dependency. Necessary new fixes continue; optional score chasing stops.
+
 ## Compact Action Table
 
 ```text
@@ -43,4 +45,4 @@ External owner, if any:
 Status: applied / needs evidence / needs user decision
 ```
 
-Do not add generic limitations, speculative failure cases, or defensive caveats to make the paper appear safer. Material negative evidence and venue-mandated disclosures remain subject to the warning and integrity rules.
+Do not add generic limitations, speculative failure cases, or defensive caveats to make the paper appear safer. Preserve verified material negative evidence, scientific assumptions, and venue-mandated disclosures directly in the relevant manuscript passage. They are scientific content, not warning-only material. Use a short external note only for a remaining scientific choice that the available evidence or authorization cannot resolve; continue unaffected revisions and do not create a separate warning artifact by default.

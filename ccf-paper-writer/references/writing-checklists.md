@@ -26,11 +26,14 @@ Unresolved:
 
 ## Standard Mode Checklist
 
-Use the remaining checklist sections for full sections, whole papers, score-risk work, final readiness, literature-linked writing, or output that feeds another CCFA module.
+Use applicable remaining sections for substantial writing, score-risk work, or final readiness. Passing a bounded contribution to another CCFA skill does not by itself require the whole checklist; retain the actual scope and relevant dependencies.
 
 ## Intake Checklist
 
-- Target venue, track, and paper type are known, or the user-custom format is explicitly assumed.
+- Draft phase is explicit: content-first, alignment, or requested submission fit. A named venue has not silently imposed an initial page quota.
+- Supplied research documents have been read by their actual roles; proposed designs, confirmed procedures, examples, target statistics, and observed results are distinguished.
+- Results-pending scope is honored: complete the supplied experimental scaffold unless the user explicitly requests an empty experimental section.
+- Target venue, track, and paper type are known when relevant. Preserve a supplied format; for a new LaTeX paper without a venue use the disclosed NeurIPS format fallback. Apply the custom format only when requested or established.
 - Deadline pressure and desired output granularity are known: plan, rewrite, line edit, review, or final check.
 - Available materials are listed: manuscript, appendix, figures, tables, reviews, code, experiments, references, style exemplars.
 - Missing materials that affect confidence are named.
@@ -40,8 +43,8 @@ Use the remaining checklist sections for full sections, whole papers, score-risk
 
 - Venue family is mapped with `ccf-a-venue-map.md` when a CCF-A target is named.
 - Venue expectations are selected from `venue-adapters.md`.
-- If a manuscript is requested and no venue is named, the NeurIPS venue guide is the LaTeX fallback. If the user asks for non-LaTeX prose or a custom format, `custom-format/default-user-format.md` is used and labeled.
-- If a target venue is named but no local venue guide exists, use the NeurIPS LaTeX fallback and state that the final format must be checked by `ccf-submission-checker`.
+- Preserve non-LaTeX prose, supplied templates, and requested custom formats. Activate `custom-format/default-user-format.md` only when requested or established; non-LaTeX output alone does not select it.
+- For a new LaTeX manuscript without a usable target template, use the disclosed NeurIPS format fallback. A missing local venue guide does not override a supplied template; route final rule verification to `ccf-submission-checker` when compliance is requested.
 - Exemplar cards are used only for writing moves, not wording or technical content.
 - Venue-specific evidence package is visible: baselines, ablations, proof, user study, systems evaluation, security threat model, visual evidence, or theory proof as appropriate.
 
@@ -62,6 +65,7 @@ Check:
 - The method mechanism connects to the insight.
 - The evidence package tests the central claim.
 - Material assumptions and observed limitations are retained at the relevant location; no generic caveat is required.
+- Related motivations and observations form a coherent theme without being collapsed into one module or mechanically forced into one insight.
 
 ## Section Revision Checklist
 
@@ -94,6 +98,8 @@ Use with `prose-quality-guardrails.md` before calling a draft polished:
 - Canonical terms are used consistently across abstract, introduction, method, experiments, and conclusion.
 - Strong claims avoid hype and are scoped to available evidence.
 - Each paragraph progresses by cause, contrast, refinement, example, or consequence.
+- Literal sentence and paragraph links are readable; nouns, variables, references, and comparators do not appear without introduction.
+- Manuscript narration expresses actual relationships, preserves useful procedure numbering, and avoids uncommon synonym substitutions, empty execution narration, and ambiguous technical promises.
 
 ## Claim-Evidence Checklist
 
@@ -149,7 +155,9 @@ Use with `score-lifting-loop.md` and, only when explicitly requested or allowed 
 
 ## Final Readiness Checklist
 
-Do not call a paper or section ready until:
+For a content-first draft, use `materials-to-manuscript.md` to check substantive completeness and alignment. Intentionally absent results do not block drafting, but must not be represented as evidence. Inspect summaries, contributions, captions, and conclusion for dependent claims; use `\emptycell` values without fabricated trends, ranks, or analysis. Keep specific missing inputs in the delivery note. Do not invoke page fitting or submission scores for this check.
+
+For a final submission-readiness request, do not call the paper ready until:
 
 - The target venue/custom format is clear.
 - The global story is internally consistent.

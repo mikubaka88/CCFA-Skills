@@ -14,13 +14,13 @@ metadata:
 
 ## Family File Contract
 
-Before writing, resolve the canonical output and one stable working directory per task/artifact. Reuse explicit or established task paths; otherwise use project-root `ccfa-workfiles/<purpose>/<artifact-id>/`, with `source/`, `assets/`, `cache/`, and `build/` only as needed. Update current files in place; do not scatter intermediates or create iteration copies. Preserve inputs and required evidence; clean only verified disposable files created by this task. Use UTF-8 text I/O and check Chinese text after saving or rendering. For file work, apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) and reuse the same paths across skill transitions.
+Before file work, reuse canonical paths and one task/artifact working directory; default to project-root `ccfa-workfiles/<purpose>/<artifact-id>/`. Update in place, preserve inputs, and use UTF-8 with Chinese-text checks. Apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) for naming, ownership, and task-created cleanup; handoffs inherit these paths.
 
 ## Collaboration Contract
 
 Before specialist execution, read and apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md). At every handoff, reuse their applicable active rules or refresh missing/changed ones. Both preflights are required even without prose; detailed editing, experiment, and maintenance modes run only when relevant.
 
-Keep one integrating owner and actively use other skills to resolve missing prerequisites or check material findings. Reuse applicable evidence; do not skip necessary groundwork to save tokens. Before finalizing, integrate contributions and verify affected results. Follow the conditional [cooperation routes](../ccf-common/references/routing.md); avoid unrelated stages and duplicate reports.
+Integrate necessary specialist contributions under one owner; reuse valid prerequisites and verify affected results. Follow the [cooperation routes](../ccf-common/references/routing.md) without duplicate reports.
 
 ## Invocation Controls
 
@@ -31,6 +31,8 @@ Keep one integrating owner and actively use other skills to resolve missing prer
 Turn a rough direction into a concrete problem, grounded gap, causal insight, mechanism, and falsifiable evidence plan. Distinguish source-backed observations from inferred opportunities. Do not invent prior work, results, reviewer sentiment, or novelty. Related work should clarify differentiation; an unsearched or crowded direction is uncertain, not automatically dead.
 
 Preserve the user's theme and constraints. Vary framing or mechanism within the authorized development scope, and explain consequential changes. A useful idea has a coherent reason the intervention should change an observable result; a list of familiar modules is insufficient.
+
+Requested innovation authorizes distinct candidate mechanisms even with optional route comparison off. Keep the research question stable while exploring; preserve a selected mechanism during execution unless a material reason reopens it. Use Common's progress test to stop repeated critique or search that adds no decision-relevant information.
 
 ## Modes
 
@@ -44,11 +46,11 @@ Preserve the user's theme and constraints. Vary framing or mechanism within the 
 2. When venue fit matters, use `../ccf-common/references/ccf-a-venue-map.md` and the relevant `references/venue-idea-adapters.md` passage. An unspecified venue can use a labeled generic CCF-A lens.
 3. Ground timeliness and closest work when needed for the request. Use `../ccf-common/references/privacy-and-evidence.md` before browsing; search public-safe terms. Use `ccf-literature-monitor` for recent-paper watch and `ccf-literature-searcher` for deeper retrieval. Honor no-browsing requests and label unsearched novelty accurately.
 4. When sources are available, use `references/literature-grounded-evolution.md` to retain compact evidence cards, mechanism primitives, protocol anchors, and unresolved relations. Keep source locations rather than loading whole abstracts repeatedly. Trace borrowed ideas and inferred gaps separately.
-5. For an underdetermined direction, use `references/frontier-ideation.md` to generate meaningfully different candidates. Three to five is a starting range, not a quota; one well-specified idea needs targeted improvement, not a forced tournament. Keep meaningful lineage and operations such as refine, combine, transfer, invert, or instrument internally.
+5. For an underdetermined direction or explicit request for a breakthrough, use `references/frontier-ideation.md` to generate meaningfully different candidates. Three to five is a starting range, not a quota or ceiling; honor requested breadth. One well-specified idea otherwise needs targeted improvement. Keep useful lineage and operations such as refine, combine, transfer, invert, or instrument internally.
 6. Use `references/problem-method-blueprint.md` to connect problem, root challenge, insight, mechanism, assumptions, and expected observation. Check incompatible data assumptions, objectives, or resources. Keep the strongest route and a genuinely different fallback when useful.
-7. Challenge the route against the closest-overlap concern and its weakest evidence link. Use `ccf-idea-reviewer` for a focused conceptual check when a material value, novelty, or mechanism uncertainty remains; integrate its findings and verify the revised route. Reuse applicable checks and avoid critique that merely paraphrases the idea. A user-requested standalone assessment, including “靠谱吗” or “值得做吗” without scores, remains the reviewer's deliverable.
-8. Use `references/experiment-design.md` to outline the minimum convincing evidence for the central claim: compatible datasets, baselines, metrics, and discriminating tests. A full execution protocol belongs to `ccf-experiment-designer` when requested. Planned results remain predictions to test, not evidence.
-9. Return the developed idea in the user's requested shape. For a weak seed, distinguish current weakness from development potential and identify a concrete rescue or reformulation before recommending abandonment. If a required decision remains open, explain the exact evidence needed and finish the independent parts.
+7. Challenge the route against the closest-overlap concern and its weakest evidence link. Use `ccf-idea-reviewer` for a focused conceptual check when a material uncertainty remains; integrate findings and check affected assumptions. Each return must resolve a concern, add evidence, or test a different mechanism; otherwise stop the review/development ping-pong and name the discriminator. A reviewer's smallest repair is a diagnostic option, not a ceiling on authorized innovation. Requested standalone assessment remains the reviewer's deliverable.
+8. Match evidence planning to the requested artifact. Early idea cards need a discriminating observation, proof direction, or question, not an experiment matrix. For a complete research plan or explicitly requested evidence design, use `references/experiment-design.md` to select relevant evidence for the central claim. Full execution protocols belong to `ccf-experiment-designer`; planned results remain predictions, not evidence.
+9. Return the developed idea in the user's requested shape. Distinguish current weakness from development potential. Offer a rescue when a specific plausible change preserves value; stop a candidate with a demonstrated contradiction, hard-constraint violation, or no remaining contribution without a compulsory rescue pass. Preserve the broader research objective. If a required decision remains open, explain the exact evidence needed and finish the independent parts.
 
 ## Output Contract
 

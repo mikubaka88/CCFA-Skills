@@ -2,6 +2,14 @@
 
 Use this file for source selection, source-quality exclusions, paper classification, and quality scoring.
 
+## Query Cost And Reuse
+
+Reuse the effective `extended_search` preference from Common; it governs optional expansion beyond the requested evidence coverage, not verification required to support a claim. Batch identifiers through an available API and request only fields needed at this stage: identity/date/URL for screening, abstracts for relevance, and original sections for substantive claims. Do not fetch full citation graphs or author profiles merely because an endpoint returns them. Resolve an ambiguous identity before merging DOI/arXiv/title records; never collapse different versions or supplementary material blindly.
+
+Use the existing source cache and record the source version, inspected pages/sections, and relevant finding IDs in the current report. A changed source invalidates its dependent interpretation, not unrelated verified references. An unchanged cached PDF does not establish that no newer paper/version exists; freshness-sensitive searches still check current primary records. Preserve a relevant evidence excerpt and its anchor instead of repeatedly copying a full extraction across skills. Keep a model-generated interpretation distinct from the source passage.
+
+For unresolved tables, formulas, or reading order, inspect the affected source page first. Additional OCR/visual enrichment follows `enhanced_document_parsing`; process only relevant uncertain pages unless whole-document coverage is necessary. Do not start a new vector database, download a parser model, or invoke a description model for every figure by default. Use host-provided tools before optional new integrations.
+
 ## Source Tiers
 
 Preferred primary sources:

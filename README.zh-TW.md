@@ -1,12 +1,18 @@
+<p align="center">
+  <a href="https://trendshift.io/repositories/151023?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-151023" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/151023/daily?language=TeX" alt="mikubaka88%2FCCFA-Skills | Trendshift" width="250" height="55"/></a> <a href="https://trendshift.io/repositories/151023?utm_source=trendshift-badge&amp;utm_medium=badge&amp;utm_campaign=badge-trendshift-151023" target="_blank" rel="noopener noreferrer"><img src="https://trendshift.io/api/badge/trendshift/repositories/151023/weekly?language=TeX" alt="mikubaka88%2FCCFA-Skills | Trendshift" width="250" height="55"/></a>
+</p>
+
 <div align="center">
 
-<h1>CCFA Skills</h1>
+<h1>CCFA-Skills</h1>
 
 **A skill family for shaping the research storyline of CCF-A papers.**
 
 [简体中文](README.md) · [English](README.en.md) · [繁體中文](README.zh-TW.md)
 
-<img src="assets/ccfaskills.png" alt="CCFA Skills logo" width="560">
+**[最新更新 · 2026-10-15](#latest-updates)**
+
+<img src="assets/ccfaskills.png" alt="CCFA-Skills logo" width="560">
 
 ---
 
@@ -23,27 +29,27 @@ Yann LeCun and James M. Manyika, [*Learning Abstractions*](https://www.amacad.or
 - [快速開始](#快速開始)
 - [為什麼需要一個 skill 家族](#為什麼需要一個-skill-家族)
 - [家族架構與核心 skills](#家族架構)
+- [日月設定台](#日月設定台)
 - [從 idea 到投稿](#從-idea-到投稿)
 - [繪圖示例](#繪圖示例)
 - [寫作如何保持自然](#寫作如何保持自然)
 - [讓圖既好看，也能繼續修改](#讓圖既好看也能繼續修改)
 - [各司其職，彼此接力](#各司其職彼此接力)
 - [安裝、維護與驗證](#倉庫結構)
+- [最新更新](#latest-updates)
 - [Star 旅程](#star-旅程)
 
 凌晨兩點，實驗終於結束，新的結果比預期更好。可是重新打開稿件時，真正棘手的問題才顯現出來：最初那個清晰而有力的研究問題已經埋進冗長的 related work，方法描述與程式中的實際機制出現偏差；新補的實驗回應了上一輪審稿意見，卻讓論證分成幾條彼此疏離的線索。每個局部似乎都更完善了，整篇論文反而更難讀懂。
 
 許多有潛力的研究最終未能充分展現價值，並不是因為 idea 不夠好，而是因為它在漫長的推進中逐漸失去了清晰的輪廓。文獻愈積愈多，實驗表格不斷擴張，作者還要在研究、寫作和審稿視角之間反覆切換。一個無所不包的長 prompt 很難同時做好這些事情，因為檢索需要忠於來源，實驗需要遵循協議，寫作需要圍繞論證展開，審稿則必須保持獨立判斷。
 
-我們因此設計了 CCFA Skills。論文不是等待逐項填充的文件，而是一條需要在反覆修改中保持連貫的研究故事線。17 個分工明確的 skills 從 idea、文獻和實驗出發，幫助論證逐漸成形，並貫穿寫作、繪圖、評審、rebuttal 與投稿。當任務從一個 skill 交給另一個 skill 時，研究問題、證據和結論之間的聯繫仍然會被保留下來。
+我們因此設計了 CCFA-Skills。論文不是等待逐項填充的文件，而是一條需要在反覆修改中保持連貫的研究故事線。17 個分工明確的 skills 從 idea、文獻和實驗出發，幫助論證逐漸成形，並貫穿寫作、繪圖、評審、rebuttal 與投稿。當任務從一個 skill 交給另一個 skill 時，研究問題、證據和結論之間的聯繫仍然會被保留下來。
 
 <p align="center">
-  <img src="assets/ccfa-skills-hero.zh-TW.svg" alt="CCFA Skills 家族概覽" width="100%">
+  <img src="assets/ccfa-skills-hero.zh-TW.svg" alt="CCFA-Skills 家族概覽" width="100%">
 </p>
 
 ## 快速開始
-
-**ICLR 2027 適配更新（2026-09-16）**：依官方指南校準匿名、頁數、年份模板與 AI 使用聲明檢查；評審聚焦影響結論的證據與問題，沿用固定報告結構。[適配細節](ccf-paper-writer/references/venue-guides/iclr.md) · [更新紀錄](CHANGELOG.md)。版本仍為 `0.10.0`。
 
 選擇你正在使用的 Agent：
 
@@ -69,7 +75,7 @@ npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes -
 
 論文研究中的困難彼此相連，卻不能由同一種思考方式解決。
 
-| 研究者遇到的困境 | CCFA Skills 如何回應 |
+| 研究者遇到的困境 | CCFA-Skills 如何回應 |
 |---|---|
 | 檢索、實驗、寫作和審稿擠在同一次對話中，彼此干擾 | 由最適合當前任務的 skill 負責，其他能力按需協助 |
 | 文獻事實、實驗數字和正文結論逐漸脫節 | 分別核對來源、實驗設計與全文一致性，讓每個 claim 都能找到證據 |
@@ -80,7 +86,7 @@ npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes -
 
 ## 我們珍視什麼
 
-- **讓研究問題先於工具。** 評價一個 idea 與發展一個 idea 是兩種工作；設計實驗與美化圖表也需要不同的判斷。CCFA Skills 讓每一步都回到它真正要回答的問題。
+- **讓研究問題先於工具。** 評價一個 idea 與發展一個 idea 是兩種工作；設計實驗與美化圖表也需要不同的判斷。CCFA-Skills 讓每一步都回到它真正要回答的問題。
 - **讓證據始終有據可查。** 文獻、實驗協議、數值、結論、圖表和引用不會被混成一團。缺失的事實保持缺失，直到它被可靠地找到或驗證。
 - **讓論文聽起來像學術，而不是辯護。** Humanization 刪除防禦性鋪墊、機械枚舉、過度破折號和內部工程措辭，同時保留真正影響結論的限制、證據與披露。
 - **讓評審保持獨立。** Reviewer 負責判斷，Writer 負責修改。先看問題，再決定如何改，避免一邊審稿一邊替自己解釋。
@@ -89,7 +95,7 @@ npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes -
 
 ## 家族架構
 
-![CCFA Skills 家族架構](assets/ccfa-skills-architecture.zh-TW.svg)
+![CCFA-Skills 家族架構](assets/ccfa-skills-architecture.zh-TW.svg)
 
 所有 CCFA 任務都先啟用 `ccf-humanization`，再啟用 `ccf-common`，然後進入具體技能；檢索、評審、繪圖、實驗與維護也遵循此順序。前者統一自然、直接且保留真實證據的表達，後者落實協作、範圍、證據和檔案規則。同一任務交接時重用已生效規則，只更新變化或遺失的部分；詳細改寫與實驗檢查依實際任務執行，不重複產生前置報告。各技能繼續負責自己的產物並整合必要協作。
 
@@ -119,11 +125,27 @@ npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes -
 
 ![按職責劃分的 skill 目錄](assets/ccfa-skills-catalog.zh-TW.svg)
 
+## 日月設定台
+
+用月亮、太陽與「按需」控制七項額外投入：獨立複核、擴展檢索、增強文件解析、多方案繪圖、詳細過程報告、備選路線對照與維護期規則迭代。後兩項預設關閉，分別限制為一次未決選擇最多一條備選、一次維護任務最多一版額外候選；一般科研任務不會自行改寫 skills。設定頁支援簡體中文、繁體中文、English，以及淺色、深色與跟隨系統主題。每項分別解釋 token 與時間的變化；這些是相對預設流程的定性說明，不是用量計費或節省承諾。
+
+在倉庫根目錄執行（Python 3.10+，無需額外依賴）：
+
+```bash
+python ccf-common/scripts/preferences.py serve
+```
+
+瀏覽器會開啟本機設定頁。需要專案覆寫時，加入 `--project path/to/paper`；不自動開啟瀏覽器可加入 `--no-browser`。已安裝副本也可執行其 `ccf-common/scripts/preferences.py`。使用者偏好儲存在 `$CODEX_HOME/ccfa/preferences.json`（未設定時為 `~/.codex/ccfa/preferences.json`），專案覆寫儲存在論文根目錄的 `.ccfa/preferences.json`。只儲存明確選擇的覆寫項目，更新 skills 不會重設這些檔案。
+
+月亮關閉額外擴展，太陽允許相關任務啟用，按需則依具體問題觸發。目前明確指令優先；Humanization → Common、必要核驗與結構化評審始終保留。設定由 Common 每個任務解析一次並於交接時重用，開啟頁面本身不會啟動研究或額外模型呼叫。
+
+也可直接開啟下載後的 [靜態設定頁](ccf-common/assets/configurator/index.html) 匯入、編輯及匯出 JSON；靜態匯出後需將檔案放到上述設定位置才會生效。頁面區分草稿、已儲存與僅匯出。完整規則見 [偏好契約](ccf-common/references/preferences.md)。
+
 ## 從 idea 到投稿
 
 ![預設科研工作流](assets/ccfa-skills-workflow.zh-TW.svg)
 
-這不是一條必須從頭走到尾的流水線。你可以帶著一個尚未成形的想法而來，也可以只帶來一張難以解釋的結果表、一段總被審稿人誤解的方法，或一份即將提交的 PDF。CCFA Skills 會從你所在的位置開始，只調用真正有幫助的部分。
+這不是一條必須從頭走到尾的流水線。你可以帶著一個尚未成形的想法而來，也可以只帶來一張難以解釋的結果表、一段總被審稿人誤解的方法，或一份即將提交的 PDF。CCFA-Skills 會從你所在的位置開始，只調用真正有幫助的部分。
 
 ## 繪圖示例
 
@@ -251,6 +273,40 @@ CCFA-Skills/
 
 中文輸出採用明確的 UTF-8 讀寫，相容帶 BOM 的輸入；終端管道、中文檔名和圖形字型分別檢查。家族校驗已加入中文與生僻字回歸，解碼錯誤會明確回報，避免用替換字元掩蓋問題。圖中的中文使用可用的 CJK 後備字型，保留原定的西文字型。
 
+<a id="latest-updates"></a>
+
+## 最新更新：研究推進、協作與個人化
+
+**2026-10-15 · 版本 `0.10.0`**。本輪圍繞五個方面完善既有規則，保留 17 個 skills、固定評審範本與原有專案結構。
+
+### 反降智與任務連續性
+
+將目前目標、執行路線與下一步分開記錄，在換路線、接受協作者結果、恢復上下文及交付時核對目標與限制。出現錯誤或錯位時，縮小下一步操作，保留可用產物，並依實際檔案與證據恢復。錯誤摘要不會自動成為後續事實，過時結果需要重新核對適用條件。有依據可以改路，使用者修改目標立即生效。
+
+短任務不新增狀態檔或評估呼叫，長任務按需沿用一份精簡記錄。[連續性規則](ccf-common/references/continuity.md)與唯讀檢查器用於減少漂移及錯誤傳播，無法識別後台隱藏的模型變化。目前的基本行為測試尚未測得真實模型降級環境下的效能增益。
+
+### 多智能體最佳化
+
+在宿主支援多智能體時，依相依關係拆分可獨立完成的工作，由一位負責人整合結果。思路探索先獨立提出機制，再共享相關證據，減少首個答案對其他候選的影響。檢索與核驗可並行，緊密銜接的論文論證保持統一作者。貢獻附帶證據位置與適用版本，同一來源的重複引用不算獨立驗證，共用檔案由其負責人循序修改。
+
+每項委派都有明確範圍、完成條件與寫入邊界，只更新受變化影響的任務。不為協作增加固定辯論輪次，額外獨立評審繼續受偏好設定控制。詳見[任務模式](ccf-common/references/task-modes.md)與[交接規則](ccf-common/references/handoff-modes.md)。
+
+### 自訂個人化設定
+
+[日月設定台](#日月設定台)提供七項 `off / auto / on` 增強選項，支援簡中、繁中、英文與日夜主題。頁面說明每個選項可能增加的 token 與時間，使用者偏好可由專案設定覆寫，設定儲存在 skills 安裝目錄之外。設定頁面本身不請求外部服務或呼叫模型。必要前置步驟、證據核驗與明確要求的工作始終保留。
+
+### 創新探索與寫作邏輯
+
+探索階段比較真正不同的假設與機制，執行階段穩定推進選定路線。已證實無效的候選可以直接淘汰，有價值的假設可以用理論、反例、觀察或實驗區分。新增模組需要解釋它改變了什麼限制，以及刪去它會失去什麼。相同證據下的重複打分、改名與改寫不算進展，明確要求的發散也不受可選路線開關限制。
+
+寫作先核對段落主旨、句間關係與資訊順序，再處理語言。反向提綱協助發現論證斷裂，雙語分號與密集重複的 `rather than` 診斷用於定位候選問題。科學上必要的對比、否定、限制與不確定性仍保留。詳見[思路最佳化](ccf-idea-optimizer/SKILL.md)、[寫作規則](ccf-paper-writer/references/prose-quality-guardrails.md)與 [Humanization](ccf-humanization/SKILL.md)。
+
+### 有序檔案與精簡上下文
+
+跨技能沿用同一產物路徑與工作目錄，普通迭代更新目前檔案。詳細規則按需載入，交接傳遞與目前決策相關的證據及來源位置，減少重複檢索、報告與上下文複製。僅清理本任務產生且確認可丟棄的中間檔案，保留原始材料、可編輯來源與必要驗證證據。目錄與編碼規則見[倉庫結構](#倉庫結構)。
+
+[完整更新紀錄](CHANGELOG.md) · [此前的 ICLR 2027 適配](ccf-paper-writer/references/venue-guides/iclr.md)
+
 ## 維護與驗證
 
 ```powershell
@@ -258,6 +314,12 @@ python ccf-common\scripts\check_v04.py
 python ccf-common\scripts\check_path_privacy.py
 python ccf-common\scripts\check_markdown_links.py
 python ccf-common\scripts\check_sources.py
+python ccf-common\scripts\check_markdown_links.py
+python ccf-common\scripts\check_sources.py
+python ccf-common\scripts\test_preferences.py
+python ccf-common\scripts\test_continuity.py
+node --check ccf-common/assets/configurator/app.js
+node ccf-common/scripts/test_configurator.js
 ```
 
 這些檢查確認 17 個 skills 能被正確識別，彼此職責清楚，文件連結有效，公開檔案不包含本機路徑或私人資訊。實驗與效率結果見 [實驗結果.md](实验结果.md)。
@@ -284,7 +346,7 @@ python ccf-common\scripts\check_sources.py
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=mikubaka88/CCFA-Skills&amp;type=Date&amp;theme=dark" />
     <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=mikubaka88/CCFA-Skills&amp;type=Date" />
-    <img alt="CCFA Skills 的 GitHub 星標成長曲線" src="https://api.star-history.com/svg?repos=mikubaka88/CCFA-Skills&amp;type=Date" width="800" />
+    <img alt="CCFA-Skills 的 GitHub 星標成長曲線" src="https://api.star-history.com/svg?repos=mikubaka88/CCFA-Skills&amp;type=Date" width="800" />
   </picture>
 </a>
 

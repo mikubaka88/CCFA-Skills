@@ -1,80 +1,31 @@
-# Self-Test: Default User-Custom Writing Format
+# Custom Format Behavior Acceptance Cases
 
-Purpose: verify that `references/custom-format/default-user-format.md` is used when no target venue is specified, that it loads the user-custom ICLR/CVPR exemplars, and that it runs a draft -> expert review -> revision -> re-review loop.
+These cases specify expected behavior for maintenance checks. They are not records of executed model evaluations or evidence of a quality or score improvement.
 
-Prompt simulated: "帮我写一篇关于动态三维场景记忆的论文摘要和引言结构。"
+## Format Selection
 
-Assumption: no target venue was specified, so the user-custom writing format is active.
+| Request | Expected behavior |
+| --- | --- |
+| “帮我写一个论文摘要”，未指定会议或格式 | Return the requested abstract; no compulsory custom-format intake, exemplar loading, or LaTeX wrapper. |
+| New LaTeX paper, no usable target template | Disclose the NeurIPS format fallback; draft content before requested length fitting. |
+| Supplied Markdown manuscript, no venue | Preserve Markdown and the requested edit scope. |
+| User requests the custom format or the project already selects it | Apply its argument principles; select relevant exemplar cards only as needed. |
+| Explicit venue template is supplied but no local venue guide exists | Preserve the supplied template; verify current rules only for a compliance claim. |
 
-Loaded files:
+## Evidence And Cost Boundaries
 
-- `references/custom-format/default-user-format.md`
-- `references/exemplars/cards/llava-4d.md`
-- `references/exemplars/cards/vggt.md`
-- `references/storyline-blueprint.md`
-- `references/expert-review-loop.md`
+| Input or request | Expected behavior |
+| --- | --- |
+| Draft about dynamic 3D scene memory; only a proposed method is supplied | Explain supplied mechanisms without inventing a benchmark, result, comparison win, or completed construction. |
+| Experiments are pending | Follow `references/materials-to-manuscript.md`; retain the authorized scaffold and missing-value markers, with no outcome-dependent abstract or conclusion claim. |
+| A narrow literature thread has few decisive sources | Judge support and closest-work coverage; do not add citations to reach a quota. |
+| A real ordered procedure uses “First” and “Second” | Preserve useful ordering; humanization evaluates meaning and flow rather than forbidden words. |
+| Additional independent review is disabled | Complete necessary primary checks and any required scoped handoff; do not create an unrequested second independent pass. |
+| Additional independent review is enabled and useful | Inspect a bounded unresolved issue, integrate evidence once, and avoid duplicate full reports. |
+| Ordinary writing request | Return the requested prose. Keep internal argument maps and checks internal unless needed to explain a material unresolved input. |
 
-## Draft Pass 1
+## Exemplar Use
 
-### Blueprint
+The user-supplied LLaVA-4D and VGGT cards remain attributed writing references. Their relevance depends on the scientific object and writing question. Neither is mandatory, and their methods, performance claims, or wordings must not be copied into a new paper.
 
-Task: dynamic 3D scene memory for embodied visual-language agents.
-
-Gap: existing agents can parse current observations but struggle to remember object motion and viewpoint-dependent geometry over long trajectories.
-
-Root challenge: a dynamic scene representation must bind identity, 3D location, time, and language-grounded attributes while staying compact enough for decision making.
-
-Insight: object-time memory tokens can bridge LLaVA-4D-style spatiotemporal grounding and VGGT-style direct multi-output geometry.
-
-Method: a Dynamic Geometry Memory Transformer that writes object-time geometry tokens and predicts navigation waypoints, temporal object answers, and evidence traces.
-
-Evidence: dynamic relocation benchmark, multi-task geometry grounding, ablations for time encoding, memory compaction, and evidence trace supervision.
-
-### Abstract Draft
-
-Embodied visual-language agents need to reason about dynamic 3D scenes, yet most current systems either describe the present view or maintain static maps. This loses the temporal evidence needed when objects move, disappear, or become visible from a different viewpoint. We propose Dynamic Geometry Memory Transformer, a model that writes compact object-time memory tokens from egocentric video and retrieves them for language-conditioned navigation and temporal question answering. Each token stores semantic attributes, camera-relative geometry, global 3D position, timestamp, and motion cues, allowing the model to predict navigation waypoints, object-state answers, and supporting evidence traces in a single forward pass. We evaluate on a dynamic relocation benchmark with moving-object goals and temporal queries, comparing against static semantic maps, recurrent frame memory, and video-LMM retrieval baselines. The model improves temporal grounding and navigation success while reducing retained visual tokens; ablations isolate the roles of time encoding, memory compaction, and evidence supervision.
-
-## Expert Review Pass 1
-
-Score: 6/10.
-
-High-severity issues:
-
-- The draft sounds plausible but does not define how camera-relative geometry becomes global 3D position.
-- The evidence package is broad; without a concrete benchmark construction paragraph, the central claim could look hypothetical.
-- "Single forward pass" echoes VGGT but may be unsupported if the memory writer runs over a sequence.
-
-Medium-severity issues:
-
-- The relation between navigation waypoints and question answering needs clearer task boundaries.
-- The storage reduction claim needs a metric.
-
-Revision plan:
-
-- Replace "single forward pass" with "one retrieval-and-decision stage" unless the architecture truly supports single-pass inference.
-- Define the output triplet before detailed token fields.
-- Add a benchmark construction sentence.
-- Add a storage metric placeholder tied to retained token count and performance.
-
-## Draft Pass 2
-
-### Revised Abstract
-
-Embodied visual-language agents need to remember dynamic 3D scenes, not only recognize the current view. Static maps lose object motion, while frame-history memories store redundant context without exposing which past observation supports a decision. We propose Dynamic Geometry Memory Transformer, an object-time memory model for language-conditioned relocation and temporal scene queries. Given egocentric video, the model writes compact memory tokens that bind object identity, local geometry, estimated global position, timestamp, and motion state; at query time it retrieves a support set and predicts a waypoint, an answer, and an evidence trace. We introduce a dynamic-room benchmark by replaying object relocations across multi-view trajectories and asking agents to navigate to, describe, or localize moved objects. Experiments compare against static semantic maps, recurrent frame memory, and video-LMM retrieval baselines under matched storage budgets. The proposed memory improves temporal grounding and navigation success, and ablations show that time encoding, motion-aware writing, and evidence-trace supervision each reduce failure on moved-object queries.
-
-## Expert Review Pass 2
-
-Score: 7/10.
-
-Remaining risks:
-
-- Needs exact benchmark details before a real submission.
-- Needs baseline names and data-generation protocol.
-- The global-position estimate must be described carefully in the method.
-
-Outcome:
-
-- The default custom format loaded the ICLR and CVPR user exemplars.
-- The first draft used the desired dynamic-scene and direct-output style.
-- The review loop removed a VGGT-like overclaim and clarified evidence.
-- The format is ready as a default unspecified-venue workflow, with remaining risks correctly tied to future experimental details.
+For a maintenance evaluation, run the same inputs against old and new rules, retain actual outputs and available cost measurements only when the evaluation is authorized, and inspect semantic differences. Do not label these expected behaviors as test passes without execution.

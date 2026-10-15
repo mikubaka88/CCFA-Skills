@@ -1,8 +1,10 @@
-﻿# Section Modules
+# Section Modules
 
 Use this file when drafting, rewriting, or checking a specific paper section. Use `storyline-blueprint.md` only when global narrative decisions are needed; reuse an established story for local edits.
 
 Use the steps below as internal writing control unless the user asks to see the plan. For direct polishing, line editing, compression, or LaTeX revision, return the revised text in the user's original format rather than exposing paragraph-role analysis.
+
+For a complete initial draft, apply `materials-to-manuscript.md` before these section guides. The moves below are functional roles, not fixed sentence counts or compulsory paragraph templates. Several related observations can support one theme. Choose sections by the actual contribution; a new task, benchmark, and method are not required in every paper.
 
 Also apply `references/prose-quality-guardrails.md`. Section drafting must avoid defensive framing, symbolic question/claim labels in prose, formula dumping, number-only abstracts, third-person manuscript narration, and punctuation used as a substitute for logic.
 
@@ -22,7 +24,7 @@ Show steps 1-2 only when the user requested a plan, outline, diagnosis, or expla
 
 ## Section-Length Guidance (ICLR/NeurIPS/ICML, ~9-page main text)
 
-These are planning heuristics for an illustrative AI/ML manuscript. Adapt them to the actual venue, paper type, and supplied content; they are not acceptance criteria.
+These are later fitting heuristics for an illustrative AI/ML manuscript, not initial-draft quotas. Use only after the content/alignment phase and when length fitting is requested. Adapt to the actual venue, paper type, and supplied content.
 
 | Section | Typical Range | Notes |
 | --- | --- | --- |
@@ -57,6 +59,7 @@ Checks:
 - Is the method name understandable without hidden context?
 - Does the abstract fit target venue style: concise for systems, precise for theory, contribution/evidence-balanced for AI/CV/NLP?
 - Is the abstract built around the scientific contribution rather than a dense list of numeric improvements?
+- If results are pending, does it explain the research without claiming an unobserved improvement or validation?
 
 ## Introduction
 
@@ -75,7 +78,7 @@ Citation rules:
 - Every prior-work claim in the introduction must have a citation. A paragraph that describes what "existing methods" do without citing any is incomplete.
 - Cover the relevant foundations, closest approaches, and gap with verified citations. Citation count alone is not a completeness criterion.
 - Use natural citation weaving: claim first, citation second. "Large-scale pretraining on web-scale data [4,5] has become the dominant paradigm..." not "Brown et al. [4] and Chowdhery et al. [5] proposed..."
-- Do not use more than one "Author et al. [N]" as a sentence subject per paragraph. Prefer "Self-attention mechanisms [1]..." over "Vaswani et al. [1] proposed..."
+- Prefer scientific subjects and retain author-name attribution when informative, following `citation-workflow.md` without a per-paragraph quota.
 
 Checks:
 
@@ -92,9 +95,7 @@ Goal: make novelty easy to verify.
 
 Recommended structure:
 
-1. 2-4 topic groups.
-2. For each group: paradigm -> representative methods -> limitation tied to this paper -> distinction.
-3. End with the closest gap the paper fills.
+Group sources by the ideas, assumptions, or capabilities relevant to the scientific question. Explain representative work and the closest technical relationships with accurate attribution. Group count follows coverage needs. A meaningful distinction can be explicit, but do not require every group to end with a limitation or a claim of superiority.
 
 Citation rules:
 
@@ -112,24 +113,29 @@ Checks:
 - Does Related Work prepare the reader for the Method?
 - Are factual prior-work claims supported and the closest competitor discussed explicitly?
 
+## Task And Benchmark
+
+Use when the actual contribution defines a task, dataset, or evaluation resource. Establish the scientific object, required inputs and outputs, and conditions before describing construction. Separate task semantics from one method's interfaces and training labels from inference inputs.
+
+Explain the sample unit, category meanings, source coverage, annotation formation, important construction decisions, quality checks, and split policy. Distinguish task categories, output fields, difficulty axes, and metric groups. Report verified statistics with units and counting scope; target sizes or illustrative examples are not completed dataset counts.
+
+Give primary metrics their scientific meaning and necessary definitions, including applicability, denominator, units, and aggregation. Main text contains what readers need to interpret the evidence; the appendix can carry detailed rules. Organize construction around why the resource measures the task, not around scripts, filenames, or operational logs.
+
 ## Method
 
 Goal: make the mechanism auditable and reproducible.
 
 Pre-writing questions:
 
-1. What modules exist?
-2. For each module, what is the workflow?
-3. Why is the module needed?
-4. Why should it work?
-5. What assumptions, hyperparameters, or implementation details matter?
+1. What scientific relationship does the method model?
+2. What supplied computations realize that relationship?
+3. What information and representation does each key mechanism use and produce?
+4. Why does that operation address the identified problem?
+5. Which definitions, assumptions, training signals, and inference dependencies are necessary to understand it?
 
 Recommended structure:
 
-1. Overview: setting, core idea, pipeline figure, section map.
-2. Module sections: motivation -> design -> forward process -> technical advantage.
-3. Implementation details: reproducible specifics.
-4. Complexity, assumptions, or proof sketch when relevant.
+Establish the setting, central representation, and overall computation. Organize key mechanisms in their actual dependency order, connecting the problem to the operation and its role. Modules can provide useful structure when they exist and have distinct scientific functions; do not invent an encoder/module/decoder architecture or use an interface inventory as the narrative. Explain training and inference, with supporting reproducibility details in the appropriate body or appendix location. Complexity and proofs belong when supplied and relevant, not as decoration.
 
 Citation rules:
 
@@ -145,10 +151,10 @@ Style rule:
 
 Checks:
 
-- Can a reviewer reconstruct the pipeline from text and figure?
+- Can a reader reconstruct the core computation from text and any supplied figure?
 - Does each module have motivation and technical advantage?
 - Are inputs, outputs, notation, and symbols defined before use?
-- Are design choices later validated by ablation, theorem, analysis, or user study?
+- Are design rationales distinguished from effects actually supported by ablation, theorem, analysis, or study? Pending tests are not completed validation.
 - Are citations present for every borrowed component? If not, search for sources before finishing.
 
 ## Experiments
@@ -166,14 +172,13 @@ Recommended structure:
 
 Citation rules:
 
-- Every baseline, dataset, and metric must be cited. A results table without baseline citations signals incomplete work.
-- Cite the datasets, nontrivial metrics, and baselines actually used. Do not add irrelevant citations to reach a quota.
+- Cite external datasets, borrowed metrics, and baseline methods actually used. Define newly introduced resources and metrics in the paper; cite their predecessors where relevant, following `citation-workflow.md`.
 - When comparing against prior published results, cite both the method paper and the source of the specific numbers being compared.
-- Do not cite a baseline without having its results to compare against unless it is marked as future work.
+- In a results-pending draft, cite baselines specified in the supplied design and leave results blank. Their presence in a protocol does not imply a completed comparison. For reported comparisons, trace both the method and the actual result source.
 
 Checks:
 
-- Does each claimed contribution have a corresponding experiment?
+- Does each empirical claim have applicable evidence, or remain unasserted while its result is pending? Formal and dataset contributions need the appropriate proof or construction support, not necessarily a model experiment.
 - If the user needs datasets, baselines, ablations, benchmark design, or fill-in result tables, use `ccf-experiment-designer` through the CCFA handoff mode.
 - Are baselines strong, recent, and fair? Is every baseline cited?
 - Are metrics standard and sufficient?
@@ -190,12 +195,12 @@ Goal: make the paper inspectable before close reading.
 Structural rules:
 
 1. Every figure/table should answer one reviewer question.
-2. Captions should state what, where, and the key takeaway — go above tables.
-3. Tables must use `\toprule`, `\midrule`, `\bottomrule` from `booktabs`; never `\hline` or vertical rules.
+2. Captions state the evaluated object, necessary setting, and supported takeaway; pending-result captions state scope without a conclusion. Follow the user's established style and venue requirements for placement.
+3. Follow `table-style-guide.md` for table rules, with the venue requirements and established user style taking precedence.
 4. Numbers in the same column must have the same decimal precision.
-5. Best results should be bolded; use one highlighting convention throughout.
-6. Narrow columns: abbreviate, `\raggedright`, `\small`, or `\makecell` — never let the compiler produce underfull hboxes.
-7. Wide tables: `table*`, `\small`, or abbreviated headers — never squeeze columns.
+5. Actual best results can be bolded under one convention; do not emphasize unknown cells or incomparable protocols as winners.
+6. Resolve visible overflow and poor spacing through column widths, readable headers, or line breaks. Inspect warnings in the rendered table; harmless underfull hboxes do not require edits.
+7. Fit tables to the actual available width without sacrificing readability or automatically shrinking fonts.
 8. Pipeline figures should show data flow, modules, and outputs without overcrowding.
 9. Qualitative figures should avoid cherry-picking by showing representative successes and failures when possible.
 
@@ -204,7 +209,7 @@ Checks:
 - Can the paper's contribution be understood from figures and captions?
 - Are key claims visible in tables or figures?
 - Are visual examples aligned with the text discussion?
-- Are all tables free of vertical rules and `\hline`?
+- Do table rules and caption placement match the applicable template and user style?
 
 ## Conclusion
 
@@ -251,11 +256,4 @@ Visible output default: the rewritten paragraph only, preserving Markdown/LaTeX/
 
 ## LaTeX Drafting Mode
 
-When the user supplies only an idea and asks for a paper draft:
-
-1. Read the target venue guide from `venue-guides/index.md`; if the target venue is missing or unspecified, use the NeurIPS guide as the fallback.
-2. Establish a venue length budget using `length-budget-policy.md`.
-3. Use the venue's template path and section conventions for the visible LaTeX draft.
-4. Keep missing results, citations, figures, and theorem/proof details as `TBD` placeholders instead of inventing them.
-5. Prefer a full submission-shaped draft with real section content over a short compilable skeleton.
-6. Include venue-freshness, current page count, or missing-evidence notes after the LaTeX output, not before it.
+For a paper from an idea or research documents, follow `materials-to-manuscript.md`. Use the requested template, with a disclosed NeurIPS format fallback if needed. Write full content before applying `length-budget-policy.md` to requested fitting. Missing result values use `\emptycell`; unknown citations, core mechanisms, and proofs are not fabricated. Deliver substantive sections and necessary appendices rather than a short compilable skeleton. Report missing evidence and build status outside manuscript prose.

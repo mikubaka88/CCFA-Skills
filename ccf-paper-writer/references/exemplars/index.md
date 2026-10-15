@@ -4,7 +4,7 @@ Use this index when the user asks for CCF A-level paper writing, best-paper styl
 
 ## Default Custom Format
 
-When the target venue is not specified, load `references/custom-format/default-user-format.md` first. That format currently uses the user's two custom exemplar cards:
+Use `references/custom-format/default-user-format.md` when explicitly requested or established for the project. Missing venue information alone does not activate it or require exemplar loading. These user-supplied cards are available when relevant:
 
 | Role | Venue | Card | Use when |
 | --- | --- | --- | --- |
@@ -17,7 +17,7 @@ These two cards are user-custom writing-format sources. Do not treat them as ord
 
 Start with the one best-matching card when style adaptation is needed; load only its relevant sections. Add cards only to answer a distinct writing question, up to four for a full manuscript. This index does not require exemplars for a local edit:
 
-- Use the custom-format cards first when no target venue is specified.
+- Without a target venue, select by the actual scientific object, evidence type, and writing question; no card is mandatory.
 - Use same venue or venue family first when a target venue is specified.
 - Use same evidence type second: theorem, benchmark, user study, system, dataset, or ablation-heavy model.
 - Use same story shape third: new task, new benchmark, new model family, new capability, or new evaluation economy.
@@ -72,7 +72,7 @@ Use these cards when the target venue is outside the dominant AI/CV/NLP cluster.
 
 ## Recommended Bundles
 
-- Default unspecified-venue paper: load `references/custom-format/default-user-format.md`; it will select `llava-4d.md` and `vggt.md`.
+- Unspecified venue: preserve the requested format and use the writer's disclosed NeurIPS fallback only for a new LaTeX paper without a usable target template. Select an exemplar only for a concrete writing question.
 - 4D embodied AI paper: `llava-4d.md`, `vggt.md`, `neurips-2025-1000-layer-ssl-rl.md`.
 - ICLR-style theory or LLM paper: one ICLR recent best-paper card plus one same-topic card.
 - CVPR-style vision paper: one CVPR recent best-paper card plus `vggt.md` if the paper involves 3D geometry or multi-task prediction.
@@ -91,17 +91,12 @@ Use these cards when the target venue is outside the dominant AI/CV/NLP cluster.
 
 When loading exemplar cards, also follow the writing style and citation rules established in the main skill references:
 
-- `references/research-writing-patterns.md` (Natural Writing Style section): prose flow, forbidden patterns (no bold labels, no citation dumps), citation weaving.
-- `references/citation-workflow.md`: search-bib-cite workflow, citation density per section, natural citation patterns.
-- `references/output-style-policy.md` (Citation Format Rules): claim-first citation style, no author-name subjects, bib file as source of truth.
+- `references/research-writing-patterns.md` (Natural Writing Style section): prose flow, selective emphasis, and citation weaving.
+- `references/citation-workflow.md`: verified attribution and evidence coverage without citation quotas.
+- `references/output-style-policy.md`: requested format, preserved citation keys, and phase-aware drafting.
 
 The exemplar cards provide structural patterns. The style guides provide execution rules. Use both.
 
 ## Output Reminder
 
-After loading cards, produce:
-
-1. Chosen exemplar set and why each card fits.
-2. Transferable writing moves.
-3. Drafting warnings where an exemplar's confidence would not be supported by the user's evidence.
-4. A section plan or revision that is original to the user's paper.
+For an explicit exemplar-analysis request, identify selected cards and transferable writing moves with source attribution. For ordinary drafting, apply relevant moves internally and return the requested original prose; do not append a compulsory exemplar report, warning list, or section plan.
