@@ -10,7 +10,7 @@
 
 [Simplified Chinese](README.md) · [English](README.en.md) · [Traditional Chinese](README.zh-TW.md)
 
-**[Latest updates · 2026-10-15](#latest-updates)**
+**[Latest updates · v0.11.0](#latest-updates)**
 
 <img src="assets/ccfaskills.png" alt="CCFA-Skills logo" width="560">
 
@@ -127,19 +127,48 @@ The complete responsibility map:
 
 ## Day and night controls
 
-Configure seven optional enhancements with moon/sun controls and an automatic mode: independent review, broader search, enhanced document parsing, figure alternatives, detailed process reports, alternative routes, and maintenance rule iteration. The last two default to off, allowing at most one alternative per unresolved decision or one additional rule candidate per maintenance task. Ordinary research does not rewrite skills automatically. The local page supports Simplified Chinese, Traditional Chinese, and English, with light, dark, and system themes. Each option explains its marginal token and time impact qualitatively; these are not metered usage or promised savings.
+When you are tightening an abstract, you may want a quick edit. Three days before submission, you may be happy to wait for another assistant to check the key conclusions. The day and night configurator lets you make those choices and remembers them for later.
 
-From the repository root, run Python 3.10+ with no extra dependencies:
+![The CCFA-Skills local configurator](assets/configurator-preview.png)
+
+*The actual local configuration page. Adjust the options in your browser, then click “Save preferences” to apply them.*
+
+Start with **Light**, **Balanced**, or **Deep**, then adjust any of the seven enhancements. The page supports Simplified Chinese, Traditional Chinese, and English, with light, dark, and system themes. **☾ Off** skips unrequested extra work, **☀ On** adds the enhancement to relevant tasks, and **Auto** enables it when a specific need arises. Each card explains what the extra work involves and why it may use more tokens or take longer.
+
+From the repository root, run this command with Python 3.10+; no extra dependencies are needed:
 
 ```bash
 python ccf-common/scripts/preferences.py serve
 ```
 
-The browser opens the local configurator. Add `--project path/to/paper` for project overrides, or `--no-browser` to print the launch URL. An installed copy can run its own `ccf-common/scripts/preferences.py`. User settings live at `$CODEX_HOME/ccfa/preferences.json`, falling back to `~/.codex/ccfa/preferences.json`; project overrides live at `.ccfa/preferences.json` in the paper root. Only chosen overrides are saved, outside installed skills, so skill updates preserve them.
+Your browser will open the local configurator. These three examples are useful starting points. Choose a preset, adjust it to suit your work, and save:
 
-Moon disables optional extensions, sun enables them for relevant tasks, and automatic mode requires a concrete trigger. Current explicit instructions take precedence. Humanization → Common, necessary verification, and structured reviews remain active. Common resolves settings once per task and shares them at handoffs. Opening the page does not start research or invoke a model.
+| What you are working on | Settings to try | Where the extra effort goes |
+|---|---|---|
+| **Everyday editing:** clarify an abstract or shorten a method paragraph | Choose **Light**, which turns all seven optional enhancements off | Focus on the requested edit, with fewer unrequested second reviews, figure alternatives, and process reports |
+| **Before submission:** check for gaps in key conclusions or citations | Start with **Balanced** and enable **Independent second review**. Enable **Additional process reports** if you need a handoff record | Another pass over relevant evidence and, when selected, a written record. Both add tokens and waiting time. Independent review requires a host that supports actual independent execution |
+| **Exploring an idea:** test whether a selected direction has a better underlying mechanism | Start with **Balanced**, set **Alternative route comparison** to **Auto**, and leave **Broader supplementary search** on **Auto** | Add one alternative when an unresolved choice is worth comparing, with further search focused on a specific evidence gap |
 
-The downloaded [static page](ccf-common/assets/configurator/index.html) also supports JSON import/edit/export. An export takes effect only after placing it at the configuration destination; the page distinguishes drafts, saved settings, and exported files. See the [preference contract](ccf-common/references/preferences.md) for details.
+**Deep** suits stages where you want to invest more in relevant tasks. It enables independent review, broader search, extra figure candidates, and process reports, with the other three enhancements on Auto. You can start there and turn off anything you do not need. Actual usage depends on your material, model, and tools, so the page explains likely costs without promising fixed savings.
+
+To give a paper its own settings, start the configurator with its directory. Replace the example path with yours:
+
+```bash
+python ccf-common/scripts/preferences.py serve --project "path/to/paper"
+```
+
+Choose **Personal defaults** or **This project** before saving. Personal defaults carry into future tasks. Explicit project settings take priority, while unset options continue to inherit. You might keep everyday work light and enable independent review only for a paper nearing submission. Preferences live outside installed skill folders and survive skill updates.
+
+**These switches control additional effort only.** Even with Light selected, an explicitly requested full review, several research directions, and necessary verification still happen. The Humanization → Common preflight always applies. Opening the page does not call a model or start a research task.
+
+<details>
+<summary>Configuration files and offline use</summary>
+
+Personal preferences live at `$CODEX_HOME/ccfa/preferences.json`, or `~/.codex/ccfa/preferences.json` if `CODEX_HOME` is unset. Project settings live at `.ccfa/preferences.json` inside the paper directory. An installed copy can run its own `ccf-common/scripts/preferences.py`. Add `--no-browser` to print the local launch URL without opening a browser.
+
+After downloading the repository, you can also open the [static configuration page](ccf-common/assets/configurator/index.html) to import, edit, and export JSON. That page exports a file only. Rename the export to `preferences.json` and place it in the appropriate directory above to apply it. See the [preference contract](ccf-common/references/preferences.md) for details.
+
+</details>
 
 ## From idea to submission
 
@@ -275,35 +304,45 @@ Chinese output uses explicit UTF-8 I/O with optional BOM support on input. Shell
 
 <a id="latest-updates"></a>
 
-## Latest updates: research progress, collaboration, and preferences
+## Latest updates: keep long projects on course and give good ideas room to grow
 
-**2026-10-15 · Version `0.10.0`**. This update improves five areas within the existing 17-skill family, fixed review templates, and project structure.
+**v0.11.0 · 2026-10-15**
 
-### Resilience and task continuity
+You are a few weeks into a research project. The conversation keeps growing, and the assistant keeps answering, but it gradually loses sight of why you started. You bring in more assistants, only to find that they have read the same papers and returned similar answers. A paragraph finally looks polished, yet its argument is still hard to follow.
 
-Keep the current goal, route, and next action distinct. Recheck goals and constraints when changing routes, accepting a contributor's work, recovering context, and delivering results. When errors or task misalignment appear, narrow the next operation, preserve usable artifacts, and recover against actual files and evidence. A faulty summary does not automatically become a fact, and stale results need their conditions rechecked. Evidence can justify rerouting, and explicit user goal changes take effect immediately.
+This update grew out of those moments. We want CCFA-Skills to help researchers carry work through: remember the important decisions, build on what is already done, and leave room for ideas worth trying. That gives you more time to judge whether the question matters, whether the evidence is convincing, and whether the next step is worth taking.
 
-Short tasks add no state file or evaluation call; long tasks can reuse one compact record. The [continuity rules](ccf-common/references/continuity.md) and read-only checker aim to limit drift and error propagation. They cannot identify hidden backend model changes. Current smoke tests have not measured a performance gain under real model degradation.
+### Resilience: remember the purpose as the conversation grows
 
-### Multi-agent coordination
+Suppose your original request was to find a promising research direction within your current compute budget. Several rounds later, the assistant has added modules and experiments until the plan is beyond your resources. Each step has an explanation, but together they have taken the work away from your goal.
 
-When the host supports multiple agents, split independently executable work by its dependencies and keep one integrating owner. Idea exploration develops mechanisms independently before sharing relevant evidence, reducing anchoring on the first answer. Retrieval and verification can run in parallel; closely connected manuscript arguments retain one author. Contributions carry evidence locations and applicable versions. Repeated citations to one source do not count as independent verification, and a shared file's owner serializes its edits.
+Long tasks can now keep a short record of your goal, important constraints, current approach, and next action. When changing direction, accepting another assistant's work, or recovering context, the assistant checks that record. If an answer goes off course, it returns to actual files and evidence, preserves sound work, and resumes with a small step that can be checked. New evidence can still justify a change of direction, with a clear explanation of why.
 
-Every delegation has a defined scope, completion condition, and write boundary. Update only tasks affected by a change. Avoid fixed debate rounds; optional independent review still follows user preferences. See [task modes](ccf-common/references/task-modes.md) and [handoffs](ccf-common/references/handoff-modes.md).
+This is our practical approach to degraded or inconsistent model behavior: make goals harder to lose and errors harder to carry forward. The [continuity rules](ccf-common/references/continuity.md) describe how it works.
 
-### Personal preferences
+### Multiple agents: give each assistant a useful question to answer
 
-The [day and night configurator](#day-and-night-controls) offers seven `off / auto / on` enhancements, Simplified Chinese, Traditional Chinese, and English, plus light and dark themes. Each option explains its possible token and time impact. Project settings can override user preferences, and configuration stays outside installed skill folders. The page itself makes no external requests or model calls. Necessary prerequisites, evidence checks, and explicitly requested work remain active.
+When exploring a direction, assistants can first develop mechanisms independently and then exchange relevant evidence. When checking a paper, one can verify citations while another examines numbers and conclusions, with one person or agent responsible for bringing the findings back into the manuscript. Each contributor has a concrete question and returns sources that can be checked.
 
-### Innovation and writing logic
+This release makes that division of work explicit. Independent tasks can run in parallel, while closely connected arguments keep one author responsible for coherence. Shared files have a clear owner, and findings from an older version are checked before reuse. Hosts that support multiple agents can use these rules to coordinate the work and integrate results once the evidence is sufficient. See [task modes](ccf-common/references/task-modes.md) and [handoffs](ccf-common/references/handoff-modes.md).
 
-Discovery compares different hypotheses and mechanisms; execution keeps the selected route stable. Proven invalid candidates can be discarded directly, while useful hypotheses can be distinguished through theory, counterexamples, observations, or experiments. An added module must explain which limitation it changes and what removing it would lose. Rescoring, renaming, or rewriting against unchanged evidence is not progress. Explicitly requested exploration is not capped by the optional alternative-route setting.
+### Personal preferences: spend time on what matters to you now
 
-Writing checks paragraph claims, relationships between sentences, and information order before polishing language. Reverse outlines expose gaps in the argument. Diagnostics for both semicolon forms and repeated clusters of `rather than` identify passages to inspect. Scientifically necessary comparisons, negation, limitations, and uncertainty remain intact. See [idea development](ccf-idea-optimizer/SKILL.md), [prose guidance](ccf-paper-writer/references/prose-quality-guardrails.md), and [Humanization](ccf-humanization/SKILL.md).
+The same researcher needs different help at different stages. A sentence edit should be straightforward. An unexplained result may deserve a few more papers. Before submission, an independent look at the central claims may be worth the wait.
 
-### Ordered files and focused context
+The [day and night configurator](#day-and-night-controls) makes those preferences visible, adjustable, and reusable. Keep a light default for daily work and add review or retrieval for a particular paper. Each of the seven enhancements explains what it adds and how it may affect tokens and time. The page supports three languages and light and dark themes. The examples above show settings for everyday editing, submission checks, and idea exploration.
 
-Skills share the same artifact paths and working directory, updating current files during ordinary iteration. Detailed rules load only when relevant. Handoffs carry decision-relevant evidence and source locations, reducing repeated retrieval, reports, and context copies. Cleanup covers only confirmed disposable files created by the task; original material, editable sources, and necessary verification evidence remain. See [Repository](#repository) for paths and encoding rules.
+### Ideas and writing: make each revision move the substance forward
+
+A new module should explain what it changes and what would be lost without it. Ideas shown to be unworkable can be dropped, while promising hypotheses can first be distinguished through theory, counterexamples, or observations. We removed conflicting instructions that forced another rescue attempt or repeated scoring, giving exploration room to move beyond small variations while keeping a chosen direction steady.
+
+Writing starts with the paragraph's point. It checks whether one sentence gives a reason, evidence, or an inference for the next, then improves order and wording. This release adds diagnostics for English and Chinese semicolons and clusters of `rather than`, helping locate passages where the argument may be hard to follow. Necessary scientific comparisons and limitations stay intact. See [idea development](ccf-idea-optimizer/SKILL.md), [prose guidance](ccf-paper-writer/references/prose-quality-guardrails.md), and [Humanization](ccf-humanization/SKILL.md).
+
+### Files and context: pick up where you left off
+
+After editing a figure or moving to another skill, you should still be able to find its source and current result. Skills now share clearly named working directories, update current files during ordinary revisions, and pass along the locations of relevant evidence. Original material, editable sources, and useful validation records are retained. Disposable files are cleaned up within the task that created them. Detailed instructions load when needed, reducing repeated copies of the entire history. See [Repository](#repository) for directory examples.
+
+The update keeps the 17-skill family and existing review structure, with the relevant structural and scenario checks passing. We hope that the next time you open your project, you can reconnect with the work sooner and save your attention for the questions worth solving.
 
 [Full changelog](CHANGELOG.md) · [Earlier ICLR 2027 adaptation](ccf-paper-writer/references/venue-guides/iclr.md)
 
@@ -314,17 +353,15 @@ python ccf-common\scripts\check_v04.py
 python ccf-common\scripts\check_path_privacy.py
 python ccf-common\scripts\check_markdown_links.py
 python ccf-common\scripts\check_sources.py
-python ccf-common\scripts\check_markdown_links.py
-python ccf-common\scripts\check_sources.py
 python ccf-common\scripts\test_preferences.py
 python ccf-common\scripts\test_continuity.py
 node --check ccf-common/assets/configurator/app.js
 node ccf-common/scripts/test_configurator.js
 ```
 
-These checks confirm that all 17 skills can be discovered, their responsibilities remain clear, documentation links resolve, and public files contain no machine-specific paths or private information. Experiment and efficiency results are summarized in [实验结果.md](实验结果.md).
+These checks validate the static structure of all 17 skills, configuration and reference paths, and existing script regressions. They do not replace comparisons of actual model quality or token use. Experiment and efficiency results are summarized in [实验结果.md](实验结果.md).
 
-`0.10.0` validates instructions, structure, and script behavior; historical experiments do not measure GPT-6 token or quality gains.
+`0.11.0` has passed structural and scenario checks. Performance gains under actual model degradation still need validation, and the linked historical experiments do not measure token or quality gains for current models.
 
 ## Commitments
 

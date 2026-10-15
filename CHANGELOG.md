@@ -1,8 +1,10 @@
 # Changelog
 
-## Unreleased
+## v0.11.0 - 2026-10-15
 
-Plugin version remains `0.10.0`.
+Plugin version is `0.11.0`.
+
+- Rewrite the latest-update story around everyday research: retaining the goal through long tasks, coordinating useful contributions, and choosing where to spend extra effort. Add a real configurator screenshot, three practical setting examples, and user/project setup instructions across the three README languages. Preserve historical release records and version-1 preference compatibility.
 
 - Clarify transition-time goal checks, isolate unreliable summaries during recovery, and preserve valid artifacts while reconciling affected decisions. Do not infer hidden provider capability changes or claim measured resilience gains.
 - Add bounded host-supported multi-agent assignments: independent first-pass ideation, selective evidence sharing, version-aware integration, single-owner manuscript arguments, and serialized edits to shared files. Repeated sources and majority agreement do not establish independent scientific support.
