@@ -18,8 +18,8 @@
 
 | 使用场景 | 安装 | 不安装会缺什么 |
 | --- | --- | --- |
-| 全流程 | 17 个 runtime skills 全部安装 | 完整 CCFA 流程。 |
-| NeurIPS 论文路径 | `ccf-common`, `ccf-humanization`, `ccf-project-scaffolder`, `ccf-pipeline-orchestrator`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, `ccf-rebuttal-writer` | 只缺家族维护能力。 |
+| 全流程 | 18 个 runtime skills 全部安装 | 完整 CCFA 流程。 |
+| NeurIPS 论文路径 | `ccf-common`, `ccf-humanization`, `ccf-project-scaffolder`, `ccf-pipeline-orchestrator`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-experiment-debugger`, `ccf-visual-composer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, `ccf-rebuttal-writer` | 只缺家族维护能力。 |
 | 写作子集 | `ccf-common`, `ccf-humanization`, `ccf-paper-writer`, `ccf-visual-composer`, `ccf-paper-reviewer`, `ccf-submission-checker` | 没有 idea、文献、实验和 rebuttal 流程；视觉任务仍需要已提供结果。 |
 | 审稿/审计子集 | `ccf-common`, `ccf-humanization`, `ccf-paper-reviewer`, `ccf-integrity-auditor` | 可以诊断问题，但不能写作、广泛检索、设计实验或检查投稿包。 |
 | 监控子集 | `ccf-common`, `ccf-humanization`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-idea-reviewer`, `ccf-idea-optimizer` | 能追踪新论文和竞品信号，但不能写作或投稿。 |
@@ -27,6 +27,7 @@
 | 图表/正文呈现子集 | `ccf-common`, `ccf-humanization`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-writer`, `ccf-integrity-auditor`, `ccf-submission-checker` | 能基于真实结果制作论文图表、Python SVG 绘图、配色、caption、正文嵌入和一致性检查，但不能做完整文献检索或完整审稿。 |
 | 投稿子集 | `ccf-common`, `ccf-humanization`, `ccf-paper-writer`, `ccf-visual-composer`, `ccf-submission-checker`, `ccf-integrity-auditor` | 能查格式、投稿包、artifact 和图表展示，但不能完整审稿。 |
 | 维护子集 | `ccf-common`, `ccf-humanization`, `ccf-skill-forger` | 只做家族维护和文档 SVG 生成。 |
+| 实验排错子集 | `ccf-humanization`, `ccf-common`, `ccf-experiment-debugger` | 排查环境、运行错误和复现差异；实验设计、论文证据审计和写作仍需对应技能。 |
 
 ## 部分安装示例
 

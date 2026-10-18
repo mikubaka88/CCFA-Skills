@@ -1,6 +1,6 @@
 ---
 name: ccf-experiment-designer
-description: "Design CCF experiment protocols and evidence schemas: datasets, baselines, metrics, ablations, and result-table contents. Use for 设计实验, 消融, benchmark planning, and 结果表证据结构. Preserve real values. Table styling/rendering belongs to ccf-visual-composer; broad retrieval belongs to ccf-literature-searcher."
+description: "Design CCF experiment protocols and evidence schemas: datasets, baselines, metrics, ablations, and result-table contents. Use for 设计实验, 消融, benchmark planning, and 结果表证据结构. Preserve real values. Runtime debugging belongs to ccf-experiment-debugger; table rendering and broad retrieval have separate owners."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -78,3 +78,5 @@ Next CCFA owner:
 - `references/result-templates.md`: fill-in result tables and presentation scaffolds.
 - `../ccf-humanization/references/experiment-discipline.md`: confirmed full method gate, simplified-version prohibition, smoke-test scope, and experiment-to-paper checks.
 - `../ccf-humanization/references/humanization-policy.md`: warning-only, non-injection, and defensive-case removal policy.
+
+Runtime failures and reproduction drift belong to [ccf-experiment-debugger](../ccf-experiment-debugger/SKILL.md). Transfer the failing command, protocol/config, and relevant logs; retain scientific protocol decisions here.
