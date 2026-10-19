@@ -27,7 +27,7 @@ Run enough checks to avoid fabrication and obvious dead ends, but do not apply s
 - rebuttal plans, TeX files, or multi-reviewer responses,
 - substantial multi-deliverable workflows; a small artifact remains quick even if another skill will later read it.
 
-Run the skill's full mandatory checklist internally. Surface skipped items only when the user asked for an audit, the task is review-related, or the omission changes the reliability of the answer.
+Complete the checks applicable to the requested deliverable and its evidence stage. A reference template is not a requirement to run every research stage or fill every optional field. Surface an omitted check only when the user asked for an audit or it materially limits the judgment.
 
 **quick** is for narrow local work:
 

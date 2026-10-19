@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Literature Searcher"
   short_description: "Search and screen literature, related work, datasets, benchmarks, and citation evidence for CCF research workflows."
-  default_prompt: "Use $ccf-literature-searcher to retrieve, deduplicate, and verify literature relevant to the requested decision. Give primary-source evidence and useful distinctions, and stop when the requested coverage is met."
+  default_prompt: "Apply $ccf-humanization, then $ccf-common; reuse their applicable active rules. Use $ccf-literature-searcher to retrieve, deduplicate, and verify literature relevant to the requested decision. Give primary-source evidence and useful distinctions, and stop when the requested coverage is met."

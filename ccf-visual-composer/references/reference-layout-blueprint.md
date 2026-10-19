@@ -28,7 +28,7 @@ Describe observable geometry rather than a named style: for example, two aligned
 ## Layout-First Workflow
 
 1. Freeze the supported node and edge inventory.
-2. Choose a content-fit aspect ratio and assign areas to the main transformation and its supporting context. Sketch an internal wireframe with text slots and connectors; do not generate icons yet. Use a renderable skeleton as a tool reference only when exact geometry needs that extra support.
+2. Choose a content-fit aspect ratio and assign areas to the main transformation and its supporting context. Sketch an internal wireframe with text slots and connectors; reuse approved component geometry when it fits. For explicit alignment or gap requirements, use a renderable skeleton as the image reference when supported; reuse the same source for later editable assembly. The skeleton guides raster composition, while exact coordinates and final live fonts are enforced in the requested vector/native output.
 3. Choose a modular grid appropriate to the aspect ratio. Align outer boundaries, repeated box dimensions, text baselines, icon centers, and connector lanes across groups. Fit sizes to final-font text extents; do not default to equal-width columns when explanatory needs differ.
 4. Establish one dominant scan path and one visual anchor for the contribution. Use proximity, similarity, continuity, containment, and whitespace to express grouping.
 5. Use spacing tokens rather than arbitrary gaps. Keep boxes with equal semantic rank visually consistent; vary size only when information hierarchy justifies it.

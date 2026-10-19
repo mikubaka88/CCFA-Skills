@@ -16,14 +16,14 @@ Strong research usually has:
 
 ## Research Questions
 
-Adapt these questions during idea optimization:
+Use the relevant questions during idea optimization, without requiring an answer to every planning question before developing an early mechanism:
 
 ```text
 What are you trying to do?
 How is it done today?
 What is new in your approach?
 Who cares, and why?
-What are the risks?
+Which known assumption or constraint could change the direction?
 How much will it cost or require?
 How will progress and success be measured?
 ```
@@ -44,17 +44,17 @@ Prefer important problems where the user's current position offers a credible an
 
 ## Paper-Story Taste
 
-Borrow the writing lesson from strong paper-writing advice: the idea should be explainable as one story:
+Connect the research into an intelligible argument:
 
 ```text
-problem -> gap -> challenge -> insight -> method -> evidence -> limitation
+problem -> gap -> challenge -> insight -> method -> appropriate support -> scientific takeaway
 ```
 
-If this story cannot be stated before drafting, the manuscript will likely become a list of components and experiments.
+For an early idea, explain the proposed mechanism and its rationale; completed evidence comes later. Place material assumptions or observed limits where they change interpretation, without requiring a cautionary ending. Drafting can help sharpen missing links; do not repeatedly restart ideation merely because the whole story is not settled.
 
 ## Acceptance-Oriented Taste
 
-CCF-A acceptance is not just "novel plus works". The idea should reduce reviewer uncertainty:
+Venue fit matters alongside scientific value. Use concrete research questions to identify what the reader still needs to understand:
 
 - Why this problem?
 - Why this method?

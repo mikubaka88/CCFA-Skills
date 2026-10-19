@@ -10,6 +10,16 @@ Write from the scientific work itself: the problem, insight, mechanism, observat
 
 Humanization preserves technical precision, equations, citation keys, terminology, numerical results, relevant assumptions, negative findings, reproducibility details, and mandatory disclosures. It is not detector-evasion or a license to strengthen evidence. A direct sentence can express uncertainty accurately.
 
+## Apply The Right Evidence Stage
+
+| Stage | Describe directly | Evidence boundary |
+| --- | --- | --- |
+| Idea exploration | The problem, proposed change, and why that change could address the problem. | Keep predictions distinguishable from observations. Inspect contradictions with known facts; do not require completed experiments, enumerate hypothetical failures, or reduce the goal just to sound cautious. |
+| Experiment planning | The competing explanations, planned comparison or analysis, and which decision its outcomes would change. | Use existing evidence first. Add a test for an unresolved claim or decision, not to complete a generic package. Feasibility constraints change execution choices, not silently the research objective. |
+| Reported findings | The actual protocol, observations, and what they support. | Preserve material conditions, negative results, and uncertainty. Narrow a conclusion when its support requires it; a reviewer preference alone is not new evidence. |
+
+These are decisions within the current task, not three extra workflow stages or reports.
+
 ## Sentence Decision
 
 For each sentence that sounds defensive, recover its scientific payload before editing:
@@ -18,7 +28,7 @@ For each sentence that sounds defensive, recover its scientific payload before e
 2. If it contains a supported fact, state that fact directly with the scope needed to interpret it.
 3. If it contains a genuine uncertainty, state what remains unresolved and why. Retain calibrated verbs such as `may` or `suggests` when the evidence warrants them.
 4. If deleting it loses no scientific information, delete it. Do not replace it with another disclaimer or an advisory warning.
-5. If resolving it requires an unknown result, a new experiment, or a change to the research claim, ask only about that decision and continue unaffected work.
+5. If support is missing, leave the result pending or isolate the affected claim. Ask only when an unresolved user choice is needed to proceed; continue authorized edits and unaffected work.
 
 Ordinary authorized editing includes preserving material facts, removing rhetorical padding, and rewriting a claim to accurately express its supplied evidence. These edits do not need a second approval. A factual limitation already supplied by the user is scientific content, not a warning to be kept out of the paper.
 
@@ -40,12 +50,17 @@ These examples illustrate edits, not factual claims about the user's research. A
 | 中文自我降格 | 尽管这只是一个简单改进，我们并不试图解决所有问题。 | 说明改动的机制、研究问题和适用设置。 |
 | 中文空泛保证 | 需要强调的是，我们不能保证该方法在所有情况下都有效。 | 写明实际评估条件；仅保留有依据且影响结论的外推限制。 |
 | 中文流程旁白 | 为确保论文严谨性，此处仅报告经过确认的完整版本。 | 直接写方法名称、科学上相关的配置和实际结果。 |
+| 空泛能力标签 | 我们提出一个可验证、可实现的自适应检索框架。 | 说明实际操作，例如：我们根据候选答案之间的分歧决定是否继续检索。 |
+| 无对象的优越比较 | 比起简单地堆叠模块，我们更重视可靠的机制。 | 说明改变了哪个操作、为什么改变；只有存在相关比较对象时才展开差异。 |
+| 无依据的多重限定 | 在一定程度上，这或许提供了一条相对可行的路径。 | 说明提出的机制及其依据；尚未完成的检验保持为计划，不堆叠弱化词。 |
 
-Do not mechanically delete `not`, `only`, `may`, `however`, `limited`, or their Chinese equivalents. Negation can define a method, `only` can specify an experimental control, and contrast can explain a causal mechanism. Rewrite the rhetorical function, not a blacklist of words.
+Do not mechanically delete `not`, `only`, `may`, `however`, `limited`, `可验证`, `可实现`, or their equivalents. Negation can define a method, `only` can specify an experimental control, and feasibility or verifiability can be the actual technical question. For example, “该索引可在给定内存预算内构建” states a meaningful constraint when supported. Rewrite the rhetorical function, not a blacklist of words. Likewise, a real contrast such as “Unlike the fixed-budget baseline, the proposed policy stops retrieval when the candidates agree” can explain an actual design difference.
 
 ## Paragraph And Section Discipline
 
 Give each paragraph a scientific purpose and a retained message. Develop the reason, operation, or evidence that supports it. End where that point is complete; do not append a caution, future-work sentence, or novelty disclaimer to every paragraph.
+
+Read adjacent sentences as an argument: identify what the next sentence explains, supports, qualifies, or follows from. Reorder, merge, or split within the authorized passage when the relationship is missing; preserve connected claim-and-evidence sentences together. A new transition word cannot supply an unstated causal link. Use the established subject to introduce new information and carry that information into the next relevant point. For whole sections, reuse the writer's reverse-outline check rather than producing another outline.
 
 - Abstract: explain the problem, contribution, mechanism, and decisive evidence. Express scope in the task or result statement. A separate limitations sentence is needed only when omission would materially misrepresent the central finding or the venue requires it.
 - Introduction and related work: establish the actual technical difference from the closest work. Do not pre-empt accusations of incrementalism or dismiss prior work to make the contribution appear larger.
@@ -68,8 +83,8 @@ State a recurring scope condition at its natural location and use cross-referenc
 - Use varied sentence rhythm where it helps the argument. Regular procedures and parallel comparisons may remain regular. The checker treats five similar-length sentences, similar paragraph lengths, three or more `;`/`；` or repeated contrast forms in one paragraph as contextual review signals. Its two-semicolon-per-1,000-word signal applies only to samples of at least 500 English words drawn from predominantly English paragraphs, not to short passages or Chinese character counts. These thresholds locate candidates; they do not require rewrites.
 - Retain `rather than`, `而不是`, `而非`, and `不是…而是` when they distinguish real alternatives. For clustered contrasts, recover the paragraph's positive argument and actual sentence relationships before changing phrasing. Do not simply substitute synonyms or remove useful comparisons to clear a diagnostic.
 - Check inflated or vague terms such as `groundbreaking`, `pivotal`, `comprehensive`, `robust`, and `novel` against a concrete meaning and evidence. Retain standard terms such as `robust optimization` when technically correct.
-- Every strong claim needs an evidence path. Replace an unsupported broad assertion with the precise supported claim; do not surround it with reassurance, disclaimers, or unsupported stronger verbs.
-- Preserve the user's Markdown/LaTeX structure unless restructuring is requested. Do not insert internal warnings, hidden comments, prompt notes, or workflow metadata into manuscript files.
+- Every reported finding needs appropriate support. Keep proposed mechanisms and planned tests in their actual stage. Before adding a qualification or reducing a claim, identify the condition or evidence gap that makes it necessary; keep the original strength when the supplied support warrants it.
+- Preserve the user's Markdown/LaTeX format, citations, and requested section boundaries. Local sentence and paragraph reorganization is part of an authorized logic edit; respect explicit no-restructure requests. Do not insert internal warnings, hidden comments, prompt notes, or workflow metadata into manuscript files.
 
 ## Method Status Versus Academic Description
 
@@ -105,6 +120,7 @@ Preserve hashing when it is the research object, an implemented dependency, or a
 Read the revised prose once for its scientific argument, before counting surface patterns:
 
 - The paragraph's main subject is the research, not reviewer opinion or authorial defensibility.
+- Objects, actions, and relations carry the explanation; ability labels and transitions do not stand in for it.
 - Each retained qualification changes interpretation; empty caveats and repeated scope reminders are gone.
 - Uncertainty matches the evidence without stacked hedging or inflated certainty.
 - Assumptions, material negative results, protocol facts, and mandatory disclosures remain accurate.
@@ -113,3 +129,5 @@ Read the revised prose once for its scientific argument, before counting surface
 - The em-dash preference and context-dependent pattern signals have been checked.
 
 For full sections or papers, use `ccf-paper-writer/scripts/check_prose_quality.py` for candidate locations. Fix real problems; keep justified scientific language even when a pattern matches. A clean script result alone does not establish natural prose, correctness, or publication readiness.
+
+The checker also locates clustered ability labels, repeated “比起／相比／相较” comparisons, and generic justifications such as “为保险起见.” These are advisory reading cues, including in table cells. It cannot determine whether a property is technically meaningful, an experiment is necessary, or a paragraph's logic is sound. One valid technical term does not need a replacement; evaluate the actual sentence and decision.

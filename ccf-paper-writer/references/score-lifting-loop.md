@@ -14,7 +14,7 @@ The writer may read those scorecards and apply the linked fixes, but must not re
 ## Revision Loop
 
 1. Read the canonical review report or user-supplied findings.
-2. Map each deduction to a manuscript location and evidence anchor.
+2. Map each deduction to a manuscript location and evidence anchor. Check whether the alleged defect is present. When feedback asks for a qualifier, narrower objective, or new experiment without a factual or logical gap, retain the supported argument and record the reason in an existing response or action table only if one is requested.
 3. Classify the fix:
    - `writing-fixable`;
    - `analysis-fixable`;

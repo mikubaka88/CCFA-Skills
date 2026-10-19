@@ -17,7 +17,7 @@ Status: confirmed / provisional / simplified
 
 Only `confirmed` methods may enter publication artifacts as completed full-method comparisons. Keep `provisional` and `simplified` development substitutes out of those claims; explicitly planned studies and clearly labeled ablations remain valid. Development substitutes include toy, debug, mocked, or altered runs used in place of the intended protocol, including unapproved reductions in budget, layers, resolution, training, or data.
 
-For an authorized, scientifically defined budget or scale comparison, verify the actual specified configuration and report it as that scoped comparison. A verified smaller configuration is not a development substitute merely because it is smaller; it must not be presented as another method's full configuration. Relabeling a toy/debug run does not establish a scientific protocol or make it publication evidence.
+For an authorized, scientifically defined budget comparison, minimal system, synthetic setting, or controlled mechanism study, verify the actual specified protocol and report that study for the question it answers. A smaller system can be the intended scientific object; it must not be presented as another method's full configuration or as evidence for an untested setting. A debug run does not become scientific evidence merely by changing its label: its design, controls, records, and interpretation must support the stated question.
 
 The `confirmed` label is internal metadata. Do not copy `confirmed`, `approved`, `publication-ready`, gate status, confirmation source, or similar engineering language into manuscript prose, captions, or table labels. Once the gate passes, name the method and report only scientifically relevant configuration details. For example, write `Transformer Base with six encoder and six decoder layers`, not `the confirmed full Transformer Base version`.
 
@@ -51,8 +51,8 @@ Before publication-facing output, verify:
 
 - every reported full-method comparison is `confirmed`; proposed designs, cited methods, and ablations use their appropriate evidence basis;
 - table values map to the confirmed configuration and dataset split;
-- simplified development runs are absent from manuscript claims and final tables;
+- development substitutes are not presented as the intended full method; legitimate controlled or minimal-system studies use their actual protocol and scoped interpretation;
 - smoke tests are absent from the evidence narrative unless the paper studies testing itself;
 - necessary ablations are labeled as ablations rather than alternate main methods;
-- any unresolved version mismatch is reported as a warning with no automatic file change;
+- a known label or configuration-description error is corrected from supplied records within the authorized edit, without changing measured values; an unresolved identity mismatch remains an affected-claim warning, not an invented correction or a reason to stop unrelated work;
 - manuscript prose and display labels describe the method naturally without exposing internal confirmation or publication-readiness status.

@@ -39,7 +39,7 @@ skills:
     exclude: "Does not invent results, draw docs diagrams, search literature as the main deliverable, or improve layout/colors/readability of an already specified table/figure."
     handoff: "ccf-humanization, ccf-literature-searcher, ccf-visual-composer, ccf-paper-writer, ccf-paper-reviewer, ccf-integrity-auditor, ccf-submission-checker"
   - name: ccf-visual-composer
-    trigger: "Render and redesign CCF figures, visual tables, and method/architecture diagrams from supplied content. Use for 绘图美化, 排版, 配色, GPT Image 2 generation, pure SVG, and editable SVG/PDF/PPTX. Preserve values and topology. Experiment evidence design belongs to ccf-experiment-designer; manuscript rewriting and PDF-to-writing exemplars are separate."
+    trigger: "Render and redesign scientific figures, visual tables, and method/architecture diagrams from supplied content, including biological data. Use for 绘图美化, 排版, 配色, GPT Image 2 generation, pure SVG, and editable SVG/PDF/PPTX. Preserve values and topology. Experiment evidence design belongs to ccf-experiment-designer; manuscript rewriting and PDF-to-writing exemplars are separate."
     exclude: "Does not design experiments, invent results/components, write manuscript prose, convert PDFs into writing exemplars, or perform final submission compliance."
     handoff: "ccf-experiment-designer, ccf-idea-optimizer, ccf-paper-writer, ccf-integrity-auditor, ccf-submission-checker"
   - name: ccf-paper-to-exemplar

@@ -18,9 +18,9 @@ The visual must sit inside the paper's argument, not after it. Place each figure
 - Use full-width (`figure*`) when the reader must compare many panels horizontally or when labels would be unreadable in one column.
 - Avoid excessive panel counts in the main paper; use appendix for secondary robustness grids.
 - Use lowercase panel labels `(a)`, `(b)`, `(c)` unless the venue/template requires another style.
-- Put legends outside dense plotting areas or in a dedicated legend strip/panel.
+- Collect identical legend entries into a shared strip/panel outside dense data regions. Retain separate legends for different units, normalization, or meanings; deduplicate by encoding identity, not just a matching label.
 - Preserve editable vector text when possible: for matplotlib use `svg.fonttype = 'none'`; export SVG/PDF for final paper and PNG only for preview.
-- Use consistent axis names, units, limits, and ordering across related panels.
+- Use consistent axis names, units, limits, and entity ordering across comparable panels. For distinct quantities, label each scale and its units. Preserve fixed-aspect spatial or microscopy panels and scale bars; distribute spare space among flexible panels rather than stretching those images to fill a grid.
 - Keep only necessary annotations and a shared legend where it remains unambiguous. Remove duplicate explanation, not meaningful ticks, values, uncertainty, or scale information. Avoid an internal hero title when the manuscript caption already supplies it.
 - For image plates, include scale bars, crop rules, channel labels, and contrast notes; do not use contrast adjustments that change scientific interpretation.
 

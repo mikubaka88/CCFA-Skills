@@ -166,7 +166,7 @@ sources:
     source_type: venue_policy
     used_by: [ccf-paper-writer, ccf-submission-checker]
     recorded_at: 2026-09-16
-    verified_at: 2026-09-16
+    verified_at: 2026-10-19
     stale_after_days: 30
     notes: Exact-year submission rules; recheck at use time, especially dates and stage-specific requirements.
   - id: iclr-2027-reviewer-guidelines
@@ -175,7 +175,7 @@ sources:
     source_type: review_guideline
     used_by: [ccf-paper-reviewer]
     recorded_at: 2026-09-16
-    verified_at: 2026-09-16
+    verified_at: 2026-10-19
     stale_after_days: 30
     notes: Decision-relevant concise reviews and contribution-aware evidence; the FAQ deadline example conflicts with the Author Guidelines, so verify dates there.
   - id: iclr-2027-ai-authors
@@ -184,7 +184,7 @@ sources:
     source_type: venue_policy
     used_by: [ccf-paper-writer, ccf-submission-checker]
     recorded_at: 2026-09-16
-    verified_at: 2026-09-16
+    verified_at: 2026-10-19
     stale_after_days: 30
     notes: Use the full task list to distinguish required and recommended AI-use disclosures; preserve actual usage and verification facts.
   - id: iclr-2027-ai-reviewers
@@ -193,7 +193,7 @@ sources:
     source_type: review_guideline
     used_by: [ccf-paper-reviewer]
     recorded_at: 2026-09-16
-    verified_at: 2026-09-16
+    verified_at: 2026-10-19
     stale_after_days: 30
     notes: Official review assistance requires the human original assessment and disclosure of AI interactions; distinguish this context from author pre-review.
   - id: iclr-2027-style-files
@@ -202,7 +202,7 @@ sources:
     source_type: venue_template
     used_by: [ccf-paper-writer, ccf-submission-checker]
     recorded_at: 2026-09-16
-    verified_at: 2026-09-16
+    verified_at: 2026-10-19
     stale_after_days: 30
     notes: Inspected the official tex, sty, and bibliography style; fetch the full bundle for 2027 projects rather than renaming the local 2026 file.
   - id: cvpr-2026-reviewer-guidelines
@@ -1303,3 +1303,75 @@ sources:
     verified_at: 2026-10-15
     stale_after_days: 180
     notes: Informs recovering propositions before Chinese-to-English restructuring while preserving scientific meaning. Upstream skill is marked CC-BY-NC-SA-4.0; its text and code are not redistributed. CCFA independently states a scoped editing procedure and retains provenance here.
+  - id: lieflat-contextual-repairs
+    title: Lieflat Less AI Tone - Rules And Measurement Boundaries
+    url: https://github.com/larashero3-dotcom/lieflat-less-ai-tone
+    source_type: background_method
+    used_by: [ccf-humanization, ccf-paper-writer]
+    recorded_at: 2026-10-19
+    verified_at: 2026-10-19
+    stale_after_days: 180
+    notes: Informs locating a specific expression before editing and retaining meaningful language and author conventions. Chinese corpus rates are not universal scientific-writing thresholds. CCFA keeps authorized argument restructuring and uses contextual diagnostics; no upstream rule text or corpus is bundled.
+  - id: writing-dna-selective-exemplars
+    title: Writing DNA Skill - Reusable Writing Patterns
+    url: https://github.com/larashero3-dotcom/writing-dna-skill
+    source_type: background_method
+    used_by: [ccf-paper-to-exemplar, ccf-paper-writer]
+    recorded_at: 2026-10-19
+    verified_at: 2026-10-19
+    stale_after_days: 180
+    notes: Informs reusing selected structural and language patterns from authorized sources through existing exemplar cards. No mandatory corpus collection, full-author imitation, or extra per-task analysis is introduced.
+  - id: defensive-writing-review-feedback
+    title: Defensive Writing in GPT Models
+    url: https://arxiv.org/abs/2610.11355v2
+    source_type: paper_or_proceeding
+    used_by: [ccf-humanization, ccf-paper-writer, ccf-paper-reviewer]
+    recorded_at: 2026-10-19
+    verified_at: 2026-10-19
+    stale_after_days: 365
+    notes: October 2026 preprint distinguishes justified claim corrections from redundant qualifications and studies review-feedback effects on 77 paragraphs from 20 computer-science papers. Its small human-reader study and limited model conditions motivate evidence-based revision checks, not claims of universal behavior or measured CCFA gains.
+  - id: complexheatmap-reference
+    title: ComplexHeatmap - A List Of Heatmaps
+    url: https://jokergoo.github.io/ComplexHeatmap-reference/book/a-list-of-heatmaps.html
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-19
+    verified_at: 2026-10-19
+    stale_after_days: 365
+    notes: Informs shared entity order, grouping, annotations and consistent mapping across comparable matrices. Reuse existing domain tools when suitable; the skill adds no mandatory R dependency.
+  - id: patchwork-layout
+    title: Patchwork - Controlling Layouts
+    url: https://patchwork.data-imaginist.com/articles/guides/layout.html
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-19
+    verified_at: 2026-10-19
+    stale_after_days: 365
+    notes: Informs alignment of data regions, shared semantic legends and axes, and preservation of fixed-aspect geometry. These principles extend existing composition guidance without imposing a new plotting runtime.
+  - id: scientific-inkscape
+    title: Scientific Inkscape - Figure Resizing And Exporting
+    url: https://github.com/burghoff/Scientific-Inkscape
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-19
+    verified_at: 2026-10-19
+    stale_after_days: 365
+    notes: Informs separating data-region resizing from physical text and stroke sizes, and updating exports from editable sources. The extension is optional when available; no external extension code is bundled.
+  - id: bioicons
+    title: Bioicons Scientific SVG Library
+    url: https://github.com/duerrsimon/bioicons
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-19
+    verified_at: 2026-10-19
+    stale_after_days: 365
+    notes: Reference for editable biology and chemistry objects selected by scientific meaning. Each selected asset retains its own author and license; the website code license does not license all icons. No asset collection is bundled.
+  - id: papervizagent
+    title: PaperVizAgent - PaperBanana Implementation
+    url: https://github.com/google-research/papervizagent
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-19
+    verified_at: 2026-10-19
+    stale_after_days: 180
+    notes: Informs separating scientific content checks from visual checks and directing a repair to a concrete region. CCFA reuses its existing optional review and figure-variant preferences rather than requiring fixed agents, repeated generation, or an upstream runtime.

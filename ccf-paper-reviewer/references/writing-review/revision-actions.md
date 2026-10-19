@@ -1,6 +1,6 @@
 # Revision Actions
 
-Use this file to convert writing-review deductions into concrete improvements. The goal is a closed loop: diagnose, revise, and confirm that the same reviewer confusion would not remain.
+Use this file to convert evidence-backed writing-review findings into concrete improvements. Diagnose the actual confusion, revise its cause, and close it when the affected text and evidence satisfy the stated condition.
 
 Before producing a revision plan, load `references/review-checklists.md` and apply its writing-revision checks. If the user asks for scientific re-score, acceptance-style scoring, simulated reviewers, or AC/meta-review, route to `ccf-paper-reviewer` under the CCFA handoff mode.
 
@@ -19,10 +19,12 @@ Classify every issue:
 - Compression: cut redundant background, move detail to appendix, merge paragraphs, shorten captions, or reduce repetitive result narration.
 - Reproducibility: add pseudocode, implementation details, hyperparameters, dataset splits, metrics, code/data availability, artifact notes.
 - Requires-new-result: new baseline, ablation, dataset, theorem, user study, measurement, statistical test, or deployment evaluation.
-- Accepted-limitation: disclose scope honestly when the issue cannot be solved before submission.
+- Accepted-limitation: disclose a material unresolved boundary and its consequence; lack of time or an imagined objection does not itself establish a scientific limitation.
 - Venue-mismatch: change framing, track, or target venue.
 
 ## Deduction-To-Action Map
+
+The actions below are options matched to an established defect, not a checklist to execute in full. A request for more caution, a lower score, or reviewer preference does not justify a new qualifier, experiment, or smaller objective by itself. Identify the factual or logical gap first; retain supported wording when the requested hedge adds no information.
 
 ### Contribution unclear
 
@@ -43,7 +45,7 @@ Actions:
 
 - Identify the closest prior work and write the exact difference.
 - Avoid claiming first-ever unless verified.
-- Reframe novelty as insight, formulation, evidence, scale, robustness, efficiency, or integration if method novelty is limited.
+- Describe the contribution actually supported by the work, whether insight, formulation, evidence, scale, efficiency, or integration. Changing its label cannot create novelty.
 - Add missing citations or baseline comparisons.
 
 ### Significance unclear
@@ -75,7 +77,7 @@ Reviewer deduction: "The evaluation does not support the main claim."
 Actions:
 
 - Map each claim to an experiment/proof/study.
-- Add strongest baseline, ablation, robustness check, error analysis, or dataset.
+- Select the comparison, analysis, proof, or study that resolves the identified evidence gap, reusing existing results where sufficient.
 - If no new result can be added, narrow the claim to what current evidence supports.
 - Put the most decision-relevant evidence in the main text, not only appendix.
 
@@ -85,7 +87,7 @@ Reviewer deduction: "Comparison is incomplete."
 
 Actions:
 
-- Add the strongest recent baseline or explain why it cannot be run.
+- Add a missing relevant strong comparison when the scientific claim needs it; distinguish the matching setting and protocol from a merely newer or higher-scoring method.
 - Use fair protocols and report comparable metrics.
 - Add a close-related-work paragraph that explains differences in task, assumption, method, or evidence.
 - Avoid dismissive wording about prior work.
@@ -96,8 +98,8 @@ Reviewer deduction: "The proposed components are not justified."
 
 Actions:
 
-- Add component ablation, sensitivity study, or controlled variant.
-- If an ablation is impossible, provide mechanistic analysis and mark it as a limitation.
+- Establish what component-level claim needs support, then use an ablation, controlled variant, proof, or analysis that can distinguish the proposed explanation.
+- If an ablation is impossible or inappropriate, inspect whether another evidence form already resolves the claim. State a limitation only for a material gap that remains; inability to perform one particular test is not automatically a limitation.
 - Explain how each component connects to the central insight.
 
 ### Reproducibility gap
@@ -116,7 +118,7 @@ Reviewer deduction: "The paper is hard to follow."
 
 Actions:
 
-- Use a global storyline: task -> gap -> root challenge -> insight -> mechanism -> evidence -> limitation.
+- Connect the task, gap, insight, mechanism, and relevant evidence into the scientific takeaway. Place material assumptions and observed limits where they affect interpretation; do not require a limitation ending.
 - Make each paragraph carry one message.
 - Stabilize terminology across sections.
 - Use figures and captions to explain mechanism and evidence.
@@ -128,7 +130,7 @@ Reviewer deduction: "This paragraph mixes roles or does not advance the argument
 Actions:
 
 - Assign the paragraph one job: motivation, gap, insight, method, evidence, limitation, or transition.
-- Split mixed claim/evidence/background paragraphs.
+- Split unrelated arguments; keep a claim with the explanation or evidence that develops it.
 - Move details to the section where a reviewer expects them.
 - Replace vague transition sentences with the specific logical link to the next paragraph.
 
@@ -145,6 +147,8 @@ Actions:
 - Move formula-heavy derivations to appendix unless they are necessary for first-pass understanding.
 - Rebuild number-led abstract sentences around task, gap, insight, method, and scoped evidence.
 - Remove repeated concept definitions and choose one canonical term.
+- Replace empty ability labels such as “可验证的路径” with the specific object, operation, or relation being proposed. Preserve technical feasibility and verifiability statements when they answer the actual research question.
+- For repeated “比起”, `rather than`, or qualifiers, identify the real comparison or condition. Rebuild the positive argument when these phrases supply no information; do not substitute synonyms merely to pass a pattern check.
 
 ### LaTeX or format risk
 
@@ -205,17 +209,17 @@ Risk-reduction condition:
 Status: open / fixed / requires new result / accepted limitation
 ```
 
-## Re-Score Gate
+## Revision Acceptance
 
 After revision, ask:
 
-1. Would a skeptical reviewer repeat the same criticism?
+1. Is the diagnosed ambiguity, omission, or unsupported statement resolved at its actual location?
 2. Does each major claim have visible evidence?
 3. Are the closest baselines and related works handled?
 4. Are limitations honest and bounded?
-5. Is the target venue's evidence package visible in the main text?
+5. Is the evidence needed for the affected claim visible or clearly referenced, using the appropriate contribution type and any verified venue requirements?
 6. Does the paragraph now have one clear role and one retained message?
 7. Does the revised prose avoid defensive framing, unnecessary labels, third-person manuscript voice, punctuation-driven structure, and unsupported hype?
 8. Are labels, citations, captions, notation, and format issues actually fixed in source?
 
-Do not mark an issue fixed until the revised text or available evidence would plausibly change a criterion score.
+Mark an issue fixed when its concrete acceptance condition is met. Score movement is not a closure condition. Re-score only when requested; reopen a closed issue for new evidence or an actual remaining defect, not to obtain a more reassuring assessment.

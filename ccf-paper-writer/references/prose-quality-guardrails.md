@@ -63,6 +63,8 @@ Prefer actual dependencies over mechanical ordinal lead-ins such as `First`, `Se
 
 Explain what is modeled or inferred, what information it depends on, and why the operation addresses the question. Do not substitute a sequence of interfaces, execution events, or names for that explanation. `pipeline`, `readout`, `head`, `stage`, and `component` are context checks, not forbidden standard terminology. Preserve a real structure and necessary reproducibility detail; avoiding engineering narration does not authorize omitting the method.
 
+Use objects and operations in place of empty ability labels: explain what will be compared instead of calling a plan “verifiable,” and how a computation is performed instead of calling a framework “feasible.” Keep feasibility, realizability, and verifiability when they are defined technical properties or real constraints. Apply Humanization's stage distinction: a proposed mechanism needs a clear rationale, while a reported effect needs actual support.
+
 Inspect empty importance announcements, `not merely ... but ...` contrasts, significance tails such as `highlighting its effectiveness`, abstract benefit stacks, nominalized actions, anonymous authority, mechanical three-part lists, and repeated rhetorical questions. State the concrete relationship or evidence; delete text with no scientific payload. Avoid changing passive voice, sentence lengths, or common words merely to simulate a human writer.
 
 Use each section at its proper level. Abstract and introduction give a readable scientific position, not a catalogue of all module acronyms and protocol fields. Contributions can begin with `We` and state actual work; experimental contribution language requires results. Prefer one canonical name per concept and a small number of meaningful abbreviations. Use bold and italics selectively, and retain useful brief run-in headings rather than multiplying numbered sublevels.
@@ -79,6 +81,7 @@ Claims must match the available support:
 - Prefer scoped claims over universal claims.
 - State only material or required scope boundaries, not apologetic disclaimers or speculative failure lists.
 - Replace unsupported assertions with mechanism, evidence, or a narrower claim.
+- Before adding a qualifier, identify the specific condition or gap it expresses. Reviewer wording alone does not establish one; retain supported strength and avoid repeating a condition already clear in context.
 
 ## Section-Specific Checks
 

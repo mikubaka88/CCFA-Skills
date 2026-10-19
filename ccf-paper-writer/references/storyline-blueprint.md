@@ -28,7 +28,7 @@ Do not start a storyline from the method name, module list, benchmark score, or 
 
 ## Global Story Fields
 
-Fill these first. Mark unknowns instead of inventing them.
+Use the fields needed to organize the supplied material, reusing an established story. Do not expand a bounded edit into a complete intake. Mark unknown facts instead of inventing them; omit inapplicable fields. Early ideas need a clear problem and proposed mechanism, not a filled experiment package or a list of hypothetical drawbacks.
 
 ```text
 Target venue:
@@ -48,14 +48,14 @@ Proposed method/mechanism:
 Contribution type(s):
 Evidence ladder:
 Expected central claim:
-Material assumptions or observed limitations:
-Unresolved evidence decisions:
+Material assumptions or observed limitations, if any:
+Unresolved evidence decisions affecting this task, if any:
 Novelty status: searched / partially searched / user-provided / unsearched
 ```
 
 ## Multi-Expert Storyline Generation Framework
 
-Use the full framework only when multiple substantially different storylines are needed for an explicitly requested comparison or redesign. For ordinary drafting or local polishing, use the compact story fields and section roles below.
+Use this framework only when multiple substantially different storylines are needed for an explicitly requested comparison or redesign. Select the perspectives that add distinct information, not a fixed five-agent panel. For ordinary drafting or local polishing, use the compact story fields and section roles below.
 
 ### Stage 0: Material And Boundary Intake
 
@@ -90,7 +90,7 @@ Each expert must output a candidate with:
 Research motivation:
 Fundamental scientific question:
 Core insight:
-Experimental logic:
+Relevant evidence logic (available or planned):
 Method organization:
 Expected scientific claim:
 ```
@@ -148,7 +148,7 @@ Output:
 ```text
 Scientific validation:
 Technical reasoning:
-Potential limitations:
+Material unresolved assumption, if any:
 ```
 
 #### Expert 4: Scientific Storytelling Expert
@@ -185,8 +185,8 @@ Output:
 
 ```text
 Strengths:
-Weaknesses:
-Improvement suggestions:
+Evidence-backed defect, if any:
+Repair for that defect, if needed:
 ```
 
 ### Stage 2: Cross-Expert Review
@@ -250,9 +250,9 @@ Method organization:
 Evidence ladder:
 Central scientific claim:
 Subclaims and evidence:
-Limitations and boundaries:
-Reviewer-risk repairs:
-Discarded story fragments and why:
+Material conditions or observed boundaries, if any:
+Repairs to established defects, if any:
+Discarded story fragments and why, when relevant:
 ```
 
 ## Storyline Expression Logic
@@ -336,7 +336,7 @@ Input:
 Operation:
 Output:
 Why it is necessary:
-Validated by:
+Available support, or planned discriminator when the task requests it:
 ```
 
 The method order should follow the logic of the insight, not the order in which code was written.
@@ -345,21 +345,21 @@ The method order should follow the logic of the insight, not the order in which 
 
 Experiments, proofs, analyses, studies, and figures should form a ladder of belief.
 
-Typical order:
+Select and order the relevant evidence roles. This is not a requirement to run every category:
 
 1. Establish the phenomenon or failure mode.
 2. Validate the main effect against strong baselines.
 3. Test the mechanism through ablation, proof, or diagnostic analysis.
-4. Test generalization, robustness, scale, or transfer.
+4. Test generalization, robustness, scale, or transfer when a specific claim or decision requires it.
 5. Explain observed boundary conditions or failure cases when they change the supported interpretation. This is conditional, not a required closing move.
 
 Each evidence item must answer a scientific question:
 
 ```text
-Reviewer question:
-Evidence:
+Scientific question:
+Evidence and status (available / planned):
 Claim supported:
-What would be weakened if this evidence failed:
+How the possible findings change the interpretation:
 ```
 
 ### 7. Claim Construction: What Can Be Said
@@ -378,8 +378,8 @@ Subclaim map:
 Subclaim:
 Evidence:
 Support strength: strong / adequate / weak / absent
-Risk:
-Revision action:
+Unresolved gap affecting this claim, if any:
+Revision action, if needed:
 ```
 
 Do not make the claim stronger than the evidence. If the strongest novelty is a benchmark, measurement, empirical finding, or system insight, claim that directly instead of pretending the method is the main novelty.
@@ -435,12 +435,12 @@ Do not imply a stronger contribution type than the evidence supports.
 | Method | Make mechanism auditable | Can reviewers see how the method implements the insight? |
 | Experiments | Explain the evidence | Does each empirical claim have support, presented in a logically connected order? |
 | Figures/Tables | Make evidence inspectable | Does each visual answer one reviewer question? |
-| Limitations | Bound claims | Are limitations honest but not self-defeating? |
+| Limitations, when applicable | Explain material boundaries | Is each boundary tied to an actual assumption, observation, or required disclosure and its consequence? |
 | Conclusion | Leave final takeaway | Does it restate what the community now knows or can do? |
 
 ## Storyline Checks After Each Section
 
-Run these after writing or revising a section:
+Check affected passages and their cross-section dependencies after an edit. Reuse the argument and terminology already established; do not rebuild a full map or restart review after every paragraph:
 
 1. Paragraph roles:
    - Assign each paragraph one role.
@@ -470,14 +470,14 @@ Claim:
 Where stated:
 Evidence source:
 Evidence strength:
-Reviewer risk:
+Material interpretation gap, if any:
 Status: supported / needs evidence / overclaim / unclear
 Revision action:
 ```
 
 ## Output Templates
 
-Use these visible templates only when the user asks for storyline planning, generation, diagnosis, or rationale. For ordinary drafting, keep them internal and output the requested manuscript text.
+Use these visible templates only when the user asks for storyline planning, generation, diagnosis, or rationale. Omit inapplicable fields, including risks or repairs with no concrete basis. For ordinary drafting, keep them internal and output the requested manuscript text.
 
 ### Multi-Expert Candidates
 
@@ -486,10 +486,10 @@ Expert:
 Research motivation:
 Fundamental scientific question:
 Core insight:
-Experimental logic:
+Relevant evidence logic (available or planned):
 Method organization:
 Expected scientific claim:
-Main risk:
+Material unresolved issue, if any:
 ```
 
 ### Cross-Review Matrix
@@ -515,9 +515,9 @@ Core Insight:
 Method As Consequence:
 Evidence Ladder:
 Central Claim:
-Boundaries:
+Material conditions or observed boundaries, if any:
 Section-Level Expression:
-Reviewer-Risk Repairs:
+Repairs to established defects, if any:
 ```
 
 ## Storyline Failure Signals

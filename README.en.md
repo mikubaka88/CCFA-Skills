@@ -306,7 +306,7 @@ Chinese output uses explicit UTF-8 I/O with optional BOM support on input. Shell
 
 ## Latest updates: keep long projects on course and give good ideas room to grow
 
-**v0.11.0 · 2026-10-15**
+**v0.11.0 · Updated 2026-10-19**
 
 You are a few weeks into a research project. The conversation keeps growing, and the assistant keeps answering, but it gradually loses sight of why you started. You bring in more assistants, only to find that they have read the same papers and returned similar answers. A paragraph finally looks polished, yet its argument is still hard to follow.
 
@@ -338,6 +338,24 @@ A new module should explain what it changes and what would be lost without it. I
 
 Writing starts with the paragraph's point. It checks whether one sentence gives a reason, evidence, or an inference for the next, then improves order and wording. This release adds diagnostics for English and Chinese semicolons and clusters of `rather than`, helping locate passages where the argument may be hard to follow. Necessary scientific comparisons and limitations stay intact. See [idea development](ccf-idea-optimizer/SKILL.md), [prose guidance](ccf-paper-writer/references/prose-quality-guardrails.md), and [Humanization](ccf-humanization/SKILL.md).
 
+### Writing handoffs: keep empty caveats from coming back
+
+Our follow-up audit found that some artificial prose came from conflicting instructions. Writing would remove a defensive sentence, then a review template would demand a limitation at the end. A literature search could find that an idea was already covered and still require a rescue route. We removed these conflicts. Writing, ideation, and experiment planning now share a practical rule: explain the object, operation, and relationship. Design the study around the current question, identify a specific gap in review, and close the issue once it is resolved.
+
+Calling a proposal “verifiable and implementable” adds little without explaining what it does. Saying an index supports offline incremental updates conveys a technical property worth keeping. New diagnostics flag clusters of abstract labels, repeated comparisons, and defensive prose inside tables for contextual inspection. You can ask:
+
+> Revise this paragraph by clarifying how its reasons and evidence connect. Preserve the numbers, experimental conditions, and limitations that affect the conclusion.
+
+### Figures: make them readable on the paper page
+
+A figure can look clear on a large monitor and become illegible in a manuscript. Changing a method's color across panels or independently scaling values that differ a hundredfold can also mislead the reader. The plotting tools now support final print width and minimum type size, consistent entity colors, shared axes and color ranges for comparable panels, consolidated legends, and optional titles and annotations.
+
+Heatmaps, correlation matrices, and volcano plots also support biological and other scientific data. The tools distinguish p-values, adjusted p-values, and q-values, require an explicit display policy for zeros, and reject invalid correlations and negative probabilities. Diagram work starts from the reference's layout relationships and components, followed by alignment, spacing, text, and scientific-content checks. Extra figure candidates and independent reviews still use the existing preference switches.
+
+> Arrange these results for a two-column paper at 7 inches wide with text of at least 9 pt. Keep each method's color consistent, share axes for panels with the same units, remove repeated titles, and inspect the final-size rendering.
+
+[Runnable plotting examples](ccf-visual-composer/references/python-plot-recipes.md) cover shared heatmap normalization, small multiples, and a q-value volcano plot. Existing calls remain supported; invalid data that used to be silently altered now produce explicit errors.
+
 ### Files and context: pick up where you left off
 
 After editing a figure or moving to another skill, you should still be able to find its source and current result. Skills now share clearly named working directories, update current files during ordinary revisions, and pass along the locations of relevant evidence. Original material, editable sources, and useful validation records are retained. Disposable files are cleaned up within the task that created them. Detailed instructions load when needed, reducing repeated copies of the entire history. See [Repository](#repository) for directory examples.
@@ -350,6 +368,7 @@ The update keeps the 17-skill family and existing review structure, with the rel
 
 ```powershell
 python ccf-common\scripts\check_v04.py
+python ccf-visual-composer\scripts\test_plot_recipes.py
 python ccf-common\scripts\check_path_privacy.py
 python ccf-common\scripts\check_markdown_links.py
 python ccf-common\scripts\check_sources.py

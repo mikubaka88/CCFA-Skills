@@ -4,9 +4,10 @@ Use icons only when they improve recognition or reduce text. An icon must expres
 
 ## Selection Ladder
 
-1. Use a native diagram primitive for arrows, masks, graphs, trajectories, tensors, databases, and repeated geometric structures when the primitive already communicates the idea.
-2. For common concepts, choose one coherent open-source SVG family per figure. Prefer Lucide for restrained line icons; use Material Icons only when its filled or rounded grammar fits the figure better. Record the source, icon name, URL, license, and any modification.
-3. Use generation for method-specific scientific objects when it materially improves recognition or visual explanation over generic primitives. Keep one coherent treatment; do not mix icon families merely for novelty.
+1. Reuse an approved component from this project's existing figure/source when its meaning, treatment, and reuse rights fit. Keep its stable asset ID, live label, ports, and source path; do not import an entire external pack or create a separate component library for one figure.
+2. Use a native diagram primitive for arrows, masks, graphs, trajectories, tensors, databases, and repeated geometric structures when it already communicates the idea.
+3. Search a relevant public SVG source for an unmet object: Lucide or Material Icons for general concepts, and Bioicons for recognizable biological/chemical structures or instruments. Inspect the actual object and its individual license; a collection's availability does not give every asset the same terms. Record author/source, asset name/URL, license, required attribution, and modifications in the existing specification. Preserve scientifically meaningful parts while matching optical weight and palette.
+4. Generate a method-specific object when suitable primitives or permitted assets do not explain it. Keep one coherent treatment and search only for the required object; no additional dependency or asset-generation call is needed for an already suitable component.
 
 ## Custom Icon Micro-Spec
 
@@ -47,4 +48,4 @@ If the generator does not return reliable transparency, use a flat high-contrast
 
 Reuse an existing suitable icon before searching or generating another. Keep `asset_id`, semantic role, source/license, editability, and canonical path in the existing specification or source comments. Deliver a separate icon manifest only when requested or required for the package. Reuse the same asset across SVG/PDF/PPTX exports.
 
-Research basis is registered in `../../ccf-common/references/source-registry.yaml` under `lucide-icons`, `material-icons-svg`, `microsoft-edit-svg-office`, and `livefigure-editable-scientific-illustration`.
+Research basis is registered in `../../ccf-common/references/source-registry.yaml` under `lucide-icons`, `material-icons-svg`, `bioicons`, `microsoft-edit-svg-office`, `livefigure-editable-scientific-illustration`, and `astradraw-visual-workflow`.

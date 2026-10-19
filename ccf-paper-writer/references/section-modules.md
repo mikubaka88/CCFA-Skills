@@ -15,7 +15,7 @@ For any section:
 1. Determine the section role in the whole-paper story.
 2. Decide paragraph roles before writing.
 3. Draft paragraphs one role at a time.
-4. Check local flow: one paragraph, one message.
+4. Check local flow: one developed point per paragraph, with the actual reason, evidence, or consequence connecting its sentences. Keep supporting material with its claim.
 5. Check global flow: section supports the main story and venue plan.
 6. Check prose quality: stable terminology, no unsupported hype, no unnecessary repeated concepts, and varied sentence rhythm.
 7. Check affected claim-evidence links. Do not create a reviewer-risk map for ordinary section writing.
@@ -33,7 +33,7 @@ These are later fitting heuristics for an illustrative AI/ML manuscript, not ini
 | Related Work |0.75--1.25 pages | Optional before or after Method; can merge with Background. |
 | Background / Preliminaries |0.5--0.75 page | Formal problem statement, notation, path-length or complexity arguments. |
 | Method |2.0--3.5 pages | The largest section. Per-component motivation, equations, architecture details. |
-| Experiments |2.0--3.0 pages | Setup (0.5p), main results (1.0p), ablations and analysis (1.0--1.5p). |
+| Experiments |2.0--3.0 pages | Setup, main results, and the mechanism or other analysis needed for the claims; no fixed ablation quota. |
 | Discussion / Analysis |0.5--1.0 page | Architecture-level analysis, failure modes, limitations. |
 | Conclusion |0.2--0.4 page | Restate insight and evidence; no new claims. |
 
@@ -86,7 +86,7 @@ Checks:
 - Is the root technical reason explicit?
 - Does the introduction avoid defensive or incremental framing?
 - Do cited prior methods explain the actual gap and closest alternatives? Avoid expanding literature only to meet a citation count.
-- Do contribution bullets map to Method and Experiments?
+- Do contribution bullets map to the relevant method, proof, construction, analysis, or study, distinguishing planned evidence from completed findings?
 - Does the reader understand the mechanism-level difference and what it enables?
 
 ## Related Work
@@ -161,13 +161,13 @@ Checks:
 
 Goal: test the central scientific claims and explain the observations.
 
-Recommended structure:
+Choose the relevant roles below from the actual claims and supplied evidence; do not add an experiment simply to fill a section heading:
 
 1. Setup: datasets, metrics, baselines, protocol, implementation.
-2. Main comparison: answer whether the method works.
-3. Ablation: answer why it works.
-4. Analysis: answer when it works, when it fails, and how robust it is.
-5. Qualitative or case studies when the venue expects them.
+2. Main comparison or study: answer the central empirical question.
+3. Mechanism analysis: use an ablation or other appropriate evidence when the interpretation depends on it; removing a component does not by itself establish the full causal explanation.
+4. Further analysis: resolve a specific scope, robustness, or failure question grounded in the claim or observations.
+5. Qualitative or case studies when they answer a relevant question or satisfy a verified venue requirement.
 6. Material observed limitations or failure cases at the relevant location, or in a required dedicated section.
 
 Citation rules:
@@ -182,7 +182,7 @@ Checks:
 - If the user needs datasets, baselines, ablations, benchmark design, or fill-in result tables, use `ccf-experiment-designer` through the CCFA handoff mode.
 - Are baselines strong, recent, and fair? Is every baseline cited?
 - Are metrics standard and sufficient?
-- Are ablations tied to modules and design choices?
+- Does each added analysis resolve a claim or decision that the existing evidence leaves open?
 - Do tables and figures each have one message?
 - Are negative or boundary results handled honestly?
 
@@ -194,15 +194,15 @@ Goal: make the paper inspectable before close reading.
 
 Structural rules:
 
-1. Every figure/table should answer one reviewer question.
+1. Each figure/table should support a concrete scientific question or comparison in the argument.
 2. Captions state the evaluated object, necessary setting, and supported takeaway; pending-result captions state scope without a conclusion. Follow the user's established style and venue requirements for placement.
 3. Follow `table-style-guide.md` for table rules, with the venue requirements and established user style taking precedence.
-4. Numbers in the same column must have the same decimal precision.
+4. Apply the precision rules in `table-style-guide.md`; preserve small values, thresholds, and the source's measurement precision.
 5. Actual best results can be bolded under one convention; do not emphasize unknown cells or incomparable protocols as winners.
 6. Resolve visible overflow and poor spacing through column widths, readable headers, or line breaks. Inspect warnings in the rendered table; harmless underfull hboxes do not require edits.
 7. Fit tables to the actual available width without sacrificing readability or automatically shrinking fonts.
 8. Pipeline figures should show data flow, modules, and outputs without overcrowding.
-9. Qualitative figures should avoid cherry-picking by showing representative successes and failures when possible.
+9. Qualitative figures should follow a stated selection principle and include material observed failures; do not invent a failure panel or select only favorable examples to support a general claim.
 
 Checks:
 
@@ -249,7 +249,7 @@ When the user gives one paragraph:
 3. Check sentence flow.
 4. Check term consistency.
 5. Check whether the paragraph repeats a concept without adding logic.
-6. Check whether claims are supported or need softer wording.
+6. Match claims to their actual support; change strength only for a concrete overstatement or missing condition, not merely to sound more cautious.
 7. Rewrite with the same technical meaning unless the user asks for structural changes.
 
 Visible output default: the rewritten paragraph only, preserving Markdown/LaTeX/citation formatting. Add a short note only if a claim was softened, a citation/result looked unsupported, or the user asked for explanation.

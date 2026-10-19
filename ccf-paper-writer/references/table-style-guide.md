@@ -6,7 +6,7 @@ Use this file for LaTeX result, configuration, ablation, and comparison tables. 
 
 1. Prefer a clear layout without vertical rules unless the required or established style uses them.
 2. Prefer `\toprule`, `\midrule`, `\bottomrule` from `booktabs` for horizontal rules when compatible with that style.
-3. Numbers in the same column must have the same number of decimal places.
+3. Align comparable quantities at a precision supported by their source values. Preserve meaningful small values, thresholds, intervals, and significant digits; appearance must not change the reported result.
 4. Give each table a clear purpose; related comparisons can share grouped columns. Do not split a table solely to enforce a message count.
 5. Follow the required caption placement and state the setting and any supported takeaway.
 
@@ -121,12 +121,12 @@ For visible overflow or poor spacing, choose an appropriate fix below. Inspect c
 
 | Situation | Rule |
 | --- | --- |
-| Metrics (BLEU, accuracy, F1) | Same decimal places in every cell of that column |
+| Metrics (BLEU, accuracy, F1) | Use a consistent precision for comparable measurements when supported by their sources |
 | Standard deviations | `$\pm$` notation: `27.3 $\pm$0.2` |
 | Percentages | Use `\%` and align: `87.3\%` |
 | Large integers | Use commas or scientific notation consistently |
-| Zero values | Write `0.0` not `0` when other values have decimals |
-| Table-wide consistency | If most values need1 decimal, apply1 decimal everywhere |
+| Zero and small values | Distinguish an exact zero from a rounded value or reporting threshold; use scientific notation when needed |
+| Mixed quantities | Format each quantity according to its units and supported precision; never round the entire table by majority convention |
 
 ## Bold Best Results
 
@@ -199,7 +199,7 @@ Use `\multicolumn` to add notes below the table body:
 ## Quick Checklist Before Submitting
 
 - [ ] Table rules match the required or established style; use `booktabs` defaults where appropriate.
-- [ ] All numbers in a column have the same decimal precision.
+- [ ] Comparable numbers align without hiding meaningful differences or implying unsupported precision.
 - [ ] Caption placement is correct; its scope and any conclusion match the available evidence.
 - [ ] Each table has a clear scientific purpose.
 - [ ] Any best-result emphasis uses actual comparable measurements and a consistent convention; unknown cells are not ranked or highlighted.

@@ -34,6 +34,8 @@ Read and apply this entry's baseline before specialist work. Communicate the con
 
 Use existing authorization and evidence. Ask only about an unresolved decision and add work when it can resolve a material gap. Continue unaffected work; omit routine warnings and self-attestation. A checklist alone does not justify adding experiments or reducing the user's research objective.
 
+Across prose, ideas, and experiment plans, name the object, operation, relationship, and intended or observed result instead of praising a route as `可验证`, `可实现`, `rigorous`, or `feasible` without explaining it. Keep those terms when they express an actual technical property or constraint. Use comparisons to distinguish real alternatives. Add qualifications, narrower goals, or extra experiments only for a specific factual or logical reason; preserve a proposed mechanism as a proposal instead of demanding completed evidence during exploration.
+
 When execution becomes unreliable, narrow the next step while preserving the requested scope and evidence standard. Recover against actual artifacts through Common's continuity rules; do not replace progress with cautionary prose, repeated reassurance, or an easier substitute deliverable.
 
 ## Core Rule
@@ -56,7 +58,7 @@ Keep method confirmation and version-gate status internal. Describe the actual m
 For `family-preflight`, apply the baseline, ensure `ccf-common` is active, and continue the requested specialist task. The following editing workflow applies only when the task includes relevant prose or experiment artifacts; do not run it merely to complete the universal preflight.
 
 1. Identify the requested artifact, existing authorization, and whether the input is prose, a proposed design, or reported results. Read `references/humanization-policy.md` for the sentence decisions and bilingual repair examples.
-2. Recover each paragraph's scientific message. State the observation, operation, assumption, or inference directly. Delete empty self-defense instead of moving it into a warning block.
+2. Recover each paragraph's scientific message and how its sentences support it. Repair the actual reason, evidence, or consequence linking adjacent points; adding connectors or replacing a few words is insufficient. Delete empty self-defense instead of moving it into a warning block.
 3. Remove repeated caveats across sections. Express scope where it changes interpretation; do not require every abstract, paragraph, caption, or conclusion to end with a limitation.
 4. Preserve material facts and calibrated uncertainty in the authorized edit. If a decision requires new evidence or a research-scope change, isolate that decision and continue unaffected work. Do not edit a source file merely to encode a warning.
 5. For actual publication comparisons or executable experiment changes, load `references/experiment-discipline.md`. Preserve a verified identity and full configuration in the internal gate; keep legitimate ablations clearly labeled. Run this step only when the task needs it.

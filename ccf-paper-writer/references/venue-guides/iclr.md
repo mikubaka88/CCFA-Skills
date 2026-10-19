@@ -9,7 +9,7 @@
 | CCF tier | CCF-A |
 | Template | ICLR 2027 official style bundle; obtain it from the Author Guidelines before building. The bundled local style is for 2026 only. |
 | Official URL | https://iclr.cc/Conferences/2027/AuthorGuidelines |
-| Last verified | 2026-09-16 against the 2027 author/reviewer policies and official style bundle. |
+| Last verified | 2026-10-19 against the 2027 author/reviewer policies and official style bundle. |
 | Source status | Year-specific guidance verified; recheck official policy before real submission. |
 
 ## Usage Boundary

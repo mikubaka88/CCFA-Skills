@@ -22,7 +22,7 @@ npx skills add mikubaka88/CCFA-Skills --list
 npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes --copy
 ```
 
-只安装部分 skills 时必须包含 `ccf-common`。例如：
+只安装部分 skills 时必须包含两个前置模块：`ccf-humanization` 和 `ccf-common`。例如：
 
 ```powershell
 npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill ccf-common --skill ccf-humanization --skill ccf-paper-writer --skill ccf-visual-composer --yes --copy

@@ -4,6 +4,18 @@
 
 Plugin version is `0.11.0`.
 
+### 2026-10-19 maintenance update
+
+- Repair contradictory writing and review instructions: remove obligatory limitation endings, score-dependent issue closure, compulsory rescue routes, and blanket experiment menus. Preserve legitimate comparisons, uncertainty, controlled studies, and the user's research objective. Keep exemplar analysis in working context unless requested, and format table precision according to the quantity and source evidence.
+- Strengthen Humanization across writing, ideas, and experiment plans with concrete objects, operations, and relationships. Extend prose diagnostics to authored Markdown table cells, repeated Chinese comparisons, abstract capability-label clusters, and caution-based justifications. Treat contextual signals as advisory and preserve quoted/code content and meaningful technical terms.
+- Complete Humanization → Common references in existing agent default prompts and partial-install guides. Distinguish discovery metadata from actually read instructions, recover missing relevant context, and carry concrete evidence or reader difficulties through review-to-revision handoffs. No startup report or extra agent is added by default.
+- Strengthen scientific plotting with physical-size typography, reusable color normalization, stable entity colors and shared legends, aligned shared/free axes, and explicit p/adjusted-p/q labels. Reject invalid statistics and correlations, preserve tiny positive values, require an explicit display policy for zero probabilities, and correct signed-bar, donut, and radial edge cases. Existing positional call signatures remain compatible.
+- Refine reference-based composition, biological asset selection, palette consistency, scientific and visual checks, and approved component reuse. Keep additional generations and independent review behind existing preferences; add no runtime plotting dependency, skill, or configuration switch.
+- Add runnable plotting examples and data/geometry regression tests to CI. Refresh the three README narratives and usage prompts; retain the 17-skill family, version-1 settings, seven optional controls, and `0.11.0` plugin version. Record inspected external references and reverify the five ICLR 2027 official sources without relabeling historical unverified sources.
+- Validate all 17 skills, 36 plotting regressions, 27 preference tests, 23 continuity tests, and the configurator controller. Check 377 local Markdown links and 1,168 text files for path privacy; execute all 13 legacy showcase exports and inspect representative SVG renderings. Six current-model writing/idea/experiment/handoff smoke cases preserve supplied facts and required limits. These are bounded acceptance checks, not a blind comparison, a provider-degradation experiment, or a measurement of quality, time, or token gains.
+
+### Earlier changes in this version
+
 - Rewrite the latest-update story around everyday research: retaining the goal through long tasks, coordinating useful contributions, and choosing where to spend extra effort. Add a real configurator screenshot, three practical setting examples, and user/project setup instructions across the three README languages. Preserve historical release records and version-1 preference compatibility.
 
 - Clarify transition-time goal checks, isolate unreliable summaries during recovery, and preserve valid artifacts while reconciling affected decisions. Do not infer hidden provider capability changes or claim measured resilience gains.

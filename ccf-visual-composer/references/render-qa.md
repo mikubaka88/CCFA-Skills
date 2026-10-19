@@ -8,43 +8,34 @@ Visual QA is based on rendered output, not source optimism. When source files ex
 
 ## Scope And Reuse
 
-Run the applicable checks below, not every format's checklist. A numeric chart needs data/axis/uncertainty checks; an architecture needs topology/label checks; PPTX checks apply only to PPTX. For a local revision, inspect the changed region plus affected dependencies at intended size. Reuse unchanged inspections; a shared font, scale, or layout change warrants broader coverage.
+Run one integrated inspection of the requested formats, separating scientific fidelity from visual quality. A numeric chart needs data/axis/uncertainty checks; an architecture needs topology/label checks; PPTX checks apply only to PPTX. For a local revision, inspect the changed region plus affected dependencies at intended size. Reuse unchanged inspections; a shared font, scale, or layout change warrants broader coverage. A second independent assessment uses Common's effective `independent_review` preference or an explicit request, not a mandatory extra agent.
 
 Use one current build preview per artifact under the shared working directory. Open it once for a meaningful change and inspect a targeted crop when a specific detail remains uncertain. Reuse an existing QA record; persist only unresolved or decision-relevant findings needed to continue. Do not produce a screenshot or report for each checklist bullet. Keep checking until the requested quality is met or a concrete tool/evidence limitation is identified.
 
-## Checks
+## Scientific Fidelity
 
-- No clipped axis labels, legends, panel labels, captions, or table notes.
-- No incoherent overlap between text, plots, legends, subfigures, floats, or surrounding paragraphs.
-- Float order matches the paper logic and cross-references resolve.
-- Fonts are embedded or accepted by the target template; labels remain readable at final size.
-- Ordinary visible English uses natural title or sentence case; canonical acronyms and initialisms remain uppercase, and no complete ordinary-language title, module label, legend, axis, annotation, badge, or table header is styled in all caps.
-- Vector text remains editable when requested; raster previews are high enough resolution.
-- Color contrast survives grayscale and color-vision checks.
-- Figure captions and table captions are present, near the artifact, and not detached by bad float placement.
-- Tables do not exceed margins and do not use unreadable shrinkage.
-- Numeric precision, units, sample size, confidence intervals, and metric direction match the manuscript.
-- Source data or scripts are traceable enough for later integrity audit.
-- Architecture nodes, groups, and connections match the supplied method; no plausible-looking component was invented.
-- A paper architecture figure exposes representations, operators, branches, merges, and outputs; it is not a set of explanatory stage cards, a dashboard, a README hero, or a PPT/Poster graphic.
-- Paper-figure QA rejects large stage banners, repeated callout bubbles, decorative hero titles, oversized generic icons, and prose-heavy cards that do not correspond to computations.
-- Architecture arrows have correct direction and semantics, and training/inference boundaries remain truthful.
-- Generated-image labels match the approved inventory, with no extra explanatory prose, invented acronym expansions, or ornamental numbers. Repair malformed raster text through the image-editing workflow, or directly in the vector/native source when reconstruction is requested. Preserve essential data labels, units, ticks, and equations.
-- An editable SVG contains live text and selectable vector groups rather than a full-page embedded or auto-traced raster.
-- A requested vector PDF is exported from the reconstructed vector source, with SVG retained as the canonical editable artifact.
-- Public icons use a coherent family and recorded license; custom icons remain separate assets with clean alpha edges, no background halo, no embedded text, and no hallucinated internal detail.
-- The layout follows explicit alignment lines and spacing tokens; information boxes with the same role share dimensions or baselines unless hierarchy requires a visible exception.
-- Check repeated edge gaps, padding, text baselines, optical icon size, and reserved connector clearance against the selected design tokens. In vector/native output, verify coordinates in design units (within 1 px for intended equalities after conversion); for raster output, inspect visible consistency and state any unresolved precision limit instead of claiming pixel-exact placement.
-- The figure has one clear entry and reading path on a content-fit canvas; no default square or mandatory ratio. Inspect outer margins and internal holes separately. A blank patch as large as a meaningful module triggers a layout check; plotting whitespace and reserved connector lanes are legitimate. Do not pass compactness by filling backgrounds, enlarging empty frames, or adding unsupported content.
-- Alignment continues across block boundaries: peer top/bottom edges, label baselines, branch ports, panel labels, and comparable plot/crop regions share the intended anchors. Equal rank does not require an oversized uniform box when content extents differ.
-- Inspect the overview for hierarchy, then the actual paper/display width for fonts. Verify the chosen point-size roles after scaling, including axes, secondary labels, math and indices. Do not shrink just one crowded block below the readable type scale; revise its content placement or available area.
-- Times New Roman or the selected Comic Sans MS treatment is consistent across ordinary text and numbers, subject to user/venue overrides. Check actual font availability and substitution in editable output; do not infer a genuine font face from a generated raster's appearance.
-- Internal illustrations are recognizable at their allocated size, with coherent viewpoint, detail, color, and rendering treatment. Repeated objects remain visually consistent and conceptual imagery is not presented as experimental evidence.
-- The chosen preset coordinates font, line weight, grouping, and fill. A conference suggestion has not been presented as an official rule. Detail-view leaders cannot be mistaken for extra computation or flow; matrices/frame strips retain necessary indices and symbols.
-- A requested PPTX contains live text, native boxes/nodes/connectors, semantic groups, and separately selectable icon assets rather than one full-slide image.
-- PPTX editability is reported per asset: native shape, SVG graphic convertible to Office shapes, or isolated raster that is movable but not vector-editable.
-- The PPTX is rendered to a preview and inspected for clipping, font substitution, connector drift, transparency fringes, and z-order errors.
-- For a selected-object edit, verify the current source/export correspond and identify actual source object IDs. Check the changed objects, attached connectors, and unchanged protected regions. Preserve a manually edited user file until its changes have been reconciled with the authoring source.
+- Values, precision, units, sample sizes, uncertainty, and metric direction match traceable source data. Invalid correlation coefficients or probabilities fail before rendering; missing values and valid exact zeros retain their stated meaning instead of being silently clamped or relabeled.
+- Related panels match entities by ID, with the intended order/grouping and correct annotation rows. Common colors, axes, legends, and heatmap limits encode the same quantities. Distinct units or free scales are explicit; independently scaled panels do not imply comparable magnitudes.
+- Architecture nodes, groups, typed edges, and training/inference boundaries match the supplied method. Detail-view leaders cannot be mistaken for another computation; indices, equations, and essential labels remain intact.
+- Generated labels match the approved inventory, without invented acronym expansions, ornamental numbers, or prose. Repair malformed raster text through the host image workflow, or in the native source when editable reconstruction is requested.
+- Scientific images retain aspect ratios, scale bars, crop/contrast meaning, and actual evidence content. Conceptual illustrations do not impersonate observations. Icons preserve necessary scientific parts, individual licenses, and required attribution.
+
+## Visual Quality
+
+- Inspect the overview for a clear reading path and content-fit canvas, then the final paper/display width for text and object recognition. A paper mechanism figure exposes its computations; remove decorative banners, prose cards, or generic icons that obscure them.
+- Check axis labels, legends, panel labels, captions, table notes, and surrounding content for clipping/overlap. Captions remain near the artifact, float order follows the argument, and cross-references resolve. Tables fit margins without unreadable shrinkage.
+- Align data rectangles and corresponding crop regions across panels, accounting for unequal outer tick-label margins and fixed-aspect geometry. Shared legends describe matching encodings and do not duplicate every panel's entries.
+- Check peer edges, text baselines, branch ports, repeated visible gaps, padding, icon optical sizes, and connector clearance against chosen anchors/tokens. Equal roles may have different widths to fit their content. In vector/native output, verify intended equalities within 1 design px after unit conversion; raster inspection cannot certify pixel-exact geometry.
+- Inspect outer margins and internal holes separately. A module-sized empty patch prompts a layout check; retain plotting whitespace and connector lanes. Compactness comes from arranging supported content, without adding empty frames or decorative objects.
+- Verify the final physical font sizes after embedding or composing panels, including axes, legends, math, and indices. Resize geometry separately from typography/strokes when necessary; reflow crowded content before reducing one label below its peers' readable scale.
+- Use the selected Times New Roman, Comic Sans MS, or user/venue font consistently, with actual CJK coverage and appropriate math glyphs. Check substitution/embedding in editable formats; raster appearance cannot prove a font face. Ordinary labels use natural case while canonical acronyms remain uppercase.
+- Color roles remain stable and legible in grayscale/color-vision checks. The chosen preset coordinates strokes, fills, type, and recognizable illustrations with consistent viewpoint/detail. Its venue suggestion has not been presented as an official rule.
+
+## Requested Format And Edit Checks
+
+- An editable SVG contains live text and selectable semantic vector groups. Export vector PDF from that canonical source and retain source editability; a whole-page raster or noisy auto-trace does not qualify. Raster previews have enough resolution to inspect the delivery size.
+- A PPTX uses live text, native nodes/connectors/groups, and separately selectable assets. Identify native shapes, SVG graphics that need Office conversion, and isolated movable raster assets accurately. Render it to inspect font substitution, connector drift, transparency fringes, clipping, and z-order.
+- Icons have clean alpha edges and consistent optical weight, without stray text or unsupported detail. For a selected-object edit, verify source/export versions, actual object IDs, attached connectors, and protected regions. Reconcile manual source edits before regenerating dependent exports.
 
 ## QA Ledger
 

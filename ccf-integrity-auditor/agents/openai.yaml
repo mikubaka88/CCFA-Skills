@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Integrity Auditor"
   short_description: "Audit claims, numbers, tables/figures, citations, BibTeX metadata, and citation-context support."
-  default_prompt: "Use $ccf-integrity-auditor to check claims, values, and existing citations with source locations and clear coverage limits. Preserve manuscript text unless fixes are requested."
+  default_prompt: "Apply $ccf-humanization, then $ccf-common; reuse their applicable active rules. Use $ccf-integrity-auditor to check claims, values, and existing citations with source locations and clear coverage limits. Preserve manuscript text unless fixes are requested."

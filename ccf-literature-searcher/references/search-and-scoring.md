@@ -63,16 +63,16 @@ When the search is for early direction scouting, classify each cluster as one or
 - `theory/analysis gap`: empirical results exist but formal understanding, bounds, or diagnostics are missing.
 - `negative-result opportunity`: common assumptions fail, and a careful diagnostic or falsification paper may be valuable.
 
-For every `covered central claim`, still report the best possible rescue route:
+For a `covered central claim`, explain the overlap. Include a reframing only when it changes a meaningful problem, mechanism, or evidence contribution; a popular topic alone does not make the broader direction unproductive. Use only the fields needed to communicate the decision:
 
 ```text
 What is covered:
 Why direct novelty is weak:
-Possible rescue route: new problem / new mechanism / new evidence / new venue / stop
-Evidence needed to decide:
+Supported next step: substantive reframing / specific unresolved question / stop this candidate
+Evidence needed to decide, if unresolved:
 ```
 
-Do not conclude "the direction is dead" merely because the topic is popular. A direction is likely dead only when the user's central problem, mechanism, target setting, and evidence path are all already covered and no credible reframing remains.
+If no valuable distinction is supported, say so and return to the idea owner. Do not invent an extra module or treat a venue change as scientific novelty. Stopping this candidate does not discard the user's broader research objective.
 
 ## Paper-Type Taxonomy
 

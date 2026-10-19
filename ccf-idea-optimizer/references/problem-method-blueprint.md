@@ -2,6 +2,8 @@
 
 Use this file when converting a rough direction into a CCF-A-ready problem and method plan.
 
+Treat the fields below as prompts for the current stage, not compulsory output headings. During exploration, explain the problem, proposed operation, and why it could matter. Inspect known contradictions and necessary assumptions; leave experiment design to a requested planning step or a concrete decision that needs it. Missing results are expected at this stage and do not require defensive wording or a smaller research goal.
+
 ## Problem Sharpening
 
 A strong problem statement should answer:
@@ -12,7 +14,7 @@ Who in the venue community cares?
 What gap remains after the strongest prior work?
 Why is the gap hard rather than merely unattempted?
 What would become possible if it were solved?
-What scope boundary prevents overclaiming?
+Which conditions define the actual task?
 ```
 
 Good CCF-A problems tend to have at least one of these properties:
@@ -33,16 +35,18 @@ Key representation:
 Main operation:
 Optimization or inference objective:
 Why the mechanism should address the root challenge:
-Assumptions:
-Failure modes:
-Alternative designs rejected:
+Necessary assumptions:
+Known contradiction or unresolved dependency, if any:
+Relevant alternative and reason for choosing this mechanism, if a choice has been made:
 ```
 
-Then state the causal chain in one line:
+Connect the proposed operation to the expected effect when that mechanism is part of the idea. For example:
 
 ```text
 Intervention -> changed representation/optimization/inference behavior -> measurable intermediate effect -> task-level outcome
 ```
+
+This is a proposed explanation until supported. Theory, measurement, and dataset ideas may instead need a logical relation or construction argument; do not invent an empirical causal chain for them. Describe the operation itself instead of calling it “可验证的机制” or “可实现的路径.” Retain those properties when the research actually studies verifiability or feasibility.
 
 When a mechanism comes from prior work, record the source-supported primitive and the optimizer's new interaction separately. The source may justify that a primitive works under its original assumptions; it does not automatically justify transfer, compatibility, or the new paper's central claim.
 
@@ -53,8 +57,8 @@ If the method is a combination of known components, identify the non-obvious int
 Before presenting an optimized idea, check:
 
 - The problem setting and method assumptions are compatible.
-- The proposed evidence can actually test the central claim.
-- The contribution type matches the evidence type.
+- Any proposed discriminator can distinguish the central explanation; it can be an observation, counterexample, proof, analysis, or test appropriate to the contribution.
+- An evidence plan, when requested, matches the contribution type; it is not a completed-results gate for an early idea.
 - The target venue audience would care about the problem, not only the technique.
 - No module requires data, supervision, deployment access, or theoretical assumptions that conflict with another module.
 - The idea does not rely on mutually exclusive claims such as "training-free" and "requires large fine-tuning" unless the distinction is scoped.
@@ -71,7 +75,7 @@ Classify the strongest honest contribution:
 - New empirical finding or diagnostic analysis.
 - New synthesis that resolves a known tension.
 
-Avoid claiming all types. Pick the top one or two and make the evidence package serve them.
+Identify the contribution types actually present without forcing a quota or inflating labels. Preserve connected task, measurement, and method contributions when the idea needs them. Develop their support at the appropriate stage.
 
 ## Elegance Checks
 
@@ -80,7 +84,7 @@ An elegant idea usually has:
 - One central insight that explains the method.
 - A method whose parts are necessary, not decorative.
 - A simple claim that can be tested directly.
-- A failure mode that is understandable.
+- Necessary assumptions whose role is understandable, with known failure mechanisms explained when they matter.
 - A result that would teach the community something even if SOTA gains are modest.
 - A design that removes a bottleneck or reveals a simpler formulation, not merely a longer pipeline.
 

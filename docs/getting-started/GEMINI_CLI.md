@@ -9,7 +9,7 @@ npx skills add mikubaka88/CCFA-Skills --global --agent gemini-cli --skill '*' --
 npx skills list --global --agent gemini-cli
 ```
 
-开启新的 Gemini CLI 会话后直接描述任务。部分安装必须包含 `ccf-common`，并保留完整 skill 目录。
+开启新的 Gemini CLI 会话后直接描述任务。部分安装必须包含 `ccf-humanization` 和 `ccf-common`，并保留完整 skill 目录。
 
 ## 更新与自动更新
 

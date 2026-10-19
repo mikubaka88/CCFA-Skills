@@ -10,10 +10,10 @@ Score each dimension on 1-5 when enough text is available.
 | --- | ---: | --- |
 | Storyline and motivation | 10 | Whether the paper makes the problem, gap, and stakes unavoidable before presenting the method. |
 | Contribution display | 10 | Whether contributions are specific, non-overlapping, evidence-backed, and visible in abstract/introduction/conclusion. |
-| Paragraph logic | 10 | Whether each paragraph has one job, a clear topic sentence, causal flow, and no mixed objectives. |
-| Claim-evidence alignment | 12 | Whether every strong claim is supported by experiment, proof, citation, example, or qualified language. |
+| Paragraph logic | 10 | Whether each paragraph develops a clear point through the actual relation between sentences, with intelligible transitions to adjacent paragraphs. |
+| Claim-evidence alignment | 12 | Whether claims have the appropriate experiment, proof, citation, or analysis, with wording calibrated to that support. A qualifier alone is not evidence. |
 | Method readability | 9 | Whether notation, modules, algorithm steps, assumptions, and design choices are introduced in the right order. |
-| Experiment narration | 9 | Whether tables/figures are introduced before interpretation and whether the text explains what each result proves. |
+| Experiment narration | 9 | Whether tables/figures are introduced before interpretation and the text explains what the observations support, without conflating association and causation. |
 | Related-work positioning | 8 | Whether closest work is compared on technical axes rather than listed chronologically. |
 | Terminology and notation consistency | 8 | Whether key terms, symbols, dataset names, model names, and claims stay stable across sections. |
 | Prose discipline and voice | 10 | Whether the paper avoids defensive/incremental framing, label-heavy symbols, number-only abstracts, formula dumping, third-person manuscript narration, punctuation-driven structure, unsupported hype, and overlong compound sentences. |
@@ -47,7 +47,7 @@ Include this scorecard in standard writing review:
 | LaTeX and format discipline | 6 |  |  |  |  |
 | Reviewer-facing risk | 8 |  |  |  |  |
 
-For each score of 3 or below, name the location, the reviewer confusion it creates, and the smallest edit that would raise the score.
+For each score of 3 or below, name the location, the confusion it creates, and the smallest edit that resolves it. Score changes summarize resolved issues; they are not targets for repeated hedging or rewriting.
 
 ## Score Anchors
 
@@ -57,7 +57,7 @@ The section or paper reads like a strong venue submission: the story is precise,
 
 ### 4
 
-Readable and mostly reviewer-proof, but one or two issues still weaken emphasis, evidence alignment, or consistency.
+Readable and coherent, with one or two local issues in emphasis, evidence alignment, or consistency.
 
 ### 3
 
@@ -97,6 +97,7 @@ Apply `../../../ccf-paper-writer/references/prose-quality-guardrails.md`. Flag t
 - Third-person manuscript voice, such as "this paper proposes" or "the authors show", in text meant to be the manuscript itself.
 - Repeated concepts or inconsistent terms that make the argument feel mechanically generated.
 - Paragraphs whose sentences have the same length, template, or rhetorical rhythm.
+- Abstract ability labels with no described operation, repeated contrasts without a real comparator, or added qualifiers with no relevant condition. Preserve genuine technical terms, comparisons, and evidence boundaries.
 
 ## Writing Review Panel
 
@@ -128,5 +129,6 @@ Do not force praise or criticism. If a role finds the section acceptable on its 
 
 - Do not invent results, citations, baselines, or theorem claims.
 - Do not silently rewrite the idea. When a scientific claim is too strong for the evidence, recommend weakening, qualifying, moving, or requesting evidence.
+- Do not reward extra caution by itself. Identify the missing support or misleading implication before recommending a qualification; equally flag unnecessary qualifiers that obscure an adequately supported contribution.
 - Do not give acceptance probabilities. Report writing risk and likely reviewer confusion.
 - If the user asks for actual rewriting, follow CCFA handoff mode before using `ccf-paper-writer`.

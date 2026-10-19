@@ -50,12 +50,13 @@ These variants are starting sets, not certified color-vision-safe combinations. 
 
 ## Semantic Color Rules
 
-- Assign the proposed method one stable color across the paper.
+- Map stable entity IDs to colors once across related figures, whether the entities are models, cell types, cohorts, or conditions. Keep the proposed method's mapping fixed; panel order must not silently reassign colors.
 - Use neutral gray for secondary baselines unless a baseline is itself the scientific focus.
 - Use positive/negative colors only for true directional meaning.
 - Do not encode a critical distinction with red/green alone; add markers, line styles, hatches, direct labels, or grouping.
 - Keep color roles stable across main text, appendix, tables, and slides.
 - Avoid palettes dominated by decorative gradients or many similar hues.
+- For comparable heatmaps, share explicit limits and any meaningful center; use the same unit and transformation. Distinct quantities retain separate labeled scales even when their rows are aligned. Missing values need a distinct missing-data mark, not the color for zero. Reject invalid values instead of silently clipping the source to a color range.
 
 ## Accessibility Checks
 

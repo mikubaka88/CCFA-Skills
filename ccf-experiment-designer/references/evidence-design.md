@@ -4,7 +4,7 @@ Use this file to design CCF-A evidence packages without fabricating results.
 
 ## Evidence Principle
 
-Start from the claim, not the table. Each experiment should answer one of these reviewer questions:
+Start from the research claim or decision, not the table. Each experiment should resolve a relevant question such as:
 
 - Does the method solve the stated problem?
 - Why does the mechanism work?
@@ -15,6 +15,8 @@ Start from the claim, not the table. Each experiment should answer one of these 
 - Does the evidence match the venue's expectations?
 
 ## Venue-Family Evidence
+
+These are candidate evidence forms, not mandatory packages. Select only what the contribution, actual claim, or verified venue rule calls for. A venue label alone does not justify every listed experiment.
 
 AI/ML:
 
@@ -54,7 +56,7 @@ Theory:
 
 ## Baseline Matrix
 
-Use this before proposing experiments:
+Use the relevant fields for proposed comparative studies; a formal or noncomparative question does not need a baseline matrix:
 
 ```text
 Baseline:
@@ -84,8 +86,8 @@ Each ablation should test a mechanism:
 Component or assumption:
 Why it matters:
 Replacement or removal:
-Metric affected:
-Expected interpretation if it fails:
+Observation or metric:
+How the competing outcomes change the explanation or next decision:
 ```
 
 Useful ablations:
@@ -126,6 +128,6 @@ Select the smallest sufficient package for the actual claims and paper type. The
 3. Robustness, generalization, stress, or failure analysis only when it resolves a specific claim or project decision grounded in observations or a plausible mechanism, or satisfies a verified venue requirement.
 4. Reproducibility details for the reported method, protocol, or proof as applicable.
 
-For each proposed test, state which claim it resolves and why existing evidence is insufficient. If a necessary test is infeasible, identify the remaining evidence gap and feasible alternatives. Adjust the claim only when its available support requires it; a generic checklist or resource constraint alone does not authorize changing the research goal. Keep a planned claim distinct from a completed empirical conclusion, and continue unaffected work.
+For each proposed test, state which claim or decision it resolves, why existing evidence is insufficient, and how materially different outcomes would affect the interpretation or next step. Put this in the existing plan; no separate justification report is needed. If a necessary test is infeasible, identify the remaining evidence gap and feasible alternatives. Adjust a reported conclusion only when its support requires it; a generic checklist or resource constraint alone does not authorize changing the research goal. Keep a proposed mechanism, a planned comparison, and a completed finding distinct, and continue unaffected work.
 
-Do not present a simplified, toy, approximate, proxy, reduced, or debug development run as the full publication method or baseline. A publication ablation must start from the confirmed full method, change the intended component under the authorized scientific protocol, and be reported only as an ablation. A predefined budget or scale comparison must likewise use its real specified protocol and be interpreted within that scope. Relabeling a toy/debug development run as a diagnostic does not make it publication evidence. Do not add repeated smoke tests as evidence; retain only the smallest non-duplicative set that checks changed critical paths.
+For reported comparisons and executable changes, apply `../../ccf-humanization/references/experiment-discipline.md`: preserve full-method identity and configuration, label ablations, and separate development smoke checks from scientific evidence. An authorized minimal system or controlled study can answer its own stated question using its actual protocol; it cannot stand in for an unexecuted full-method comparison. This gate does not require executed results before designing an experiment.

@@ -116,7 +116,7 @@ Look for:
 
 Look for:
 
-- Experiment sequence: setup -> comparison -> ablation -> analysis -> limitation.
+- The source's actual experiment sequence and the claim each step supports. Transfer useful relationships, not a mandatory ablation or limitation ending.
 - Table/figure message per result.
 - How baselines are described.
 - How qualitative examples support quantitative findings.
@@ -124,10 +124,6 @@ Look for:
 
 ## Adaptation Output
 
-After analyzing exemplars, produce:
+During drafting, keep only the useful source technique, its fit to the user's argument, and the target paragraph roles in working context. Return the requested prose without an additional analysis report or originality reminder. Preserve source attribution in exemplar cards and write new prose for the user's evidence.
 
-1. `Reference style summary`: 5-10 writing techniques.
-2. `Our story alignment`: which techniques fit the user's paper.
-3. `Section pattern`: paragraph roles for the target section.
-4. `Drafting warnings`: techniques that should not be used because they would distort the user's contribution or overclaim.
-5. `Originality guard`: a reminder that all final prose must be newly written for the user's paper.
+When the user requests an exemplar analysis, explain those choices with source locations and any material mismatch. Do not fill a fixed technique count or copy a source's limitations into a different study.

@@ -1,6 +1,6 @@
 # Plot Inspiration Map
 
-This map records design ideas to borrow conceptually from widely used open-source visualization projects. Use `../ccf-common/references/source-registry.yaml` as the source of truth for URLs and verification dates.
+This map records design ideas to borrow conceptually from open-source visualization projects. Use `../../ccf-common/references/source-registry.yaml` as the source of truth for URLs and verification dates. Load a source only for an unresolved choice; these are optional references, not default dependencies.
 
 ## Useful Ideas To Borrow
 
@@ -15,11 +15,17 @@ This map records design ideas to borrow conceptually from widely used open-sourc
 | Python Graph Gallery | Chart-type taxonomy and examples grouped by analytical purpose. | Route users by evidence shape: compare, distribute, relate, rank, change, compose. |
 | Scientific Visualization book | Publication-quality layout, spacing, annotation, and typographic restraint. | Prefer direct labels, whitespace discipline, and vector exports over decorative effects. |
 | SciencePlots/LovelyPlots | Paper-ready style sheets and editable scientific figures. | Keep palettes, font, SVG editability, and LaTeX integration as first-class concerns. |
+| ComplexHeatmap | Related matrices and annotations share entity order and group boundaries. | Join by stable IDs, retain common ordering, and use shared normalization only for comparable quantities. |
+| patchwork | Align data areas, collect shared legends, respect fixed-aspect panels. | Plan plot rectangles separately from label margins; let flexible panels absorb spare space. |
+| Scientific Inkscape | Resize figures while preserving typographic and stroke dimensions. | Bind font sizes to final physical width, then reflow panels without shrinking labels. |
+| Bioicons | Editable scientific objects from biology and chemistry. | Retrieve a fitting SVG only when needed, inspect individual license/attribution, and normalize visual weight. |
+| PaperVizAgent | Plan content, render, and revise from specific visual feedback. | Distinguish scientific fidelity from visual quality in one inspection; repair named regions and keep optional extra generation/review gated. |
+| AstraDraw | Reusable editable elements and local modification. | Reuse project-approved components, stable object IDs, and their topology before drawing new assets. |
 
 ## CCFA Creative Boundaries
 
 - Do not limit output to common bar/line/scatter charts when the evidence suggests richer structure.
-- Do not use novelty as decoration; unusual plot grammars must answer a reviewer question.
+- Use an unusual plot grammar when it explains a scientific relationship more clearly; a new appearance alone does not justify extra panels.
 - Use animation or interactivity only for exploration or demos, not for static paper evidence unless the venue supports it.
 - Prefer a boring chart with honest evidence over a beautiful chart that exaggerates.
 
@@ -39,5 +45,5 @@ Use this menu to invent new charts:
 | Relationship matrix | Correlation heatmap, pair grid, clustered heatmap, annotated matrix. |
 | Time or scale trends | Small multiples, direct-labeled line families, horizon strips. |
 | Mechanism path or pipeline | Annotated flow, layered schematic, evidence-linked block diagram. |
-| Multi-view analysis | Composite dashboard with composition, comparison, relationship, and screening panels. |
+| Multi-view analysis | Coordinated panels selected for the actual question; shared entity encodings and appropriate common scales. |
 | Multiple quality dimensions | Radar only for secondary summary; prefer parallel coordinates or scorecard when exact comparison matters. |

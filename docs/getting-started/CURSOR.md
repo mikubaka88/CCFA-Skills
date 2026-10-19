@@ -9,7 +9,7 @@ npx skills add mikubaka88/CCFA-Skills --global --agent cursor --skill '*' --yes 
 npx skills list --global --agent cursor
 ```
 
-重启 Cursor 或开启新的 Agent 会话，然后直接描述研究任务。部分安装必须包含 `ccf-common`，并保留完整 skill 目录。
+重启 Cursor 或开启新的 Agent 会话，然后直接描述研究任务。部分安装必须包含 `ccf-humanization` 和 `ccf-common`，并保留完整 skill 目录。
 
 ## 更新与自动更新
 

@@ -36,7 +36,7 @@ Source-quality exclusion: do not search, cite, recommend, or include policy-excl
 
 ## Core Rule
 
-Ground novelty and positioning using high-quality, inspectable sources. Prefer influential conferences, strong journals, official proceedings pages, archival repositories, and public paper pages. Do not invent papers, citations, venues, links, acceptance status, benchmark status, or numerical results. Separate searched evidence from inference. Literature search is not a kill gate: the presence of related work should produce differentiation options, open gaps, benchmark/evidence choices, and caution labels before any "direction is covered" conclusion. Follow the user's requested output shape: short list, related-work clusters, opportunity map, BibTeX candidates, benchmark table, search folder, or handoff summary.
+Ground novelty and positioning using high-quality, inspectable sources. Prefer influential conferences, strong journals, official proceedings pages, archival repositories, and public paper pages. Do not invent papers, citations, venues, links, acceptance status, benchmark status, or numerical results. Separate searched evidence from inference. Assess actual overlap: related work can reveal an open question or establish that a candidate's central claim is already covered. Offer meaningful differentiation when supported; do not force a rescue route or abandon the user's broader objective. Follow the user's requested output shape: short list, related-work clusters, opportunity map, BibTeX candidates, benchmark table, search folder, or handoff summary.
 
 ## Mandatory Search Checklist
 
@@ -50,7 +50,7 @@ In standard mode, complete this checklist before final output. In quick mode, ru
 6. Score paper quality on insight, completeness, and experimental numeric evidence only when requested or useful for substantial screening, and only to the extent the inspected text supports it. Pure benchmark papers skip the numeric-results score and receive a benchmark-quality note instead.
 7. Paper type is one of `pure benchmark`, `pure method`, `method + benchmark`, `survey`, `system/tool`, `theory/proof`, or `other`.
 8. Every claim about a paper is traceable to the linked source or marked as inferred.
-9. For idea-stage searches, each closest-work cluster includes what is already covered, what remains under-tested, and at least one possible differentiation or rescue route.
+9. For idea-stage searches, report what each closest-work cluster already covers and any supported open question. Offer differentiation only when a meaningful distinction can be explained; otherwise state that no worthwhile distinction was found in the inspected evidence. Return this finding to the idea owner without inventing a rescue module or abandoning the user's broader objective.
 10. Write a literature-search folder only when reusable output is requested or needed for the authorized work. A bounded helper lookup can return verified evidence in context without a separate report.
 11. When the search feeds idea optimization, an idea-grounding packet separates source-supported observations from inferred gaps and includes mechanism primitives, protocol anchors, cross-source conflict/open-gap relations, and confidence.
 12. Optional handoff to `ccf-literature-monitor`, `ccf-paper-writer`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-experiment-designer`, or `ccf-paper-reviewer` follows CCFA handoff mode.

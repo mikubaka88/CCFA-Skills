@@ -15,7 +15,7 @@ npx skills list --global --agent <agent-id>
 npx skills add mikubaka88/CCFA-Skills --all
 ```
 
-部分安装必须包含 `ccf-common`；不要只复制 `SKILL.md`。
+部分安装必须包含 `ccf-humanization` 和 `ccf-common`；不要只复制 `SKILL.md`。
 
 ## 更新与自动更新
 

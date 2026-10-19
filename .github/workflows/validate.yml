@@ -20,6 +20,7 @@ jobs:
       - run: python ccf-common/scripts/check_sources.py
       - run: python ccf-common/scripts/check_markdown_links.py
       - run: python ccf-common/scripts/check_v04.py
+      - run: python ccf-visual-composer/scripts/test_plot_recipes.py
       - run: python ccf-common/scripts/test_preferences.py
       - run: python ccf-common/scripts/test_continuity.py
       - run: node --check ccf-common/assets/configurator/app.js

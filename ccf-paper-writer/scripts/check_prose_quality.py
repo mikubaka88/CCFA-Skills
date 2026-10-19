@@ -67,7 +67,7 @@ FORMULAIC_PATTERNS = {
 DEFENSIVE_PATTERNS = {
     "imagined_reviewer": r"\b(?:to\s+)?(?:address|avoid|preempt|pre-empt|anticipate)\s+(?:any\s+|potential\s+|possible\s+)?reviewer(?:s['’]?)?\s+(?:concerns?|criticism|objections?|questions?)\b|(?:为(?:了)?避免|为回应|为打消|考虑到)审稿人[^。！？\n]{0,24}(?:质疑|担忧|顾虑)",
     "apologetic_framing": r"\bwe\s+(?:merely|only)\s+(?:offer|propose|provide)\b|\b(?:merely|just)\s+(?:a\s+)?(?:simple|incremental|minor)\s+(?:extension|improvement|modification)\b|(?:尽管|虽然)[^。！？\n]{0,30}(?:只是|仅仅是)(?:一个)?(?:简单|微小|增量)",
-    "denial_led_scope": r"\bwe\s+(?:do not|don't)\s+(?:claim|intend|aim|seek)\s+to\b|\b(?:our|the)\s+(?:goal|aim|intention)\s+is\s+not\s+to\b|我们(?:并不|并非|不)(?:试图|旨在|声称)",
+    "denial_led_scope": r"\bwe\s+(?:do not|don't)\s+(?:claim|intend|aim|seek)\s+to\b|\bwe\s+make\s+no\s+claims?\s+(?:about|of|regarding)\b|\b(?:our|the)\s+(?:goal|aim|intention)\s+is\s+not\s+to\b|我们(?:并不|并非|不)(?:试图|旨在|声称)",
     "generic_disclaimer": r"\b(?:not\s+without\s+(?:its\s+)?limitations|as\s+with\s+any\s+(?:method|model|approach)|cannot\s+guarantee\s+(?:universal|general|all)|do\s+not\s+guarantee\s+universal)\b|(?:并非没有局限|任何方法都有局限|不能保证[^。！？\n]{0,25}(?:所有|任何|普遍)|不保证[^。！？\n]{0,25}(?:所有|普遍))",
     "empty_assurance": r"\b(?:to\s+ensure|we\s+(?:carefully\s+)?ensure)\s+(?:the\s+|a\s+)?(?:fair(?:ness)?\s+and\s+rigor(?:ous)?|rigor(?:ous)?\s+and\s+fair(?:ness)?)\b|\bto\s+avoid\s+(?:any\s+|possible\s+)?misunderstanding\b|(?:为确保|为了保证)(?:论文|研究|实验|评估)的?(?:严谨性|科学性)|为避免(?:可能的)?误解",
     "stacked_hedging": r"\b(?:may|might|could)\s+(?:potentially|possibly|perhaps)\b|\b(?:seems?|appears?)\s+to\s+(?:potentially|possibly)\b|(?:或许可能|可能潜在地|似乎可能表明)",
@@ -85,8 +85,9 @@ def _read_text(path: str | None) -> str:
 
 def _prose_only(text: str) -> str:
     # Preserve offsets and newlines so every diagnostic points into the source.
-    # Code, equations, comments, table structure and direct quotations are not
-    # authored narrative. This is a heuristic filter, not a complete TeX parser.
+    # Protect code, equations, comments and direct quotations. Table cells can
+    # contain authored prose; mask separators, not their scientific explanation.
+    # This is a heuristic filter, not a complete Markdown or TeX parser.
     patterns = (
         r"```.*?```|~~~.*?~~~",
         r"`[^`\n]+`",
@@ -96,7 +97,7 @@ def _prose_only(text: str) -> str:
         r"\\(?:cite[pt]?|Cite[pt]?|autocite|parencite|textcite)\*?(?:\[[^\]\n]*\])*\{[^{}\n]*\}",
         r"\[(?:[^\]\n]*@[^\]\n]*)\]",
         r"(?m)(?<![\\\d])%[^\n]*",
-        r"(?m)^[ \t]*\|[^\n]*\|[ \t]*$",
+        r"(?m)^[ \t]*\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?[ \t]*$",
         r"<[^>]+>",
         r"(?m)^[ \t]*(?:---+|___+|\*\*\*+)[ \t]*$",
         r"(?m)^[ \t]*>[^\n]*$",
@@ -104,6 +105,7 @@ def _prose_only(text: str) -> str:
     )
     for pattern in patterns:
         text = re.sub(pattern, lambda m: re.sub(r"[^\n]", " ", m.group(0)), text, flags=re.S)
+    text = text.replace("|", " ")
     return text
 
 
@@ -135,7 +137,7 @@ def _punctuation_signals(prose: str) -> list[dict]:
     clusters = []
     english_words = 0
     english_semicolons = []
-    contrast = r"\brather\s+than\b|而不是|而非|(?:并非|不是)[^。！？;\n；]{1,100}?而是"
+    contrast = r"\brather\s+than\b|比起|相比(?:于)?|相较(?:于)?|而不是|而非|(?:并非|不是)[^。！？;\n；]{1,100}?而是"
     for paragraph in re.finditer(r"[^\r\n]+(?:\r?\n(?![ \t]*\r?\n)[^\r\n]+)*", prose):
         body = paragraph.group(0)
         semicolons = list(re.finditer(r"[;；]", body))
@@ -183,6 +185,32 @@ def _punctuation_signals(prose: str) -> list[dict]:
             "count": len(clusters),
             "locations": clusters,
             "message": "Review paragraphs with three or more semicolons; check whether each clause develops the paragraph's argument and retain justified parallel structure.",
+        })
+    return issues
+
+
+def _expression_signals(prose: str) -> list[dict]:
+    """Locate candidates, without deciding scientific necessity from words."""
+    issues: list[dict] = []
+    labels = r"可(?:验证|检验|实现|解释|复现|操作)|\b(?:verifiable|testable|implementable|actionable|interpretable)\b"
+    for sentence in re.finditer(r"[^。！？.!?\n]+", prose):
+        matches = list(re.finditer(labels, sentence.group(0), flags=re.I))
+        if len(matches) >= 2:
+            positions = [_location(prose, match, sentence.start()) for match in matches]
+            issues.append({
+                "code": "capability_label_cluster",
+                "severity": "advisory",
+                "line": positions[0]["line"],
+                "count": len(matches),
+                "locations": positions,
+                "message": "Check whether these labels name supported technical properties or replace the actual operation and relationship. Keep useful properties; explain empty labels through the supplied mechanism.",
+            })
+    for match in re.finditer(r"(?:为(?:了)?(?:保险|稳妥|严谨)起见|为求稳妥|以免审稿人[^。！？\n]{0,16}(?:质疑|批评))", prose):
+        issues.append({
+            "code": "decision_justification",
+            "severity": "advisory",
+            **_location(prose, match),
+            "message": "Identify the factual constraint or scientific question behind a narrower goal or additional test; caution alone does not establish necessity. Retain actions justified by the actual task.",
         })
     return issues
 
@@ -273,6 +301,7 @@ def inspect(text: str, scope: str) -> dict:
             })
 
     issues.extend(_punctuation_signals(prose))
+    issues.extend(_expression_signals(prose))
 
     return {
         "scope": scope,
