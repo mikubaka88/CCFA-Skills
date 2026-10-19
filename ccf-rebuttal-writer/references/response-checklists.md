@@ -1,6 +1,6 @@
 # Response Checklists
 
-Use this file to prevent omissions when drafting conference paper rebuttals, author responses, response letters, revision summaries, or resubmission responses.
+Use this file internally to prevent omissions when drafting conference paper rebuttals, author responses, response letters, revision summaries, or resubmission responses. Preserve the user's requested response format and length.
 
 ## Intake Checklist
 
@@ -114,10 +114,10 @@ Do not call the response ready until:
 - Constructive reviewers are thanked specifically where appropriate.
 - Hostile or inappropriate review behavior is handled calmly and, if needed, separated into confidential escalation.
 - Word budget is respected or overflow is flagged.
-- Remaining risks are named.
-- The final answer includes checklist status.
+- Material unresolved issues affecting the response are named when needed.
+- Routine checklist status stays internal unless requested or included in the requested response-planning output.
 
-## Minimal Checklist Status
+## Minimal Checklist Status (When Requested)
 
 ```text
 Checklist status:

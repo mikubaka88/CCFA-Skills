@@ -10,7 +10,7 @@
 npx skills update --global --yes
 ```
 
-更新不会让已运行会话重新加载 skill。完成后请开启新会话。
+更新不会让已运行会话重新加载 skill。完成后请开启新会话。这条命令和下方定时任务更新由 CLI 管理的 skills；单独复制的相邻模板与资源不在其中。需要完整目录保持同一版本时，使用下方稳定 clone 的安装与资源同步步骤。
 
 更新前先比较安装副本中的个人修改与仓库版本，将需要保留的改进合并或另存到明确的维护位置；不要用整目录覆盖代替差异核对。个人偏好保存在安装目录之外的 `$CODEX_HOME/ccfa/preferences.json`（未设置时为 `~/.codex/ccfa/preferences.json`）及项目 `.ccfa/preferences.json`，更新时保留。配置页与解析器随 `ccf-common` 一起更新，普通任务无需启动网页服务。
 
@@ -41,10 +41,13 @@ tail -n 50 "$HOME/.ccfa-skills-update.log"
 
 ## 稳定 clone
 
-若使用本地 clone 作为单一来源：
+若使用本地 clone 作为单一来源，`git pull` 只更新源码。此前通过 `--copy` 安装时，还要从更新后的 clone 重新安装。以下以 Codex 全量安装为例；其他客户端应使用最初的 `--agent`，部分安装应保持原来的 `--skill` 列表：
 
 ```bash
 git -C "$HOME/ai-skills/CCFA-Skills" pull --ff-only
+npx skills add "$HOME/ai-skills/CCFA-Skills" --global --agent codex --skill '*' --yes --copy
 ```
 
-`--ff-only` 会在本地存在分叉提交时停止，不会静默覆盖修改。开发用 clone 与自动更新 clone 应分开。
+随后进入这个 clone 的根目录，执行[相邻资源补齐命令](../INSTALLATION_MATRIX.zh-CN.md#sibling-resources)，将目标设为对应客户端的实际安装根目录。这样 skills、参考文件和模板来自同一版本。仅拉取仓库或只运行 `npx skills update`，都不能替代这一步。
+
+`--ff-only` 会在本地存在分叉提交时停止，不会静默覆盖修改。重新安装可能覆盖安装副本中的个人修改，应先按上文比较和保留；资源合并复制不自动删除上游移除的旧文件，需要根据版本差异处理。开发用 clone 与自动更新 clone 应分开。

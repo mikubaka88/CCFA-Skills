@@ -11,6 +11,8 @@ npx skills list --global --agent gemini-cli
 
 开启新的 Gemini CLI 会话后直接描述任务。部分安装必须包含 `ccf-humanization` 和 `ccf-common`，并保留完整 skill 目录。
 
+上述 CLI 命令仅安装 skill 目录。LaTeX 模板及部分安装需要的相邻资源，请从同一版本的仓库按[安装矩阵](../INSTALLATION_MATRIX.zh-CN.md#sibling-resources)补齐，并将复制目标改为本客户端的实际安装根目录。
+
 ## 更新与自动更新
 
 ```bash
@@ -29,4 +31,4 @@ Windows 每周自动更新：
 schtasks /Create /SC WEEKLY /D SUN /TN "CCFA Skills Update" /TR "cmd.exe /c npx skills update --global --yes" /ST 09:00 /F
 ```
 
-更新后的内容在下一次会话生效。详见 [自动更新说明](AUTO_UPDATE.md)。
+更新后的内容在下一次会话生效。相邻资源和本地 clone 的 `--copy` 副本也需同步，详见[自动更新说明](AUTO_UPDATE.md)。

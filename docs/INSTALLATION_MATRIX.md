@@ -30,18 +30,66 @@ These subsets provide the listed capabilities, not every possible helper. If the
 
 ## Partial Install Example
 
+Run these commands from a clone of the repository root. They copy the writing subset, then the sibling resources below. Compare any personal edits before updating. Repeated copies merge contents without nesting directories; files removed upstream are not deleted automatically, so review those removals separately.
+
+The default target matches the locally inspected `skills` CLI 1.5.22: Codex global installs use `$CODEX_HOME/skills`, falling back to `~/.codex/skills`; project installs use `.agents/skills`. Verify your actual destination with `npx skills list --global --agent codex`. For a different client, project install, or newer installer, replace `ccfa_skills_dir` / `$ccfaSkillsDir` with that installation's root in both examples. Do not copy resources into an unrelated Codex directory.
+
 Bash:
 
 ```bash
-skills=(ccf-common ccf-humanization ccf-paper-writer ccf-visual-composer ccf-paper-reviewer ccf-submission-checker)
-mkdir -p "$CODEX_HOME/skills"
-for s in "${skills[@]}"; do cp -R "$s" "$CODEX_HOME/skills/"; done
+ccfa_codex_home="${CODEX_HOME:-}"
+ccfa_codex_home="${ccfa_codex_home#"${ccfa_codex_home%%[![:space:]]*}"}"
+ccfa_codex_home="${ccfa_codex_home%"${ccfa_codex_home##*[![:space:]]}"}"
+ccfa_skills_dir="${ccfa_codex_home:-$HOME/.codex}/skills"
+ccfa_paths=(ccf-common ccf-humanization ccf-paper-writer ccf-visual-composer ccf-paper-reviewer ccf-submission-checker)
+for ccfa_path in "${ccfa_paths[@]}"; do
+  mkdir -p "$ccfa_skills_dir/$ccfa_path"
+  cp -R "$ccfa_path/." "$ccfa_skills_dir/$ccfa_path/"
+done
 ```
 
 PowerShell:
 
 ```powershell
-$skills = @("ccf-common", "ccf-humanization", "ccf-paper-writer", "ccf-visual-composer", "ccf-paper-reviewer", "ccf-submission-checker")
-New-Item -ItemType Directory -Force "$env:CODEX_HOME\skills" | Out-Null
-foreach ($s in $skills) { Copy-Item -Recurse -Force $s "$env:CODEX_HOME\skills\" }
+$ccfaCodexHome = if ([string]::IsNullOrWhiteSpace($env:CODEX_HOME)) { Join-Path $HOME ".codex" } else { $env:CODEX_HOME.Trim() }
+$ccfaSkillsDir = Join-Path $ccfaCodexHome "skills"
+$ccfaPaths = @("ccf-common", "ccf-humanization", "ccf-paper-writer", "ccf-visual-composer", "ccf-paper-reviewer", "ccf-submission-checker")
+foreach ($ccfaPath in $ccfaPaths) {
+  $ccfaDestination = Join-Path $ccfaSkillsDir $ccfaPath
+  New-Item -ItemType Directory -Force -Path $ccfaDestination | Out-Null
+  Get-ChildItem -LiteralPath $ccfaPath -Force | Copy-Item -Destination $ccfaDestination -Recurse -Force
+}
+```
+
+<a id="sibling-resources"></a>
+
+## Sibling resources
+
+`npx skills add ... --skill '*' --copy` installs all 17 skills, but does not copy the root-level `ccf-latex-templates/` directory, which has no `SKILL.md`. Run the following from the same repository revision used for the skills. This small resource bundle also covers partial-install references and legacy conversion scripts. Copying these resources does not install or authorize their owning skills; add a specialist separately when the task needs its capability. Full repository/plugin layouts already retain the sibling paths.
+
+Bash:
+
+```bash
+ccfa_codex_home="${CODEX_HOME:-}"
+ccfa_codex_home="${ccfa_codex_home#"${ccfa_codex_home%%[![:space:]]*}"}"
+ccfa_codex_home="${ccfa_codex_home%"${ccfa_codex_home##*[![:space:]]}"}"
+ccfa_skills_dir="${ccfa_codex_home:-$HOME/.codex}/skills"
+ccfa_paths=(ccf-paper-writer/references ccf-paper-writer/scripts ccf-paper-to-exemplar/scripts ccf-latex-templates)
+for ccfa_path in "${ccfa_paths[@]}"; do
+  mkdir -p "$ccfa_skills_dir/$ccfa_path"
+  cp -R "$ccfa_path/." "$ccfa_skills_dir/$ccfa_path/"
+done
+```
+
+PowerShell:
+
+```powershell
+$ccfaCodexHome = if ([string]::IsNullOrWhiteSpace($env:CODEX_HOME)) { Join-Path $HOME ".codex" } else { $env:CODEX_HOME.Trim() }
+$ccfaSkillsDir = Join-Path $ccfaCodexHome "skills"
+$ccfaPaths = @("ccf-paper-writer/references", "ccf-paper-writer/scripts", "ccf-paper-to-exemplar/scripts", "ccf-latex-templates")
+foreach ($ccfaPath in $ccfaPaths) {
+  $ccfaDestination = Join-Path $ccfaSkillsDir $ccfaPath
+  New-Item -ItemType Directory -Force -Path $ccfaDestination | Out-Null
+  Get-ChildItem -LiteralPath $ccfaPath -Force | Copy-Item -Destination $ccfaDestination -Recurse -Force
+}
 ```

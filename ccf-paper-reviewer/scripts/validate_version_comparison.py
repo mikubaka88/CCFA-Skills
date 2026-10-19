@@ -30,7 +30,7 @@ FINDING_FIELDS = {
     "evidence": "证据", "countercheck": "反证复核", "judgment": "判断",
     "criterion": "维度", "resolution": "解决或改判条件", "status": "状态",
 }
-ISSUE_ID = r"[A-Z]{1,4}-?\d{1,6}"
+ISSUE_ID = r"[A-Z]{1,4}(?:-?\d{1,6})?(?:-[A-Z]{1,4}-?\d{1,6})*(?<=\d)"
 
 
 def _reference_section(filename: str, heading: str) -> str:
@@ -210,7 +210,7 @@ def validate_report(markdown: str, *, mode: str = "scientific", detail: str = "d
                 errors.append(f"empty report section: {title}; state an inapplicable/unassessed reason when needed")
 
     finding_sections = {3} if detail == "brief" else {5} if mode == "writing" else {6, 7}
-    definitions = list(re.finditer(rf"^### ({ISSUE_ID})\s*[:：—-]\s*\S.*$", text, re.MULTILINE))
+    definitions = list(re.finditer(rf"^### ({ISSUE_ID})(?![A-Z0-9]|-[A-Z]{{1,4}}-?\d)\s*[:：—-]\s*\S.*$", text, re.MULTILINE))
     defined = set()
     for match in definitions:
         identity = match[1]
@@ -292,6 +292,10 @@ def _nonempty(value: object) -> bool:
     return isinstance(value, str) and bool(value.strip())
 
 
+def _finite_number(value: object) -> bool:
+    return type(value) is int or (type(value) is float and math.isfinite(value))
+
+
 def validate(data: dict) -> list[str]:
     errors: list[str] = []
     contract = data.get("contract") or {}
@@ -309,8 +313,8 @@ def validate(data: dict) -> list[str]:
         if missing_weights:
             errors.append(f"contract.weights missing dimensions: {', '.join(missing_weights)}")
         numeric_weights = [weights.get(dim) for dim in dimensions]
-        if not all(isinstance(value, (int, float)) and value >= 0 for value in numeric_weights):
-            errors.append("contract.weights must contain nonnegative numbers")
+        if not all(_finite_number(value) and value >= 0 for value in numeric_weights):
+            errors.append("contract.weights must contain finite nonnegative numbers")
         elif not math.isclose(sum(numeric_weights), 1.0, rel_tol=1e-6, abs_tol=1e-6):
             errors.append("contract.weights must sum to 1")
 
@@ -320,8 +324,8 @@ def validate(data: dict) -> list[str]:
     deltas = progress.get("deltas") or {}
     for version_name, version_scores in (("historical", historical), ("current", current)):
         for dim in dimensions:
-            if not isinstance(version_scores.get(dim), (int, float)):
-                errors.append(f"relative_progress_scorecard.{version_name}.{dim} must be numeric")
+            if not _finite_number(version_scores.get(dim)):
+                errors.append(f"relative_progress_scorecard.{version_name}.{dim} must be a finite number")
 
     expected_weighted_delta = 0.0
     comparable_deltas = True
@@ -329,26 +333,37 @@ def validate(data: dict) -> list[str]:
         old = historical.get(dim)
         new = current.get(dim)
         delta = deltas.get(dim)
-        if not isinstance(delta, (int, float)):
-            errors.append(f"relative_progress_scorecard.deltas.{dim} must be numeric")
+        if not _finite_number(delta):
+            errors.append(f"relative_progress_scorecard.deltas.{dim} must be a finite number")
             comparable_deltas = False
             continue
-        if isinstance(old, (int, float)) and isinstance(new, (int, float)):
+        if _finite_number(old) and _finite_number(new):
             if not math.isclose(delta, new - old, rel_tol=1e-6, abs_tol=1e-6):
                 errors.append(f"relative_progress_scorecard.deltas.{dim} must equal current - historical")
         else:
             comparable_deltas = False
         weight = weights.get(dim)
-        if isinstance(weight, (int, float)):
+        if _finite_number(weight):
             expected_weighted_delta += delta * weight
 
     weighted_delta = progress.get("weighted_delta")
-    if not isinstance(weighted_delta, (int, float)):
-        errors.append("relative_progress_scorecard.weighted_delta must be numeric")
+    if not _finite_number(weighted_delta):
+        errors.append("relative_progress_scorecard.weighted_delta must be a finite number")
     elif comparable_deltas and not math.isclose(weighted_delta, expected_weighted_delta, rel_tol=1e-6, abs_tol=1e-6):
         errors.append("relative_progress_scorecard.weighted_delta does not match the frozen weights and deltas")
-    if progress.get("classification") not in PROGRESS_CLASSES:
+    classification = progress.get("classification")
+    if classification not in PROGRESS_CLASSES:
         errors.append("relative_progress_scorecard.classification must be regressed, unchanged, or improved")
+    thresholds = contract.get("thresholds")
+    progress_thresholds = thresholds if isinstance(thresholds, dict) else {}
+    lower = progress_thresholds.get("regressed_below", 0)
+    upper = progress_thresholds.get("improved_above", 0)
+    if not all(_finite_number(value) for value in (lower, upper)) or not lower <= 0 <= upper:
+        errors.append("progress thresholds must be finite numbers with regressed_below <= 0 <= improved_above")
+    elif _finite_number(weighted_delta) and classification in PROGRESS_CLASSES:
+        expected_class = "regressed" if weighted_delta < lower else "improved" if weighted_delta > upper else "unchanged"
+        if classification != expected_class:
+            errors.append(f"relative_progress_scorecard.classification must be {expected_class} for its weighted delta and frozen thresholds")
 
     readiness = data.get("absolute_readiness_scorecard") or {}
     readiness_scores = readiness.get("current_dimension_scores") or {}
@@ -370,15 +385,15 @@ def validate(data: dict) -> list[str]:
         if readiness_rubric == "generic-7":
             if not _valid_score(value, 5):
                 errors.append(f"absolute_readiness_scorecard.current_dimension_scores.{dim} must be 1-5, N/A, or not assessed")
-        elif not isinstance(value, (int, float)):
-            errors.append(f"absolute_readiness_scorecard.current_dimension_scores.{dim} must be numeric")
+        elif not _finite_number(value):
+            errors.append(f"absolute_readiness_scorecard.current_dimension_scores.{dim} must be a finite number")
     for field in ("scale", "stance", "threshold", "evidence_standard"):
         if not _nonempty(readiness.get(field)):
             errors.append(f"absolute_readiness_scorecard.{field} is required")
     if readiness_rubric == "generic-7" and not _valid_score(readiness.get("overall_score"), 10):
         errors.append("generic-7 readiness overall_score must be an integer 1-10, N/A, or not assessed")
-    elif readiness_rubric != "generic-7" and not isinstance(readiness.get("overall_score"), (int, float)):
-        errors.append("absolute_readiness_scorecard.overall_score must be numeric")
+    elif readiness_rubric != "generic-7" and not _finite_number(readiness.get("overall_score")):
+        errors.append("absolute_readiness_scorecard.overall_score must be a finite number")
 
     if not _nonempty(data.get("confidence_and_comparability")):
         errors.append("confidence_and_comparability is required and must be reported separately")
@@ -415,7 +430,7 @@ def validate(data: dict) -> list[str]:
     for dim in dimensions:
         old = historical.get(dim)
         new = current.get(dim)
-        if not isinstance(old, (int, float)) or not isinstance(new, (int, float)) or new >= old:
+        if not _finite_number(old) or not _finite_number(new) or new >= old:
             continue
         traced = []
         for issue in valid_issues:
@@ -424,7 +439,7 @@ def validate(data: dict) -> list[str]:
                 issue.get("origin") in CURRENT_NEGATIVE_ORIGINS
                 and issue.get("applies_to") in {"current", "both"}
                 and dim in (issue.get("affected_dimensions") or [])
-                and isinstance(effect.get("current"), (int, float))
+                and _finite_number(effect.get("current"))
                 and effect["current"] < 0
                 and _nonempty(issue.get("evidence"))
             ):

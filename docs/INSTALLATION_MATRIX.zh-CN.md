@@ -30,18 +30,66 @@
 
 ## 部分安装示例
 
+在仓库 clone 的根目录执行以下命令，先复制写作子集，再补齐下一节的相邻资源。更新前先比较个人修改。重复复制会合并目录内容，不会多嵌一层；上游已删除的旧文件不会自动清除，需要根据差异单独处理。
+
+默认目标依据本地核对的 `skills` CLI 1.5.22：Codex 全局安装使用 `$CODEX_HOME/skills`，未设置或为空时回退到 `~/.codex/skills`；项目安装使用 `.agents/skills`。先用 `npx skills list --global --agent codex` 确认实际位置。其他客户端、项目安装或新版安装器，请把下面两组命令中的 `ccfa_skills_dir` / `$ccfaSkillsDir` 改为对应安装根目录，不要把资源补到另一个 Codex 目录。
+
 Bash:
 
 ```bash
-skills=(ccf-common ccf-humanization ccf-paper-writer ccf-visual-composer ccf-paper-reviewer ccf-submission-checker)
-mkdir -p "$CODEX_HOME/skills"
-for s in "${skills[@]}"; do cp -R "$s" "$CODEX_HOME/skills/"; done
+ccfa_codex_home="${CODEX_HOME:-}"
+ccfa_codex_home="${ccfa_codex_home#"${ccfa_codex_home%%[![:space:]]*}"}"
+ccfa_codex_home="${ccfa_codex_home%"${ccfa_codex_home##*[![:space:]]}"}"
+ccfa_skills_dir="${ccfa_codex_home:-$HOME/.codex}/skills"
+ccfa_paths=(ccf-common ccf-humanization ccf-paper-writer ccf-visual-composer ccf-paper-reviewer ccf-submission-checker)
+for ccfa_path in "${ccfa_paths[@]}"; do
+  mkdir -p "$ccfa_skills_dir/$ccfa_path"
+  cp -R "$ccfa_path/." "$ccfa_skills_dir/$ccfa_path/"
+done
 ```
 
 PowerShell:
 
 ```powershell
-$skills = @("ccf-common", "ccf-humanization", "ccf-paper-writer", "ccf-visual-composer", "ccf-paper-reviewer", "ccf-submission-checker")
-New-Item -ItemType Directory -Force "$env:CODEX_HOME\skills" | Out-Null
-foreach ($s in $skills) { Copy-Item -Recurse -Force $s "$env:CODEX_HOME\skills\" }
+$ccfaCodexHome = if ([string]::IsNullOrWhiteSpace($env:CODEX_HOME)) { Join-Path $HOME ".codex" } else { $env:CODEX_HOME.Trim() }
+$ccfaSkillsDir = Join-Path $ccfaCodexHome "skills"
+$ccfaPaths = @("ccf-common", "ccf-humanization", "ccf-paper-writer", "ccf-visual-composer", "ccf-paper-reviewer", "ccf-submission-checker")
+foreach ($ccfaPath in $ccfaPaths) {
+  $ccfaDestination = Join-Path $ccfaSkillsDir $ccfaPath
+  New-Item -ItemType Directory -Force -Path $ccfaDestination | Out-Null
+  Get-ChildItem -LiteralPath $ccfaPath -Force | Copy-Item -Destination $ccfaDestination -Recurse -Force
+}
+```
+
+<a id="sibling-resources"></a>
+
+## 补齐相邻资源
+
+`npx skills add ... --skill '*' --copy` 安装全部 17 个 skills，但不会复制没有 `SKILL.md` 的根目录 `ccf-latex-templates/`。请从与安装 skills 相同版本的仓库执行以下命令。这组资源同时补齐部分安装所需的参考文件和旧版转换脚本。仅复制资源不代表安装或调用资源所属 skill；任务需要它的能力时，仍需单独安装对应技能。完整仓库或插件布局已保留这些相邻路径。
+
+Bash:
+
+```bash
+ccfa_codex_home="${CODEX_HOME:-}"
+ccfa_codex_home="${ccfa_codex_home#"${ccfa_codex_home%%[![:space:]]*}"}"
+ccfa_codex_home="${ccfa_codex_home%"${ccfa_codex_home##*[![:space:]]}"}"
+ccfa_skills_dir="${ccfa_codex_home:-$HOME/.codex}/skills"
+ccfa_paths=(ccf-paper-writer/references ccf-paper-writer/scripts ccf-paper-to-exemplar/scripts ccf-latex-templates)
+for ccfa_path in "${ccfa_paths[@]}"; do
+  mkdir -p "$ccfa_skills_dir/$ccfa_path"
+  cp -R "$ccfa_path/." "$ccfa_skills_dir/$ccfa_path/"
+done
+```
+
+PowerShell:
+
+```powershell
+$ccfaCodexHome = if ([string]::IsNullOrWhiteSpace($env:CODEX_HOME)) { Join-Path $HOME ".codex" } else { $env:CODEX_HOME.Trim() }
+$ccfaSkillsDir = Join-Path $ccfaCodexHome "skills"
+$ccfaPaths = @("ccf-paper-writer/references", "ccf-paper-writer/scripts", "ccf-paper-to-exemplar/scripts", "ccf-latex-templates")
+foreach ($ccfaPath in $ccfaPaths) {
+  $ccfaDestination = Join-Path $ccfaSkillsDir $ccfaPath
+  New-Item -ItemType Directory -Force -Path $ccfaDestination | Out-Null
+  Get-ChildItem -LiteralPath $ccfaPath -Force | Copy-Item -Destination $ccfaDestination -Recurse -Force
+}
 ```

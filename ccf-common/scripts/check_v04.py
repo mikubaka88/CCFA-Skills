@@ -557,6 +557,16 @@ def check_review_regressions(errors: list[str]) -> None:
         }
         if validate(sample):
             fail(errors, "review validator rejects progress that remains below readiness")
+        for value in (True, float("inf"), float("nan")):
+            for field in ("criterion", "overall"):
+                invalid_number = copy.deepcopy(sample)
+                readiness = invalid_number["absolute_readiness_scorecard"]
+                if field == "criterion":
+                    readiness["current_dimension_scores"]["soundness"] = value
+                else:
+                    readiness["overall_score"] = value
+                if not validate(invalid_number):
+                    fail(errors, f"review validator accepts a boolean/nonfinite readiness {field}")
         missing = copy.deepcopy(sample)
         del missing["absolute_readiness_scorecard"]
         if not validate(missing):
@@ -569,6 +579,36 @@ def check_review_regressions(errors: list[str]) -> None:
         regression["issues"] = [issue]
         if validate(regression):
             fail(errors, "review validator rejects a traceable current-version regression")
+        for original, wrong_class in ((sample, "regressed"), (regression, "improved")):
+            mislabeled = copy.deepcopy(original)
+            mislabeled["relative_progress_scorecard"]["classification"] = wrong_class
+            if not validate(mislabeled):
+                fail(errors, "review validator accepts a progress classification opposite to its delta")
+        unchanged = copy.deepcopy(sample)
+        unchanged["relative_progress_scorecard"].update(current={"soundness": 2}, deltas={"soundness": 0}, weighted_delta=0, classification="unchanged")
+        if validate(unchanged):
+            fail(errors, "review validator rejects unchanged scores under legacy thresholds")
+        unchanged["relative_progress_scorecard"]["classification"] = "improved"
+        if not validate(unchanged):
+            fail(errors, "review validator accepts unchanged scores labeled improved")
+        for delta in (-0.25, 0.25):
+            neutral = copy.deepcopy(regression if delta < 0 else sample)
+            neutral["contract"]["thresholds"].update(regressed_below=-0.25, improved_above=0.25)
+            neutral["relative_progress_scorecard"].update(historical={"soundness": 3}, current={"soundness": 3 + delta}, deltas={"soundness": delta}, weighted_delta=delta, classification="unchanged")
+            if validate(neutral):
+                fail(errors, "review validator rejects a frozen neutral-band boundary")
+            neutral["relative_progress_scorecard"]["classification"] = "regressed" if delta < 0 else "improved"
+            if not validate(neutral):
+                fail(errors, "review validator ignores the declared progress thresholds")
+            outside = copy.deepcopy(neutral)
+            outside["relative_progress_scorecard"].update(current={"soundness": 3 + 2 * delta}, deltas={"soundness": 2 * delta}, weighted_delta=2 * delta)
+            if validate(outside):
+                fail(errors, "review validator rejects progress outside a frozen neutral band")
+        for thresholds in ({"improved_above": "0.25"}, {"improved_above": float("nan")}, {"improved_above": True}, {"improved_above": -0.25}, {"regressed_below": 0.25}):
+            invalid_threshold = copy.deepcopy(sample)
+            invalid_threshold["contract"]["thresholds"].update(thresholds)
+            if not validate(invalid_threshold):
+                fail(errors, "review validator accepts an invalid progress threshold")
         issue["origin"] = "previously_undetected"
         if not validate(regression):
             fail(errors, "review validator penalizes only the current version for a latent shared issue")
@@ -647,6 +687,8 @@ Status: unresolved
             chinese_fields = chinese_fields.replace(f"{label}:", f"**{chinese}：**")
         comparison_confidence = report(mode="version-comparison").replace(" | **Scholarly Confidence:** 4", "").replace(
             "Separate evidence coverage.", "**Scholarly Confidence:** 4\nSeparate evidence coverage.")
+        compound_findings = "\n".join(finding.replace("C001", identity) for identity in ("R1-C1", "R1-C2", "AC-C1"))
+        compound_report = good.replace(finding, compound_findings).replace("[C001]", "[R1-C1], [R1-C2]; [AC-C1]。")
         valid_profiles = [
             (good, {}), (report(mode="full"), {"mode": "full"}),
             (report(chinese=True), {}),
@@ -661,6 +703,7 @@ Status: unresolved
             (comparison_confidence, {"mode": "version-comparison"}),
             (report(mode="version-comparison", detail="brief"), {"mode": "version-comparison", "detail": "brief"}),
             (good.replace("C001", "R1"), {}),
+            (compound_report, {}),
             (good.replace("# Review fixture", "# Review fixture\n\n```text\n## 99. Quoted heading\n[C999]\n```\n> [C998]"), {}),
             (good.replace("| Novelty | 4 |", "| Originality | 3.5 |"), {"rubric": "external"}),
         ]
@@ -675,6 +718,8 @@ Status: unresolved
             "empty section": good.replace("## 3. Desk Rejection Assessment\n\nScope-specific structural fixture; see [C001].", "## 3. Desk Rejection Assessment"),
             "undefined ID": good + "\nSee [C999].\n",
             "duplicate ID": good.replace(finding, finding + "\n" + finding),
+            "undefined compound ID": good.replace("C001", "R1-C1") + "\nSee [R1-C99].\n",
+            "duplicate compound ID": compound_report.replace("R1-C2", "R1-C1"),
             "missing evidence field": good.replace("Evidence: The claim has two possible readings.\n", ""),
             "unsupported finding type": good.replace("Type: clarification", "Type: definitely_wrong"),
             "invalid severity": good.replace("Severity: major", "Severity: severe"),

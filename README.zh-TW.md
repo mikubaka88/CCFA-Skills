@@ -61,6 +61,8 @@ Yann LeCun and James M. Manyika, [*Learning Abstractions*](https://www.amacad.or
 npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes --copy
 ```
 
+這條命令安裝 17 個 skills。需要內建 LaTeX 範本或只安裝部分技能時，請按[安裝矩陣](docs/INSTALLATION_MATRIX.zh-TW.md)補齊相鄰資源；使用 `--copy` 安裝後，更新原始碼還需要重新複製，步驟見[更新指南](docs/getting-started/AUTO_UPDATE.md)。
+
 安裝後，直接說出你正在面對的研究問題：
 
 ```text
