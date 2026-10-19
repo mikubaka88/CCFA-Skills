@@ -18,8 +18,8 @@ These subsets provide the listed capabilities, not every possible helper. If the
 
 | Use case | Install | Missing impact |
 | --- | --- | --- |
-| Full workflow | All 17 runtime skills | Complete CCFA flow. |
-| NeurIPS paper path | `ccf-common`, `ccf-humanization`, `ccf-project-scaffolder`, `ccf-pipeline-orchestrator`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, `ccf-rebuttal-writer` | Omits only family maintenance. |
+| Full workflow | All 18 runtime skills | Complete CCFA flow. |
+| NeurIPS paper path | `ccf-common`, `ccf-humanization`, `ccf-project-scaffolder`, `ccf-pipeline-orchestrator`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-experiment-debugger`, `ccf-visual-composer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, `ccf-rebuttal-writer` | Omits only family maintenance. |
 | Writing subset | `ccf-common`, `ccf-humanization`, `ccf-paper-writer`, `ccf-visual-composer`, `ccf-paper-reviewer`, `ccf-submission-checker` | No idea/literature/experiment pipeline or rebuttal; visual work still requires supplied results. |
 | Review/audit subset | `ccf-common`, `ccf-humanization`, `ccf-paper-reviewer`, `ccf-integrity-auditor` | Can diagnose but cannot write, search broadly, design experiments, or check packages. |
 | Monitoring subset | `ccf-common`, `ccf-humanization`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-idea-reviewer`, `ccf-idea-optimizer` | Tracks new overlap signals and routes deeper search or idea repair, but cannot write or submit. |
@@ -27,6 +27,7 @@ These subsets provide the listed capabilities, not every possible helper. If the
 | Visual/manuscript presentation subset | `ccf-common`, `ccf-humanization`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-writer`, `ccf-integrity-auditor`, `ccf-submission-checker` | Can turn supplied results into paper-ready visuals, Python SVG plots, and consistency checks, but cannot search literature or run full review. |
 | Submission subset | `ccf-common`, `ccf-humanization`, `ccf-paper-writer`, `ccf-visual-composer`, `ccf-submission-checker`, `ccf-integrity-auditor` | Can check format/package/artifacts and visual placement, but not run full review. |
 | Maintenance subset | `ccf-common`, `ccf-humanization`, `ccf-skill-forger` | Only family maintenance and docs/SVG generation. |
+| Experiment debugging subset | `ccf-humanization`, `ccf-common`, `ccf-experiment-debugger` | Diagnoses runtime/environment failures and reproduction drift; protocol design, publication audits, and writing need their owners. |
 
 ## Partial Install Example
 

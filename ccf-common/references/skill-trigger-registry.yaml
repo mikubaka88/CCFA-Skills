@@ -2,7 +2,7 @@ schema_version: 4
 generated_at: 2026-09-16
 authority: SKILL.md wins if this registry conflicts with a skill body.
 naming_policy: canonical runtime names use ccf-<object>-<role/action>; ccf-common is the governance exception.
-runtime_skill_count: 17
+runtime_skill_count: 18
 # Triggers/exclusions define primary ownership. Handoffs also support prerequisite
 # resolution and targeted checks; routing.md governs integration and scope.
 skills:
@@ -35,9 +35,13 @@ skills:
     exclude: "Does not own supplied-result table schemas, experiment evidence structure, full manuscript review, already-cited-only audits, or manuscript writing."
     handoff: "ccf-idea-optimizer, ccf-idea-reviewer, ccf-experiment-designer, ccf-paper-writer, ccf-paper-reviewer, ccf-integrity-auditor"
   - name: ccf-experiment-designer
-    trigger: "Design CCF experiment protocols and evidence schemas: datasets, baselines, metrics, ablations, and result-table contents. Use for 设计实验, 消融, benchmark planning, and 结果表证据结构. Preserve real values. Table styling/rendering belongs to ccf-visual-composer; broad retrieval belongs to ccf-literature-searcher."
-    exclude: "Does not invent results, draw docs diagrams, search literature as the main deliverable, or improve layout/colors/readability of an already specified table/figure."
-    handoff: "ccf-humanization, ccf-literature-searcher, ccf-visual-composer, ccf-paper-writer, ccf-paper-reviewer, ccf-integrity-auditor, ccf-submission-checker"
+    trigger: "Design CCF experiment protocols and evidence schemas: datasets, baselines, metrics, ablations, and result-table contents. Use for 设计实验, 消融, benchmark planning, and 结果表证据结构. Preserve real values. Runtime debugging belongs to ccf-experiment-debugger; table rendering and broad retrieval have separate owners."
+    exclude: "Does not diagnose runtime failures as the main task, invent results, draw docs diagrams, search literature as the main deliverable, or improve layout/colors/readability of an already specified table/figure."
+    handoff: "ccf-humanization, ccf-experiment-debugger, ccf-literature-searcher, ccf-visual-composer, ccf-paper-writer, ccf-paper-reviewer, ccf-integrity-auditor, ccf-submission-checker"
+  - name: ccf-experiment-debugger
+    trigger: "Diagnose Python, PyTorch, CUDA, dependency-installation, and training-log failures or reproduction differences. Use for 实验报错, 环境排查, loss NaN, 显存不足, and 复现排查. Separate confirmed causes from hypotheses and provide minimal checks, repairs, and reproduction records. Experiment design and publication evidence audits have separate owners."
+    exclude: "Does not design scientific protocols, fabricate causes or run results, audit publication claims as the primary task, or rewrite manuscripts."
+    handoff: "ccf-experiment-designer, ccf-integrity-auditor, ccf-paper-writer"
   - name: ccf-visual-composer
     trigger: "Render and redesign scientific figures, visual tables, and method/architecture diagrams from supplied content, including biological data. Use for 绘图美化, 排版, 配色, GPT Image 2 generation, pure SVG, and editable SVG/PDF/PPTX. Preserve values and topology. Experiment evidence design belongs to ccf-experiment-designer; manuscript rewriting and PDF-to-writing exemplars are separate."
     exclude: "Does not design experiments, invent results/components, write manuscript prose, convert PDFs into writing exemplars, or perform final submission compliance."

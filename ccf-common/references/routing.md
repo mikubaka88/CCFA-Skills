@@ -15,9 +15,10 @@ Resolve common collisions by the requested deliverable:
 - Revised, polished, compressed, or newly drafted prose -> `ccf-paper-writer`; assessment, scoring, issue diagnosis, or version comparison without rewriting -> `ccf-paper-reviewer`. If the request says full review, scientific review, scoring, assessment-only, or no rewrite, choose reviewer.
 - External source discovery -> `ccf-literature-searcher`; end-to-end manuscript assessment remains `ccf-paper-reviewer`, which may request search only when current evidence is actually needed. Supplied-result evidence schemas and result-table structure belong to `ccf-experiment-designer`, not search.
 - Datasets, baselines, metrics, ablations, evidence schemas, and what a result table should contain -> `ccf-experiment-designer`; plotting, styling, layout, rendering, result-table color/readability improvement, or editable reconstruction from supplied content/values -> `ccf-visual-composer`.
+- Runtime errors, environment failures, training-log diagnosis, and reproduction drift -> `ccf-experiment-debugger`; scientific experiment design stays with `ccf-experiment-designer`.
 - `ccf-humanization` is the mandatory first preflight for every CCFA skill; its baseline also applies to planning, retrieval, review, audit, and visuals. Prose rewriting and detailed experiment checks run only when applicable and authorized. It does not take over the specialist's artifact or soften evidence-backed criticism.
 
-The current runtime surface contains 17 installable `ccf-*` skills plus the LaTeX/template reference tree. Removed helper names must not be installed as standalone skills.
+The current runtime surface contains 18 installable `ccf-*` skills plus the LaTeX/template reference tree. Removed helper names must not be installed as standalone skills.
 
 ## Priority Overlay
 
@@ -37,6 +38,7 @@ Humanization removes empty self-defense while preserving material facts, rigorou
 | Monitor recent papers, arXiv/OpenReview/venue feeds, labs, competitors, and recurring novelty threats. | `ccf-literature-monitor` | arxiv-watch, venue-watch, novelty-check, trend-scouting, competitor-tracking | Does not replace deep related-work search, citation audit, or final idea scoring. |
 | Search literature, prior art, datasets, benchmarks, citation evidence, and opportunity gaps. | `ccf-literature-searcher` | search, screening, opportunity map | Does not audit only already cited papers or act as a final idea kill gate. |
 | Design experiment protocols, result-table evidence schemas, and figure specifications. | `ccf-experiment-designer` | experiment design, result templates, evidence specifications | Preserves real values; styling and rendering belong to `ccf-visual-composer`. |
+| Diagnose Python/PyTorch/CUDA, dependency, training-log failures, or reproduction drift. | `ccf-experiment-debugger` | diagnosis, minimal checks, repair, reproduction record | Separates confirmed causes from hypotheses; scientific protocol design and publication claim audits have separate owners. |
 | Compose publication-grade data figures/tables and scientific method/architecture diagrams, using GPT Image 2 as the default architecture/schematic renderer, followed by requested editable SVG/PDF/PPTX reconstruction or an optional offer; use pure SVG first only on explicit opt-out. | `ccf-visual-composer` | visual-contract, figure-design, architecture-generation, pure-svg-generation, editable-reconstruction, python-plotting, table-design, layout-integration, render-qa | Does not design experiments, invent results/components, write manuscript prose, or perform final submission compliance. |
 | Draft, revise, polish, compress, and presentation-adapt paper text. | `ccf-paper-writer` | writing, polishing, compression, venue-aware LaTeX drafting, slides/poster/talk/Q&A | Preserves user format for edits; does not run full review or rebuttal. |
 | Convert user-provided paper PDFs into reusable writing exemplar cards. | `ccf-paper-to-exemplar` | exemplar extraction, writing-pattern cards, custom exemplar registration | Does not write papers or perform review. |
@@ -63,6 +65,7 @@ The following are conditional dependency routes, not a mandatory pipeline:
 | Develop or judge an idea | Searcher grounds decisive closest-work/novelty claims when verified evidence is missing. During development, idea reviewer can check an unresolved conceptual weakness and return findings to optimizer. A requested standalone assessment keeps its review format. Concept review does not acquire experiment requirements. |
 | Draft or substantially revise a paper | Writer establishes claims, evidence, citations, and relevant venue constraints; uses searcher for missing sources and auditor for unresolved citation/number conflicts. Humanization accompanies prose. Reviewer checks materially changed argument/evidence links before finalizing; a spelling edit does not trigger a full review. |
 | Design experiments | Designer establishes claims, method, baseline provenance, metrics, and data compatibility. Searcher fills missing external evidence; reviewer can challenge a consequential claim-to-test mismatch. Plans and expected results remain distinct from observations. |
+| Debug an experiment | Debugger preserves the failing command/logs and distinguishes confirmed causes from hypotheses. Designer resolves consequential scientific protocol changes; auditor checks discrepancies with reported results. |
 | Compose a figure or table | Resolve data, units, metric meaning, topology, and intended message before rendering dependent content. Designer clarifies result semantics, the method's owner clarifies topology, and auditor resolves source conflicts when needed. Reuse established semantics for a local visual edit; check layout and exports afterward. |
 | Review a manuscript | Reviewer inspects the required manuscript evidence; searcher resolves consequential novelty gaps, auditor checks decisive numerical/citation conflicts, and designer clarifies consequential protocol ambiguities. Return findings to reviewer without rewriting the paper or proposing an unrequested experiment campaign. |
 | Review and revise | Reviewer findings -> writer changes -> affected reviewer/auditor checks. Reuse stable concern IDs and unchanged evidence; do not treat the first revision as verified merely because it was written. |
@@ -108,6 +111,7 @@ For manuscript writing from an idea or research documents, `ccf-paper-writer` es
 | 先判断思路是否值得做，再帮我完善 | `ccf-idea-reviewer`, then `ccf-idea-optimizer` |
 | 监控竞品 / 追踪新论文 / 最近有没有类似 idea | `ccf-literature-monitor` |
 | 搜索 related work、benchmark 和还有哪些 open gap | `ccf-literature-searcher` |
+| PyTorch 报错 / CUDA 显存不足 / 依赖装不上 / loss NaN / 复现结果不一致 | `ccf-experiment-debugger` |
 | 设计对比实验、消融和结果表 | `ccf-experiment-designer` |
 | 根据真实结果规划论文图表的数据和证据结构 | `ccf-experiment-designer` |
 | 优化图表排版 / 选择论文配色 / 多面板 figure 放正文里 | `ccf-visual-composer` |

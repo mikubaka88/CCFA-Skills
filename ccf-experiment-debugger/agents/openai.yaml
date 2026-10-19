@@ -1,0 +1,4 @@
+interface:
+  display_name: "CCF Experiment Debugger"
+  short_description: "Diagnose experiment failures with evidence and minimal checks"
+  default_prompt: "Use $ccf-experiment-debugger to diagnose this experiment failure, separate confirmed causes from hypotheses, and provide minimal checks, repair advice, and a reproduction record."

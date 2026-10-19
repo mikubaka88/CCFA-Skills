@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Add `ccf-experiment-debugger` for Python, PyTorch, CUDA, dependency installation, training logs, and reproduction differences. Distinguish confirmed causes from hypotheses, require discriminating minimal checks, and retain repair/verification evidence in a reproduction record.
+- Register the eighteenth runtime skill and update routing, installation subsets, and public text catalogs.
+
 ## v0.11.0 - 2026-10-15
 
 Plugin version is `0.11.0`.

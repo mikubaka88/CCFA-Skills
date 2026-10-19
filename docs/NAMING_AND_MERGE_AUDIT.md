@@ -1,6 +1,6 @@
 # Naming And Merge Audit
 
-The current v0.8 line keeps the established 17-skill architecture while adding a first-priority humanization preflight and extending the explicit visual-publication owner with scientific architecture generation and editable reconstruction. The goal is not to add a parallel lifecycle, but to keep trigger ownership clear across the existing paper-project chain.
+The current family has 18 runtime skills, including a dedicated experiment debugger alongside the experiment designer. Humanization remains the first preflight, and the visual-publication owner retains scientific architecture generation and editable reconstruction. Trigger ownership stays explicit across the paper-project chain.
 
 ## Current Runtime Surface
 
@@ -10,7 +10,7 @@ The current v0.8 line keeps the established 17-skill architecture while adding a
 | Setup | `ccf-project-scaffolder` |
 | Planning | `ccf-pipeline-orchestrator` |
 | Idea | `ccf-idea-optimizer`, `ccf-idea-reviewer` |
-| Evidence | `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-visual-composer` |
+| Evidence | `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-experiment-debugger`, `ccf-visual-composer` |
 | Exemplar ingestion | `ccf-paper-to-exemplar` |
 | Manuscript | `ccf-paper-writer` |
 | Review | `ccf-paper-reviewer` |
@@ -19,13 +19,14 @@ The current v0.8 line keeps the established 17-skill architecture while adding a
 | Post-review | `ccf-rebuttal-writer` |
 | Governance | `ccf-common`, `ccf-skill-forger` |
 
-The table contains all 17 runtime skills. No runtime skill is currently redundant enough to delete safely.
+The table contains all 18 runtime skills. No runtime skill is currently redundant enough to delete safely.
 
 ## Ambiguity And Conflict Audit
 
 | Boundary | Canonical decision | Why both owners remain |
 | --- | --- | --- |
 | `ccf-paper-writer` vs `ccf-paper-reviewer` | Writer edits manuscript text and applies supplied findings. Reviewer owns simulated reviewers, formal scores, AC/meta-review, and cross-version judgment. | Editing and independent judgment require different evidence and mutation boundaries. |
+| Experiment design vs debugging | Designer owns scientific protocols; debugger owns runtime failures and reproduction drift. | A repair must preserve or explicitly record changes to the scientific protocol. |
 | Relative progress vs absolute readiness | Version comparison keeps a frozen historical/current progress scorecard and a separate current-version venue-readiness scorecard. Confidence is reported separately; the scores are never combined. | A paper may improve without becoming acceptance-ready. The two questions must not share one aggregate score. |
 | `ccf-humanization` vs prose guardrails | Humanization is the single source for defensive-writing and measurable pattern thresholds. Prose guardrails own cohesion, section logic, and academic expression and reference the shared thresholds. | Centralizing thresholds prevents numerical drift while retaining the v0.7 writing-quality layer. |
 | `ccf-paper-to-exemplar` vs `ccf-paper-writer` | Exemplar skill ingests and distills user-provided PDFs; writer consumes selected cards and authors text. | PDF conversion is a library-maintenance mutation, not ordinary manuscript writing. |
@@ -62,11 +63,11 @@ The v0.7 writing-quality guardrails, multi-expert storyline construction, quanti
 
 ## Install Policy
 
-Install only the 17 current runtime skills. Do not copy merged helper names into `$CODEX_HOME/skills`. If an older local install still has those helper directories, remove them before installing the current family to avoid trigger collisions. `ccf-humanization`, `ccf-literature-monitor`, `ccf-visual-composer`, and `ccf-paper-to-exemplar` are current runtime entries, not merged helper names.
+Install only the 18 current runtime skills. Do not copy merged helper names into `$CODEX_HOME/skills`. If an older local install still has those helper directories, remove them before installing the current family to avoid trigger collisions. `ccf-humanization`, `ccf-literature-monitor`, `ccf-visual-composer`, and `ccf-paper-to-exemplar` are current runtime entries, not merged helper names.
 
 ## Demo Policy
 
-The demo must use the current 17 runtime skills. Merged abilities still appear in the demo as modes:
+The demo must use the current 18 runtime skills. Merged abilities still appear in the demo as modes:
 
 - compression and talk output inside `ccf-paper-writer`
 - source-format-preserving polish and venue-aware LaTeX drafting inside `ccf-paper-writer`

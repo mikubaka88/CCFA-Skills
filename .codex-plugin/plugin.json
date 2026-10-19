@@ -19,7 +19,7 @@
   "interface": {
     "displayName": "CCFA Skills",
     "shortDescription": "Research skills from idea to submission.",
-    "longDescription": "Seventeen focused skills help researchers develop ideas, gather evidence, design experiments, write and review manuscripts, create scientific figures, and prepare submissions while preserving a coherent research story.",
+    "longDescription": "Eighteen focused skills help researchers develop ideas, gather evidence, design and debug experiments, write and review manuscripts, create scientific figures, and prepare submissions while preserving a coherent research story.",
     "developerName": "CCFA Skills maintainers",
     "category": "Productivity",
     "capabilities": [
