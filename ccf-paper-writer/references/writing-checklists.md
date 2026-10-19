@@ -12,7 +12,7 @@ Use this for one paragraph, one small subsection, or single-pass polish:
 - Local claims accurately express supplied evidence; retain justified uncertainty without reflexively softening every result.
 - No citation, result, experiment, or reviewer impact is invented.
 - Prose follows `prose-quality-guardrails.md`: no defensive framing, label-heavy symbols, number-only abstract style, third-person manuscript voice, or punctuation-driven structure.
-- Short edited prose has no avoidable em dash, throat-clearing opener, forced triad, synonym cycling, or repeated sentence template.
+- Short edited prose follows Humanization's selected punctuation and rhythm preferences; remove empty throat-clearing, forced triads, synonym cycling, or needless repeated templates.
 - Full paper storyline, full score-risk loop, and final-readiness checks are skipped unless the user requests standard mode.
 
 Visible output default: put the revised text first and preserve the user's original Markdown/LaTeX/citation format. Use this compact status only when useful:
@@ -89,7 +89,7 @@ Use with `prose-quality-guardrails.md` before calling a draft polished:
 - `Q1`, `Q2`, `C1`, `C2`, `RQ1`, and similar labels are absent from running prose unless explicitly required.
 - Equations, theorems, and symbols are introduced with their scientific purpose and do not appear as dense blocks without narration.
 - Quotation marks, colons, dashes, slashes, arrows, and bracketed labels are not used as substitutes for logical transitions.
-- Authored prose prefers zero em dashes and contains no more than three across the full paper, excluding direct quotations.
+- Authored prose follows the punctuation and rhythm priority in `../../ccf-humanization/references/humanization-policy.md`; its generic em-dash default applies only without an explicitly selected user or project convention.
 - Throat-clearing openers are removed when the following clause can stand directly.
 - Contributions and arguments use their natural number of parts instead of forced three-item lists.
 - Canonical technical terms remain stable; near-synonyms are not rotated for surface variety.

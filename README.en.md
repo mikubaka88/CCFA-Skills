@@ -342,13 +342,13 @@ Writing starts with the paragraph's point. It checks whether one sentence gives 
 
 Our follow-up audit found that some artificial prose came from conflicting instructions. Writing would remove a defensive sentence, then a review template would demand a limitation at the end. A literature search could find that an idea was already covered and still require a rescue route. We removed these conflicts. Writing, ideation, and experiment planning now share a practical rule: explain the object, operation, and relationship. Design the study around the current question, identify a specific gap in review, and close the issue once it is resolved.
 
-Calling a proposal “verifiable and implementable” adds little without explaining what it does. Saying an index supports offline incremental updates conveys a technical property worth keeping. New diagnostics flag clusters of abstract labels, repeated comparisons, and defensive prose inside tables for contextual inspection. You can ask:
+Calling a proposal “verifiable and implementable” adds little without explaining what it does. Saying an index supports offline incremental updates conveys a technical property worth keeping. New diagnostics flag clusters of abstract labels, repeated comparisons, and defensive prose inside tables for contextual inspection. Your explicitly selected punctuation and rhythm conventions take precedence over generic surface preferences. You can ask:
 
 > Revise this paragraph by clarifying how its reasons and evidence connect. Preserve the numbers, experimental conditions, and limitations that affect the conclusion.
 
 ### Figures: make them readable on the paper page
 
-A figure can look clear on a large monitor and become illegible in a manuscript. Changing a method's color across panels or independently scaling values that differ a hundredfold can also mislead the reader. The plotting tools now support final print width and minimum type size, consistent entity colors, shared axes and color ranges for comparable panels, consolidated legends, and optional titles and annotations.
+A figure can look clear on a large monitor and become illegible in a manuscript. Changing a method's color across panels or independently scaling values that differ a hundredfold can also mislead the reader. The plotting tools now support final print width, minimum type size, optional point-based stroke widths, consistent entity colors, shared axes and color ranges for comparable panels, consolidated legends, and optional titles and annotations.
 
 Heatmaps, correlation matrices, and volcano plots also support biological and other scientific data. The tools distinguish p-values, adjusted p-values, and q-values, require an explicit display policy for zeros, and reject invalid correlations and negative probabilities. Diagram work starts from the reference's layout relationships and components, followed by alignment, spacing, text, and scientific-content checks. Extra figure candidates and independent reviews still use the existing preference switches.
 

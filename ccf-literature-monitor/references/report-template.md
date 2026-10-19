@@ -1,6 +1,6 @@
 # Monitoring Report Template
 
-For all monitoring modes, use this structure. Output must be complete, factual, and parsable.
+This is the canonical structure for full monitoring reports. Honor a requested short answer or other user format, keeping the time range, source basis, and relevant changes; internal contributions return findings to the owner without a separate report. Full reports retain the fields below as applicable, without inventing counts, scores, or actions to fill them.
 
 ## Report Header
 
@@ -29,7 +29,7 @@ For all monitoring modes, use this structure. Output must be complete, factual, 
 
 ## Executive Summary
 
-One paragraph summary of the monitoring result, including total papers scanned, number of high-relevance papers, overlap distribution, and the safest next action. Do not claim that an idea is novel solely because no overlap appeared in the scanned window.
+One paragraph summary of the monitoring result, including total papers scanned, number of high-relevance papers, overlap distribution, and the action supported by the findings. Do not claim that an idea is novel solely because no overlap appeared in the scanned window.
 
 ## High-Relevance Papers
 
@@ -58,7 +58,7 @@ Summarize emerging trends and open gaps in the scanned sources. Separate observe
 
 ## Flags for Other Skills
 
-List explicit flags for other CCFA skills to act upon:
+Include only useful flags with the specific gap or requested action: `RELAX` means no material overlap found in the scanned window, `RESEARCH` means partial overlap needing clarification when it affects the task, and `FOLLOW-UP` means substantial overlap with a decision to resolve. Neither label automatically starts another workflow. Relevant handoff fields are:
 
 - `@ccf-literature-searcher`: [papers or clusters to retrieve deeply]
 - `@ccf-idea-reviewer`: [novelty implications for idea score]
@@ -66,7 +66,7 @@ List explicit flags for other CCFA skills to act upon:
 - `@ccf-paper-writer`: [related-work or positioning updates]
 - `@ccf-integrity-auditor`: [potential dependency or attribution issues]
 
-## Output Self-Check
+## Output Self-Check (Internal Unless Requested Or Material To Coverage)
 
 ```text
 Date range explicit:

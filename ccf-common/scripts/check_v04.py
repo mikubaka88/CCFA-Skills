@@ -474,6 +474,18 @@ def check_prose_regressions(errors: list[str]) -> None:
             fail(errors, "prose checker mistakes a Markdown percentage for a TeX comment")
         if not any(item["code"] == "em_dash_limit" for item in inspect("A — B — C — D — E.", "paper")["issues"]):
             fail(errors, "prose checker lost the full-paper punctuation preference")
+        selected_style = "A — B — C — D — E."
+        for selected_limit in (4, "off"):
+            if any(item["code"] == "em_dash_limit" for item in inspect(selected_style, "paper", em_dash_limit=selected_limit)["issues"]):
+                fail(errors, "prose checker overrides an explicitly selected punctuation convention")
+        if not any(item["code"] == "em_dash_limit" for item in inspect(selected_style, "paper", em_dash_limit=2)["issues"]):
+            fail(errors, "prose checker lost the explicit punctuation limit")
+        if not any(item["code"] == "defensive_framing" for item in inspect(selected_style + " We do not claim to solve all problems.", "paper", em_dash_limit="off")["issues"]):
+            fail(errors, "punctuation override disables unrelated prose diagnostics")
+        for selected_limit, expected_code in (("off", 0), ("4", 0), ("2", 1), ("-1", 2), ("unknown", 2)):
+            cli = subprocess.run([sys.executable, str(path), "--scope", "paper", "--format", "json", "--strict", "--em-dash-limit", selected_limit], input=selected_style, text=True, encoding="utf-8", capture_output=True)
+            if cli.returncode != expected_code:
+                fail(errors, f"prose CLI mishandles selected punctuation limit {selected_limit!r}")
 
         signal_codes = {"semicolon_cluster", "semicolon_density", "repeated_contrast"}
 

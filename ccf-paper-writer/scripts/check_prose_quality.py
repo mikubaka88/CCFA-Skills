@@ -215,13 +215,20 @@ def _expression_signals(prose: str) -> list[dict]:
     return issues
 
 
-def inspect(text: str, scope: str) -> dict:
+def inspect(text: str, scope: str, *, em_dash_limit: int | str | None = None) -> dict:
     prose = _prose_only(text)
     issues: list[dict] = []
     word_count = len(_words(prose))
     em_dash_count = prose.count("—") + len(re.findall(r"(?<!-)---(?!-)", prose))
-    limit = 3 if scope == "paper" else 0
-    if em_dash_count > limit:
+    if em_dash_limit is None:
+        limit = 3 if scope == "paper" else 0
+    elif em_dash_limit == "off":
+        limit = None
+    elif type(em_dash_limit) is int and em_dash_limit >= 0:
+        limit = em_dash_limit
+    else:
+        raise ValueError("em_dash_limit must be a nonnegative integer, 'off', or None for the scope default")
+    if limit is not None and em_dash_count > limit:
         issues.append({
             "code": "em_dash_limit",
             "severity": "error",
@@ -315,8 +322,9 @@ def inspect(text: str, scope: str) -> dict:
 
 def _render_text(result: dict) -> str:
     status = "PASS" if not result["issues"] else "REVIEW"
+    limit_label = "off" if result["em_dash_limit"] is None else result["em_dash_limit"]
     lines = [
-        f"{status}: {result['word_count']} words; em dashes {result['em_dash_count']}/{result['em_dash_limit']}; {result['issue_count']} issue(s)."
+        f"{status}: {result['word_count']} words; em dashes {result['em_dash_count']}/{limit_label}; {result['issue_count']} issue(s)."
     ]
     for issue in result["issues"]:
         location = f" line {issue['line']}" if "line" in issue else ""
@@ -324,6 +332,18 @@ def _render_text(result: dict) -> str:
         pattern = f"/{issue['pattern']}" if "pattern" in issue else ""
         lines.append(f"- {issue['severity'].upper()} {issue['code']}{pattern}{location}{excerpt}: {issue['message']}")
     return "\n".join(lines)
+
+
+def _parse_em_dash_limit(value: str) -> int | str:
+    if value == "off":
+        return value
+    try:
+        count = int(value)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError("Use a nonnegative integer or 'off'") from exc
+    if count < 0:
+        raise argparse.ArgumentTypeError("Use a nonnegative integer or 'off'")
+    return count
 
 
 def main() -> int:
@@ -335,11 +355,12 @@ def main() -> int:
     parser.add_argument("path", nargs="?", help="UTF-8 manuscript path; omit to read stdin")
     parser.add_argument("--scope", choices=("paper", "section", "paragraph"), default="paper")
     parser.add_argument("--format", choices=("text", "json"), default="text")
+    parser.add_argument("--em-dash-limit", type=_parse_em_dash_limit, metavar="N|off", help="Apply an explicitly selected punctuation convention; default keeps the scope-based limit")
     parser.add_argument("--strict", action="store_true", help="Return 1 for error/warning candidates; matches still require contextual judgment")
     args = parser.parse_args()
 
     try:
-        result = inspect(_read_text(args.path), args.scope)
+        result = inspect(_read_text(args.path), args.scope, em_dash_limit=args.em_dash_limit)
     except (OSError, UnicodeError) as exc:
         parser.error(f"Cannot read UTF-8 input: {exc}")
     if args.format == "json":

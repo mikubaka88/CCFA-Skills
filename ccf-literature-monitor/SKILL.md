@@ -63,40 +63,11 @@ Load `../ccf-common/references/review-output-standards.md` when monitor results 
 5. Classify overlaps by problem, mechanism, evidence, benchmark, dataset, claim, and venue positioning.
 6. Report new or materially changed findings, with precise implications for the requested research decision. Use existing report history to avoid presenting the same paper as new.
    Reuse stable paper IDs and versioned source evidence from the existing topic report; fetch targeted metadata before full text. Check updates within the actual requested window even when older content is cached. Optional expansion into extra topics follows Common's `extended_search` preference and never replaces the required current scan.
-7. Execute already requested downstream work through its owner; otherwise offer optional handoff to `ccf-literature-searcher` for deep retrieval, `ccf-idea-reviewer` for score impact, `ccf-idea-optimizer` for differentiation, or `ccf-paper-writer` for related-work integration.
+7. Resolve a concrete evidence gap needed for the current deliverable through its owner and integrate the result. Complete requested downstream work; offer unrelated follow-up only when useful. `RESEARCH` and `FOLLOW-UP` describe findings, not automatic instructions to start retrieval, scoring, redesign, or rewriting.
 
 ## Output Contract
 
-For each monitoring execution, report in this structure:
-
-```markdown
-## Literature Monitoring Report: [Mode] - [Topic/Venue]
-
-**As of:** [YYYY-MM-DD]
-**Time range:** [from] to [to]
-**Sources scanned:** [arXiv categories / venues / labs / APIs]
-**Papers scanned:** [count]
-**High-relevance papers:** [count]
-**Overall signal:** RELAX / RESEARCH / FOLLOW-UP
-
-| Title | Source | Overlap level | Overlap type | Evidence basis | Action |
-|:---|:---|:---:|:---|:---|:---:|
-| [title] | [arXiv/OpenReview/venue] | None/Low/Medium/High | Problem/Method/Evidence/Benchmark | [abstract/intro/result] | RELAX/RESEARCH/FOLLOW-UP |
-
-**Actionable flags:**
-- RELAX: no material overlap found in the scanned window; continue, but do not claim full novelty proof.
-- RESEARCH: partial overlap or possible close work; deep retrieve via `ccf-literature-searcher`.
-- FOLLOW-UP: significant overlap in problem, mechanism, and evidence; route to `ccf-idea-reviewer` or `ccf-idea-optimizer` before writing stronger novelty claims.
-
-**Handoff signals:**
-- `ccf-literature-searcher`: [papers or clusters to retrieve deeply]
-- `ccf-idea-reviewer`: [novelty or score implications]
-- `ccf-idea-optimizer`: [differentiation or rescue direction]
-- `ccf-paper-writer`: [related-work or positioning update]
-- `ccf-integrity-auditor`: [citation/attribution conflict]
-
-**Output self-check:** [date range explicit, source basis stated, table valid, no unsupported novelty conclusion]
-```
+Honor the user's requested shape and brevity. A short update gives the time range, source basis, new or changed findings, and their relevant consequence. An internal contribution returns those findings to its owner without a standalone report. Full monitoring reports use `references/report-template.md` as the single canonical structure; keep only relevant handoff signals and keep routine self-checks internal. Preserve actual coverage limits without repeating a disclaimer for every paper.
 
 ## References
 

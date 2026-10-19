@@ -28,8 +28,8 @@
 - Classify each overlap:
   - **None (RELAX):** different problem, method, and evaluation; no immediate action.
   - **Low (RESEARCH):** shared motivation or setting, but different method or claim; retrieve if relevant.
-  - **Medium (RESEARCH):** overlapping mechanism, benchmark, or claim; deep search and differentiation are needed.
-  - **High (FOLLOW-UP):** same problem, similar method, and similar evidence path; major novelty or positioning revision may be needed.
+  - **Medium (RESEARCH):** overlapping mechanism, benchmark, or claim; identify the distinction still unresolved and whether it matters to the current task.
+  - **High (FOLLOW-UP):** same problem, similar method, and similar evidence path; identify the affected contribution before recommending a change.
 - Assign an overlap score only as a diagnostic:
 
 ```text
@@ -44,20 +44,20 @@ Overlap score (0-5):
 
 ## 4. Reporting
 
-- Use the report template from `references/report-template.md`.
+- Use `references/report-template.md` for a full report; honor the user's format and use compact findings for short updates or internal contributions.
 - Be honest about uncertainty: report what you don't know, not what you suspect.
-- Format all high-relevance papers as a table with title, source, date, overlap score, overlap type, evidence basis, and recommended action.
+- For full reports, use the template's high-relevance table; a short answer retains the relevant sources and changes without mandatory scores or extra sections.
 - Include exact date range and source basis.
 
 ## 5. Follow-up and Persistence
 
 - Store reports only when file output is requested or necessary within the authorized workflow; honor no-new-files. Preserve dated monitoring history when it serves the requested recurring watch. A report does not create a scheduler.
-- Propose a summary for `ccfa.yaml` using existing monitoring fields such as `last_monitoring_report`; do not silently overwrite project state unless explicitly asked.
-- Flag conflicting papers for next use: add them to the project literature cache.
+- When project-state maintenance is requested, propose a summary for `ccfa.yaml` using existing monitoring fields such as `last_monitoring_report`; do not silently overwrite project state unless explicitly asked.
+- Reuse the existing literature cache when persistence is authorized and useful; a short update or internal finding does not itself require another file.
 
 ## 6. Handoff Rules
 
-- Send **RESEARCH** items to `ccf-literature-searcher` for deep retrieval and closest-work clustering.
-- Send **FOLLOW-UP** items to `ccf-idea-reviewer` when the user needs a score impact or to `ccf-idea-optimizer` when the user wants a rescue/differentiation route.
-- Send new citation/positioning candidates to `ccf-paper-writer` only after stable source links are available.
-- Send attribution or already-cited-paper conflicts to `ccf-integrity-auditor`.
+- Use `ccf-literature-searcher` for a specific unresolved source question needed by the current deliverable; a **RESEARCH** label alone does not require deeper retrieval.
+- Use `ccf-idea-reviewer` for a needed concept judgment or `ccf-idea-optimizer` for authorized development; a **FOLLOW-UP** label does not authorize a new assessment or redesign deliverable.
+- Pass verified citation/positioning candidates to `ccf-paper-writer` when writing is already requested or needed within scope.
+- Use `ccf-integrity-auditor` for an unresolved attribution or existing-citation conflict that affects the current task; return its evidence to the integrating owner.

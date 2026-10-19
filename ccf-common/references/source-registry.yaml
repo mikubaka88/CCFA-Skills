@@ -1320,7 +1320,7 @@ sources:
     recorded_at: 2026-10-19
     verified_at: 2026-10-19
     stale_after_days: 180
-    notes: Informs reusing selected structural and language patterns from authorized sources through existing exemplar cards. No mandatory corpus collection, full-author imitation, or extra per-task analysis is introduced.
+    notes: Informs reusing selected structural and language patterns from authorized sources through existing exemplar cards. Explicitly selected language conventions take precedence over generic surface preferences while preserving evidence. No mandatory corpus collection, full-author imitation, or extra per-task analysis is introduced.
   - id: defensive-writing-review-feedback
     title: Defensive Writing in GPT Models
     url: https://arxiv.org/abs/2610.11355v2
@@ -1356,7 +1356,7 @@ sources:
     recorded_at: 2026-10-19
     verified_at: 2026-10-19
     stale_after_days: 365
-    notes: Informs separating data-region resizing from physical text and stroke sizes, and updating exports from editable sources. The extension is optional when available; no external extension code is bundled.
+    notes: Informs separating data-region resizing from physical text and stroke sizes, and updating exports from editable sources. The SVG helper supports minimum physical type size and optional point-based stroke widths while retaining legacy drawing units. The extension is optional when available; no external extension code is bundled.
   - id: bioicons
     title: Bioicons Scientific SVG Library
     url: https://github.com/duerrsimon/bioicons

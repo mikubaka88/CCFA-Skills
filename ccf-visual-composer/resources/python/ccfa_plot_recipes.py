@@ -54,6 +54,7 @@ class Theme:
     mono: str = "Consolas, Menlo, monospace"
     paper_width_in: float | None = None
     min_font_pt: float = 8.0
+    stroke_unit: str = "viewbox"
 
     def __post_init__(self) -> None:
         for name in ("width", "height", "min_font_pt"):
@@ -61,6 +62,10 @@ class Theme:
                 raise ValueError(f"{name} must be positive")
         if self.paper_width_in is not None and _number(self.paper_width_in, "paper_width_in") <= 0:
             raise ValueError("paper_width_in must be positive")
+        if self.stroke_unit not in {"viewbox", "pt"}:
+            raise ValueError("stroke_unit must be 'viewbox' or 'pt'")
+        if self.stroke_unit == "pt" and self.paper_width_in is None:
+            raise ValueError("stroke_unit='pt' requires paper_width_in to define the physical scale")
 
 
 @dataclass(frozen=True)
@@ -110,36 +115,50 @@ class Canvas:
             f'<rect x="0" y="0" width="{width}" height="{height}" rx="0" fill="{self.theme.bg}"/>',
         ]
 
-    def rect(self, x: float, y: float, w: float, h: float, fill: str, stroke: str = "none", rx: float = 0, opacity: float = 1) -> None:
+    def _stroke_width(self, width: float) -> float:
+        width = _number(width, "stroke width")
+        if width < 0:
+            raise ValueError("stroke width must be nonnegative")
+        if self.theme.stroke_unit == "pt":
+            return width * self.w / (72 * self.theme.paper_width_in)  # type: ignore[operator]
+        return width
+
+    def rect(self, x: float, y: float, w: float, h: float, fill: str, stroke: str = "none", rx: float = 0, opacity: float = 1, width: float = 1.0) -> None:
+        width = self._stroke_width(width)
         self.parts.append(
-            f'<rect x="{x:.2f}" y="{y:.2f}" width="{w:.2f}" height="{h:.2f}" rx="{rx:.2f}" fill="{fill}" stroke="{stroke}" opacity="{opacity:.3f}"/>'
+            f'<rect x="{x:.2f}" y="{y:.2f}" width="{w:.2f}" height="{h:.2f}" rx="{rx:.2f}" fill="{fill}" stroke="{stroke}" stroke-width="{width:.6f}" opacity="{opacity:.3f}"/>'
         )
 
     def line(self, x1: float, y1: float, x2: float, y2: float, stroke: str, width: float = 1.5, opacity: float = 1) -> None:
+        width = self._stroke_width(width)
         self.parts.append(
-            f'<line x1="{x1:.2f}" y1="{y1:.2f}" x2="{x2:.2f}" y2="{y2:.2f}" stroke="{stroke}" stroke-width="{width:.2f}" stroke-linecap="round" opacity="{opacity:.3f}"/>'
+            f'<line x1="{x1:.2f}" y1="{y1:.2f}" x2="{x2:.2f}" y2="{y2:.2f}" stroke="{stroke}" stroke-width="{width:.6f}" stroke-linecap="round" opacity="{opacity:.3f}"/>'
         )
 
     def circle(self, x: float, y: float, r: float, fill: str, stroke: str = "none", width: float = 1.5, opacity: float = 1) -> None:
+        width = self._stroke_width(width)
         self.parts.append(
-            f'<circle cx="{x:.2f}" cy="{y:.2f}" r="{r:.2f}" fill="{fill}" stroke="{stroke}" stroke-width="{width:.2f}" opacity="{opacity:.3f}"/>'
+            f'<circle cx="{x:.2f}" cy="{y:.2f}" r="{r:.2f}" fill="{fill}" stroke="{stroke}" stroke-width="{width:.6f}" opacity="{opacity:.3f}"/>'
         )
 
     def path(self, d: str, fill: str, stroke: str = "none", width: float = 1.2, opacity: float = 1) -> None:
+        width = self._stroke_width(width)
         self.parts.append(
-            f'<path d="{d}" fill="{fill}" stroke="{stroke}" stroke-width="{width:.2f}" opacity="{opacity:.3f}"/>'
+            f'<path d="{d}" fill="{fill}" stroke="{stroke}" stroke-width="{width:.6f}" opacity="{opacity:.3f}"/>'
         )
 
     def polyline(self, points: Sequence[tuple[float, float]], stroke: str, width: float = 2.5, fill: str = "none", opacity: float = 1) -> None:
+        width = self._stroke_width(width)
         data = " ".join(f"{x:.2f},{y:.2f}" for x, y in points)
         self.parts.append(
-            f'<polyline points="{data}" fill="{fill}" stroke="{stroke}" stroke-width="{width:.2f}" stroke-linecap="round" stroke-linejoin="round" opacity="{opacity:.3f}"/>'
+            f'<polyline points="{data}" fill="{fill}" stroke="{stroke}" stroke-width="{width:.6f}" stroke-linecap="round" stroke-linejoin="round" opacity="{opacity:.3f}"/>'
         )
 
     def polygon(self, points: Sequence[tuple[float, float]], fill: str, stroke: str = "none", width: float = 1.2, opacity: float = 1) -> None:
+        width = self._stroke_width(width)
         data = " ".join(f"{x:.2f},{y:.2f}" for x, y in points)
         self.parts.append(
-            f'<polygon points="{data}" fill="{fill}" stroke="{stroke}" stroke-width="{width:.2f}" opacity="{opacity:.3f}"/>'
+            f'<polygon points="{data}" fill="{fill}" stroke="{stroke}" stroke-width="{width:.6f}" opacity="{opacity:.3f}"/>'
         )
 
     def text(
@@ -416,10 +435,13 @@ def slopegraph(
     lo, hi = _extent(left_vals + right_vals)
     c = Canvas(theme.width, theme.height, theme)
     c.label_block(title, subtitle, note)
-    top, bottom = 126, theme.height - 68
-    x1, x2 = 245, theme.width - 245
-    c.text(x1, 108, left_label, 15, 820, theme.ink, "middle")
-    c.text(x2, 108, right_label, 15, 820, theme.ink, "middle")
+    top, bottom = _plot_top(title, subtitle) + 26, theme.height - 68
+    if theme.width < 320 or bottom - top < 60:
+        raise ValueError(f"Slopegraph canvas is too small; use Theme width >= 320 and height >= {top + 128:g}")
+    x1 = min(245, theme.width * 0.30)
+    x2 = theme.width - x1
+    c.text(x1, top - 18, left_label, 15, 820, theme.ink, "middle")
+    c.text(x2, top - 18, right_label, 15, 820, theme.ink, "middle")
     c.line(x1, top, x1, bottom, theme.grid, 1.2)
     c.line(x2, top, x2, bottom, theme.grid, 1.2)
     for i, row in enumerate(rows):
@@ -533,7 +555,9 @@ def donut_chart(
         )
         color = palette[i % len(palette)]
         if value == total:
-            c.circle(cx, cy, (outer + inner) / 2, "none", color, outer - inner, 0.95)
+            # This thickness is geometry, not a typographic stroke width.
+            c.circle(cx, cy, outer, color, opacity=0.95)
+            c.circle(cx, cy, inner, theme.bg)
         else:
             c.path(d, color, "#FFFFFF", 2.2, 0.95)
         mid = angle + delta / 2
@@ -755,7 +779,7 @@ def correlation_heatmap(
             x, y = left + j * cell, top + i * cell
             c.rect(x + 2, y + 2, cell - 4, cell - 4, color, "#FFFFFF", 8, 0.95)
             if show_values:
-                c.text(x + cell / 2, y + cell / 2 + 4, f"{v:.2f}", 10, 760, _contrast(color), "middle")
+                c.text(x + cell / 2, y + cell / 2 + 4, _pretty(v, 2), 10, 760, _contrast(color), "middle")
     _colorbar(c, ColorNorm(-1, 1, 0), palette, left, top + n * cell + 36, min(260, n * cell), "correlation")
     return c.render()
 
@@ -790,7 +814,8 @@ def ridgeline_density(
     c.label_block(title, subtitle, note)
     left, right = 118, theme.width - 62
     top, bottom = 136, theme.height - 76
-    row_gap = (bottom - top) / max(1, len(series) - 1)
+    # The uppermost ridge needs the same peak headroom as every other group.
+    row_gap = (bottom - top) / max(1, len(series) - 1 + 0.72)
     for idx, (label, vals) in enumerate(series.items()):
         base = bottom - idx * row_gap
         dens = _density(vals, xs)

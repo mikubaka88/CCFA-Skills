@@ -23,7 +23,7 @@ Start with the one best-matching card when style adaptation is needed; load only
 - Use same story shape third: new task, new benchmark, new model family, new capability, or new evaluation economy.
 - Add a contrast card only when it resolves a concrete story or evidence-presentation choice.
 
-Use cards to borrow writing moves, not claims, wordings, examples, or technical content.
+Use cards to borrow writing moves, not claims, wordings, examples, or technical content. If the user or project explicitly selects language conventions recorded in Reusable Techniques, read only the relevant entries and apply Humanization's preference precedence. A paper supplied for factual analysis does not automatically select its punctuation or rhythm; do not extract a new profile for an ordinary local edit.
 
 ## ICLR And CVPR Recent Best-Paper Cards
 

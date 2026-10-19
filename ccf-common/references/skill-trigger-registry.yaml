@@ -43,7 +43,7 @@ skills:
     exclude: "Does not design experiments, invent results/components, write manuscript prose, convert PDFs into writing exemplars, or perform final submission compliance."
     handoff: "ccf-experiment-designer, ccf-idea-optimizer, ccf-paper-writer, ccf-integrity-auditor, ccf-submission-checker"
   - name: ccf-paper-to-exemplar
-    trigger: "Distill supplied paper PDFs into writing exemplar cards and register a requested personal library. Use for PDF to writing exemplar, 写作范例, and reusable paper-writing patterns. Preserve source attribution and transfer writing logic only. Figure reconstruction, manuscript drafting, and review have separate owners."
+    trigger: "Distill supplied paper PDFs into writing exemplar cards and register a requested personal library. Use for PDF to writing exemplar, 写作范例, and reusable paper-writing patterns. Preserve attribution; transfer argument structure and selected language conventions without copying scientific claims. Figure reconstruction, manuscript drafting, and review have separate owners."
     exclude: "Does not write papers, perform review, render figures, or reconstruct visuals."
     handoff: "ccf-paper-writer"
   - name: ccf-paper-writer

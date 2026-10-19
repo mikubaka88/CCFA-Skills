@@ -47,10 +47,10 @@ Use `citation-workflow.md` as the source for attribution, verified entries, cita
 
 ## Flexible Suggestions
 
-For non-review writing work, suggestions may be phrased as optional questions instead of hard blockers. Example:
+For non-review writing work, ask about a concrete unresolved fact or research choice when it changes the requested text. Base the question on supplied material; do not propose a new paper type merely to reduce perceived novelty pressure. Example:
 
 ```text
-可以把本文定位成 benchmark + architecture paper 吗？这样 novelty 压力会小一些，但需要更强的 dataset/protocol 说明。
+材料中把数据集分别写成“已完成标注”和“正在标注”。目前是哪一种状态？我会先完成不依赖该状态的段落。
 ```
 
 Use hard blockers only for fabricated evidence, privacy risk, incompatible user constraints, or impossible format requirements.

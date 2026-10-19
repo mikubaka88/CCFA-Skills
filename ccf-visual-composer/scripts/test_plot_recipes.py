@@ -43,6 +43,15 @@ class PlotRegressionTests(unittest.TestCase):
             with self.subTest(value=value), self.assertRaisesRegex(ValueError, r"finite|\[-1, 1\]"):
                 self.call("correlation_heatmap", [[value]], ["A"], "")
 
+    def test_small_correlations_preserve_nonzero_sign_and_magnitude(self):
+        for value in (-0.004, 0.004):
+            with self.subTest(value=value):
+                svg = self.call("correlation_heatmap", [[1, value], [value, 1]], ["A", "B"], "")
+                labels = [item.text for item in elements(svg, "text")]
+                self.assertEqual(labels.count(str(value)), 2)
+                self.assertNotIn("-0.00", labels)
+                self.assertNotIn("0.00", labels)
+
     def test_matrix_shape_and_labels_are_validated(self):
         for matrix, row_labels, col_labels in (
             ([], [], []), ([[1]], ["A", "B"], ["X"]),
@@ -249,6 +258,36 @@ class PlotRegressionTests(unittest.TestCase):
         self.assertEqual(ET.fromstring(svg).get("width"), "900")
         self.assertIn("12.000000", [item.get("font-size") for item in elements(svg, "text")])
 
+    def stroke_primitives(self, canvas, stroke_width):
+        canvas.line(10, 10, 20, 20, "#123456", width=stroke_width)
+        canvas.path("M10 10 L20 20", "none", "#123456", width=stroke_width)
+        canvas.polyline([(10, 10), (20, 20)], "#123456", width=stroke_width)
+        canvas.polygon([(10, 10), (20, 20), (20, 10)], "none", "#123456", width=stroke_width)
+        canvas.circle(20, 20, 10, "none", "#123456", width=stroke_width)
+        canvas.rect(10, 10, 20, 20, "none", "#123456", width=stroke_width)
+        return [float(element.get("stroke-width")) for element in ET.fromstring(canvas.render()) if element.get("stroke") == "#123456"]
+
+    def test_point_strokes_keep_physical_width_across_all_primitives(self):
+        for canvas_width in (900, 1800):
+            for stroke_width in (0, 0.7):
+                with self.subTest(canvas_width=canvas_width, stroke_width=stroke_width):
+                    theme = PLOTS["Theme"](width=canvas_width, height=500, paper_width_in=7, stroke_unit="pt")
+                    widths = self.stroke_primitives(PLOTS["Canvas"](canvas_width, 500, theme), stroke_width)
+                    self.assertEqual(len(widths), 6)
+                    for width in widths:
+                        self.assertAlmostEqual(width * 7 * 72 / canvas_width, stroke_width, places=6)
+
+    def test_default_strokes_keep_legacy_viewbox_units(self):
+        for paper_width in (None, 7):
+            theme = PLOTS["Theme"](paper_width_in=paper_width)
+            widths = self.stroke_primitives(PLOTS["Canvas"](900, 500, theme), 0.7)
+            self.assertEqual(widths, [0.7] * 6)
+
+    def test_point_strokes_require_physical_width_and_valid_unit(self):
+        for kwargs in ({"stroke_unit": "pixels"}, {"stroke_unit": "pt"}):
+            with self.subTest(kwargs=kwargs), self.assertRaisesRegex(ValueError, "stroke_unit"):
+                PLOTS["Theme"](**kwargs)
+
     def test_invalid_theme_and_palette_are_actionable(self):
         for kwargs in ({"paper_width_in": 0}, {"min_font_pt": -1}, {"width": float("nan")}):
             with self.subTest(kwargs=kwargs), self.assertRaises(ValueError):
@@ -267,6 +306,32 @@ class PlotRegressionTests(unittest.TestCase):
         self.call("grouped_bar_chart", [{"group": "A", "x": 0}], "group", ["x"], "")
         self.assertIn("-2", text(self.call("lollipop_rank", [{"label": "A", "x": -2}], "x", "label", "")))
 
+    def test_slopegraph_keeps_conditions_in_order_on_narrow_canvas(self):
+        rows = [{"name": "A", "before": 1, "after": 2}]
+        for theme in (None, PLOTS["Theme"](width=450, height=260)):
+            svg = self.call("slopegraph", rows, "before", "after", "name", "", "Before", "After", theme=theme)
+            positions = {item.text: float(item.get("x")) for item in elements(svg, "text") if item.text in ("Before", "After")}
+            self.assertLess(positions["Before"], positions["After"])
+            self.assertTrue(all(float(item.get("y")) == 36 for item in elements(svg, "text") if item.text in ("Before", "After")))
+            if theme is None:
+                self.assertEqual(positions, {"Before": 245, "After": 575})
+        titled_svg = self.call("slopegraph", rows, "before", "after", "name", "Comparison", "Before", "After")
+        self.assertTrue(all(float(item.get("y")) == 108 for item in elements(titled_svg, "text") if item.text in ("Before", "After")))
+        for theme in (PLOTS["Theme"](width=300, height=300), PLOTS["Theme"](width=450, height=150)):
+            with self.subTest(theme=theme), self.assertRaisesRegex(ValueError, "canvas is too small"):
+                self.call("slopegraph", rows, "before", "after", "name", "", "Before", "After", theme=theme)
+
+    def test_ridgeline_peaks_stay_inside_data_region(self):
+        for count in (2, 3, 4):
+            with self.subTest(groups=count):
+                svg = self.call("ridgeline_density", {f"Group {i}": [0, 1, 2, 3] for i in range(count)}, "Density")
+                curves = elements(svg, "polyline")
+                self.assertEqual(len(curves), count)
+                for curve in curves:
+                    ys = [float(point.split(",")[1]) for point in curve.get("points").split()]
+                    self.assertGreaterEqual(min(ys), 136)
+                    self.assertLessEqual(max(ys), 580 - 76)
+
     def test_donut_rejects_negative_and_zero_total(self):
         for values in ([-1, 2], [0, 0]):
             with self.subTest(values=values), self.assertRaises(ValueError):
@@ -274,8 +339,13 @@ class PlotRegressionTests(unittest.TestCase):
 
     def test_single_donut_category_is_full_circle(self):
         svg = self.call("donut_chart", [{"label": "A", "x": 0.5}, {"label": "B", "x": 0}], "x", "label", "")
-        ring = next(c for c in elements(svg, "circle") if c.get("fill") == "none")
-        self.assertGreater(float(ring.get("stroke-width")), 0)
+        outer, inner = elements(svg, "circle")[:2]
+        self.assertGreater(float(outer.get("r")), float(inner.get("r")))
+        self.assertNotEqual(outer.get("fill"), inner.get("fill"))
+        # Changing stroke units must not change a donut's geometric ring width.
+        theme = PLOTS["Theme"](width=760, height=560, paper_width_in=7, stroke_unit="pt")
+        physical_svg = self.call("donut_chart", [{"label": "A", "x": 0.5}, {"label": "B", "x": 0}], "x", "label", "", theme=theme)
+        self.assertEqual([c.get("r") for c in elements(svg, "circle")], [c.get("r") for c in elements(physical_svg, "circle")])
         self.assertIn("0.50", text(svg))
 
     def test_radial_rejects_out_of_range_instead_of_clipping(self):

@@ -11,14 +11,14 @@ Quick mode:
 - One paragraph, one subsection, local polish, or a simple word-count reduction.
 - Do not require a full checklist.
 - Preserve facts and numbers exactly.
-- Return compact risk status.
+- Return the compressed text; keep routine risk status internal.
 
 Standard mode:
 
 - Full section, multi-section, full manuscript, page-limit, or camera-ready compression.
-- Build a content inventory and appendix/delete decision table.
+- Use an internal content inventory or cut plan when substantive changes need coordination; show it only when requested or needed for an unresolved choice.
 - Check claim-evidence preservation.
-- Ask once before appendix/delete if the user's preference is unknown.
+- Remove redundant wording within the existing compression authorization. Ask only when moving or deleting important scientific content leaves a strategic choice that the user's instructions do not resolve.
 
 If a draft is only slightly over budget (<= 10%), first compress wording, repeated motivation, and low-value background. If it is substantially over budget (> 10%), create a section-level cut plan before rewriting.
 
@@ -62,13 +62,13 @@ Delete when:
 - The citation is background-only and not needed for positioning.
 - The sentence increases confidence without adding evidence.
 
-Ask once when the choice is strategic:
+Ask once for a material unresolved choice after completing unaffected compression, for example:
 
 ```text
-I recommend moving reproducibility detail and secondary analyses to appendix, and deleting repeated motivation and unsupported filler. Should I apply that policy for this compression pass?
+The two main comparisons cannot both fit at readable size. Which should remain in the main text, [comparison A] or [comparison B], with the other preserved in the appendix?
 ```
 
-If the user already asked for aggressive deletion, appendix-only compression, or camera-ready condensation, do not ask again.
+Reuse any applicable prior choice or authorization, including aggressive deletion, appendix-only compression, or camera-ready condensation. Removing repeated wording needs no new permission; preserve essential science and required disclosures.
 
 ## Venue Style
 
@@ -76,7 +76,7 @@ AI/ML/CV/NLP:
 
 - Keep the problem, insight, method mechanism, and evidence summary visible.
 - Compress background and low-impact related work first.
-- Keep ablation and baseline rationale clear enough to avoid reviewer suspicion.
+- Keep ablation and baseline rationale clear enough to interpret the comparisons.
 
 DB/systems/networks:
 
@@ -111,7 +111,7 @@ Theory/PL/FM:
 
 ## Risk Labels
 
-Use these labels after compression:
+Use these labels internally to check preservation; expose only a material unresolved consequence or a requested change record:
 
 - `preserved`: claim/evidence still intact.
 - `weakened`: claim was narrowed to match evidence.
