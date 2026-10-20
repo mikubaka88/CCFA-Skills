@@ -28,7 +28,7 @@ const COPY = {
       figure_variants: { title: "额外图稿候选", desc: "为同一图提供额外布局或视觉方案，便于比较并确定方向。", trigger: "相关绘图任务；按需时仅在设计选择会显著影响表达时生成。", token: "增加图像或模型用量", time: "明显增加生成时间" },
       detailed_reports: { title: "附加过程报告", desc: "保留便于追溯的决策、依据与检查记录，整合到既有工作目录。", trigger: "相关交付任务；按需时在需要复现或交接追踪时补充。", token: "增加输出 token", time: "增加整理与核对时间" },
       alternative_routes: { title: "备选路线对照", desc: "在已选路线之外，最多追加一条可选路线对照，优先复用证据。你明确要求的发散和必要纠错照常完成。", trigger: "适用于会影响结果的额外路线比较。关闭不限制你要求的多个方向；额外实验或服务仍按已有授权执行。", token: "增加一次路线分析与证据核对", time: "增加对照时间，取决于证据缺口" },
-      maintenance_evolution: { title: "维护期规则迭代", desc: "在 skill 维护中，最多增加一版候选规则和一次固定用例比较。评价口径保持不变，未通过就保留稳定版。", trigger: "仅适用于明确请求的 skill 维护；按需时须有尚未解决的规则问题。论文任务不自动改 skill 或模型权重；更多迭代需明确预算。", token: "增加候选修正与用例比较投入", time: "增加一次维护评估时间" }
+      maintenance_evolution: { title: "维护期规则迭代", desc: "在 skill 维护中，最多增加一版候选规则和一次固定用例比较。评价口径保持不变，未通过就保留稳定版。", trigger: "仅适用于明确请求的 skill 维护；按需时须有尚未解决的规则问题。自主科研由具体任务及其预算启动，不由此开关启动。", token: "增加候选修正与用例比较投入", time: "增加一次维护评估时间" }
     }
   },
   "zh-TW": {
@@ -50,7 +50,7 @@ const COPY = {
       figure_variants: { title: "額外圖稿候選", desc: "為同一張圖提供額外版面或視覺方案，便於比較並確定方向。", trigger: "相關繪圖任務；按需時僅在設計選擇會顯著影響表達時生成。", token: "增加圖像或模型用量", time: "明顯增加生成時間" },
       detailed_reports: { title: "附加過程報告", desc: "保留便於追溯的決策、依據與檢查紀錄，整合到既有工作目錄。", trigger: "相關交付任務；按需時在需要重現或交接追蹤時補充。", token: "增加輸出 token", time: "增加整理與核對時間" },
       alternative_routes: { title: "備選路線對照", desc: "在已選路線之外，最多追加一條可選路線對照，優先沿用證據。你明確要求的發散與必要糾錯照常完成。", trigger: "適用於會影響結果的額外路線比較。關閉不限制你要求的多個方向；額外實驗或服務仍按既有授權執行。", token: "增加一次路線分析與證據核對", time: "增加對照時間，取決於證據缺口" },
-      maintenance_evolution: { title: "維護期規則迭代", desc: "在 skill 維護中，最多增加一版候選規則和一次固定用例比較。評價口徑保持不變，未通過就保留穩定版。", trigger: "僅適用於明確請求的 skill 維護；按需時須有尚未解決的規則問題。論文任務不自動改 skill 或模型權重；更多迭代需明確預算。", token: "增加候選修正與用例比較投入", time: "增加一次維護評估時間" }
+      maintenance_evolution: { title: "維護期規則迭代", desc: "在 skill 維護中，最多增加一版候選規則和一次固定用例比較。評價口徑保持不變，未通過就保留穩定版。", trigger: "僅適用於明確請求的 skill 維護；按需時須有尚未解決的規則問題。自主科研由具體任務及其預算啟動，不由此開關啟動。", token: "增加候選修正與用例比較投入", time: "增加一次維護評估時間" }
     }
   },
   en: {
@@ -72,7 +72,7 @@ const COPY = {
       figure_variants: { title: "Additional figure candidates", desc: "Create extra layout or visual options for a figure so you can compare and choose a direction.", trigger: "Relevant figure tasks. Auto generates alternatives when the design choice materially affects communication.", token: "More image or model usage", time: "Noticeably more generation time" },
       detailed_reports: { title: "Additional process reports", desc: "Keep traceable decisions, evidence, and checks together in the existing working directory.", trigger: "Relevant deliverables. Auto adds records when reproducibility or handoff tracking calls for them.", token: "More output tokens", time: "More organization & checking" },
       alternative_routes: { title: "Alternative route comparison", desc: "Add at most one optional comparison to a selected route, reusing evidence first. Requested brainstorming and necessary corrections remain part of the task.", trigger: "Use for consequential extra comparisons. Off does not limit multiple directions you explicitly request. Experiments or extra services still require applicable authorization.", token: "One route analysis & evidence check", time: "Comparison time varies with evidence gaps" },
-      maintenance_evolution: { title: "Maintenance rule iteration", desc: "Add at most one candidate rule revision and one fixed-case comparison during skill maintenance. Keep acceptance criteria fixed; retain the stable version if it fails.", trigger: "Explicitly requested skill maintenance only; Auto needs an unresolved rule defect. Research tasks do not modify skills or model weights automatically. More iterations need an explicit budget.", token: "More candidate revision & comparison work", time: "One additional maintenance evaluation" }
+      maintenance_evolution: { title: "Maintenance rule iteration", desc: "Add at most one candidate rule revision and one fixed-case comparison during skill maintenance. Keep acceptance criteria fixed; retain the stable version if it fails.", trigger: "Explicit skill maintenance only; Auto needs an unresolved rule defect. Autonomous research starts from a specific request and its budget, not this switch.", token: "More candidate revision & comparison work", time: "One additional maintenance evaluation" }
     }
   }
 };

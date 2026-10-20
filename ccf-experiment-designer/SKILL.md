@@ -1,6 +1,6 @@
 ---
 name: ccf-experiment-designer
-description: "Design CCF experiment protocols and evidence schemas: datasets, baselines, metrics, ablations, and result-table contents. Use for 设计实验, 消融, benchmark planning, and 结果表证据结构. Preserve real values. Table styling/rendering belongs to ccf-visual-composer; broad retrieval belongs to ccf-literature-searcher."
+description: "Design and interpret CCF experiments: datasets, baselines, metrics, ablations, execution specifications, observed feedback, and result-table contents. Use for 设计实验, 消融, benchmark planning, 实验结果分析, and evidence design within requested autonomous research. Preserve real values. Orchestrator coordinates research-loop execution; visual styling and broad retrieval have separate owners."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -30,13 +30,16 @@ Activate Humanization and Common before all experiment work, including raw proto
 
 ## Core Rule
 
-Design the smallest sufficient experiment package that distinguishes the central hypothesis from plausible alternatives. Use supplied specifications for planned methods; verify complete configurations for reported full-method comparisons. Build result tables and evidence-bound figure specs only from supplied real values or explicit placeholders. Never fabricate numbers, improvements, significance, benchmark ranks, or user-study outcomes. Do not expand protocols with repetitive smoke tests or implausible defensive cases. Publication-grade layout, palette, caption placement, and render QA belong to `ccf-visual-composer`. Follow the user's requested output shape: experiment plan, table, LaTeX table, figure spec, ablation list, or execution queue.
+Design the smallest sufficient experiment package that distinguishes the central hypothesis from plausible alternatives. Use supplied specifications for planned methods; verify complete configurations for reported full-method comparisons. Build result tables and evidence-bound figure specs from supplied real values, checked measurements obtained through authorized execution, or explicit placeholders. Never fabricate numbers, improvements, significance, benchmark ranks, or user-study outcomes. Do not expand protocols with repetitive smoke tests or implausible defensive cases. Publication-grade layout, palette, caption placement, and render QA belong to `ccf-visual-composer`. Follow the user's requested output shape: experiment plan, table, LaTeX table, figure spec, ablation list, or execution queue.
+
+In explicitly requested autonomous research, own the comparison protocol, necessary execution specifications, and interpretation of actual feedback. Return these to `ccf-pipeline-orchestrator`, which coordinates task-owned implementation and real host execution. Separate a failed command from a negative scientific result. Evidence can motivate a different mechanism or search strategy, not merely another module. This collaboration does not add experiment requirements to concept-only idea review.
 
 ## Modes
 
 - `design`: datasets, baselines, metrics, ablations, robustness, efficiency, failure analysis, and execution priority.
 - `result-template`: fill-in tables with `\emptycell` in LaTeX or `—` in Markdown; no invented outcomes.
-- `result-presentation`: result tables, figure evidence plans, chart specs, caption facts, and missing-value markers from supplied real results.
+- `result-presentation`: result tables, figure evidence plans, chart specs, caption facts, and missing-value markers from supplied real results or checked measurements from authorized execution.
+- `research-iteration`: a discriminating protocol, executable run specification when authorized, and interpretation of observed results for the next research decision; use `references/evidence-design.md`.
 
 ## Workflow
 
@@ -48,12 +51,15 @@ Design the smallest sufficient experiment package that distinguishes the central
    For a results-pending manuscript, map the supplied design to its table schema without automatically adding experiments. Preserve planned versus completed protocol status, aggregation, and method identity. Leave outcome analysis blank and return the schema to the writer; pending values do not block drafting the rest of the paper. Every added test must answer a specific claim, comparison, or observed issue; omit irrelevant categories rather than filling them to complete a package.
 6. For result presentation, preserve units, seeds, confidence intervals, dataset names, metric direction, and confirmed method version/configuration. Mark missing values explicitly; never fill them with simplified runs.
 7. If executable experiment code is actually changed, retain only non-duplicative smoke tests for those critical paths. Planning or formatting alone does not call for smoke tests. Keep them outside publication evidence and do not use them as substitutes for full experiments.
+   For an authorized research iteration, provide the executable contract and interpret feedback as described in `references/evidence-design.md`. Use supplied or inspected commands, data, environment, and remaining budget; do not guess runnable paths or treat missing inputs as successful execution. Continue independent preparation while a necessary input is unresolved. Return a concrete next comparison or interpretation to the orchestrator rather than launching an unrelated experiment campaign.
 8. Use `ccf-visual-composer` when the requested deliverable includes visual composition, layout, or rendering. Supply real values, units, uncertainty, metric direction, and caption facts; integrate and check the returned figure/table. A raw evidence schema does not require rendering.
 9. Before finalizing reported comparisons, reconcile claims, numbers, and configurations; use `ccf-integrity-auditor` for material unresolved conflicts. Use `ccf-paper-writer` for needed manuscript prose and `ccf-submission-checker` when package readiness is in scope. These are conditional contributions, not stages to run for every plan.
 
 ## Adaptive Output Contract
 
 Return the requested artifact first. For a result table request, output the table. For a figure request, output the evidence-bound figure spec and caption facts, then name `ccf-visual-composer` as next owner for visual composition when needed. For a full experiment-design request, use the applicable fields below. Omit irrelevant or empty categories; smoke scope belongs only to changed executable code, and a handoff appears only when needed. Evidence integrity is a working rule, not a self-certification field.
+
+For research iterations, return the protocol version, actual outcome and evidence location, whether it distinguishes the competing explanations, and the next decision supported by it. A missing result, invalid comparison, or execution error remains distinct from an unfavorable measurement. Do not infer causal success or publication readiness from a single improved metric.
 
 ```text
 Mode:
@@ -74,7 +80,7 @@ Next CCFA owner:
 
 ## References
 
-- `references/evidence-design.md`: experiment and benchmark design.
+- `references/evidence-design.md`: experiment and benchmark design, run specifications, and interpretation during autonomous research.
 - `references/result-templates.md`: fill-in result tables and presentation scaffolds.
 - `../ccf-humanization/references/experiment-discipline.md`: confirmed full method gate, simplified-version prohibition, smoke-test scope, and experiment-to-paper checks.
 - `../ccf-humanization/references/humanization-policy.md`: warning-only, non-injection, and defensive-case removal policy.

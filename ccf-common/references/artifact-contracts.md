@@ -33,6 +33,8 @@ Reuse existing `ccfa.yaml` artifact fields or the current report/specification w
 
 When a long task needs recoverable execution state and no suitable authorized record exists, [continuity.md](continuity.md) permits one compact `source/task-state.json` in this task's existing working directory. Its integrating owner updates it in place only at meaningful transitions. It is an index to current artifacts and evidence, not a second source of truth, preference file, or extension of `ccfa.yaml`.
 
+An authorized [autonomous experiment campaign](../../ccf-pipeline-orchestrator/references/autonomous-research.md) retains its fixed contract, experiment events, raw measurements, and the managed candidate snapshots needed for comparison and recovery in one `ccfa-workfiles/experiments/<research-question>/` directory. These are scientific records, not disposable iteration copies. Reuse the campaign's current state instead of also creating `task-state.json`; do not scatter a log per skill or copy unrelated datasets. Only explicitly managed candidate files may be restored; never reset the user's repository to discard an experiment.
+
 ## Recognizable Folder Names
 
 For a new default directory, name the purpose by the work and the artifact by its content. Prefer short lowercase ASCII words separated by hyphens for portable commands; preserve established or explicitly requested names, including Chinese names. Use the same concrete artifact name across skills instead of substituting the receiving skill's name.
@@ -44,6 +46,7 @@ For a new default directory, name the purpose by the work and the artifact by it
 | Idea or manuscript review | `reviews/idea-memory-routing/`, `reviews/paper-short-title/` |
 | Literature retrieval, monitoring, or exemplars | `literature/retrieval-memory/`, `literature/novelty-watch/`, `exemplars/paper-short-title/` |
 | Research/experiment planning | `ideas/memory-routing/`, `experiments/ablation-plan/` |
+| Autonomous experiment campaign | `experiments/retrieval-stopping/` |
 | Integrity, submission, or response work | `checks/citation-integrity/`, `submission/neurips-main/`, `responses/paper-short-title/` |
 | Project planning or skill maintenance | `planning/paper-roadmap/`, `skill-maintenance/family-governance/` |
 

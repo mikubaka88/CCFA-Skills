@@ -4,6 +4,14 @@
 
 Plugin version is `0.11.0`.
 
+### 2026-10-20 autonomous research update
+
+- Extend the existing orchestrator, experiment designer, and idea optimizer from planning into explicitly requested hypothesis–experiment–feedback campaigns. Keep scientific ownership, concept-only idea review, ordinary writing scope, and the seven version-1 preferences intact. Research campaigns use their own finite budget; the maintenance-only candidate allowance does not cap them.
+- Add a standard-library sequential experiment helper with a frozen contract, measured baseline, candidate identities, command execution, attempt/time limits, raw logs, protected-input checks, scoped restoration, and repeat-ID protection. An interrupted controller with unknown execution duration closes the remaining allowance instead of inventing usable budget. The host still proposes hypotheses, edits methods, interprets scientific value, and supervises resources; the helper is neither an OS sandbox nor a background research service.
+- Preserve integer metric precision, reject malformed/nonfinite measurements and aliased input paths, and verify raw metric evidence before keeping a candidate. Concurrent file changes prevent automatic restoration. Retain only managed snapshots and necessary experiment records in one task directory.
+- Repair the evidence-policy instruction that could substitute plans for authorized execution. Add changes-only handoffs against an identified baseline and reuse campaign records for recovery; preserve original evidence and meaningful negative results. Update task routing, discovery metadata, source provenance, three-language documentation, and the configuration page's maintenance explanation.
+- Add 14 execution regressions covering success, discard, crash, timeout, input/evaluator changes, metric corruption, interruption, budget limits, file aliases, and replay. Existing family, preference, continuity, link, source-schema, and configurator checks pass. These are execution-control checks, not measurements of open-ended research quality, model-degradation recovery, or total token savings.
+
 ### 2026-10-19 maintenance update
 
 - A further installation/review audit preserves inherited compound issue IDs such as `R1-C2` and `AC-C1`, checks relative-progress labels against frozen thresholds, and rejects nonfinite or boolean scores. Keep short rebuttal checklist results internal unless requested or a material unresolved issue needs attention.

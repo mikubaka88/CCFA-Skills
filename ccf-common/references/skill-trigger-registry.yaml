@@ -15,8 +15,8 @@ skills:
     exclude: "Does not plan workflow stages/gates only, coordinate handoffs, or create research content."
     handoff: "ccf-pipeline-orchestrator, ccf-paper-writer, ccf-submission-checker"
   - name: ccf-pipeline-orchestrator
-    trigger: "Plan or coordinate CCF research stages, goals, gates, artifacts, and ccfa.yaml state. Use for 任务拆解, 流程规划, project status, and explicitly requested end-to-end coordination. Specialist skills own research outputs; ccf-project-scaffolder owns folder/template creation."
-    exclude: "Does not create folders/templates as the main task or perform downstream writing, review, search, experiment design, or rebuttal."
+    trigger: "Plan or coordinate CCF research stages, goals, gates, artifacts, and ccfa.yaml state. Use for 任务拆解, 流程规划, project status, end-to-end coordination, and explicitly requested autonomous research, autoresearch, or 自主科研迭代. Coordinate scientific hypotheses, experiments, feedback, and strategy changes within the task budget. Specialist skills own research outputs; scaffolder owns folder/template creation."
+    exclude: "Does not replace specialist scientific ownership, create templates as the main task, or execute experiments for a plan-only request."
     handoff: "All owning workflow skills"
   - name: ccf-idea-optimizer
     trigger: "Develop and optimize rough CCF research ideas into problems, insights, mechanisms, and evidence plans. Use for 优化idea, 具象化idea, 找方向, 方向探索, and rescue routes when development is the requested deliverable. Judging whether an idea is worthwhile, novel, or coherent belongs to ccf-idea-reviewer even without scores; manuscript edits belong to ccf-paper-writer."
@@ -35,7 +35,7 @@ skills:
     exclude: "Does not own supplied-result table schemas, experiment evidence structure, full manuscript review, already-cited-only audits, or manuscript writing."
     handoff: "ccf-idea-optimizer, ccf-idea-reviewer, ccf-experiment-designer, ccf-paper-writer, ccf-paper-reviewer, ccf-integrity-auditor"
   - name: ccf-experiment-designer
-    trigger: "Design CCF experiment protocols and evidence schemas: datasets, baselines, metrics, ablations, and result-table contents. Use for 设计实验, 消融, benchmark planning, and 结果表证据结构. Preserve real values. Table styling/rendering belongs to ccf-visual-composer; broad retrieval belongs to ccf-literature-searcher."
+    trigger: "Design and interpret CCF experiments: datasets, baselines, metrics, ablations, execution specifications, observed feedback, and result-table contents. Use for 设计实验, 消融, benchmark planning, 实验结果分析, and evidence design within requested autonomous research. Preserve real values. Orchestrator coordinates research-loop execution; visual styling and broad retrieval have separate owners."
     exclude: "Does not invent results, draw docs diagrams, search literature as the main deliverable, or improve layout/colors/readability of an already specified table/figure."
     handoff: "ccf-humanization, ccf-literature-searcher, ccf-visual-composer, ccf-paper-writer, ccf-paper-reviewer, ccf-integrity-auditor, ccf-submission-checker"
   - name: ccf-visual-composer

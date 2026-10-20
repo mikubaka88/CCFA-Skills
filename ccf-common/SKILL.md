@@ -40,6 +40,8 @@ Resolve preferences once with this skill's `scripts/preferences.py resolve`, add
 
 Keep the current user goal, justified route, and next action distinct. Explore different mechanisms when the task calls for discovery; preserve the selected route during execution unless a material reason changes it. Distinguish proposed, executed, and verified work. After lost context or repeated drift, reconcile actual artifacts and take one bounded step without lowering the deliverable standard. Repeated work needs a new observation, changed hypothesis, or concrete repair. For long tasks, stalled progress, or material recovery, load [continuity.md](references/continuity.md); short tasks need no extra file or review call.
 
+An explicit request for autonomous research or repeated experiments routes to the orchestrator's [research loop](../ccf-pipeline-orchestrator/references/autonomous-research.md). It uses the task's experiment scope and budget, not the optional maintenance-candidate allowance. Ordinary writing, concept review, and planning do not start experiments.
+
 ## Shared Controls
 
 Load only the references needed for the current preflight decision or maintenance task:

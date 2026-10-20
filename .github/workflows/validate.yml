@@ -23,5 +23,6 @@ jobs:
       - run: python ccf-visual-composer/scripts/test_plot_recipes.py
       - run: python ccf-common/scripts/test_preferences.py
       - run: python ccf-common/scripts/test_continuity.py
+      - run: python ccf-pipeline-orchestrator/scripts/test_research_loop.py
       - run: node --check ccf-common/assets/configurator/app.js
       - run: node ccf-common/scripts/test_configurator.js

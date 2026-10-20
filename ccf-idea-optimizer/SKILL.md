@@ -34,6 +34,8 @@ Preserve the user's theme and constraints. Vary framing or mechanism within the 
 
 Requested innovation authorizes distinct candidate mechanisms even with optional route comparison off. Keep the research question stable while exploring; preserve a selected mechanism during execution unless a material reason reopens it. Use Common's progress test to stop repeated critique or search that adds no decision-relevant information.
 
+When contributing to explicitly requested autonomous research, use the current observations and failed assumptions to propose the next mechanism, analysis, or search strategy. A stable research objective does not freeze the initial method; change the operation or underlying assumption when the evidence calls for it. Return the hypothesis and discriminating prediction to `ccf-pipeline-orchestrator`, following its [research loop](../ccf-pipeline-orchestrator/references/autonomous-research.md). The authorized campaign's scope and resources govern candidate breadth, not the one-extra-candidate rule for skill maintenance. Ordinary idea development still needs no executed experiments.
+
 ## Modes
 
 - Exploratory: develop rough seeds, find directions, and rescue promising ingredients before judging readiness.

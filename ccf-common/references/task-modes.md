@@ -64,6 +64,8 @@ When executing a selected plan, writing supported prose, or applying a local rep
 
 Converge when the requested options or artifact are complete and further work would not change the decision. For stagnation, use the progress test in [continuity.md](continuity.md): change the relevant hypothesis/input or identify the missing discriminator instead of repeating the same search, critique, or rewrite. A recovery state returns to the task's prior exploratory or execution phase; it does not permanently select the safest idea.
 
+An explicit autonomous-research request may alternate exploration and experimental execution within its agreed objective and budget. Follow the orchestrator's [research loop](../../ccf-pipeline-orchestrator/references/autonomous-research.md); a discarded candidate does not end the whole research task. This mode does not start during concept-only review, ordinary writing, or plan-only work, and is distinct from optional skill-maintenance evolution.
+
 ## Output Flexibility
 
 Use functional naming for CCFA method and feature introductions, report names, and invocation prompts. Keep competing-product style claims out of those descriptions. Preserve source attribution, acknowledgments, quotations, reference examples, and license notices in their appropriate sections.

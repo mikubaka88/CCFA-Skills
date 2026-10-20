@@ -1,6 +1,6 @@
 ---
 name: ccf-pipeline-orchestrator
-description: "Plan or coordinate CCF research stages, goals, gates, artifacts, and ccfa.yaml state. Use for 任务拆解, 流程规划, project status, and explicitly requested end-to-end coordination. Specialist skills own research outputs; ccf-project-scaffolder owns folder/template creation."
+description: "Plan or coordinate CCF research stages, goals, gates, artifacts, and ccfa.yaml state. Use for 任务拆解, 流程规划, project status, end-to-end coordination, and explicitly requested autonomous research, autoresearch, or 自主科研迭代. Coordinate scientific hypotheses, experiments, feedback, and strategy changes within the task budget. Specialist skills own research outputs; scaffolder owns folder/template creation."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -30,9 +30,11 @@ Ensure Humanization and Common are active before planning and every contributing
 
 Follow `../ccf-common/references/handoff-modes.md` and `../ccf-common/references/artifact-contracts.md`. Later user corrections normally steer the active project: preserve valid completed work, update affected requirements, and continue. Do not invent completed stages or automatic background jobs.
 
+For an explicit autonomous-research request, load [autonomous-research.md](references/autonomous-research.md) and coordinate the complete authorized loop: scientific objective, candidate mechanism, discriminating experiment, observed feedback, and a supported keep/discard/branch decision. Use actual host tools for execution; a plan or script exit alone is not experimental evidence. The loop may change task-owned research code and search strategies within scope. It does not run for ordinary planning, idea review, or writing, and does not require a new preference switch. Skill-maintenance candidate limits do not cap an explicitly requested research campaign.
+
 ## Workflow
 
-1. Identify target venue, current stage, available artifacts, constraints, deadline pressure, and the user's immediate goal.
+1. Identify target venue when relevant, current stage, available artifacts, constraints, deadline pressure, and the user's immediate goal. Distinguish a requested plan, a bounded specialist task, and autonomous research. For the latter, establish its per-run execution contract and remaining budget through `references/autonomous-research.md`; missing execution inputs block only the dependent run, not hypothesis development or preparation.
 2. Read `ccfa.yaml` when available; if absent, continue with supplied artifacts. Do not require setup or create project state merely to route work; disclose its absence only when it limits requested tracking.
 3. For unclear projects, use `references/workflow-planning/intake-protocol.md`, `approach-options.md`, and `design-brief-template.md`.
 4. Assign integrating owners using `../ccf-common/references/routing.md`. Work backward from the requested outcome to missing prerequisites and material checks, including upstream work not named by the user. Distinguish bounded contributions from next-artifact ownership; carry both active preflights throughout and apply detailed Humanization modes when relevant. Preserve explicit scope limits.
@@ -43,6 +45,8 @@ Follow `../ccf-common/references/handoff-modes.md` and `../ccf-common/references
 ## Adaptive Output Contract
 
 Put the requested artifact first: roadmap, next-step decision, task list, handoff packet, or `ccfa.yaml` patch instructions. Use the full structure below only for standard planning, ambiguous multi-stage projects, or when the user asks for a complete coordination report.
+
+For autonomous research, deliver the best supported result or precise unresolved outcome, the mechanisms tried and decision-changing observations, retained artifact/evidence paths, observed resource use, and the stopping reason. Distinguish a completed bounded campaign from a demonstrated scientific claim; a campaign may establish a negative result or leave the goal unresolved. Use the existing task record rather than a report per candidate.
 
 ```text
 Project goal:
@@ -55,3 +59,8 @@ Handoff packet:
 ccfa.yaml update:
 Risks / blockers:
 ```
+
+## References
+
+- `references/autonomous-research.md`: explicitly requested scientific iteration, execution contracts, strategy updates, evidence-based selection, and recovery.
+- `references/workflow-planning/`: project intake, approach comparison, and design briefs when ordinary planning needs them.

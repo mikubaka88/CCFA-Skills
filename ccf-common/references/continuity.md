@@ -22,6 +22,8 @@ Before repeating work on the same issue, identify the expected difference: a new
 
 If repeated attempts produce no such progress, stop that loop. Within authorized scope, choose a distinct mechanism to compare or the smallest discriminating check; otherwise deliver the supported result and name the exact unresolved decision or inaccessible input. Do not silently reduce the objective, declare success, start a compulsory experiment, or generate branches indefinitely. Necessary corrections continue when there is a concrete next fix; optional critique stops when it no longer changes the decision. Carry this reasoning across handoffs so a new owner does not reset an exhausted branch or repeat a completed check. No new per-turn log or agent call is required.
 
+In an explicitly requested [autonomous research loop](../../ccf-pipeline-orchestrator/references/autonomous-research.md), a failed candidate ends that attempt, not the campaign. Use the remaining budget for a changed mechanism, informative replication, or justified repair. Reuse its contract, experiment records, and checkpoints for recovery instead of creating a second task-state file. Keep the best measured candidate distinct from a promising exploratory branch; an experiment crash says nothing about the scientific hypothesis until execution is repaired.
+
 Recovery narrows the next action temporarily. Once the relevant check succeeds, resume the task's discovery or execution phase; a focused state does not suppress requested innovation. Acceptance for candidate comparison stays tied to the intended contribution and evidence, not to reaching an arbitrary reviewer score.
 
 ## Execution States

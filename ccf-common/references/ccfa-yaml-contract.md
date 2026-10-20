@@ -35,3 +35,5 @@ Optional monitoring fields:
 Keep the existing schema version and top-level fields. Resolve `project.root` relative to the directory containing `ccfa.yaml`, then resolve relative artifact paths against that project root. Existing mappings and explicit user paths take precedence over default folders. Do not change paths merely to adopt a new naming convention.
 
 Use `artifact-contracts.md` for canonical outputs, one working directory per artifact, on-demand source/cache/build placement, and update-in-place rules. Only store a path in project state when the artifact actually exists or is clearly marked as planned; do not claim an old export is refreshed after a failed rebuild. Reuse existing state/report fields rather than introducing a new schema or per-step manifest.
+
+For an explicitly requested autonomous experiment campaign, the orchestrator may link the actual run directory through existing artifact/experiment fields. The campaign's execution contract and records remain task-local and do not add top-level fields or change this schema. Ordinary projects need neither a campaign nor its records.

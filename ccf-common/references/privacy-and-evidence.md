@@ -29,7 +29,7 @@ The safety level is moderate by default:
 - Treat unsearched novelty as uncertainty, not as novelty.
 - Treat missing evidence as a risk or required action, not as a claim to be hidden.
 - When a source is current-year policy, page limit, review form, deadline, anonymity, artifact, ethics, or formatting guidance, verify the official venue page before applying it.
-- When a task needs experimental results, provide fill-in tables and execution plans. Use actual supplied measurements or verified public baseline numbers under matching protocols when that use is within the request. Identify their provenance and protocol differences; ask only when the choice changes the comparison or research scope.
+- When the request includes running experiments, execute the authorized protocol with the available host tools and retain actual measurements, commands, configurations, and failures. Do not substitute a plan for feasible requested execution. For design-only work or unavailable execution inputs, provide the requested protocol or clearly empty result schema. Use supplied measurements or verified public baseline numbers only under matching, disclosed protocols; never present them as a run performed here. Ask only about missing inputs or a choice that changes the comparison or authorized scope.
 
 ## Literature Source Policy
 

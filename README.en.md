@@ -308,7 +308,7 @@ Chinese output uses explicit UTF-8 I/O with optional BOM support on input. Shell
 
 ## Latest updates: keep long projects on course and give good ideas room to grow
 
-**v0.11.0 · Updated 2026-10-19**
+**v0.11.0 · Updated 2026-10-20**
 
 You are a few weeks into a research project. The conversation keeps growing, and the assistant keeps answering, but it gradually loses sight of why you started. You bring in more assistants, only to find that they have read the same papers and returned similar answers. A paragraph finally looks polished, yet its argument is still hard to follow.
 
@@ -327,6 +327,18 @@ This is our practical approach to degraded or inconsistent model behavior: make 
 When exploring a direction, assistants can first develop mechanisms independently and then exchange relevant evidence. When checking a paper, one can verify citations while another examines numbers and conclusions, with one person or agent responsible for bringing the findings back into the manuscript. Each contributor has a concrete question and returns sources that can be checked.
 
 This release makes that division of work explicit. Independent tasks can run in parallel, while closely connected arguments keep one author responsible for coherence. Shared files have a clear owner, and findings from an older version are checked before reuse. Hosts that support multiple agents can use these rules to coordinate the work and integrate results once the evidence is sufficient. See [task modes](ccf-common/references/task-modes.md) and [handoffs](ccf-common/references/handoff-modes.md).
+
+### Autonomous research: let each experiment inform the next
+
+An overnight experiment fails. The code may be broken, the comparison may not distinguish two explanations, or the observation may contradict the hypothesis. Knowing which layer to revisit keeps a research project moving.
+
+This update connects the research loop to actual execution: run a baseline, change the research code for a specific hypothesis, inspect measured results, then keep, discard, repair, or explore another mechanism. The objective and comparison conditions stay explicit while evidence can change the route. A better metric still needs scientific interpretation, and a crashed program is not a negative scientific result. Existing skills contribute where needed, without a new review panel after every run.
+
+The lightweight runner handles sequential experiments, attempt and execution-time limits, protected-file checks, raw logs, and scoped restoration. The host agent proposes hypotheses, edits candidates, and continues the investigation. The runner starts no model service or background research task on its own; training and other work are performed by the specified command. Reusing an experiment ID returns its record instead of silently rerunning it. Active context keeps the goal, best candidate, and relevant failure conditions, with raw evidence available when needed.
+
+> Investigate retrieval stopping rules autonomously. Use the project's evaluator and data split. Run at most six attempts including the baseline and failures, with 60 seconds per attempt and 240 seconds of cumulative experiment execution. Use no paid service. Inspect existing results first, choose experiments that distinguish mechanisms, and deliver the best candidate with the original records and unresolved questions.
+
+See the [research-loop guide and commands](ccf-pipeline-orchestrator/references/autonomous-research.md). An explicit research request and its budget activate this mode; the seven preference controls remain unchanged, and maintenance evolution still concerns skill maintenance. Ordinary edits, concept reviews, and plan-only requests retain their existing scope. Runner tests check execution and recovery; research quality and total token gains still need comparisons on real projects.
 
 ### Personal preferences: spend time on what matters to you now
 
@@ -376,6 +388,7 @@ python ccf-common\scripts\check_markdown_links.py
 python ccf-common\scripts\check_sources.py
 python ccf-common\scripts\test_preferences.py
 python ccf-common\scripts\test_continuity.py
+python ccf-pipeline-orchestrator\scripts\test_research_loop.py
 node --check ccf-common/assets/configurator/app.js
 node ccf-common/scripts/test_configurator.js
 ```

@@ -1037,20 +1037,20 @@ sources:
     title: The AI Scientist-v2
     url: https://github.com/SakanaAI/AI-Scientist-v2
     source_type: background_method
-    used_by: [ccf-idea-optimizer]
+    used_by: [ccf-idea-optimizer, ccf-pipeline-orchestrator, ccf-experiment-designer]
     recorded_at: 2026-08-11
-    verified_at: 2026-08-11
+    verified_at: 2026-10-20
     stale_after_days: 365
-    notes: Workflow reference for progressive agentic tree search, structured idea generation, novelty checking, reflection, and experiment-branch management; do not copy target ideas or templates.
+    notes: Inspected experiment-node records, staged search, bounded debugging, and separation of buggy versus valid runs. Informs task-owned experiment iteration and selective replication; CCFA does not bundle its tree-search engine, require its role count, or claim workshop results transfer to other venues.
   - id: rd-agent
     title: Microsoft R&D-Agent
     url: https://github.com/microsoft/RD-Agent
     source_type: background_method
-    used_by: [ccf-idea-optimizer]
+    used_by: [ccf-idea-optimizer, ccf-pipeline-orchestrator, ccf-experiment-designer]
     recorded_at: 2026-08-11
-    verified_at: 2026-08-11
+    verified_at: 2026-10-20
     stale_after_days: 365
-    notes: Workflow reference for hypothesis, implementation, real feedback, accumulated knowledge, and iterative research-development evolution.
+    notes: Workflow reference for connecting hypotheses and research implementation to actual measured feedback before the next decision. No RD-Agent dependencies or universal domain execution support are bundled.
   - id: storm
     title: STORM Knowledge Curation System
     url: https://github.com/stanford-oval/storm
@@ -1206,13 +1206,13 @@ sources:
     notes: Reference for explicit fields, order, types, and rating choices. A platform default form is not the official form of every conference; verified venue/year/track forms override the CCFA generic report.
   - id: autoresearch-bounded-maintenance
     title: Autoresearch Experiment Instructions
-    url: https://github.com/karpathy/autoresearch/blob/master/program.md
+    url: https://github.com/karpathy/autoresearch/blob/228791fb499afffb54b46200aca536f79142f117/program.md
     source_type: background_method
-    used_by: [ccf-common, ccf-skill-forger]
+    used_by: [ccf-common, ccf-skill-forger, ccf-pipeline-orchestrator, ccf-experiment-designer]
     recorded_at: 2026-10-15
-    verified_at: 2026-10-15
+    verified_at: 2026-10-20
     stale_after_days: 180
-    notes: Informs fixed evaluation, a limited edit surface, and retaining or discarding a candidate from observed results. CCFA uses a bounded optional maintenance comparison; it does not import an indefinite experiment loop, GPU runtime, or repository-wide reset behavior.
+    notes: Informs baseline-first execution, fixed evaluation, a limited edit surface, measured keep/discard decisions, and simpler candidates at comparable quality. Applied to explicitly requested research campaigns as well as optional maintenance comparisons. CCFA adds finite campaign limits and scoped file restoration; no indefinite daemon, GPU runtime, or repository-wide reset is imported. The retained source ID reflects its original maintenance use.
   - id: gepa-reflective-candidates
     title: GEPA Reflective Candidate Optimization
     url: https://github.com/gepa-ai/gepa
@@ -1244,20 +1244,20 @@ sources:
     title: Collaborative Principle Evolution via Evidence Transfer for Scientific Discovery
     url: https://arxiv.org/abs/2609.35315
     source_type: background_method
-    used_by: [ccf-common, ccf-idea-optimizer]
+    used_by: [ccf-common, ccf-idea-optimizer, ccf-pipeline-orchestrator]
     recorded_at: 2026-10-15
-    verified_at: 2026-10-15
+    verified_at: 2026-10-20
     stale_after_days: 365
     notes: Preprint first submitted 2026-09-28. Informs preserving different branch hypotheses and sharing observations with their conditions. CCFA does not implement its posterior updates or claim its measured quality or speed gains.
   - id: contextevo-decision-point-repair
     title: Beyond Skill Evolution - Self-Evolving Context Management Policies for Long-Horizon Agent Harnesses
     url: https://arxiv.org/abs/2609.34649
     source_type: background_method
-    used_by: [ccf-common, ccf-skill-forger]
+    used_by: [ccf-common, ccf-skill-forger, ccf-pipeline-orchestrator]
     recorded_at: 2026-10-15
-    verified_at: 2026-10-15
+    verified_at: 2026-10-20
     stale_after_days: 365
-    notes: Preprint first submitted 2026-09-28. Informs local diagnosis of missing, stale, or contaminated context and maintenance-time failure-case replay. No automatic harness training, hidden-model detection, or CCFA performance gain is established.
+    notes: Preprint first submitted 2026-09-28. Informs diagnosis of missing, stale, or contaminated context at the affected decision rather than repeatedly loading all history. Task-local recovery and maintenance replay use actual artifact references; no learned context policy, automatic harness training, hidden-model detection, or CCFA performance gain is established.
   - id: saige-dependency-aware-collaboration
     title: Rethinking Multi-Agent Collaboration - When More Is Less
     url: https://arxiv.org/abs/2609.19759
@@ -1273,9 +1273,18 @@ sources:
     source_type: background_method
     used_by: [ccf-common]
     recorded_at: 2026-10-15
-    verified_at: 2026-10-15
+    verified_at: 2026-10-20
     stale_after_days: 365
     notes: Preprint first submitted 2026-08-21. Informs compact working context with precise recoverable source addresses. CCFA reuses existing artifacts or host history; it does not bundle the persistent execution environment or claim equivalent memory performance.
+  - id: sage-layered-experiment-recovery
+    title: "One Reflection Is Not Enough: Self-Correcting Autonomous Research via Multi-Hypothesis Failure Attribution"
+    url: https://arxiv.org/abs/2606.31478
+    source_type: background_method
+    used_by: [ccf-pipeline-orchestrator, ccf-experiment-designer, ccf-idea-optimizer]
+    recorded_at: 2026-10-20
+    verified_at: 2026-10-20
+    stale_after_days: 365
+    notes: Preprint first submitted 2026-06-30. Informs attributing a failure to implementation, protocol, or hypothesis before changing the corresponding layer, with reported values bound to actual measurements. CCFA does not import arbitrary severity thresholds, alter raw values to fit a report, or claim the paper's benchmark gains.
   - id: paragraph-argument-reconstruction
     title: Research Paper Writing - Reverse Outline And Sentence Relations
     url: https://github.com/Master-cai/Research-Paper-Writing-Skills/blob/main/research-paper-writing/SKILL.md
