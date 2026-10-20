@@ -326,7 +326,7 @@ This is our practical approach to degraded or inconsistent model behavior: make 
 
 When exploring a direction, assistants can first develop mechanisms independently and then exchange relevant evidence. When checking a paper, one can verify citations while another examines numbers and conclusions, with one person or agent responsible for bringing the findings back into the manuscript. Each contributor has a concrete question and returns sources that can be checked.
 
-This release makes that division of work explicit. Independent tasks can run in parallel, while closely connected arguments keep one author responsible for coherence. Shared files have a clear owner, and findings from an older version are checked before reuse. Hosts that support multiple agents can use these rules to coordinate the work and integrate results once the evidence is sufficient. See [task modes](ccf-common/references/task-modes.md) and [handoffs](ccf-common/references/handoff-modes.md).
+Delegate complete questions. One author carries the problem, insight, and method through a connected argument; helpers take on independent evidence checks, mechanism comparisons, or implementation work with a defined use for each result. Return local gaps to the original helper and regroup work that has become fragmented. Shared files have a clear owner, and findings from an older version are checked before reuse. Hosts with real subagents can apply these rules without splitting work more finely merely because reasoning effort is higher. See [task modes](ccf-common/references/task-modes.md) and [handoffs](ccf-common/references/handoff-modes.md).
 
 ### Autonomous research: let each experiment inform the next
 
