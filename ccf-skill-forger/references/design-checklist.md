@@ -90,6 +90,8 @@ Use only during authorized skill maintenance, when the optional `maintenance_evo
 4. Retain the candidate when the relevant evidence supports it; if it regresses, keep the usable baseline and the concise unresolved finding. Roll back only this task's changes after checking current file ownership and intervening edits. Never use repository-wide reset/clean as a recovery shortcut. More candidates or rounds require an explicit scope and budget; renaming a task does not reset the limit.
 5. If the user changes the objective or a check itself is demonstrably wrong, version the corrected acceptance and rerun affected comparisons. For an optional continuity record, correcting a mistaken acceptance condition against the unchanged user request is `intent_correction`; a newly requested standard is `user_instruction`. Fix an evaluator implementation without changing the goal when possible; a candidate's poor result alone is not a test defect. Do not compare scores from different criteria as if identical. Maintenance can improve instructions/scripts, not model weights, and never publishes changes without authorization.
 
+When generalizing a lesson from a research campaign into shared context, delegation, or search rules, include a relevant independent task that was not used to derive the change, alongside affected regression cases. If transfer has not been checked, keep the lesson task-local. This comparison belongs to the authorized maintenance work, not every research iteration; the runner does not perform automatic cross-task learning.
+
 For continuity changes, exercise these behavioral boundaries during maintenance, without adding per-task evaluations:
 
 | Case | Expected behavior |
