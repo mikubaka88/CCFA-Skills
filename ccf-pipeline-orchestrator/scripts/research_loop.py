@@ -526,7 +526,30 @@ def run(workdir, run_id, hypothesis=""):
                     attempt["termination"] = _stop(process)
                     attempt["returncode"] = process.returncode
         except OSError as exc:
-            outcome, error = "crash", str(exc)
+            if process is None:
+                outcome, error = "crash", str(exc)
+            else:
+                # A controller/cache failure after Popen must not abandon a
+                # live evaluator and then restore files underneath it.
+                outcome, error = "controller_error", f"Controller I/O failed: {exc}"
+                try:
+                    attempt["termination"] = _stop(process)
+                    attempt["returncode"] = process.returncode
+                except (LoopError, OSError) as stop_exc:
+                    raise LoopError(
+                        f"{error}; evaluator termination is unconfirmed; pending run retained. "
+                        "Inspect its process and children, then recover explicitly"
+                    ) from stop_exc
+                # The event may have committed before its cache write failed.
+                # Reload the authoritative sequence; never append from possibly
+                # stale memory or silently continue past an incomplete log.
+                try:
+                    state = _load(workdir)
+                except LoopError as audit_exc:
+                    raise LoopError(
+                        f"{error}; evaluator stopped, but the audit requires reconciliation "
+                        "before recovery; no files were restored"
+                    ) from audit_exc
         except KeyboardInterrupt:
             outcome, error = "interrupted", "Host interrupted this evaluator"
             if process is not None:

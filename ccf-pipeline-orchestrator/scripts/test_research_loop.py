@@ -10,6 +10,7 @@ import sys
 import tempfile
 import time
 import unittest
+from unittest.mock import patch
 
 
 SCRIPT = Path(__file__).with_name("research_loop.py")
@@ -34,9 +35,9 @@ if kind == "crash":
     sys.exit(7)
 if kind == "timeout":
     time.sleep(20)
-if kind == "wait":
+if kind in ("wait", "hold"):
     Path("started.flag").write_text("ready", encoding="utf-8")
-    time.sleep(0.4)
+    time.sleep(20 if kind == "hold" else 0.4)
 if kind == "tamper":
     Path("evaluator.py").write_text("# changed evaluator", encoding="utf-8")
 if kind == "mutate":
@@ -101,6 +102,25 @@ class ResearchLoopTests(unittest.TestCase):
         self.assertEqual(result["status"], "kept")
         self.assertEqual(result["metric"], 10)
         return result
+
+    def fail_process_cache_once(self, run_id):
+        """Fail after the process-start event commits, with a real child alive."""
+        original = LOOP._write_json
+        failed = False
+
+        def write(path, value):
+            nonlocal failed
+            attempt = value.get("attempts", {}).get(run_id, {})
+            if path.name == "state.json" and attempt.get("pid") and not failed:
+                failed = True
+                deadline = time.monotonic() + 5
+                while not (self.project / "started.flag").exists() and time.monotonic() < deadline:
+                    time.sleep(0.01)
+                self.assertTrue((self.project / "started.flag").exists())
+                raise OSError("Injected process-start cache write failure")
+            return original(path, value)
+
+        return patch.object(LOOP, "_write_json", side_effect=write)
 
     def test_good_bad_and_parent_identity(self):
         baseline = self.baseline()
@@ -249,6 +269,69 @@ class ResearchLoopTests(unittest.TestCase):
         with self.assertRaisesRegex(LOOP.LoopError, "budget is exhausted"):
             LOOP.run(self.workdir, "after-unknown-duration", "Cannot reuse unmeasured remaining budget")
         self.assertEqual(len(self.calls()), before)
+
+    def test_controller_io_failure_stops_child_before_rollback(self):
+        self.baseline()
+        self.edit("hold", 15)
+        stopped = []
+        original_stop = LOOP._stop
+
+        def stop(process):
+            stopped.append(process)
+            return original_stop(process)
+
+        with self.fail_process_cache_once("cache-error"), patch.object(LOOP, "_stop", side_effect=stop):
+            result = LOOP.run(self.workdir, "cache-error", "Exercise a controller write failure")["attempt"]
+        self.assertEqual(len(stopped), 1)
+        self.assertIsNotNone(stopped[0].poll())
+        self.assertEqual(result["outcome"], "controller_error")
+        self.assertIn("Controller I/O failed", result["error"])
+        self.assertEqual(result["status"], "discarded")
+        self.assertGreater(result["elapsed_seconds"], 0)
+        self.assertFalse((self.workdir / result["metrics"]).exists())
+        self.assertEqual((self.project / "candidate.json").read_bytes(), self.original)
+        state = LOOP.status(self.workdir)
+        self.assertIsNone(state["pending"])
+        self.assertEqual(state["best"]["id"], "baseline")
+        self.assertFalse(state["budget"]["duration_unknown"])
+        self.assertEqual(state["recent_failures"][-1]["outcome"], "controller_error")
+        self.assertTrue(LOOP.run(self.workdir, "cache-error")["already_recorded"])
+        self.assertEqual(self.calls(), ["normal", "hold"])
+
+    def test_controller_io_failure_with_unconfirmed_stop_preserves_pending(self):
+        self.baseline()
+        charged_before = LOOP.status(self.workdir)["budget"]["execution_seconds_charged"]
+        self.edit("hold", 15)
+        submitted = (self.project / "candidate.json").read_bytes()
+        children = []
+        original_stop = LOOP._stop
+
+        def unconfirmed_stop(process):
+            children.append(process)
+            self.addCleanup(lambda: original_stop(process) if process.poll() is None else None)
+            raise LOOP.LoopError("Injected termination confirmation failure")
+
+        with self.fail_process_cache_once("unconfirmed"), patch.object(LOOP, "_stop", side_effect=unconfirmed_stop):
+            with self.assertRaisesRegex(LOOP.LoopError, "termination is unconfirmed; pending run retained"):
+                LOOP.run(self.workdir, "unconfirmed", "Exercise loss of process supervision")
+        self.assertEqual(len(children), 1)
+        self.assertIsNone(children[0].poll())
+        state = LOOP.status(self.workdir)
+        self.assertEqual(state["pending"]["id"], "unconfirmed")
+        self.assertEqual(state["pending"]["status"], "running")
+        self.assertEqual(state["budget"]["execution_seconds_charged"], charged_before)
+        self.assertEqual((self.project / "candidate.json").read_bytes(), submitted)
+        self.assertTrue(LOOP.run(self.workdir, "unconfirmed")["already_recorded"])
+        self.assertEqual(self.calls(), ["normal", "hold"])
+        with self.assertRaisesRegex(LOOP.LoopError, "pending run"):
+            LOOP.run(self.workdir, "must-not-start", "Do not overlap the live evaluator")
+        original_stop(children[0])
+        recovered = LOOP.recover(self.workdir, "unconfirmed", "Confirmed the evaluator has stopped", True)["attempt"]
+        self.assertEqual(recovered["status"], "discarded")
+        self.assertIsNone(recovered["elapsed_seconds"])
+        self.assertTrue(recovered["duration_unknown"])
+        self.assertEqual((self.project / "candidate.json").read_bytes(), self.original)
+        self.assertEqual(LOOP.status(self.workdir)["budget"]["execution_seconds_remaining"], 0)
 
     def test_threshold_direction_budget_and_invalid_contracts(self):
         self.baseline()
