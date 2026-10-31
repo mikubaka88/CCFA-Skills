@@ -11,7 +11,7 @@ Target venue / family:
 Field and subfield:
 Track or paper type:
 Raw idea:
-Problem owner / audience:
+Affected community or unresolved scientific question:
 Closest known work:
 Available literature packet / source set:
 Available data / code / compute:
@@ -36,7 +36,7 @@ If a field is unknown, infer it from the method and venue names. If the target v
 
 ## Normalized Idea Card
 
-Convert every idea into this structure before optimizing:
+Recover the relevant parts of the idea from the supplied material. Use this card only when it helps compare or develop the ideas; do not turn a short request into a compulsory intake form:
 
 ```text
 Task:
@@ -51,19 +51,19 @@ Main risk:
 Best venue fit:
 ```
 
-When a literature packet is present, also record the strongest source-backed limitation, reusable mechanism primitive, and protocol anchor. Keep source facts separate from the proposed idea's inferred gap.
+When a literature packet is present, retain the useful observation, assumption, contradiction, or mechanism and its source location. Include a protocol anchor only when relevant. A reported limitation is one possible inspiration; do not reduce the task to fixing the first paper's limitation. Keep source facts separate from the proposed idea's inferred gap.
 
 Hard rule: if the root challenge is only "existing methods perform poorly", refine it into a technical, scientific, empirical, human-centered, or systems bottleneck.
 
-For fuzzy ideas, produce several normalized cards before choosing one. Do not collapse the search space too early.
+For a fuzzy direction, consider different explanations of the difficulty before choosing a mechanism. Preserve requested breadth; neither a fixed number of cards nor a single early winner is required.
 
 For early directions, attach a development label instead of a verdict:
 
-- `seed`: interesting but still missing problem, mechanism, or evidence.
-- `salvageable`: weak in current form, but a clear narrowing or reframing exists.
+- `seed`: a question or observation whose explanation or mechanism is still open.
+- `salvageable`: the current formulation has a specific defect and useful ingredients that a revision could preserve.
 - `needs-search`: promising enough to search before judging novelty.
 - `needs-mechanism`: problem may matter, but the mechanism is not yet credible.
-- `near-pivot`: keep only one ingredient unless the user can supply hidden evidence or constraints.
+- `near-pivot`: a central assumption or mechanism needs changing; preserve whichever ingredients remain relevant to the user's objective, without a component quota.
 
 ## Missing-Input Labels
 
@@ -78,12 +78,14 @@ Use these labels instead of guessing:
 
 ## Multi-Idea Intake
 
-For several drafts, normalize all ideas first, then compare optimization routes. Do not optimize the first idea prematurely. Prioritize optimizer attention by:
+For several drafts, understand their central questions before committing to one. During exploration, direct attention toward:
 
-1. Strongest problem-method fit.
-2. Most defensible novelty after likely prior art.
-3. Best evidence feasibility.
-4. Best CCF-A venue fit.
-5. Lowest serious-risk count after one realistic iteration.
+1. A consequential problem or unexplained phenomenon.
+2. A changed assumption that opens a substantive difference from known work.
+3. An explanation that connects the proposed operation to the missing capability.
+4. Different predictions or implications that help separate competing explanations.
+5. What the work could teach even if the first implementation does not improve the headline metric.
+
+Use verified prior work to identify real overlap, not to require every new hypothesis to have precedent. A known hard resource or setting constraint excludes incompatible routes; unknown cost, unfinished experiments, and uncertain venue fit do not by themselves make an idea scientifically weak. When the task moves to allocating effort or planning execution, compare the next useful step's cost and dependencies separately from conceptual value. Do not silently change the user's objective to favor the easiest route.
 
 Do not produce numeric scores, investment recommendations, winner labels, or strict rankings here. Prefer "best development route" and "backup route" over "winner/loser" language. If the user asks to judge, score, rank, select, or review ideas, including “靠谱吗”, “值得做吗”, or “创新够不够” without numeric scores, route that assessment to `ccf-idea-reviewer`.

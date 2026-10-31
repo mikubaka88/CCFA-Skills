@@ -10,14 +10,14 @@
 | Template path | `ccf-latex-templates/ICDE/IEEEtran.cls` |
 | Official URL | https://icde2026.github.io |
 | Last verified | Legacy migration on 2026-06-06; official policy must be rechecked before submission. |
-| Source status | Migrated local guide; not independently reverified in v0.4.0. |
+| Source status | Domain guidance retained; obsolete policy blocks removed. Query the target official requirements before formatting. |
 
 ## Usage Boundary
 
-- Use this file for LaTeX, page limit, anonymity, template, camera-ready, rebuttal-template, and venue-format details.
+- Use this file for domain writing guidance. Annual submission rules are resolved through `ccf-submission-checker`, not copied from historical templates.
 - Use `ccf-paper-writer` for actual paper writing and polishing.
 - Use `ccf-paper-reviewer` or `ccf-submission-checker` for format audit, depending on whether the task is manuscript-facing or submission-package-facing.
-- Verify current-year official rules before final submission.
+- Match the exact year/track/stage before applying any format change; reuse current verified official rules and preserve supplied verified templates.
 
 ## Migrated Venue Notes
 
@@ -25,78 +25,7 @@
 
 **CCF-A | DB | Publisher: IEEE**
 **Conference:** https://icde2026.github.io
-**Template:** `ICDE/IEEEtran.cls` (IEEEtran, conference format)
-
-## Document Setup
-
-### Preamble Structure
-
-```latex
-% === SUBMISSION MODE (anonymous, double-blind) ===
-\documentclass[conference]{IEEEtran}
-
-% For anonymous submission, remove author block or use placeholder
-% IEEEtran does not have built-in anonymous mode
-
-% === CAMERA-READY MODE ===
-\documentclass[conference]{IEEEtran}
-% Add conference-specific commands provided by IEEE
-```
-
-### Required Packages
-
-```latex
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{booktabs}
-\usepackage{graphicx}
-\usepackage{cite}
-\usepackage{balance}
-\usepackage{cleveref}
-\usepackage{algorithm}
-\usepackage{algorithmic}
-\usepackage{url}
-```
-
-## Page Limits
-
-| Section | Limit |
-|---------|-------|
-| Main paper (submission) | **12 pages** |
-| References | No limit |
-| Appendix | Check CFP |
-
-ICDE typically enforces a 12-page limit for the main body. References do not count toward the limit. Always verify the current CFP for exact limits.
-
-## Anonymity Requirements
-
-ICDE uses double-blind review. Since IEEEtran does not have a built-in anonymous mode:
-
-1. Remove or replace author names/affiliations in the submission
-2. Use "Anonymous" as author during submission
-3. Third-person self-citations: "Smith et al. showed..." not "we showed..."
-4. Anonymize all URLs, GitHub links, personal pages
-5. Clear PDF metadata
-6. Remove acknowledgments
-
-```latex
-% Author block for anonymous submission:
-\author{
-  \IEEEauthorblockN{Anonymous Author}
-  \IEEEauthorblockA{
-    \IEEEauthorrefmark{1}Anonymous Institution\\
-    anonymous@institution.edu}
-}
-```
-
-## Camera-Ready Differences
-
-After acceptance:
-
-1. Restore all author names and affiliations with correct formatting
-2. Add the conference-specific copyright notice provided by IEEE
-3. Ensure Xplore-compatible PDF (CMYK colors, embedded fonts)
-4. Submit via IEEE PDF eXpress if required
+**Historical template:** See the local path above for examples only; it is not a verified target submission bundle.
 
 ## Section Organization
 
@@ -129,7 +58,6 @@ ICDE papers often include formal reasoning:
 
 ## Figures and Tables
 
-- IEEE uses a single-column format for conference papers
 - Vector formats (.pdf) for diagrams
 - Grayscale legibility required
 - Number sequentially
@@ -174,30 +102,6 @@ IEEE uses the `cite` package and numeric citations:
 % Or: \citep{} from natbib if loaded
 ```
 
-## Formatting Rules
+## Content Checklist
 
-- **Format:** IEEE conference (single-column)
-- **Paper size:** US Letter (8.5" x 11")
-- **Body font:** 10pt minimum
-- **Margins:** 1" all sides
-- **References:** 8pt, no page limit
-- **Xplore-compatible PDF**: CMYK colors, embedded fonts
-
-## Submission Checklist
-
-- [ ] 12 pages or fewer (main body)
-- [ ] Author information removed/anonymized
-- [ ] Third-person self-citations only
-- [ ] Anonymized all URLs
-- [ ] PDF metadata cleared
 - [ ] Grayscale-legible figures
-- [ ] Compiles with `pdflatex`
-
-## Camera-Ready Checklist
-
-- [ ] Restore author information
-- [ ] Add IEEE copyright notice
-- [ ] Generate Xplore-compatible PDF
-- [ ] Use CMYK colors for figures
-- [ ] Embed all fonts
-- [ ] Submit via IEEE PDF eXpress

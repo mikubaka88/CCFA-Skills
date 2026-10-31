@@ -27,20 +27,20 @@ The safety level is moderate by default:
 - Do not invent literature, citations, baselines, experiments, results, reviewer consensus, paper changes, rebuttal commitments, score changes, benchmark ranks, user-study findings, statistical significance, or acceptance probability.
 - Separate `known from user-provided material`, `known from public source`, `inferred`, and `unknown`.
 - Treat unsearched novelty as uncertainty, not as novelty.
-- Treat missing evidence as a risk or required action, not as a claim to be hidden.
+- Match missing support to the requested claim and stage. An unsupported result assertion needs correction; a proposed mechanism or intentionally results-pending draft remains a proposal or draft. Identify a missing input only when it changes the current decision. Do not turn absent, unrequested experiments into a compulsory task, a generic risk paragraph, or a lower concept score.
 - When a source is current-year policy, page limit, review form, deadline, anonymity, artifact, ethics, or formatting guidance, verify the official venue page before applying it.
 - When the request includes running experiments, execute the authorized protocol with the available host tools and retain actual measurements, commands, configurations, and failures. Do not substitute a plan for feasible requested execution. For design-only work or unavailable execution inputs, provide the requested protocol or clearly empty result schema. Use supplied measurements or verified public baseline numbers only under matching, disclosed protocols; never present them as a run performed here. Ask only about missing inputs or a choice that changes the comparison or authorized scope.
 
 ## Literature Source Policy
 
-- `ccf-literature-searcher` must exclude MDPI sources from search, citation, scoring, and final outputs.
-- Prefer primary and high-confidence sources: official proceedings pages, ACM, IEEE, USENIX, ACL Anthology, CVF, PMLR, OpenReview, AAAI/OJS, DBLP, Semantic Scholar, OpenAlex, Crossref, arXiv, project pages, and benchmark/dataset pages.
-- Use discovery indexes to find papers, then verify important claims through stable paper pages.
+- By default, `ccf-literature-searcher` excludes MDPI sources from discovery and recommendations. Honor explicit current user instructions to inspect or use a named source without asking for the same authorization again; this exception does not extend to unrelated recommendations. Continue to assess its actual content and source status.
+- Use original papers and official proceedings, project, benchmark, dataset, or venue documents for scientific claims and rules. Distinguish preprints, accepted versions, later revisions, and official policy; a hosting platform alone does not establish peer review or applicability.
+- Use DBLP, Semantic Scholar, OpenAlex, Crossref, and other discovery indexes for identity, metadata, and retrieval. Verify a scientific assertion in the actual paper or relevant primary artifact, not merely its landing page, citation count, search snippet, or an exemplar card. Reuse a previously inspected passage when its version and context still apply.
 - Do not treat citation count alone as quality. Use venue fit, source credibility, insight, completeness, and evidence alignment.
 
 ## Score-Risk Language
 
-Allowed:
+Optional labels for requested diagnostics, not phrases to insert into ordinary prose:
 
 ```text
 Current score-risk diagnosis:
@@ -60,4 +60,4 @@ Unconditional review-risk reduction
 Unsupported stronger claims
 ```
 
-Numeric scores may be used as calibrated diagnostic signals, but every score must state the evidence basis, confidence, unresolved risks, and what cannot be inferred.
+Numeric scores may be used as calibrated diagnostic signals. State the basis and confidence at the appropriate report level, and include unresolved concerns only when they affect interpretation. Do not append the same warning to every dimension or fabricate a concern to fill a field. Explicit qualitative requests remain qualitative.

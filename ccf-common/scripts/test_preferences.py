@@ -57,17 +57,49 @@ class StoreTests(unittest.TestCase):
         self.assertEqual(result["origins"]["preferences"]["extended_search"], "user")
         self.assertEqual(result["origins"]["preferences"]["figure_variants"], "default")
 
-    def test_legacy_version_one_omissions_inherit_off_without_rewriting(self):
+    def test_legacy_version_one_omissions_inherit_defaults_without_rewriting(self):
         legacy = {"version": 1, "preferences": {"independent_review": "on"}, "ui": {"language": "en"}}
         self.write("user", legacy)
         before = self.user_path.read_bytes()
         resolved = self.store.resolve()
-        for key in ("alternative_routes", "maintenance_evolution"):
-            self.assertEqual(resolved["effective"]["preferences"][key], "off")
+        expected = {"alternative_routes": "off", "maintenance_evolution": "off",
+                    "reference_style_search": "on", "research_branching": "off",
+                    "research_policy_evolution": "off"}
+        for key, default in expected.items():
+            self.assertEqual(resolved["effective"]["preferences"][key], default)
             self.assertEqual(resolved["origins"]["preferences"][key], "default")
         self.assertEqual(self.store.snapshot("user")["stored"], legacy)
         self.assertEqual(self.user_path.read_bytes(), before)
         self.assertFalse(self.project.exists())
+        for mode in ("auto", "off"):
+            explicit = {"version": 1, "preferences": {"reference_style_search": mode}}
+            self.write("user", explicit)
+            before = self.user_path.read_bytes()
+            resolved = self.store.resolve()
+            self.assertEqual(resolved["effective"]["preferences"]["reference_style_search"], mode)
+            self.assertEqual(resolved["origins"]["preferences"]["reference_style_search"], "user")
+            self.assertEqual(self.user_path.read_bytes(), before)
+            self.assertFalse(self.project.exists())
+
+    def test_research_preferences_roundtrip_and_restore_inheritance(self):
+        values = {"reference_style_search": "on", "research_branching": "auto", "research_policy_evolution": "off"}
+        saved = self.store.save("user", "missing", {"version": 1, "preferences": values})
+        self.assertEqual(saved["stored"], {"version": 1, "preferences": values})
+        project = self.store.save("project", "missing", {"version": 1, "preferences": {"reference_style_search": "off", "research_policy_evolution": "on"}})
+        self.assertEqual(project["effective"]["preferences"]["reference_style_search"], "off")
+        self.assertEqual(project["effective"]["preferences"]["research_branching"], "auto")
+        self.assertEqual(project["effective"]["preferences"]["research_policy_evolution"], "on")
+        inherited = self.store.save("project", project["revision"], {"version": 1})
+        for key, value in values.items():
+            self.assertEqual(inherited["effective"]["preferences"][key], value)
+            self.assertEqual(inherited["origins"]["preferences"][key], "user")
+        self.assertEqual(json.loads(self.store.paths["project"].read_text(encoding="utf-8")), {"version": 1})
+        for key in values:
+            for mode in ("off", "auto", "on"):
+                config = {"version": 1, "preferences": {key: mode}}
+                self.assertEqual(prefs.validate_config(prefs.decode_json(json.dumps(config).encode("utf-8"))), config)
+            for invalid in (True, "always", 1, None):
+                self.assert_error("invalid_config", prefs.validate_config, {"version": 1, "preferences": {key: invalid}})
 
     def test_route_and_maintenance_preferences_roundtrip_and_restore_inheritance(self):
         config = {"version": 1, "preferences": {"alternative_routes": "on", "maintenance_evolution": "auto"}}
@@ -278,7 +310,8 @@ class HttpTests(unittest.TestCase):
         self.assertEqual(status, 200)
         self.assertEqual(state["availableScopes"], ["user", "project"])
         self.assertEqual(state["inherited"], prefs.DEFAULTS)
-        config = {"version": 1, "preferences": {"detailed_reports": "on", "alternative_routes": "auto", "maintenance_evolution": "on"}}
+        config = {"version": 1, "preferences": {"detailed_reports": "on", "alternative_routes": "auto", "maintenance_evolution": "on",
+                                                "reference_style_search": "off", "research_branching": "on", "research_policy_evolution": "auto"}}
         status, saved, _ = self.request("POST", "/api/preferences", {"scope": "user", "revision": state["revision"], "config": config}, {"Origin": self.server.origin})
         self.assertEqual(status, 200)
         self.assertEqual(saved["stored"], config)
@@ -286,6 +319,9 @@ class HttpTests(unittest.TestCase):
         self.assertEqual(saved["origins"]["preferences"]["detailed_reports"], "user")
         self.assertEqual(saved["effective"]["preferences"]["alternative_routes"], "auto")
         self.assertEqual(saved["effective"]["preferences"]["maintenance_evolution"], "on")
+        for key in ("reference_style_search", "research_branching", "research_policy_evolution"):
+            self.assertEqual(saved["effective"]["preferences"][key], config["preferences"][key])
+            self.assertEqual(saved["origins"]["preferences"][key], "user")
         self.assertEqual(set(saved), {"version", "scope", "availableScopes", "stored", "effective", "inherited", "origins", "revision", "defaults"})
 
     def test_http_stale_update_and_bad_schema_cannot_overwrite(self):

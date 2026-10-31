@@ -46,15 +46,15 @@ text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
 <line x1="715" y1="230" x2="730" y2="230" stroke="#AAB7D4" stroke-width="2.0" stroke-linecap="round" marker-end="url(#arrow)"/>
 <rect x="735" y="155" width="146" height="150" rx="22" fill="#FFE1E1" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
 <text x="808.0" y="188" font-size="20" font-weight="900" fill="#233044" text-anchor="middle">5</text>
-<text x="808.0" y="224" font-size="15" font-weight="850" fill="#233044" text-anchor="middle">撰写</text>
-<text x="808.0" y="245" font-size="15" font-weight="850" fill="#233044" text-anchor="middle">论文</text>
-<text x="808.0" y="280" font-size="11" font-weight="650" fill="#667085" text-anchor="middle">论文写作</text>
+<text x="808.0" y="224" font-size="15" font-weight="850" fill="#233044" text-anchor="middle">实现</text>
+<text x="808.0" y="245" font-size="15" font-weight="850" fill="#233044" text-anchor="middle">与训练</text>
+<text x="808.0" y="280" font-size="11" font-weight="650" fill="#667085" text-anchor="middle">科研工程</text>
 <line x1="885" y1="230" x2="900" y2="230" stroke="#AAB7D4" stroke-width="2.0" stroke-linecap="round" marker-end="url(#arrow)"/>
 <rect x="905" y="155" width="146" height="150" rx="22" fill="#FFE1E1" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
 <text x="978.0" y="188" font-size="20" font-weight="900" fill="#233044" text-anchor="middle">6</text>
-<text x="978.0" y="224" font-size="15" font-weight="850" fill="#233044" text-anchor="middle">改善</text>
-<text x="978.0" y="245" font-size="15" font-weight="850" fill="#233044" text-anchor="middle">表达</text>
-<text x="978.0" y="280" font-size="11" font-weight="650" fill="#667085" text-anchor="middle">学术表达</text>
+<text x="978.0" y="224" font-size="15" font-weight="850" fill="#233044" text-anchor="middle">撰写</text>
+<text x="978.0" y="245" font-size="15" font-weight="850" fill="#233044" text-anchor="middle">论文</text>
+<text x="978.0" y="280" font-size="11" font-weight="650" fill="#667085" text-anchor="middle">论文写作</text>
 <line x1="1055" y1="230" x2="1070" y2="230" stroke="#AAB7D4" stroke-width="2.0" stroke-linecap="round" marker-end="url(#arrow)"/>
 <rect x="1075" y="155" width="146" height="150" rx="22" fill="#FFE9C7" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
 <text x="1148.0" y="188" font-size="20" font-weight="900" fill="#233044" text-anchor="middle">7</text>
@@ -74,5 +74,5 @@ text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
 <text x="1488.0" y="245" font-size="15" font-weight="850" fill="#233044" text-anchor="middle">投稿</text>
 <text x="1488.0" y="280" font-size="11" font-weight="650" fill="#667085" text-anchor="middle">投稿检查</text>
 <rect x="340" y="365" width="920" height="82" rx="22" fill="#FFFFFF" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
-<text x="800" y="408" font-size="17" font-weight="700" fill="#233044" text-anchor="middle">学术表达模块改善文字，论文写作模块保持论证连贯。</text>
+<text x="800" y="408" font-size="17" font-weight="700" fill="#233044" text-anchor="middle">Humanization 与 Common 先行，各任务按需进入相关阶段。</text>
 </svg>

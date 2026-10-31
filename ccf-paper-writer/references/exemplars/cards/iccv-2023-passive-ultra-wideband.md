@@ -4,41 +4,26 @@ Venue/year: ICCV 2023.
 Source: CVF `https://openaccess.thecvf.com/content/ICCV2023/html/Wei_Passive_Ultra-Wideband_Single-Photon_Imaging_ICCV_2023_paper.html`.
 Use when: writing computational imaging, passive sensing, photon-limited reconstruction, hardware plus algorithm, or extreme-dynamic-range papers.
 
+Inspected writing: Stored original text `references/exemplars/papers/iccv-2023-passive-ultra-wideband.md`, Abstract and Introduction.
+
+This card navigates selected original passages. The source observations below are distinct from the adaptation advice; read the relevant original when using it.
+
 ## Story Pattern
 
-The paper defines an unusually difficult imaging regime: dynamic scenes over seconds-to-picoseconds timescales, passively, with little light, and without timing signals from the source. The writing strength is that the sensing constraints are stated as the problem itself, then the method and experiments are organized around making that impossible-looking regime measurable.
+**Source observation:** The abstract defines imaging across very different timescales under passive low-light conditions. It then introduces the flux reconstruction question posed by photon timestamps, describes the theory's role, and gives experimental demonstrations. The introduction explains how synchronization helps existing systems and which temporal range it prevents them from preserving.
 
 ## Abstract Moves
 
-- Open with the extreme imaging regime.
-- Bundle constraints explicitly so reviewers understand the novelty boundary.
-- Present the system as passive and timing-signal-free, not merely improved reconstruction.
-- Emphasize simultaneous timescale coverage.
-
-## Introduction Moves
-
-- Contrast active illumination setups with passive real-world sensing.
-- Explain why source timing is normally needed.
-- Frame the method as expanding what can be observed, not only improving a metric.
-
-## Method Moves
-
-- Introduce the sensing model before reconstruction.
-- Make hardware assumptions explicit.
-- Separate physical acquisition from computational recovery.
-
-## Evidence Moves
-
-- Show examples across the claimed timescale range.
-- Include controlled experiments that verify the passive measurement assumption.
-- Use qualitative visualizations to make invisible transient information interpretable.
+**Writing observation in the inspected passage:** Acquisition conditions are part of the question itself. The sequence connects a measurement limitation to a theoretical formulation and then to what the apparatus demonstrates.
 
 ## Reusable Techniques
 
-- Let multiple constraints define the novelty.
-- Make the physical regime clear before algorithm details.
-- Use demonstrations to show a new measurement capability.
+**Adaptation advice for matching work:**
+
+- State the measurement setting precisely enough to make the scientific difficulty intelligible.
+- Explain why an existing acquisition assumption creates a limitation.
+- Keep the role of theory, algorithm, and demonstration distinct without requiring that every paper contain all three.
 
 ## Do-Not-Copy Boundary
 
-Do not reuse passive-imaging claims, timescale ranges, or single-photon constraints unless the user's system actually operates there.
+Use the target study's own definitions, mechanisms, conditions, results, and claims. Common academic phrasing and established terms may be reused when they fit; distinctive source sentences and scientific conclusions may not be transplanted.

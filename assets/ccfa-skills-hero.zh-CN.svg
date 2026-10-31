@@ -24,7 +24,7 @@ text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
 <path d="M810 620 C900 500 1040 540 1120 420 C1210 290 1290 370 1400 320 V620 Z" fill="#F2ECFF" opacity="0.75"/>
 <text x="72" y="92" font-size="17" font-weight="800" fill="#9D7BFF" text-anchor="start">为科研论文而生的 skill 家族</text>
 <text x="72" y="168" font-size="46" font-weight="900" fill="#233044" text-anchor="start">从研究想法到论文投稿</text>
-<text x="72" y="213" font-size="19" font-weight="500" fill="#667085" text-anchor="start">17 个彼此协作的 skills，覆盖文献、实验、写作、审稿、绘图与投稿检查。</text>
+<text x="72" y="213" font-size="19" font-weight="500" fill="#667085" text-anchor="start">18 个彼此协作的 skills，覆盖文献、实验、写作、审稿、绘图与投稿检查。</text>
 <rect x="72" y="258" width="148" height="42" rx="21" fill="#DDEBFF" stroke="#DDEBFF" stroke-width="1.4" />
 <text x="146" y="285" font-size="13" font-weight="750" fill="#233044" text-anchor="middle">清晰分工</text>
 <rect x="234" y="258" width="168" height="42" rx="21" fill="#DFF7EA" stroke="#DFF7EA" stroke-width="1.4" />

@@ -106,10 +106,10 @@ EuroSys values papers that show **systems depth**: thorough motivation, honest t
 
 EuroSys has particular expectations for systems papers:
 
-- **Real systems**: Must be implemented and evaluated, not just designed
+- **System evidence**: Claims about an implemented system need its actual implementation and evaluation evidence; distinguish proposed design from measured behavior
 - **Design rationale**: Explain why design decisions were made
 - **Implementation challenges**: Describe real challenges encountered
-- **Evaluation rigor**: Compare against the best existing systems, include sensitivity analysis
+- **Evaluation rigor**: Use relevant systems and comparable protocols for comparative claims; include sensitivity analysis when it resolves a consequential design or performance question
 
 ```latex
 \section{Design}

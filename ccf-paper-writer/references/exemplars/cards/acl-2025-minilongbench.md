@@ -4,46 +4,26 @@ Venue/year: ACL 2025, Outstanding Paper.
 Source: ACL Anthology `https://aclanthology.org/2025.acl-long.560/`.
 Use when: writing benchmark, evaluation efficiency, long-context LLM, dataset pruning, or low-cost evaluation papers.
 
+Inspected writing: Stored original text `references/exemplars/papers/acl-2025-minilongbench.md`, Abstract and Introduction around Figure 1.
+
+This card navigates selected original passages. The source observations below are distinct from the adaptation advice; read the relevant original when using it.
+
 ## Story Pattern
 
-The paper targets the evaluation cost of long-context understanding. It argues that existing benchmarks contain redundancy, then introduces a compressed benchmark that preserves ranking behavior while dramatically reducing test size and cost. The key writing move is to make evaluation economy a scientific contribution.
+**Source observation:** The introduction connects long input sequences and repeated model evaluation to time and memory costs, then asks whether the benchmark needs all of its samples. The abstract pairs the cost of the smaller benchmark with agreement in model rankings.
 
 ## Abstract Moves
 
-- Start from the importance of the capability and the cost barrier.
-- Identify redundancy as the discovered root cause.
-- Introduce the benchmark by its compression method and size.
-- Prove usefulness through rank correlation with the full benchmark.
-- End with the research-enabling implication.
-
-## Introduction Moves
-
-- Position evaluation cost as a bottleneck for model development.
-- Distinguish "shorter benchmark" from "weaker benchmark" using correlation evidence.
-- Explain sparse information as the reason pruning can work.
-
-## Method Moves
-
-- Describe the pruning or compression pipeline in auditable steps.
-- Define what behavior must be preserved after compression.
-- Keep benchmark categories visible so reviewers can judge coverage.
-
-## Evidence Moves
-
-- Use many models to support rank-preservation claims.
-- Report cost reduction and correlation together.
-- Include task-category analysis to avoid the appearance of cherry-picking.
+**Writing observation in the inspected passage:** The two reported quantities answer different questions: how much evaluation is saved and how much of the original comparison is retained. They are not interchangeable evidence of quality.
 
 ## Reusable Techniques
 
-- Convert evaluation expense into a first-class problem.
-- Support small-data claims with preservation metrics, not only speedups.
-- Phrase benchmark contributions around utility for future research.
+**Adaptation advice for matching work:**
 
-## User Notes
-
-Use this card when the user's paper proposes a cheaper evaluation protocol or compressed dataset.
+- Explain the practical burden before introducing a compression objective.
+- Report the preserved property alongside the resource reduction when both matter.
+- Keep cost, fidelity, and dataset coverage distinct; use only the current study's measured values.
 
 ## Do-Not-Copy Boundary
 
-Do not borrow the LongBench pruning claim, exact cost numbers, or rank-correlation framing unless the user's evaluation validates them.
+Use the target study's own definitions, mechanisms, conditions, results, and claims. Common academic phrasing and established terms may be reused when they fit; distinctive source sentences and scientific conclusions may not be transplanted.

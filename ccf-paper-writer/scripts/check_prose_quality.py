@@ -88,6 +88,8 @@ def _prose_only(text: str) -> str:
     # Protect code, equations, comments and direct quotations. Table cells can
     # contain authored prose; mask separators, not their scientific explanation.
     # This is a heuristic filter, not a complete Markdown or TeX parser.
+    spaced_percentage = r"\d[^\S\r\n]+%"
+    comment_pattern = rf"(?m){spaced_percentage}|(?<![\\\d])%[^\n]*"
     patterns = (
         r"```.*?```|~~~.*?~~~",
         r"`[^`\n]+`",
@@ -96,7 +98,7 @@ def _prose_only(text: str) -> str:
         r"\\\[.*?\\\]|\\\(.*?\\\)",
         r"\\(?:cite[pt]?|Cite[pt]?|autocite|parencite|textcite)\*?(?:\[[^\]\n]*\])*\{[^{}\n]*\}",
         r"\[(?:[^\]\n]*@[^\]\n]*)\]",
-        r"(?m)(?<![\\\d])%[^\n]*",
+        comment_pattern,
         r"(?m)^[ \t]*\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?[ \t]*$",
         r"<[^>]+>",
         r"(?m)^[ \t]*(?:---+|___+|\*\*\*+)[ \t]*$",
@@ -104,17 +106,19 @@ def _prose_only(text: str) -> str:
         r'“[^”]*”|"[^"\n]*"|‘[^’]*’',
     )
     for pattern in patterns:
-        text = re.sub(pattern, lambda m: re.sub(r"[^\n]", " ", m.group(0)), text, flags=re.S)
+        def mask(match):
+            # Plain prose permits a space before %, unlike TeX comments.
+            # Keep the following clause available to the contextual checks.
+            if pattern == comment_pattern and re.fullmatch(spaced_percentage, match.group(0)):
+                return match.group(0)
+            return re.sub(r"[^\n]", " ", match.group(0))
+        text = re.sub(pattern, mask, text, flags=re.S)
     text = text.replace("|", " ")
     return text
 
 
 def _words(text: str) -> list[str]:
     return re.findall(r"[A-Za-z]+(?:[-'][A-Za-z]+)*|[\u4e00-\u9fff]", text)
-
-
-def _sentences(text: str) -> list[str]:
-    return [s.strip() for s in re.split(r"(?<=[.!?])\s+|(?<=[。！？])\s*", text) if len(_words(s)) >= 3]
 
 
 def _line_number(text: str, position: int) -> int:
@@ -221,13 +225,13 @@ def inspect(text: str, scope: str, *, em_dash_limit: int | str | None = None) ->
     word_count = len(_words(prose))
     em_dash_count = prose.count("—") + len(re.findall(r"(?<!-)---(?!-)", prose))
     if em_dash_limit is None:
-        limit = 3 if scope == "paper" else 0
+        limit = None
     elif em_dash_limit == "off":
         limit = None
     elif type(em_dash_limit) is int and em_dash_limit >= 0:
         limit = em_dash_limit
     else:
-        raise ValueError("em_dash_limit must be a nonnegative integer, 'off', or None for the scope default")
+        raise ValueError("em_dash_limit must be a nonnegative integer, 'off', or None for no numeric quota")
     if limit is not None and em_dash_count > limit:
         issues.append({
             "code": "em_dash_limit",
@@ -280,33 +284,6 @@ def inspect(text: str, scope: str, *, em_dash_limit: int | str | None = None) ->
                 "message": "Check whether the enumeration or contrast follows the argument rather than a fixed template.",
             })
 
-    sentences = _sentences(prose)
-    lengths = [len(_words(sentence)) for sentence in sentences]
-    narrow_runs = []
-    for start in range(max(0, len(lengths) - 4)):
-        window = lengths[start : start + 5]
-        if len(window) == 5 and max(window) - min(window) <= 5:
-            narrow_runs.append({"sentences": [start + 1, start + 5], "word_counts": window})
-    if narrow_runs:
-        issues.append({
-            "code": "uniform_sentence_run",
-            "severity": "warning",
-            "runs": narrow_runs,
-            "message": "Review five-sentence runs with nearly identical length for repeated syntax.",
-        })
-
-    paragraphs = [p.strip() for p in re.split(r"\n\s*\n", prose) if len(_words(p)) >= 20]
-    paragraph_lengths = [len(_words(p)) for p in paragraphs]
-    if len(paragraph_lengths) >= 3:
-        mean = sum(paragraph_lengths) / len(paragraph_lengths)
-        if mean and max(abs(length - mean) / mean for length in paragraph_lengths) <= 0.15:
-            issues.append({
-                "code": "uniform_paragraphs",
-                "severity": "advisory",
-                "word_counts": paragraph_lengths,
-                "message": "Review unusually uniform paragraph lengths; retain them when the genre requires regularity.",
-            })
-
     issues.extend(_punctuation_signals(prose))
     issues.extend(_expression_signals(prose))
 
@@ -321,11 +298,13 @@ def inspect(text: str, scope: str, *, em_dash_limit: int | str | None = None) ->
 
 
 def _render_text(result: dict) -> str:
-    status = "PASS" if not result["issues"] else "REVIEW"
+    status = "NO_KNOWN_PATTERNS" if not result["issues"] else "REVIEW"
     limit_label = "off" if result["em_dash_limit"] is None else result["em_dash_limit"]
     lines = [
         f"{status}: {result['word_count']} words; em dashes {result['em_dash_count']}/{limit_label}; {result['issue_count']} issue(s)."
     ]
+    if not result["issues"]:
+        lines.append("No configured pattern matched; scientific meaning, coherence, and prose quality still require contextual judgment.")
     for issue in result["issues"]:
         location = f" line {issue['line']}" if "line" in issue else ""
         excerpt = f" [{issue['text']}]" if "text" in issue else ""
@@ -355,7 +334,7 @@ def main() -> int:
     parser.add_argument("path", nargs="?", help="UTF-8 manuscript path; omit to read stdin")
     parser.add_argument("--scope", choices=("paper", "section", "paragraph"), default="paper")
     parser.add_argument("--format", choices=("text", "json"), default="text")
-    parser.add_argument("--em-dash-limit", type=_parse_em_dash_limit, metavar="N|off", help="Apply an explicitly selected punctuation convention; default keeps the scope-based limit")
+    parser.add_argument("--em-dash-limit", type=_parse_em_dash_limit, metavar="N|off", help="Apply an explicitly selected punctuation limit; default counts dashes without a quota")
     parser.add_argument("--strict", action="store_true", help="Return 1 for error/warning candidates; matches still require contextual judgment")
     args = parser.parse_args()
 

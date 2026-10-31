@@ -18,36 +18,39 @@
 \newcommand{\directanswer}[1]{\par\noindent\textbf{Direct answer:} #1\par}
 \newcommand{\evidence}[1]{\par\noindent\textbf{Evidence:} #1\par}
 \newcommand{\change}[1]{\par\noindent\textbf{Clarification/change:} #1\par}
-\newcommand{\limitation}[1]{\par\noindent\textbf{Transparent limitation:} #1\par}
+\newcommand{\limitation}[1]{\par\noindent\textbf{Limitation:} #1\par}
 
 \begin{document}
 
 \section*{General Response}
 
-We thank the reviewers and AC for the constructive feedback. We appreciate that the reviews recognized \textbf{[positive signal: e.g., the importance of the problem, novelty of the formulation, strength of the evaluation, or clarity of the method]}. Our central contribution is \textbf{[one-sentence contribution]}, evaluated under \textbf{[self-contained setting: datasets, metrics, task, or assumptions]}.
+% Use only concerns present in the supplied reviews. Omit optional blocks when unnecessary.
+% Include thanks or positive reviewer statements only when useful and actually supported.
+\directanswer{[Answer the decisive concern and identify the evidence or exact unresolved point.]}
 
-\directanswer{The main concerns are about \textbf{[shared concern 1]}, \textbf{[shared concern 2]}, and \textbf{[shared concern 3]}. Below we first address the concerns that most affect the paper-level decision, then provide reviewer-specific clarifications.}
+% Add a brief contribution or setting explanation only when needed to interpret the answer.
 
 \section*{Common Concerns}
 
 \paragraph{C1. Evaluation completeness and dataset coverage.}
 \quotedconcern{revtwo}{R2}{Why was [dataset/baseline/setting] not evaluated?}
 \quotedconcern{revthree}{R3}{The evaluation may be incomplete without [related check].}
-\directanswer{This concern is about evaluation completeness. We address it directly: \textbf{[direct answer with completed result or reason]}.}
-\evidence{In the paper, [Section/Table/Figure/Appendix/Line] reports [result]. We additionally find [newly completed analysis/result, if available], which supports [claim].}
-\change{We will make this clearer by adding [specific sentence/table pointer/figure note] and by explicitly stating that [scoped conclusion].}
+\directanswer{[Explain what the existing evaluation establishes and whether this comparison is needed for the stated claim.]}
+\evidence{[Give the applicable paper location or verified completed analysis. If support is missing, identify the exact claim left unresolved.]}
+% Include a change only when it repairs an actual issue and is authorized.
+\change{[Specific completed or planned change, with its status stated accurately; omit if unnecessary.]}
 
 \paragraph{C2. Novelty and relation to prior work.}
 \quotedconcern{revone}{R1}{The method appears close to [prior work].}
-\directanswer{\textbf{The key difference is [mechanism/formulation/evidence/scope]}, not merely [surface similarity].}
-\evidence{[Prior work] assumes [assumption], while our method addresses [different assumption/challenge]. This is reflected in [paper location] and supported by [result/analysis].}
-\change{We will revise [Related Work/Introduction] to foreground this distinction and avoid ambiguity.}
+\directanswer{[State the verified technical difference or acknowledge the actual overlap.]}
+\evidence{[Compare the relevant source passage with the manuscript's mechanism, assumptions, or evidence.]}
+\change{[Necessary positioning correction or clarification and its status; omit if the manuscript is already accurate.]}
 
 \paragraph{C3. Reproducibility, mechanism, or implementation details.}
 \quotedconcern{revfour}{R4}{Important implementation details are unclear.}
-\directanswer{We agree this can be clearer. The missing details are [self-contained details].}
-\evidence{The implementation uses [key setting], [metric], and [protocol]. These details are currently in [paper location] and will be consolidated in [section/appendix].}
-\change{We will add a concise reproducibility paragraph with [hyperparameters/splits/code availability/protocol].}
+\directanswer{[Give the actual requested detail, or identify the detail that remains unknown.]}
+\evidence{[Cite the inspected configuration or paper location; distinguish an omitted explanation from an unavailable fact.]}
+\change{[Actual needed detail to add and its status; omit if a source pointer fully answers the concern.]}
 
 \section*{Reviewer-Specific Clarifications}
 
@@ -73,6 +76,6 @@ We thank the reviewers and AC for the constructive feedback. We appreciate that 
 \quotedconcern{revfour}{R4}{[Concise quoted concern from R4].}
 \directanswer{[Direct answer first.]}
 \evidence{[Data, paper location, or completed analysis.]}
-\limitation{[Use only if the limitation is real and cannot be fully resolved within the response period.]}
+\limitation{[Use only for a real material scientific boundary; inability to run a requested test before the deadline does not alone establish one.]}
 
 \end{document}

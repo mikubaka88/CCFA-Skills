@@ -4,11 +4,24 @@
 
 ## 前置条件
 
-- Git。
-- Node.js 22.20.0 或更高版本（本地核验 `skills` CLI 1.5.22 的要求；其他版本以安装器的 `engines` 声明为准）。`npx skills` 无需全局安装。
+- 推荐轻量 release 安装只需 Python 3.10+。
+- 下方完整源码方案需要 Git；使用 `npx skills` 还需 Node.js 22.20.0 或更高版本（本地核验 `skills` CLI 1.5.22 的要求；其他版本以安装器的 `engines` 声明为准）。
 - Codex 会自动检测 skill 变化；如果更新未显示，再重启 Codex。官方加载规则见 [Build skills](https://learn.chatgpt.com/docs/build-skills)。
 
 ## 推荐安装
+
+下载并解压 [0.12.0 的 lean 包](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.0)，按[安装矩阵](../INSTALLATION_MATRIX.zh-CN.md#轻量-release-安装推荐)核验 SHA-256。将 `<lean-dir>` 换成解压后的 `ccfa-skills-0.12.0-lean` 目录，将 `<skills-root>` 换成 Codex 实际技能根目录（全局安装通常为 `$CODEX_HOME/skills`，未设置时为 `~/.codex/skills`）：
+
+```text
+python -B "<lean-dir>/tools/install_release.py" --source "<lean-dir>" --target "<skills-root>" --dry-run
+python -B "<lean-dir>/tools/install_release.py" --source "<lean-dir>" --target "<skills-root>"
+```
+
+这条路线保留 18 个技能、相邻模板、真实原文 Markdown 与绘图素材，完整范例 PDF 按需显式安装。更新会保护个人改动，不自动删文件或改偏好；见[更新说明](AUTO_UPDATE.md)。
+
+## Git 与 npx 完整源码方案
+
+这条路线仍下载仓库中的完整 PDF；需要完整离线源码或自行维护时使用。
 
 先查看仓库中可安装的 skills：
 
@@ -16,7 +29,7 @@
 npx skills add mikubaka88/CCFA-Skills --list
 ```
 
-将全部 17 个 skills 安装到 Codex：
+将全部 18 个 skills 安装到 Codex：
 
 ```powershell
 npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes --copy

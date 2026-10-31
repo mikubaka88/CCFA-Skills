@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import runpy
 from pathlib import Path
 import sys
 from typing import Any
@@ -107,8 +108,14 @@ def validate_record(value: Any, prefix: str = "$") -> list[dict[str, str]]:
             fail(path, "expected one of: " + ", ".join(sorted(choices)))
 
     required = {"version", "task_id", "goal", "route", "phase", "mode", "next_action"}
-    if not obj(value, prefix, required, {"artifacts", "open_items", "changes"}):
+    if not obj(value, prefix, required, {"artifacts", "open_items", "changes", "file_lifecycle"}):
         return issues
+    if "file_lifecycle" in value:
+        try:
+            validator = runpy.run_path(str(Path(__file__).with_name("artifact_scope.py")))["validate_inventory"]
+            validator(value["file_lifecycle"])
+        except (ValueError, TypeError) as exc:
+            fail(f"{prefix}.file_lifecycle", str(exc))
     if type(value.get("version")) is not int or value["version"] != 1:
         fail(f"{prefix}.version", "expected integer version 1")
     for field in ("task_id", "phase", "next_action"):

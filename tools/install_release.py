@@ -1,0 +1,145 @@
+#!/usr/bin/env python3
+"""Install an extracted CCFA release without network access or deleting user files."""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import sys
+import tempfile
+
+from release_support import RECEIPT, digest, is_paper_pdf, load_release, no_links, read_json, relative_path, select_files
+
+
+def _receipt(target):
+    path = no_links(target / RECEIPT)
+    if not path.exists():
+        return {"schema_version": 1, "owner": "ccfa-release-installer", "files": {}, "skills": {}}
+    value = read_json(path)
+    if not isinstance(value, dict) or value.get("owner") != "ccfa-release-installer" or value.get("schema_version") != 1:
+        raise ValueError("Existing receipt is not owned by this installer")
+    if not isinstance(value.get("files"), dict) or not isinstance(value.get("skills"), dict):
+        raise ValueError("Invalid installation receipt")
+    for name, entry in value["files"].items():
+        relative_path(name)
+        if not isinstance(entry, dict) or not isinstance(entry.get("sha256"), str):
+            raise ValueError("Invalid managed-file receipt")
+    return value
+
+
+def install(source, target, requested=None, papers=None, dry_run=False):
+    source, manifest = load_release(source)
+    target = no_links(Path(target).expanduser()).resolve()
+    if source == target or source in target.parents or target in source.parents:
+        raise ValueError("Source and skills target must be separate directory trees")
+    if target.exists() and not target.is_dir():
+        raise ValueError("--target must name a skills directory")
+    old = _receipt(target)
+    if manifest["profile"] == "papers":
+        if papers or requested:
+            raise ValueError("A papers-only source adds PDFs to the existing installation; do not select new skills")
+        if old.get("version") != manifest["version"]:
+            raise ValueError("Install the matching lean release before adding its papers")
+        skills = []
+        entries = [(source, e) for e in manifest["files"] if is_paper_pdf(e["path"])]
+    else:
+        skills, selected = select_files(manifest, requested)
+        entries = [(source, e) for e in selected]
+        if papers:
+            paper_source, paper_manifest = load_release(papers)
+            if paper_manifest["profile"] != "papers" or paper_manifest["release_id"] != manifest["release_id"] or paper_manifest["skills"] != manifest["skills"]:
+                raise ValueError("The optional papers must match the lean release")
+            if paper_source == target or paper_source in target.parents or target in paper_source.parents:
+                raise ValueError("Papers and target must be separate directory trees")
+            entries += [(paper_source, e) for e in paper_manifest["files"] if is_paper_pdf(e["path"])]
+    changes = []
+    observed = {}
+    unchanged = 0
+    for origin, entry in entries:
+        path = no_links(target / entry["path"])
+        if path.exists() and not path.is_file():
+            raise ValueError("An installation file conflicts with a directory: "+entry["path"])
+        current = digest(path) if path.exists() else None
+        observed[entry["path"]] = current
+        if current == entry["sha256"]:
+            unchanged += 1
+        elif current is not None and old["files"].get(entry["path"], {}).get("sha256") != current:
+            raise ValueError("Preserving a personal or unmanaged edit; reconcile before updating: "+entry["path"])
+        else:
+            changes.append((origin, entry, path, current))
+    result = {"version": manifest["version"], "profile": manifest["profile"], "skills": skills,
+              "dry_run": dry_run, "new_files": sum(c[3] is None for c in changes),
+              "updated_files": sum(c[3] is not None for c in changes), "unchanged_files": unchanged,
+              "extra_user_files": "preserved", "preferences": "unchanged"}
+    if dry_run:
+        return result
+    target.mkdir(parents=True, exist_ok=True)
+    lock = no_links(target / ".ccfa-release-install.lock")
+    try:
+        fd = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+    except FileExistsError as exc:
+        raise ValueError("An installation is pending; confirm it stopped before removing its lock") from exc
+    os.close(fd)
+    staged = []
+    try:
+        if _receipt(target) != old:
+            raise ValueError("Installation receipt changed; inspect and retry")
+        for origin, entry, path, previous in changes:
+            no_links(path)
+            if (digest(path) if path.exists() else None) != previous:
+                raise ValueError("Target changed during preparation: "+entry["path"])
+            path.parent.mkdir(parents=True, exist_ok=True)
+            fd, name = tempfile.mkstemp(prefix=".ccfa-install-", suffix=".tmp", dir=path.parent)
+            temporary = Path(name)
+            staged.append((temporary, path))
+            measured = hashlib.sha256()
+            size = 0
+            with os.fdopen(fd, "wb") as out, no_links(origin / entry["path"]).open("rb") as inp:
+                for block in iter(lambda: inp.read(1024 * 1024), b""):
+                    out.write(block); measured.update(block); size += len(block)
+            if measured.hexdigest() != entry["sha256"] or size != entry["bytes"]:
+                raise ValueError("Source changed during copy: "+entry["path"])
+        # Recheck every destination before committing any replacement.
+        for _, entry in entries:
+            path = no_links(target / entry["path"])
+            if (digest(path) if path.exists() else None) != observed[entry["path"]]:
+                raise ValueError("Target changed during staging: "+entry["path"])
+        for temporary, path in staged:
+            os.replace(temporary, path)
+        receipt = {**old, "version": manifest["version"], "files": dict(old["files"]), "skills": dict(old["skills"])}
+        for _, entry in entries:
+            receipt["files"][entry["path"]] = {"sha256": entry["sha256"], "version": manifest["version"]}
+        for skill in skills:
+            receipt["skills"][skill] = manifest["version"]
+        fd, name = tempfile.mkstemp(prefix=".ccfa-receipt-", suffix=".json", dir=target)
+        temporary = Path(name); staged.append((temporary, target / RECEIPT))
+        with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as out:
+            json.dump(receipt, out, ensure_ascii=False, indent=2); out.write("\n")
+        os.replace(temporary, target / RECEIPT)
+    finally:
+        for temporary, _ in staged:
+            temporary.unlink(missing_ok=True)
+        lock.unlink()
+    return result
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--source", type=Path, required=True, help="Extracted lean or papers directory")
+    parser.add_argument("--target", type=Path, required=True, help="Actual client skills root; no automatic discovery")
+    parser.add_argument("--skill", action="append", help="Repeat exact skill names; omit for all skills")
+    parser.add_argument("--papers", type=Path, help="Optional matching extracted offline-PDF pack")
+    parser.add_argument("--dry-run", action="store_true")
+    args = parser.parse_args()
+    try:
+        print(json.dumps(install(args.source, args.target, args.skill, args.papers, args.dry_run), ensure_ascii=False, indent=2))
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        parser.error(str(exc))
+
+
+if __name__ == "__main__":
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"): stream.reconfigure(encoding="utf-8", errors="strict")
+    main()

@@ -26,11 +26,10 @@ The sections and columns below are a menu for the requested report. Omit unreque
 Date: YYYY-MM-DD
 Search purpose:
 Target venue/family:
-Source-quality policy: applied
 
 ## Summary
 
-- Closest-work clusters:
+- Closest-work clusters or useful inspiration relations:
 - Opportunity map:
 - Strongest baselines:
 - Benchmark/dataset candidates:
@@ -47,7 +46,7 @@ Source-quality policy: applied
 
 ### Cluster 1: <name>
 
-- Representative papers:
+- Representative papers and their role:
 - What this cluster already solves:
 - Remaining gap:
 - Possible rescue or differentiation route:
@@ -79,7 +78,7 @@ Use these columns:
 title,year,venue_or_source,link,paper_type,insight_score,completeness_score,numeric_evidence_score,overall_label,relevance_note,quality_note
 ```
 
-For pure benchmark papers, set `numeric_evidence_score` to `N/A benchmark`.
+For pure benchmark papers, set `numeric_evidence_score` to `N/A benchmark`. Use `N/A` with the contribution-specific reason in `quality_note` for other non-empirical work and `not assessed` for unread numerical evidence. `overall_label` is a screening/relevance label, not an aggregate quality score.
 
 ## search-notes.md
 

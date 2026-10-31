@@ -12,75 +12,41 @@ metadata:
 
 # CCF Paper Writer
 
-## Family File Contract
+## Preflight And Ownership
 
-Before file work, reuse canonical paths and one task/artifact working directory; default to project-root `ccfa-workfiles/<purpose>/<artifact-id>/`. Update in place, preserve inputs, and use UTF-8 with Chinese-text checks. Apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) for naming, ownership, and task-created cleanup; handoffs inherit these paths.
+Apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md); reuse applicable active rules at handoffs. Both preflights remain required in every mode. Handoff mode is **PARTIAL**, under the preserved metadata and Common's [handoff rules](../ccf-common/references/handoff-modes.md).
 
-## Collaboration Contract
+Own manuscript prose, compression, and presentation text. Assessment without rewriting belongs to `ccf-paper-reviewer`; rebuttal belongs to `ccf-rebuttal-writer`. Preserve the supplied problem, mechanism, setting, measurements, citation keys, and conclusion unless research changes are authorized. Respect the user's format, markup, boundaries, no-browsing and no-new-files instructions. An inspection request alone does not authorize rewriting.
 
-Before specialist execution, read and apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md). At every handoff, reuse their applicable active rules or refresh missing/changed ones. Both preflights are required even without prose; detailed editing, experiment, and maintenance modes run only when relevant.
-
-Integrate necessary specialist contributions under one owner; reuse valid prerequisites and verify affected results. Follow the [cooperation routes](../ccf-common/references/routing.md) without duplicate reports.
-
-## Invocation Controls
-
-**CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode`, `../ccf-common/references/handoff-modes.md`, and `../ccf-common/references/task-modes.md`. User scope and existing authorization govern execution; preserve plan-only, no-browsing, exact-output, and no-new-files requests.
-
-This skill owns manuscript text, compression, and presentation prose. Preserve the supplied problem, method mechanism, experimental setting, numbers, citation keys, and conclusion unless a research change is authorized. A requested revision authorizes ordinary accurate wording edits and necessary local checks.
-
-Run `ccf-humanization` as the first manuscript-facing preflight. Read `../ccf-humanization/references/humanization-policy.md` and `references/prose-quality-guardrails.md`. These guide direct scientific writing; they do not start a separate review or a confirmation loop.
+For file edits, reuse the canonical source and one stable working directory under [artifact-contracts.md](../ccf-common/references/artifact-contracts.md), default `ccfa-workfiles/<purpose>/<artifact-id>/`. Update in place; preserve inputs, includes, labels, citations, equations, and floats. Check UTF-8/Chinese text and requested exports. Do not create dated or `v2` manuscript copies for ordinary iterations.
 
 ## Writing Standard
 
-Write from the contribution: what problem matters, why the mechanism addresses it, what the evidence establishes, and what follows. Replace reviewer-facing reassurance, apologetic novelty claims, repeated caveats, denial-led positioning, and stacked hedges with their scientific payload. Delete sentences with no payload. Do not add a limitations sentence to each paragraph, abstract, caption, or conclusion by habit.
+Compose from the supplied scientific propositions and the reader's path through them. Develop computations, distinctions, implications, or interpretations according to the passage's purpose. Connect sentences through their actual reason, consequence, evidence, or comparison; internal readiness checks and imagined reviewer objections are not the narrative. Preserve necessary uncertainty, assumptions, negative findings, technical terms, and the author's sentence-final emphasis and broader significance. Do not invent mechanisms, citations, measurements, or empirical superiority.
 
-Keep meaningful uncertainty, known negative results, necessary assumptions, fair-comparison constraints, and mandatory disclosures in direct academic prose. Do not write that a method is confirmed, approved, or publication-ready. Explain the actual method and relevant configuration. A missing result stays missing; a proposed study is not a completed experiment. Never guess citations or insert invented measurements to complete a draft.
+An ordinary clear local edit needs the active baseline, actual text, and relevant constraints. Read [humanization-policy.md](../ccf-humanization/references/humanization-policy.md) or [prose-quality-guardrails.md](references/prose-quality-guardrails.md) for an actual expression/logic problem or requested humanization; load the relevant sections rather than both full guides by default. Punctuation thresholds belong to Humanization. Supporting phrase checks never replace semantic reading or require removing correct technical language.
 
-Use the humanization policy as the single source for punctuation and pattern thresholds. Natural writing is a semantic editing task; passing a phrase checker does not establish quality. Keep scientifically necessary terms, negation, and hedging even when a heuristic flags them.
+## Mode Navigation
 
-## Modes And Reference Loading
+| Requested work | Relevant guidance |
+| --- | --- |
+| `polish`: local passage | Revise directly in the source format; load a reference only for a specific factual, citation, logic, or style question. |
+| `draft`: section | Relevant [section module](references/section-modules.md); [storyline-blueprint.md](references/storyline-blueprint.md) for substantial introduction/global argument work. |
+| `draft`: complete manuscript | [materials-to-manuscript.md](references/materials-to-manuscript.md), storyline and relevant section/checklist guidance. Complete substantive explanations before length fitting; results-pending drafts remain valid. |
+| `submission-fit` | The aligned content first, then target venue guide, [length-budget-policy.md](references/length-budget-policy.md) and [compression-rules.md](references/compression-rules.md); verify exact official year/track rules through `ccf-submission-checker`. |
+| `compress` | [compression-rules.md](references/compression-rules.md); preserve scientific relationships, facts and numbers. |
+| `presentation` | The source paper and presentation guidance in [section-modules.md](references/section-modules.md). |
 
-| Mode | Deliverable | References beyond the shared prose policy |
-| --- | --- | --- |
-| `polish` | Revised paragraph or local passage in its source format | None unless a factual, citation, or explicit style question requires one. |
-| `draft` section | Requested section with a coherent scientific argument | The relevant part of `references/section-modules.md`; citation workflow only when literature support is needed. |
-| `draft` manuscript | Complete content-first manuscript, including a results-pending draft when requested | `references/materials-to-manuscript.md`, `references/storyline-blueprint.md`, and relevant section/checklist references. Read a venue guide for a requested format, not to impose an initial page budget. |
-| `submission-fit` | A complete, aligned draft fitted to a specified venue or length | Venue guide, `references/length-budget-policy.md`, and `references/compression-rules.md`; verify current official rules for final compliance. |
-| `compress` | Shortened source text preserving meaning and numbers | `references/compression-rules.md`. |
-| `presentation` | Slides/poster/talk/Q&A prose from supplied research | Applicable presentation guidance in `references/section-modules.md` and the source paper. |
+Naming a venue alone does not trigger a page quota. Read `references/venue-guides/index.md` and the matched guide when audience/format affects the work; [output-style-policy.md](references/output-style-policy.md) preserves supplied templates and governs the disclosed NeurIPS fallback for new LaTeX without one. An abstract, caption, local edit, or exact JSON response does not require whole-paper planning, exemplar analysis, reviewer panels, or a venue guide.
 
-An abstract, caption, synopsis, paragraph edit, or exact JSON response does not require venue guides, full exemplars, reviewer panels, or length planning by default. Load matched exemplar cards from `references/exemplars/index.md` only for a requested style adaptation or a full manuscript that benefits from them. Never copy exemplar wording or technical content.
+For substantive drafting or expression rewriting, inspect relevant real passages through [exemplar-style-analysis.md](references/exemplar-style-analysis.md). `reference_style_search` defaults to **on**: reuse matched originals and search for additional good writing for the actual question, reusing completed applicable searches across paragraphs. `auto` limits extra discovery to gaps; `off` skips unrequested extra discovery, not supplied references or explicit searches. Choose quality and function without a paper-count quota. Reuse conventional language and technical terms, not distinctive source sentences or scientific claims; keep one author voice.
 
-## Workflow
+## Draft, Check, Deliver
 
-1. Identify the requested mode, output format, evidence, and target length from the conversation and supplied files. Infer routine choices; ask only for a missing decision that changes the research claim, deliverable, or feasibility. Continue independent work while that decision is pending.
-2. For an authorized edit to an existing manuscript, revise that file in place and preserve Markdown/LaTeX sections, commands, citations, labels, equations, and float environments unless restructuring is requested. Follow `../ccf-common/references/artifact-contracts.md`; create no dated or `v2` copies for an ordinary iteration. Supplying a file for inspection alone does not authorize rewriting it.
-3. For a new manuscript from research documents, use `references/materials-to-manuscript.md`. Draft substantive content without a page quota, check scientific and textual alignment, then fit length only when requested. Naming a venue alone does not trigger compression. An explicit submission-ready or fixed-length request includes fitting after the content check in the same task. Read `references/venue-guides/index.md` and the matched guide for template conventions; use `references/length-budget-policy.md` only in the fitting phase. Preserve a supplied template or requested format. For new LaTeX without a usable target template, NeurIPS is a disclosed format fallback, not a scientific or length requirement. `references/output-style-policy.md` governs format choices.
-4. Organize the scientific argument. For a substantial introduction or full manuscript, use `references/storyline-blueprint.md`; for bounded prose, directly connect problem, insight, mechanism, evidence, and implication. Keep material scope where it changes interpretation. Do not generate a reviewer-risk register or multi-expert tournament for ordinary writing.
-5. Resolve evidence prerequisites before asserting dependent claims. When literature is needed, load `references/citation-workflow.md`, use `ccf-literature-searcher` for missing sources, and update the bibliography without changing unrelated keys. Use `ccf-integrity-auditor` for unresolved citation-support or numerical conflicts. Reuse applicable verified evidence. For supplied-evidence-only or no-browsing tasks, preserve provided citations and keep unsupported claims provisional without inventing entries.
-6. Draft substantive sections and supporting appendices using `references/section-modules.md` and applicable `references/writing-checklists.md` checks. Load `references/research-writing-patterns.md` only when alternative writing patterns or exemplar adaptation are useful. `references/materials-to-manuscript.md` owns result-status handling: preserve supplied results, leave missing values and dependent analysis blank, and honor an explicitly deferred experiment section. Do not invent mechanisms or pad with cautionary text.
-7. For reported experimental comparisons, consult `../ccf-humanization/references/experiment-discipline.md` when method identity or protocol matters. Use supplied design specifications for a proposed method and cited evidence for prior work; do not demand runnable checkpoints or full experimental confirmation to perform a text edit.
-8. For a full LaTeX manuscript with an available engine, compile and inspect errors, references, and affected layouts. Fix overflow and missing references in every phase; page count is informational during content-first drafting. Fit length only in `submission-fit` or explicitly requested compression. Put build artifacts under the established working directory and export the requested PDF only after a successful build. Preserve relative includes and build configuration. Recompile after relevant changes; do not loop to fill pages or chase harmless warnings. Leave final venue compliance to `ccf-submission-checker` when requested or necessary.
-9. Check the resulting argument once with the cohesion repairs in `references/prose-quality-guardrails.md`, then apply Humanization's sentence decisions and verify that factual meaning survived revision. For a full section or paper, run `scripts/check_prose_quality.py` when available. Inspect candidates in context; fix real problems and retain justified scientific language. Use `--strict` only when a strict lint report is requested, not as a universal publication gate. Rerun only for changed content or unresolved findings.
-10. For a substantial draft or changes to argument/evidence, use `ccf-paper-reviewer` to check the affected links and coherence unless already covered. Carry the drafting phase and intentionally missing evidence into the check. A results-pending draft needs a writing/alignment check, not an invented acceptance score or an automatic new-experiment campaign. Unsupported empirical assertions still require correction. Integrate authorized fixes and verify affected passages; a local edit uses local checks. Deliver the requested artifact and concrete unresolved decisions without unrelated downstream outputs.
+1. Recover the requested artifact, evidence, argument and routine choices from existing context. Ask only for a missing decision that changes the science or deliverable; continue independent work. A long coordinated revision can use [writing-execution.md](references/writing-execution.md) and `scripts/writing_runtime.py` for current targets, necessary transitions, source positions and checked patches. Short edits stay direct; section IDs do not imply separate agents.
+2. Resolve support before asserting dependent facts. Use [citation-workflow.md](references/citation-workflow.md) and `ccf-literature-searcher` for missing sources; use `ccf-integrity-auditor` for unresolved support/numerical conflicts. Reuse verified evidence and preserve bibliography keys. Reported comparisons use [experiment-discipline.md](../ccf-humanization/references/experiment-discipline.md) when identity/protocol matters; drafting a supplied design requires no new runs.
+3. Draft the requested prose. [materials-to-manuscript.md](references/materials-to-manuscript.md) owns conflicting-material and result-status handling: retain supplied results, leave missing values/dependent analysis unwritten, and honor an entirely deferred experiment section. Missing details constrain relevant claims without becoming repeated progress disclaimers. Use [research-writing-patterns.md](references/research-writing-patterns.md) only when alternative explanations or structure help; [table-style-guide.md](references/table-style-guide.md) covers source tables, with visual redesign owned by `ccf-visual-composer`.
+4. Check the resulting argument and factual preservation once. For a full section/paper run `scripts/check_prose_quality.py` when available, inspect real issues in context, and retain justified scientific language. Use `--strict` only for requested strict lint; rerun changed/unresolved content only. Substantial argument/evidence changes need a scoped `ccf-paper-reviewer` alignment check unless covered; carry the phase and missing-result status. Such a check does not start acceptance scoring or experiments. Reuse matching completed coverage; extra independent review follows its existing switch or explicit request.
+5. For full LaTeX with an available engine, compile and inspect errors, references, and affected layouts; fix overflow and broken references. Keep builds in the established task directory, preserve includes/configuration, and export PDF after success. Page count is informational during content drafting. Recompile affected changes without chasing harmless warnings or looping to fill pages.
 
-## Output Contract
-
-Return the actual revised text, manuscript, compressed passage, or presentation prose first in the user's format. Ordinary local edits need no mode/status/next-skill block. For full manuscript files, report their paths, substantive changes, relevant validation, and concrete unresolved evidence. Exact schemas stay exact.
-
-A complete draft contains the requested scientific sections at appropriate depth; it may remain evidence-incomplete. Distinguish draft completion from submission readiness. Do not label unknown results as observations or claim measured score improvements from a prose revision.
-
-## References
-
-Load selectively by the modes above. Maintain phase/result rules in `materials-to-manuscript.md`, section responsibilities in `section-modules.md`, citation rules in `citation-workflow.md`, and fitting rules in `length-budget-policy.md`; other references apply them without duplicating the full policy.
-
-- `references/materials-to-manuscript.md`: research-document intake, complete initial drafts, results-pending writing, and alignment before compression.
-- `references/output-style-policy.md`, `references/length-budget-policy.md`: source-format preservation and later manuscript fitting.
-- `references/venue-guides/index.md`, `references/exemplars/index.md`: target venue and selected style moves.
-- `references/storyline-blueprint.md`, `references/section-modules.md`, `references/research-writing-patterns.md`: scientific organization and section writing.
-- `references/citation-workflow.md`: verified citation insertion.
-- `references/prose-quality-guardrails.md`, `references/writing-checklists.md`, `scripts/check_prose_quality.py`: semantic prose review and supporting diagnostics.
-- `references/compression-rules.md`: evidence-preserving compression.
-- `references/table-style-guide.md`: existing LaTeX table source guidance; visual redesign belongs to `ccf-visual-composer`.
-- `references/score-lifting-loop.md`, `references/expert-review-loop.md`: applying actual reviewer deductions when that work is requested.
-- `../ccf-common/references/review-output-standards.md`: conditional scores and frozen review standards, only for requested review-related outputs.
+Return the actual text/artifact first in the user's format. Ordinary local edits need no status report. For full files give paths, substantive changes, actual checks, and concrete remaining author inputs. Draft completion is distinct from evidence completeness or submission readiness. Requested reviewer-driven edits use [expert-review-loop.md](references/expert-review-loop.md) and [score-lifting-loop.md](references/score-lifting-loop.md), without writer-owned rescoring or promised score gains.

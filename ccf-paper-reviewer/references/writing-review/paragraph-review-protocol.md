@@ -29,7 +29,7 @@ For each paragraph, inspect:
 4. Logic: whether sentences follow a cause-effect, general-to-specific, claim-to-evidence, or contrast structure.
 5. Evidence: whether claims are supported or need citation/result/qualification.
 6. Redundancy: whether content repeats earlier material or belongs in appendix.
-7. Prose discipline: whether the paragraph uses defensive framing, label-heavy symbols, formula dumping, third-person manuscript voice, punctuation-driven structure, unsupported hype, or overly uniform sentence rhythm.
+7. Prose discipline: whether empty defensive framing, unexplained labels, notation, punctuation, or unsupported hype obscures the meaning. Conventional author voice, connected compound sentences, and regular rhythm are not defects by themselves.
 8. Edit action: keep, reorder, split, merge, cut, move, qualify, expand, or rewrite.
 
 ## Explicit Paragraph Review Table
@@ -61,7 +61,7 @@ Inspect these signals in context and assign severity only after establishing the
 - third-person manuscript narration or defensive phrasing displaces a concrete argument; conventional voice or an evidence-backed qualification is not automatically a problem;
 - a related-work paragraph omits the closest comparison axis;
 - a method paragraph introduces notation after using it;
-- an experiment paragraph reports numbers without interpreting what they prove;
+- an experiment paragraph reports numbers without explaining what they support;
 - a limitation or assumption is hidden after a broad claim.
 
 Do not promote a phrase match or material outside the supplied reading scope into a major or critical concern. A verified unsupported claim in the inspected manuscript can still be consequential; missing inputs alone establish a coverage limit. For consequential findings, inspect relevant supplied appendices and use the fixed finding record's evidence and countercheck requirements before retaining the concern.

@@ -1,53 +1,56 @@
 # LLaVA-4D
 
-Venue/year: ICLR 2026.
+Venue/year: ICLR 2026, as recorded in the existing library.
 Venue family: ICLR.
-Custom status: user-custom writing-format exemplar. This card participates in the default custom writing format when the user does not specify a target venue.
+Custom status: user-recognized exemplar available for a matching writing question. Selecting its relevant original passage does not activate the whole custom format; that format still follows the user's request or established preference.
 Source: `paper_ref/LLaVA-4D.pdf`; OpenReview `https://openreview.net/forum?id=URpbmVEsqB`; arXiv `https://arxiv.org/abs/2505.12253`.
-Use when: writing multimodal, 3D/4D scene, embodied AI, prompt-embedding, or dataset plus model papers.
+Inspected local text: `references/exemplars/papers/llava-4d.md`, identified as arXiv:2505.12253v1, 18 May 2025. The observations below concern that stored version, not an assumed later revision.
+Use when: explaining a spatiotemporal representation, the information it carries, or connected model and dataset contributions.
+
+The source observations below describe selected passages; adaptation advice appears separately. They do not independently verify the paper's scientific conclusions.
 
 ## Story Pattern
 
-Broad success in 2D multimodal understanding is narrowed to a physical-world failure: missing spatial representation. The introduction then shows that existing 3D LMMs improve static spatial modeling but do not model temporal variation. The proposed method is framed as a minimal dimensional extension with a concrete mechanism: add time to coordinates and disentangle spatial and temporal visual features.
+**Source observation, Section 1:** the paper moves from 2D multimodal models to 3D spatial prompts and then to time-varying objects. It motivates adding time to the coordinate representation and separating spatial and temporal visual features. The dataset is introduced as another contribution with its own purpose.
 
 ## Abstract Moves
 
-- Start with a capability gap tied to the physical world.
-- Describe the prior approach in one sentence, then immediately name its failure case.
-- Introduce the method as a general framework with one memorable mechanism.
-- Add a dataset contribution after the modeling contribution.
-- End with broad task validation, not only one benchmark.
+**Source observation, Abstract:** the text identifies a temporal-representation issue, describes a spatiotemporal prompt and feature decomposition, and then introduces the dataset and reported evaluation.
+
+**Adaptation advice:** define the information added by a representation before using a broad capability label. State only the limitations supported for the user's actual comparators; the source's claims about earlier 3D models do not automatically transfer.
 
 ## Introduction Moves
 
-- Paragraph 1: field momentum and why the current generation of LMMs is insufficient for physical interaction.
-- Paragraph 2: prior 3D LMMs as a ladder, followed by the dynamic-object failure.
-- Paragraph 3: observation that static background and moving objects share positions but differ in motion.
-- Paragraph 4: module preview with explicit mapping from observation to design.
-- Contributions: one model-level claim, two insight-to-module claims, one dataset/evidence claim.
+**Source observation, Section 1, paragraphs discussing temporally varying spatial characteristics and the proposed prompt:** the source names position shifts and deformations, explains why time matters to the representation, and connects the proposed coordinates and features to that issue. These selected passages illustrate a motivation-to-design relationship; they do not define a paragraph template for the new manuscript.
+
+**Sentence-level technique:** a concrete property of the object motivates the information the model needs. The proposed representation is introduced in relation to that information.
+
+**Adaptation advice:** identify the relevant distinction in the user's setting and explain how the supplied representation retains or uses it. Do not infer a missing capability solely from a dimensional label or invent a model failure to imitate the narrative.
 
 ## Method Moves
 
-- Name each module by the role it plays in the story, not just by architecture.
-- Explain coordinate encoding before fusion so the reader understands what information is being injected.
-- Keep dataset construction separate from model mechanics so reviewers can evaluate each contribution.
+**Source observation, Sections 3.1–3.3:** the method defines coordinates, spatial and temporal encodings, feature decomposition and fusion, and language alignment. Section 3.2's Cross-Attention Fusion passage motivates adding coordinate information because the disentangled features alone do not supply the desired world-coordinate localization.
+
+**Adaptation advice:** state what an intermediate representation contains and what remains to be computed before introducing the next operation. Name the actual dependency rather than describing a chain of interfaces.
 
 ## Evidence Moves
 
-- Use a first figure that contrasts old paradigm, new paradigm, benchmark summary, and qualitative task behavior.
-- Include multiple tasks so the paper reads as a framework rather than a narrow fix.
-- Pair quantitative results with dynamic qualitative examples that expose the failure mode of static models.
+**Source observation, Figures 1 and 3 and their surrounding text:** the paper combines paradigm/task illustrations with reported comparisons and feature visualizations. Section 3.2 interprets the displayed feature clustering as support for its representation choice.
+
+**Adaptation advice:** distinguish the observed visualization from the broader interpretation. A cluster plot alone does not establish every causal or generalization claim. Use figures that explain the new work's actual question; broad task coverage is not a requirement for every paper.
 
 ## Reusable Techniques
 
-- Turn a missing dimension into a writing spine: 2D to 3D to 4D.
-- Convert an observation into a design decision, then into a contribution bullet.
-- Make the first figure carry both motivation and evidence.
+- Introduce a representation through the information needed for a concrete task.
+- Connect an object's relevant property to the next design decision.
+- Explain what a feature supplies before explaining why another input is combined with it.
+- Separate method, dataset, and observed-result statements while making their relationship clear.
+- Preserve the distinction between a source's reported finding and an independently established fact.
 
 ## User Notes
 
-This is one of the user's recognized exemplars. Use it especially when the user's paper needs to justify a new representation for dynamic scenes.
+This is one of the user's recognized exemplars. Its selected passages can help explain representations for dynamic scenes when that is the user's actual scientific object.
 
 ## Do-Not-Copy Boundary
 
-Do not reuse the 4D coordinate prompt claim, dynamic-scene examples, dataset framing, or contribution wording unless they are actually the user's own technical content.
+Do not transfer the coordinate construction, optical-flow use, task list, dataset, or claims about existing models into another method. Compose the new paragraph from its supplied specification and evidence. Conventional academic phrases and established terms may be reused when they fit; distinctive source sentences may not be transplanted.

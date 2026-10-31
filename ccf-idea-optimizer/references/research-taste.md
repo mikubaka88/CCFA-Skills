@@ -1,6 +1,6 @@
 # Research Taste
 
-Use this file when the user asks what kind of research is good, elegant, important, or more likely to survive CCF-A review.
+Use this file when the user asks what kind of research is important, explanatory, elegant, or relevant to a research community.
 
 ## Good Research Signals
 
@@ -33,14 +33,18 @@ How will progress and success be measured?
 Use intellectual merit as the core idea test:
 
 - Does the idea advance knowledge, capability, method, data, theory, system design, or evaluation?
-- Are the team, resources, and approach credible?
-- Are the claims grounded in evidence that can be produced?
+- Does its explanation identify a limitation or relationship that existing formulations miss?
+- What observation, construction, or argument would separate it from the alternatives?
+
+Resources and timeline guide execution choices. Keep them distinct from intellectual merit; assess real constraints without treating unfinished work as a weak idea.
 
 Use broader impact only when it is real and venue-relevant. Do not add vague societal claims to compensate for weak technical contribution.
 
 ## Problem Choice
 
 Prefer important problems where the user's current position offers a credible angle. Seek an attackable mechanism or decisive question within a difficult problem; do not automatically shrink its scientific ambition. Review readiness is one consideration, not a substitute for whether the result would advance understanding.
+
+Importance can come from a concrete unmet need, a persistent unexplained phenomenon, a missing capability, or a theoretical barrier. Distinguish an explicit deployment requirement from an assumed preference for immediate applications. Basic research need not invent a customer story; application research should explain the actual task and the consequence of its current failure. Popularity, citation count, and the newest benchmark alone establish neither kind of value.
 
 ## Paper-Story Taste
 
@@ -52,14 +56,14 @@ problem -> gap -> challenge -> insight -> method -> appropriate support -> scien
 
 For an early idea, explain the proposed mechanism and its rationale; completed evidence comes later. Place material assumptions or observed limits where they change interpretation, without requiring a cautionary ending. Drafting can help sharpen missing links; do not repeatedly restart ideation merely because the whole story is not settled.
 
-## Acceptance-Oriented Taste
+## Reader Questions
 
 Venue fit matters alongside scientific value. Use concrete research questions to identify what the reader still needs to understand:
 
 - Why this problem?
 - Why this method?
 - Why now?
-- Why should I believe it?
+- Which observation or argument supports the explanation?
 - Why this venue?
 - What would fail if the central assumption is false?
 

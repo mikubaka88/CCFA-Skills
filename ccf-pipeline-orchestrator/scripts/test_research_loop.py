@@ -56,7 +56,9 @@ elif kind == "malformed":
     metrics.write_text("not json", encoding="utf-8")
 else:
     data = json.loads(Path("data.json").read_text(encoding="utf-8"))
-    metrics.write_text(json.dumps({"score": config["value"] + data["offset"]}), encoding="utf-8")
+    measurements = {"score": config["value"] + data["offset"]}
+    measurements.update(config.get("extra_metrics", {}))
+    metrics.write_text(json.dumps(measurements), encoding="utf-8")
 """
 
 
@@ -136,7 +138,7 @@ class ResearchLoopTests(unittest.TestCase):
         (self.project / "optional.py").write_text("candidate-only file\n", encoding="utf-8")
         bad = LOOP.run(self.workdir, "mechanism-b", "A competing update")["attempt"]
         self.assertFalse(bad["eligible"])
-        with self.assertRaisesRegex(LOOP.LoopError, "frozen min_delta"):
+        with self.assertRaisesRegex(LOOP.LoopError, "frozen selection rule"):
             LOOP.decide(self.workdir, "mechanism-b", "keep", "Wanted this to win")
         LOOP.decide(self.workdir, "mechanism-b", "discard", "The candidate reduces the measured score")
         self.assertEqual((self.project / "candidate.json").read_bytes(), kept_bytes)
@@ -150,6 +152,9 @@ class ResearchLoopTests(unittest.TestCase):
         self.assertEqual(state["recent_decisions"][-1]["id"], "mechanism-b")
         self.assertEqual(state["recent_decisions"][-1]["decision"], "discard")
         self.assertEqual(state["recent_decisions"][-1]["reason"], "The candidate reduces the measured score")
+        self.assertEqual(state["recent_decisions"][-1]["outcome"], "ok")
+        self.assertEqual(state["recent_decisions"][-1]["metrics"], bad["metrics"])
+        self.assertEqual(state["recent_decisions"][-1]["snapshot"], bad["snapshot"])
         self.assertEqual(state["budget"]["attempts_used"], 3)
         self.assertIn("not measured", state["budget"]["meter_scope"])
         self.assertTrue((self.workdir / "attempts" / "mechanism-a" / "stdout.log").read_bytes())
@@ -229,6 +234,42 @@ class ResearchLoopTests(unittest.TestCase):
         LOOP.decide(self.workdir, "new-candidate", "discard", "No scientific value for this route")
         LOOP.decide(self.workdir, "new-candidate", "discard", "Repeat the same completed decision")
         self.assertEqual(len(self.calls()), 2)
+
+    def test_recorded_run_reuse_checks_frozen_inputs_without_reexecution(self):
+        self.baseline()
+        original = (self.project / "evaluator.py").read_bytes()
+        (self.project / "evaluator.py").write_text("# stale evaluator", encoding="utf-8")
+        with self.assertRaisesRegex(LOOP.LoopError, "Frozen evaluator/data changed"):
+            LOOP.run(self.workdir, "baseline")
+        self.assertEqual(len(self.calls()), 1)
+        self.assertEqual(LOOP.status(self.workdir)["budget"]["attempts_used"], 1)
+        (self.project / "evaluator.py").write_bytes(original)
+        self.assertTrue(LOOP.run(self.workdir, "baseline")["already_recorded"])
+        self.assertEqual(len(self.calls()), 1)
+
+    def test_historical_recorded_run_reuse_checks_its_own_evidence(self):
+        original = self.baseline()
+        self.edit("normal", 15)
+        LOOP.run(self.workdir, "better", "Test the revised mechanism")
+        LOOP.decide(self.workdir, "better", "keep", "Measured improvement under the unchanged protocol")
+        metrics = self.workdir / original["metrics"]
+        saved = metrics.read_bytes()
+        metrics.write_text('{"score": 999}', encoding="utf-8")
+        # The current best remains valid, so checking only it would miss this.
+        self.assertEqual(LOOP.status(self.workdir)["integrity"], "ok")
+        with self.assertRaisesRegex(LOOP.LoopError, "Raw metrics evidence changed.*baseline"):
+            LOOP.run(self.workdir, "baseline")
+        with self.assertRaisesRegex(LOOP.LoopError, "Raw metrics evidence changed.*baseline"):
+            LOOP.decide(self.workdir, "baseline", "keep", "Repeat the recorded decision")
+        metrics.write_bytes(saved)
+        LOOP.note(self.workdir, "baseline", "invalid_comparison", "The earlier interpretation is disputed",
+                  "Inspect the original protocol", [original["metrics"]])
+        with self.assertRaisesRegex(LOOP.LoopError, "Recorded evaluation was marked invalid"):
+            LOOP.run(self.workdir, "baseline")
+        with self.assertRaisesRegex(LOOP.LoopError, "Recorded evaluation was marked invalid"):
+            LOOP.decide(self.workdir, "baseline", "keep", "Repeat the recorded decision")
+        self.assertEqual(len(self.calls()), 2)
+        self.assertEqual(LOOP.status(self.workdir)["budget"]["attempts_used"], 2)
 
     def test_process_interruption_has_explicit_recovery_without_reexecution(self):
         self.contract["budgets"].update(max_seconds=0.5, timeout_seconds=0.15)
@@ -333,6 +374,44 @@ class ResearchLoopTests(unittest.TestCase):
         self.assertEqual((self.project / "candidate.json").read_bytes(), self.original)
         self.assertEqual(LOOP.status(self.workdir)["budget"]["execution_seconds_remaining"], 0)
 
+    @unittest.skipUnless(os.name == "nt", "Windows process-tree termination regression")
+    def test_timeout_with_failed_tree_termination_requires_explicit_recovery(self):
+        self.baseline()
+        self.edit("hold", 15)
+        submitted = (self.project / "candidate.json").read_bytes()
+        children = []
+        original_stop = LOOP._stop
+
+        def stop(process):
+            children.append(process)
+            self.addCleanup(lambda: process.kill() if process.poll() is None else None)
+            return original_stop(process)
+
+        # The real foreground evaluator times out; the injected OS tool failure
+        # cannot confirm that its workers stopped even after the parent is killed.
+        failed_taskkill = subprocess.CompletedProcess(["taskkill"], 5, b"", b"access denied")
+        with patch.object(LOOP.subprocess, "run", return_value=failed_taskkill), patch.object(LOOP, "_stop", side_effect=stop):
+            with self.assertRaisesRegex(LOOP.LoopError, "process-tree termination is unconfirmed"):
+                LOOP.run(self.workdir, "tree-unconfirmed", "Exercise failed process-tree termination")
+        self.assertEqual(len(children), 1)
+        self.assertIsNotNone(children[0].poll())
+        self.assertEqual((self.project / "candidate.json").read_bytes(), submitted)
+        state = LOOP.status(self.workdir)
+        self.assertEqual(state["pending"]["status"], "running")
+        self.assertIn("inspect process", state["next_action"])
+        # A second integrity issue must not hide the still-needed process check.
+        (self.project / "evaluator.py").write_text("# external evaluator change", encoding="utf-8")
+        state = LOOP.status(self.workdir)
+        self.assertIn("inspect process", state["next_action"])
+        self.assertIn("resolve recorded protocol", state["next_action"])
+        (self.project / "evaluator.py").write_text(EVALUATOR, encoding="utf-8")
+        recovered = LOOP.recover(self.workdir, "tree-unconfirmed", "Confirmed the controlled evaluator and all workers stopped", True)["attempt"]
+        self.assertEqual(recovered["status"], "discarded")
+        self.assertTrue(recovered["duration_unknown"])
+        self.assertEqual((self.project / "candidate.json").read_bytes(), self.original)
+        self.assertEqual(LOOP.status(self.workdir)["budget"]["execution_seconds_remaining"], 0)
+        self.assertEqual(self.calls(), ["normal", "hold"])
+
     def test_threshold_direction_budget_and_invalid_contracts(self):
         self.baseline()
         self.edit("normal", 10.5)
@@ -409,6 +488,71 @@ class ResearchLoopTests(unittest.TestCase):
         metrics_path.write_bytes(actual)
         self.assertEqual(LOOP.decide(self.workdir, "good-metric", "keep", "Original raw evidence restored")["attempt"]["status"], "kept")
 
+    def test_retained_baseline_evidence_is_required_for_run_and_keep(self):
+        baseline = self.baseline()
+        metrics_path = self.workdir / baseline["metrics"]
+        original = metrics_path.read_bytes()
+        self.edit("normal", 20)
+        metrics_path.write_text('{"score": 999}', encoding="utf-8")
+        with self.assertRaisesRegex(LOOP.LoopError, "Raw metrics evidence changed.*baseline"):
+            LOOP.run(self.workdir, "blocked-comparison", "A comparison needs the retained baseline evidence")
+        self.assertEqual(self.calls(), ["normal"])
+        self.assertEqual(LOOP.status(self.workdir)["budget"]["attempts_used"], 1)
+        self.assertIn("Raw metrics evidence changed", LOOP.status(self.workdir)["integrity"])
+        metrics_path.write_bytes(original)
+        LOOP.run(self.workdir, "candidate", "Test a measured improvement")
+        metrics_path.unlink()
+        with self.assertRaisesRegex(LOOP.LoopError, "Raw metrics evidence changed.*baseline"):
+            LOOP.decide(self.workdir, "candidate", "keep", "Both sides of the comparison need evidence")
+        self.assertEqual(LOOP.status(self.workdir)["best"]["id"], "baseline")
+        metrics_path.write_bytes(original)
+        self.assertEqual(LOOP.decide(self.workdir, "candidate", "keep", "Original comparison evidence restored")["attempt"]["status"], "kept")
+
+    def test_evaluated_transaction_recovery_preserves_known_cost_and_evidence(self):
+        self.baseline()
+        self.edit("normal", 20)
+        original_write = LOOP._write_json
+        failed = False
+
+        def fail_after_run_finished(path, value):
+            nonlocal failed
+            attempt = value.get("attempts", {}).get("evaluated", {})
+            if path.name == "state.json" and attempt.get("status") == "evaluated" and not failed:
+                failed = True
+                raise OSError("Injected cache failure after completed evaluation")
+            return original_write(path, value)
+
+        with patch.object(LOOP, "_write_json", side_effect=fail_after_run_finished):
+            with self.assertRaisesRegex(OSError, "completed evaluation"):
+                LOOP.run(self.workdir, "evaluated", "Keep completed execution distinct from an unfinished decision")
+        before = LOOP.status(self.workdir)
+        self.assertEqual(before["pending"]["status"], "evaluated")
+        self.assertIn("recover the unfinished transaction", before["next_action"])
+        charged = before["budget"]["execution_seconds_charged"]
+        result = LOOP.recover(self.workdir, "evaluated", "Confirmed the evaluator exited and inspected the complete metrics", True)["attempt"]
+        self.assertEqual(result["status"], "discarded")
+        self.assertEqual(result["outcome"], "ok")
+        self.assertEqual(result["metric"], 20)
+        self.assertTrue((self.workdir / result["metrics"]).exists())
+        self.assertEqual(LOOP.status(self.workdir)["budget"]["execution_seconds_charged"], charged)
+        self.assertFalse(LOOP.status(self.workdir)["budget"]["duration_unknown"])
+        self.assertEqual((self.project / "candidate.json").read_bytes(), self.original)
+        self.assertEqual(self.calls(), ["normal", "normal"])
+
+    def test_repeated_valid_candidate_records_prior_evidence_without_blocking_replication(self):
+        self.baseline()
+        self.edit("normal", 9)
+        first = LOOP.run(self.workdir, "negative", "Test an alternative mechanism")["attempt"]
+        self.assertEqual(first["previous_evaluations"], [])
+        LOOP.decide(self.workdir, "negative", "discard", "The valid measurement does not improve the baseline")
+        self.edit("normal", 9)
+        repeat = LOOP.run(self.workdir, "negative-repeat", "Repeat the fixed protocol to assess measurement variability")["attempt"]
+        self.assertEqual(repeat["previous_evaluations"], ["negative"])
+        self.assertFalse(repeat["eligible"])
+        self.assertEqual(repeat["outcome"], "ok")
+        self.assertEqual(LOOP.status(self.workdir)["budget"]["attempts_used"], 3)
+        self.assertEqual(len(self.calls()), 3)
+
     def test_large_integer_metric_preserves_single_count_improvement(self):
         self.edit("normal", 2**53)
         other = self.project / "ccfa-workfiles" / "experiments" / "integer-count"
@@ -453,6 +597,459 @@ class ResearchLoopTests(unittest.TestCase):
             self.assertIn("Another process owns", response.stdout)
             self.assertEqual(LOOP.status(self.workdir)["best"]["id"], "baseline")
         self.assertEqual(len(self.calls()), 1)
+
+
+
+    def metrics_candidate(self, value=10, **extra):
+        (self.project / "candidate.json").write_text(json.dumps({
+            "kind": "normal", "value": value, "extra_metrics": extra}), encoding="utf-8")
+
+    def test_metric_guards_block_scalar_gaming_but_preserve_negative_result(self):
+        self.contract["metric_guards"] = [{"name": "accuracy", "min": .8}]
+        self.metrics_candidate(10, accuracy=.9)
+        work = self.project / "guarded"
+        self.init(work)
+        LOOP.run(work, "baseline")
+        self.metrics_candidate(20, accuracy=.5)
+        attempt = LOOP.run(work, "constant", "Constant prediction improves the scalar")["attempt"]
+        self.assertEqual(attempt["outcome"], "ok")
+        self.assertFalse(attempt["eligible"])
+        self.assertEqual(attempt["guard_failures"], ["accuracy"])
+        with self.assertRaises(LOOP.LoopError):
+            LOOP.decide(work, "constant", "keep", "Scalar is larger")
+        LOOP.note(work, "constant", "negative_result", "Accuracy falls below the fixed floor",
+                  "Restore useful predictions", [attempt["metrics"]])
+        LOOP.decide(work, "constant", "discard", "Fails the accuracy requirement")
+        self.assertEqual(LOOP.status(work)["best"]["id"], "baseline")
+
+    def test_missing_guard_measurement_cannot_establish_baseline(self):
+        self.contract["metric_guards"] = [{"name": "accuracy", "min": .8}]
+        work = self.project / "missing"
+        self.init(work)
+        attempt = LOOP.run(work, "baseline")["attempt"]
+        self.assertEqual(attempt["outcome"], "invalid_metric")
+        self.assertIsNone(LOOP.status(work)["best"])
+
+    def test_tie_breaker_allows_simplification_without_cumulative_quality_drift(self):
+        self.contract["tie_breaker"] = {
+            "name": "cost", "direction": "min", "min_delta": 0, "max_primary_loss": 1}
+        self.metrics_candidate(10, cost=10)
+        work = self.project / "cost-aware"
+        self.init(work)
+        LOOP.run(work, "baseline")
+        self.metrics_candidate(10, cost=8)
+        self.assertTrue(LOOP.run(work, "simpler", "Same quality with less cost")["attempt"]["eligible"])
+        LOOP.decide(work, "simpler", "keep", "Quality retained and cost reduced")
+        self.metrics_candidate(9, cost=6)
+        self.assertTrue(LOOP.run(work, "trade", "Use the agreed quality tolerance")["attempt"]["eligible"])
+        LOOP.decide(work, "trade", "keep", "Within the frozen tolerance")
+        self.metrics_candidate(8, cost=4)
+        attempt = LOOP.run(work, "drift", "A further one-point loss")["attempt"]
+        self.assertFalse(attempt["eligible"])
+        with self.assertRaises(LOOP.LoopError):
+            LOOP.decide(work, "drift", "keep", "Only one lower than last time")
+
+    def test_optional_selection_contract_rejects_ambiguous_bounds(self):
+        import copy
+        bad = [
+            {"metric_guards": [{"name": "accuracy", "min": True}]},
+            {"metric_guards": [{"name": "accuracy", "min": 2, "max": 1}]},
+            {"metric_guards": [{"name": "accuracy", "min": 0}, {"name": "accuracy", "max": 1}]},
+            {"tie_breaker": {"name": "score", "direction": "min", "min_delta": 0, "max_primary_loss": 0}},
+            {"tie_breaker": {"name": "cost", "direction": "min", "min_delta": 0, "max_primary_loss": -1}},
+        ]
+        for extension in bad:
+            with self.subTest(extension=extension), self.assertRaises(LOOP.LoopError):
+                LOOP._contract(dict(copy.deepcopy(self.contract), **extension))
+
+    def test_observation_survives_resume_without_rewriting_measurement_or_budget(self):
+        self.baseline()
+        self.edit("normal", 9)
+        attempt = LOOP.run(self.workdir, "sparse", "稀疏记忆 removes needed history")["attempt"]
+        LOOP.decide(self.workdir, "sparse", "discard", "Prediction did not improve")
+        before = LOOP.status(self.workdir)
+        raw = (self.workdir / attempt["metrics"]).read_bytes()
+        LOOP.note(self.workdir, "sparse", "negative_result", "稀疏记忆 loses useful context",
+                  "Test selective retrieval", [attempt["metrics"]])
+        result = LOOP.context(self.workdir, "稀疏记忆", 1)
+        self.assertEqual(result["related_attempts"][0]["id"], "sparse")
+        self.assertEqual(result["related_attempts"][0]["observation"]["origin"], "host_interpretation")
+        self.assertEqual(result["related_attempts"][0]["evidence_issues"], [])
+        self.assertEqual(result["budget"], before["budget"])
+        self.assertEqual((self.workdir / attempt["metrics"]).read_bytes(), raw)
+        self.assertEqual(len(self.calls()), 2)
+        events_before = (self.workdir / "events.jsonl").read_bytes()
+        self.assertTrue(LOOP.note(self.workdir, "sparse", "negative_result",
+                        "稀疏记忆 loses useful context", "Test selective retrieval",
+                        [attempt["metrics"]])["already_recorded"])
+        self.assertEqual((self.workdir / "events.jsonl").read_bytes(), events_before)
+        cp = subprocess.run([sys.executable, str(SCRIPT), "context", "--workdir",
+                             str(self.workdir), "--query", "稀疏记忆", "--limit", "1"],
+                            capture_output=True, text=True, encoding="utf-8")
+        self.assertEqual(cp.returncode, 0, cp.stdout + cp.stderr)
+        self.assertEqual(json.loads(cp.stdout)["related_attempts"][0]["metric"], 9)
+
+    def test_failed_execution_is_not_negative_science_and_evidence_must_exist(self):
+        self.baseline()
+        self.edit("crash")
+        attempt = LOOP.run(self.workdir, "broken", "A broken implementation")["attempt"]
+        with self.assertRaisesRegex(LOOP.LoopError, "not a scientific result"):
+            LOOP.note(self.workdir, "broken", "negative_result", "Hypothesis fails",
+                      "Change theory", [attempt["stderr"]])
+        with self.assertRaises(LOOP.LoopError):
+            LOOP.note(self.workdir, "broken", "implementation_error", "Exit 7",
+                      "Fix implementation", ["../unmanaged.txt"])
+        LOOP.note(self.workdir, "broken", "implementation_error", "Exit 7",
+                  "Fix implementation", [attempt["stderr"]])
+        (self.workdir / attempt["stderr"]).write_text("changed later", encoding="utf-8")
+        result = LOOP.context(self.workdir, "broken")
+        self.assertTrue(result["related_attempts"][0]["evidence_issues"])
+
+    def test_invalid_baseline_interpretation_prevents_further_comparisons(self):
+        attempt = self.baseline()
+        LOOP.note(self.workdir, "baseline", "invalid_comparison", "Observed split mismatch",
+                  "Establish a corrected protocol", [attempt["metrics"]])
+        self.assertIn("marked invalid", LOOP.status(self.workdir)["integrity"])
+        self.edit("normal", 12)
+        with self.assertRaisesRegex(LOOP.LoopError, "marked invalid"):
+            LOOP.run(self.workdir, "candidate", "Continue with invalid baseline")
+        self.assertEqual(len(self.calls()), 1)
+
+
+
+    def test_invalidation_requires_explicit_correction_and_includes_environment(self):
+        attempt = self.baseline()
+        invalid = LOOP.note(self.workdir, "baseline", "environment_error",
+                            "The environment record needs reinspection", "Inspect configuration",
+                            [attempt["metrics"]])["attempt"]["invalidated_by"]
+        self.assertIn("marked invalid", LOOP.status(self.workdir)["integrity"])
+        LOOP.note(self.workdir, "baseline", "supports_prediction", "A positive interpretation",
+                  "Continue", [attempt["metrics"]])
+        self.assertIn("marked invalid", LOOP.status(self.workdir)["integrity"])
+        with self.assertRaises(LOOP.LoopError):
+            LOOP.note(self.workdir, "baseline", "supports_prediction",
+                      "Correction after reinspection", "Continue", [attempt["metrics"]], corrects=invalid + 1)
+        LOOP.note(self.workdir, "baseline", "supports_prediction",
+                  "Reinspection found the earlier environment classification mistaken; the recorded result applies",
+                  "Continue under the unchanged protocol", [attempt["metrics"]], corrects=invalid)
+        self.assertEqual(LOOP.status(self.workdir)["integrity"], "ok")
+        self.assertEqual(len(self.calls()), 1)
+
+    def test_historical_primary_anchor_evidence_is_checked(self):
+        self.contract["tie_breaker"] = {
+            "name": "cost", "direction": "min", "min_delta": 0, "max_primary_loss": 1}
+        self.metrics_candidate(10, cost=10)
+        work = self.project / "anchor-check"
+        self.init(work)
+        original = LOOP.run(work, "baseline")["attempt"]
+        self.metrics_candidate(9, cost=8)
+        LOOP.run(work, "cheaper", "Use the frozen tolerance")
+        LOOP.decide(work, "cheaper", "keep", "Cost improved within allowance")
+        (work / original["metrics"]).write_text('{"score":99,"cost":10}', encoding="utf-8")
+        self.metrics_candidate(9, cost=7)
+        with self.assertRaisesRegex(LOOP.LoopError, "Raw metrics"):
+            LOOP.run(work, "next", "Another cheaper candidate")
+        self.assertEqual(len(self.calls()), 2)
+
+    def test_context_uses_one_event_snapshot(self):
+        import copy
+        self.baseline()
+        original = LOOP._load(self.workdir)
+        later = copy.deepcopy(original)
+        later["seq"] += 1
+        later["attempt_count"] += 1
+        later["attempts"]["later"] = dict(later["attempts"]["baseline"], id="later")
+        with patch.object(LOOP, "_load", side_effect=[original, later]) as load:
+            result = LOOP.context(self.workdir, limit=20)
+        self.assertEqual(load.call_count, 1)
+        self.assertEqual(result["event_seq"], original["seq"])
+        self.assertEqual(result["budget"]["attempts_used"], 1)
+        self.assertEqual([item["id"] for item in result["related_attempts"]], ["baseline"])
+
+    def test_explicit_incumbent_replication_records_noise_without_promotion(self):
+        evaluator = EVALUATOR.replace('config["value"] + data["offset"]', 'config["value"] + data["offset"] + time.monotonic()')
+        (self.project / "evaluator.py").write_text(evaluator, encoding="utf-8")
+        work = self.project / "replication"
+        self.init(work)
+        original = LOOP.run(work, "baseline")["attempt"]
+        repeated = LOOP.replicate(work, "repeat", "best", "Measure the incumbent again under the fixed protocol")["attempt"]
+        self.assertEqual(repeated["status"], "reported")
+        self.assertEqual(repeated["kind"], "replication")
+        self.assertEqual(repeated["candidate_id"], original["candidate_id"])
+        self.assertEqual(repeated["measurement_parent"], "baseline")
+        self.assertGreater(repeated["metric"], original["metric"])
+        self.assertEqual(LOOP.status(work)["best"]["metric"], original["metric"])
+        self.assertEqual(LOOP.status(work)["budget"]["attempts_used"], 2)
+        raw = json.loads((work / repeated["metrics"]).read_text(encoding="utf-8"))
+        self.assertEqual(raw["score"], repeated["metric"])
+        with self.assertRaisesRegex(LOOP.LoopError, "report-only"):
+            LOOP.decide(work, "repeat", "keep", "A single high sample must not replace the incumbent")
+        with self.assertRaisesRegex(LOOP.LoopError, "unchanged"):
+            LOOP.run(work, "ordinary-repeat", "No explicit replication")
+        with self.assertRaisesRegex(LOOP.LoopError, "reason"):
+            LOOP.replicate(work, "no-reason", "baseline", "")
+
+    def test_replication_of_prior_discarded_candidate_restores_incumbent(self):
+        self.baseline()
+        self.edit("normal", 9)
+        measured = LOOP.run(self.workdir, "old", "Alternative mechanism")["attempt"]
+        LOOP.decide(self.workdir, "old", "discard", "Negative measured result")
+        with self.assertRaisesRegex(LOOP.LoopError, "identical"):
+            LOOP.replicate(self.workdir, "wrong-bytes", "old", "Repeat prior measurement")
+        self.edit("normal", 9)
+        repeated = LOOP.replicate(self.workdir, "old-repeat", "old", "Check variability of the negative result")["attempt"]
+        self.assertEqual(repeated["candidate_id"], measured["candidate_id"])
+        self.assertEqual(repeated["status"], "reported")
+        self.assertEqual((self.project / "candidate.json").read_bytes(), self.original)
+        self.assertEqual(LOOP.status(self.workdir)["best"]["id"], "baseline")
+
+    def test_literal_dependency_preflight_and_explicit_protected_files(self):
+        (self.project / "helper.json").write_text('{"offset":0}', encoding="utf-8")
+        evaluator = EVALUATOR.replace('data["offset"]', 'json.loads(Path("helper.json").read_text(encoding="utf-8"))["offset"]')
+        (self.project / "evaluator.py").write_text(evaluator, encoding="utf-8")
+        with self.assertRaisesRegex(LOOP.LoopError, "helper.json"):
+            self.init(self.project / "missing-input")
+        self.contract["protected_files"] = ["helper.json"]
+        work = self.project / "closed-input"
+        self.init(work)
+        LOOP.run(work, "baseline")
+        (self.project / "helper.json").write_text('{"offset":100}', encoding="utf-8")
+        self.edit("normal", 11)
+        with self.assertRaisesRegex(LOOP.LoopError, "Frozen evaluator/data"):
+            LOOP.run(work, "changed-helper", "One-point candidate improvement")
+        self.assertEqual(len(self.calls()), 1)
+
+    def test_local_import_preflight_reports_and_can_be_declared(self):
+        (self.project / "local_helper.py").write_text("OFFSET=0\n", encoding="utf-8")
+        evaluator = "from local_helper import OFFSET\n" + EVALUATOR
+        (self.project / "evaluator.py").write_text(evaluator, encoding="utf-8")
+        with self.assertRaisesRegex(LOOP.LoopError, "local_helper.py"):
+            self.init(self.project / "missing-import")
+        self.contract["dependency_preflight"] = "report"
+        report_work = self.project / "reported-import"
+        result = self.init(report_work)
+        self.assertEqual(result["declared_integrity"]["dependency_preflight"]["unlisted_local_inputs"][0]["path"], "local_helper.py")
+        self.contract["protected_files"] = ["local_helper.py"]
+        self.contract["dependency_preflight"] = "strict"
+        self.init(self.project / "declared-import")
+
+    def test_selected_environment_identity_is_checked(self):
+        self.contract["environment"] = {"variables": ["CCFA_TEST_COMPARE_ID"]}
+        work = self.project / "environment-check"
+        with patch.dict(os.environ, {"CCFA_TEST_COMPARE_ID": "first"}):
+            self.init(work)
+            LOOP.run(work, "baseline")
+        with patch.dict(os.environ, {"CCFA_TEST_COMPARE_ID": "changed"}):
+            self.assertIn("environment identity changed", LOOP.status(work)["integrity"])
+            with self.assertRaisesRegex(LOOP.LoopError, "environment identity changed"):
+                LOOP.replicate(work, "repeat", "best", "Environment changed")
+        state = LOOP._load(work)
+        self.assertNotEqual(state["environment_identity"]["variables"]["CCFA_TEST_COMPARE_ID"], "first")
+
+    def test_fast_status_and_context_skip_hashes_but_run_still_checks(self):
+        self.baseline()
+        with patch.object(LOOP, "_manifest", side_effect=AssertionError("data should not be rehashed")), \
+                patch.object(LOOP, "_metric_evidence", side_effect=AssertionError("metrics should not be rehashed")):
+            status = LOOP.status(self.workdir, fast=True)
+            recall = LOOP.context(self.workdir, limit=1, fast=True)
+        self.assertEqual(status["integrity"], "not_rechecked")
+        self.assertIn("checked_at", status["last_verified"])
+        self.assertFalse(recall["related_attempts"][0]["evidence_rechecked"])
+        (self.project / "data.json").write_text('{"offset":999}', encoding="utf-8")
+        self.assertEqual(LOOP.status(self.workdir, fast=True)["integrity"], "not_rechecked")
+        with self.assertRaisesRegex(LOOP.LoopError, "Frozen evaluator/data"):
+            LOOP.replicate(self.workdir, "stale-fast", "best", "A fast read does not authorize execution")
+        cp = subprocess.run([sys.executable, str(SCRIPT), "status", "--workdir", str(self.workdir), "--fast"], capture_output=True, text=True, encoding="utf-8", timeout=5)
+        self.assertEqual(cp.returncode, 0)
+        self.assertFalse(json.loads(cp.stdout)["verification"]["rechecked"])
+
+    def shared(self, attempts=3, seconds=5):
+        record = self.project / "ccfa-workfiles" / "campaign" / "source" / "budget.json"
+        LOOP.CAMPAIGN.initialize(record, self.project, "shared-research", attempts, seconds)
+        self.contract["campaign"] = {"id": "shared-research", "record": record.relative_to(self.project).as_posix()}
+        return record
+
+    def test_shared_attempt_budget_survives_contract_and_branch_changes(self):
+        self.shared(attempts=1)
+        first, second = self.project / "branch-one", self.project / "branch-two"
+        self.init(first)
+        LOOP.run(first, "baseline")
+        self.contract["scientific_value"] = "A changed protocol cannot reset campaign allowance"
+        self.init(second)
+        with self.assertRaisesRegex(LOOP.LoopError, "Shared campaign.*exhausted"):
+            LOOP.run(second, "baseline")
+        self.assertFalse((second / "attempts" / "baseline").exists())
+        result = LOOP.status(second)["campaign_budget"]
+        self.assertEqual(result["attempts_used"], 1)
+        self.assertIsNone(result["model_tokens"])
+
+    def test_shared_reservations_are_atomic_and_pending_time_is_not_reused(self):
+        record = self.shared(attempts=3, seconds=2)
+        work = self.project / "branch"
+        self.init(work)
+        binding = (record, "shared-research", self.project)
+        with LOOP.CAMPAIGN._lock(record):
+            with self.assertRaises(LOOP.CAMPAIGN.CampaignError):
+                LOOP.CAMPAIGN.reserve(*binding, "other:pending", 2, work, "pending")
+        LOOP.CAMPAIGN.reserve(*binding, "other:pending", 2, work, "pending")
+        with self.assertRaisesRegex(LOOP.LoopError, "Shared campaign.*exhausted"):
+            LOOP.run(work, "baseline")
+        LOOP.CAMPAIGN.settle(*binding, "other:pending", 0.0)
+        LOOP.run(work, "baseline")
+        result = LOOP.status(work)["campaign_budget"]
+        self.assertEqual(result["attempts_used"], 2)
+        self.assertEqual(result["execution_seconds_reserved"], 0)
+        self.assertGreater(result["execution_seconds_charged"], 0)
+        LOOP.run(work, "baseline")
+        self.assertEqual(LOOP.status(work)["campaign_budget"]["attempts_used"], 2)
+        with self.assertRaisesRegex(LOOP.CAMPAIGN.CampaignError, "already exists"):
+            LOOP.CAMPAIGN.initialize(record, self.project, "shared-research", 999, 999)
+
+    def test_shared_unknown_duration_closes_remaining_campaign_without_replay(self):
+        record = self.shared(attempts=5, seconds=10)
+        work = self.project / "interrupted-shared"
+        self.init(work)
+        LOOP.run(work, "baseline")
+        self.edit("wait", 20)
+        controller = subprocess.Popen([sys.executable, str(SCRIPT), "run", "--workdir", str(work), "--id", "interrupted", "--hypothesis", "Interrupted shared run"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        self.addCleanup(lambda: controller.kill() if controller.poll() is None else None)
+        deadline = time.monotonic() + 5
+        while not (self.project / "started.flag").exists() and time.monotonic() < deadline:
+            time.sleep(0.01)
+        self.assertTrue((self.project / "started.flag").exists())
+        controller.kill(); controller.communicate(timeout=5)
+        time.sleep(0.6)
+        before = len(self.calls())
+        LOOP.recover(work, "interrupted", "Confirmed foreground process and workers exited", True)
+        result = LOOP.status(work)["campaign_budget"]
+        self.assertTrue(result["duration_unknown"])
+        self.assertEqual(result["execution_seconds_remaining"], 0)
+        self.assertEqual(len(self.calls()), before)
+        other = self.project / "after-interruption"
+        self.init(other)
+        with self.assertRaisesRegex(LOOP.LoopError, "Shared campaign.*exhausted"):
+            LOOP.run(other, "baseline")
+
+    def test_orphan_reservation_recovery_preserves_inputs_and_never_replays(self):
+        record = self.shared(attempts=3, seconds=5)
+        work = self.project / "orphan-reservation"
+        self.init(work)
+        key = LOOP._reservation_key(self.project, work, "lost-before-event")
+        LOOP.CAMPAIGN.reserve(record, "shared-research", self.project, key, 1, work, "lost-before-event")
+        with self.assertRaisesRegex(LOOP.LoopError, "already reserved"):
+            LOOP.run(work, "lost-before-event")
+        with self.assertRaisesRegex(LOOP.LoopError, "confirm-stopped"):
+            LOOP.recover_reservation(work, "lost-before-event", "Inspect workers first")
+        result = LOOP.recover_reservation(work, "lost-before-event", "Checked that no related process or worker remains", True)
+        self.assertFalse(result["replayed"])
+        self.assertTrue(result["campaign_budget"]["duration_unknown"])
+        self.assertEqual(result["campaign_budget"]["execution_seconds_remaining"], 0)
+        self.assertEqual(self.calls(), [])
+        self.assertEqual((self.project / "candidate.json").read_bytes(), self.original)
+
+    def test_shared_settlement_recovers_completed_event_after_cache_failure(self):
+        self.shared(attempts=3)
+        work = self.project / "shared-cache-recovery"
+        self.init(work)
+        LOOP.run(work, "baseline")
+        self.edit("normal", 20)
+        original_write = LOOP._write_json
+        failed = False
+
+        def fail_cache(path, value):
+            nonlocal failed
+            attempt = value.get("attempts", {}).get("complete", {})
+            if path.name == "state.json" and attempt.get("status") == "evaluated" and not failed:
+                failed = True
+                raise OSError("Injected shared completed-event cache failure")
+            return original_write(path, value)
+
+        with patch.object(LOOP, "_write_json", side_effect=fail_cache):
+            with self.assertRaisesRegex(OSError, "completed-event"):
+                LOOP.run(work, "complete", "Known measured duration survives cache failure")
+        before = len(self.calls())
+        recovered = LOOP.recover(work, "complete", "Confirmed completed measurement and stopped workers", True)["attempt"]
+        budget = LOOP.status(work)["campaign_budget"]
+        self.assertEqual(recovered["outcome"], "ok")
+        self.assertFalse(budget["duration_unknown"])
+        self.assertEqual(budget["execution_seconds_reserved"], 0)
+        self.assertEqual(len(self.calls()), before)
+
+    def selection_and_final(self):
+        self.contract["evaluation"] = {"split_role": "selection", "task_set_id": "selection-v1"}
+        selection = self.project / "selection-stage"
+        self.init(selection)
+        selected = LOOP.run(selection, "selected")["attempt"]
+        (self.project / "final-data.json").write_text('{"offset":1}', encoding="utf-8")
+        (self.project / "final-evaluator.py").write_text(EVALUATOR.replace('Path("data.json")', 'Path("final-data.json")'), encoding="utf-8")
+        self.contract["data_files"] = ["final-data.json"]
+        self.contract["evaluator_files"] = ["final-evaluator.py"]
+        self.contract["command"] = [sys.executable, "final-evaluator.py", "{metrics}"]
+        self.contract["evaluation"] = {"split_role": "final", "task_set_id": "final-v1",
+                                       "frozen_candidate": {"workdir": selection.relative_to(self.project).as_posix(), "candidate_id": selected["candidate_id"]}}
+        final = self.project / "final-stage"
+        self.init(final)
+        return selection, final, selected
+
+    def test_final_only_reports_frozen_selection_candidate_and_closes(self):
+        selection, final, selected = self.selection_and_final()
+        result = LOOP.run(final, "held-out")["attempt"]
+        self.assertEqual(result["kind"], "final")
+        self.assertEqual(result["status"], "reported")
+        self.assertFalse(result["eligible"])
+        status = LOOP.status(final)
+        self.assertIsNone(status["best"])
+        self.assertEqual(status["finalized"], "held-out")
+        self.assertEqual(result["evaluation"]["frozen_candidate"]["candidate_id"], selected["candidate_id"])
+        for action in ("keep", "discard"):
+            with self.assertRaisesRegex(LOOP.LoopError, "report-only"):
+                LOOP.decide(final, "held-out", action, "Final cannot be used for selection")
+        with self.assertRaisesRegex(LOOP.LoopError, "already completed"):
+            LOOP.run(final, "again", "Do not tune on the final score")
+        self.assertTrue((final / result["metrics"]).is_file())
+
+    def test_final_rejects_changed_candidate_and_reused_task_identity(self):
+        selection, final, _ = self.selection_and_final()
+        self.edit("normal", 99)
+        with self.assertRaisesRegex(LOOP.LoopError, "frozen"):
+            LOOP.run(final, "adapted", "Must not tune on held-out tasks")
+        self.edit("normal", 10)
+        self.contract["evaluation"]["task_set_id"] = "selection-v1"
+        with self.assertRaisesRegex(LOOP.LoopError, "distinct task-set"):
+            self.init(self.project / "not-held-out")
+
+    def test_final_keeps_its_explicit_frozen_identity_if_selection_later_advances(self):
+        selection, final, frozen = self.selection_and_final()
+        self.edit("normal", 20)
+        LOOP.run(selection, "later-selection", "A later selection comparison")
+        LOOP.decide(selection, "later-selection", "keep", "Selection measured the later candidate")
+        self.edit("normal", 10)
+        reported = LOOP.run(final, "frozen-report")["attempt"]
+        self.assertEqual(reported["candidate_id"], frozen["candidate_id"])
+        self.assertEqual(reported["status"], "reported")
+
+    def test_campaign_rejects_final_to_selection_relabel_without_new_identity(self):
+        self.shared(attempts=5)
+        _, final, _ = self.selection_and_final()
+        LOOP.run(final, "report")
+        self.contract["evaluation"] = {"split_role": "selection", "task_set_id": "final-v1"}
+        with self.assertRaisesRegex(LOOP.LoopError, "final task set cannot be reused"):
+            self.init(self.project / "leaking-selection")
+        self.contract["evaluation"]["task_set_id"] = "renamed-final-v1"
+        with self.assertRaisesRegex(LOOP.LoopError, "Reusing final task content"):
+            self.init(self.project / "renamed-leaking-selection")
+        self.contract["evaluation"]["reused_final"] = {"task_set_id": "final-v1", "reason": "User explicitly chooses to reuse these tasks for development; they are no longer held out"}
+        self.init(self.project / "explicitly-reused-final")
+
+    def test_final_cannot_be_claimed_by_renaming_identical_task_bytes(self):
+        self.contract["evaluation"] = {"split_role": "selection", "task_set_id": "selection-v1"}
+        selection = self.project / "same-task-selection"
+        self.init(selection)
+        selected = LOOP.run(selection, "selected")["attempt"]
+        self.contract["evaluation"] = {"split_role": "final", "task_set_id": "different-label",
+                                       "frozen_candidate": {"workdir": selection.name, "candidate_id": selected["candidate_id"]}}
+        with self.assertRaisesRegex(LOOP.LoopError, "content matches selection"):
+            self.init(self.project / "not-held-out-by-label")
 
 
 if __name__ == "__main__":

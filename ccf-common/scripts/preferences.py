@@ -36,6 +36,9 @@ DEFAULTS = {
         "detailed_reports": "off",
         "alternative_routes": "off",
         "maintenance_evolution": "off",
+        "reference_style_search": "on",
+        "research_branching": "off",
+        "research_policy_evolution": "off",
     },
     "ui": {"language": "zh-CN", "theme": "system"},
 }

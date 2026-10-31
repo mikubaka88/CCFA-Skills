@@ -1,40 +1,31 @@
 # PolarDB-MP Style Card
 
-Venue/year: SIGMOD 2024 family.
-Source: ACM Best Paper Awards source record `acm-best-paper-awards`; verify the exact paper page before public award-status claims.
+Venue/year: SIGMOD 2024.
+Source: shared registry record `sigmod-2024-polardb-mp`; direct original locations below.
 Use when: database systems, cloud-native DBMS, distributed transactions, shared storage/memory, storage-compute disaggregation, or architecture papers.
+
+Award context: SIGMOD 2024 Industry Best Paper, not a research-track award.
+
+Inspected writing: Author-hosted paper `https://cighao.com/papers/polardb_mp.pdf`, Abstract and Section 1; DOI `https://doi.org/10.1145/3626246.3653377`.
+
+This card navigates selected original passages. The source observations below are distinct from the adaptation advice; read the relevant original when using it.
 
 ## Story Pattern
 
-The paper type is a systems/database contribution: start from a concrete scalability or operational bottleneck, show why existing architectures are constrained by that bottleneck, then introduce a design that changes the system boundary. The story should make the workload, deployment assumption, and architecture tradeoff visible before implementation details.
+**Source observation:** The abstract compares database architecture choices through their bottlenecks, then explains why shared memory and storage allow transaction processing to stay on one node. It distinguishes the roles of Transaction Fusion, Buffer Fusion, and Lock Fusion. Section 1 connects the multi-primary design to write-intensive operation and failover needs.
 
 ## Abstract Moves
 
-- Name the real system bottleneck before naming the system.
-- State the architecture change as a design principle, not only a component list.
-- Mention the workload or deployment setting that makes the problem matter.
-- Summarize evidence as throughput, latency, scalability, isolation, fault tolerance, or operational cost, using only user-provided numbers.
+**Writing observation in the inspected passage:** The subsystem names follow their roles in a transaction path. The contribution can be understood through the changed coordination requirements, not through a generic claim that the system is more reliable.
 
-## Introduction Moves
+## Reusable Techniques
 
-- Move from cloud workload pressure to a precise database-system limitation.
-- Explain why simpler fixes such as caching, sharding, or tuning are insufficient.
-- Introduce the key architectural insight early.
-- State contributions as design, implementation, and evaluation claims.
+**Adaptation advice for matching work:**
 
-## Method/System Moves
-
-- Use a system diagram with data/control paths, consistency boundaries, and failure assumptions.
-- Separate design goals from mechanisms.
-- Explain concurrency, recovery, and resource management only after the architecture is clear.
-
-## Evidence Moves
-
-- Use realistic workloads and scale studies.
-- Include end-to-end evaluation plus targeted microbenchmarks.
-- Report operational costs or overheads when relevant.
-- Treat missing deployment detail as a reviewer risk, not as prose polish.
+- Connect workload requirements to the architecture decision.
+- Explain which operation becomes local and which state still requires coordination.
+- Keep subsystem responsibilities and observed workload results distinct; preserve implementation detail that determines the scientific comparison.
 
 ## Do-Not-Copy Boundary
 
-Do not borrow product-specific claims, architecture details, or performance language. Use only the systems-writing pattern.
+Use the target study's own definitions, mechanisms, conditions, results, and claims. Common academic phrasing and established terms may be reused when they fit; distinctive source sentences and scientific conclusions may not be transplanted.

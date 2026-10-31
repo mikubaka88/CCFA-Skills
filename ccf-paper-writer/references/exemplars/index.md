@@ -1,6 +1,8 @@
 # Exemplar Index
 
-Use this index when the user asks for CCF A-level paper writing, best-paper style, venue-specific adaptation, default user-custom writing, or examples from strong papers. Load only the cards that match the target paper. Do not load every card by default.
+Use this index to find original passages that help substantive drafting or a specific writing problem, including requested venue or exemplar adaptation. Load matching sections, then inspect the original passage. Do not load every card or rank writing quality by venue or awards.
+
+The lean release keeps the original Markdown passages and cards. Complete PDFs are an explicit optional offline pack; their absence alone does not prevent learning from a matched original text. When extraction or layout requires the PDF, install the matching pack or use an authorized original source, then inspect the selected passage. The full Git source still contains the PDFs. See the [installation profiles](../../../docs/INSTALLATION_MATRIX.md#lean-release-installation-recommended).
 
 ## Default Custom Format
 
@@ -11,23 +13,24 @@ Use `references/custom-format/default-user-format.md` when explicitly requested 
 | User custom exemplar | ICLR family | `cards/llava-4d.md` | 4D scene understanding, spatiotemporal prompts, dataset plus model papers |
 | User custom exemplar | CVPR | `cards/vggt.md` | feed-forward geometry, multi-task visual prediction, simple model versus optimization |
 
-These two cards are user-custom writing-format sources. Do not treat them as ordinary venue best-paper cards unless the user explicitly asks to compare against ICLR/CVPR best-paper style.
+These two cards are user-supplied references available for matching writing questions. Selecting a useful passage does not activate the whole custom format or make either paper a universal writing model.
 
 ## Selection Rule
 
-Start with the one best-matching card when style adaptation is needed; load only its relevant sections. Add cards only to answer a distinct writing question, up to four for a full manuscript. This index does not require exemplars for a local edit:
+Use as few passages as answer the actual writing questions, with additional sources for distinct functions when useful. There is no required paper count or fixed maximum. Reuse available originals; extra retrieval follows `reference_style_search` in Common's preferences:
 
 - Without a target venue, select by the actual scientific object, evidence type, and writing question; no card is mandatory.
-- Use same venue or venue family first when a target venue is specified.
-- Use same evidence type second: theorem, benchmark, user study, system, dataset, or ablation-heavy model.
-- Use same story shape third: new task, new benchmark, new model family, new capability, or new evaluation economy.
+- Prefer the same explanatory function and compatible scientific content: theorem, benchmark, user study, system, dataset, or mechanism.
+- Judge the passage's clarity and argument directly; venue family is a useful context clue when relevant, not a quality ranking.
 - Add a contrast card only when it resolves a concrete story or evidence-presentation choice.
 
-Use cards to borrow writing moves, not claims, wordings, examples, or technical content. If the user or project explicitly selects language conventions recorded in Reusable Techniques, read only the relevant entries and apply Humanization's preference precedence. A paper supplied for factual analysis does not automatically select its punctuation or rhythm; do not extract a new profile for an ordinary local edit.
+Use cards to find and learn from original writing. Conventional phrases, natural field terminology, and verb–noun combinations can be reused when they fit; distinctive source passages, claims, examples, and technical content cannot be transplanted. If the user or project explicitly selects language conventions recorded in Reusable Techniques, read only the relevant entries and apply Humanization's preference precedence. A paper supplied for factual analysis does not automatically select its punctuation or rhythm; do not extract a new profile for an ordinary local edit.
 
-## ICLR And CVPR Recent Best-Paper Cards
+For learning from real paper expression, use `references/exemplar-style-analysis.md` and inspect the source passage selected by the card before drafting. Cards contain both source summaries and adaptation advice; only source-anchored observations establish what a paper actually does. Awards and venue membership do not establish a writing technique. Transfer the sentence relationships and scientific explanation that fit the new material, without imposing a source's paragraph count or claim strength.
 
-Use these cards when the user explicitly asks for ICLR/CVPR best-paper or outstanding-paper style.
+## ICLR And CVPR Award Discovery Cards
+
+Use these cards to locate papers when the user asks about ICLR/CVPR awards. An award list establishes award context only. Inspect a candidate's actual passage and judge its clarity before selecting it as a writing reference; these discovery cards are not mandatory writing templates.
 
 | Venue/year | Card | Use when |
 | --- | --- | --- |
@@ -42,6 +45,7 @@ Use these cards when the user explicitly asks for ICLR/CVPR best-paper or outsta
 
 | Venue family | Card | Use when |
 | --- | --- | --- |
+| Architecture / sequence modeling | `cards/transformer-writing-style.md` | explaining a computational dependency, structural bottleneck, or change of modeling primitive |
 | AAAI / theory and social choice | `cards/aaai-2025-every-bit-helps.md` | theorem-heavy papers that settle a parameterized open question |
 | AAAI / biomedical generation | `cards/aaai-2024-gxvaes.md` | application-driven generative modeling with biological context and case studies |
 | ICML / LLM agents | `cards/icml-2025-collabllm.md` | multiturn LLM collaboration, reward design, benchmark plus user study |
@@ -64,28 +68,28 @@ Use these cards when the target venue is outside the dominant AI/CV/NLP cluster.
 | Venue family | Card | Use when |
 | --- | --- | --- |
 | SIGMOD / database systems | `cards/sigmod-2024-polardb-mp.md` | cloud-native databases, distributed transactions, storage/compute disaggregation, system architecture |
-| SIGCOMM / networking systems | `cards/sigcomm-2024-l25gc-plus.md` | network systems, 5G core, latency/throughput, realistic deployment workloads |
 | USENIX Security / security systems | `cards/usenix-security-2024-inspectre-gadget.md` | attack/defense papers, threat models, exploit chains, security evaluation |
 | POPL / programming languages | `cards/popl-2024-megalibm.md` | program synthesis, numerical libraries, PL/tool papers with formal and empirical evidence |
 | CHI / HCI | `cards/chi-2024-constrained-highlighting.md` | user-study papers, interaction technique evaluation, human-centered evidence |
-| STOC/FOCS / theory | `cards/stoc-2024-theory-best-paper.md` | theorem-first papers, lower/upper-bound stories, proof roadmap and technical barrier framing |
 
-## Recommended Bundles
+## Example Selections
+
+These are candidates for distinct writing functions, not bundles to load by default. Select a useful original passage and add another source only when it answers a different writing question.
 
 - Unspecified venue: preserve the requested format and use the writer's disclosed NeurIPS fallback only for a new LaTeX paper without a usable target template. Select an exemplar only for a concrete writing question.
 - 4D embodied AI paper: `llava-4d.md`, `vggt.md`, `neurips-2025-1000-layer-ssl-rl.md`.
-- ICLR-style theory or LLM paper: one ICLR recent best-paper card plus one same-topic card.
-- CVPR-style vision paper: one CVPR recent best-paper card plus `vggt.md` if the paper involves 3D geometry or multi-task prediction.
+- Theory paper: `aaai-2025-every-bit-helps.md` for relating a parameterized result to prior bounds; choose a different source when the proof or question needs another kind of explanation.
+- Vision paper: `vggt.md` when the writing question concerns 3D geometry or related prediction outputs; awards do not determine selection.
 - LLM collaboration or agent paper: `icml-2025-collabllm.md`, `acl-2025-minilongbench.md`.
 - Generative multimodal system: `iccv-2025-brickgpt.md`, `acmmm-2024-speaker-to-dubber.md`, `icml-2024-videopoet.md`, `neurips-2024-var.md`.
 - Data-efficient or cost-efficient evaluation: `acl-2025-minilongbench.md`, `aaai-2025-every-bit-helps.md`.
 - Hardware or system paper: `eccv-2024-minimalist-vision.md`, `vggt.md`.
 - Open-vocabulary robotics paper: `acmmm-2025-aff3dfunc.md`, `iccv-2025-brickgpt.md`.
 - Database system paper: `sigmod-2024-polardb-mp.md` plus one DB/IR/KDD source found through `ccf-literature-searcher`.
-- Network/system paper: `sigcomm-2024-l25gc-plus.md` plus a venue-specific baseline/evaluation source.
+- Network/system paper: find an actual paper passage matching the system question through `ccf-literature-searcher`; a conference program or keynote mention does not stand in for a paper.
 - Security paper: `usenix-security-2024-inspectre-gadget.md` plus a threat-model or artifact-evaluation source.
 - HCI paper: `chi-2024-constrained-highlighting.md` plus the user's target population/study-method reference.
-- PL/theory paper: `popl-2024-megalibm.md` or `stoc-2024-theory-best-paper.md` depending on whether the contribution is tool/proof or theorem/barrier.
+- PL/tool paper: `popl-2024-megalibm.md` for connecting an implementation difficulty to a tool's capabilities.
 
 ## Style And Citation Guides
 
@@ -95,7 +99,7 @@ When loading exemplar cards, also follow the writing style and citation rules es
 - `references/citation-workflow.md`: verified attribution and evidence coverage without citation quotas.
 - `references/output-style-policy.md`: requested format, preserved citation keys, and phase-aware drafting.
 
-The exemplar cards provide structural patterns. The style guides provide execution rules. Use both.
+The cards locate useful source passages and explain observed writing moves. Use the relevant source and guidance to compose the scientific explanation before applying the ordinary prose check.
 
 ## Output Reminder
 

@@ -8,97 +8,32 @@
 | Venue family | Security |
 | CCF tier | CCF-A |
 | Template path | `ccf-latex-templates/USENIX-Security/` |
-| Official URL | https://www.usenix.org/conference/usenixsecurity26 |
-| Last verified | Legacy migration on 2026-06-06; official policy must be rechecked before submission. |
-| Source status | Migrated local guide; not independently reverified in v0.4.0. |
+| Official URL | https://www.usenix.org/conference/usenixsecurity26/call-for-papers |
+| Last verified | 2026-10-30: named 2026 submission snapshot only. |
+| Source status | Official CFP checked for the snapshot; domain examples are writing guidance. |
 
 ## Usage Boundary
 
-- Use this file for LaTeX, page limit, anonymity, template, camera-ready, rebuttal-template, and venue-format details.
+- Use the named policy snapshot only for its year/track/stage; use domain examples as writing guidance.
 - Use `ccf-paper-writer` for actual paper writing and polishing.
 - Use `ccf-paper-reviewer` or `ccf-submission-checker` for format audit, depending on whether the task is manuscript-facing or submission-package-facing.
-- Verify current-year official rules before final submission.
+- Before applying format changes, reuse or obtain verified official requirements through `ccf-submission-checker`; keep supplied verified templates.
 
-## Migrated Venue Notes
+## USENIX Security 2026 submission snapshot
 
-# USENIX Security Writing Guide
+Checked 2026-10-30 against the [official 2026 CFP](https://www.usenix.org/conference/usenixsecurity26/call-for-papers).
 
-**CCF-A | Security | Publisher: USENIX Association**
-**Conference:** https://www.usenix.org/conference/usenixsecurity26
-**Template:** `ccf-latex-templates/USENIX-Security/`
+- Anonymous review: remove identifying author information, acknowledgments and artifact links without removing the template's author space.
+- Main text: at most 13 pages. Follow it with `Ethical Considerations` and `Open Science` appendices, at most one page each, before references. Initial references and optional appendices are unlimited; the final paper has a 20-page total limit.
+- Use the unmodified official Security 2026 bundle: US Letter, two columns, 10-point Times Roman with 12-point leading. Do not substitute a generic older USENIX sample.
 
-> **IMPORTANT:** USENIX Security is NOT double-blind — author identities are visible to reviewers.
-
-## Document Setup
-
-### Template Files
-- Main template: `USENIX-Security/` folder
-- Primary style: `usenix-2020-09.sty`
-- Older style variants: `usenix2019_v3.1.tex`, `usenix2019_v3.sty`
-
-### Required LaTeX Structure
-
-```latex
-\documentclass[11pt]{article}
-\usepackage{usenix-2020-09}
-
-% Optional packages
-\usepackage{graphicx}
-\usepackage{hyperref}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{booktabs}
-
-\begin{document}
-
-% IMPORTANT: Use \maketitles (NOT \maketitle)
-\maketitles
-
-\begin{abstract}
-Your abstract here — typically 150-250 words summarizing motivation,
-problem, approach, and results.
-\end{abstract}
-
-% Main content
-\section{Introduction}
-...
-
-% Bibliography: plain style
-\bibliographystyle{plain}
-\bibliography{references}
-
-\end{document}
-```
-
-### Key Formatting Requirements
-- **Document class**: `article` (NOT `acmart` or `IEEEtran`)
-- **Font size**: 10pt (enforced by `usenix-2020-09.sty`)
-- **Layout**: Single-column
-- **Title command**: `\maketitles` — USENIX-specific command replacing standard `\maketitle`
-
-## Page Limits
-
-- **16 pages** maximum for USENIX Security 2026
-- References and appendices do NOT count toward the page limit
-- Balance technical depth with readability
-
-## Submission Requirements
-
-### Double-Blind Status
-**USENIX Security is NOT anonymous.** Do NOT remove author information. Author names, affiliations, and acknowledgments may be included in the submission.
-
-### Submission Format
-- Submit a single PDF file
-- Ensure all figures are embedded
-- Verify font embedding for compatibility
-
----
+The bundled `ccf-latex-templates/USENIX-Security/` files remain historical examples. Their style defines `\maketitle`, not `\maketitles`. Obtain the target official bundle for a new submission; preserve an already verified project template.
 
 ## Security-Specific Writing Conventions
 
 ### Threat Model Section (Critical)
 
-Every security paper must include a clear threat model:
+For attack, defense, or security-guarantee claims, define the relevant adversary, assets, capabilities, and assumptions. Measurement, human-subject, or synthesis work should state its applicable scope and assumptions without inventing a system adversary. The following is an example for a network-adversary setting:
 
 ```latex
 \section{Threat Model}
@@ -208,24 +143,22 @@ Our protocol achieves the property if the DDH assumption holds.
 \end{convergence}
 ```
 
-### Ethics Statement
+### Ethical Considerations and Open Science
 
-Required for papers involving:
+For the 2026 submission, both appendices are required before references. Fill them from actual research records and the applicable ethics requirements. Do not infer IRB exemption, approval, absence of harm, assigned CVEs or a universal disclosure deadline. Include applicable topics and distinguish completed actions from plans.
 
 ```latex
-\section{Ethics Statement}
-We conducted this research ethically and responsibly.
+\section{Ethical Considerations}
+\textbf{Affected parties and risks:} [Relevant stakeholders, possible
+effects of the research, and observed issues.]
+\textbf{Review and consent:} [Actual review, approval, exemption or consent
+status and its basis, where applicable.]
+\textbf{Mitigation and disclosure:} [Actions taken, actual dates and
+responses, remaining risks, and any pending steps.]
 
-\textbf{Responsible Disclosure:} We disclosed all vulnerabilities to
-affected vendors [90 days] prior to submission. We received the following
-responses: [vendor acknowledgments]. CVEs have been assigned: [CVE IDs].
-
-\textbf{Institutional Review:} This research was determined to be exempt
-from IRB review as it involved [analysis of publicly available systems /
-controlled experiments on our own equipment].
-
-\textbf{No Harm:} Our attacks were evaluated in a controlled environment
-and no real users or systems were harmed.
+\section{Open Science}
+[List the artifacts needed to assess the contributions and their
+anonymous review-access locations; explain any unavailable artifacts.]
 ```
 
 ## Section Ordering (Recommended)
@@ -239,8 +172,10 @@ and no real users or systems were harmed.
 7. **Related Work** — Context within existing literature
 8. **Discussion/Limitations** — Scope, deployment challenges, future work
 9. **Conclusion** — Summary of contributions
-10. **References**
-11. **Appendix** (optional) — Proofs, additional evaluation, artifacts
+10. **Ethical Considerations** — Required appendix for 2026
+11. **Open Science** — Required appendix for 2026
+12. **References**
+13. **Additional appendices** (optional) — Proofs and additional evaluation
 
 ### Introduction Structure for Security Papers
 
@@ -265,7 +200,7 @@ Our main contributions are:
     affecting [scope].
     \item We provide a thorough analysis of the root cause and attack surface.
     \item We design and evaluate countermeasures that [achieve X] with [Y] overhead.
-    \item We responsibly disclosed our findings to affected vendors.
+    \item [Documented disclosure action, only if completed and relevant.]
 \end{itemize}
 
 % Paragraph 5: Roadmap
@@ -343,7 +278,7 @@ The remainder of this paper is organized as follows...
 ## Camera-Ready Preparation
 
 When preparing camera-ready:
-1. Download the latest `usenix-2020-09.sty` from USENIX website
+1. Use the official bundle matched to the accepted year and final-publication stage
 2. Include all author names and affiliations
 3. Add acknowledgments section (if applicable)
 4. Verify page numbers and formatting
@@ -355,27 +290,24 @@ When preparing camera-ready:
 - [ ] All author information complete
 - [ ] Acknowledgments section added
 - [ ] Funding disclosures included
-- [ ] Page count ≤ 16 pages
+- [ ] Page accounting matches the verified final-publication requirements
 - [ ] All figures in final format
 - [ ] References properly formatted
 
 ## Common Mistakes to Avoid
 
-1. Using `\maketitle` instead of `\maketitles`
-2. Exceeding 16 pages in main content
-3. Including anonymization efforts (unnecessary for USENIX)
-4. Using two-column layout (USENIX is single-column)
+1. Replacing the official template with an incompatible legacy skeleton
+2. Applying a page budget from another year or submission stage
+3. Leaving identifying information in the review submission
+4. Altering the official layout to fit more content
 5. Forgetting to define security assumptions clearly
-6. Not including responsible disclosure timeline
+6. Omitting applicable disclosure facts or presenting planned actions as completed
 7. Overclaiming security guarantees
 8. Insufficient evaluation of proposed defenses
 
 ## Checklist Before Submission
 
-- [ ] Document class: article with usenix-2020-09.sty
-- [ ] `\maketitles` command used (not \maketitle)
-- [ ] Single-column layout
-- [ ] 16 pages or fewer
+- [ ] Template, anonymity and page accounting match the verified target requirements
 - [ ] Threat model clearly defined
 - [ ] Security analysis included
 - [ ] Responsible disclosure timeline (if applicable)

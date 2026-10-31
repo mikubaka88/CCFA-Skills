@@ -162,7 +162,7 @@ ASPLOS accepts papers at the intersection of:
 - Architecture metrics: IPC, CPI, performance speedup
 - Area/power/energy if applicable
 - Software metrics: execution time, memory usage
-- Always include baseline comparisons
+- Include the baseline comparisons needed to substantiate the paper's comparative claims, using matched workloads and configurations
 
 ## Figure and Table Guidelines
 

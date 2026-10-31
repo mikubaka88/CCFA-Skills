@@ -1,39 +1,29 @@
 # InSpectre Gadget Style Card
 
-Venue/year: USENIX Security 2024 family.
-Source: USENIX Security 2024 technical sessions source record `usenix-security-2024-technical-sessions`; verify the exact paper page before public award-status claims.
+Venue/year: USENIX Security 2024.
+Source: shared registry record `usenix-security-2024-inspectre-gadget`; direct original locations below.
 Use when: security papers involving attacks, defenses, vulnerability discovery, side channels, exploit chains, formal threat models, or security measurement.
+
+Inspected writing: Official source `https://www.usenix.org/conference/usenixsecurity24/presentation/wiebing`; paper `https://www.usenix.org/system/files/usenixsecurity24-wiebing.pdf`, Abstract and Section 1 on printed page 577.
+
+This card navigates selected original passages. The source observations below are distinct from the adaptation advice; read the relevant original when using it.
 
 ## Story Pattern
 
-The paper type is security research: define the threat model and attacker capability before the technique, then show why existing defenses or assumptions fail. Evidence should connect exploitability, coverage, false positives/negatives, practicality, and responsible scope.
+**Source observation:** The abstract connects a residual attack surface under existing mitigations to the difficulty of assessing gadget exploitability. Section 1 distinguishes pattern matching that misses nonstandard forms from coarse data-flow analysis that over-approximates feasible behavior, motivating symbolic execution with constraints.
 
 ## Abstract Moves
 
-- Name the security setting and threat model.
-- State the core failure in existing assumptions or defenses.
-- Describe the method at the level of attack/defense mechanism.
-- Preview evidence without overclaiming universal vulnerability or protection.
+**Writing observation in the inspected passage:** The method follows a distinction between two analysis failures. The writing links the chosen analysis to its purpose before presenting examples of what it exposes.
 
-## Introduction Moves
+## Reusable Techniques
 
-- Start from a concrete security risk or defense gap.
-- Make attacker goals, capabilities, and constraints explicit.
-- Explain why the problem remained hidden or hard to detect.
-- State contributions as threat model, method, evaluation, and responsible disclosure or mitigation when relevant.
+**Adaptation advice for matching work:**
 
-## Method Moves
-
-- Separate threat model, technique, analysis pipeline, and mitigation.
-- Use examples only to clarify the mechanism; avoid implying broader scope than tested.
-- State assumptions before results.
-
-## Evidence Moves
-
-- Include adaptive baselines or bypass attempts when relevant.
-- Report success rate, coverage, false positives/negatives, overhead, or affected systems only from supplied results.
-- Include ethics, disclosure, and harm-reduction boundaries.
+- Explain what an analysis can miss and what it can falsely admit when both affect the problem.
+- Tie a threat-model condition or constraint to the corresponding reasoning step.
+- Preserve disclosure and attack assumptions when material; do not claim an exploit or mitigation result for a different system.
 
 ## Do-Not-Copy Boundary
 
-Do not borrow vulnerability details, exploit wording, or scope claims. Use only the security-review structure.
+Use the target study's own definitions, mechanisms, conditions, results, and claims. Common academic phrasing and established terms may be reused when they fit; distinctive source sentences and scientific conclusions may not be transplanted.

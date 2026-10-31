@@ -27,3 +27,5 @@ python ..\ccf-common\scripts\check_sources.py
 ## Local Records
 
 Local PDFs under `paper_ref/` are convenience copies for exemplar analysis. Treat the shared registry as the source record and the local PDFs as optional inspection artifacts. If a local PDF is missing or stale, use public source records only after respecting private-material safety from `../ccf-common/references/privacy-and-evidence.md`.
+
+The lean release retains original Markdown and cards. Full PDFs from both `paper_ref/` and `references/exemplars/papers/` are in the explicitly installed, same-version papers pack; it preserves both paths for existing source pointers. Full Git clones still contain these originals. Missing an optional PDF does not disable matched-original learning from available text; obtain the PDF when the selected passage needs visual inspection or extraction repair.

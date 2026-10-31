@@ -8,7 +8,7 @@ const root = path.resolve(__dirname, '..', '..');
 const html = fs.readFileSync(path.join(root, 'ccf-common/assets/configurator/index.html'), 'utf8');
 const script = fs.readFileSync(path.join(root, 'ccf-common/assets/configurator/app.js'), 'utf8');
 const copy = (v) => JSON.parse(JSON.stringify(v));
-const defaults = {version:1,preferences:{independent_review:'off',extended_search:'auto',enhanced_document_parsing:'auto',figure_variants:'off',detailed_reports:'off',alternative_routes:'off',maintenance_evolution:'off'},ui:{language:'zh-CN',theme:'system'}};
+const defaults = {version:1,preferences:{independent_review:'off',extended_search:'auto',enhanced_document_parsing:'auto',figure_variants:'off',detailed_reports:'off',alternative_routes:'off',maintenance_evolution:'off',reference_style_search:'on',research_branching:'off',research_policy_evolution:'off'},ui:{language:'zh-CN',theme:'system'}};
 
 class Element {
   constructor(tag) { this.tagName=tag.toLowerCase();this.children=[];this.attributes={};this.dataset={};this.listeners={};this.parentNode=null;this.disabled=false;this.hidden=false;this.className='';this.value='';this._text='';this.classList={toggle:(name,on)=>{const list=new Set(this.className.split(/\s+/).filter(Boolean));if(on===undefined)on=!list.has(name);if(on)list.add(name);else list.delete(name);this.className=[...list].join(' ');}}; }
@@ -62,11 +62,37 @@ function fixture(online=true, initialFail=false) {
 }
 
 const flush=()=>new Promise(resolve=>setImmediate(resolve));
+function modeControl(f,key){
+  const control=f.document.querySelectorAll('.mode-select').find(node=>node.dataset.modeKey===key);
+  assert.ok(control,`Missing mode control for ${key}`);
+  return control;
+}
+async function chooseMode(f,key,mode){
+  const control=modeControl(f,key);control.value=mode;await control.emit('change');
+  assert.equal(modeControl(f,key).value,mode,`${key} must show its explicit or inherited choice`);
+}
+async function choosePreset(f,name){
+  const button=f.document.querySelectorAll('[data-preset]').find(node=>node.dataset.preset===name);
+  assert.ok(button,`Missing preset ${name}`);await button.click();
+}
 async function run(){
   const f=fixture();await flush();
-  assert.equal(f.document.querySelectorAll('.feature').length,7);
-  assert.equal(f.document.querySelectorAll('.summary-meter span').length,7);
-  assert.equal(f.document.querySelector('.art-index').textContent,'01 — 07');
+  const expectedKeys=Object.keys(defaults.preferences);
+  assert.equal(expectedKeys.length,10);
+  assert.deepEqual(JSON.parse(f.eval('JSON.stringify(KEYS)')),expectedKeys);
+  assert.deepEqual(JSON.parse(f.eval('JSON.stringify(DEFAULTS)')),defaults);
+  assert.equal(f.document.querySelectorAll('.feature').length,expectedKeys.length);
+  assert.equal(f.document.querySelectorAll('.control-group').length,4);
+  assert.equal(f.document.querySelectorAll('.mode-select').length,expectedKeys.length);
+  for(const key of expectedKeys){
+    const control=modeControl(f,key);
+    assert.deepEqual(control.querySelectorAll('option').map(node=>node.value),['inherit','off','auto','on']);
+    assert.equal(control.value,'inherit','Initial defaults remain inherited, not pinned');
+    assert.ok(control.getAttribute('aria-label'),'A combined control still has an accessible label');
+  }
+  for(const oldClass of ['.celestial-toggle','.auto-button','.inherit-button'])assert.equal(f.document.querySelectorAll(oldClass).length,0,'Replaced controls must not remain as duplicate UI');
+  assert.equal(f.document.querySelectorAll('.summary-meter span').length,expectedKeys.length);
+  assert.equal(f.document.querySelector('.art-index').textContent,'01 — 10');
   assert.equal(f.eval('current().loaded'),true);
   assert.equal(f.document.querySelector('#save').disabled,false,'Missing config can explicitly save inherited defaults');
   await f.document.querySelector('#save').click();
@@ -74,7 +100,7 @@ async function run(){
   assert.equal(f.document.querySelector('#save').disabled,true);
   assert.equal(f.eval('current().saved'),true);
   const requestCount=f.calls.length;
-  const toggles=f.document.querySelectorAll('.celestial-toggle');await toggles[0].click();
+  await chooseMode(f,'independent_review','on');
   assert.equal(f.eval('current().draft.preferences.independent_review'),'on');
   assert.equal(f.calls.length,requestCount,'Draft changes must not call the backend');
   const lang=f.document.querySelector('#language');lang.value='en';await lang.emit('change');
@@ -88,19 +114,19 @@ async function run(){
   assert.equal(f.eval('scope'),'project');
   assert.equal(f.eval('effective().preferences.independent_review'),'on');
   assert.deepEqual(JSON.parse(f.eval('JSON.stringify(current().draft)')),{version:1});
-  await f.document.querySelectorAll('.celestial-toggle')[3].click();
+  await chooseMode(f,'figure_variants','on');
   assert.equal(f.eval('current().draft.preferences.figure_variants'),'on');
   await f.document.querySelectorAll('[data-scope]')[0].click();
   await f.document.querySelectorAll('[data-scope]')[1].click();
   assert.equal(f.eval('current().draft.preferences.figure_variants'),'on','Scope changes preserve drafts');
   await f.document.querySelector('#save').click();
   assert.deepEqual(f.files.project,{version:1,preferences:{figure_variants:'on'}},'Project save remains sparse');
-  await f.document.querySelectorAll('.inherit-button')[3].click();
+  await chooseMode(f,'figure_variants','inherit');
   assert.equal(f.eval('effective().preferences.figure_variants'),'off');
   await f.document.querySelector('#save').click();
   assert.deepEqual(f.files.project,{version:1});
 
-  await f.document.querySelectorAll('.celestial-toggle')[4].click();
+  await chooseMode(f,'detailed_reports','on');
   const originalRevision=f.eval('current().revision');
   f.mutate('project',{version:1,preferences:{extended_search:'on'}});
   await f.document.querySelectorAll('[data-scope]')[0].click();
@@ -158,30 +184,33 @@ async function run(){
   failed.setFail(false);await failed.document.querySelector('#reload').click();assert.equal(failed.eval('current().loaded'),true);
 
   const stat=fixture(false);assert.equal(stat.eval('connected'),false);assert.equal(stat.document.querySelector('#save span:first-child').textContent,stat.eval('t("saveStatic")'));
-  await stat.document.querySelectorAll('.celestial-toggle')[0].click();await stat.document.querySelector('#save').click();assert.equal(stat.eval('current().exported'),true);assert.equal(stat.eval('dirty()'),true);assert.equal(stat.calls.length,0,'Static mode never calls a backend');
+  await chooseMode(stat,'independent_review','on');await stat.document.querySelector('#save').click();assert.equal(stat.eval('current().exported'),true);assert.equal(stat.eval('dirty()'),true);assert.equal(stat.calls.length,0,'Static mode never calls a backend');
   assert.equal(stat.document.querySelector('#save-status').textContent,stat.eval('t("exported")'));
   assert.match(stat.document.querySelector('#file-help').textContent,/preferences\.json/);
 
   const extras=fixture();await flush();
   for(const key of ['alternative_routes','maintenance_evolution'])assert.equal(extras.eval(`effective().preferences.${key}`),'off','New enhancements are off in existing configs');
-  for(const [index,expected] of [[0,'off'],[1,'off'],[2,'auto']]){
-    await extras.document.querySelectorAll('[data-preset]')[index].click();
-    assert.equal(extras.eval('Object.keys(current().draft.preferences).length'),7,'Each preset covers all seven settings');
+  for(const [index,name,expected] of [[0,'lean','off'],[1,'balanced','off'],[2,'deep','auto']]){
+    await choosePreset(extras,name);
+    assert.deepEqual(JSON.parse(extras.eval('JSON.stringify(Object.keys(current().draft.preferences))')),expectedKeys,'Every preset covers the complete setting set');
+    assert.equal(extras.eval('current().draft.preferences.reference_style_search'),['off','on','on'][index]);
+    assert.equal(extras.eval('current().draft.preferences.research_branching'),index===2?'auto':'off');
+    assert.equal(extras.eval('current().draft.preferences.research_policy_evolution'),'off','Presets never silently enable policy evolution');
     for(const key of ['alternative_routes','maintenance_evolution'])assert.equal(extras.eval(`current().draft.preferences.${key}`),expected);
   }
-  assert.equal(extras.document.querySelectorAll('.summary-meter span').filter(node=>node.className==='is-auto').length,3);
+  assert.equal(extras.document.querySelectorAll('.summary-meter span').filter(node=>node.className==='is-auto').length,4);
   await extras.document.querySelector('#reset').click();
-  await extras.document.querySelectorAll('.celestial-toggle')[5].click();
-  await extras.document.querySelectorAll('.auto-button')[6].click();
-  assert.equal(extras.document.querySelector('#on-count').textContent,'1');
+  await chooseMode(extras,'alternative_routes','on');
+  await chooseMode(extras,'maintenance_evolution','auto');
+  assert.equal(extras.document.querySelector('#on-count').textContent,'2');
   await extras.document.querySelector('#save').click();
   assert.deepEqual(extras.files.user,{version:1,preferences:{alternative_routes:'on',maintenance_evolution:'auto'}});
   await extras.document.querySelectorAll('[data-scope]')[1].click();
   assert.equal(extras.eval('effective().preferences.alternative_routes'),'on');
-  await extras.document.querySelectorAll('.celestial-toggle')[5].click();
+  await chooseMode(extras,'alternative_routes','off');
   await extras.document.querySelector('#save').click();
   assert.deepEqual(extras.files.project,{version:1,preferences:{alternative_routes:'off'}});
-  await extras.document.querySelectorAll('.inherit-button')[5].click();
+  await chooseMode(extras,'alternative_routes','inherit');
   assert.equal(extras.eval('effective().preferences.alternative_routes'),'on');
   await extras.document.querySelector('#save').click();
   assert.deepEqual(extras.files.project,{version:1},'New settings restore sparse inheritance');
@@ -189,6 +218,117 @@ async function run(){
   await extras.eval('importConfig(legacyFile)');
   assert.equal(extras.eval('current().draft.preferences.alternative_routes'),undefined,'Legacy imports keep new entries omitted');
   assert.equal(extras.eval('effective().preferences.alternative_routes'),'on','Legacy imports inherit instead of pinning new defaults');
-  console.log('PASS: actual app controller renders 7 controls; missing-file save; 3-language parity; theme; draft-only edits; sparse persistence; scope draft retention; inheritance reset; external-change revision conflict; storage-lock error and retry; async import locking; bad/duplicate JSON; failed load/retry; static export and no backend requests; 7-setting presets; new-setting persistence and inheritance; legacy version-1 imports.');
+  const research=fixture();await flush();
+  const researchKeys=['reference_style_search','research_branching','research_policy_evolution'];
+  assert.equal(research.eval('effective().preferences.reference_style_search'),'on');
+  for(const key of researchKeys.slice(1))assert.equal(research.eval(`effective().preferences.${key}`),'off');
+  for(const language of ['zh-CN','zh-TW','en']){
+    const picker=research.document.querySelector('#language');picker.value=language;await picker.emit('change');
+    for(const key of researchKeys){
+      const card=research.document.querySelectorAll('.feature').find(node=>node.dataset.key===key);
+      const expected=JSON.parse(research.eval(`JSON.stringify(COPY[${JSON.stringify(language)}].features.${key})`));
+      assert.equal(card.querySelector('h3').textContent,expected.title);
+      assert.equal(card.querySelector('.feature-description').textContent,expected.desc);
+      assert.ok(card.querySelector('.trigger-description').textContent.includes(expected.trigger));
+      assert.equal(card.querySelector('.cost-token').textContent,expected.token);
+      assert.equal(card.querySelector('.cost-time').textContent,expected.time);
+    }
+  }
+  await research.document.querySelector('#reset').click();
+  await chooseMode(research,'reference_style_search','off');
+  await chooseMode(research,'research_branching','auto');
+  await chooseMode(research,'research_policy_evolution','on');
+  await research.document.querySelector('#save').click();
+  assert.deepEqual(research.files.user,{version:1,preferences:{reference_style_search:'off',research_branching:'auto',research_policy_evolution:'on'}});
+  await research.document.querySelectorAll('[data-scope]')[1].click();
+  await chooseMode(research,'reference_style_search','on');
+  await chooseMode(research,'research_policy_evolution','auto');
+  await research.document.querySelector('#save').click();
+  assert.deepEqual(research.files.project,{version:1,preferences:{reference_style_search:'on',research_policy_evolution:'auto'}});
+  assert.equal(research.eval('effective().preferences.research_branching'),'auto');
+  for(const key of ['reference_style_search','research_policy_evolution'])await chooseMode(research,key,'inherit');
+  await research.document.querySelector('#save').click();
+  assert.deepEqual(research.files.project,{version:1});
+  research.context.legacyResearch={size:60,arrayBuffer:async()=>new TextEncoder().encode('{"version":1,"preferences":{"figure_variants":"on"}}').buffer};
+  await research.eval('importConfig(legacyResearch)');
+  for(const key of researchKeys){
+    assert.equal(research.eval(`current().draft.preferences.${key}`),undefined,'Old configs do not pin new settings');
+    assert.equal(research.eval(`effective().preferences.${key}`),research.files.user.preferences[key]);
+  }
+  const beforeInvalid=research.eval('JSON.stringify(current().draft)');
+  for(const key of researchKeys){
+    const content=JSON.stringify({version:1,preferences:{[key]:'always'}});
+    research.context.invalidResearch={size:content.length,arrayBuffer:async()=>new TextEncoder().encode(content).buffer};
+    await research.eval('importConfig(invalidResearch)');
+    assert.equal(research.eval('JSON.stringify(current().draft)'),beforeInvalid);
+  }
+  assert.ok(research.calls.every(call=>new URL(call.url,'http://127.0.0.1').pathname==='/api/preferences'),'Saving research options never launches research or calls another service');
+
+  const combined=fixture();await flush();
+  await chooseMode(combined,'detailed_reports','on');
+  for(const mode of ['on','auto','off']){
+    await chooseMode(combined,'independent_review',mode);
+    assert.equal(combined.eval('effective().preferences.independent_review'),mode);
+    assert.equal(combined.eval('current().draft.preferences.detailed_reports'),'on','A combined control only edits its own setting');
+  }
+  await chooseMode(combined,'independent_review','inherit');
+  assert.equal(combined.eval('current().draft.preferences.independent_review'),undefined,'Inheritance removes the override');
+  assert.equal(combined.eval('effective().preferences.independent_review'),'off');
+  assert.deepEqual(JSON.parse(combined.eval('JSON.stringify(current().draft.preferences)')),{detailed_reports:'on'});
+  await combined.document.querySelector('#save').click();
+  assert.deepEqual(combined.files.user,{version:1,preferences:{detailed_reports:'on'}});
+
+  const profiles=fixture();await flush();
+  const presetNames=['lean','balanced','deep','writing','submission','ideation','figures','autoresearch'];
+  assert.deepEqual(JSON.parse(profiles.eval('JSON.stringify(Object.keys(PRESETS))')).sort(),[...presetNames].sort());
+  assert.equal(profiles.document.querySelectorAll('[data-preset]').length,presetNames.length);
+  assert.equal(new Set(JSON.parse(profiles.eval('JSON.stringify(Object.values(PRESETS).map(value=>JSON.stringify(value)))'))).size,presetNames.length,'Every preset must make a distinct choice');
+  const profileCalls=profiles.calls.length;
+  for(const language of ['zh-CN','zh-TW','en']){
+    const picker=profiles.document.querySelector('#language');picker.value=language;await picker.emit('change');
+    for(const name of presetNames){
+      await choosePreset(profiles,name);
+      const settings=JSON.parse(profiles.eval('JSON.stringify(current().draft.preferences)'));
+      assert.deepEqual(Object.keys(settings),expectedKeys,'A preset covers all ten existing settings');
+      assert.ok(Object.values(settings).every(value=>['off','auto','on'].includes(value)));
+      assert.equal(settings.research_policy_evolution,'off','General presets never enable research policy evolution');
+      assert.equal(profiles.eval('current().draft.ui.language'),language,'Applying a preset preserves UI language');
+      assert.equal(profiles.files.user,null,'Preset selection must not save implicitly');
+      const button=profiles.document.querySelectorAll('[data-preset]').find(node=>node.dataset.preset===name);
+      assert.equal(button.getAttribute('aria-pressed'),'true');
+      assert.ok(button.textContent.trim(),'Each preset is named in the selected language');
+      for(const key of expectedKeys){
+        const control=modeControl(profiles,key);
+        assert.equal(control.value,settings[key]);
+        assert.ok(control.querySelectorAll('option').every(node=>node.textContent.trim()),'Four modes are translated');
+      }
+    }
+  }
+  assert.equal(profiles.calls.length,profileCalls,'All preset and language interactions edit drafts only');
+  for(const [name,key] of [['writing','reference_style_search'],['submission','independent_review'],['ideation','alternative_routes'],['figures','figure_variants'],['autoresearch','research_branching']]){
+    await choosePreset(profiles,name);
+    assert.notEqual(profiles.eval(`effective().preferences.${key}`),'off',`${name} must enable its defining enhancement`);
+  }
+
+  const postConflict=fixture();await flush();
+  await chooseMode(postConflict,'independent_review','on');
+  const originalDraft=postConflict.eval('JSON.stringify(current().draft)');
+  const oldRevision=postConflict.eval('current().revision');
+  const externalConfig={version:1,preferences:{figure_variants:'on'}};
+  postConflict.mutate('user',externalConfig);
+  await postConflict.document.querySelector('#save').click();
+  assert.equal(postConflict.eval('currentError.key'),'errorConflict');
+  assert.equal(postConflict.eval('current().conflict'),true,'A conflict found by POST must also set the persistent UI state');
+  assert.equal(postConflict.document.querySelector('#save').disabled,true,'Do not offer repeated stale writes');
+  assert.equal(postConflict.document.querySelector('#save-status').textContent,postConflict.eval('t("conflictState")'));
+  assert.equal(postConflict.eval('JSON.stringify(current().draft)'),originalDraft);
+  assert.equal(postConflict.eval('current().revision'),oldRevision);
+  assert.deepEqual(postConflict.files.user,externalConfig,'The newer stored configuration is preserved');
+  await postConflict.document.querySelector('#dismiss-error').click();
+  assert.equal(postConflict.document.querySelector('#save').disabled,true,'Dismissing a message is not conflict resolution');
+  await postConflict.document.querySelector('#reload').click();
+  assert.equal(postConflict.eval('current().conflict'),false);
+  assert.deepEqual(JSON.parse(postConflict.eval('JSON.stringify(current().draft)')),externalConfig);
+  console.log('PASS: actual app controller renders 10 combined controls in 4 groups; missing-file save; 3-language parity; theme; draft-only edits; sparse persistence; scope draft retention; inheritance reset; external-change revision conflict; storage-lock error and retry; async import locking; bad/duplicate JSON; failed load/retry; static export and no backend requests; 8 complete presets; new-setting persistence and inheritance; legacy version-1 imports.');
 }
 run().catch(error=>{console.error(error);process.exitCode=1;});

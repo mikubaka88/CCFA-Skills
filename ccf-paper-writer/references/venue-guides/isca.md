@@ -117,7 +117,7 @@ Your abstract here — summarize contribution and key results.
 ## Architecture-Specific Writing Conventions
 
 ### Simulation Methodology
-ISCA papers must have rigorous, reproducible evaluation:
+For claims supported by simulation, report the actual methodology needed to interpret and reproduce that evaluation:
 
 **Simulator Description**:
 - Name and version of simulator

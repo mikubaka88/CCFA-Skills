@@ -1,0 +1,408 @@
+{
+  "version": 1,
+  "checked_at": "2026-10-30",
+  "publication_years": [
+    2025,
+    2026
+  ],
+  "record_count": 54890,
+  "all_figures_reproduced": false,
+  "visually_inspected_design_studies": 78,
+  "reused_visual_design_studies": 3,
+  "new_visual_design_studies": 75,
+  "inventory_scope": "Available official paper metadata for the listed venues and years. This is not an exhaustive inspection or reconstruction of their figures.",
+  "figure_scope": "Only the separately documented visually inspected figure studies have design observations. Python adaptations use supplied data or explicitly labeled synthetic demos.",
+  "coverage": [
+    {
+      "venue": "ACL",
+      "year": 2025,
+      "entry_url": "https://aclanthology.org/events/acl-2025/",
+      "status": "indexed",
+      "record_count": 3353,
+      "exhaustive_listing": true,
+      "listing_scope": "All ACL-named volumes and Findings ACL in official event listing; workshop proceedings excluded; volume forewords excluded",
+      "track_counts": {
+        "acl-demo": 64,
+        "acl-industry": 109,
+        "acl-long": 1602,
+        "acl-short": 97,
+        "acl-srw": 86,
+        "acl-tutorials": 8,
+        "findings-acl": 1387
+      },
+      "papers_visually_inspected": 2,
+      "figures_visually_inspected": 6,
+      "design_cards": 6,
+      "harvest_file": "acl-2025-metadata.jsonl",
+      "packaged_records": 3353,
+      "visually_inspected_design_studies": 6,
+      "reused_visual_design_studies": 0
+    },
+    {
+      "venue": "ACL",
+      "year": 2026,
+      "entry_url": "https://aclanthology.org/events/acl-2026/",
+      "status": "indexed",
+      "record_count": 4813,
+      "exhaustive_listing": true,
+      "listing_scope": "All ACL-named volumes and Findings ACL in official event listing; workshop proceedings excluded; volume forewords excluded",
+      "track_counts": {
+        "acl-demo": 85,
+        "acl-industry": 154,
+        "acl-long": 2222,
+        "acl-short": 74,
+        "acl-srw": 109,
+        "acl-tutorials": 6,
+        "findings-acl": 2163
+      },
+      "papers_visually_inspected": 1,
+      "figures_visually_inspected": 2,
+      "design_cards": 3,
+      "harvest_file": "acl-2026-metadata.jsonl",
+      "packaged_records": 4813,
+      "visually_inspected_design_studies": 3,
+      "reused_visual_design_studies": 0
+    },
+    {
+      "venue": "CVPR",
+      "year": 2025,
+      "entry_url": "https://openaccess.thecvf.com/CVPR2025?day=all",
+      "status": "official_full_listing_harvested",
+      "record_count": 2871,
+      "exhaustive_listing": true,
+      "exhaustiveness_scope": "All deduplicated main-conference entries in the official day=all listing; figure inspection is separately counted.",
+      "figures_visually_inspected": 5,
+      "papers_with_selected_visually_inspected_figures": 3,
+      "checked_at": "2026-10-30",
+      "harvest_file": "cvpr2025-papers.jsonl",
+      "packaged_records": 2871,
+      "visually_inspected_design_studies": 5,
+      "reused_visual_design_studies": 0
+    },
+    {
+      "venue": "CVPR",
+      "year": 2026,
+      "entry_url": "https://openaccess.thecvf.com/CVPR2026?day=all",
+      "status": "official_full_listing_harvested",
+      "record_count": 4042,
+      "exhaustive_listing": true,
+      "exhaustiveness_scope": "All deduplicated main-conference entries in the official day=all listing; figure inspection is separately counted.",
+      "figures_visually_inspected": 4,
+      "papers_with_selected_visually_inspected_figures": 3,
+      "checked_at": "2026-10-30",
+      "harvest_file": "cvpr2026-papers.jsonl",
+      "packaged_records": 4042,
+      "visually_inspected_design_studies": 4,
+      "reused_visual_design_studies": 0
+    },
+    {
+      "venue": "ECCV",
+      "year": 2025,
+      "entry_url": "https://eccv.ecva.net/",
+      "status": "no_edition_biennial_schedule",
+      "record_count": 0,
+      "metadata_path": null,
+      "exhaustive_listing": false,
+      "figures_visually_inspected": 0,
+      "checked_at": "2026-10-30",
+      "packaged_records": 0,
+      "visually_inspected_design_studies": 0,
+      "reused_visual_design_studies": 0
+    },
+    {
+      "venue": "ECCV",
+      "year": 2026,
+      "entry_url": "https://eccv.ecva.net/Conferences/2026/AcceptedPapers",
+      "status": "official_preliminary_listing_harvested",
+      "record_count": 2834,
+      "exhaustive_listing": true,
+      "exhaustiveness_scope": "All deduplicated entries on the available official listing, not every PDF or every figure. ECCV listing is preliminary.",
+      "figures_visually_inspected": 3,
+      "papers_with_selected_visually_inspected_figures": 2,
+      "checked_at": "2026-10-30",
+      "harvest_file": "eccv2026-papers.jsonl",
+      "packaged_records": 2834,
+      "visually_inspected_design_studies": 3,
+      "reused_visual_design_studies": 0
+    },
+    {
+      "venue": "ICCV",
+      "year": 2025,
+      "entry_url": "https://openaccess.thecvf.com/ICCV2025?day=all",
+      "status": "official_full_listing_harvested",
+      "record_count": 2701,
+      "exhaustive_listing": true,
+      "exhaustiveness_scope": "All deduplicated main-conference entries in the official day=all listing; figure inspection is separately counted.",
+      "figures_visually_inspected": 4,
+      "papers_with_selected_visually_inspected_figures": 2,
+      "checked_at": "2026-10-30",
+      "harvest_file": "iccv2025-papers.jsonl",
+      "packaged_records": 2701,
+      "visually_inspected_design_studies": 4,
+      "reused_visual_design_studies": 0
+    },
+    {
+      "venue": "ICCV",
+      "year": 2026,
+      "entry_url": "https://iccv.thecvf.com/",
+      "status": "no_edition_biennial_schedule",
+      "record_count": 0,
+      "metadata_path": null,
+      "exhaustive_listing": false,
+      "figures_visually_inspected": 0,
+      "checked_at": "2026-10-30",
+      "packaged_records": 0,
+      "visually_inspected_design_studies": 0,
+      "reused_visual_design_studies": 0
+    },
+    {
+      "venue": "ICLR",
+      "year": 2025,
+      "entry_url": "https://proceedings.iclr.cc/paper_files/paper/2025",
+      "record_count": 3703,
+      "status": "indexed",
+      "exhaustive_listing": true,
+      "scope": "main proceedings",
+      "harvest_file": "iclr-2025-metadata.jsonl",
+      "packaged_records": 3703,
+      "visually_inspected_design_studies": 5,
+      "reused_visual_design_studies": 0
+    },
+    {
+      "venue": "ICLR",
+      "year": 2026,
+      "entry_url": "https://proceedings.iclr.cc/paper_files/paper/2026",
+      "record_count": 5351,
+      "status": "official_full_listing_harvested",
+      "exhaustive_listing": true,
+      "scope": "main conference proceedings; page declares 5351 papers and the harvested count matches",
+      "figures_visually_inspected": 0,
+      "checked_at": "2026-10-30",
+      "harvest_file": "iclr-2026-metadata.jsonl",
+      "packaged_records": 5351,
+      "visually_inspected_design_studies": 8,
+      "reused_visual_design_studies": 0
+    },
+    {
+      "venue": "ICML",
+      "year": 2025,
+      "entry_url": "https://proceedings.mlr.press/v267/",
+      "record_count": 3330,
+      "status": "indexed",
+      "exhaustive_listing": true,
+      "scope": "main proceedings",
+      "harvest_file": "icml-2025-metadata.jsonl",
+      "packaged_records": 3330,
+      "visually_inspected_design_studies": 10,
+      "reused_visual_design_studies": 0
+    },
+    {
+      "venue": "ICML",
+      "year": 2026,
+      "entry_url": "https://proceedings.mlr.press/v306/",
+      "record_count": 6552,
+      "status": "indexed",
+      "exhaustive_listing": true,
+      "scope": "main proceedings",
+      "harvest_file": "icml-2026-metadata.jsonl",
+      "packaged_records": 6552,
+      "visually_inspected_design_studies": 7,
+      "reused_visual_design_studies": 1
+    },
+    {
+      "venue": "Nature",
+      "year": 2026,
+      "entry_url": "https://www.nature.com/nature/volumes/649",
+      "status": "selected_papers_and_figures_inspected",
+      "record_count": 1,
+      "exhaustive_listing": false,
+      "listing_scope": "Selected AI research papers with inspected publisher figures; not all AI papers in this journal or Nature Portfolio.",
+      "papers_visually_inspected": 1,
+      "figures_visually_inspected": 1,
+      "design_cards": 2,
+      "harvest_file": "nature-portfolio-nature-2026-selected.jsonl",
+      "packaged_records": 1,
+      "visually_inspected_design_studies": 2,
+      "reused_visual_design_studies": 0
+    },
+    {
+      "venue": "Nature Machine Intelligence",
+      "year": 2025,
+      "entry_url": "https://www.nature.com/natmachintell/volumes/7",
+      "metadata_entry_url": "https://api.crossref.org/journals/2522-5839/works?filter=from-pub-date:2025-01-01,until-pub-date:2025-12-31&rows=1000",
+      "status": "indexed_publisher_deposited_metadata",
+      "record_count": 206,
+      "exhaustive_listing": true,
+      "listing_scope": "All publisher-deposited Crossref records for NMI ISSN 2522-5839 returned for 2025-01-01 to 2025-12-31; includes editorials/corrections/content types not resolved as research articles. Not a census of all Nature Portfolio AI papers.",
+      "index_method": "Official volume entry inspected; Crossref complete publisher-deposited metadata used after individual issue pages intermittently reset connections.",
+      "issue_snapshots_cached": 11,
+      "papers_visually_inspected": 2,
+      "figures_visually_inspected": 4,
+      "design_cards": 4,
+      "harvest_file": "nmi-2025-metadata.jsonl",
+      "packaged_records": 206,
+      "visually_inspected_design_studies": 4,
+      "reused_visual_design_studies": 0
+    },
+    {
+      "venue": "Nature Machine Intelligence",
+      "year": 2026,
+      "entry_url": "https://www.nature.com/natmachintell/volumes/8",
+      "metadata_entry_url": "https://api.crossref.org/journals/2522-5839/works?filter=from-pub-date:2026-01-01,until-pub-date:2026-10-30&rows=1000",
+      "status": "indexed_publisher_deposited_metadata",
+      "record_count": 158,
+      "exhaustive_listing": true,
+      "listing_scope": "All publisher-deposited Crossref records for NMI ISSN 2522-5839 returned for 2026-01-01 to 2026-10-30; includes editorials/corrections/content types not resolved as research articles. Not a census of all Nature Portfolio AI papers.",
+      "index_method": "Official volume entry inspected; Crossref complete publisher-deposited metadata used after individual issue pages intermittently reset connections.",
+      "issue_snapshots_cached": 6,
+      "papers_visually_inspected": 3,
+      "figures_visually_inspected": 8,
+      "design_cards": 9,
+      "harvest_file": "nmi-2026-metadata.jsonl",
+      "packaged_records": 158,
+      "visually_inspected_design_studies": 9,
+      "reused_visual_design_studies": 0
+    },
+    {
+      "venue": "Nature Methods",
+      "year": 2025,
+      "entry_url": "https://www.nature.com/nmeth/volumes/22",
+      "status": "selected_papers_and_figures_inspected",
+      "record_count": 1,
+      "exhaustive_listing": false,
+      "listing_scope": "Selected AI research papers with inspected publisher figures; not all AI papers in this journal or Nature Portfolio.",
+      "papers_visually_inspected": 1,
+      "figures_visually_inspected": 2,
+      "design_cards": 2,
+      "harvest_file": "nature-portfolio-nature-methods-2025-selected.jsonl",
+      "packaged_records": 1,
+      "visually_inspected_design_studies": 2,
+      "reused_visual_design_studies": 0
+    },
+    {
+      "venue": "NeurIPS",
+      "year": 2025,
+      "entry_url": "https://neurips.cc/Downloads/2025",
+      "record_count": 5860,
+      "status": "official_poster_listing_harvested",
+      "exhaustive_listing": true,
+      "scope": "all official Downloads page links with Poster class; not a claim of complete published proceedings or a single track. Proceedings fetch failed.",
+      "figures_visually_inspected": 0,
+      "checked_at": "2026-10-30",
+      "harvest_file": "neurips-2025-metadata.jsonl",
+      "packaged_records": 5857,
+      "visually_inspected_design_studies": 4,
+      "reused_visual_design_studies": 2
+    },
+    {
+      "venue": "NeurIPS",
+      "year": 2026,
+      "entry_url": "https://neurips.cc/Downloads/2026",
+      "record_count": 9147,
+      "status": "indexed",
+      "exhaustive_listing": true,
+      "scope": "official poster list; not yet published proceedings",
+      "harvest_file": "neurips-2026-metadata.jsonl",
+      "packaged_records": 9117,
+      "visually_inspected_design_studies": 2,
+      "reused_visual_design_studies": 0
+    }
+  ],
+  "packing": {
+    "raw_records": 54925,
+    "outside_publication_window": 0,
+    "deduplicated_records": 35,
+    "identity": "normalized title + venue + actual publication year",
+    "gzip_mtime": 0,
+    "payload_sha256": "5dd3316ee2cbd8185e2b9344fcdaea2f55a75ed1740e9d41f69144bed70f36b3"
+  },
+  "harvest_inputs": [
+    {
+      "harvest_file": "acl-2025-metadata.jsonl",
+      "records": 3353,
+      "sha256": "07aed214d9d00aa75db045d4c85e13dcfe04d8c22ac4e0d8642d32d329d936ed"
+    },
+    {
+      "harvest_file": "acl-2026-metadata.jsonl",
+      "records": 4813,
+      "sha256": "604a8008cfcc4b57f9bf20e2ea82a6d5756924b9d71c5d112788a2c71b7a6171"
+    },
+    {
+      "harvest_file": "cvpr2025-papers.jsonl",
+      "records": 2871,
+      "sha256": "c36a50e21a43b211b6d99ebb1c9ee12c79c4086a60d438ea2006afea25902455"
+    },
+    {
+      "harvest_file": "cvpr2026-papers.jsonl",
+      "records": 4042,
+      "sha256": "8c33d367d0828d2a2f810b774b51f5a3aa6b5ef6d628f3d96b765cde9833a0a9"
+    },
+    {
+      "harvest_file": "eccv2026-papers.jsonl",
+      "records": 2834,
+      "sha256": "88c149993323e1e776833b64eeaf691dcac490296ecdb09d0d2d329a17e08846"
+    },
+    {
+      "harvest_file": "iccv2025-papers.jsonl",
+      "records": 2701,
+      "sha256": "9df0689d1d07f153dfd1db91ccd341d759715c9106d9e8db0cab4fa293ce3b9f"
+    },
+    {
+      "harvest_file": "iclr-2025-metadata.jsonl",
+      "records": 3703,
+      "sha256": "26863df20425925a9e8294e00135b5941a6048bd00f79bae5315bff03988f6b0"
+    },
+    {
+      "harvest_file": "iclr-2026-metadata.jsonl",
+      "records": 5351,
+      "sha256": "194dc0bfe160a107d3aef15e734a4b6b593530d2e3d9675f9070dd3a50409c78"
+    },
+    {
+      "harvest_file": "icml-2025-metadata.jsonl",
+      "records": 3330,
+      "sha256": "7d8f0e835a9fdeb3c14fe9f8d65aeb1e2982b9040497eec29d40ecccbb2de83c"
+    },
+    {
+      "harvest_file": "icml-2026-metadata.jsonl",
+      "records": 6552,
+      "sha256": "58193d9a8367ce13ea594a339a6f2acd525c67d135e322c52497072d620a9c93"
+    },
+    {
+      "harvest_file": "nature-2026-metadata.jsonl",
+      "records": 1,
+      "sha256": "c20fffca8b32376d6a093e8dbb2ca2ff3ef76ff2e90137e8756ae216f8798bb1"
+    },
+    {
+      "harvest_file": "nature-methods-2025-metadata.jsonl",
+      "records": 1,
+      "sha256": "4931deb5eb070d902209a13e2eceb0e0f2bf5172315955f5f00136c2c866b8ff"
+    },
+    {
+      "harvest_file": "nature-portfolio-selected-metadata.jsonl",
+      "records": 2,
+      "sha256": "3c69ce9fdabb78b3274bfdd419ece117d05861c01b53c117a74c40d27ff010d1"
+    },
+    {
+      "harvest_file": "neurips-2025-metadata.jsonl",
+      "records": 5860,
+      "sha256": "6dcf8cc2de264c365ab6b11cb7039a593be6dc95fd49a67ede9064b9ae10ed97"
+    },
+    {
+      "harvest_file": "neurips-2026-metadata.jsonl",
+      "records": 9147,
+      "sha256": "663d155af448c02cabca8a1d845a9fb31ca066cf13b561a3e760af58ac1d6462"
+    },
+    {
+      "harvest_file": "nmi-2025-metadata.jsonl",
+      "records": 206,
+      "sha256": "32fc84cf7211f0994f8ec2bf6d8cfad78e93838c75afa80249158b3f1d0c82e2"
+    },
+    {
+      "harvest_file": "nmi-2026-metadata.jsonl",
+      "records": 158,
+      "sha256": "afb8564043b245bf3a6fcd02dccdc52886b7f8e7acac1941b34414a7a687c9a9"
+    }
+  ],
+  "designs_checked_at": "2026-10-31",
+  "design_paper_count": 43
+}

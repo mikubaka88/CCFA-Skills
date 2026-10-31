@@ -1,76 +1,59 @@
 # Transformer Writing Style
 
-Source: Vaswani et al., "Attention Is All You Need," NeurIPS2017.
-Paper PDF: `references/exemplars/papers/1706.03762.pdf`
+Source: Vaswani et al., *Attention Is All You Need*, NeurIPS 2017.
+Inspected version: arXiv:1706.03762v7, 2 August 2023, as identified on the stored PDF.
+Local PDF: `references/exemplars/papers/1706.03762.pdf`.
+Local text: `references/exemplars/papers/1706.03762.md`.
+Use when: explaining a computational dependency, structural bottleneck, or change of modeling primitive.
 
-Use when: writing architecture papers, backbone-replacement papers, or papers whose main contribution is changing the fundamental modeling primitive rather than adding a module to an existing pipeline.
-
-## Actual Section Lengths (from the published paper)
-
-| Section | Approx. Pages | Characterization |
-| --- | --- | --- |
-| Abstract |0.2 | Concise: problem, gap, method, evidence. |
-| Introduction |1.2 | Broad hook, specific gap, insight, architecture summary, contributions, paper roadmap. |
-| Background |0.7 | Formal problem statement, notation, why path length matters. |
-| Model Architecture |3.0 | The largest section. Every component motivated individually: attention, multi-head, FFN, embeddings, positional encoding. Each subsection has: motivation, equation, explanation, why it works. |
-| Why Self-Attention |0.5 | Analytical justification: complexity comparison table, path-length analysis. |
-| Training |0.3 | Dataset, hardware, schedule — just enough to justify claims. |
-| Results |1.5 | Main BLEU table, comparison table, ablations table, training curves. |
-| Related Work |1.0 | Organized by paradigm, not by chronology. Each subsection contrasts directly with the gap the paper fills. |
-| Conclusion |0.3 | Restates insight and evidence, no new claims. |
-
-Total: ~8.7 pages main text,2.3 pages references + appendix.
+The source observations below describe selected passages. Reusable Techniques gives adaptation advice; neither prescribes the new paper's section lengths or paragraph count.
 
 ## Story Pattern
 
-The paper starts from a widely understood problem (sequence transduction), identifies a structural bottleneck in existing solutions (sequential computation), introduces a clean conceptual shift (attention as backbone), supports it with both theoretical analysis (path length) and empirical evidence (WMT BLEU), and concludes with bounded claims.
+**Source observation, Sections 1–2:** the paper introduces established recurrent sequence models, explains their sequential computation, and positions attention as a way to relate distant positions. The Transformer proposal changes the modeling primitive. Background discusses convolutional alternatives and path length before the architecture is developed.
 
-## Section-by-Section Writing Moves
+The inspected Introduction has four paragraphs on PDF page 2. It ends with the proposed architecture and a training/result preview; it has no numbered contribution list. Related work appears in the Introduction and Background rather than a separate Related Work section. These facts correct the former generic outline; they are not recommendations to copy that organization.
 
-### Abstract
-- Sentence1: Problem and importance.
-- Sentence2: Gap in existing methods.
-- Sentence3: Core insight and method name.
-- Sentence4: Architecture components.
-- Sentence5: Headline evidence (numbers).
+## Abstract Moves
 
-### Introduction
-- Paragraph1: Task importance and broad motivation.
-- Paragraph2: Existing methods and their limitations (structural, not just empirical).
-- Paragraph3: Root cause of the limitation — why existing methods cannot address it.
-- Paragraph4: Insight and proposed method (named here).
-- Paragraph5: Architecture summary (one sentence per component).
-- Paragraph6: Evidence preview.
-- Paragraph7: Contributions list (numbered).
-- Paragraph8 (optional): Paper structure.
+**Source observation, Abstract, PDF page 1:** the opening describes the dominant architectures and the role attention already plays. The proposal then names the changed architecture. Subsequent sentences report translation quality, training cost, and a parsing application. The abstract does not follow a five-sentence problem/gap/insight/components/results template.
 
-### Method
-- Each subsection: motivation first, then equations, then explanation.
-- Motivation answers: "Why is this component needed, given the gap described in the Introduction?"
-- Equations are clean and self-contained.
-- Hyperparameters are in a table, not scattered in text.
+**Adaptation advice:** make the relationship to the prior computational approach legible before describing performance. Report only the new work's supplied results; do not borrow the source's claims or numerical emphasis.
 
-### Experiments
-- Setup: dataset sizes, preprocessing, hardware.
-- Main results: a clean table with bold best results.
-- Complexity analysis: a theoretical table that supports the architectural claim.
-- Ablations: each row tests one design choice against a specific claim.
-- Training efficiency: wall-clock time to support the parallelism claim.
+## Introduction Moves
 
-### Related Work
-- Organized by paradigm: recurrent, convolutional, attention-based, efficient methods.
-- Each paragraph: paradigm name, key papers, limitation relative to this work, how this work differs.
-- Ends with the closest gap.
+**Source observation, Section 1, paragraph 2:** a sentence explains the recurrence between hidden states. The next links that dependence to sequential computation and the resulting restriction on parallelization. Later sentences distinguish improvements in efficiency from the remaining sequential constraint.
+
+**Sentence-level technique:** the same scientific object carries the explanation from computation to constraint to consequence. The bottleneck is established through the operation, rather than announced with an abstract ability label.
+
+**Adaptation advice:** use this progression when the supplied method actually has an explanatory dependency. A different task may need an observation, counterexample, or definition instead. Do not invent an impossibility claim to imitate the source.
+
+## Method Moves
+
+**Source observation, Section 3.2.1:** the text defines queries, keys, and values, states the dot-product, scaling, and softmax operations, and then gives the matrix expression. The later discussion explains the scaling choice through a proposed gradient-related account, with an explicit probabilistic assumption in the footnote.
+
+**Source observation, Section 3.5:** positional encoding is introduced because the architecture needs sequence-order information. The passage separates the design rationale, the reported comparison with learned embeddings, and a possible extrapolation benefit. The possibility is not presented as a proven result.
+
+**Adaptation advice:** place definitions and computations where they answer the reader's next question. Preserve the distinction between an explanation, a hypothesis, and an observed comparison. Parameters can appear in relevant prose; the source does not place all hyperparameters in a single table.
+
+## Evidence Moves
+
+**Source observation, Section 4 and Table 1:** the analytical comparison names per-layer complexity, sequential operations, and path length as distinct quantities. It then explains the conditions under which the comparisons apply.
+
+**Source observation, Sections 5–6:** training settings, translation results, architecture variations, and parsing are described in their respective contexts.
+
+**Adaptation advice:** choose the quantities that distinguish the new method's actual operation and explain their meaning. An analytical comparison and an empirical study answer different questions; neither is a mandatory companion to every contribution.
 
 ## Reusable Techniques
 
-- Make the structural bottleneck explicit (not just "others do worse").
-- Name the method early in the Introduction.
-- Every method component has a clear "why" before the "how".
-- Pair analytical evidence (complexity table) with empirical evidence (BLEU table).
-- Keep ablation rows directly tied to design choices listed in Method.
-- Use bold for best results — one convention throughout.
+- Explain a computational dependence before deriving its consequence.
+- Define the operation in prose before using a compact equation.
+- Give a design choice its specific rationale without turning that rationale into an observed benefit.
+- Introduce a comparison quantity together with the scientific question it answers.
+- Keep standard technical terms and justified uncertainty, including when the original uses negation or hedging.
+
+For an original hypothetical adaptation of the dependency-to-consequence technique, see `references/exemplar-style-analysis.md`.
 
 ## Do-Not-Copy Boundary
 
-Do not reuse the specific architecture, equations, motivation framing, or reported numbers unless the user's paper genuinely supports them. This card provides writing moves and structural patterns, not content to copy.
+The architecture, task, equations, comparisons, and findings belong to the source. Transfer the explanatory relationship only when the new material supports it. Do not copy source sentences with substituted nouns or present adaptation advice as a fact about the paper.

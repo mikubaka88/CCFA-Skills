@@ -42,7 +42,7 @@ text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
 <circle cx="442" cy="325" r="23" fill="#FFFFFF" stroke="#58C58A" stroke-width="1.6" />
 <text x="442" y="332" font-size="19" font-weight="850" fill="#58C58A" text-anchor="middle">▦</text>
 <text x="480" y="320" font-size="18" font-weight="850" fill="#233044" text-anchor="start">证据构建</text>
-<text x="480" y="348" font-size="13" font-weight="650" fill="#667085" text-anchor="start">文献 · 实验 · 完整性核验</text>
+<text x="480" y="348" font-size="13" font-weight="650" fill="#667085" text-anchor="start">文献 · 实验 · 科研工程 · 核验</text>
 <path d="M 870 325 C 920 325 920 360 960 360" fill="none" stroke="#58C58A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arrow)"/>
 <rect x="400" y="398" width="470" height="94" rx="28" fill="#FFE1E1" stroke="#FF8A8A" stroke-width="1.4" />
 <circle cx="442" cy="445" r="23" fill="#FFFFFF" stroke="#FF8A8A" stroke-width="1.6" />

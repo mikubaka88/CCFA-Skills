@@ -1,253 +1,93 @@
 # Research Writing Patterns
 
-Use this file for full-paper drafting, section-specific rewriting, and exemplar-mode adaptation. It consolidates section-level writing patterns for CCFA while keeping venue routing, evidence policy, and artifact contracts in CCFA.
+Use this reference when a section's organization needs help. `section-modules.md` owns section responsibilities, `materials-to-manuscript.md` owns drafting phase and pending results, and `prose-quality-guardrails.md` owns prose checks. Do not load this file merely to run another checklist.
 
-These are transferable writing patterns, not copied examples. Do not reuse sentence templates, distinctive wording, examples, claims, or confidence from any source paper or external skill. Adapt the logic to the user's actual problem, method, and evidence.
+These patterns are options for explaining the supplied work. Choose and combine them by contribution type; they do not prescribe sentence counts, a fixed number of contributions, or one sequence for every manuscript. Reuse conventional academic phrases and established terms when natural. Compose original explanations without copying distinctive source passages or importing their scientific claims.
 
-Always apply `prose-quality-guardrails.md` with this file. It is the authority for avoiding defensive or incremental prose, label-heavy symbols, formula dumping, number-only abstracts, punctuation-driven structure, overlong compound sentences, strange shorthand, third-person manuscript narration, and unsupported hype.
+## Deliver The Requested Text
 
-## Dense Output Rule
+A manuscript request requires a manuscript, a section request requires a section, and a revision request requires revised prose in the source format. Keep routine planning internal. Complete the content before fitting pages unless a local edit has a specific length constraint. Fill explanatory gaps from supplied material; do not fill space or manufacture results.
 
-For broad writing tasks, produce the artifact first and make it substantial:
+An ordinary edit preserves the scientific point, its emphasis, and the author's usable voice. Change what obstructs understanding. A rewrite may reorganize a passage when authorized, but a clear sentence does not need replacement simply to match a preferred template.
 
-- Full manuscript request: write a full LaTeX/Markdown manuscript, not only an abstract or outline.
-- New manuscript request: complete the content and alignment checks before fitting pages; use `materials-to-manuscript.md` for results-pending drafts. Explicit submission-ready requests include a later fitting phase.
-- Section request: write the section, not only paragraph roles.
-- Revision request: provide revised text in source format plus only the necessary edit notes.
-- Exemplar request: show the source writing pattern, then adapt it into original text.
+## Scientific Progression
 
-Avoid empty "next steps" and generic warnings. A warning is useful only if it names the unsupported claim, missing evidence, affected section, and concrete fix.
+Select the progression that explains this work:
 
-For drafts with explanatory gaps, add the supported problem definition, method computation, benchmark rationale, protocol, or scientific interpretation that is missing. Initial drafts have no page quota. Missing result values use `\emptycell` in LaTeX, with no outcome-dependent analysis. Keep unresolved facts outside manuscript prose, and add limitations only when material or required. Do not pad with generic background.
+- **Mechanism:** introduce the relevant object, explain a dependency or failure, and show how the supplied change addresses it.
+- **Theory:** define the question and assumptions, develop the statement or construction, and explain its consequences.
+- **Measurement:** establish the phenomenon and comparison, report the observations, and explain their implications.
+- **Resource or task:** define what earlier resources do not measure, explain the construction or evaluation, and discuss what the resource reveals.
+- **Several connected contributions:** explain their relationship and give each enough space; do not manufacture a single module or three-item list.
 
-## Natural Writing Style
+These functions can overlap. A limitation, counterexample, application, or surprising observation can be a useful opening when it provides the right context. Do not force prior work to fail simply because a challenge-first template expects a failure.
 
-CCF-A papers read as continuous prose arguments, not as annotated outlines. The best papers in CVPR, ICLR, NeurIPS, and ICML share these traits:
+## Abstract Options
 
-### What Best Papers Do
+Useful arrangements include question–contribution–finding, challenge–insight–method, and resource–coverage–finding. A numerical result may be central to the contribution. Include the operations or definitions needed to understand the claim and the decisive supported result when available.
 
-- Each paragraph opens with a claim or observation, then supports it with evidence, reasoning, or citations.
-- Citations appear inside sentences as part of the argument, not as parenthetical interruptions.
-- Technical terms are defined when needed and used consistently. Emphasis is selective, not applied to every term.
-- Method descriptions follow a logical flow: problem, design rationale, mechanism, justification.
-- Experiments connect scientific questions, observations, and interpretation. Keep imagined reviewer objections out of the prose.
+For results-pending drafts, describe the supplied formulation and mechanism without predicting a win. Several related contributions may need more than one explanatory sentence; brevity should not erase their relationship. The abstract's order follows what the reader needs to know, not a fixed menu of sentence slots.
 
-### What To Avoid
+## Introduction
 
-- **Bold-label paragraphs:** Do not write paragraphs where every sentence starts with `\textbf{Key:}` or `\textit{Label:}`. Example of forbidden pattern:
- ```
- \textbf{Input:} The model takes images as input. \textbf{Architecture:} We use a transformer. \textbf{Training:} We train with Adam.
- ```
- Instead, write flowing prose: "The model processes images through a transformer backbone, trained end-to-end with Adam optimization."
+Reason backward from the actual contribution before drafting forward:
 
-- **Citation dumps:** Do not list five citations in one bracket with no narrative. Group related work with a shared observation: "Contrastive objectives [9,10,11] share the goal of learning invariant representations, but differ in how negative pairs are constructed."
+- What scientific question or practical difficulty makes this work useful?
+- What do existing approaches already achieve?
+- What unresolved relationship, observation, or limitation motivates the contribution?
+- How does the proposed construction or insight address it?
+- What has actually been established?
 
-- **Empty transitions:** Do not use "Recently, ..." or "In recent years, ..." as a paragraph opener more than once per paper. Start with the specific development that matters.
+Use the answers that matter for the paper. A new measurement can motivate a method; a constructive result can motivate a formal question; an existing baseline can expose an important failure. Describe these honestly. Do not disguise a baseline-derived idea as a different discovery or inflate the novelty of a useful incremental result.
 
-- **Repeated motivation:** State the paper's core motivation once in the introduction and once in the conclusion. Do not re-motivate in every section.
+For a niche task, define it before relying on its importance. For a familiar task, start with the unresolved issue when background would repeat common knowledge. Connect motivation, definitions, and method at the reader's level of detail. Related work need not form a neat historical ladder toward the present paper.
 
-- **Over-bolded terms:** Do not bold every technical term. Use italics sparingly for initial formulations, and bold for contribution emphasis, actual best results, or useful brief headings in the established style.
+## Related Work And Citations
 
-- **Question/claim labels as prose:** Avoid `Q1`, `Q2`, `C1`, `C2`, `RQ1`, and similar shorthand in the main narrative. Use natural names and sentence-level transitions unless the venue or study design explicitly requires labels.
+Organize work around the scientific relationships that matter: shared assumptions, alternative formulations, differing mechanisms, or what a measurement can establish. Use historical order when the development itself explains the issue. Discuss the closest relevant work explicitly.
 
-- **Number-led abstracts:** Do not let the abstract become a list of gains. Put task, gap, insight, method, and scope before numeric evidence.
+Support the substantive comparison with original sources through `citation-workflow.md`. Author-name subjects, parenthetical citations, and grouped references can all be appropriate. Prefer an informative sentence over a catalogue of titles; the number of references in one group does not by itself make it a citation dump.
 
-- **Formula-first paragraphs:** Do not introduce a method through dense symbols before explaining the scientific role of the quantity being defined.
+A compact citation group can support a shared statement. Split it when the sources support different claims or the comparison needs explanation. Do not impose a per-paragraph quota or force every related-work paragraph to end by criticizing earlier methods.
 
-- **Third-person manuscript voice:** Do not write manuscript text as "this paper proposes" or "the authors show". Use direct scientific voice or make the concept itself the subject.
+## Method, Theory, And Resources
 
-### Citation Weaving
+Organize the explanation around the dependencies required to understand the contribution. Definitions should be available before the reader must use them. Explain a design choice when its reason is not already clear, and give equations or constructions their scientific role.
 
-Load `references/citation-workflow.md` for the full workflow. In the writing itself, citations must feel woven into the argument:
+A module subsection may need motivation, computation, an example, or an assumption. It does not need all of them in a fixed order, an independent novelty claim, and an experiment reference. Connected derivations and shared definitions may span multiple subsections.
 
-**Good:**
-- "The shift from recurrent to self-attentive architectures [1] eliminated the sequential dependency that limited training parallelism."
-- "Residual connections [2] address vanishing gradients by providing identity shortcuts through deep networks."
-- "Several works have since extended this idea to dense prediction [3,4], video understanding [5], and multimodal fusion [6]."
+Use a model's actual structure when explaining training and inference. For other contributions, use the proof roadmap, data construction, study design, or measurement argument. Preserve the mechanism's depth; an input/output description alone may omit the scientific idea.
 
-**Bad:**
-- "Vaswani et al. [1] proposed the Transformer. He et al. [2] proposed ResNet."
-- "Many methods have been proposed [1,2,3,4,5,6,7,8]."
-- "In [1], the authors show that attention improves translation quality."
+State claimed benefits at the support level available: logical implication, proved property, design rationale, or measured effect. Keep a proposed effect distinct from an observed one. A theorem does not require an empirical substitute, and a planned ablation does not validate a module.
 
-The claim comes first, then the citation. The sentence should make sense without the brackets. See `references/citation-workflow.md` for the complete rules.
+## Experiments And Analysis
 
-## Exemplar And Source-Paper Mode
+Follow the supplied scientific questions and actual results. Explain the setup needed to interpret a comparison, present the finding, and develop its implication. Relevant negative findings and unresolved alternative explanations remain part of that argument.
 
-When the user asks to learn from a source paper or exemplar:
+Possible comparisons include a baseline, a controlled intervention, a generalization setting, a sensitivity study, or an efficiency measurement. Use the ones needed by the actual claims. Do not generate a compulsory sequence of main results, ablations, robustness, and failure cases.
 
-1. Extract the source paper's writing mode:
-   - abstract arc,
-   - introduction paragraph roles,
-   - technical challenge chain,
-   - insight sentence,
-   - method module decomposition,
-   - experiment evidence sequence,
-   - limitation framing.
-2. Map that mode to the user's paper:
-   - which roles fit,
-   - which roles would distort the contribution,
-   - what evidence is missing,
-   - what should be rewritten rather than copied.
-3. Draft original text using the mapped roles.
+Tables can combine several comparisons when their relationship is clear; one table per claim is not required. Captions give the quantities, setting, and supported takeaway. Pending tables describe their intended comparison without inventing the outcome. Use `table-style-guide.md` for table-source conventions and the visual specialist for requested layout work.
 
-Visible output should include the adapted artifact. The source-mode map can be concise unless the user asks for a detailed style audit.
+## Conclusion
 
-## Abstract Patterns
+Close on what was established and why it matters. A method paper may emphasize its mechanism; a theory or measurement paper may emphasize the consequence of its result. Do not restate every section or impose a five-sentence ending. Include a material boundary or future question when it advances the conclusion or is required.
 
-Pick one pattern, not all three.
+## Learning From Original Writing
 
-### Challenge -> Contribution
+Use `exemplar-style-analysis.md` to inspect the original passages serving the relevant writing functions. Select more than one source when they solve different expression problems; do not concatenate their outlines or alternate their voices.
 
-Use when the core contribution solves one sharp technical challenge.
+Observe how a good passage maintains its subject, introduces terms, puts emphasis on the main point, and connects reasoning across sentences. Retain natural disciplinary collocations. Awards, citation counts, and template compliance cannot establish that a passage is well written.
 
-1. Task and why it matters.
-2. Prior-method challenge and root reason.
-3. Contribution that directly addresses the challenge.
-4. Technical advantage.
-5. Evidence summary.
+A reference's weak or inflated phrase remains weak when it appears in a prestigious paper. Learn from the useful passage without adopting every rhetorical move in the source.
 
-### Challenge -> Insight -> Contribution
+## Completion Check
 
-Use when the paper's value is a clear conceptual insight.
+Read the actual draft once for the reader's understanding, not for template coverage:
 
-1. Task.
-2. Technical challenge.
-3. One sentence with the insight.
-4. Method that implements the insight.
-5. Benefits and evidence.
+- Are the central question and contribution understandable at the relevant level?
+- Do definitions, comparisons, conditions, and adjacent sentences support the intended inference?
+- Did revisions preserve information, emphasis, attribution, and the actual strength of the finding?
+- Are missing results still missing, without outcome-dependent analysis?
+- Did a reference or review rule introduce a new claim, unnecessary apology, or unrelated experiment requirement?
 
-### Multiple Contributions
-
-Use when the paper has several independent technical pieces.
-
-1. Task and setting.
-2. Short prior-work contrast if needed.
-3. Contribution 1 plus advantage.
-4. Contribution 2 plus advantage.
-5. Contribution 3 plus advantage.
-6. Evidence summary.
-
-Abstract checks:
-
-- A reader can identify task, challenge, insight/method, and evidence in one pass.
-- Every result claim is later supported.
-- Method names are readable before details are introduced.
-- No sentence carries several unrelated messages.
-- The abstract is not dominated by numeric comparisons; numbers appear only as decisive evidence after the contribution is clear.
-
-## Introduction Patterns
-
-Use backward reasoning before drafting:
-
-1. What problem is solved?
-2. Why do existing solutions fail?
-3. What root technical reason causes the failure?
-4. What insight makes the proposed method plausible?
-5. What evidence will convince reviewers?
-
-Then write forward:
-
-Establish the scientific question and its importance, explain relevant progress, and identify the unresolved relationship and its reason. Develop the connected observations that motivate the actual task, benchmark, or mechanism. Introduce each contribution with a readable definition and its scientific role, then summarize applicable evidence. These functions can span different numbers of paragraphs. Use verified citations where claims need support, without per-paragraph or total citation quotas. Do not preview validation that has not occurred.
-
-Task-opening variants:
-
-- Niche task: define the task, then name applications. Cite the works that established the task.
-- Familiar task: start from application or scientific importance. Cite the breakthrough papers that created the current momentum.
-- New setting: start broad, then narrow to the exact input/output setting. Cite the closest related settings.
-- Challenge-focused opening: explain the relevant phenomenon or capability gap, with evidence for any asserted failure.
-
-Challenge-chain variants:
-
-- Existing task: general challenge -> traditional line -> recent line -> remaining challenge, citing applicable primary evidence.
-- Existing task with historical insight: modern limitation -> classical insight -> why old line is insufficient -> new method.
-- New task: define the scientific challenge and its actual interrelated obstacles without fixing their number.
-
-Avoid naive-baseline framing. Do not make the paper sound like "we tried an obvious baseline and patched it." Frame the root technical issue and the non-obvious insight instead.
-
-## Related Work Pattern
-
-Use focused topic groups whose coverage follows the scientific question, not a fixed group or citation count.
-
-For each topic group:
-
-1. **Topic scope:** Name the research thread and why it is relevant to this paper.
-2. **Representative work:** Explain shared ideas and relevant differences with verified sources, not a paper-by-paper catalogue.
-3. **Relationship to the current question:** Describe the relevant capability, assumption, or unresolved issue accurately; a whole research thread need not share one limitation.
-4. **Technical positioning where needed:** Explain actual distinctions without a required comparison ending in every paragraph or a claim of superiority.
-
-**Citation integration rules for Related Work:**
-
-- Each discussed paradigm or thread has the relevant primary sources needed to support the comparison; do not fill a fixed citation quota.
-- The closest competitor must be cited and discussed explicitly, not hidden in a list.
-- If any claim about prior work cannot be verified, route to `ccf-literature-searcher` before writing.
-- Do not cite a paper only because it is famous; every citation must serve the argument.
-
-## Method Pattern
-
-Before writing Method, map its actual scientific mechanisms internally. A compact table can help when the structure warrants it; this is not a compulsory module inventory in the paper:
-
-| Module | Input | Operation | Output | Motivation | Technical advantage | Validated by |
-| --- | --- | --- | --- | --- | --- | --- |
-
-Each module subsection should contain:
-
-1. Motivation: why the module is needed.
-2. Design: representation, architecture, equation, algorithm, or data structure.
-3. Forward process: input -> step -> output.
-4. Technical advantage: why this design addresses the challenge.
-5. Applicable support: supplied ablation, theorem, analysis, or qualitative result; a planned test is not validation. Do not force every subsection to end with a validation sentence.
-
-Method clarity checks:
-
-- The overview gives the task setting, core contribution, and subsection map.
-- Notation appears before use.
-- Every module has a reason to exist.
-- Implementation details are sufficient for reproduction or explicitly deferred to appendix.
-- The method does not rely on claims that experiments never test.
-
-## Experiment Pattern
-
-Choose evaluation questions from the supplied research claims and experiment design. Typical roles include:
-
-1. Effectiveness: is the method better than strong baselines under fair protocols?
-2. Mechanism: what does the actual controlled comparison establish about a design choice?
-3. Generalization and limits: when does it work, fail, or become costly?
-
-Recommended section order:
-
-1. Setup: datasets, preprocessing, metrics, baselines, implementation.
-2. Main results: one table per primary claim.
-3. Ablation: remove/replace/disable major modules.
-4. Analysis: robustness, efficiency, sensitivity, qualitative examples, or failure cases.
-5. Material findings about the evaluated conditions when relevant, not a compulsory cautionary ending.
-
-Table/figure rules:
-
-- One table/figure, one message.
-- Captions state setting and takeaway.
-- Use `booktabs`; avoid vertical rules and dense line stacks.
-- Mark metric direction and units.
-- Keep numeric precision consistent.
-- Group multi-dataset results with clean headers.
-- Do not highlight too many cells.
-
-## Conclusion Pattern
-
-1. Restate problem and method.
-2. State the key insight.
-3. Summarize strongest evidence.
-4. State a material condition when it changes the interpretation; do not append boilerplate caveats.
-5. Include a future direction only when it adds a concrete useful implication. If empirical results are pending, summarize the established formulation and proposed mechanism without claiming success.
-
-## End-Of-Draft Self-Review
-
-For full-paper drafts, run this internally and surface only unresolved issues unless the user asks for the review:
-
-| Dimension | Question | Status | Required fix |
-| --- | --- | --- | --- |
-| Contribution | What new knowledge does the paper provide? | pass / revise / needs evidence | |
-| Clarity | Can a reader reproduce the method? | pass / revise / needs evidence | |
-| Empirical strength | Are main claims backed by strong results? | pass / revise / needs evidence | |
-| Evaluation completeness | Are baselines, ablations, and metrics sufficient? | pass / revise / needs evidence | |
-| Method soundness | Do benefits outweigh assumptions and limitations? | pass / revise / needs evidence | |
+For a substantial draft, reuse the scoped review required by the writer entry. Carry the drafting phase and intended scope into that review. Fix actual findings, preserve sound passages, and stop when the requested writing problem is resolved.

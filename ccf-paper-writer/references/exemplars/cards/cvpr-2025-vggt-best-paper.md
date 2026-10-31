@@ -13,16 +13,18 @@ VGGT is both:
 - a user-custom writing-format exemplar, via `cards/vggt.md`;
 - the CVPR 2025 Best Paper, recorded here for venue-award context.
 
-When no target venue is specified, use `cards/vggt.md` as part of the custom format. When the user asks for CVPR best-paper style, load this card only to note the award context, then load `cards/vggt.md` for detailed writing moves.
+Use `cards/vggt.md` when an explicit request or established preference selects the custom format and its writing question fits. An unspecified venue alone does not select it. When the user asks for CVPR best-paper style, load this card only to note the award context, then load `cards/vggt.md` for detailed writing moves.
 
-## Best-Paper Writing Signals
+## Adaptation Guidance
+
+The guidance below suggests adaptations for the named research topics. The award source establishes award context, not these writing techniques; inspect a selected paper passage before attributing a specific move to it.
 
 - Directly replace a complex geometry pipeline with a simpler feed-forward formulation.
 - Define the output family early and show why joint prediction is useful.
 - Support the claim with breadth: many input counts, tasks, baselines, runtime comparisons, and downstream reuse.
-- Make simplicity feel earned by showing that performance is not sacrificed.
+- Explain which operations direct prediction removes and report the actual quality/runtime comparison.
 
-## Reviewer-Facing Warnings
+## Adaptation Conditions
 
 - Do not use "pipeline replacement" language unless the user's evaluation covers strong classical and learning-based baselines.
-- Do not claim general 3D understanding without multiple task families or downstream evidence.
+- State which tasks and conditions the reported results cover; do not generalize beyond them.

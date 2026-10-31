@@ -60,7 +60,7 @@ Delete when:
 - The claim is unsupported and not essential.
 - The wording is generic venue boilerplate.
 - The citation is background-only and not needed for positioning.
-- The sentence increases confidence without adding evidence.
+- It asserts unsupported certainty or repeats an empty assurance; retain synthesis, emphasis and broader significance that follows from the paragraph.
 
 Ask once for a material unresolved choice after completing unaffected compression, for example:
 
@@ -106,7 +106,7 @@ Theory/PL/FM:
 - Use one term consistently rather than alternating synonyms.
 - Prefer "because" and "therefore" relations over long rhetorical bridges.
 - Replace verbose contribution bullets with claim + evidence pairs.
-- Remove defensive hedges, unexplained labels, punctuation-heavy chains, and third-person manuscript narration before cutting substantive content.
+- Remove empty defensive padding and repair unexplained labels or punctuation-heavy chains before cutting substantive content. Preserve meaningful hedges, conventional author voice, and qualifications attached to a claim.
 - Preserve sentence rhythm; do not compress every sentence into the same short template.
 
 ## Risk Labels

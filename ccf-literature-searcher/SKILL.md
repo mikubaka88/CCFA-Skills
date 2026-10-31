@@ -12,124 +12,26 @@ metadata:
 
 # CCF Literature Searcher
 
-## Family File Contract
+## Preflight And Scope
 
-Before file work, reuse canonical paths and one task/artifact working directory; default to project-root `ccfa-workfiles/<purpose>/<artifact-id>/`. Update in place, preserve inputs, and use UTF-8 with Chinese-text checks. Apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) for naming, ownership, and task-created cleanup; handoffs inherit these paths.
+Apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md); reuse active applicable rules. Handoff mode remains **PARTIAL** under metadata and Common's [handoff rules](../ccf-common/references/handoff-modes.md). This owner finds literature, prior art, datasets, benchmarks, citation candidates and opportunity maps. Recent-paper/competitor watch belongs to `ccf-literature-monitor`; judgment, drafting and existing-citation audits retain their respective owners.
 
-## Collaboration Contract
+Before browsing, apply [privacy-and-evidence.md](../ccf-common/references/privacy-and-evidence.md). Convert private research into public-safe terms rather than copying draft sentences or unpublished results into queries. Preserve no-browsing and supplied-evidence-only limits. Apply shared source exclusions, including default MDPI exclusion; a named user-directed source is a scoped exception, not permission for unrelated recommendations. Keep routine screening internal.
 
-Before specialist execution, read and apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md). At every handoff, reuse their applicable active rules or refresh missing/changed ones. Both preflights are required even without prose; detailed editing, experiment, and maintenance modes run only when relevant.
+Use Common's [task modes](../ccf-common/references/task-modes.md): exploratory for direction/opportunity scouting, quick for a small lookup, standard for substantial related-work/novelty/benchmark retrieval. A helper's scope does not become a full standalone search merely because another skill will use it. The user's requested breadth wins; planning ranges are not quotas.
 
-Integrate necessary specialist contributions under one owner; reuse valid prerequisites and verify affected results. Follow the [cooperation routes](../ccf-common/references/routing.md) without duplicate reports.
+## Retrieve And Verify
 
-## Invocation Controls
+Read [search-and-scoring.md](references/search-and-scoring.md) for source roles, query/reuse strategy, taxonomy, relevant scoring anchors and standalone search guidance. Ground substantive claims in inspected original papers or primary artifacts. Indexes and stable landing pages establish identity; snippets, citation counts, institutional prestige and awards do not establish scientific findings. Include relevant technical reports, conference/journal papers and arXiv originals according to their content, version and status.
 
-**CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode` and `../ccf-common/references/handoff-modes.md`. Use `../ccf-common/references/routing.md` to keep literature search separate from idea optimization, manuscript writing, experiment design, paper review, and rebuttal.
+1. Identify the actual search question and use public-safe query clusters. Batch independent discovery and metadata lookups; request only needed fields. Resolve ambiguous identities and deduplicate by stable identifier plus normalized title before deeper reading; retain distinct versions and supplements.
+2. Verify decisive method/result/overlap claims in original passages, inspecting uncertain PDF pages when necessary. Reuse current source caches and locations; an unchanged PDF does not prove that no newer version exists. Record source/version, inspected coverage, type, relevance and stable link. Inaccessible sources can remain explicit retrieval leads, not scored findings or evidence of absence.
+3. Compare what closest work already establishes and the meaningful remaining difference. Keep closest comparators, mechanism-bearing inspirations and counterexamples distinct. An unsearched/crowded topic is uncertain, not automatically dead; a weak result does not erase prior existence. Do not invent a rescue module or abandon the broader user goal when one candidate is covered.
+4. Score only when requested or useful and supported by inspected text. Keep insight/completeness/numerical support separate from relevance and novelty overlap; use contribution-appropriate `N/A` and `not assessed` instead of penalizing unavailable or inapplicable experiments. Benchmark papers use the reference's benchmark-quality note. No acceptance probabilities.
+5. Stop when the requested questions/clusters are covered and further retrieval adds no material information; broaden for a specific remaining gap. Reuse verified work rather than searching per paragraph or filling a paper quota. Return source passages and locations separately from model interpretation.
 
-Load `../ccf-common/references/task-modes.md` before deciding exploratory, quick, or standard mode. Use exploratory mode for early direction scouting, "看看还有没有机会", "这个方向是不是被做完了", or literature search meant to feed idea optimization rather than a final novelty verdict. Use quick mode for a narrow related-work scan or a small set of candidate citations. Use standard mode for Related Work, Introduction, mature idea novelty grounding, benchmark discovery, experiment design, or substantial multi-deliverable work. A small citation lookup stays quick even if a writer will use it.
+## Deliver And Hand Off
 
-If the user asks for recurring watch, latest-paper monitoring, competitor tracking, "recently any similar idea", arXiv/OpenReview feed scans, or lab/project tracking, route to `ccf-literature-monitor` by the shared handoff mode. Use this skill for deep retrieval, closest-work clustering, related-work structure, benchmark/dataset discovery, and citation candidates.
+Return the user's requested list, clusters, opportunity map, BibTeX candidates, benchmark table or compact handoff first. Include material coverage limits where they change the conclusion, without empty score/status sections. For idea development, pass source-backed observations, mechanism primitives, assumptions, relevant relations and protocol anchors; older or analogous-field work can be useful beyond recent nearest neighbors. For writing/review, pass the exact support or overlap needed and its source location, not repeated full abstracts. [search-and-scoring.md](references/search-and-scoring.md) provides the detailed handoff guidance.
 
-Treat user ideas, draft text, unpublished results, and private manuscripts as private material. Load `../ccf-common/references/privacy-and-evidence.md` before browsing. Search with public keywords, public titles, venue names, method names, public abstracts, or user-approved query text. Do not paste private draft sentences into a search query unless the user explicitly authorizes it.
-
-Source-quality exclusion: do not search, cite, recommend, or include policy-excluded venues, journals, URLs, or PDFs. The shared policy includes MDPI sources in this exclusion set; record exclusions only in internal screening or the search-notes file.
-
-## Core Rule
-
-Ground novelty and positioning using high-quality, inspectable sources. Prefer influential conferences, strong journals, official proceedings pages, archival repositories, and public paper pages. Do not invent papers, citations, venues, links, acceptance status, benchmark status, or numerical results. Separate searched evidence from inference. Assess actual overlap: related work can reveal an open question or establish that a candidate's central claim is already covered. Offer meaningful differentiation when supported; do not force a rescue route or abandon the user's broader objective. Follow the user's requested output shape: short list, related-work clusters, opportunity map, BibTeX candidates, benchmark table, search folder, or handoff summary.
-
-## Mandatory Search Checklist
-
-In standard mode, complete this checklist before final output. In quick mode, run the relevant subset and return a compact checklist status.
-
-1. The user's topic is converted into safe public search queries.
-2. Shared source-quality exclusions are applied to search domains, candidates, and final outputs.
-3. Sources prioritize primary or high-confidence venues: official proceedings, arXiv/OpenReview when appropriate, ACL Anthology, CVF, PMLR, ACM, IEEE, USENIX, DBLP, Semantic Scholar, OpenAlex, Crossref, and venue or project pages.
-4. Candidate papers are deduplicated by title and linked to a stable URL.
-5. Each included paper has venue/year/source status, paper type, and relevance rationale.
-6. Score paper quality on insight, completeness, and experimental numeric evidence only when requested or useful for substantial screening, and only to the extent the inspected text supports it. Pure benchmark papers skip the numeric-results score and receive a benchmark-quality note instead.
-7. Paper type is one of `pure benchmark`, `pure method`, `method + benchmark`, `survey`, `system/tool`, `theory/proof`, or `other`.
-8. Every claim about a paper is traceable to the linked source or marked as inferred.
-9. For idea-stage searches, report what each closest-work cluster already covers and any supported open question. Offer differentiation only when a meaningful distinction can be explained; otherwise state that no worthwhile distinction was found in the inspected evidence. Return this finding to the idea owner without inventing a rescue module or abandoning the user's broader objective.
-10. Write a literature-search folder only when reusable output is requested or needed for the authorized work. A bounded helper lookup can return verified evidence in context without a separate report.
-11. When the search feeds idea optimization, an idea-grounding packet separates source-supported observations from inferred gaps and includes mechanism primitives, protocol anchors, cross-source conflict/open-gap relations, and confidence.
-12. Optional handoff to `ccf-literature-monitor`, `ccf-paper-writer`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-experiment-designer`, or `ccf-paper-reviewer` follows CCFA handoff mode.
-
-## Workflow
-
-1. Identify the search purpose: Related Work, Introduction support, novelty check, direction scouting, idea optimization, idea review, experiment design, benchmark/dataset discovery, or reviewer-risk diagnosis.
-2. Create public queries from the user's topic. If the topic is too private or underspecified, ask only for non-sensitive keywords or infer broad keywords with lower confidence.
-3. Load `references/search-and-scoring.md`. Use these search ranges as starting budgets, not quotas. Stop when the requested clusters, closest competitors, and evidence needs are covered and further retrieval adds no material information; broaden when a specific gap remains. Search breadth defaults:
-   - Exploratory: 10-20 screened candidates, 5-10 final papers or clusters, plus opportunity gaps.
-   - Quick: 6-10 screened candidates, 3-6 final papers.
-   - Standard: 15-30 screened candidates, 8-15 final papers unless the user requests another size.
-
-   These are planning ranges for standalone searches, not quotas. A helper lookup retrieves only the sources needed to resolve its assigned question and returns to the requesting owner. Honor a requested breadth; do not repeat verified searches or collect extra papers merely to reach a default count.
-4. Search discovery indexes first, then verify candidates through stable paper pages or official proceedings when possible. Use broad web search only to find primary links; do not rely on snippets for final claims.
-5. Filter by influence and fit. Prefer CCF-A/B conferences, top-field conferences, strong journals, widely used benchmarks, or recent high-signal preprints from credible groups. Exclude low-quality, predatory, inaccessible, or policy-excluded sources. For exploratory searches, include one or two "near miss" or negative-signal clusters if they reveal an open gap, failed assumption, outdated benchmark, missing user group, or neglected system constraint.
-6. Classify papers as needed for screening. Score inspected papers only when requested or decision-relevant, using these dimensions:
-   - `insight`: how clear and non-obvious the central idea is.
-   - `completeness`: method/evaluation/proof/dataset/reproducibility coverage.
-   - `experimental numeric evidence`: strength and relevance of reported numerical evidence; mark `N/A benchmark` for pure benchmark papers.
-7. Write files only when reusable output is requested or needed within the authorized workflow. Honor no-new-files constraints. Reuse an existing canonical search folder for an update; otherwise use `references/report-template.md` with the default folder name:
-
-```text
-ccfa-workfiles/literature/<topic-slug>/
-  papers.md
-  papers.csv        # only when structured reuse/export is needed
-  search-notes.md    # only when queries/coverage must persist separately
-  idea-grounding.md  # include when the search feeds idea optimization
-```
-
-Reuse an existing dated or custom search folder instead of renaming it. Store the current search date and source versions inside the report; do not create a new folder for an ordinary update. Derive requested Markdown/CSV views from one screened source set rather than writing independent copies. Skip empty or unrequested score columns and generic status sections.
-
-8. If the search feeds another module, provide a compact handoff with canonical source paths and only decision-relevant evidence:
-   - For writing: closest-work groups, novelty gaps, citation cautions.
-   - For idea optimization: a compact idea-grounding packet with evidence cards, mechanism primitives, protocol anchors, gap/conflict relations, stale/overcrowded directions, timely pivots, and minimum viable research questions. Keep whole abstracts and generic background out of the handoff.
-   - For idea review: novelty confidence and likely prior-art risks.
-   - For literature monitoring: watch queries, tracked competitors, and recurring overlap signals.
-   - For experiment design: datasets, baselines, metrics, benchmark protocols.
-   - For paper review: missing related work and baseline risks.
-
-## Adaptive Output Contracts
-
-Return the requested artifact first. If the user asks for a list of papers, output the list/table directly. If they ask for Related Work material, output clusters and positioning notes. If they ask for a folder, write the folder and summarize it. Use the following defaults for standard or quick search reports.
-
-For standard search, return:
-
-```text
-Search purpose:
-Queries used:
-Source policy:
-Folder written:
-Top paper table:
-Closest-work clusters:
-Opportunity map:
-Quality-score rationale:
-Benchmark/dataset candidates:
-Novelty and positioning risks:
-Recommended next module:
-Checklist status:
-```
-
-For quick search, return:
-
-```text
-Quick search scope:
-Top candidates:
-High-risk missing literature:
-Opportunity hint:
-Folder written:
-Compact checklist status:
-```
-
-## Reference Files
-
-Load only what is needed:
-
-- `references/search-and-scoring.md`: Use for source policy, source-quality exclusions, source tiers, paper-type taxonomy, and scoring anchors.
-- `references/report-template.md`: Use when writing the literature-search folder files.
-
-## Retrieval Execution
-
-Batch independent public-safe query clusters when supported, then deduplicate by DOI/arXiv identifier and normalized title before deeper reading. Verify important claims in the actual paper or primary page, not snippets. Track inspected sections and publication/version status. Do not score an unread method or treat inaccessible results as absent. An unavailable source limits that claim; continue with available primary evidence and report the relevant coverage gap.
+Create files only for requested/necessary reusable output under [artifact-contracts.md](../ccf-common/references/artifact-contracts.md); preserve inputs, UTF-8/Chinese text and the established folder. Otherwise a helper returns evidence in context without a report. Use [report-template.md](references/report-template.md) for a new default `ccfa-workfiles/literature/<topic-slug>/`: current `papers.md`, optional structured `papers.csv`, separate notes only when needed, and `idea-grounding.md` when useful. Derive views from one screened source set, update in place, and keep dates/versions inside rather than generating iteration folders. Required prerequisite work continues through its owner under existing authorization.

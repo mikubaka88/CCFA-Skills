@@ -4,42 +4,26 @@ Venue/year: ACL 2024, Best Paper.
 Source: ACL Anthology `https://aclanthology.org/2024.acl-long.787/`.
 Use when: writing NLP evaluation, cognitive science of LLMs, synthetic data, falsification, or claim-testing papers.
 
+Inspected writing: Stored original text `references/exemplars/papers/acl-2024-mission-impossible.md`, Abstract and opening Introduction.
+
+This card navigates selected original passages. The source observations below are distinct from the adaptation advice; read the relevant original when using it.
+
 ## Story Pattern
 
-The paper takes a strong public claim about LLMs and turns it into an experimental question. Instead of arguing abstractly, it constructs a continuum of synthetic impossible languages and measures model learning across training. The contribution is both a benchmark-like probe and a disciplined test of a contested theoretical claim.
+**Source observation:** The paper begins with a published claim about learnability and constructs synthetic languages with different transformations to examine it. The abstract explains the continuum of language difficulty and the comparison across training stages before stating the reported finding.
 
 ## Abstract Moves
 
-- Start with the claim being tested.
-- State the evidence gap behind the claim.
-- Introduce synthetic test languages as the experimental instrument.
-- Report the core finding against the control language.
-- End by opening a broader research program.
-
-## Introduction Moves
-
-- Quote or paraphrase the disputed claim carefully and concretely.
-- Explain why the claim matters for methodology.
-- Avoid overclaiming by limiting the experiment to a model family and language set.
-
-## Method Moves
-
-- Define the impossibility continuum before model details.
-- Keep data transformations transparent.
-- Evaluate across training stages, not just endpoints, when learning dynamics are part of the thesis.
-
-## Evidence Moves
-
-- Use a natural language control.
-- Report multiple synthetic variants to avoid one-off artifacts.
-- Connect quantitative learning curves to linguistic interpretation.
+**Writing observation in the inspected passage:** A disputed proposition is turned into a defined comparison. The source names the language controls and model setting, so the reader can distinguish the evaluated proposition from a claim about every language model.
 
 ## Reusable Techniques
 
-- Convert a philosophical or theoretical debate into a measurable probe.
-- Use synthetic data when it isolates a capability boundary.
-- Make conclusions appropriately scoped to avoid reviewer pushback.
+**Adaptation advice for matching work:**
+
+- State the proposition a study actually tests.
+- Explain how construction choices distinguish competing interpretations.
+- Use an actual control and study setting to interpret results; do not copy this paper's criticism or generalize its model-specific finding.
 
 ## Do-Not-Copy Boundary
 
-Do not reuse impossible-language tasks, Chomsky-framed claims, or cognitive conclusions unless the user's experiments directly test them.
+Use the target study's own definitions, mechanisms, conditions, results, and claims. Common academic phrasing and established terms may be reused when they fit; distinctive source sentences and scientific conclusions may not be transplanted.

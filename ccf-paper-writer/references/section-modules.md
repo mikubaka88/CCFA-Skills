@@ -6,18 +6,20 @@ Use the steps below as internal writing control unless the user asks to see the 
 
 For a complete initial draft, apply `materials-to-manuscript.md` before these section guides. The moves below are functional roles, not fixed sentence counts or compulsory paragraph templates. Several related observations can support one theme. Choose sections by the actual contribution; a new task, benchmark, and method are not required in every paper.
 
-Also apply `references/prose-quality-guardrails.md`. Section drafting must avoid defensive framing, symbolic question/claim labels in prose, formula dumping, number-only abstracts, third-person manuscript narration, and punctuation used as a substitute for logic.
+For substantial edits across a long manuscript or several contributors, use [writing-execution.md](writing-execution.md) to preserve the whole-paper relationship, target and necessary neighboring transitions while projecting only relevant source material. A section ID is an editing anchor, not a reason to split every paragraph into a separate agent. Ordinary local polishing stays direct.
+
+Also apply `references/prose-quality-guardrails.md`. Inspect defensive framing, labels, mathematics, abstract numbers, manuscript voice, and punctuation for their actual effect on meaning and readability; their presence alone is not an error.
 
 ## Module Template
 
 For any section:
 
-1. Determine the section role in the whole-paper story.
+1. Determine the section role in the whole-paper story and select the scientific content that serves it. Missing-result and unresolved-detail notes limit dependent assertions; include them only when needed to interpret a claim or complete the requested specification, not as a routine progress summary.
 2. Decide paragraph roles before writing.
-3. Draft paragraphs one role at a time.
+3. Compose connected paragraphs; several related roles can develop one point.
 4. Check local flow: one developed point per paragraph, with the actual reason, evidence, or consequence connecting its sentences. Keep supporting material with its claim.
-5. Check global flow: section supports the main story and venue plan.
-6. Check prose quality: stable terminology, no unsupported hype, no unnecessary repeated concepts, and varied sentence rhythm.
+5. Check global flow: the section supports the established scientific argument and connects to its necessary neighbors. After a substantive edit, inspect the actual affected definitions, repeated claims and transitions; a title-only outline does not establish whole-paper coherence.
+6. Check prose quality: stable terminology, no unsupported hype, no unnecessary repeated concepts, and readable emphasis and sentence relationships.
 7. Check affected claim-evidence links. Do not create a reviewer-risk map for ordinary section writing.
 
 Show steps 1-2 only when the user requested a plan, outline, diagnosis, or explanation.
@@ -32,18 +34,18 @@ These are later fitting heuristics for an illustrative AI/ML manuscript, not ini
 | Introduction |1.0--1.5 pages | Must include motivation, gap, insight, contributions. |
 | Related Work |0.75--1.25 pages | Optional before or after Method; can merge with Background. |
 | Background / Preliminaries |0.5--0.75 page | Formal problem statement, notation, path-length or complexity arguments. |
-| Method |2.0--3.5 pages | The largest section. Per-component motivation, equations, architecture details. |
+| Method |2.0--3.5 pages | Explain the supplied method at the depth it needs; its size relative to other sections follows the contribution. |
 | Experiments |2.0--3.0 pages | Setup, main results, and the mechanism or other analysis needed for the claims; no fixed ablation quota. |
 | Discussion / Analysis |0.5--1.0 page | Architecture-level analysis, failure modes, limitations. |
 | Conclusion |0.2--0.4 page | Restate insight and evidence; no new claims. |
 
 Give Method and Experiments enough space to explain the work and its evidence. Their length depends on the contribution; page occupancy alone does not establish completeness.
 
-For an underfilled draft, inspect Method and Experiments for actual explanatory gaps. Expand supported content and clearly planned evidence; do not pad to a fixed page count.
+When Method or Experiments has an actual explanatory gap, add the supported explanation or clearly planned setup within the drafting scope. Page occupancy alone does not trigger expansion.
 
 ## Abstract
 
-Goal: give reviewers the whole paper in one pass.
+Goal: explain the question, contribution, essential mechanism, and supported finding in one pass.
 
 Recommended moves:
 
@@ -63,7 +65,7 @@ Checks:
 
 ## Introduction
 
-Goal: create reviewer curiosity and make the contribution feel necessary.
+Goal: explain the scientific question, the unresolved relationship, and how the contribution addresses it.
 
 Recommended paragraph roles:
 
@@ -77,7 +79,7 @@ Citation rules:
 
 - Every prior-work claim in the introduction must have a citation. A paragraph that describes what "existing methods" do without citing any is incomplete.
 - Cover the relevant foundations, closest approaches, and gap with verified citations. Citation count alone is not a completeness criterion.
-- Use natural citation weaving: claim first, citation second. "Large-scale pretraining on web-scale data [4,5] has become the dominant paradigm..." not "Brown et al. [4] and Chowdhery et al. [5] proposed..."
+- Integrate citations with the scientific explanation. A claim-led sentence can summarize a shared finding; author-led attribution is useful when the historical step, disagreement, or specific contribution matters. Neither form is mandatory.
 - Prefer scientific subjects and retain author-name attribution when informative, following `citation-workflow.md` without a per-paragraph quota.
 
 Checks:
@@ -123,7 +125,7 @@ Give primary metrics their scientific meaning and necessary definitions, includi
 
 ## Method
 
-Goal: make the mechanism auditable and reproducible.
+Goal: explain the method's definitions, operations, dependencies, and assumptions precisely enough to understand and reproduce it.
 
 Pre-writing questions:
 
@@ -141,7 +143,7 @@ Citation rules:
 
 - Any borrowed component, architecture, or technique must cite its original source. Do not describe a well-known module as if it were original.
 - Cite borrowed modules, the base architecture, and adapted objectives or optimization methods where relevant; use evidence coverage rather than a citation quota.
-- When describing a novel module, cite the closest prior module it builds on or replaces. This helps reviewers understand the novelty.
+- When describing a novel module, cite the closest prior module it builds on or replaces and explain the changed operation.
 
 Style rule:
 
@@ -183,7 +185,7 @@ Checks:
 - Are baselines strong, recent, and fair? Is every baseline cited?
 - Are metrics standard and sufficient?
 - Does each added analysis resolve a claim or decision that the existing evidence leaves open?
-- Do tables and figures each have one message?
+- Are the comparisons and takeaways in tables and figures clear, including connected findings shown together?
 - Are negative or boundary results handled honestly?
 
 ## Figures And Tables

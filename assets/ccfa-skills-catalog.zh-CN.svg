@@ -20,7 +20,7 @@ text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
 .mono { font-family: "JetBrains Mono", Consolas, monospace; }
 </style>
 <text x="60" y="58" font-size="30" font-weight="800" fill="#233044" text-anchor="start">按职责划分的技能目录</text>
-<text x="60" y="88" font-size="15" font-weight="500" fill="#667085" text-anchor="start">17 个 skills 各有专长，并在需要时彼此协作</text>
+<text x="60" y="88" font-size="15" font-weight="500" fill="#667085" text-anchor="start">18 个 skills 各有专长，并在需要时彼此协作</text>
 <rect x="60" y="125" width="320" height="205" rx="24" fill="#DDEBFF" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
 <text x="80" y="161" font-size="20" font-weight="850" fill="#233044" text-anchor="start">共同规则</text>
 <text x="82" y="195" font-size="13" font-weight="700" fill="#233044" text-anchor="start">ccf-common</text>
@@ -43,8 +43,10 @@ text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
 <text x="1020" y="224" font-size="12" font-weight="600" fill="#667085" text-anchor="start">前沿追踪</text>
 <text x="822" y="253" font-size="13" font-weight="700" fill="#233044" text-anchor="start">ccf-experiment-designer</text>
 <text x="1020" y="253" font-size="12" font-weight="600" fill="#667085" text-anchor="start">实验设计</text>
-<text x="822" y="282" font-size="13" font-weight="700" fill="#233044" text-anchor="start">ccf-integrity-auditor</text>
-<text x="1020" y="282" font-size="12" font-weight="600" fill="#667085" text-anchor="start">完整性核验</text>
+<text x="822" y="282" font-size="13" font-weight="700" fill="#233044" text-anchor="start">ccf-research-engineer</text>
+<text x="1020" y="282" font-size="12" font-weight="600" fill="#667085" text-anchor="start">科研工程</text>
+<text x="822" y="311" font-size="13" font-weight="700" fill="#233044" text-anchor="start">ccf-integrity-auditor</text>
+<text x="1020" y="311" font-size="12" font-weight="600" fill="#667085" text-anchor="start">完整性核验</text>
 <rect x="60" y="380" width="320" height="205" rx="24" fill="#FFE1E1" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
 <text x="80" y="416" font-size="20" font-weight="850" fill="#233044" text-anchor="start">论文表达</text>
 <text x="82" y="450" font-size="13" font-weight="700" fill="#233044" text-anchor="start">ccf-paper-reviewer</text>

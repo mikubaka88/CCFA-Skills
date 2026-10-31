@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Experiment Designer"
-  short_description: "Design protocols, specify authorized runs, and interpret real experimental feedback for research decisions."
-  default_prompt: "Activate $ccf-humanization first and $ccf-common second, then use $ccf-experiment-designer for claim-driven protocols, execution specifications, and real-result interpretation. In requested autonomous research, return discriminating comparisons and observed feedback to $ccf-pipeline-orchestrator for host execution and integration. Preserve supplied values and distinguish planned studies, execution failures, invalid comparisons, and scientific results. Concept-only idea review does not acquire experiment requirements."
+  short_description: "Design fair experiments and interpret actual research results."
+  default_prompt: "Activate $ccf-humanization first and $ccf-common second, then use $ccf-experiment-designer for claim-driven protocols, run requirements, and real-result interpretation. Use $ccf-research-engineer for needed implementation, inspected runnable configurations, reproduction, or training diagnostics; return campaign decisions to $ccf-pipeline-orchestrator. Preserve supplied values and distinguish planned studies, execution failures, invalid comparisons, and scientific results. Concept-only idea review does not acquire experiment requirements."

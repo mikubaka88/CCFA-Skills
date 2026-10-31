@@ -24,8 +24,8 @@ Lead with the recommended option unless the user asks for neutral comparison.
 Use these routes when they match the user's goal:
 
 - `Clarify first`: `ccf-pipeline-orchestrator` -> owning downstream skill.
-- `Idea development`: `ccf-idea-optimizer` -> optional `ccf-idea-reviewer` -> optional `ccf-literature-searcher`.
-- `Idea selection`: `ccf-idea-reviewer` -> optional `ccf-literature-searcher` -> optional `ccf-idea-optimizer`.
+- `Idea development`: `ccf-idea-optimizer` integrates the idea. Use `ccf-literature-searcher` before consequential novelty claims when relevant verified sources are missing; use `ccf-idea-reviewer` for an unresolved conceptual judgment when needed.
+- `Idea selection`: `ccf-idea-reviewer` integrates the assessment, with missing decisive prior art resolved by `ccf-literature-searcher` before the dependent verdict. Requested development then belongs to `ccf-idea-optimizer`.
 - `Novelty grounding`: `ccf-literature-searcher` -> `ccf-idea-optimizer` or `ccf-paper-writer`.
 - `Experiment story`: `ccf-experiment-designer` -> `ccf-paper-writer`.
 - `Manuscript improvement`: `ccf-paper-writer` directly for requested edits; `ccf-paper-reviewer` -> `ccf-paper-writer` when both assessment and revision are requested. Do not insert a review cycle into ordinary polishing.
@@ -43,7 +43,7 @@ Choose the recommended route by:
 5. whether the output should be a reusable file,
 6. session denylists and handoff mode.
 
-Do not recommend literature search when the immediate need is local text polishing. Do not recommend writing before the idea, evidence, or results are stable enough to support the claims.
+A minor local correction needs no fresh literature search. Substantive expression rewriting follows the effective writing-reference preference, reusing matching originals and applicable prior searches. Draft the supported content when requested, including a results-pending manuscript; keep unavailable outcomes and unsettled claims explicit instead of waiting for the whole study to finish.
 
 ## Too-Broad Decomposition
 

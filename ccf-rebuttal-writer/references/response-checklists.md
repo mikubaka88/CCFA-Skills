@@ -31,43 +31,41 @@ Risk:
 
 ## Response Draft Checklist
 
-Each response should include:
+Check each material response for the following, using conditional elements only when they help answer the actual concern:
 
-- brief appreciation,
-- quoted core concern,
+- identifiable reviewer concern, with a short quote only when useful,
 - direct answer before explanation,
-- direct answer,
 - evidence or location,
-- deeper-intent answer when relevant,
+- a broader concern answered when supported by the comment or context,
 - exact revision promise if applicable,
 - scoped limitation when needed,
 - self-contained acronyms, settings, or dataset details,
 - no unsupported new claim,
-- no defensive wording.
+- no empty self-defense or repeated assurance; retain factual disagreement and necessary uncertainty.
 
 ## Response Prose Discipline
 
 Use `../../ccf-paper-writer/references/prose-quality-guardrails.md` for response text that may be copied into the manuscript or response letter.
 
 - Quote only the shortest reviewer phrase needed to identify the issue; do not build the response around long quotations.
-- Avoid defensive openings such as "we disagree" unless the reviewer statement is factually wrong and the evidence is immediately given.
-- Do not structure the response with dense `Q1`/`C1` labels unless required by the response template.
-- Replace colon-heavy and dash-heavy chains with direct answer sentences.
+- State a factual or methodological disagreement directly and respectfully, with its reasoning or evidence.
+- Keep issue identifiers when they support attribution or navigation; avoid unexplained shorthand that displaces the answer.
+- Repair colon-heavy or dash-heavy chains when they obscure the answer; retain useful punctuation and connected reasoning.
 - Keep terms consistent with the manuscript; do not introduce a new name for the same method, module, dataset, or claim.
-- Vary sentence length while staying concise.
+- Let sentence length follow the answer and its reasoning; remove repetition without splitting connected ideas for rhythm alone.
 - Prefer evidence, location, and promised edit over rhetoric.
 
 ## Positive Opening Checklist
 
-- Start from strengths, reviewer agreement, or acknowledged value when available.
-- Mention the paper's central contribution in one concise sentence.
-- Avoid ignoring criticisms; use the opening to frame the rest of the response.
+- Use an optional short opening when it helps; include strengths or agreement only when actually expressed or supported.
+- Mention the central contribution when needed to understand the response.
+- Give decisive criticisms priority over opening formalities.
 - Keep the tone appreciative and grounded.
 
 ## Common Concern Checklist
 
 - Merge duplicated concerns across reviewers.
-- Name involved reviewers using color labels.
+- Name involved reviewers using their actual identifiers; use color only when permitted and useful.
 - Answer the shared underlying concern once.
 - Add paper locations, datasets, numbers, tables, or figures when available.
 - Refer back to the common response in reviewer-specific clarifications.
@@ -80,9 +78,9 @@ Before promising a change, verify:
 - The promise is specific enough to be credible.
 - The promised change addresses the actual concern.
 - The response does not imply a stronger claim than the paper can support.
-- New experiments are not promised unless available or explicitly authorized by the user.
+- New experiments are not promised unless feasible within the existing authorized scope; completed results are verified before being described as completed.
 - If the answer can be delivered now, include the result or explanation in the response rather than only promising a future edit.
-- Infeasible experiments are disclosed transparently.
+- An unperformed experiment is discussed when it leaves a material concern unresolved; do not append a disclaimer for every suggested extra test.
 
 ## AC / Meta-Review Response Checklist
 
@@ -96,15 +94,13 @@ Before promising a change, verify:
 
 Do not call the response ready until:
 
-- The default TeX structure or selected template is clear for full rebuttals.
-- Positive signals and common ground are stated when available.
-- High-confidence, decision-relevant concerns are answered first.
-- High-severity concerns are answered first.
-- Every answer has evidence or a clear limitation.
-- Literal comments and deeper intent are both addressed for major issues.
-- Reviewer quotations are concise and followed by direct answers.
+- The requested response format and applicable venue rules are followed; full rebuttals do not require TeX unless that format is selected.
+- Decisive concerns are addressed before lower-impact issues, including those that remain unresolved.
+- Answers have support appropriate to the concern; actual limitations or evidence gaps are stated where they change the answer.
+- Literal comments are answered; broader interpretations are addressed when grounded in the review.
+- Used reviewer quotations are concise and followed by direct answers.
 - Response prose is non-defensive, label-light, terminology-consistent, and not dominated by quotations or punctuation chains.
-- Reviewer color labels are used for multi-reviewer TeX responses.
+- Reviewer attribution is clear; color labels follow the selected template and applicable rules.
 - Related concerns are merged when doing so saves space.
 - Existing paper coverage is cited by line, section, table, figure, or appendix when available.
 - Acronyms, experimental settings, and critical context are self-contained.

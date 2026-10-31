@@ -171,9 +171,9 @@ IEEEtran uses numbered citations:
 
 ## ICRA-Specific Writing Conventions
 
-- **System substantiation**: The robotic system must be real and evaluated
-- **Experimental validation**: Physical experiments are highly valued; simulations alone may not be sufficient
-- **Quantitative results**: Report success rates, errors, timing, and other performance metrics
+- **System substantiation**: Distinguish a proposed controller, simulation result, and implemented robotic system; support each claimed capability with its applicable evidence
+- **Experimental validation**: Physical deployment claims need evidence of physical operation; explain what a simulation establishes and which transfer assumptions remain unresolved
+- **Quantitative results**: Report the supplied success rates, errors, timing, or other metrics relevant to the claims; pending results stay pending
 - **Algorithmic clarity**: Describe algorithms in sufficient detail
 - **Reproducibility**: Include key parameters and setup details
 - **Video**: Consider submitting an accompanying video demonstrating the system

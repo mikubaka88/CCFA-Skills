@@ -4,7 +4,20 @@
 
 ## 安装
 
-需要 Node.js 22.20.0 或更高版本（本地核验 `skills` CLI 1.5.22 的要求；其他版本以安装器的 `engines` 声明为准）。安装全部 17 个 skills：
+推荐下载并解压 [0.12.0 lean 包](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.0)，先按[安装矩阵](../INSTALLATION_MATRIX.zh-CN.md#轻量-release-安装推荐)核验 SHA-256。只需 Python 3.10+，把两处路径换成解压目录和实际 Claude Code skills 根目录：
+
+```text
+python -B "<lean-dir>/tools/install_release.py" --source "<lean-dir>" --target "<skills-root>" --dry-run
+python -B "<lean-dir>/tools/install_release.py" --source "<lean-dir>" --target "<skills-root>"
+```
+
+默认装全家族和所需相邻资源；部分安装用重复的 `--skill`，两项前置自动包含。完整范例 PDF 用同版 papers 包显式补充；更新保护个人修改、保留额外文件与偏好。完成后开启新会话。详见[更新说明](AUTO_UPDATE.md)。
+
+## npx 完整源码方案
+
+此方案保留仓库中的完整 PDF，适合需要完整离线源码的用户。
+
+需要 Node.js 22.20.0 或更高版本（本地核验 `skills` CLI 1.5.22 的要求；其他版本以安装器的 `engines` 声明为准）。安装全部 18 个 skills：
 
 ```bash
 npx skills add mikubaka88/CCFA-Skills --global --agent claude-code --skill '*' --yes --copy

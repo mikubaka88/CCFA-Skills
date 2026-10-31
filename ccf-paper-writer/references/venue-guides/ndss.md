@@ -8,98 +8,26 @@
 | Venue family | Security |
 | CCF tier | CCF-A |
 | Template path | `ccf-latex-templates/NDSS/bare_conf_NDSS2026.tex` |
-| Official URL | https://www.ndss-symposium.org/ndss2026 |
-| Last verified | Legacy migration on 2026-06-06; official policy must be rechecked before submission. |
-| Source status | Migrated local guide; not independently reverified in v0.4.0. |
+| Official URL | https://www.ndss-symposium.org/ndss2026/submissions/call-for-papers/ |
+| Last verified | 2026-10-30: named 2026 submission snapshot only. |
+| Source status | Official CFP checked for the snapshot; domain examples are writing guidance. |
 
 ## Usage Boundary
 
-- Use this file for LaTeX, page limit, anonymity, template, camera-ready, rebuttal-template, and venue-format details.
+- Use the named policy snapshot only for its year/track/stage; use domain examples as writing guidance.
 - Use `ccf-paper-writer` for actual paper writing and polishing.
 - Use `ccf-paper-reviewer` or `ccf-submission-checker` for format audit, depending on whether the task is manuscript-facing or submission-package-facing.
-- Verify current-year official rules before final submission.
+- Before applying format changes, reuse or obtain verified official requirements through `ccf-submission-checker`; keep supplied verified templates.
 
-## Migrated Venue Notes
+## NDSS 2026 technical-paper submission snapshot
 
-# NDSS 2026 Writing Guide
+Checked 2026-10-30 against the [official 2026 CFP](https://www.ndss-symposium.org/ndss2026/submissions/call-for-papers/).
 
-**CCF-A | Security | Publisher: ISOC (Internet Society)**
-**Conference:** https://www.ndss-symposium.org/ndss2026
-**Template:** `ccf-latex-templates/NDSS/bare_conf_NDSS2026.tex`
+- Anonymous review: omit author names and affiliations; remove identifying text, figures and links. Cite prior work in the third person where possible.
+- Main text: at most 13 pages, excluding the optional `Ethics Considerations` section, references and appendices. When included, that section precedes references.
+- Use the official NDSS 2026 template, US Letter and two columns; Times text must be at least 10 points with at least 11-point leading.
 
-> **IMPORTANT:** NDSS is NOT double-blind — author identities are visible to reviewers.
-
-## Document Setup
-
-### Template Files
-- Main template: `NDSS/bare_conf_NDSS2026.tex`
-- Also uses: `usenix-2020-09.sty` for USENIX-style overlay
-- IEEEtran.cls required
-
-### Required LaTeX Structure
-
-```latex
-\documentclass[conference]{IEEEtran}
-\usepackage{usenix-2020-09}  % NDSS overlays USENIX styling
-
-% Optional packages
-\usepackage{graphicx}
-\usepackage{cite}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{booktabs}
-
-\begin{document}
-
-% Title
-\title{Your Paper Title}
-
-% Author blocks — NDSS uses IEEE author format
-\author{
-  \IEEEauthorblockN{Author Name}
-  \IEEEauthorblockA{Institution\\Department\\email@example.com}
-}
-
-\maketitle
-
-\begin{abstract}
-Your abstract here — summarize motivation, problem, approach, and results.
-\end{abstract}
-
-% Main content
-\section{Introduction}
-...
-
-% References: IEEE style
-\bibliographystyle{IEEEtran}
-\bibliography{references}
-
-\end{document}
-```
-
-### Key Formatting Requirements
-- **Document class**: `IEEEtran` with `[conference]` option
-- **Layout**: Single-column (USENIX-style overlay)
-- **Title**: Standard `\maketitle` with IEEE author blocks
-- **Author format**: `\IEEEauthorblockN{}` and `\IEEEauthorblockA{}`
-
-## Page Limits
-
-- **16 pages** maximum for NDSS 2026
-- References do NOT count toward the page limit
-- Appendices may be included after references
-
-## Submission Requirements
-
-### Double-Blind Status
-**NDSS is NOT anonymous.** Author information should be included. Reviewers see author identities.
-
-### Submission Format
-- Submit a single PDF file
-- Ensure all fonts are embedded
-- Use hyperref for clickable links in PDF
-
----
+The bundled `ccf-latex-templates/NDSS/bare_conf_NDSS2026.tex` is a template candidate, not authority to combine unrelated publisher styles. Match it to the official target bundle; do not add a USENIX overlay from this old guide.
 
 ## Security-Specific Writing Conventions
 
@@ -227,20 +155,16 @@ Proposed defenses with detailed description.
 
 ### Responsible Disclosure
 
-For real-world vulnerabilities:
+For real-world vulnerabilities, report the actual disclosure status and timeline. Keep only events that occurred; distinguish pending actions from completed ones. Do not assume a 90-day deadline, vendor confirmation, patch release or CVE assignment. Preserve review anonymity when reporting these details.
 
 ```latex
 \section{Responsible Disclosure}
-We disclosed this vulnerability to [vendor] on [date].
+[Describe the actual disclosure status.]
 \begin{itemize}
-    \item [Date]: Initial disclosure to [vendor]
-    \item [Date]: Vendor acknowledged receipt
-    \item [Date]: Vendor confirmed vulnerability
-    \item [Date]: Patch released / CVE assigned
-    \item [Date]: Public disclosure (90-day deadline met)
+    \item [Actual date]: [Documented action or response]
+    \item [Actual date]: [Next documented action or response, if any]
 \end{itemize}
-
-We worked with [CVE Number] and coordinated disclosure with [vendor].
+[Any pending steps and the applicable coordination arrangements.]
 ```
 
 ## Section Ordering (Recommended)
@@ -254,8 +178,9 @@ We worked with [CVE Number] and coordinated disclosure with [vendor].
 7. **Related Work** — Context within literature
 8. **Discussion** — Limitations, deployment considerations
 9. **Conclusion** — Summary
-10. **References**
-11. **Appendix** — Additional proofs, evaluations
+10. **Ethics Considerations** — When included, immediately before references
+11. **References**
+12. **Appendix** (optional) — Additional proofs and evaluations
 
 ## Figure and Table Guidelines
 
@@ -324,14 +249,14 @@ We worked with [CVE Number] and coordinated disclosure with [vendor].
 
 - [ ] All author information complete
 - [ ] Final PDF with embedded fonts
-- [ ] Page count ≤ 16 pages
+- [ ] Page accounting matches the verified final-publication requirements
 - [ ] References properly formatted
 - [ ] Figures in final format
 
 ## Common Mistakes to Avoid
 
-1. Using wrong document class (use IEEEtran conference mode)
-2. Missing `\IEEEauthorblockN{}` for author names
+1. Using a template not matched to the target year and track
+2. Including identifying author information during anonymous review
 3. Exceeding page limits
 4. Forgetting threat model section
 5. Not following IEEE reference format
@@ -341,9 +266,7 @@ We worked with [CVE Number] and coordinated disclosure with [vendor].
 
 ## Checklist Before Submission
 
-- [ ] Document class: IEEEtran conference mode
-- [ ] USENIX styling included
-- [ ] Author information complete (not anonymous)
+- [ ] Official template and anonymity match the verified target requirements
 - [ ] Threat model clearly stated
 - [ ] Security analysis provided
 - [ ] Responsible disclosure timeline included (if applicable)

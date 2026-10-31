@@ -4,41 +4,26 @@ Venue/year: ICML 2024.
 Source: PMLR `https://proceedings.mlr.press/v235/kondratyuk24a.html`.
 Use when: writing multimodal generation, video synthesis, autoregressive modeling, zero-shot capability, or large model adaptation papers.
 
+Inspected writing: Stored original text `references/exemplars/papers/icml-2024-videopoet.md`, Abstract and opening Introduction.
+
+This card navigates selected original passages. The source observations below are distinct from the adaptation advice; read the relevant original when using it.
+
 ## Story Pattern
 
-The paper transfers the language-model training recipe to video generation. Rather than building a separate model for each conditioning type, it treats text, images, video, and audio as multimodal sequences handled by one decoder-only transformer. The contribution is a foundation model that can be adapted to many video generation tasks and demonstrates zero-shot motion quality.
+**Source observation:** The abstract defines the model through its conditioning signals, identifies the decoder-only architecture, and distinguishes pretraining from task-specific adaptation. It explains the mixture of generative objectives before stating the reported video-generation results.
 
 ## Abstract Moves
 
-- Define the system by the range of conditioning signals it accepts.
-- Present the architecture using a familiar model family.
-- Separate pretraining from task-specific adaptation.
-- Frame empirical results around zero-shot capability and motion fidelity.
-
-## Introduction Moves
-
-- Establish why video generation needs flexible conditioning.
-- Contrast task-specific pipelines with a unified generative sequence model.
-- Make the training protocol central to the contribution.
-
-## Method Moves
-
-- Explain tokenization or representation of each modality before training objectives.
-- Group objectives by what capability they teach.
-- Keep adaptation steps distinct from pretraining.
-
-## Evidence Moves
-
-- Use qualitative examples to demonstrate motion and conditional control.
-- Pair zero-shot claims with task diversity.
-- Avoid overloading the main text with demos; keep visual evidence organized.
+**Writing observation in the inspected passage:** The training stages connect the shared model to its task uses. The passage can be useful without adopting all of the source's performance adjectives.
 
 ## Reusable Techniques
 
-- Use a unification story when one model handles many input-output modes.
-- Make "LLM recipe for another modality" concrete through objectives and tokens.
-- Present zero-shot as a capability supported by task coverage.
+**Adaptation advice for matching work:**
+
+- Define the range and meaning of supported inputs before using a broad multimodal label.
+- Distinguish pretraining objectives from later adaptation.
+- Connect one architecture to its uses without inventing a separate novelty claim for every supported task.
 
 ## Do-Not-Copy Boundary
 
-Do not reuse VideoPoet's multimodal task mix, decoder-only framing, or zero-shot claims unless the user's model and evaluation support them.
+Use the target study's own definitions, mechanisms, conditions, results, and claims. Common academic phrasing and established terms may be reused when they fit; distinctive source sentences and scientific conclusions may not be transplanted.

@@ -10,14 +10,14 @@
 | Template path | `ccf-latex-templates/RTSS/IEEEtran.cls` |
 | Official URL | https://2026.rtss.org |
 | Last verified | Legacy migration on 2026-06-06; official policy must be rechecked before submission. |
-| Source status | Migrated local guide; not independently reverified in v0.4.0. |
+| Source status | Domain guidance retained; obsolete policy blocks removed. Query the target official requirements before formatting. |
 
 ## Usage Boundary
 
-- Use this file for LaTeX, page limit, anonymity, template, camera-ready, rebuttal-template, and venue-format details.
+- Use this file for domain writing guidance. Annual submission rules are resolved through `ccf-submission-checker`, not copied from historical templates.
 - Use `ccf-paper-writer` for actual paper writing and polishing.
 - Use `ccf-paper-reviewer` or `ccf-submission-checker` for format audit, depending on whether the task is manuscript-facing or submission-package-facing.
-- Verify current-year official rules before final submission.
+- Match the exact year/track/stage before applying any format change; reuse current verified official rules and preserve supplied verified templates.
 
 ## Migrated Venue Notes
 
@@ -25,75 +25,7 @@
 
 **CCF-A | Real-Time | Publisher: IEEE**
 **Conference:** https://2026.rtss.org
-**Template:** `RTSS/IEEEtran.cls` (IEEEtran, conference format)
-
-## Document Setup
-
-### Preamble Structure
-
-```latex
-% === SUBMISSION MODE (anonymous, double-blind) ===
-\documentclass[conference]{IEEEtran}
-
-% Author block for anonymous submission:
-\author{
-  \IEEEauthorblockN{Anonymous Author}
-  \IEEEauthorblockA{
-    \IEEEauthorrefmark{1}Anonymous Institution\\
-    anonymous@institution.edu}
-}
-
-% === CAMERA-READY MODE ===
-\documentclass[conference]{IEEEtran}
-% Restore full author/affiliation information
-% Add conference-specific copyright notice
-```
-
-### Required Packages
-
-```latex
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{booktabs}
-\usepackage{graphicx}
-\usepackage{cite}
-\usepackage{balance}
-\usepackage{cleveref}
-\usepackage{algorithm}
-\usepackage{algorithmic}
-\usepackage{url}
-\usepackage{xcolor}
-```
-
-## Page Limits
-
-| Section | Limit |
-|---------|-------|
-| Main paper (submission) | **10 pages** |
-| References | No limit |
-| Appendix | Permitted |
-
-RTSS typically enforces a 10-page limit for the main body. References do not count toward the limit. Always verify the current CFP for exact limits.
-
-## Anonymity Requirements
-
-RTSS uses double-blind review:
-
-1. Remove or replace author names/affiliations in the submission
-2. Use "Anonymous" as author during submission
-3. Third-person self-citations: "Smith et al. showed..." not "we showed..."
-4. Anonymize all URLs, GitHub links, personal pages
-5. Clear PDF metadata
-6. Remove acknowledgments
-
-## Camera-Ready Differences
-
-After acceptance:
-
-1. Restore all author names and affiliations
-2. Add the conference-specific copyright notice provided by IEEE
-3. Ensure Xplore-compatible PDF (CMYK colors, embedded fonts)
-4. Submit via IEEE PDF eXpress
+**Historical template:** See the local path above for examples only; it is not a verified target submission bundle.
 
 ## Section Organization
 
@@ -281,31 +213,9 @@ utilization levels. Our test achieves 94.3\% acceptance ratio at
 \cite{liu2000real}
 ```
 
-## Formatting Rules
+## Content Checklist
 
-- **Format:** IEEE conference (single-column)
-- **Paper size:** US Letter
-- **Body font:** 10pt minimum
-- **Margins:** 1" all sides
-- **Xplore-compatible PDF**: CMYK colors, embedded fonts
-
-## Submission Checklist
-
-- [ ] 10 pages or fewer (main body)
-- [ ] Author information removed/anonymized
-- [ ] Third-person self-citations only
-- [ ] Anonymized all URLs
-- [ ] PDF metadata cleared
 - [ ] Formal schedulability analysis included
 - [ ] WCET analysis performed
 - [ ] Both theoretical and empirical evaluation
 - [ ] Grayscale-legible figures
-
-## Camera-Ready Checklist
-
-- [ ] Restore author information
-- [ ] Add IEEE copyright notice
-- [ ] Generate Xplore-compatible PDF
-- [ ] Use CMYK colors for figures
-- [ ] Embed all fonts
-- [ ] Submit via IEEE PDF eXpress

@@ -54,6 +54,8 @@ Severity:
 
 ## Anti-Loop Rule
 
+For Python analysis templates, inspect the exported figure at its final mm width as well as an enlarged preview. Confirm aligned row positions in ablations, the direction of paired differences and Pareto objectives, the meaning of interval bounds, integer count versus rate semantics, and one color per entity. Read SVG text objects and PDF-extracted text for a representative Latin/CJK case. The template's `audit_figure` detects canvas-bound and glyph issues, not every overlap or scientific error. In mixed main figures, compare the numerical layer with its code-generated original after any illustration edit.
+
 If two tactical tweaks fail, change structure rather than keep nudging fonts or spacing. Examples: split the table, move robustness to appendix, switch to a more appropriate chart family, use a full-width float, remove redundant panels, or redraw labels directly.
 
 Route a concrete dependency to its owner as soon as that evidence is needed; continue unaffected visual fixes. An issue count alone does not justify stopping:

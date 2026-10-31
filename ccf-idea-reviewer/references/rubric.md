@@ -6,7 +6,7 @@ Use this rubric for concept-level assessment, with or without requested numeric 
 
 | Dimension | Weight | Question |
 | --- | ---: | --- |
-| Problem importance and specificity | 20 | Is there a concrete, consequential research problem? |
+| Problem importance and specificity | 20 | Is there a concrete unmet need, unexplained phenomenon, missing capability, or knowledge barrier with meaningful consequences? |
 | Novelty against closest work | 25 | What remains new after accounting for verified prior work? |
 | Conceptual insight | 20 | Is there a non-obvious explanation, formulation, or connection? |
 | Mechanism and logical soundness | 20 | Do the assumptions and proposed mechanism coherently address the problem? |
@@ -35,6 +35,8 @@ Unsearched novelty stays unassessed or provisional when credible supplied prior-
 - **1:** The current formulation fails on this dimension for an identified reason.
 
 Every deduction cites the relevant idea statement, assumption, or verified source and explains what would change the judgment. Missing experimental work is not a conceptual defect.
+
+Do not reward novelty in wording, a distant citation, or a random combination by itself. Inspect the changed assumptions, operation, and consequence. Familiar components may support a new interaction, while a different name may leave the mechanism unchanged. For basic research, judge what would be learned without requiring an immediate application; for an application claim, inspect the actual unmet requirement. These distinctions do not add scoring dimensions or change the weights.
 
 ## Requested Extensions And Historical Comparisons
 

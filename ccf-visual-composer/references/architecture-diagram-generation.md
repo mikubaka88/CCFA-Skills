@@ -62,7 +62,7 @@ Use natural sentence/title case for ordinary text and preserve canonical upperca
 
 ## 4. Authorized Default Generation
 
-For a new architecture concept, use the verified GPT Image 2 capability unless the user requests pure SVG/code-first or opts out. Follow the host image-generation instructions. If the backend is unavailable or cannot be identified, state the limitation and retain the usable specification; do not silently substitute another backend or mislabel pure SVG output.
+For a new architecture concept, use the authorized host image-generation capability unless the user requests pure SVG/code-first or opts out. Follow the host image-generation instructions. Name the backend as GPT Image 2 only when its identity is verified; an undisclosed model name does not block an otherwise available, authorized generation. If image generation is unavailable, use an already authorized alternative or explain the missing capability and retain the usable specification.
 
 A diagram request authorizes its necessary generation stage. Show a brief diagram summary when useful; do not repeat the full outbound prompt in chat unless requested or needed for approval/provenance. For private content, follow `../../ccf-common/references/privacy-and-evidence.md`: minimize inputs to required structure and use only authorized references. Ask about the exact minimized prompt and images only when transfer crosses an unapproved boundary. Do not send the full manuscript or unrelated identities, reviews, source trees, or result files.
 
@@ -96,7 +96,7 @@ Create only requested formats and the minimum reusable source needed for them. F
 6. Preserve necessary reusable source and assets. Record provenance and element semantics in the existing source/specification; a separate manifest or element map is needed only when requested or required by a converter/package.
 7. For later changes, edit the canonical source, refresh dependent requested exports, and inspect the affected result. Retain the last usable artifact if a replacement fails; mark any export that is not current.
 
-Strict editability alone does not opt out of the default raster concept for a new figure. Explicit pure SVG/code-first uses deterministic generation immediately. These defaults do not force a new raster pass for an existing editable figure.
+Strict editability alone does not opt out of the default raster concept for a new architecture diagram. Explicit pure SVG/code-first uses deterministic generation immediately. These defaults do not force a new raster pass for an existing editable figure or a data-led analysis composition.
 
 ## 8. Applicable QA
 

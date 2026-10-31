@@ -1,0 +1,3661 @@
+[
+  {
+    "id": "vision-calimatch-reliability",
+    "source_id": "figstudy-iccv2025-calimatch-adaptive-calibration-for-improving-safe-semi-supervised-learni",
+    "venue": "ICCV",
+    "year": 2025,
+    "figure": "Figure 2",
+    "pdf_page": 7,
+    "short_title": "跨数据集的置信度校准",
+    "observed_layout": "Rows compare two methods; columns compare four datasets. Paired bars show mean confidence and observed accuracy in each confidence bin.",
+    "why": "先按方法和数据集分面，能区分校准误差来自模型还是任务；同一分箱位置直接呈现过度自信，单个ECE不足以替代这张图。",
+    "data_fields": [
+      "dataset_id",
+      "method_id",
+      "bin_edges",
+      "bin_mean_confidence",
+      "bin_accuracy",
+      "bin_counts",
+      "optional_ece"
+    ],
+    "fusion_opportunities": [
+      "Add the source Figure 3 threshold sweep as a right-hand strip.",
+      "Add bin-count bars to reveal sparse confidence regions."
+    ],
+    "cautions": "Preserve identical bin definitions and denominators; ECE needs bin counts. Confidence and accuracy are distinct quantities.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "calibration",
+      "calibration",
+      "calibration",
+      "calibration",
+      "calibration",
+      "calibration",
+      "calibration",
+      "calibration"
+    ],
+    "panel_titles": [
+      "方法A·数据1",
+      "方法A·数据2",
+      "方法A·数据3",
+      "方法A·数据4",
+      "方法B·数据1",
+      "方法B·数据2",
+      "方法B·数据3",
+      "方法B·数据4"
+    ],
+    "columns": 4,
+    "intents": [
+      "calibration",
+      "operating_tradeoff"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留方法×数据集的交叉布局；默认原语画分箱可靠性，不逐像素重画原图成对柱。单次演示只展示图法，真实数据须复用同一bin定义。"
+  },
+  {
+    "id": "vision-calimatch-threshold",
+    "source_id": "figstudy-iccv2025-calimatch-adaptive-calibration-for-improving-safe-semi-supervised-learni",
+    "venue": "ICCV",
+    "year": 2025,
+    "figure": "Figure 3",
+    "pdf_page": 7,
+    "short_title": "阈值提高时牺牲了什么",
+    "observed_layout": "Three aligned panels show classification accuracy, unseen-class F1 and accepted-sample ratio as a threshold increases; both methods retain their identities and uncertainty bands.",
+    "why": "阈值提高可能只是拒绝更多样本；准确率、未知类F1和接受比例并列，使质量改善付出的覆盖代价同时可见。",
+    "data_fields": [
+      "threshold",
+      "method_id",
+      "accuracy",
+      "f1",
+      "accepted_fraction",
+      "run_intervals",
+      "interval_definition"
+    ],
+    "fusion_opportunities": [
+      "Fuse with a reliability diagram.",
+      "Use coverage-risk as an alternative if raw predictions are available."
+    ],
+    "cautions": "Do not average incomparable metrics or silently share y scales. Bands are standard deviations over five runs in this source, not confidence intervals.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "line_band",
+      "line_band",
+      "line_band"
+    ],
+    "panel_titles": [
+      "分类准确率",
+      "未知类F1",
+      "接受样本比例"
+    ],
+    "columns": 3,
+    "intents": [
+      "dynamics",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留三项结果共用阈值的关系；每种方法的多线叠加和原图五次运行标准差须在实际数据源中给出。"
+  },
+  {
+    "id": "vision-diversity-paired-intervals",
+    "source_id": "figstudy-cvpr2025-image-generation-diversity-issues-and-how-to-tame-them",
+    "venue": "CVPR",
+    "year": 2025,
+    "figure": "Figure 1",
+    "pdf_page": 1,
+    "short_title": "类别差异与目标区间",
+    "observed_layout": "A qualitative image montage sits beside horizontally grouped category bars with intervals and a vertical diversity reference.",
+    "why": "图像案例让问题具体，按同一类别排列的估计和区间说明影响有多普遍；目标参考线把视觉差异变成可比较的距离。",
+    "data_fields": [
+      "category_id",
+      "condition_id",
+      "estimate",
+      "lower",
+      "upper",
+      "interval_definition",
+      "reference_value",
+      "optional_sample_images"
+    ],
+    "fusion_opportunities": [
+      "Pair with an ECDF of per-prompt diversity.",
+      "Replace montage with a supplied example strip while keeping quantitative rows."
+    ],
+    "cautions": "Do not infer interval semantics from the graphic; provide them explicitly. Real example images are caller-supplied.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "comparison_intervals",
+      "forest_intervals"
+    ],
+    "panel_titles": [
+      "各类别分布",
+      "相对目标的差距"
+    ],
+    "columns": 2,
+    "intents": [
+      "comparison",
+      "uncertainty"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "以点区间替代较重的分组条形；不复制原图图像拼贴，副图为可选差值视角，并非原论文新增结果。"
+  },
+  {
+    "id": "vision-diversity-saturation",
+    "source_id": "figstudy-cvpr2025-image-generation-diversity-issues-and-how-to-tame-them",
+    "venue": "CVPR",
+    "year": 2025,
+    "figure": "Figure 4",
+    "pdf_page": 6,
+    "short_title": "样本增多后的覆盖上限",
+    "observed_layout": "Many feature extractors produce diversity curves against sample ratio; the theoretical limit is drawn as a distinct reference.",
+    "why": "小样本下曲线相近，采样量增加后的饱和形态才能区分发现较慢与覆盖上限更低；理论参考和观察值必须分开。",
+    "data_fields": [
+      "sample_ratio",
+      "extractor_id",
+      "diversity",
+      "optional_lower",
+      "optional_upper",
+      "theoretical_reference"
+    ],
+    "fusion_opportunities": [
+      "Add ECDF or category-breakdown panels.",
+      "Contrast measured saturation with a known ideal curve."
+    ],
+    "cautions": "A fitted asymptote is not an observed limit; distinguish measured, fitted and theoretical marks.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "line_band",
+      "ecdf"
+    ],
+    "panel_titles": [
+      "采样量与多样性",
+      "覆盖值的分布"
+    ],
+    "columns": 2,
+    "intents": [
+      "distribution",
+      "dynamics",
+      "operating_tradeoff",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "原图主体是饱和曲线；CDF为可融合的支持视角，需要真实逐样本数据，不能由原图一条均值曲线反推。"
+  },
+  {
+    "id": "vision-scaling-optimum-grid",
+    "source_id": "figstudy-cvpr2025-towards-precise-scaling-laws-for-video-diffusion-transformers",
+    "venue": "CVPR",
+    "year": 2025,
+    "figure": "Figure 4",
+    "pdf_page": 6,
+    "short_title": "预测最优点附近的实测地形",
+    "observed_layout": "Two training-token budgets have batch-size by learning-rate heatmaps; red star markers indicate predicted optima and predicted losses.",
+    "why": "查看最优点周围的整个实测邻域，能区分宽阔稳定盆地与孤立好点；分开预算还可追踪最优配置如何移动。",
+    "data_fields": [
+      "budget_id",
+      "learning_rate_values",
+      "batch_size_values",
+      "validation_loss_matrix",
+      "predicted_optimum_x",
+      "predicted_optimum_y",
+      "predicted_loss"
+    ],
+    "fusion_opportunities": [
+      "Pair with measured-versus-predicted loss.",
+      "Add a one-dimensional slice through the optimum."
+    ],
+    "cautions": "Predicted and measured points need distinct marks. Respect logarithmic hyperparameter spacing and observed versus interpolated cells.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "matrix_heatmap",
+      "matrix_heatmap",
+      "line_band"
+    ],
+    "panel_titles": [
+      "预算一的响应",
+      "预算二的响应",
+      "选定位置的剖面"
+    ],
+    "columns": 3,
+    "intents": [
+      "association",
+      "comparison",
+      "dynamics",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "以实测矩阵重建两个预算下的响应，副剖面由同一矩阵抽取；原图预测星标与拟合值须在自定义Python源里按实际结果添加。"
+  },
+  {
+    "id": "vision-scaling-isoflop",
+    "source_id": "figstudy-cvpr2025-towards-precise-scaling-laws-for-video-diffusion-transformers",
+    "venue": "CVPR",
+    "year": 2025,
+    "figure": "Figure 6",
+    "pdf_page": 7,
+    "short_title": "固定计算量下的容量最优点",
+    "observed_layout": "Two profile panels compare loss versus model size at fixed compute budgets under optimal and suboptimal hyperparameters; a third panel relates fitted minima to compute.",
+    "why": "固定计算量下的U形剖面解释了为什么更大模型未必更好；把各预算的最低点连到汇总视角，将局部调参落实到资源分配。",
+    "data_fields": [
+      "model_size",
+      "compute_budget",
+      "setting_id",
+      "observed_loss",
+      "optional_fitted_loss",
+      "minimum_locations",
+      "fit_definition"
+    ],
+    "fusion_opportunities": [
+      "Fuse with a Pareto cost-quality panel.",
+      "Place the hyperparameter-grid optimum above the profile slice."
+    ],
+    "cautions": "Do not manufacture a minimum beyond observed support or fit a parabola without marking it as a model.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "line_band",
+      "line_band",
+      "line_band"
+    ],
+    "panel_titles": [
+      "调参后的预算剖面",
+      "另一配置的预算剖面",
+      "预算与最优容量"
+    ],
+    "columns": 3,
+    "intents": [
+      "dynamics",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留两种设置剖面与最优点汇总；默认示例不自动拟合缩放律，真实最优位置和拟合曲线由输入提供。"
+  },
+  {
+    "id": "vision-landscape-alignment",
+    "source_id": "figstudy-cvpr2025-seeking-consistent-flat-minima-for-better-domain-generalization-via-refi",
+    "venue": "CVPR",
+    "year": 2025,
+    "figure": "Figure 2",
+    "pdf_page": 4,
+    "short_title": "不同域的损失盆地是否对齐",
+    "observed_layout": "A two-row by four-domain grid contrasts loss contours without and with landscape refinement; the trained model is marked by a plus.",
+    "why": "一个域上的平坦区域不能代表跨域一致；条件×域的交叉网格检查相同参数扰动下盆地位置和宽度是否共同变化。",
+    "data_fields": [
+      "domain_id",
+      "condition_id",
+      "x_grid",
+      "y_grid",
+      "loss_matrix",
+      "trained_parameter_location",
+      "normalization_definition"
+    ],
+    "fusion_opportunities": [
+      "Add a quantitative sharpness or basin-offset strip.",
+      "Pair contours with held-out-domain accuracy."
+    ],
+    "cautions": "Use identical perturbation coordinates, direction normalization and color normalization for comparable panels. A 2D slice is not the full loss geometry.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "contour_response",
+      "contour_response",
+      "contour_response",
+      "contour_response",
+      "contour_response",
+      "contour_response",
+      "contour_response",
+      "contour_response"
+    ],
+    "panel_titles": [
+      "原设置·域1",
+      "原设置·域2",
+      "原设置·域3",
+      "原设置·域4",
+      "修改后·域1",
+      "修改后·域2",
+      "修改后·域3",
+      "修改后·域4"
+    ],
+    "columns": 4,
+    "intents": [
+      "response",
+      "tradeoff"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留条件×域的等高线布局，原参数十字标记需要实际坐标；不可用演示曲面代替研究任务中的真实损失地形。"
+  },
+  {
+    "id": "vision-pruning-paired-embeddings",
+    "source_id": "figstudy-cvpr2026-post-training-feature-pruning-for-fundus-images-classification",
+    "venue": "CVPR",
+    "year": 2026,
+    "figure": "Figure 3",
+    "pdf_page": 7,
+    "short_title": "表征修改前后的对应关系",
+    "observed_layout": "Columns are datasets and rows are before/after feature pruning; points are colored by class.",
+    "why": "相同数据集占同一列，修改前后占不同行，减少追踪类别的负担；共享样本与投影范围使表征变化的解释有明确对象。",
+    "data_fields": [
+      "dataset_id",
+      "condition_id",
+      "sample_ids",
+      "embedding_xy",
+      "class_id",
+      "embedding_method",
+      "projection_fit_scope"
+    ],
+    "fusion_opportunities": [
+      "Add within-class variance and silhouette summaries.",
+      "Pair with a resource-quality tradeoff."
+    ],
+    "cautions": "Independently fitted t-SNE coordinates are not directly aligned or metrically comparable; record projection scope and avoid treating visual separation as proof.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "embedding_scatter",
+      "embedding_scatter",
+      "embedding_scatter",
+      "embedding_scatter"
+    ],
+    "panel_titles": [
+      "修改前·数据1",
+      "修改前·数据2",
+      "修改后·数据1",
+      "修改后·数据2"
+    ],
+    "columns": 2,
+    "intents": [
+      "association",
+      "distribution"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "选两个数据集重建配对投影网格；原图更多数据集可扩展。不同投影的坐标是否可比较由投影拟合范围决定。"
+  },
+  {
+    "id": "vision-poca-reward-conflict",
+    "source_id": "figstudy-cvpr2026-poca-pareto-optimal-curriculum-alignment-for-visual-text-generation",
+    "venue": "CVPR",
+    "year": 2026,
+    "figure": "Figure 2",
+    "pdf_page": 2,
+    "short_title": "样本奖励冲突与最终取舍",
+    "observed_layout": "The left panel colors samples by whether two reward advantages conflict; zero axes define sign quadrants. The right panel places resulting methods in a text-accuracy versus CLIP-score plane.",
+    "why": "样本级符号象限先显示哪些优化信号相互冲突，双目标结果面板再显示这种取舍在整体表现上的位置，避免一个平均分掩盖冲突。",
+    "data_fields": [
+      "sample_id",
+      "reward_a_advantage",
+      "reward_b_advantage",
+      "method_id",
+      "objective_a",
+      "objective_b",
+      "objective_direction"
+    ],
+    "fusion_opportunities": [
+      "Add a training-trajectory arrow only when temporal observations exist.",
+      "Fuse with per-objective learning curves."
+    ],
+    "cautions": "Define conflict from the supplied reward semantics; do not infer causal optimization failure from a scatter plot alone.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "quadrant_scatter",
+      "pareto_scatter"
+    ],
+    "panel_titles": [
+      "两项奖励的符号关系",
+      "最终双目标表现"
+    ],
+    "columns": 2,
+    "intents": [
+      "comparison",
+      "paired_change",
+      "response",
+      "tradeoff"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留样本级冲突与方法级双目标两个层级；Pareto面板目标方向设为max/max，不将两种奖励平均成新指标。",
+    "panel_overrides": {
+      "1": {
+        "x_direction": "max",
+        "y_direction": "max",
+        "xlabel": "Objective A (higher is better)",
+        "ylabel": "Objective B (higher is better)"
+      }
+    }
+  },
+  {
+    "id": "vision-poca-preference-composition",
+    "source_id": "figstudy-cvpr2026-poca-pareto-optimal-curriculum-alignment-for-visual-text-generation",
+    "venue": "CVPR",
+    "year": 2026,
+    "figure": "Figure 8",
+    "pdf_page": 7,
+    "short_title": "人类偏好的组成",
+    "observed_layout": "Three horizontal stacked percentage rows compare human preferences for text accuracy, prompt following and aesthetics across three methods.",
+    "why": "各准则共用选择总数的定义，比较不同方法占了多少人类选择；横向文字与少量段标注使准则名称容易读。",
+    "data_fields": [
+      "criterion_id",
+      "option_id",
+      "vote_count",
+      "eligible_count",
+      "tie_policy",
+      "participant_or_prompt_unit"
+    ],
+    "fusion_opportunities": [
+      "Pair with machine metrics to show agreement or divergence.",
+      "Add interval summaries if participant-level data support them."
+    ],
+    "cautions": "State the denominator, ties and unit of aggregation. Do not treat repeated ratings as independent participants or silently drop ties.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "mosaic_composition",
+      "grouped_dot"
+    ],
+    "panel_titles": [
+      "各准则的选择组成",
+      "各方法的选择比例"
+    ],
+    "columns": 2,
+    "intents": [
+      "comparison",
+      "composition",
+      "distribution",
+      "ranking"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "默认用计数马赛克与点图表达选择组成；原图横向100%堆叠是自定义源的另一种排版，同一投票分母需复用。"
+  },
+  {
+    "id": "vision-ecoalign-policy-profile",
+    "source_id": "figstudy-cvpr2026-ecoalign-an-economically-rational-framework-for-efficient-lvlm-alignment",
+    "venue": "CVPR",
+    "year": 2026,
+    "figure": "Figure 3",
+    "pdf_page": 7,
+    "short_title": "策略在不同任务上的轮廓",
+    "observed_layout": "Three polar grouped-bar panels compare dynamic, myopic and fixed-horizon policies over task categories for three model backends.",
+    "why": "每个后端重复同一任务顺序，策略颜色不变，读者能够比较整体轮廓而无需在多张图间重新找对象；密集数据可展开成点图。",
+    "data_fields": [
+      "model_id",
+      "task_id",
+      "policy_id",
+      "score",
+      "score_definition",
+      "score_direction"
+    ],
+    "fusion_opportunities": [
+      "Use rectangular grouped bars or a normalized scorecard for exact comparison.",
+      "Pair a profile with a cost-quality scatter."
+    ],
+    "cautions": "Radial area exaggerates large values and task ordering is arbitrary. Avoid this route when exact magnitude comparisons are the main question or metrics use incompatible units.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "grouped_dot",
+      "grouped_dot",
+      "grouped_dot"
+    ],
+    "panel_titles": [
+      "模型后端一",
+      "模型后端二",
+      "模型后端三"
+    ],
+    "columns": 3,
+    "intents": [
+      "comparison",
+      "ranking"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "原图采用分组极坐标柱；当前实现将相同任务轮廓展开成分组点图，保留策略身份和比较关系，明确属于语义适配。"
+  },
+  {
+    "id": "vision-scendi-controlled-surface",
+    "source_id": "figstudy-iccv2025-scendi-score-prompt-aware-diversity-evaluation-via-schur-complement-of-c",
+    "venue": "ICCV",
+    "year": 2025,
+    "figure": "Figure 3",
+    "pdf_page": 5,
+    "short_title": "分开两种多样性来源",
+    "observed_layout": "A two-by-two controlled grid changes age and gender diversity while fixing the text-prompt distribution; a companion interpolated surface summarizes the diversity score.",
+    "why": "固定文本提示分布并交叉改变两个因素，能区分目标多样性与其他来源的变化；先显示实测格点，避免光滑曲面掩盖稀疏观察。",
+    "data_fields": [
+      "factor_a_level",
+      "factor_b_level",
+      "score",
+      "fixed_context",
+      "optional_case_images",
+      "interpolation_support"
+    ],
+    "fusion_opportunities": [
+      "Fuse with an interaction heatmap.",
+      "Show simple effects as paired difference intervals."
+    ],
+    "cautions": "The source surface is interpolated. In an adaptation, mark observed cells and do not present interpolation as additional measurements.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "matrix_heatmap",
+      "contour_response"
+    ],
+    "panel_titles": [
+      "实测因子组合",
+      "有密集观测时的响应"
+    ],
+    "columns": 2,
+    "intents": [
+      "association",
+      "comparison",
+      "response",
+      "tradeoff"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "四个实测条件先用矩阵；只有输入具有足够二维采样时才用连续响应面，原图示意案例拼贴不复制。"
+  },
+  {
+    "id": "vision-scendi-context-conditioned-metrics",
+    "source_id": "figstudy-iccv2025-scendi-score-prompt-aware-diversity-evaluation-via-schur-complement-of-c",
+    "venue": "ICCV",
+    "year": 2025,
+    "figure": "Figure 4",
+    "pdf_page": 6,
+    "short_title": "指标究竟响应哪种变化",
+    "observed_layout": "A two-row grid changes whether cat breeds are specified in prompts; columns compare conventional and proposed diversity metrics as the number of breeds increases, with sample montages beneath.",
+    "why": "条件×指标的交叉设计检查指标究竟响应模型差异还是提示分布差异；这一混淆无法由一个总多样性分数解决。",
+    "data_fields": [
+      "condition_id",
+      "number_of_breeds",
+      "metric_id",
+      "metric_value",
+      "fixed_image_or_text_scope",
+      "optional_example_images"
+    ],
+    "fusion_opportunities": [
+      "Combine with identity-reference response curves.",
+      "Use a residualized metric panel if the adjustment is scientifically defined."
+    ],
+    "cautions": "Do not share y scales across different metric units. The fixed and varied factors must remain explicit.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "line_band",
+      "line_band",
+      "line_band",
+      "line_band",
+      "line_band",
+      "line_band"
+    ],
+    "panel_titles": [
+      "条件一·指标1",
+      "条件一·指标2",
+      "条件一·指标3",
+      "条件二·指标1",
+      "条件二·指标2",
+      "条件二·指标3"
+    ],
+    "columns": 3,
+    "intents": [
+      "dynamics",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留条件×指标的交叉布局；样本图像只在用户提供时另加图像区域，不由数值曲线生成示例照片。"
+  },
+  {
+    "id": "vision-qats-baseline-gain",
+    "source_id": "figstudy-eccv2026-quantile-adaptive-temperature-scaling-for-confidence-calibration",
+    "venue": "ECCV",
+    "year": 2026,
+    "figure": "Figure 2",
+    "pdf_page": 10,
+    "short_title": "改进发生在什么起点",
+    "observed_layout": "Each evaluation setting is a point at baseline top-1 accuracy versus the proposed method's accuracy difference; colors identify standard, long-tailed, shift, medical and textual settings. A zero-gain line separates gains from losses.",
+    "why": "在基线难度轴上保留每个设置的正负增益，能看出改进偏向容易任务还是困难任务；设置族颜色保留异质性。",
+    "data_fields": [
+      "setting_id",
+      "baseline_accuracy",
+      "proposed_accuracy",
+      "setting_family",
+      "sample_size_or_weight",
+      "accuracy_unit"
+    ],
+    "fusion_opportunities": [
+      "Pair with a ranked forest of subgroup effects.",
+      "Add marginal distributions without discarding signed differences."
+    ],
+    "cautions": "Compute the delta from matched settings with the same evaluation protocol. Percentage points differ from relative percentages; state weighting and denominators.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "mean_delta",
+      "grouped_dot"
+    ],
+    "panel_titles": [
+      "基线与配对变化",
+      "按设置族检查变化"
+    ],
+    "columns": 2,
+    "intents": [
+      "association",
+      "comparison",
+      "paired_change",
+      "ranking",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "原图为基线准确率×有符号增益散点；第二幅按设置族汇总为可选支持视角，不能只展示有利设置。"
+  },
+  {
+    "id": "vision-weather-variable-horizon-heatmap",
+    "source_id": "figstudy-eccv2026-pushing-the-limits-of-high-resolution-weather-forecasting-through-data-s",
+    "venue": "ECCV",
+    "year": 2026,
+    "figure": "Fig. 2",
+    "pdf_page": 5,
+    "short_title": "误差改善发生在哪一层",
+    "observed_layout": "Pressure-level variables use tall pressure-by-lead-time heatmaps; surface variables use compact horizontal strips. A common diverging color scale represents relative RMSE differences.",
+    "why": "高空变量有气压和时效两维，地面变量只有时效；给不同数据形状分配不同空间，比填满整齐但空洞的矩形更清楚。",
+    "data_fields": [
+      "variable_id",
+      "lead_time",
+      "pressure_level_or_surface",
+      "relative_rmse_difference",
+      "baseline_definition",
+      "pressure_axis_direction"
+    ],
+    "fusion_opportunities": [
+      "Fuse with selected lead-time curves.",
+      "Use a marginal summary strip to show overall variable effects."
+    ],
+    "cautions": "Share the effect definition and scale; preserve pressure orientation and missing levels. Relative RMSE requires a nonzero specified baseline.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "matrix_heatmap",
+      "matrix_heatmap",
+      "matrix_heatmap",
+      "matrix_heatmap"
+    ],
+    "panel_titles": [
+      "高空变量一",
+      "高空变量二",
+      "地面变量一",
+      "地面变量二"
+    ],
+    "columns": 2,
+    "intents": [
+      "association",
+      "comparison",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "默认网格保留四个代表变量；原图高空二维热图与地面单行条带的非等高布局需用compose的GridSpec跨度继续调整，不补出不存在的气压层。"
+  },
+  {
+    "id": "vision-weather-scaling-facets",
+    "source_id": "figstudy-eccv2026-pushing-the-limits-of-high-resolution-weather-forecasting-through-data-s",
+    "venue": "ECCV",
+    "year": 2026,
+    "figure": "Fig. 4",
+    "pdf_page": 10,
+    "short_title": "缩放关系在何种时效成立",
+    "observed_layout": "A three-row by four-variable grid plots error against training-data range at several forecast lead times with observed points and power-law curves.",
+    "why": "同一种缩放趋势可能只在某一时效成立；变量×预测时效的网格检查关系是否跨物理输出和预测难度持续存在。",
+    "data_fields": [
+      "variable_id",
+      "lead_time",
+      "data_volume",
+      "observed_error",
+      "fitted_error",
+      "fit_function",
+      "fit_support",
+      "error_unit"
+    ],
+    "fusion_opportunities": [
+      "Pair with a matrix of fitted slopes and uncertainty.",
+      "Add extrapolation-error checks for held-out data scales."
+    ],
+    "cautions": "Separate fitting support from extrapolation; retain each variable's units and do not equate curve slopes on incompatible transforms.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "line_band",
+      "line_band",
+      "line_band",
+      "line_band",
+      "line_band",
+      "line_band"
+    ],
+    "panel_titles": [
+      "近时效·变量1",
+      "近时效·变量2",
+      "近时效·变量3",
+      "远时效·变量1",
+      "远时效·变量2",
+      "远时效·变量3"
+    ],
+    "columns": 3,
+    "intents": [
+      "dynamics",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "从原三行四列选择相关的两行三列；实测点、拟合线和外推区间分开，未选择的变量不能宣称已被汇总证明。"
+  },
+  {
+    "id": "acl25-class-conditional-confidence-cdf",
+    "source_id": "acl-2025-quantized-calibration",
+    "venue": "ACL",
+    "year": 2025,
+    "figure": "Fig. 1",
+    "pdf_page": 4,
+    "short_title": "正确与错误回答的置信分布",
+    "observed_layout": "正确与错误回答各占一幅并排CDF；同一颜色标识模型状态，黑色虚线给理想参考。",
+    "why": "先按正确性分开，避免两类置信度混成一个看似正常的整体分布；CDF保留尾部和阈值比例，便于读出多少样本跨过某置信门槛。",
+    "data_fields": [
+      "sample_id",
+      "confidence",
+      "correct",
+      "model_or_precision"
+    ],
+    "fusion_opportunities": [
+      "可与下方共享置信分箱的可靠性图、错误类别构成条组合。"
+    ],
+    "cautions": "同一问答需保持样本对应；理想CDF参考需先给出其定义，不能默认所有CDF都该贴近对角线。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "ecdf",
+      "ecdf"
+    ],
+    "panel_titles": [
+      "正确回答",
+      "错误回答"
+    ],
+    "columns": 2,
+    "intents": [
+      "distribution",
+      "operating_tradeoff"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留按正确性分开的CDF对照；每个模型或精度状态可在自定义源中复用同色叠加，不复制原论文数值。"
+  },
+  {
+    "id": "acl25-reliability-method-facets",
+    "source_id": "acl-2025-quantized-calibration",
+    "venue": "ACL",
+    "year": 2025,
+    "figure": "Fig. 3",
+    "pdf_page": 8,
+    "short_title": "校准改善集中在哪些置信区间",
+    "observed_layout": "三个并列可靠性图，各分箱内并排比较全精度、校准前、校准后；共同虚线对角参考。",
+    "why": "横向保持相同置信区间，纵向放同一量纲的正确率，读者能区分整体改善和只在部分置信区间改善。",
+    "data_fields": [
+      "confidence_bin_edges",
+      "bin_accuracy_by_method",
+      "bin_count_by_method",
+      "method"
+    ],
+    "fusion_opportunities": [
+      "可与同分箱样本量条形图上下对齐，避免稀疏bin的突出误差被误读。"
+    ],
+    "cautions": "空bin应留空，不能填成零准确率；若输入只是平均置信度，不能虚构bin正确率。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "calibration",
+      "calibration",
+      "calibration"
+    ],
+    "panel_titles": [
+      "条件一",
+      "条件二",
+      "条件三"
+    ],
+    "columns": 3,
+    "intents": [
+      "calibration",
+      "operating_tradeoff"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "重建三种条件的可靠性小多图；原图同bin分组柱可改为各方法独立点线，但不得改变bin计数和定义。"
+  },
+  {
+    "id": "acl26-turn-paired-reliability",
+    "source_id": "acl-2026-multi-turn-calibration",
+    "venue": "ACL",
+    "year": 2026,
+    "figure": "Fig. 2a",
+    "pdf_page": 4,
+    "short_title": "被质疑前后的可靠性",
+    "observed_layout": "每个数据集一列，上下分别首轮/被质疑后；以箭头连接，同一对角线和柱形/差距填充。",
+    "why": "将轮次变化组织成垂直配对，避免读者在分离的图中追踪条件；dataset作为列维度让变化是否普遍直观可见。",
+    "data_fields": [
+      "dataset",
+      "turn",
+      "confidence_bin_edges",
+      "bin_accuracy",
+      "bin_confidence",
+      "bin_count"
+    ],
+    "fusion_opportunities": [
+      "可以与同列下方的回答状态转移构成图融合，回答校准变坏由哪些转移造成。"
+    ],
+    "cautions": "差距不是另一类样本量；填充不能伪装成额外观察，需标明confidence-minus-accuracy。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "calibration",
+      "calibration",
+      "calibration",
+      "calibration",
+      "calibration",
+      "calibration"
+    ],
+    "panel_titles": [
+      "首轮·数据1",
+      "首轮·数据2",
+      "首轮·数据3",
+      "次轮·数据1",
+      "次轮·数据2",
+      "次轮·数据3"
+    ],
+    "columns": 3,
+    "intents": [
+      "calibration",
+      "operating_tradeoff"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留轮次×数据集的垂直配对；原图箭头与差距填充为可选注释，不能把填充当作另一类样本。"
+  },
+  {
+    "id": "acl26-answer-state-transitions",
+    "source_id": "acl-2026-multi-turn-calibration",
+    "venue": "ACL",
+    "year": 2026,
+    "figure": "Fig. 2b",
+    "pdf_page": 4,
+    "short_title": "信心变化背后的回答转移",
+    "observed_layout": "每个数据集两个100%堆叠柱，分别为置信度升/降；四色表示正确→正确、正确→错、错→错、错→正确。",
+    "why": "把一个笼统的性能变化拆成四种有含义的状态转移，并按置信变化条件分层，找出过度自信对应的具体错误。",
+    "data_fields": [
+      "sample_id",
+      "correct_before",
+      "correct_after",
+      "confidence_before",
+      "confidence_after",
+      "dataset"
+    ],
+    "fusion_opportunities": [
+      "可与可靠性图配对，也可替换为有绝对人数边注的alluvial，但保持同一批样本。"
+    ],
+    "cautions": "每根柱的分母是该条件的样本数；升降条件人数不同，100%图不能直接代表总错误量。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "mosaic_composition",
+      "mosaic_composition",
+      "mosaic_composition"
+    ],
+    "panel_titles": [
+      "数据集一",
+      "数据集二",
+      "数据集三"
+    ],
+    "columns": 3,
+    "intents": [
+      "composition",
+      "distribution"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "用同样四类回答转移的计数组成重建三组条件；马赛克会额外保留组人数，原图100%条可在自定义源中恢复。"
+  },
+  {
+    "id": "acl26-multi-turn-retention-facets",
+    "source_id": "acl-2026-multi-turn-calibration",
+    "venue": "ACL",
+    "year": 2026,
+    "figure": "Fig. 5",
+    "pdf_page": 8,
+    "short_title": "多轮对话中的准确率保持",
+    "observed_layout": "三个数据集并排小图，横轴对话轮数，纵轴准确率；策略颜色/标记跨面板不变，共用顶端图例。",
+    "why": "第一轮共同起点使后续保持或退化成为主要视觉信息；小多图保留各数据集尺度和形态，避免均值掩盖掉某个任务的崩溃。",
+    "data_fields": [
+      "dataset",
+      "turn",
+      "strategy",
+      "accuracy"
+    ],
+    "fusion_opportunities": [
+      "可以在右侧加末轮相对首轮变化的dumbbell或delta区间。"
+    ],
+    "cautions": "不同数据集纵轴范围如不同必须显式展示；不要把折线内插解释成额外轮次测量。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "line_band",
+      "line_band",
+      "line_band"
+    ],
+    "panel_titles": [
+      "数据集一",
+      "数据集二",
+      "数据集三"
+    ],
+    "columns": 3,
+    "intents": [
+      "dynamics",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留轮次轨迹和跨数据集方法身份；数据未提供重复实验时不添加误差带。"
+  },
+  {
+    "id": "acl25-cross-domain-identity-scatter",
+    "source_id": "acl-2025-m-rewardbench",
+    "venue": "ACL",
+    "year": 2025,
+    "figure": "Fig. 1",
+    "pdf_page": 1,
+    "short_title": "跨语言迁移是否丢失能力",
+    "observed_layout": "每个模型为一个点，横轴英语基准、纵轴多语言均值；按模型类别着色，虚线y=x，重点模型少量直标。",
+    "why": "对角线直接编码迁移是否损失；位置还区分原任务强但跨语言掉队与两个任务都弱，比分别排名更能回答迁移问题。",
+    "data_fields": [
+      "model_id",
+      "english_score",
+      "multilingual_score",
+      "model_type"
+    ],
+    "fusion_opportunities": [
+      "与同一模型排序的语言分组区间图或误差热图融合。"
+    ],
+    "cautions": "只有同单位且同含义的指标才用y=x；点的相关性不说明所有模型无域差异。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "pareto_scatter",
+      "mean_delta"
+    ],
+    "panel_titles": [
+      "英语与跨语言表现",
+      "各模型的迁移差值"
+    ],
+    "columns": 2,
+    "intents": [
+      "association",
+      "comparison",
+      "paired_change",
+      "response",
+      "tradeoff"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "原图主体是带y=x参考的双准确率散点；默认Pareto是双最大化视角，差值面板为新增可选分析。精确重建时在Python源加入同单位对角参考。",
+    "panel_overrides": {
+      "0": {
+        "x_direction": "max",
+        "y_direction": "max",
+        "xlabel": "Objective A (higher is better)",
+        "ylabel": "Objective B (higher is better)"
+      }
+    }
+  },
+  {
+    "id": "acl25-ranked-agreement-intervals",
+    "source_id": "acl-2025-m-rewardbench",
+    "venue": "ACL",
+    "year": 2025,
+    "figure": "Fig. 2",
+    "pdf_page": 4,
+    "short_title": "跨语言一致性的排序与波动",
+    "observed_layout": "模型按平均跨语言一致性排序，柱色表示奖励模型类别，误差线展示语言变化。",
+    "why": "排序突出一致性梯度，区间补充均值相近但跨语言波动不同的模型；后续可改为横向点区间以容纳长模型名。",
+    "data_fields": [
+      "model_id",
+      "agreement_estimate",
+      "agreement_lower",
+      "agreement_upper",
+      "model_type",
+      "interval_definition"
+    ],
+    "fusion_opportunities": [
+      "可与同顺序的多语言热图并排，主图解释整体、热图定位来源。"
+    ],
+    "cautions": "源图误差含义须从原文核对；新任务必须使用输入提供的区间含义，不能把语言方差称作置信区间。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "ranked_intervals",
+      "raincloud"
+    ],
+    "panel_titles": [
+      "模型平均一致性",
+      "语言间的分布"
+    ],
+    "columns": 2,
+    "intents": [
+      "comparison",
+      "distribution",
+      "ranking",
+      "uncertainty"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "原排序柱改为横向点区间；第二幅需逐语言值，不能只用均值和区间重建分布。"
+  },
+  {
+    "id": "acl25-distribution-conditioned-composition",
+    "source_id": "acl-2025-m-rewardbench",
+    "venue": "ACL",
+    "year": 2025,
+    "figure": "Fig. 3",
+    "pdf_page": 5,
+    "short_title": "分数区间由哪些任务组成",
+    "observed_layout": "上排为一致性分数直方图，下排在完全一致的x分箱里展示四类任务的百分比堆叠条；阈值虚线贯穿分箱解释。",
+    "why": "上排回答问题集中在哪个数值段，下排回答这些区间由什么任务组成；共享bin让“总体异常”和“群体来源”可以一眼关联。",
+    "data_fields": [
+      "sample_id",
+      "agreement_score",
+      "task_category",
+      "bin_edges"
+    ],
+    "fusion_opportunities": [
+      "与同分箱的代表性样本或少量阈值覆盖率标注融合，保持每个bin的定义一致。"
+    ],
+    "cautions": "必须共享bin边界和样本；下排空bin应留空而不是造满100%；上排counts和下排proportions量纲不同。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "mirrored_histogram",
+      "binned_group_composition"
+    ],
+    "panel_titles": [
+      "共同分箱的分数分布",
+      "同分箱的任务组成"
+    ],
+    "columns": 1,
+    "intents": [
+      "composition",
+      "distribution",
+      "error_structure",
+      "shift"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "原图上方为单直方图；默认镜像图展示两个真实条件的扩展，下方组成复用其中同一批带类别的样本与bin。单条件时在Python源改为普通直方图，不能虚构第二条件。"
+  },
+  {
+    "id": "acl25-multifactor-cohort-comparison",
+    "source_id": "acl-2025-m-rewardbench",
+    "venue": "ACL",
+    "year": 2025,
+    "figure": "Fig. 5",
+    "pdf_page": 7,
+    "short_title": "资源、语系与文字的群体差异",
+    "observed_layout": "资源水平、语系、文字系统各占一幅横向条形小图，按各自类别水平展示多语言表现。",
+    "why": "把潜在解释因素拆成平行视角，类别名较长时横向排列更易读；可将截断条改为点图保留精细比较而不夸大面积。",
+    "data_fields": [
+      "language_id",
+      "score",
+      "resource_class",
+      "family",
+      "script"
+    ],
+    "fusion_opportunities": [
+      "适合与语言级散点或模型×语言热图融合，指出聚合与个体是否一致。"
+    ],
+    "cautions": "组数与样本量需保留；不能从这些相关分组直接推断某因素的因果作用；若截断条形轴需换点图。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "comparison_intervals",
+      "comparison_intervals",
+      "comparison_intervals"
+    ],
+    "panel_titles": [
+      "资源水平",
+      "语言家族",
+      "文字系统"
+    ],
+    "columns": 3,
+    "intents": [
+      "comparison",
+      "uncertainty"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "原截断横条改为点区间，保留三个分类因素；不同分组不是三次独立实验，也不从相关分组推出因果解释。"
+  },
+  {
+    "id": "nmi26-parameter-surface-with-slices",
+    "source_id": "nmi-2026-random-noise-calibration",
+    "venue": "Nature Machine Intelligence",
+    "year": 2026,
+    "figure": "Fig. 1d",
+    "pdf_page": null,
+    "short_title": "参数交互与代表性切片",
+    "observed_layout": "中心热图以网络深度和训练集规模为两维、校准误差着色；虚线框选特定行列，左右连接对应可靠性小图。",
+    "why": "二维表面先定位交互与异常区，再用少量切片解释同一误差数字背后的校准形状，避免为每个格子放一张图。",
+    "data_fields": [
+      "network_depth",
+      "training_size",
+      "calibration_error_matrix",
+      "selected_slice_ids",
+      "bin_accuracy",
+      "bin_confidence"
+    ],
+    "fusion_opportunities": [
+      "可改成热图上方/右侧边缘切片，在主图空间有限时保留2–3个代表点；与资源预算轴自然融合。"
+    ],
+    "cautions": "热图中心和切片必须来自相同配置；不要在没有采样的格点插值出精确边界；对数间隔需明示。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "matrix_heatmap",
+      "line_band",
+      "calibration"
+    ],
+    "panel_titles": [
+      "二维参数响应",
+      "选定行列的剖面",
+      "代表配置的可靠性"
+    ],
+    "columns": 3,
+    "intents": [
+      "association",
+      "calibration",
+      "comparison",
+      "dynamics",
+      "operating_tradeoff",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "已补原生矩阵切片布局：从同一响应网格提取指定行列，主矩阵标记所取位置并对齐切片。未复算原论文的拟合、理论边界或校准统计。",
+    "native_layout": "matrix_slices"
+  },
+  {
+    "id": "nmi26-input-space-and-marginals",
+    "source_id": "nmi-2026-random-noise-calibration",
+    "venue": "Nature Machine Intelligence",
+    "year": 2026,
+    "figure": "Fig. 3b,e–j",
+    "pdf_page": null,
+    "short_title": "空间结构与置信分布",
+    "observed_layout": "校准前后输入空间散点使用同一概率色标；下方对齐logit分布、logit–probability散点和置信度横向直方图。",
+    "why": "空间图回答变化发生在哪些输入区域，边缘分布回答整体压缩还是偏移；共享坐标和色标使机制解释与总体统计相互核对。",
+    "data_fields": [
+      "sample_id",
+      "feature_x",
+      "feature_y",
+      "logit",
+      "probability",
+      "condition"
+    ],
+    "fusion_opportunities": [
+      "可融合为带top/right边缘图的joint density；输入维度不是二维时仅用已提供投影并注明。"
+    ],
+    "cautions": "不能凭图生成投影或置信度；两条件使用同一色标；投影距离不等于原空间距离。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "embedding_scatter",
+      "embedding_scatter",
+      "density_map",
+      "ecdf"
+    ],
+    "panel_titles": [
+      "条件一的输入空间",
+      "条件二的输入空间",
+      "logit与概率关系",
+      "置信度累计分布"
+    ],
+    "columns": 2,
+    "intents": [
+      "association",
+      "distribution",
+      "operating_tradeoff"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "已补原生联合布局：中央关系与两个真实边缘计数来自同一观测、显式分箱，轴范围联动。原论文特定背景、训练状态与理论形状仍需由实际数据提供。",
+    "native_layout": "joint_marginals"
+  },
+  {
+    "id": "nmi26-training-phase-trajectories",
+    "source_id": "nmi-2026-random-noise-calibration",
+    "venue": "Nature Machine Intelligence",
+    "year": 2026,
+    "figure": "Fig. 4a,d–f",
+    "pdf_page": null,
+    "short_title": "训练如何走到同一结果",
+    "observed_layout": "loss–accuracy和confidence–accuracy平面中用点和箭头表现训练方向，标出同准确率或同训练长度对照，右侧给轮次曲线。",
+    "why": "轨迹平面区分沿着什么路径到达同一终点，时间曲线补回训练顺序；合用后能发现单看最终精度看不到的校准差异。",
+    "data_fields": [
+      "checkpoint",
+      "condition",
+      "test_loss",
+      "test_accuracy",
+      "mean_confidence",
+      "epoch"
+    ],
+    "fusion_opportunities": [
+      "可与训练阶段背景带、关键checkpoint的可靠性图融合；用少量箭头而不是给每个点写数字。"
+    ],
+    "cautions": "只有成对checkpoint可连为轨迹；未采样阶段不能画作真实测量；对角线仅用于同量纲的confidence–accuracy面板。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "ordered_trajectory",
+      "ordered_trajectory",
+      "line_band",
+      "line_band"
+    ],
+    "panel_titles": [
+      "损失与准确率轨迹",
+      "置信度与准确率轨迹",
+      "普通训练的时间过程",
+      "分阶段训练的时间过程"
+    ],
+    "columns": 2,
+    "intents": [
+      "association",
+      "dynamics",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "按提供checkpoint顺序连接二维状态，不对x自动排序；原图阶段箭头和匹配准确率标记留在可编辑Python源中添加。"
+  },
+  {
+    "id": "nmi26-ood-distribution-and-roc",
+    "source_id": "nmi-2026-random-noise-calibration",
+    "venue": "Nature Machine Intelligence",
+    "year": 2026,
+    "figure": "Fig. 5b,d",
+    "pdf_page": null,
+    "short_title": "未知输入的置信度与判别",
+    "observed_layout": "上方叠放未知数据置信度横向直方图和箱图，下方ROC与重复实验AUROC箱图；方法色保持不变。",
+    "why": "分布说明判别性能来自哪些置信区间，ROC给阈值全景，重复实验分布补充稳定性；不让单个AUROC掩盖错误模式。",
+    "data_fields": [
+      "sample_id",
+      "ood_label",
+      "confidence_score",
+      "method",
+      "repeat_id"
+    ],
+    "fusion_opportunities": [
+      "可增加指定操作点的false-positive/true-positive标记，再与风险–覆盖率曲线融合。"
+    ],
+    "cautions": "ROC需要逐样本标签和分数；箱图需要重复值或明确提供的五数概括；别用单一AUROC反推出ROC。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "mirrored_histogram",
+      "roc",
+      "raincloud"
+    ],
+    "panel_titles": [
+      "未知输入置信度",
+      "阈值判别曲线",
+      "重复实验的AUROC"
+    ],
+    "columns": 3,
+    "intents": [
+      "comparison",
+      "distribution",
+      "operating_tradeoff",
+      "shift"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留置信分布、ROC和重复实验三个尺度；原图密度直方图适配为镜像原始计数并保留n，样本量不等时可用ECDF比较形状。原图图像示例省略，ROC不能从一个AUROC值反推。"
+  },
+  {
+    "id": "nmi25-hierarchical-region-ablation",
+    "source_id": "nmi-2025-visual-language-alignment",
+    "venue": "Nature Machine Intelligence",
+    "year": 2025,
+    "figure": "Fig. 3",
+    "pdf_page": null,
+    "short_title": "信息删减在不同区域的影响",
+    "observed_layout": "四个脑区分列，每列共享模型/信息层级行；横条叠加参与者散点，完整caption基线在每列用竖虚线延伸。",
+    "why": "共同模型行让不同区域的效应可以横向扫读；完整输入基线与局部去除对照区分哪个信息层次被损失，散点保留参与者异质性。",
+    "data_fields": [
+      "participant_id",
+      "region",
+      "input_condition",
+      "representational_agreement",
+      "baseline_condition"
+    ],
+    "fusion_opportunities": [
+      "可缩为点区间矩阵，并在一侧放条件说明，或与同条件表示相似性热图组合。"
+    ],
+    "cautions": "不同区域如数值尺度不同需要保留刻度；不能把参与者散点当成独立模型重复。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "comparison_intervals",
+      "comparison_intervals",
+      "comparison_intervals",
+      "comparison_intervals"
+    ],
+    "panel_titles": [
+      "区域一",
+      "区域二",
+      "区域三",
+      "区域四"
+    ],
+    "columns": 4,
+    "intents": [
+      "comparison",
+      "uncertainty"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留相同条件行×区域列的对齐；参与者原始点可用runs输入叠加，不能把它们当模型种子。"
+  },
+  {
+    "id": "nmi25-data-scale-versus-alignment",
+    "source_id": "nmi-2025-visual-language-alignment",
+    "venue": "Nature Machine Intelligence",
+    "year": 2025,
+    "figure": "Fig. 4e",
+    "pdf_page": null,
+    "short_title": "数据规模与表征对齐",
+    "observed_layout": "大主图用对数训练数据量对比模型脑区对齐度，不同训练目标着色；右侧两个相同语法的小图给其他脑区。",
+    "why": "把“训练更多数据”与“训练目标不同”放在同一视图，识别优于规模趋势的模型；主次面板按核心区域和支持区域分配面积。",
+    "data_fields": [
+      "model_id",
+      "training_examples",
+      "alignment_score",
+      "training_objective",
+      "region"
+    ],
+    "fusion_opportunities": [
+      "可融合Pareto前沿或标签稀疏的同量纲比较，但前沿需按实际优劣方向计算。"
+    ],
+    "cautions": "各模型训练数据统计口径须一致；离散模型散点不默认拟合成一条缩放规律。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "pareto_scatter",
+      "pareto_scatter",
+      "pareto_scatter"
+    ],
+    "panel_titles": [
+      "核心区域",
+      "支持区域一",
+      "支持区域二"
+    ],
+    "columns": 3,
+    "intents": [
+      "comparison",
+      "tradeoff"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "将原主图和两个支持图重排为三列；训练样本越少/越多不预设优劣，真实任务需声明资源目标方向并保留log刻度。"
+  },
+  {
+    "id": "nmi25-group-diversity-forest-atlas",
+    "source_id": "nmi-2025-identity-flattening",
+    "venue": "Nature Machine Intelligence",
+    "year": 2025,
+    "figure": "Fig. 4",
+    "pdf_page": null,
+    "short_title": "群体多样性与人类参考",
+    "observed_layout": "模型为大行、多个多样性指标为列，每个小图内按身份组排列LLM点区间与人类参考叉号，组顺序完全复用。",
+    "why": "一个总体多样性数字会掩盖不同群体和不同指标；点区间矩阵在同一行对齐群体，参考符号直接显示与人类基线的距离。",
+    "data_fields": [
+      "model_id",
+      "identity_group",
+      "diversity_metric",
+      "estimate",
+      "lower",
+      "upper",
+      "reference_estimate",
+      "reference_lower",
+      "reference_upper"
+    ],
+    "fusion_opportunities": [
+      "可把小图数量压到2–3指标并加群体差值森林图；其他指标放补充材料。"
+    ],
+    "cautions": "每个指标可以有自己的量纲，不能强制同一x范围；区间语义必须来自输入。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "forest_intervals",
+      "forest_intervals",
+      "forest_intervals",
+      "forest_intervals",
+      "forest_intervals",
+      "forest_intervals"
+    ],
+    "panel_titles": [
+      "模型一·指标1",
+      "模型一·指标2",
+      "模型一·指标3",
+      "模型二·指标1",
+      "模型二·指标2",
+      "模型二·指标3"
+    ],
+    "columns": 3,
+    "intents": [
+      "comparison",
+      "uncertainty"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "从原更大图集中选择两模型三指标；人类参考的点区间需在自定义Python源叠加，不将多个指标压成一分。"
+  },
+  {
+    "id": "nmi25-hyperparameter-cohort-ladder",
+    "source_id": "nmi-2025-identity-flattening",
+    "venue": "Nature Machine Intelligence",
+    "year": 2025,
+    "figure": "Fig. 5",
+    "pdf_page": null,
+    "short_title": "参数改变能否接近群体目标",
+    "observed_layout": "每个群体内纵向堆叠人类基线及三档temperature点区间，虚线隔开群体，列维度是不同多样性指标。",
+    "why": "固定群体内比较参数变化，避免温度与身份两种变化混在颜色里；参考行说明参数改善是否真正接近目标分布。",
+    "data_fields": [
+      "group_id",
+      "temperature",
+      "metric",
+      "estimate",
+      "lower",
+      "upper",
+      "reference_estimate"
+    ],
+    "fusion_opportunities": [
+      "可融合成group×temperature差值热图，旁边保留极端群体的区间切片。"
+    ],
+    "cautions": "参数级别不是独立样本；不要默认temperature越大越好；同一指标的范围跨群体保持一致。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "forest_intervals",
+      "forest_intervals",
+      "forest_intervals",
+      "forest_intervals"
+    ],
+    "panel_titles": [
+      "群体一·指标1",
+      "群体一·指标2",
+      "群体二·指标1",
+      "群体二·指标2"
+    ],
+    "columns": 2,
+    "intents": [
+      "comparison",
+      "uncertainty"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留群体内参数梯度和分指标视角，减少一次展示的群体；人类参考行按实际输入补入，温度不是重复样本。"
+  },
+  {
+    "id": "nmi26-capability-coordination-crossings",
+    "source_id": "nmi-2026-agent-collaboration",
+    "venue": "Nature Machine Intelligence",
+    "year": 2026,
+    "figure": "Fig. 1",
+    "pdf_page": null,
+    "short_title": "协作收益随模型能力变化",
+    "observed_layout": "三家模型族分列，横轴能力指标、纵轴任务表现；通信拓扑用形状区分，单体用虚线，重点能力段标注增减。",
+    "why": "交叉曲线揭示改进方向会随底模能力改变，比分别给平均提升更能表达条件效应；形状在单色打印中仍区分拓扑。",
+    "data_fields": [
+      "model_family",
+      "model_id",
+      "capability_index",
+      "architecture",
+      "performance"
+    ],
+    "fusion_opportunities": [
+      "与成本–性能散点或同模型的增益差值图组合；避免把三家不同能力范围强行共用横轴。"
+    ],
+    "cautions": "连线只连接预先定义的家族序列；能力指标和任务性能不能互换；相对/绝对提升要分清。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "line_band",
+      "line_band",
+      "line_band"
+    ],
+    "panel_titles": [
+      "模型族一",
+      "模型族二",
+      "模型族三"
+    ],
+    "columns": 3,
+    "intents": [
+      "dynamics",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留能力×架构的交互小多图；每条线连接同一家族的观测，原增益箭头依输入计算。"
+  },
+  {
+    "id": "nmi26-task-specific-distribution-atlas",
+    "source_id": "nmi-2026-agent-collaboration",
+    "venue": "Nature Machine Intelligence",
+    "year": 2026,
+    "figure": "Fig. 2",
+    "pdf_page": null,
+    "short_title": "平均收益背后的任务差异",
+    "observed_layout": "六任务小多图，每幅重复五种架构箱图和均值菱形，顶部少量显示相对单体的变化方向。",
+    "why": "任务维度保留有的任务收益、有的任务退化的异质性；箱体与均值同时出现，避免偏斜分布下只比较一个中心值。",
+    "data_fields": [
+      "benchmark",
+      "architecture",
+      "model_id",
+      "performance"
+    ],
+    "fusion_opportunities": [
+      "可与同任务资源开销点图组成上下行，或把任务按机制分组。"
+    ],
+    "cautions": "箱图中的分布单位需明示是模型配置还是重复实验；不同任务纵轴刻度必须清楚可见。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "paired_distribution",
+      "paired_distribution",
+      "paired_distribution",
+      "paired_distribution",
+      "paired_distribution",
+      "paired_distribution"
+    ],
+    "panel_titles": [
+      "任务一",
+      "任务二",
+      "任务三",
+      "任务四",
+      "任务五",
+      "任务六"
+    ],
+    "columns": 3,
+    "intents": [
+      "distribution",
+      "paired_change"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留六任务分布网格；原图箱体加均值菱形可在源中恢复，paired参数应按模型ID是否真实配对设置。",
+    "panel_overrides": {
+      "0": {
+        "paired": false
+      },
+      "1": {
+        "paired": false
+      },
+      "2": {
+        "paired": false
+      },
+      "3": {
+        "paired": false
+      },
+      "4": {
+        "paired": false
+      },
+      "5": {
+        "paired": false
+      }
+    }
+  },
+  {
+    "id": "nmi26-agent-count-baseline-sweeps",
+    "source_id": "nmi-2026-agent-collaboration",
+    "venue": "Nature Machine Intelligence",
+    "year": 2026,
+    "figure": "Fig. 3",
+    "pdf_page": null,
+    "short_title": "增加智能体何时开始失效",
+    "observed_layout": "两个能力级别各一幅小图，横轴离散agent数量，中央化/去中央化两条折线，水平虚线为对应单体基线。",
+    "why": "基线让增加资源是否值得直接可读；分开底模能力而共享线型，突出规模收益并非单调且可能随模型改变。",
+    "data_fields": [
+      "model_id",
+      "agent_count",
+      "architecture",
+      "accuracy",
+      "single_agent_baseline"
+    ],
+    "fusion_opportunities": [
+      "可融合成本轴的Pareto散点或每增加一位agent的边际增益条。"
+    ],
+    "cautions": "agent数量不是时间顺序；不要把未测整数数量补成数据点；基线必须对应同一模型和任务。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "line_band",
+      "line_band"
+    ],
+    "panel_titles": [
+      "能力级别一",
+      "能力级别二"
+    ],
+    "columns": 2,
+    "intents": [
+      "dynamics",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留不同底模能力下的数量扫描；各面板单体基线需与同模型同任务对应，未测数量不补成观察。"
+  },
+  {
+    "id": "nmi26-optimal-setting-butterfly",
+    "source_id": "nmi-2026-specgp",
+    "venue": "Nature Machine Intelligence",
+    "year": 2026,
+    "figure": "Fig. 3a",
+    "pdf_page": null,
+    "short_title": "两组最优设置的分布偏移",
+    "observed_layout": "两类离子在共同能量纵轴的左右分别画计数横条，零点居中，形成蝶形分布。",
+    "why": "共同纵轴使两组最优设置的峰值、范围和偏移直接对齐；左右仅分组，不把一组真实计数编码成负数。",
+    "data_fields": [
+      "item_id",
+      "ion_group",
+      "optimal_energy",
+      "energy_bin_edges"
+    ],
+    "fusion_opportunities": [
+      "可与相同能量下的预测相似性曲线或关键能量切片组合。"
+    ],
+    "cautions": "左侧tick显示绝对计数并明确镜像含义；组样本量不同需可选比例或同时注明n。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "mirrored_histogram",
+      "ecdf"
+    ],
+    "panel_titles": [
+      "最优设置的镜像分布",
+      "阈值以内的累计比例"
+    ],
+    "columns": 2,
+    "intents": [
+      "distribution",
+      "operating_tradeoff",
+      "shift"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "原图主体为蝶形横向计数，本实现使用镜像直方图原语，方向可在Python源中转置；CDF是额外支持视角。"
+  },
+  {
+    "id": "nmi26-mirrored-spectrum-comparison",
+    "source_id": "nmi-2026-specgp",
+    "venue": "Nature Machine Intelligence",
+    "year": 2026,
+    "figure": "Fig. 3b",
+    "pdf_page": null,
+    "short_title": "共同位置上的两组峰",
+    "observed_layout": "两种能量条件的离子峰在共享m/z轴上分别向上和向下画stem，离子类型用颜色区分，局部结构标注靠近相关峰。",
+    "why": "峰的位置和强度都需要精确对照，镜像可同时看到共同峰、缺失峰和相对强弱；不依赖一条整体相似性数字。",
+    "data_fields": [
+      "mass_to_charge",
+      "relative_intensity",
+      "condition",
+      "ion_type",
+      "optional_peak_label"
+    ],
+    "fusion_opportunities": [
+      "可与左上蝶形能量分布或右侧总体相似性violin组合。"
+    ],
+    "cautions": "新任务不需要糖链图标时直接省略；归一化方式必须一致；向下峰表示第二条件而非负强度。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "mirror_stem",
+      "paired_distribution"
+    ],
+    "panel_titles": [
+      "位置与峰强度对照",
+      "共同峰的强度分布"
+    ],
+    "columns": 2,
+    "intents": [
+      "agreement",
+      "association",
+      "distribution",
+      "paired_change"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留共享位置向上/向下的谱线，不复制糖链图标；分布面板是新增支持视角，只有真实匹配峰才可配对。"
+  },
+  {
+    "id": "nm25-per-image-restoration-gains",
+    "source_id": "cellpose3-figure-layout",
+    "venue": "Nature Methods",
+    "year": 2025,
+    "figure": "Fig. 1d,f",
+    "pdf_page": null,
+    "short_title": "图像恢复究竟帮助了谁",
+    "observed_layout": "每张测试图像为一个点，横轴加噪后AP、纵轴去噪后AP；y=x给无变化参考；两幅小图分别比较传统去噪和目标函数选择。",
+    "why": "平均提升容易掩盖部分图像变差；成对散点保留每例得失、起点难度与改进幅度，适合检查损失函数优化是否对所有图像有效。",
+    "data_fields": [
+      "image_id",
+      "method",
+      "ap_before",
+      "ap_after",
+      "image_type"
+    ],
+    "fusion_opportunities": [
+      "可与整体AP–IoU阈值曲线、最改善/最退化案例缩略图融合；案例由真实差值选择并保留ID。"
+    ],
+    "cautions": "必须对齐同一image_id，不把方法各自独立样本强行配对；AP和IoU阈值定义保持一致。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "mean_delta",
+      "mean_delta"
+    ],
+    "panel_titles": [
+      "去噪策略的逐例变化",
+      "训练目标的逐例变化"
+    ],
+    "columns": 2,
+    "intents": [
+      "association",
+      "paired_change",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "原图y=恢复后AP改为y=后减前，零线表达同一得失关系；若要原坐标，可直接在Python源改为paired scatter并加y=x。"
+  },
+  {
+    "id": "nm25-acquisition-budget-threshold-pair",
+    "source_id": "cellpose3-figure-layout",
+    "venue": "Nature Methods",
+    "year": 2025,
+    "figure": "Fig. 2c,e",
+    "pdf_page": null,
+    "short_title": "质量阈值与采集成本",
+    "observed_layout": "左小图扫描IoU阈值下的AP曲线；右小图扫描激光功率或平均帧数下固定IoU的AP；dense/sparse表达条件分列。",
+    "why": "一条轴评价评估标准变严后是否仍有效，另一条轴评价采集成本是否能降低；并排回答质量与预算两个不同问题。",
+    "data_fields": [
+      "method",
+      "iou_threshold",
+      "ap_by_threshold",
+      "acquisition_budget",
+      "budget_unit",
+      "ap_at_fixed_iou",
+      "lower",
+      "upper",
+      "expression_density"
+    ],
+    "fusion_opportunities": [
+      "可融合成三列：参考图像/分割，AP阈值曲线，采集预算曲线；共享方法颜色并给图像独立比例尺。"
+    ],
+    "cautions": "IoU阈值与采集预算不是同一x变量，不强制共用坐标；误差线必须来自重复值或提供的区间；不重绘原始细胞照片。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "line_band",
+      "line_band",
+      "line_band",
+      "line_band"
+    ],
+    "panel_titles": [
+      "阈值扫描·条件一",
+      "采集预算·条件一",
+      "阈值扫描·条件二",
+      "采集预算·条件二"
+    ],
+    "columns": 2,
+    "intents": [
+      "dynamics",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留评估阈值与采集预算两种不同横轴；原图细胞图像和分割只在用户提供时添加，图像不由统计曲线反推。"
+  },
+  {
+    "id": "nature26-aligned-genomic-tracks",
+    "source_id": "nature-2026-alphagenome",
+    "venue": "Nature",
+    "year": 2026,
+    "figure": "Fig. 3b,c",
+    "pdf_page": null,
+    "short_title": "同一位置的预测与实测",
+    "observed_layout": "基因注释、剪接连线、位点使用、预测RNA-seq与观察RNA-seq纵向排列，共用基因组x坐标；REF/ALT两色复用，变异位置以一条竖虚线贯通。",
+    "why": "多个观测模态只有在同一位置对齐后才能解释局部变化；真实与预测轨道相邻，可看出相似性来自哪一段，而非只靠总体相关系数。",
+    "data_fields": [
+      "genomic_position",
+      "track_id",
+      "reference_value",
+      "alternate_value",
+      "track_kind",
+      "variant_position",
+      "optional_feature_intervals"
+    ],
+    "fusion_opportunities": [
+      "可与右侧整体泛化性能/效应区间相融合；保留共享位置锚点和每轨道自己的y单位。"
+    ],
+    "cautions": "轨道之间不强制同y尺度；外显子和剪接结构需要用户提供，不能从曲线形状臆造；原论文2026年发表，DOI中的025不代表发表年度。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "line_band",
+      "line_band",
+      "line_band",
+      "line_band"
+    ],
+    "panel_titles": [
+      "位点使用",
+      "预测表达轨道",
+      "实测表达轨道",
+      "另一条件轨道"
+    ],
+    "columns": 1,
+    "intents": [
+      "dynamics",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "已补原生多轨布局：共享位置轴和图形宽度，预测与观测可同轨对照，各轨单位独立。原论文的基因结构、外显子或剪接弧注释仍需显式作者素材。",
+    "native_layout": "aligned_tracks"
+  },
+  {
+    "id": "nature26-output-capability-matrix",
+    "source_id": "nature-2026-alphagenome",
+    "venue": "Nature",
+    "year": 2026,
+    "figure": "Fig. 3a,f",
+    "pdf_page": null,
+    "short_title": "输出覆盖与可比性能",
+    "observed_layout": "模型为列、可预测模态为行，以实心方块/圆点区分是否支持，少量脚注补充输出分辨率。",
+    "why": "在比较数值性能之前先说明不同模型覆盖什么输出，避免缺失结果被误读成零分；离散符号不暗示连续强弱。",
+    "data_fields": [
+      "model_id",
+      "output_modality",
+      "is_supported",
+      "optional_resolution"
+    ],
+    "fusion_opportunities": [
+      "可放在基准性能热图上方或左侧，并用相同模型顺序连接；不支持的比较单元保留缺失而非补零。"
+    ],
+    "cautions": "是否支持必须依据真实接口和评估定义；不能把capability矩阵当性能评分；形状需配简短图例。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "dot_matrix",
+      "grouped_dot"
+    ],
+    "panel_titles": [
+      "模型支持的输出模态",
+      "对应任务的性能"
+    ],
+    "columns": 2,
+    "intents": [
+      "association",
+      "comparison",
+      "composition",
+      "ranking"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "原Fig.3a是二值符号矩阵，默认dot_matrix可表达同样覆盖关系但需固定marker size；性能副图借用同Fig.3f所见关系，不将不支持的输出补成零分。"
+  },
+  {
+    "id": "ml25-moe-isoflop-slices",
+    "source_id": "figstudy-icml2025-parameters-vs-flops-scaling-laws-for-optimal-sparsity-for-mixture-of-exp",
+    "venue": "ICML",
+    "year": 2025,
+    "figure": "Figure 2",
+    "pdf_page": 3,
+    "short_title": "等计算预算下的最优剖面",
+    "observed_layout": "Three aligned profile panels vary sparsity, total parameters, and active parameters; curve color represents the held condition and stars identify optima.",
+    "why": "同一预算下把二维响应拆成可读剖面，区分改变稀疏度与改变参数量；最优点连成轨迹，解释最优配置如何移动。",
+    "data_fields": [
+      "compute_budget",
+      "sparsity",
+      "total_parameters",
+      "active_parameters",
+      "observed_or_fitted_loss",
+      "fit_definition"
+    ],
+    "fusion_opportunities": [
+      "在同一预算下取相同坐标的二维响应切片，再加成本–质量前沿。"
+    ],
+    "cautions": "Demo numbers are synthetic. Preserve original axis meanings; do not infer or reproduce the paper numerical results from the artwork.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "line_band",
+      "line_band",
+      "line_band"
+    ],
+    "panel_titles": [
+      "趋势与给定范围",
+      "趋势与给定范围",
+      "趋势与给定范围"
+    ],
+    "columns": 3,
+    "intents": [
+      "dynamics",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留三个剖面；最优星标和观测/拟合状态需要实际输入，不自动从合成示例推导缩放律。"
+  },
+  {
+    "id": "ml25-moe-budget-design",
+    "source_id": "figstudy-icml2025-parameters-vs-flops-scaling-laws-for-optimal-sparsity-for-mixture-of-exp",
+    "venue": "ICML",
+    "year": 2025,
+    "figure": "Figures 3 and 4",
+    "pdf_page": 5,
+    "short_title": "计算预算与模型设计",
+    "observed_layout": "A three-panel row plots optimal total size, active size, and loss versus sparsity; a separate panel shows optimal sparsity versus total size across budgets.",
+    "why": "并排保留不同结果量的单位，通过固定预算颜色追踪同一设计；另一幅配置曲线把性能分析落实为设计选择。",
+    "data_fields": [
+      "compute_budget",
+      "sparsity",
+      "optimal_total_parameters",
+      "optimal_active_parameters",
+      "optimal_loss"
+    ],
+    "fusion_opportunities": [
+      "把同预算的最优配置移到一个共同资源轴；配合响应矩阵定位最优点是否稳定。"
+    ],
+    "cautions": "Demo numbers are synthetic. Preserve original axis meanings; do not infer or reproduce the paper numerical results from the artwork.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "line_band",
+      "line_band",
+      "line_band",
+      "line_band"
+    ],
+    "panel_titles": [
+      "趋势与给定范围",
+      "趋势与给定范围",
+      "趋势与给定范围",
+      "趋势与给定范围"
+    ],
+    "columns": 2,
+    "intents": [
+      "dynamics",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "原三联图加另一幅配置图重排为2×2，保留四种结果含义；不把不同单位强制共用纵轴。"
+  },
+  {
+    "id": "ml25-calibration-win-matrices",
+    "source_id": "figstudy-icml2025-improving-multi-class-calibration-through-normalization-aware-isotonic-t",
+    "venue": "ICML",
+    "year": 2025,
+    "figure": "Figure 3",
+    "pdf_page": 8,
+    "short_title": "校准与泛化的双胜率矩阵",
+    "observed_layout": "Two square method-by-method heatmaps report comparison win fractions for calibration error and negative log-likelihood.",
+    "why": "成对胜率矩阵避免只依赖平均分排名；相同方法行列顺序让校准收益与泛化损失之间的冲突一眼可见。",
+    "data_fields": [
+      "method_ids",
+      "pairwise_win_count_ece",
+      "pairwise_win_count_nll",
+      "comparison_counts"
+    ],
+    "fusion_opportunities": [
+      "在同方法顺序下并列ECE、NLL和准确率差值，指出胜率与提升幅度的区别。"
+    ],
+    "cautions": "Demo numbers are synthetic. Preserve original axis meanings; do not infer or reproduce the paper numerical results from the artwork.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "matrix_heatmap",
+      "matrix_heatmap"
+    ],
+    "panel_titles": [
+      "二维条件或关系矩阵",
+      "二维条件或关系矩阵"
+    ],
+    "columns": 2,
+    "intents": [
+      "association",
+      "comparison",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留两张成对胜率矩阵；胜率用实际比较计数计算，不能用平均误差大小代替。"
+  },
+  {
+    "id": "ml25-distillation-fixed-budget",
+    "source_id": "figstudy-icml2025-distillation-scaling-laws",
+    "venue": "ICML",
+    "year": 2025,
+    "figure": "Figure 2",
+    "pdf_page": 4,
+    "short_title": "教师条件下的学生预算剖面",
+    "observed_layout": "Two neighboring panels hold different teacher sizes; student parameter size is horizontal, loss vertical, and compute budget is the curve grouping.",
+    "why": "把教师条件分面后，各预算下的学生容量最优点容易比较；固定条件标签比将全部曲线塞进一张图更容易读。",
+    "data_fields": [
+      "teacher_id",
+      "student_parameters",
+      "student_compute",
+      "student_cross_entropy"
+    ],
+    "fusion_opportunities": [
+      "加入同教师条件下的训练耗时或内存前沿，使容量选择和实际预算相连。"
+    ],
+    "cautions": "Demo numbers are synthetic. Preserve original axis meanings; do not infer or reproduce the paper numerical results from the artwork.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "line_band",
+      "line_band"
+    ],
+    "panel_titles": [
+      "趋势与给定范围",
+      "趋势与给定范围"
+    ],
+    "columns": 2,
+    "intents": [
+      "dynamics",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留不同教师的两幅预算剖面；默认不拟合最优点，也不生成原论文损失值。"
+  },
+  {
+    "id": "ml25-pareto-preference-frontiers",
+    "source_id": "figstudy-icml2025-pareto-merging-multi-objective-optimization-for-preference-aware-model-m",
+    "venue": "ICML",
+    "year": 2025,
+    "figure": "Figures 4 and 5",
+    "pdf_page": 7,
+    "short_title": "偏好变化与双任务前沿",
+    "observed_layout": "Accuracy-accuracy scatter plots compare clouds of preference-selected solutions with isolated baseline solutions using distinct symbols.",
+    "why": "同时保留两项任务准确率，展示一组可选择的折衷解；同一坐标中孤立点和一组解分工明确。",
+    "data_fields": [
+      "method_id",
+      "preference_id",
+      "task_a_accuracy",
+      "task_b_accuracy"
+    ],
+    "fusion_opportunities": [
+      "配合同一组偏好在更多任务维度上的parallel_coordinates，检查双目标优势是否牺牲其他任务。"
+    ],
+    "cautions": "Demo numbers are synthetic. Preserve original axis meanings; do not infer or reproduce the paper numerical results from the artwork.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "pareto_scatter",
+      "pareto_scatter"
+    ],
+    "panel_titles": [
+      "双指标非支配关系",
+      "双指标非支配关系"
+    ],
+    "columns": 2,
+    "intents": [
+      "comparison",
+      "tradeoff"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留双最大化准确率前沿，真实前沿按输入目标方向计算；不把默认成本最小化方向沿用到任务准确率。",
+    "panel_overrides": {
+      "0": {
+        "x_direction": "max",
+        "y_direction": "max",
+        "xlabel": "Task A accuracy",
+        "ylabel": "Task B accuracy"
+      },
+      "1": {
+        "x_direction": "max",
+        "y_direction": "max",
+        "xlabel": "Task A accuracy",
+        "ylabel": "Task B accuracy"
+      }
+    }
+  },
+  {
+    "id": "iclr25-calibration-generalization",
+    "source_id": "figstudy-iclr2025-reassessing-how-to-compare-and-improve-the-calibration-of-machine-learni",
+    "venue": "ICLR",
+    "year": 2025,
+    "figure": "Figure 2",
+    "pdf_page": 10,
+    "short_title": "可靠性之外的泛化解释",
+    "observed_layout": "A two-by-two grid places calibration-sharpness curves over reliability diagrams for two recalibration methods; row roles and column identities stay aligned.",
+    "why": "同列保持方法身份，同排比较同一指标；让校准改善与预测信息损失能够同时被讨论，而不是用一个分数代替整件事。",
+    "data_fields": [
+      "confidence_grid",
+      "calibration_terms",
+      "sharpness_terms",
+      "confidence_bin_edges",
+      "bin_accuracy",
+      "bin_counts"
+    ],
+    "fusion_opportunities": [
+      "在校准与sharpness曲线旁加风险–覆盖率，解释校准改变如何影响实际使用。"
+    ],
+    "cautions": "Demo numbers are synthetic. Preserve original axis meanings; do not infer or reproduce the paper numerical results from the artwork.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "line_band",
+      "line_band",
+      "calibration",
+      "calibration"
+    ],
+    "panel_titles": [
+      "趋势与给定范围",
+      "趋势与给定范围",
+      "置信度与实际准确率",
+      "置信度与实际准确率"
+    ],
+    "columns": 2,
+    "intents": [
+      "calibration",
+      "dynamics",
+      "operating_tradeoff",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留2×2中上排曲线和下排可靠性的角色；sharpness和calibration terms由输入定义，不将它们混为同一单位。"
+  },
+  {
+    "id": "iclr26-scaling-fit-observation",
+    "source_id": "figstudy-iclr2026-the-art-of-scaling-reinforcement-learning-compute-for-llms",
+    "venue": "ICLR",
+    "year": 2026,
+    "figure": "Figure 2",
+    "pdf_page": 2,
+    "short_title": "观测、拟合与外推分层",
+    "observed_layout": "One plot overlays multiple RL recipes; marker types separate fitting observations and later evaluations, while solid and dotted lines separate fit and extrapolation.",
+    "why": "先把数据来源状态做成不同视觉语法，读者能判断结论来自已运行点还是外推；同一方法颜色贯穿两种状态。",
+    "data_fields": [
+      "recipe_id",
+      "gpu_hours",
+      "pass_rate",
+      "fit_domain",
+      "fitted_curve",
+      "heldout_run_points"
+    ],
+    "fusion_opportunities": [
+      "在同图以实线/虚线和不同点型标出拟合、外推、追加验证点，再加资源前沿。"
+    ],
+    "cautions": "Demo numbers are synthetic. Preserve original axis meanings; do not infer or reproduce the paper numerical results from the artwork.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "line_band",
+      "line_band"
+    ],
+    "panel_titles": [
+      "趋势与给定范围",
+      "趋势与给定范围"
+    ],
+    "columns": 2,
+    "intents": [
+      "dynamics",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "原叠加图拆成两个状态视角；拟合和外推区间由输入给出，默认示例不执行拟合或声称预测能力。"
+  },
+  {
+    "id": "iclr26-scaling-controlled-ablations",
+    "source_id": "figstudy-iclr2026-the-art-of-scaling-reinforcement-learning-compute-for-llms",
+    "venue": "ICLR",
+    "year": 2026,
+    "figure": "Figure 4",
+    "pdf_page": 5,
+    "short_title": "固定度量下的算法消融",
+    "observed_layout": "Three side-by-side line panels separately compare off-policy algorithms, loss definitions, and numeric precision against a shared compute axis.",
+    "why": "每面板只改变一种设计选择，固定预算和结果轴，避免将算法、实现精度和损失函数的影响混成一个排名。",
+    "data_fields": [
+      "gpu_hours",
+      "pass_rate",
+      "off_policy_algorithm",
+      "loss_definition",
+      "precision",
+      "fixed_configuration"
+    ],
+    "fusion_opportunities": [
+      "增加同配置的显存或吞吐剖面，区分算法收益与数值实现带来的计算变化。"
+    ],
+    "cautions": "Demo numbers are synthetic. Preserve original axis meanings; do not infer or reproduce the paper numerical results from the artwork.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "line_band",
+      "line_band",
+      "line_band"
+    ],
+    "panel_titles": [
+      "趋势与给定范围",
+      "趋势与给定范围",
+      "趋势与给定范围"
+    ],
+    "columns": 3,
+    "intents": [
+      "dynamics",
+      "response"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留算法、损失和精度三个控制因素的小多图；各组控制项和预算定义需对应。"
+  },
+  {
+    "id": "neurips25-overall-to-category",
+    "source_id": "neurips-2025-hivemind-figures",
+    "venue": "NeurIPS",
+    "year": 2025,
+    "figure": "Figure 7",
+    "pdf_page": 6,
+    "short_title": "整体分布连接类别细分",
+    "observed_layout": "Overall entropy histogram linked to category proportions.",
+    "why": "先看整体集中或分散，再追问哪些类别贡献了这种分布；类别分母必须明确，避免把全局趋势强加给每个群体。",
+    "data_fields": [
+      "response_entropy",
+      "category_id",
+      "category_counts",
+      "category_denominators"
+    ],
+    "fusion_opportunities": [
+      "同bin的整体直方图和类别构成纵向对齐，再按条件增加并列图。"
+    ],
+    "cautions": "Adapt the recorded analytical relationship; demo values are synthetic and source artwork is not bundled.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": true,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "mirrored_histogram",
+      "mosaic_composition"
+    ],
+    "panel_titles": [
+      "共同分箱的双组分布",
+      "群体规模与内部组成"
+    ],
+    "columns": 2,
+    "intents": [
+      "composition",
+      "distribution",
+      "shift"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "复用此前已查看的图例记录。原整体直方图适配为镜像分布，第二条件必须有真实观测；类别马赛克分母单独说明。"
+  },
+  {
+    "id": "neurips25-category-distributions",
+    "source_id": "neurips-2025-hivemind-figures",
+    "venue": "NeurIPS",
+    "year": 2025,
+    "figure": "Figure 8",
+    "pdf_page": 6,
+    "short_title": "类别分布与原始观测",
+    "observed_layout": "Ordered horizontal boxplots overlaid with observations.",
+    "why": "固定类别顺序并保留散点，让主体、长尾和异常样本同时可见；读者可以判断类别差异是否只由少量点推动。",
+    "data_fields": [
+      "category_id",
+      "response_values",
+      "sample_id"
+    ],
+    "fusion_opportunities": [
+      "固定类别顺序，将raincloud、ECDF和P95区间配合，用不同视角核对尾部。"
+    ],
+    "cautions": "Adapt the recorded analytical relationship; demo values are synthetic and source artwork is not bundled.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": true,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "raincloud",
+      "binned_summary"
+    ],
+    "panel_titles": [
+      "观测、分布与摘要",
+      "分组主体与上尾"
+    ],
+    "columns": 2,
+    "intents": [
+      "comparison",
+      "distribution",
+      "uncertainty"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "复用此前已查看的图例记录；原横向箱图+散点改为raincloud和分组分位数，区间含义必须一致。"
+  },
+  {
+    "id": "icml26-quality-walltime",
+    "source_id": "icml-2026-flexibility-trap-figures",
+    "venue": "ICML",
+    "year": 2026,
+    "figure": "Figure 9",
+    "pdf_page": 10,
+    "short_title": "质量与实际等待时间",
+    "observed_layout": "Accuracy versus measured wall time under different generation choices.",
+    "why": "把模型调用次数换成实际墙钟时间后，方法收益与用户等待时间能够在同一图中比较；不同实现的时间定义和硬件条件要对应。",
+    "data_fields": [
+      "method_id",
+      "wall_time_seconds",
+      "accuracy",
+      "hardware_and_batch_configuration"
+    ],
+    "fusion_opportunities": [
+      "同一硬件批量条件下并列墙钟时间轨迹与成本–质量前沿，标出选定运行点。"
+    ],
+    "cautions": "Adapt the recorded analytical relationship; demo values are synthetic and source artwork is not bundled.",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": true,
+    "inspection_date": "2026-10-30",
+    "panel_plan": [
+      "cost_quality_frontier",
+      "line_band"
+    ],
+    "panel_titles": [
+      "成本与质量的取舍",
+      "趋势与给定范围"
+    ],
+    "columns": 2,
+    "intents": [
+      "comparison",
+      "dynamics",
+      "response",
+      "tradeoff"
+    ],
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "复用此前已查看的图例记录；默认拆为时间–质量前沿与时间曲线，不把调用次数换算成未经测量的运行时间。"
+  },
+  {
+    "id": "iclr25-adak-activation-knee",
+    "source_id": "figstudy-more-iclr2025-ada-k-routing-boosting-the-efficiency-of-moe-based-llms",
+    "paper_title": "Ada-K Routing: Boosting the Efficiency of MoE-based LLMs",
+    "venue": "ICLR",
+    "year": 2025,
+    "figure": "Figure 2",
+    "pdf_page": 7,
+    "short_title": "节省计算的拐点在哪里",
+    "observed_layout": "A single accuracy-versus-activation-reduction curve uses a horizontal fixed-routing reference and one highlighted operating point.",
+    "why": "随着预算削减先平缓后急降的曲线，比单个省算力数字更能说明可用区间；共同参考线让读者判断收益是否以低于基线为代价。",
+    "data_fields": [
+      "activation_reduction_rate",
+      "accuracy",
+      "baseline_accuracy",
+      "operating_point"
+    ],
+    "fusion_opportunities": [
+      "下接每层激活专家数量曲线，检查省下的计算集中在哪些层。",
+      "与同一批查询的实测延迟/显存点图配对，判断激活削减是否转化为实际运行收益。"
+    ],
+    "cautions": "激活削减率不是墙钟时间或FLOPs的直接替代；精度基线与可用拐点必须来自相同设置，不能凭曲线形状自动判定。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "line_band"
+    ],
+    "columns": 1,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留预算曲线；论文的水平基线与选中点需要在导出源中添加，不能把激活削减率冒充实际延迟。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "准确率与激活削减"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "Activation reduction (%)",
+        "ylabel": "Accuracy (%)"
+      }
+    }
+  },
+  {
+    "id": "iclr25-ado-extrapolation-domain",
+    "source_id": "figstudy-more-iclr2025-adaptive-data-optimization-dynamic-sample-selection-with-scaling-laws",
+    "paper_title": "Adaptive Data Optimization: Dynamic Sample Selection with Scaling Laws",
+    "venue": "ICLR",
+    "year": 2025,
+    "figure": "Figure 2",
+    "pdf_page": 2,
+    "short_title": "拟合范围如何改变外推",
+    "observed_layout": "Observed loss points and several extrapolation curves share a log-parameter axis; vertical colored markers indicate the largest model used in each fit.",
+    "why": "直接把拟合到哪里标出来，读者就能区分已见规模和外推规模，并比较扩大拟合范围后预测怎样改变。",
+    "data_fields": [
+      "model_parameters",
+      "observed_loss",
+      "fit_curve",
+      "largest_fit_model"
+    ],
+    "fusion_opportunities": [
+      "下接预测减观测的残差图，按模型规模检查外推误差发生在哪里。",
+      "把各拟合截止规模并列，叠加同一组留出观测，比较增加规模观测能否稳定预测。"
+    ],
+    "cautions": "拟合曲线与实测点必须分开编码；竖直拟合截止线不是模型阈值，不能把已见规模的数据点当作外推验证。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "line_band",
+      "line_band"
+    ],
+    "columns": 2,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "将多种拟合范围拆成相邻面板；真实对数轴、观测点与拟合边界由导出源明确保留。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "较小规模拟合",
+      "较大规模拟合"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "Model parameters",
+        "ylabel": "Validation loss"
+      },
+      "1": {
+        "xlabel": "Model parameters",
+        "ylabel": "Validation loss"
+      }
+    }
+  },
+  {
+    "id": "iclr25-ado-learning-meta-loss",
+    "source_id": "figstudy-more-iclr2025-adaptive-data-optimization-dynamic-sample-selection-with-scaling-laws",
+    "paper_title": "Adaptive Data Optimization: Dynamic Sample Selection with Scaling Laws",
+    "venue": "ICLR",
+    "year": 2025,
+    "figure": "Figure 3",
+    "pdf_page": 3,
+    "short_title": "内层学习与外层优化是否都前进",
+    "observed_layout": "Three neighboring panels show two learner training curves with shaded variability and a separate meta-objective trajectory.",
+    "why": "同一幅图区分训练出来的模型学得怎样，以及课程本身是否仍在改进；外层目标继续下降不等于每个任务都同步受益。",
+    "data_fields": [
+      "training_step",
+      "learner_loss_runs",
+      "curriculum_id",
+      "meta_step",
+      "meta_objective"
+    ],
+    "fusion_opportunities": [
+      "右侧增加各课程的最终测试误差分布，检查内层收敛速度能否保留到未见数据。",
+      "与课程采样比例随步骤的变化对齐，定位外层更新改变了哪些样本。"
+    ],
+    "cautions": "原图学习曲线阴影是50次运行的一标准差，不是95%CI；外层meta-loss与内层任务损失量纲不同，不能共用纵轴或直接比较下降幅度。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "line_band",
+      "line_band",
+      "convergence_envelope"
+    ],
+    "columns": 3,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留两个任务和一个外层过程；原图阴影为50次运行的1标准差，演示中的运行IQR不能标为相同统计量。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "Logistic regression",
+      "MLP",
+      "课程外层目标"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "Training step",
+        "ylabel": "Test loss"
+      },
+      "1": {
+        "xlabel": "Training step",
+        "ylabel": "Test loss"
+      },
+      "2": {
+        "xlabel": "Meta-optimization step",
+        "ylabel": "Meta objective"
+      }
+    }
+  },
+  {
+    "id": "iclr25-ensemble-composition-tradeoffs",
+    "source_id": "figstudy-more-iclr2025-balancing-act-diversity-and-consistency-in-large-language-model-ensembles",
+    "paper_title": "Balancing Act: Diversity and Consistency in Large Language Model Ensembles",
+    "venue": "ICLR",
+    "year": 2025,
+    "figure": "Figure 3",
+    "pdf_page": 7,
+    "short_title": "选了哪些模型、牺牲了哪些能力",
+    "observed_layout": "A horizontal stacked model-usage chart is followed by a task-score scatter and a multi-task radar profile.",
+    "why": "组成图解释算法实际依赖谁，双任务关系展示取舍，多任务轮廓检查收益是否集中于被优化的能力。",
+    "data_fields": [
+      "run_id",
+      "model_usage_fraction",
+      "task_a_score",
+      "task_b_score",
+      "task_score_ranges"
+    ],
+    "fusion_opportunities": [
+      "把每次运行的模型组成与该运行的两任务得分用run ID连接，查看组合差异是否对应能力取舍。",
+      "在多任务轮廓旁放原始分数区间，检查归一化轮廓是否掩盖实际差距。"
+    ],
+    "cautions": "不同任务的分数不能直接相加；雷达或平行坐标的轴范围会改变视觉印象。模型使用比例的分母是调用/层/运行中的哪一种必须声明。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "mosaic_composition",
+      "quadrant_scatter",
+      "parallel_coordinates"
+    ],
+    "columns": 3,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "原雷达用有明确轴范围的平行坐标替代；使用mosaic时宽度必须来自真实run样本量，若等宽则提供相同计数。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "模型使用组成",
+      "两个任务的取舍",
+      "多任务能力轮廓"
+    ],
+    "panel_overrides": {
+      "1": {
+        "xlabel": "Task A score",
+        "ylabel": "Task B score"
+      }
+    }
+  },
+  {
+    "id": "iclr26-atlas-language-scaling",
+    "source_id": "figstudy-more-iclr2026-atlas-adaptive-transfer-scaling-laws-for-multilingual-pretraining-finetunin",
+    "paper_title": "ATLAS: Adaptive Transfer Scaling Laws for Multilingual Pretraining, Finetuning, and Decoding the Curse of Multilinguality",
+    "venue": "ICLR",
+    "year": 2026,
+    "figure": "Figure 1",
+    "pdf_page": 2,
+    "short_title": "不同语言的最优扩展路径",
+    "observed_layout": "Six language panels show model-size versus data-size scaling trajectories, with line treatments distinguishing vocabulary and sampling choices.",
+    "why": "按语言分面避免多条曲线互相遮挡；每个面板保留相同选择编码，使低资源语言曲率变化能够与其他语言对照。",
+    "data_fields": [
+      "language_id",
+      "model_size",
+      "data_tokens",
+      "vocabulary_condition",
+      "sampling_condition"
+    ],
+    "fusion_opportunities": [
+      "右侧放语言间转移矩阵，追问最优扩展轨迹的语言差异是否对应互惠或干扰。",
+      "在各语言面板下接固定loss预算的配置点，转成可比较的资源选择。"
+    ],
+    "cautions": "图中曲线对应不同词表和采样策略，不能把线型只当装饰；最优路径是拟合/理论规划结果，不能全部称为直接运行观测。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "line_band",
+      "line_band",
+      "line_band",
+      "line_band",
+      "line_band",
+      "line_band"
+    ],
+    "columns": 3,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留六语言分面；每种训练条件的曲线应作为同轴layers添加，对数轴与实线/虚线含义按数据定义。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "语言条件 A",
+      "语言条件 B",
+      "语言条件 C",
+      "语言条件 D",
+      "语言条件 E",
+      "语言条件 F"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "Training tokens",
+        "ylabel": "Model parameters"
+      },
+      "1": {
+        "xlabel": "Training tokens",
+        "ylabel": "Model parameters"
+      },
+      "2": {
+        "xlabel": "Training tokens",
+        "ylabel": "Model parameters"
+      },
+      "3": {
+        "xlabel": "Training tokens",
+        "ylabel": "Model parameters"
+      },
+      "4": {
+        "xlabel": "Training tokens",
+        "ylabel": "Model parameters"
+      },
+      "5": {
+        "xlabel": "Training tokens",
+        "ylabel": "Model parameters"
+      }
+    }
+  },
+  {
+    "id": "iclr26-atlas-transfer-matrix",
+    "source_id": "figstudy-more-iclr2026-atlas-adaptive-transfer-scaling-laws-for-multilingual-pretraining-finetunin",
+    "paper_title": "ATLAS: Adaptive Transfer Scaling Laws for Multilingual Pretraining, Finetuning, and Decoding the Curse of Multilinguality",
+    "venue": "ICLR",
+    "year": 2026,
+    "figure": "Figure 2",
+    "pdf_page": 5,
+    "short_title": "迁移收益是否有方向",
+    "observed_layout": "A large source-language by target-language heatmap includes colored family/script annotation strips along rows and columns.",
+    "why": "有方向的行列定义保留A帮助B与B帮助A的差别；语言族和文字系统条带帮助解释矩阵区块，而不把块状外观当作唯一结论。",
+    "data_fields": [
+      "source_language",
+      "target_language",
+      "transfer_score",
+      "language_family",
+      "writing_system"
+    ],
+    "fusion_opportunities": [
+      "接双向迁移散点，找出矩阵中A到B与B到A不对称的语言对。",
+      "保留语言族/文字系统条带，并按这些分组展示转移分布，解释区块来源。"
+    ],
+    "cautions": "行是源语言、列是目标语言，转置会改变解释；转移分数的正负定义由原始归一化决定，矩阵非对称不应被强制镜像。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "matrix_heatmap"
+    ],
+    "columns": 1,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留有向转移矩阵；语言族条带和逐格数字按需要在可编辑源中添加，不自动聚类改写已选语言顺序。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "有方向的语言迁移"
+    ],
+    "panel_overrides": {
+      "0": {
+        "cmap": "RdBu_r",
+        "center": 0,
+        "vmin": -1,
+        "vmax": 1
+      }
+    }
+  },
+  {
+    "id": "iclr26-atlas-reciprocity-groups",
+    "source_id": "figstudy-more-iclr2026-atlas-adaptive-transfer-scaling-laws-for-multilingual-pretraining-finetunin",
+    "paper_title": "ATLAS: Adaptive Transfer Scaling Laws for Multilingual Pretraining, Finetuning, and Decoding the Curse of Multilinguality",
+    "venue": "ICLR",
+    "year": 2026,
+    "figure": "Figure 3",
+    "pdf_page": 6,
+    "short_title": "双向迁移是否对称",
+    "observed_layout": "A transfer-in-each-direction scatter with identity diagonal is paired with boxplots grouped by shared family and writing system.",
+    "why": "散点找互惠与非对称，群体分布再检查这种差异是否与语言结构有关；二者分别展示个体关系与群体规律。",
+    "data_fields": [
+      "transfer_a_to_b",
+      "transfer_b_to_a",
+      "pair_id",
+      "shared_family",
+      "shared_script"
+    ],
+    "fusion_opportunities": [
+      "将远离y=x的语言对回填到有向转移矩阵，用少量标签解释非对称来源。",
+      "按语言族与文字系统分别作条件分布，避免把两种分组因素合并成一个标签。"
+    ],
+    "cautions": "对称性应参照y=x而不是零线象限；两个方向迁移量共享同一语言对，不可分别排序或打乱后计算相关。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "quadrant_scatter",
+      "binned_summary"
+    ],
+    "columns": 2,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "将双向转移保留为二维关系与分组分布；原图identity对角线需显式加，不能把零线象限当作对称性判断。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "双向转移关系",
+      "语言结构分组"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "Transfer A to B",
+        "ylabel": "Transfer B to A"
+      },
+      "1": {
+        "ylabel": "Language transfer score"
+      }
+    }
+  },
+  {
+    "id": "iclr26-autoqd-best-policy-robustness",
+    "source_id": "figstudy-more-iclr2026-autoqd-automatic-discovery-of-diverse-behaviors-with-quality-diversity-opti",
+    "paper_title": "AutoQD: Automatic Discovery of Diverse Behaviors with Quality-Diversity Optimization",
+    "venue": "ICLR",
+    "year": 2026,
+    "figure": "Figure 3",
+    "pdf_page": 8,
+    "short_title": "最优策略能承受多大环境变化",
+    "observed_layout": "Two neighboring panels compare return under friction changes and mass-scale changes; each method has a curve and supplied standard-error shading.",
+    "why": "把两种扰动拆开保留各自单位；最佳策略回报曲线描述能力边界，避免把环境变化压成一个平均分。",
+    "data_fields": [
+      "method_id",
+      "friction",
+      "mass_scale",
+      "return",
+      "standard_error"
+    ],
+    "fusion_opportunities": [
+      "与相同扰动点的成功策略数量配对，区分最佳解稳健和整个方案库稳健。",
+      "增加原环境归一化回报图，比较不同任务，但保留原始return和归一化分母。"
+    ],
+    "cautions": "左/右横轴分别为摩擦和质量比例，不能强行共享刻度；阴影为32评估种子的SE，不能改称跨策略分布或CI。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "robustness_profile",
+      "robustness_profile"
+    ],
+    "columns": 2,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留扰动面板；使用给定SE时应选line_band及原区间，不把robustness_profile默认曲线宣称已画SE。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "摩擦改变",
+      "质量比例改变"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "Friction coefficient",
+        "ylabel": "Best-policy return"
+      },
+      "1": {
+        "xlabel": "Mass scale",
+        "ylabel": "Best-policy return"
+      }
+    }
+  },
+  {
+    "id": "iclr26-autoqd-adaptation-population",
+    "source_id": "figstudy-more-iclr2026-autoqd-automatic-discovery-of-diverse-behaviors-with-quality-diversity-opti",
+    "paper_title": "AutoQD: Automatic Discovery of Diverse Behaviors with Quality-Diversity Optimization",
+    "venue": "ICLR",
+    "year": 2026,
+    "figure": "Figure 4",
+    "pdf_page": 9,
+    "short_title": "有多少策略仍然可用",
+    "observed_layout": "Two panels use different return-success thresholds and plot the number of adapting policies against friction.",
+    "why": "仅看最优解会忽略方案储备；两个阈值把轻度可用与高质量可用分开，显示多样性如何转化成后续适应能力。",
+    "data_fields": [
+      "friction",
+      "success_threshold",
+      "policy_id",
+      "mean_return",
+      "original_best_return",
+      "success_count"
+    ],
+    "fusion_opportunities": [
+      "接最佳策略回报曲线，检查“至少有一个能用”和“有很多能用”是否得到不同方法排名。",
+      "增加每个扰动下的策略回报ECDF，使成功阈值不再是唯一结论。"
+    ],
+    "cautions": "成功阈值是原环境最佳回报的给定比例，不能由扰动后的最佳回报重新定义；成功数量与种群规模有关，不能在规模不同的方法间当作成功率。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "line_band",
+      "line_band"
+    ],
+    "columns": 2,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留成功数量随扰动的双阈值曲线；阈值和分母需要真实策略集合，不能从最佳回报推造计数。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "较严格成功阈值",
+      "较宽松成功阈值"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "Friction coefficient",
+        "ylabel": "Successful policy count"
+      },
+      "1": {
+        "xlabel": "Friction coefficient",
+        "ylabel": "Successful policy count"
+      }
+    }
+  },
+  {
+    "id": "iclr26-agile-feature-task-dependence",
+    "source_id": "figstudy-more-iclr2026-agilepruner-an-empirical-study-of-attention-and-diversity-for-adaptive-visu",
+    "paper_title": "AgilePruner: An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models",
+    "venue": "ICLR",
+    "year": 2026,
+    "figure": "Figure 3a",
+    "pdf_page": 6,
+    "short_title": "同一表征指标在不同任务上作用相反",
+    "observed_layout": "Two labeled scatter plots relate effective feature rank to task accuracy, with visually different trend directions across datasets.",
+    "why": "同一横轴在不同任务上可能出现反向关系；并排保留任务身份能防止把一种数据集经验当作普遍选策略原则。",
+    "data_fields": [
+      "method_id",
+      "feature_effective_rank",
+      "task_id",
+      "task_accuracy"
+    ],
+    "fusion_opportunities": [
+      "与图像复杂度分布配对，检查特征rank与任务性能的关系是否由样本组成驱动。",
+      "在相同保留token预算下添加注意力熵/有效rank二维关系，连接选择策略与图像属性。"
+    ],
+    "cautions": "有效rank与准确率的相关不等于rank导致性能；不同任务准确率范围和图像复杂度不同，不能只比较拟合斜率大小。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "quadrant_scatter",
+      "quadrant_scatter"
+    ],
+    "columns": 2,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留同量横轴的两任务关系；拟合线不是输入时不自动拟合，图像复杂度示例不随包复制。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "任务 A：rank 与性能",
+      "任务 B：rank 与性能"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "Effective feature rank",
+        "ylabel": "Task accuracy"
+      },
+      "1": {
+        "xlabel": "Effective feature rank",
+        "ylabel": "Task accuracy"
+      }
+    }
+  },
+  {
+    "id": "icml25-routing-estimator-noise-surface",
+    "source_id": "figstudy-more-icml2025-a-unified-approach-to-routing-and-cascading-for-llms",
+    "paper_title": "A Unified Approach to Routing and Cascading for LLMs",
+    "venue": "ICML",
+    "year": 2025,
+    "figure": "Figure 2",
+    "pdf_page": 7,
+    "short_title": "何种估计误差下路由才有益",
+    "observed_layout": "Two triangularly valid heatmaps compare improvements under pre- and post-response estimator noise; the invalid half-plane is blank.",
+    "why": "响应面展示方法收益取决于两个估计器的质量，而不是仅报告一个总体提升；空白区域明确哪些噪声组合不成立。",
+    "data_fields": [
+      "pre_response_noise",
+      "post_response_noise",
+      "auc_difference",
+      "valid_configuration_mask"
+    ],
+    "fusion_opportunities": [
+      "固定一类估计器噪声后抽出另一轴剖面，找出改进哪类估计器更有收益。",
+      "接相同噪声条件的成本质量曲线，检查AUC汇总改善是否集中于某段预算。"
+    ],
+    "cautions": "无效三角区域是未定义/不可行而非收益为零；颜色是相对baseline的AUC差，不能读成绝对路由准确率。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "matrix_heatmap",
+      "matrix_heatmap"
+    ],
+    "columns": 2,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留两个噪声响应矩阵；当前通用热图不支持缺失格，真实三角mask须在导出Python中显式masked array，不可用零填充无效域。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "相对直接路由的收益",
+      "相对级联的收益"
+    ],
+    "panel_overrides": {
+      "0": {
+        "cmap": "RdBu_r",
+        "center": 0
+      },
+      "1": {
+        "cmap": "RdBu_r",
+        "center": 0
+      }
+    }
+  },
+  {
+    "id": "icml25-bestroute-sampling-returns",
+    "source_id": "figstudy-more-icml2025-best-route-adaptive-llm-routing-with-test-time-optimal-compute",
+    "paper_title": "BEST-Route: Adaptive LLM Routing with Test-Time Optimal Compute",
+    "venue": "ICML",
+    "year": 2025,
+    "figure": "Figure 2",
+    "pdf_page": 5,
+    "short_title": "多采样的边际回报",
+    "observed_layout": "Multiple model curves show response reward versus the best-of-n sampling count; curves increase at different rates and approach different levels.",
+    "why": "同一采样数不代表同样的质量收益，保持模型曲线可看见额外推理投入何时开始边际递减。",
+    "data_fields": [
+      "model_id",
+      "sample_count_n",
+      "selected_response_reward",
+      "selection_rule"
+    ],
+    "fusion_opportunities": [
+      "把每模型对应的采样成本附在另一轴/相邻图，读出同等开销的最佳采样数。",
+      "增加每个n的边际奖励增量，区分总质量继续增长与追加采样已几乎无益。"
+    ],
+    "cautions": "奖励模型分数不是人工正确率；best-of-n的增长含选择效应，不能把每个被选样本当作同分布独立观测。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "line_band",
+      "line_band"
+    ],
+    "columns": 2,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "用两个模型条件面板提供起点，也可在同轴layers比较全部模型；奖励模型分数不能更名为正确率。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "模型条件 A",
+      "模型条件 B"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "Best-of-n sample count",
+        "ylabel": "Selected-response reward"
+      },
+      "1": {
+        "xlabel": "Best-of-n sample count",
+        "ylabel": "Selected-response reward"
+      }
+    }
+  },
+  {
+    "id": "icml25-bestroute-cost-quality-envelope",
+    "source_id": "figstudy-more-icml2025-best-route-adaptive-llm-routing-with-test-time-optimal-compute",
+    "paper_title": "BEST-Route: Adaptive LLM Routing with Test-Time Optimal Compute",
+    "venue": "ICML",
+    "year": 2025,
+    "figure": "Figures 3 and 4",
+    "pdf_page": 7,
+    "short_title": "成本质量曲线与采样机制",
+    "observed_layout": "Cost-versus-response-quality plots compare a router to model baselines, then compare routing with different best-of-n values.",
+    "why": "先看实际成本质量取舍，再把曲线改善连接到采样数这一具体控制量；两个图共同解释提升从哪里来。",
+    "data_fields": [
+      "method_id",
+      "cost_per_1k_queries",
+      "response_quality",
+      "sample_count_n"
+    ],
+    "fusion_opportunities": [
+      "与请求难度分层后的模型使用比例组合，解释前沿的收益由哪些查询贡献。",
+      "将不同采样n画为同一方法的受控曲线，区分模型路由与重复采样各自作用。"
+    ],
+    "cautions": "成本按每千次查询美元计算，依赖模型价格及token长度；响应质量为armoRM分数，前沿方向是低成本/高分，不是两轴都最大化。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "cost_quality_frontier",
+      "line_band"
+    ],
+    "columns": 2,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留资源前沿与采样剖面；成本单位是每千次查询美元，不能换成模型参数量而不说明。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "路由成本与质量",
+      "采样数改变后的预算曲线"
+    ],
+    "panel_overrides": {
+      "0": {
+        "cost_direction": "min",
+        "quality_direction": "max",
+        "xlabel": "Cost ($ / 1K queries)",
+        "ylabel": "Response reward"
+      },
+      "1": {
+        "xlabel": "Cost ($ / 1K queries)",
+        "ylabel": "Response reward"
+      }
+    }
+  },
+  {
+    "id": "icml25-semantic-calibration-gap",
+    "source_id": "figstudy-more-icml2025-beyond-one-hot-labels-semantic-mixing-for-model-calibration",
+    "paper_title": "Beyond One-Hot Labels: Semantic Mixing for Model Calibration",
+    "venue": "ICML",
+    "year": 2025,
+    "figure": "Figure 3",
+    "pdf_page": 8,
+    "short_title": "哪一段置信度被校准",
+    "observed_layout": "Four reliability diagrams compare augmentation/label conditions with diagonal references and visible confidence–accuracy gaps.",
+    "why": "按组成步骤分面能定位误差改善来自哪里；逐置信区间的缺口比一个ECE更容易显示局部过度自信。",
+    "data_fields": [
+      "condition_id",
+      "bin_edges",
+      "bin_mean_confidence",
+      "bin_accuracy",
+      "bin_counts"
+    ],
+    "fusion_opportunities": [
+      "下接共用置信分箱的样本量条，检查看起来改善的bin是否有足够样本。",
+      "与训练期间过度自信误差及最终高置信分布配对，连接局部间隙与形成过程。"
+    ],
+    "cautions": "ECE依赖bin计数和分箱规则，各条件应使用可比定义；可靠性图对角线表示概率校准，不是所有分类指标的理想关系。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "calibration",
+      "calibration",
+      "calibration",
+      "calibration"
+    ],
+    "columns": 2,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "用相同概率轴保留四条件；原图间隙填充需按实际bin值在源里添加，不把启发式差值当额外测量。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "无增强",
+      "混合增强",
+      "生成标签",
+      "重新标注后的校准"
+    ],
+    "panel_overrides": {}
+  },
+  {
+    "id": "icml25-calibration-training-distribution",
+    "source_id": "figstudy-more-icml2025-beyond-one-hot-labels-semantic-mixing-for-model-calibration",
+    "paper_title": "Beyond One-Hot Labels: Semantic Mixing for Model Calibration",
+    "venue": "ICML",
+    "year": 2025,
+    "figure": "Figure 5",
+    "pdf_page": 9,
+    "short_title": "训练过程与置信尖峰",
+    "observed_layout": "Three panels compare validation NLL over epochs, over-confidence error over epochs, and a logarithmic histogram of high-confidence predictions.",
+    "why": "训练损失相近仍可能有不同置信行为；过程曲线与最终置信分布互补，解释为什么只看NLL会漏掉置信尖峰。",
+    "data_fields": [
+      "epoch",
+      "validation_nll",
+      "overconfidence_error",
+      "prediction_confidence",
+      "method_id"
+    ],
+    "fusion_opportunities": [
+      "与最终可靠性图共用方法颜色，查看高置信尖峰是否对应过度自信区间。",
+      "按正确/错误预测分开最终置信分布，区分高置信来自正确判断还是错误确信。"
+    ],
+    "cautions": "NLL、过度自信误差和直方图计数是三种不同量；log计数轴只改变显示尺度，不能将样本数与概率密度混用。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "line_band",
+      "line_band",
+      "mirrored_histogram"
+    ],
+    "columns": 3,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留两过程曲线和最终分布；原图三组重叠直方图可改为两组镜像起点，log计数与分箱须明示。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "预测损失随训练变化",
+      "过度自信随训练变化",
+      "最终高置信分布"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "Training epoch",
+        "ylabel": "Validation NLL"
+      },
+      "1": {
+        "xlabel": "Training epoch",
+        "ylabel": "Over-confidence error"
+      },
+      "2": {
+        "xlabel": "Prediction confidence",
+        "labels": [
+          "Condition A",
+          "Condition B"
+        ]
+      }
+    }
+  },
+  {
+    "id": "icml26-superposition-profile-agreement",
+    "source_id": "figstudy-more-icml2026-adversarial-vulnerability-from-interference-between-features-in-superpositi",
+    "paper_title": "Adversarial Vulnerability from Interference Between Features in Superposition",
+    "venue": "ICML",
+    "year": 2026,
+    "figure": "Figure 3d",
+    "pdf_page": 7,
+    "short_title": "理论特征关系何时能预测输入攻击",
+    "observed_layout": "A scatter compares latent feature-interference values with input-space attack profiles for tight and wider bottlenecks; named classes reveal which targets depart.",
+    "why": "把理论量与真实输入空间量逐类别对应，再按瓶颈宽度分组，可以检查解释机制在哪种条件下成立。",
+    "data_fields": [
+      "target_class",
+      "bottleneck_size",
+      "latent_interference",
+      "input_attack_profile"
+    ],
+    "fusion_opportunities": [
+      "增加每种瓶颈宽度的相关系数与不确定性区间，检查散点关系是否随约束强度变化。",
+      "连接目标类别的攻击成功率，区分几何预测能否解释实际攻击结果。"
+    ],
+    "cautions": "输入攻击profile与潜在特征profile按同一目标类别配对；二维示意的方向关系不能代替真实输入空间测量或证明因果。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "quadrant_scatter",
+      "quadrant_scatter"
+    ],
+    "columns": 2,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留两种瓶颈条件下的关联，类别标注只挑必要项；原图的图像攻击示例和向量示意不当作数值图复刻。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "紧瓶颈条件",
+      "宽瓶颈条件"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "Latent interference profile",
+        "ylabel": "Input attack profile"
+      },
+      "1": {
+        "xlabel": "Latent interference profile",
+        "ylabel": "Input attack profile"
+      }
+    }
+  },
+  {
+    "id": "icml26-agentic-calibration-base-model",
+    "source_id": "figstudy-more-icml2026-agentic-confidence-calibration",
+    "paper_title": "Agentic Confidence Calibration",
+    "venue": "ICML",
+    "year": 2026,
+    "figure": "Figure 2",
+    "pdf_page": 5,
+    "short_title": "校准器是否只适合一个基座模型",
+    "observed_layout": "Three coordinated grouped-bar panels compare ECE, Brier score and AUROC for several base models and confidence methods.",
+    "why": "每个指标独立保留正确方向，横轴复用基座模型；能区分概率校准、预测质量和区分能力，而不混成一个总分。",
+    "data_fields": [
+      "base_model",
+      "calibration_method",
+      "ece",
+      "brier_score",
+      "auroc"
+    ],
+    "fusion_opportunities": [
+      "下接各基座模型的置信样本分布，检查校准差异是否只由某个置信区间推动。",
+      "将基座模型与任务组成矩阵，查看换任务时方法排序是否保持。"
+    ],
+    "cautions": "ECE/Brier越低越好，AUROC越高越好，不能用共同“提升”方向合并；ECE改善并不保证错误样本排序能力同步改善。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "grouped_dot",
+      "grouped_dot",
+      "grouped_dot"
+    ],
+    "columns": 3,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "成组柱改为位置更精确的点图；ECE/Brier越低越好而AUROC越高越好，图轴须分别命名。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "ECE：越低越好",
+      "Brier：越低越好",
+      "AUROC：越高越好"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "ECE"
+      },
+      "1": {
+        "xlabel": "Brier score"
+      },
+      "2": {
+        "xlabel": "AUROC"
+      }
+    }
+  },
+  {
+    "id": "icml26-agentic-transfer-geometry-reliability",
+    "source_id": "figstudy-more-icml2026-agentic-confidence-calibration",
+    "paper_title": "Agentic Confidence Calibration",
+    "venue": "ICML",
+    "year": 2026,
+    "figure": "Figures 5 and 6",
+    "pdf_page": 8,
+    "short_title": "分布外位置与概率解释",
+    "observed_layout": "Three low-dimensional dataset embeddings are placed above four calibration diagrams on the held-out agent benchmark.",
+    "why": "表征图说明测试数据位于哪里，校准图检验跨域后输出概率仍是否可读；不能把嵌入重叠直接当作泛化成功。",
+    "data_fields": [
+      "provided_embedding",
+      "dataset_id",
+      "heldout_indicator",
+      "bin_confidence",
+      "bin_accuracy",
+      "bin_counts"
+    ],
+    "fusion_opportunities": [
+      "按嵌入中的训练/目标域分别作置信度CDF，检查覆盖稀疏区域的概率误差。",
+      "与跨域ECE/Brier/AUROC区间图组合，量化投影之外的迁移表现。"
+    ],
+    "cautions": "t-SNE距离与簇形不代表原空间概率距离；目标域可靠性图必须来自真实留出预测，不能据投影相似性推断已成功校准。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "embedding_scatter",
+      "embedding_scatter",
+      "calibration",
+      "calibration"
+    ],
+    "columns": 2,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "精简成两组嵌入与两种校准结果；t-SNE坐标须由上游提供，源库不重新估计投影或泛化结论。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "训练域特征分布",
+      "目标域与训练域",
+      "直接校准",
+      "跨域校准"
+    ],
+    "panel_overrides": {}
+  },
+  {
+    "id": "icml26-alpharouter-efficiency-facets",
+    "source_id": "figstudy-more-icml2026-alpharouter-token-level-routing-between-slm-and-llm-with-reinforcement-lear",
+    "paper_title": "AlphaRouter: Token-level Routing Between SLM and LLM with Reinforcement Learning and Tree Search",
+    "venue": "ICML",
+    "year": 2026,
+    "figure": "Figure 3",
+    "pdf_page": 7,
+    "short_title": "同等激活预算的多任务收益",
+    "observed_layout": "Three panels plot task accuracy versus average activated parameters per token; stars mark static checkpoints and curves represent routing policies.",
+    "why": "以每token实际激活量而非总模型大小比较，可见路由在多个任务的节省；基线星点避免误当作连续可调策略。",
+    "data_fields": [
+      "benchmark",
+      "method",
+      "activated_parameters_per_token",
+      "accuracy",
+      "static_checkpoint"
+    ],
+    "fusion_opportunities": [
+      "与相同激活预算下的LLM调用率和实际延迟并列，检验参数量代理与真实成本是否一致。",
+      "按任务难度细分曲线，检查节省集中于简单查询还是全部查询。"
+    ],
+    "cautions": "每token平均激活参数不是总模型大小，也不直接等于延迟；静态checkpoint只有离散配置，不应插成可部署的任意连续模型。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "cost_quality_frontier",
+      "cost_quality_frontier",
+      "cost_quality_frontier"
+    ],
+    "columns": 3,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留三个任务的资源关系；静态checkpoint与可调曲线要用不同标记，不把激活参数等价宣称为墙钟时间。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "GSM8K",
+      "ARC-Challenge",
+      "HumanEval"
+    ],
+    "panel_overrides": {
+      "0": {
+        "cost_direction": "min",
+        "quality_direction": "max",
+        "xlabel": "Activated parameters / token (B)",
+        "ylabel": "Accuracy (%)"
+      },
+      "1": {
+        "cost_direction": "min",
+        "quality_direction": "max",
+        "xlabel": "Activated parameters / token (B)",
+        "ylabel": "Accuracy (%)"
+      },
+      "2": {
+        "cost_direction": "min",
+        "quality_direction": "max",
+        "xlabel": "Activated parameters / token (B)",
+        "ylabel": "Accuracy (%)"
+      }
+    }
+  },
+  {
+    "id": "icml26-merging-subsets-mean-variance",
+    "source_id": "figstudy-more-icml2026-model-merging-scaling-laws-in-large-language-models",
+    "paper_title": "Model Merging Scaling Laws in Large Language Models",
+    "venue": "ICML",
+    "year": 2026,
+    "figure": "Figure 3",
+    "pdf_page": 5,
+    "short_title": "平均收益背后的组合波动",
+    "observed_layout": "Five panels combine individual expert-subset points and means at fixed expert count, scaling across count and model size, and subset variance.",
+    "why": "同一平均曲线之下仍有组合选择风险；把原始子集、规模趋势和方差放在一起，能同时读到预期收益与稳定性。",
+    "data_fields": [
+      "expert_subset_id",
+      "expert_count",
+      "model_size",
+      "cross_entropy",
+      "subset_variance"
+    ],
+    "fusion_opportunities": [
+      "用每个专家子集的任务组成作颜色/分面，查看均值下降是否掩盖特定组合失败。",
+      "与固定目标损失下需要的最少专家数量并列，把缩放关系转成预算选择。"
+    ],
+    "cautions": "同一k的多个子集不是独立训练seed；CE均值、方差及拟合曲线各自保留定义，不把点云散布叫置信区间。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "raincloud",
+      "line_band",
+      "line_band",
+      "line_band"
+    ],
+    "columns": 2,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "将五面板概括为子集分布、两规模曲线与方差曲线；不会用合成点冒称原论文子集或拟合结果。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "专家子集的损失分布",
+      "随专家数变化",
+      "随模型规模变化",
+      "子集间方差"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "Cross-entropy"
+      },
+      "1": {
+        "xlabel": "Merged expert count",
+        "ylabel": "Mean cross-entropy"
+      },
+      "2": {
+        "xlabel": "Model parameters",
+        "ylabel": "Mean cross-entropy"
+      },
+      "3": {
+        "xlabel": "Merged expert count",
+        "ylabel": "Subset loss variance"
+      }
+    }
+  },
+  {
+    "id": "icml26-merging-order-stability",
+    "source_id": "figstudy-more-icml2026-model-merging-scaling-laws-in-large-language-models",
+    "paper_title": "Model Merging Scaling Laws in Large Language Models",
+    "venue": "ICML",
+    "year": 2026,
+    "figure": "Figure 8",
+    "pdf_page": 9,
+    "short_title": "顺序敏感性如何随规模收缩",
+    "observed_layout": "A violin sequence shows across-order losses, a heatmap shows variability over model size and expert count, and small bar panels show worst–best ranges.",
+    "why": "分布、二维条件和极差分别表达典型情况、何处敏感和最坏风险，避免均值收敛掩盖某些次序仍不稳定。",
+    "data_fields": [
+      "merge_order_id",
+      "expert_count",
+      "model_size",
+      "cross_entropy",
+      "order_standard_deviation",
+      "worst_best_range"
+    ],
+    "fusion_opportunities": [
+      "接相同k的平均损失与边际收益曲线，判断性能提升与顺序稳定是否同步。",
+      "标注最坏次序的任务组成，查看尾部是否来自固定专家组合而非偶然噪声。"
+    ],
+    "cautions": "顺序分布需要在相同专家集合上改变合并次序，不能混入不同子集；标准差热图和最坏–最好范围不是同一统计量。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "raincloud",
+      "matrix_heatmap",
+      "grouped_dot"
+    ],
+    "columns": 3,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留按专家数量排列的分布与波动矩阵；原图误差条的含义不能替换成分布IQR。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "跨次序的损失分布",
+      "规模与次序波动",
+      "最坏–最好范围"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "Cross-entropy across merge orders"
+      },
+      "2": {
+        "xlabel": "Worst–best loss range"
+      }
+    }
+  },
+  {
+    "id": "neurips26-calarena-binary-multiclass",
+    "source_id": "figstudy-more-neurips2026-calarena-a-large-scale-post-hoc-calibration-benchmark",
+    "paper_title": "CalArena: A Large-Scale Post-Hoc Calibration Benchmark",
+    "venue": "NeurIPS",
+    "year": 2026,
+    "figure": "Figure 1",
+    "pdf_page": 2,
+    "short_title": "二分类与多分类的校准排名",
+    "observed_layout": "Two vertically stacked benchmark panels compare method winrates for three benchmark families, with confidence intervals and baseline levels.",
+    "why": "问题类型可能改变校准器排名；先分二/多分类，再共用方法顺序和基准族编码，读者能够看到跨设置一致性。",
+    "data_fields": [
+      "classification_type",
+      "benchmark_family",
+      "method_id",
+      "brier_winrate",
+      "bootstrap_ci",
+      "baseline_winrate"
+    ],
+    "fusion_opportunities": [
+      "接按类别数量逐步扩大评测集合的曲线，解释二分类和多分类的排名差异来自哪里。",
+      "对每个benchmark列出数据集级胜率分布，避免仅依赖总体平均。"
+    ],
+    "cautions": "官方NeurIPS2026 poster已核实，图来自公开arXiv版本；平均胜率的分母是评测比较，bootstrap单位按benchmark不同，不能把CI当模型seed波动。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "comparison_intervals",
+      "comparison_intervals"
+    ],
+    "columns": 1,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "成组柱变为横向点区间；原图CI的bootstrap单位依benchmark不同，真实复现必须保持原采样单位。",
+    "paper_version": "Official NeurIPS 2026 poster listing checked; figures read from the public arXiv PDF, not claimed as published proceedings.",
+    "panel_titles": [
+      "二分类校准",
+      "多分类校准"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "Average Brier-score winrate"
+      },
+      "1": {
+        "xlabel": "Average Brier-score winrate"
+      }
+    }
+  },
+  {
+    "id": "neurips26-calarena-class-count-boundary",
+    "source_id": "figstudy-more-neurips2026-calarena-a-large-scale-post-hoc-calibration-benchmark",
+    "paper_title": "CalArena: A Large-Scale Post-Hoc Calibration Benchmark",
+    "venue": "NeurIPS",
+    "year": 2026,
+    "figure": "Figure 2",
+    "pdf_page": 9,
+    "short_title": "平均胜率取决于评测集有多少类别",
+    "observed_layout": "One line shows pairwise calibrator winrate when restricting datasets to at most k classes; a horizontal reference indicates equal performance.",
+    "why": "逐步扩大评测集合揭示整体排名依赖哪些问题规模，防止把少类任务的结论推广到高维多分类。",
+    "data_fields": [
+      "maximum_class_count_k",
+      "included_dataset_ids",
+      "pairwise_winrate",
+      "equal_performance_reference"
+    ],
+    "fusion_opportunities": [
+      "与每个k下纳入的数据集数量一起显示，区分曲线变化和评测集合规模变化。",
+      "按原始类别数量分层作两方法差值区间，避免累计集合把局部差异冲淡。"
+    ],
+    "cautions": "横轴k改变的是纳入评测的数据集集合，不是同一任务增加类别后的受控实验；胜率曲线不能据此宣称类别数导致方法退化。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "line_band"
+    ],
+    "columns": 1,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留条件集合变化曲线；横轴不是同一批数据的训练时间，需明确每点评测集合随k变化。",
+    "paper_version": "Official NeurIPS 2026 poster listing checked; figures read from the public arXiv PDF, not claimed as published proceedings.",
+    "panel_titles": [
+      "类别规模与校准胜率"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "Maximum included class count",
+        "ylabel": "Pairwise Brier-score winrate"
+      }
+    }
+  },
+  {
+    "id": "neurips25-research-validation-test-trajectories",
+    "source_id": "figstudy-more-neurips2025-ai-research-agents-for-machine-learning-search-exploration-and-generalizati",
+    "paper_title": "AI Research Agents for Machine Learning: Search, Exploration, and Generalization in MLE-bench",
+    "venue": "NeurIPS",
+    "year": 2025,
+    "figure": "Figure 4",
+    "pdf_page": 7,
+    "short_title": "搜索继续进步还是只在代理指标上进步",
+    "observed_layout": "Two time-profile panels compare agent-reported validation and held-out medal rates, and compare several agent search policies over the same 24-hour window.",
+    "why": "同一时间轴让代理指标与最终结果的分离直接可见；另一个面板检查不同搜索策略是否只是更快优化同一个有偏代理。",
+    "data_fields": [
+      "wall_clock_hours",
+      "agent_id",
+      "validation_medal_rate_runs",
+      "heldout_medal_rate_runs"
+    ],
+    "fusion_opportunities": [
+      "下接候选解的验证–测试配对散点，查看后期搜索是否选择了偏差最大的解。",
+      "与最终节点选择策略的k曲线组合，区分搜索生成能力和最后选解能力。"
+    ],
+    "cautions": "验证曲线是搜索所用代理，测试曲线仅供事后评测；不能把test最优节点作为实际搜索策略。区间和种子聚合单位应一致。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "line_band",
+      "line_band"
+    ],
+    "columns": 2,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留验证/测试不同线型和统计区间；测试曲线只用于事后分析，不能在搜索时偷用测试分数选路线。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "代理指标与真实结果",
+      "不同搜索策略的时间剖面"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "Wall-clock time (hours)",
+        "ylabel": "Medal rate"
+      },
+      "1": {
+        "xlabel": "Wall-clock time (hours)",
+        "ylabel": "Medal rate"
+      }
+    }
+  },
+  {
+    "id": "neurips25-research-selection-gap",
+    "source_id": "figstudy-more-neurips2025-ai-research-agents-for-machine-learning-search-exploration-and-generalizati",
+    "paper_title": "AI Research Agents for Machine Learning: Search, Exploration, and Generalization in MLE-bench",
+    "venue": "NeurIPS",
+    "year": 2025,
+    "figure": "Figure 6",
+    "pdf_page": 9,
+    "short_title": "搜索误差与最终选择误差分别占多少",
+    "observed_layout": "One grouped comparison separates validation/test choices for search and final node selection; adjacent k-curves compare random-k selection with validation-ranked selection and an oracle bound.",
+    "why": "把搜索时选错与最后挑错分开，才能判断该改善搜索器还是候选选择器；oracle只作为诊断上界。",
+    "data_fields": [
+      "agent_id",
+      "search_metric",
+      "final_selection_metric",
+      "medal_rate",
+      "candidate_budget_k",
+      "oracle_test_upper_bound"
+    ],
+    "fusion_opportunities": [
+      "与同一候选集合的验证–测试关联图配对，定位选错来源。",
+      "给每个k的候选生成成本单独列出，比较选择改善是否来自更多候选而非更好排序。"
+    ],
+    "cautions": "oracle使用测试分数，是诊断上界而非可部署方法；比较最终选择时必须固定候选集合，不能把生成器提升误算为选择器提升。",
+    "visual_inspected": true,
+    "reused_prior_visual_notes": false,
+    "inspection_date": "2026-10-31",
+    "panel_plan": [
+      "grouped_dot",
+      "line_band",
+      "line_band"
+    ],
+    "columns": 3,
+    "reproduction_level": "analytical_relationship_adaptation",
+    "adaptation_notes": "保留指标选择比较和两个策略剖面；oracle上界不作为可部署方法，不能用它宣称真实自动科研收益。",
+    "paper_version": "Official conference PDF downloaded and visually inspected.",
+    "panel_titles": [
+      "搜索与提交指标的差异",
+      "随机候选中的最佳上界",
+      "按验证指标选出的候选"
+    ],
+    "panel_overrides": {
+      "0": {
+        "xlabel": "Medal rate"
+      },
+      "1": {
+        "xlabel": "Candidate count k",
+        "ylabel": "Selected-node medal rate"
+      },
+      "2": {
+        "xlabel": "Candidate count k",
+        "ylabel": "Selected-node medal rate"
+      }
+    }
+  }
+]

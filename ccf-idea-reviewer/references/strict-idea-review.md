@@ -42,7 +42,7 @@ Reconstruct problem → insight → mechanism → intended contribution. Identif
 
 ### 5. 最近工作与创新差异 / Prior Art And Novelty
 
-Inspect decisive closest work and explain what remains after subtracting known contributions.
+Inspect decisive closest work and compare the problem, assumptions, operation, and consequence. Identify what remains new, including a new interaction between familiar components; novelty is not obtained by subtracting a list of component names. Keep the source of an inspiration separate from the strongest novelty comparator, which may be a different paper.
 
 | Closest work / source | Existing idea or mechanism | Overlap | Remaining conceptual difference | Judgment |
 | --- | --- | --- | --- | --- |
@@ -52,6 +52,8 @@ Unsearched novelty stays uncertain; do not treat an empty comparison table as lo
 ### 6. 方法机制、假设与逻辑 / Mechanism And Assumptions
 
 Explain how the proposed intervention could address the bottleneck, whether components are necessary and compatible, and whether assumptions support the conclusion. Use a derivation or counterexample when it resolves a conceptual question. Distinguish a demonstrable contradiction from an untested hypothesis; do not demand experiments or a completed proof to make this distinction.
+
+For a model-capability claim, inspect whether the stated limitation concerns available information, representation, objective, learning, inference, or evaluation. Ask whether the proposed change reaches that limitation and whether another explanation remains plausible. A familiar component can implement a new interaction, and an unfamiliar name can hide an unchanged mechanism. Judge the operation and its assumptions; do not demand novelty in every component or infer a universal impossibility from an unproven diagnosis.
 
 ### 7. 主要优势与可保留成分 / Strengths
 

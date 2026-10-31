@@ -9,15 +9,15 @@ The current custom format is distilled from two user-provided exemplar cards:
 - ICLR family: `references/exemplars/cards/llava-4d.md`
 - CVPR: `references/exemplars/cards/vggt.md`
 
-These are user-supplied writing references, not compulsory sources or venue requirements. Select a card only when its scientific object, evidence type, or writing question matches the current work; a task may need neither. Preserve source attribution. Transfer useful argument structure without copying scientific claims or wording.
+These are user-supplied writing references, not compulsory sources or venue requirements. Select a card only when its scientific object, evidence type, or writing question matches the current work; a task may need neither. Preserve source attribution. Transfer useful argument structure and fitting conventional phrases without copying distinctive sentences or scientific claims.
 
 ## Writing Shape
 
 Choose useful functions from this structure according to the contribution; neither their count nor their paragraph allocation is fixed. `references/materials-to-manuscript.md` governs content-first drafting, evidence status, and later fitting:
 
-1. Task and capability gap: begin from a concrete capability the field cares about, then show why current systems fail in a physical, dynamic, geometric, or deployment-relevant setting.
-2. Prior-work ladder: present prior work as successive partial progress, not as a citation list.
-3. Root challenge: identify the missing representation, missing output family, missing temporal/spatial reasoning, or missing direct prediction path.
+1. Task and capability gap: explain the relevant capability and unresolved question. Describe a failure of current systems only when the supplied material establishes it.
+2. Prior-work relationship: explain what relevant approaches enable and how they relate. Use a progression when it is accurate; do not force different approaches into a ladder toward the new method.
+3. Root challenge: identify the relevant missing representation, output, reasoning, or computation when one motivates the contribution. A theory or measurement paper may instead ask about an unresolved relationship.
 4. Scientific insight: explain the connected observations that motivate the actual contribution; retain multiple related insights when needed.
 5. Mechanism preview: name the main modules by their roles in the story.
 6. Evidence relation: connect claims to applicable supplied support. Distinguish planned evaluation from observed findings; not every contribution needs a model experiment.
@@ -42,7 +42,7 @@ Method:
 - Define inputs and outputs before architecture.
 - Explain the representation or token family before fusion or training details.
 - Separate model, data, training, and inference if all exist.
-- Use module names that reflect reviewer-facing function.
+- Name modules by the computation or representation they provide.
 
 Experiments:
 

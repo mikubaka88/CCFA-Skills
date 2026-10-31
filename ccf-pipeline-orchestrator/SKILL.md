@@ -1,6 +1,6 @@
 ---
 name: ccf-pipeline-orchestrator
-description: "Plan or coordinate CCF research stages, goals, gates, artifacts, and ccfa.yaml state. Use for 任务拆解, 流程规划, project status, end-to-end coordination, and explicitly requested autonomous research, autoresearch, or 自主科研迭代. Coordinate scientific hypotheses, experiments, feedback, and strategy changes within the task budget. Specialist skills own research outputs; scaffolder owns folder/template creation."
+description: "Plan or coordinate CCF research stages, goals, gates, artifacts, and ccfa.yaml state. Use for 任务拆解, 流程规划, project status, end-to-end coordination, and explicitly requested autonomous research, autoresearch, or 自主科研迭代. Coordinate hypotheses, engineering, experiments, and feedback within the task budget; research engineer owns code and training."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -30,7 +30,7 @@ Ensure Humanization and Common are active before planning and every contributing
 
 Follow `../ccf-common/references/handoff-modes.md` and `../ccf-common/references/artifact-contracts.md`. Later user corrections normally steer the active project: preserve valid completed work, update affected requirements, and continue. Do not invent completed stages or automatic background jobs.
 
-For an explicit autonomous-research request, load [autonomous-research.md](references/autonomous-research.md) and coordinate the complete authorized loop: scientific objective, candidate mechanism, discriminating experiment, observed feedback, and a supported keep/discard/branch decision. Use actual host tools for execution; a plan or script exit alone is not experimental evidence. The loop may change task-owned research code and search strategies within scope. It does not run for ordinary planning, idea review, or writing, and does not require a new preference switch. Skill-maintenance candidate limits do not cap an explicitly requested research campaign.
+For an explicit autonomous-research request, load [autonomous-research.md](references/autonomous-research.md) and coordinate the complete authorized loop: scientific objective, candidate mechanism, discriminating experiment, implementation and execution, observed feedback, and a supported keep/discard/branch decision. Use `ccf-research-engineer` for missing codebase, implementation, reproduction, and training expertise, with actual host tools for execution; a plan or script exit alone is not experimental evidence. Reuse existing implementations and measurements when applicable instead of forcing selection, profiling, or retraining before every iteration. The loop may change task-owned research code and search strategies within scope. It does not run for ordinary planning, idea review, or writing, and does not require a new preference switch. Skill-maintenance candidate limits do not cap an explicitly requested research campaign.
 
 ## Workflow
 

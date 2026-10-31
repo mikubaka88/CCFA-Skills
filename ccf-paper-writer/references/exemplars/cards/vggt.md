@@ -2,51 +2,56 @@
 
 Venue/year: CVPR 2025.
 Venue family: CVPR.
-Custom status: user-custom writing-format exemplar. This card participates in the default custom writing format when the user does not specify a target venue. VGGT is also recorded separately as the CVPR 2025 Best Paper in `cards/cvpr-2025-vggt-best-paper.md`, but this card remains the user-custom writing source.
+Custom status: user-recognized exemplar available for a matching writing question. Selecting its relevant original passage does not activate the whole custom format; that format still follows the user's request or established preference.
 Source: `paper_ref/VGGT_ Visual Geometry Grounded Transformer.pdf`; CVF `https://openaccess.thecvf.com/content/CVPR2025/html/Wang_VGGT_Visual_Geometry_Grounded_Transformer_CVPR_2025_paper.html`.
-Use when: writing feed-forward vision, 3D reconstruction, multi-task prediction, model simplicity, or replacement of iterative pipelines.
+Inspected local source: `references/exemplars/papers/cvpr-2025-vggt.pdf`, CVF open-access accepted version; corresponding extraction `references/exemplars/papers/cvpr-2025-vggt.md`.
+Award context remains in `cards/cvpr-2025-vggt-best-paper.md`.
+Use when: explaining feed-forward geometry, related prediction outputs, or the relationship between direct prediction and iterative refinement.
+
+The observations below describe selected source passages. Reusable Techniques gives adaptation advice.
 
 ## Story Pattern
 
-The paper begins from a classic pipeline with strong priors and heavy optimization, then asks whether modern neural networks can directly solve the same family of tasks. The contribution is framed as a simpler feed-forward model that predicts many related 3D attributes together and competes with specialized or optimization-based systems.
+**Source observation, Section 1:** the paper describes the continued role of visual geometry and iterative optimization, asks whether a neural network can solve the tasks directly, and relates the proposal to recent pairwise reconstruction methods. The argument connects the proposed input/output behavior to the remaining role of post-processing.
 
 ## Abstract Moves
 
-- Define the model by outputs first: cameras, point maps, depth, and tracks.
-- Make scale flexibility explicit: one view, few views, or hundreds of views.
-- Contrast simplicity and speed against post-processing-heavy alternatives.
-- Close by extending the value beyond the main tasks: pretrained features help downstream tasks.
+**Source observation, Abstract, PDF page 1:** the opening names the model, states the prediction operation, lists concrete output quantities, and specifies the range of input views. Subsequent sentences discuss performance across tasks and downstream use.
+
+**Sentence-level technique:** the definition is carried by the model's operation and its objects. The output list gives substance to the broader claim about 3D attributes.
+
+**Adaptation advice:** define a new method through the outputs and input conditions relevant to the user's work. Do not borrow this paper's task list, input range, speed, or performance claim.
 
 ## Introduction Moves
 
-- Start from the historical baseline and why it still dominates.
-- Pose a sharp capability question rather than only listing limitations.
-- Position related work as partial progress, then identify what still requires post-processing.
-- Argue that standard transformers plus enough 3D-annotated data may be sufficient.
-- Summarize contributions around model, direct usability, post-processing compatibility, and benchmark breadth.
+**Source observation, Section 1, from the opening through the contribution paragraph:** the text moves from classical reconstruction and hybrid learned systems to the remaining computational role of geometry. The capability question then introduces direct prediction. Later paragraphs distinguish joint prediction during training from how predicted quantities can be used during inference.
+
+**Adaptation advice:** establish the actual computation that motivates a new formulation. A direct-prediction story is useful only when the supplied method changes that computation; model simplicity alone does not establish a new capability.
 
 ## Method Moves
 
-- State problem inputs and outputs before architecture details.
-- Use over-complete prediction as a training/evidence idea: related outputs can improve each other even if some are mathematically connected.
-- Explain architectural restraint as a virtue, then isolate the few necessary design choices.
+**Source observation, Sections 3.1–3.3:** the method defines inputs and predicted quantities before introducing the backbone and heads. Section 3.1 distinguishes tracking features from tracks produced by the tracking module. It also discusses the relationship among geometrically connected outputs.
+
+**Adaptation advice:** define what the representation contains and what each subsequent computation derives from it. Do not collapse intermediate features and final outputs into one attractive capability claim.
 
 ## Evidence Moves
 
-- Benchmark across several tasks to prove generality.
-- Compare both direct outputs and outputs with optional refinement.
-- Include in-the-wild qualitative figures that reveal where optimization methods are brittle.
+**Source observation, Sections 4.1–4.5:** the paper reports task-specific comparisons and ablations. Its camera-pose comparison distinguishes feed-forward predictions from predictions followed by bundle adjustment; Section 4.5 examines architectural and prediction choices.
+
+**Adaptation advice:** preserve comparison configurations and explain which question each result answers. Results on multiple tasks support the evaluated task coverage; they do not prove unrestricted generality.
 
 ## Reusable Techniques
 
-- Use "direct prediction of a family of outputs" as a unifying paper story.
-- Make simplicity reviewer-facing: fewer special components can be a claim if evidence is broad.
-- Let one overview figure show input/output breadth and runtime contrast.
+- Name concrete inputs and outputs when defining a broad model.
+- Explain how a computational dependency motivates the proposed formulation.
+- Distinguish training targets, intermediate features, direct outputs, and optional inference refinement.
+- Tie a simplicity claim to the actual operations removed or retained.
+- Organize results by the scientific differences among comparisons, without importing a fixed experiment package.
 
 ## User Notes
 
-This is one of the user's recognized exemplars. Use it for papers that want to claim a simple model can replace a complicated classical pipeline.
+This is one of the user's recognized exemplars. Select its relevant passage when the current writing question concerns related output quantities, direct prediction, or refinement.
 
 ## Do-Not-Copy Boundary
 
-Do not borrow the exact visual-geometry task list, transformer framing, or speed comparison unless the user's method and experiments support them.
+The visual-geometry task list, transformer design, input range, runtime, and measured advantages belong to VGGT. The new manuscript must use its own design and results. The source's award is context, not a reason to strengthen a claim.

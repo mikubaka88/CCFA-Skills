@@ -1,6 +1,6 @@
 ---
 name: ccf-rebuttal-writer
-description: "Write CCF rebuttals, author responses, revision ledgers, response letters, and conservative resubmission plans. Use for 审稿意见回复, rebuttal, revision ledger, and 重投迁移. Ground promises in feasible changes and actual evidence. Ordinary manuscript writing has a separate owner."
+description: "Write CCF rebuttals, author responses, revision ledgers, response letters, and resubmission plans. Use for 审稿意见回复, rebuttal, revision ledger, and 重投迁移. Ground promises in feasible changes and actual evidence. Ordinary manuscript writing has a separate owner."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -24,14 +24,14 @@ Integrate necessary specialist contributions under one owner; reuse valid prereq
 
 ## Core Rule
 
-Handle post-review communication and revision accountability. Responses must be calm, factual, evidence-grounded, and promise only feasible changes. Resubmission adaptation is conservative by default: no new experiments and no bibliography changes unless the user explicitly authorizes them. Follow the user's requested response format: plain text, TeX, reviewer-by-reviewer, issue-grouped, table-first, or short response.
+Handle post-review communication and revision accountability. Answer the actual concern with evidence and promise only feasible, authorized changes. Preserve the research during resubmission and use existing authorization: requested citation repair or positioning revision includes the necessary verified bibliography updates; response drafting alone does not start new experiments or redesign the method. Follow the user's requested response format: plain text, TeX, reviewer-by-reviewer, issue-grouped, table-first, or short response.
 
 ## Modes
 
 - `rebuttal`: reviewer/AC response under a word or time budget.
 - `revision-ledger`: reviewer comment -> action -> manuscript location -> owner -> status.
 - `response-letter`: revision summary or camera-ready response letter.
-- `resubmission`: adapt an already written paper to a new venue with conservative defaults.
+- `resubmission`: adapt an already written paper to a new venue while preserving its science and carrying out authorized revisions.
 
 ## Workflow
 
@@ -40,7 +40,7 @@ Handle post-review communication and revision accountability. Responses must be 
 3. Load `references/response-strategy.md` for substantial responses and apply `../ccf-paper-writer/references/prose-quality-guardrails.md`; answer actual high-impact concerns first: soundness, novelty, missing evidence, incorrect assumptions, and shared concerns.
 4. Load `references/revision-ledger.md` whenever promised edits, manuscript locations, resubmission actions, review rounds, or cross-version score changes must be tracked. Update one canonical ledger in place; do not create a separate ledger per round unless the user requests snapshots.
 5. For full rebuttals, load `references/tex-templates.md` and use the TeX templates in `assets/templates/` when useful.
-6. For resubmission, map old reviewer concerns to the new venue's constraints through `ccf-submission-checker`; do not silently add experiments or bibliography changes.
+6. For resubmission, map old reviewer concerns to the new venue's constraints through `ccf-submission-checker`. Resolve citation or evidence actions within the requested revision scope through their owners; identify a material research change before expanding that scope.
 7. Complete necessary contributions through their owners: paper writer for requested revisions, experiment designer for authorized evidence work, and submission checker for applicable venue/package rules. Use integrity auditor for unresolved claim/result conflicts and reviewer for a consequential unanswered criticism. Integrate returned evidence and verify actual changes before claiming completion in the response; a planned experiment or promised edit remains planned.
 
 ## Adaptive Output Contract
