@@ -2,7 +2,7 @@
 
 ## Lean release installation (recommended)
 
-Download `ccfa-skills-0.12.0-lean.zip` and `SHA256SUMS` from the [0.12.0 release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.0). Check the archive's SHA-256 (`Get-FileHash -Algorithm SHA256` in PowerShell or `shasum -a 256` on macOS/Linux), then extract it. The extracted directory contains `tools/install_release.py`; it requires Python 3.10+ and no network or extra packages. Replace both quoted paths below with your extracted folder and the client's actual skills root:
+Download `ccfa-skills-0.12.1-lean.zip` and `SHA256SUMS` from the [0.12.1 release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.1). Check the archive's SHA-256 (`Get-FileHash -Algorithm SHA256` in PowerShell or `shasum -a 256` on macOS/Linux), then extract it. The extracted directory contains `tools/install_release.py`; it requires Python 3.10+ and no network or extra packages. Replace both quoted paths below with your extracted folder and the client's actual skills root:
 
 ```text
 python -B "<lean-dir>/tools/install_release.py" --source "<lean-dir>" --target "<skills-root>" --dry-run
@@ -11,7 +11,7 @@ python -B "<lean-dir>/tools/install_release.py" --source "<lean-dir>" --target "
 
 The default installs all 18 skills, their sibling templates and required resources. For a subset, repeat `--skill`, for example `--skill ccf-paper-reviewer --skill ccf-integrity-auditor`. Humanization and Common are always included. Required writer references/scripts, legacy converter resources and template resources are copied where applicable, without adding an unselected owner's `SKILL.md`. Root README and release tools are not copied into the skills root. Existing client discovery rules still apply; start a new session after installation.
 
-The lean archive keeps original Markdown passages, exemplar cards, all figure examples and templates. Complete writing-example PDFs are in the optional `ccfa-skills-0.12.0-papers.zip`. To add those explicitly, check and extract that archive separately, then run:
+The lean archive keeps original Markdown passages, exemplar cards, all figure examples and templates. Complete writing-example PDFs are in the optional `ccfa-skills-0.12.1-papers.zip`. To add those explicitly, check and extract that archive separately, then run:
 
 ```text
 python -B "<papers-dir>/tools/install_release.py" --source "<papers-dir>" --target "<skills-root>"
@@ -115,3 +115,5 @@ foreach ($ccfaPath in $ccfaPaths) {
   Get-ChildItem -LiteralPath $ccfaPath -Force | Copy-Item -Destination $ccfaDestination -Recurse -Force
 }
 ```
+
+Interrupted installs retain a pending receipt. Resume with the same package, selection and target; intervening personal edits stop replacement and remain intact. Release builds default to indexed Git paths; development builds can explicitly use `--include-untracked`. The manifest records the source commit and dirty state.

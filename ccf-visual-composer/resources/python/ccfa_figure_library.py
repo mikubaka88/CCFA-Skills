@@ -184,6 +184,7 @@ def route(question=None, *, fields=None, count=3, seed=None, usage=None, exclude
         candidates.append((score, entry))
     result={"question":question,"intents":intents,"randomness":"automatic" if seed is None else "explicit legacy diagnostic seed",
             "fields_checked":available is not None,"candidates":[]}
+    rng = random.SystemRandom() if seed is None else random.Random(seed)
     if seed is not None:result["seed"]=seed
     if brief:
         result["paper_context"]={key:brief[key] for key in ("claim","section","domain") if key in brief}
@@ -202,16 +203,29 @@ def route(question=None, *, fields=None, count=3, seed=None, usage=None, exclude
             if layout.get("width_mm",183)/columns<38:continue
             rows=fusion.get("layout",{}).get("rows",math.ceil(len(fusion["panels"])/columns))
             if "height_mm" in layout and layout["height_mm"]/rows<32:continue
-            if any(_paper_fit(explain(kind),brief)[0] is None for kind in fusion["panels"]):continue
-            fits.append({"id":fusion["id"],"title":fusion["title"],"why":fusion["why"],
+            member_fits=[_paper_fit(entry,brief) for entry in {row["id"]:row for row in members}.values()]
+            if any(fit is None for fit,_,_ in member_fits):continue
+            # Prefer the article's main relationships and declared design before
+            # considering variety. Repeated slice panels do not earn extra fit.
+            primary=set(fusion.get("primary_intents",[])).intersection(intents)
+            score=10*len(primary)+3*len(meanings.intersection(intents)-primary)+sum(fit for fit,_,_ in member_fits)
+            option={"id":fusion["id"],"title":fusion["title"],"why":fusion["why"],
                          "alignment_contract":fusion["alignment_contract"],"panels":list(fusion["panels"]),
-                         "data_bindings_required":True})
-        result["fusion_options"]=fits[:3]
+                         "data_bindings_required":True,"score":score,
+                         "paper_fit":list(dict.fromkeys(reason for _,reasons,_ in member_fits for reason in reasons))}
+            fits.append((score,option))
+        selected_fusions=[]
+        while fits and len(selected_fusions)<3:
+            best=max(score for score,_ in fits)
+            tier=[item for item in fits if item[0]==best]
+            weights=[1/(1+sum(counts.get(kind,0) for kind in set(option["panels"]))/len(set(option["panels"]))) for _,option in tier]
+            chosen=rng.choices(tier,weights=weights,k=1)[0]
+            selected_fusions.append(chosen[1]);fits.remove(chosen)
+        result["fusion_options"]=selected_fusions
     if rejected:result["incompatible_charts"]=rejected
     if not candidates:
         result["reason"]="No compatible chart; resolve the stated data conditions or retain the existing figure"
         return result
-    rng = random.SystemRandom() if seed is None else random.Random(seed)
     selected = []
     while candidates and len(selected) < count:
         # Never trade semantic fit for variety. Balance only the current best tier.
@@ -313,6 +327,75 @@ def _entity_sequence(kind,data):
     if field:return list(data[field])
     if kind=="embedding_scatter":return list(data.get("order") or dict.fromkeys(data["groups"]))
     return None
+
+
+def _categorical_axes(kind,data):
+    """Describe category identities at actual slots, not scatter annotations."""
+    horizontal={"comparison_intervals","forest_intervals","raincloud","ridgeline",
+                "dumbbell","signed_effects","grouped_dot","ranked_intervals"}
+    vertical={"binned_summary","category_comparison","paired_distribution"}
+    if kind in horizontal|vertical:
+        labels=list(data["labels"])
+        if kind=="ranked_intervals" and data.get("order","input")!="input":
+            indices=sorted(range(len(labels)),key=lambda i:data["values"][i])
+            if data["order"]=="descending":indices.reverse()
+            labels=[labels[i] for i in indices]
+        return {"y" if kind in horizontal else "x":(labels,list(range(len(labels))))}
+    if kind in ("matrix_heatmap","dot_matrix","matrix_bubbles","transition_matrix"):
+        offset=.5 if kind in ("matrix_heatmap","transition_matrix") else 0
+        rows=list(data["labels"] if kind=="transition_matrix" else data["row_labels"])
+        cols=list(data["labels"] if kind=="transition_matrix" else data["col_labels"])
+        return {"x":(cols,[i+offset for i in range(len(cols))]),
+                "y":(rows,[i+offset for i in range(len(rows))])}
+    if kind=="rank_trajectories":
+        labels=list(data["stages"])
+        return {"x":(labels,list(range(len(labels))))}
+    if kind=="parallel_coordinates":
+        labels=[(name,tuple(bounds)) for name,bounds in zip(data["dimensions"],data["ranges"])]
+        return {"x":(labels,list(range(len(labels))))}
+    if kind=="mosaic_composition":
+        totals=[sum(row) for row in data["counts"]];total=sum(totals)
+        if total<=0 or any(value<=0 for value in totals):
+            raise ValueError("Mosaic groups need positive supplied denominators")
+        centers=[];left=0
+        for value in totals:
+            width=value/total;centers.append(left+width/2);left+=width
+        return {"x":(list(data["group_labels"]),centers)}
+    return {}
+
+
+def _check_categorical_axis(existing,current):
+    labels,slots=existing;other_labels,other_slots=current
+    if labels!=other_labels or len(slots)!=len(other_slots) or any(
+            not math.isclose(a,b,rel_tol=1e-10,abs_tol=1e-10) for a,b in zip(slots,other_slots)):
+        raise ValueError("Categorical axes require identical ordered categories and coordinate slots; align supplied data explicitly")
+
+
+def _entity_payload(node,palette,enc):
+    """Apply the same explicit and inferred entity policy to panels and layers."""
+    kind,data=node["kind"],node["data"]
+    payload=_palette_data(kind,data,palette)
+    actual=_entity_sequence(kind,data)
+    if actual and data.get("colors") is None:
+        if any(key not in enc for key in actual):
+            raise ValueError("Declare plotted group labels in entity_order")
+        payload["colors"]={key:enc[key]["color"] for key in actual} if kind=="embedding_scatter" else [enc[key]["color"] for key in actual]
+    if "entity_ids" in node:
+        entity_ids=node["entity_ids"]
+        if (not isinstance(entity_ids,list) or not entity_ids or
+                not all(isinstance(key,str) and key in enc for key in entity_ids) or
+                len(set(entity_ids))!=len(entity_ids)):
+            raise ValueError("Declare unique panel or layer entity IDs in entity_order")
+        argument=node.get("color_argument","colors")
+        if argument not in ("colors","color") or argument not in inspect.signature(_renderer(kind)).parameters:
+            raise ValueError("Renderer does not support this entity color argument")
+        if argument=="color" and len(entity_ids)!=1:
+            raise ValueError("A single color requires a single entity ID")
+        if argument=="colors" and actual!=entity_ids:
+            raise ValueError("Entity IDs must match the actual plotted group labels and order")
+        payload[argument]=[enc[key]["color"] for key in entity_ids] if argument=="colors" else enc[entity_ids[0]]["color"]
+        if kind=="embedding_scatter":payload[argument]={key:enc[key]["color"] for key in entity_ids}
+    return payload
 
 
 def demo_data(kind, seed=None):
@@ -477,6 +560,7 @@ def compose(spec):
         if isinstance(value, bool) or not isinstance(value, int) or not 1 <= value <= 12:
             raise ValueError("rows and columns must be integers between one and twelve")
     occupied, ids, plans = set(), set(), []
+    category_domains={}
     for panel in panels:
         key = panel.get("id")
         if not isinstance(key, str) or not key or key in ids:
@@ -487,6 +571,7 @@ def compose(spec):
         if not isinstance(data, dict):
             raise ValueError(f"Panel {key} requires supplied data")
         inspect.signature(function).bind(None, **data)
+        domains=_categorical_axes(panel["kind"],data)
         layers=panel.get("layers",[])
         if not isinstance(layers,list) or len(layers)>8:
             raise ValueError("Use at most eight explicit layers per panel")
@@ -497,6 +582,9 @@ def compose(spec):
                 if not panel.get(axis+"_meaning") or panel.get(axis+"_meaning")!=layer.get(axis+"_meaning"):
                     raise ValueError("Overlays require matching declared axis meanings and units")
             inspect.signature(_renderer(layer.get("kind"))).bind(None,**layer["data"])
+            for axis,domain in _categorical_axes(layer["kind"],layer["data"]).items():
+                if axis in domains:_check_categorical_axis(domains[axis],domain)
+                else:domains[axis]=domain
             if set(layer.get("style",{})) - {"linestyle","marker","linewidth","alpha","markersize"}:
                 raise ValueError("Only line appearance properties are supported in overlay style")
         r, c, rh, cw = panel.get("row"), panel.get("column"), panel.get("rowspan", 1), panel.get("colspan", 1)
@@ -508,6 +596,7 @@ def compose(spec):
         if cells & occupied:
             raise ValueError("Panel regions overlap")
         occupied.update(cells)
+        category_domains[key]=domains
         plans.append((panel, function, data, r,c,rh,cw))
     width, height = float(spec.get("width_mm",183)), float(spec.get("height_mm",120))
     if not all(math.isfinite(v) and 30 <= v <= 1000 for v in (width,height)):
@@ -524,7 +613,10 @@ def compose(spec):
         identities=[]
         for panel in panels:
             for node in [panel,*panel.get("layers",[])]:
-                for name in (_entity_sequence(node["kind"],node["data"]) or []):
+                explicit=node.get("entity_ids",[])
+                if not isinstance(explicit,list) or not all(isinstance(name,str) for name in explicit):
+                    raise ValueError("entity_ids must be a list of entity names")
+                for name in (_entity_sequence(node["kind"],node["data"]) or [])+explicit:
                     if name not in identities:identities.append(name)
     enc = p.entity_encoding(identities, palette=palette) if identities else {}
     with p.paper_style(spec.get("font","serif"),font_size):
@@ -536,24 +628,7 @@ def compose(spec):
         try:
             for i,(panel,function,data,r,c,rh,cw) in enumerate(plans):
                 ax=fig.add_subplot(grid[r:r+rh,c:c+cw]); axes[panel["id"]]=ax
-                payload=_palette_data(panel["kind"],data,palette)
-                actual_entities=_entity_sequence(panel["kind"],data)
-                if actual_entities and data.get("colors") is None:
-                    payload["colors"]={key:enc[key]["color"] for key in actual_entities} if panel["kind"]=="embedding_scatter" else [enc[key]["color"] for key in actual_entities]
-                if panel.get("entity_ids"):
-                    entity_ids=panel["entity_ids"]
-                    if not enc or any(key not in enc for key in entity_ids) or len(set(entity_ids))!=len(entity_ids):
-                        raise ValueError("Declare unique panel entity IDs in entity_order")
-                    argument=panel.get("color_argument","colors")
-                    if argument not in ("colors","color") or argument not in inspect.signature(function).parameters:
-                        raise ValueError("Renderer does not support this entity color argument")
-                    if argument=="color" and len(entity_ids)!=1:
-                        raise ValueError("A single color requires a single entity ID")
-                    actual=_entity_sequence(panel["kind"],data)
-                    if argument=="colors" and actual!=list(entity_ids):
-                        raise ValueError("Entity IDs must match the actual plotted group labels and order")
-                    payload[argument]=[enc[key]["color"] for key in entity_ids] if argument=="colors" else enc[entity_ids[0]]["color"]
-                    if panel["kind"]=="embedding_scatter":payload[argument]={key:enc[key]["color"] for key in entity_ids}
+                payload=_entity_payload(panel,palette,enc)
                 artist=function(ax,**payload)
                 numeric_color_kinds={"matrix_heatmap","dot_matrix","matrix_bubbles","density_map","contour_response","transition_matrix"}
                 if panel["kind"] in numeric_color_kinds and panel.get("colorbar",True) is not False:
@@ -565,13 +640,8 @@ def compose(spec):
                         label="Count" if panel["kind"]=="density_map" else ("Transition count" if payload.get("normalization")=="counts" else "Transition fraction") if panel["kind"]=="transition_matrix" else "Value"
                     fig.colorbar(mappable,ax=ax,label=label,fraction=.045,pad=.035)
                 for layer in panel.get("layers",[]):
-                    if panel["kind"]=="rank_trajectories" and layer["kind"]=="rank_trajectories" and data["stages"]!=layer["data"]["stages"]:
-                        raise ValueError("Overlaid rank trajectories require identical ordered stages")
                     previous_limits={axis:getattr(ax,"get_"+axis+"lim")() for axis in ("x","y")}
-                    layer_data=_palette_data(layer["kind"],layer["data"],palette)
-                    layer_entities=_entity_sequence(layer["kind"],layer["data"])
-                    if layer_entities and layer["data"].get("colors") is None:
-                        layer_data["colors"]={key:enc[key]["color"] for key in layer_entities} if layer["kind"]=="embedding_scatter" else [enc[key]["color"] for key in layer_entities]
+                    layer_data=_entity_payload(layer,palette,enc)
                     layer_artist=_renderer(layer["kind"])(ax,**layer_data)
                     for axis,old_limits in previous_limits.items():
                         new_limits=getattr(ax,"get_"+axis+"lim")()
@@ -605,6 +675,11 @@ def compose(spec):
                 contracts=[by_id[key].get(axis+"_meaning") for key in members]
                 if not contracts[0] or len(set(contracts))!=1:
                     raise ValueError("Shared scales require identical declared metric and unit meaning")
+                domains=[category_domains[key].get(axis) for key in members]
+                if any(domain is not None for domain in domains):
+                    if any(domain is None for domain in domains):
+                        raise ValueError("Shared categorical axes require an explicit category domain in every panel")
+                    for domain in domains[1:]:_check_categorical_axis(domains[0],domain)
                 scales=[getattr(axes[key],'get_'+axis+'scale')() for key in members]
                 if len(set(scales))!=1:
                     raise ValueError("Cannot share different axis transformations")

@@ -7,6 +7,7 @@ relative to the caller. Inspect each manuscript to obtain its actual section IDs
 """
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -42,6 +43,20 @@ def _guidance(mode):
         raise ValueError("Missing or ambiguous writing prompt: " + mode)
     return {"mode": mode, "text": matches[0].strip(), "path": str(path),
             "sha256": hashlib.sha256(raw).hexdigest()}
+
+
+def _pending_mode(args):
+    """Reuse preflight's explicit value, or read sparse preferences without writes."""
+    if args.results_pending is not None:
+        return args.results_pending
+    path = Path(__file__).resolve().parents[2] / "ccf-common" / "scripts" / "preferences.py"
+    spec = importlib.util.spec_from_file_location("ccfa_writer_preferences", path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    try:
+        return module.PreferenceStore(project_root=args.project).resolve()["effective"]["preferences"]["results_pending_draft"]
+    except module.PreferenceError as exc:
+        raise ValueError("Cannot resolve writing preferences: " + str(exc)) from exc
 
 
 def _sources(path):
@@ -120,6 +135,9 @@ def parser():
     prepare.add_argument("--mode", choices=["draft", "related-work", "results", "consistency"], default="draft")
     prepare.add_argument("--max-chars", type=int, help="Bound context JSON characters, not a measured token count")
     prepare.add_argument("--output", help="Optional existing-task .json path, updated in place")
+    prepare.add_argument("--results-pending", choices=["off", "on"],
+                         help="Reuse resolved preflight choice; on permits marked conditional drafting, never fabricated results")
+    prepare.add_argument("--project", type=Path, help="Explicit project root for optional preference overrides")
     apply = commands.add_parser("apply", help="Apply literal edits only to the prepared version and sections")
     apply.add_argument("--packet", required=True)
     apply.add_argument("--patch", required=True, help="JSON: base_sha256, edits[{section_id,before,after}]")
@@ -152,6 +170,12 @@ def run(args):
         packet = prepare_context(args.manuscript, args.target,
                                  brief=brief, sources=sources, max_chars=args.max_chars)
         guidance = _guidance(args.mode)
+        pending_mode = _pending_mode(args)
+        if pending_mode == "on" and args.mode in {"draft", "results", "consistency"}:
+            guidance["text"] += "\n\n" + _guidance("pending-results")["text"]
+        packet["draft_policy"] = {"results_pending": pending_mode,
+                                  "alignment_required": pending_mode == "on",
+                                  "fabricated_observations_allowed": False}
         packet["record_type"] = "ccfa-writing-packet"
         packet["operation"] = "review" if args.mode == "consistency" else "write"
         packet["guidance"] = guidance

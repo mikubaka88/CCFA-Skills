@@ -91,6 +91,8 @@ python ccf-visual-composer/resources/python/ccfa_figure_library.py compose --spe
 
 进一步融合可以发生在同一个坐标轴内：panel 的 `layers` 为每层给出 `kind`、实际 `data` 及与底层相同的 `x_meaning`、`y_meaning`，例如在观察值上叠加独立提供的拟合曲线。线图层可通过 `style` 的 `linestyle`、`marker` 等区分观察、拟合和外推，不通过改数值制造视觉差别。panel 可声明 `xscale`、`yscale` 为 `linear` 或 `log`；非正值不能被对数轴默默隐藏。原语缺少的领域注释仍在导出的 Python 源中明确添加。
 
+叠加层和共享分类轴还会核对实际类别顺序与坐标位置：A、B 和 B、A 不能直接叠在一起，矩阵的行列、排序区间图的显示顺序也要对应；热图单元中心与点矩阵的位置不同，需要先在自定义源中明确对齐。散点旁的实体名称不作为分类轴。底图和 layer 共用实体配色规则；单条曲线可声明 `entity_ids:["Method B"]`、`color_argument:"color"`，多组图使用与实际分组顺序相同的 `entity_ids`。顶层 `entity_order` 确定跨图颜色；省略时按首次出现的分组与显式实体登记。没有实体绑定的显式数据配色保持原样。
+
 ## 文章上下文，不增加一次填表
 
 从已提供的文章、结果表和当前对话提取图的消息，不让用户为每张图重新填写资料。简单局部图直接传问题；上下文复杂时，把已有信息放入一份紧凑的 `figure-brief.json`，沿用当前图稿目录：
@@ -117,6 +119,8 @@ python ccf-visual-composer/resources/python/ccfa_figure_library.py route --brief
 ```
 
 `intent_ids` 用于确认科学关系；`fields` 用于检查函数输入。`paired=false` 会排除需要匹配观测的图，`intervals_supplied=false` 排除必须给定区间的图；`ordered_x=false`、`checkpoint_order=true` 的状态轨迹保留时间顺序。还有原始样本、完整响应网格、现成嵌入、给定分位数等条件，只填写已经知道的事实。未知条件保留在候选的 `check_before_use` 中；不为了通过路由而把未知写成 true。可用 `preferred_charts` 或 `exclude_charts` 保留文章已选方向和当前用户要求。组合建议的每个面板同样遵守字段、排除项和数据条件；未声明字段时仍可探索，已经声明但不足的字段不会被当作现成可用的组合。
+
+组合建议通过兼容检查后，再按主问题覆盖和成员对文章条件的贴合度排序，明确偏好也参与排序；重复的切片不会重复加分。最多返回三个组合，同分时自然随机选择，显式启用的已采用图法历史只影响同分选择。
 
 ## 直接用 CSV、TSV、JSON 里的结果
 

@@ -12,6 +12,10 @@
   --accent-soft: #f8e9dd;
   --teal: #2b6d59;
   --teal-soft: #e9f0e7;
+  --caution: #9f2933;
+  --caution-line: #d58b8f;
+  --caution-soft: #fff3f0;
+  --caution-active: #aa2939;
   --hero: #213d32;
   --hero-ink: #f9f4e6;
   --hero-muted: #c8d5c6;
@@ -33,6 +37,10 @@
   --accent-soft: #4b392b;
   --teal: #abd4bb;
   --teal-soft: #2a4536;
+  --caution: #ffbac0;
+  --caution-line: #ad6872;
+  --caution-soft: #40272c;
+  --caution-active: #8f3343;
   --hero: #10271d;
   --hero-ink: #f9f4e6;
   --hero-muted: #cad6c6;
@@ -241,7 +249,7 @@ h2 { margin: 6px 0 0; font-size: 30px; font-weight: 600; line-height: 1.4; lette
 .cost-tags > span { display: flex; align-items: flex-start; gap: 7px; }
 .cost-tags svg { flex: none; width: 16px; height: 16px; margin-top: 3px; stroke: var(--teal); }
 .feature-control { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; padding-top: 1px; }
-/* One explicit four-state control replaces three separate actions. */
+/* One mode control; the cautious drafting option deliberately has no Auto. */
 .mode-select { width: 100%; min-height: 48px; padding: 10px 28px 10px 12px; border: 1px solid var(--line); border-radius: 12px; background-color: var(--paper); color: var(--ink); font: inherit; font-size: 15px; cursor: pointer; }
 .feature[data-mode="on"] .mode-select { border-color: var(--accent); background-color: var(--accent-soft); }
 .feature[data-mode="auto"] .mode-select { border-color: var(--teal); background-color: var(--teal-soft); }
@@ -260,6 +268,20 @@ h2 { margin: 6px 0 0; font-size: 30px; font-weight: 600; line-height: 1.4; lette
 .group-body .feature { border: 0; border-radius: 0; border-bottom: 1px solid var(--line); box-shadow: none; background: transparent; }
 .group-body .feature:last-child { border-bottom: 0; }
 .group-body .feature { grid-template-columns: 25px minmax(0, 1fr) 175px; }
+
+/* Results-pending drafting is a deliberate opt-in, visible in both themes. */
+.group-body .feature.feature-caution { border-left: 3px solid var(--caution-line); padding-left: 22px; background: var(--caution-soft); }
+.feature-caution .feature-index, .feature-caution h3 { color: var(--caution); }
+.caution-badge { margin: 0 0 8px; color: var(--caution); font-size: 13px; font-weight: 700; line-height: 1.6; }
+.caution-note { margin: 10px 0; color: var(--caution); font-size: 15px; line-height: 1.8; }
+.feature-caution .mode-select { border-color: var(--caution-line); color: var(--caution); }
+.feature-caution .mode-select:focus-visible { outline-color: var(--caution); }
+.feature-caution .cost-tags { border-color: var(--caution-line); }
+.feature-caution .cost-tags svg { stroke: var(--caution); }
+.feature.feature-caution[data-mode="on"] { border-left-color: var(--caution); }
+.feature.feature-caution[data-mode="on"] .mode-label { color: var(--caution); background: var(--paper); }
+.feature.feature-caution[data-mode="on"] .mode-select { color: #fff; border-color: var(--caution-active); background-color: var(--caution-active); }
+.feature-caution .mode-select option { color: var(--ink); background-color: var(--paper); }
 
 /* A calm reading rail with room for complete cost explanations. */
 .summary-column { min-width: 0; }

@@ -32,6 +32,12 @@ def _now():
     return dt.datetime.now(dt.timezone.utc).isoformat()
 
 
+def _final_binding_valid(value):
+    return (isinstance(value, dict) and set(value) == {"candidate_id", "candidate_hash", "protocol_hash"}
+            and all(isinstance(value[name], str) and bool(value[name]) for name in value)
+            and len(value["candidate_hash"]) == len(value["protocol_hash"]) == 64)
+
+
 @contextlib.contextmanager
 def _lock(path):
     path = _plain(path)
@@ -94,6 +100,23 @@ def _load(path, campaign_id, project):
                     or not isinstance(item.get("content_hash"), str) or len(item["content_hash"]) != 64
                     or not isinstance(item.get("workdirs"), list) or any(not isinstance(v, str) for v in item["workdirs"])):
                 raise CampaignError("Invalid shared task-set identity")
+        # Older records did not track whether a final score had already been
+        # viewed. Never turn that missing history into a fresh held-out use.
+        if "final_uses" not in data:
+            data["final_uses"] = {
+                item["content_hash"]: {"status": "legacy_unknown", "binding": None}
+                for item in data["task_sets"].values() if item["role"] == "final"
+            }
+        if not isinstance(data["final_uses"], dict):
+            raise CampaignError("Invalid shared final-use record")
+        for identity, item in data["final_uses"].items():
+            if (not isinstance(identity, str) or len(identity) != 64 or not isinstance(item, dict)
+                    or item.get("status") not in ("reserved", "completed", "retryable", "unknown", "legacy_unknown")
+                    or (item.get("status") != "legacy_unknown" and (
+                        not _final_binding_valid(item.get("binding"))
+                        or not isinstance(item.get("reservation"), str)
+                        or not item["reservation"]))):
+                raise CampaignError("Invalid shared final-use identity")
         return data
     except (OSError, UnicodeError, ValueError, KeyError, TypeError) as exc:
         if isinstance(exc, CampaignError):
@@ -125,7 +148,7 @@ def initialize(path, project, campaign_id, max_attempts, max_seconds):
             raise CampaignError("Campaign already exists; reuse its remaining budget, never reinitialize")
         data = {"schema_version": 1, "id": campaign_id, "project": str(project),
                 "budgets": {"max_attempts": max_attempts, "max_seconds": max_seconds},
-                "reservations": {}, "task_sets": {}, "model_tokens": None, "created_at": _now()}
+                "reservations": {}, "task_sets": {}, "final_uses": {}, "model_tokens": None, "created_at": _now()}
         _save(path, data)
         return _summary(data)
 
@@ -134,20 +157,27 @@ def _summary(data):
     items = list(data["reservations"].values())
     charged = sum(item.get("charge_seconds", 0) for item in items)
     reserved = sum(item["reserved_seconds"] for item in items if item["status"] == "reserved")
-    return {"id": data["id"], "attempts_used": len(items),
+    result = {"id": data["id"], "attempts_used": len(items),
             "attempts_remaining": max(0, data["budgets"]["max_attempts"] - len(items)),
             "execution_seconds_charged": charged, "execution_seconds_reserved": reserved,
             "execution_seconds_remaining": max(0, data["budgets"]["max_seconds"] - charged - reserved),
             "duration_unknown": any(item["status"] == "unknown" for item in items),
             "model_tokens": None,
             "meter_scope": "shared foreground-command seconds; model usage and host preparation are not measured"}
+    if data.get("final_uses"):
+        result["final_task_uses"] = [
+            {"task_content_hash": content, "status": usage["status"], "reservation": usage.get("reservation"),
+             "candidate_id": (usage.get("binding") or {}).get("candidate_id")}
+            for content, usage in sorted(data["final_uses"].items())
+        ]
+    return result
 
 
 def status(path, campaign_id, project):
     return _summary(_load(path, campaign_id, project))
 
 
-def register(path, campaign_id, project, workdir, evaluation=None):
+def register(path, campaign_id, project, workdir, evaluation=None, validate_only=False):
     """Bind task-set roles to this campaign without consuming execution budget."""
     with _lock(path):
         data = _load(path, campaign_id, project)
@@ -163,6 +193,15 @@ def register(path, campaign_id, project, workdir, evaluation=None):
                 raise CampaignError("Final task content was already used for development/selection; renaming cannot restore held-out status")
             prior_final = {name for name, item in same_content if item["role"] == "final"}
             reuse = evaluation.get("reused_final")
+            relative = str(workdir.relative_to(project)).replace("\\", "/")
+            final_use = data["final_uses"].get(content_hash) if role == "final" else None
+            if final_use:
+                if final_use["status"] == "legacy_unknown":
+                    raise CampaignError("Legacy final-task use is unknown; reconcile its prior records or use a new final set / explicit non-final reuse")
+                if evaluation["frozen_candidate"]["candidate_id"] != final_use["binding"]["candidate_id"]:
+                    raise CampaignError("Final task content is already bound to a frozen candidate and protocol in this campaign; use a new final set or explicit non-final reuse")
+                if final_use["status"] != "retryable" and (not previous or relative not in previous["workdirs"]):
+                    raise CampaignError("Final task content is already used or reserved in this campaign; report its existing result without rerunning in another directory")
             if role != "final" and prior_final:
                 if not reuse or reuse["task_set_id"] not in prior_final or not reuse["reason"].strip():
                     raise CampaignError("Reusing final task content requires explicit reused_final identity/reason and a new non-final label")
@@ -174,13 +213,18 @@ def register(path, campaign_id, project, workdir, evaluation=None):
                 previous = data["task_sets"][identity]
             elif previous.get("content_hash") != content_hash:
                 raise CampaignError("A task_set_id is already bound to different task content")
-            relative = str(workdir.relative_to(project)).replace("\\", "/")
             if relative not in previous["workdirs"]:
                 previous["workdirs"].append(relative)
-        _save(path, data)
+        if not validate_only:
+            _save(path, data)
 
 
-def reserve(path, campaign_id, project, key, requested_seconds, workdir, run_id):
+def reserve(path, campaign_id, project, key, requested_seconds, workdir, run_id, final_use=None):
+    if final_use is not None and (not isinstance(final_use, dict)
+            or set(final_use) != {"task_content_hash", "candidate_id", "candidate_hash", "protocol_hash"}
+            or not isinstance(final_use.get("task_content_hash"), str) or len(final_use["task_content_hash"]) != 64
+            or not _final_binding_valid({name: value for name, value in final_use.items() if name != "task_content_hash"})):
+        raise CampaignError("Final reservation requires task-content, frozen-candidate and protocol identities")
     with _lock(path):
         data = _load(path, campaign_id, project)
         if key in data["reservations"]:
@@ -188,15 +232,31 @@ def reserve(path, campaign_id, project, key, requested_seconds, workdir, run_id)
         summary = _summary(data)
         if summary["attempts_remaining"] < 1 or summary["execution_seconds_remaining"] <= 0:
             raise CampaignError("Shared campaign attempt or execution-time budget is exhausted")
+        if final_use:
+            content_hash = final_use["task_content_hash"]
+            binding = {name: final_use[name] for name in ("candidate_id", "candidate_hash", "protocol_hash")}
+            previous = data["final_uses"].get(content_hash)
+            if previous:
+                if previous["status"] == "legacy_unknown":
+                    raise CampaignError("Legacy final-task use is unknown; reconcile its prior records or use a new final set / explicit non-final reuse")
+                if previous["binding"] != binding:
+                    raise CampaignError("Final task content is already bound to a frozen candidate and protocol in this campaign; use a new final set or explicit non-final reuse")
+                if previous["status"] != "retryable":
+                    raise CampaignError("Final task content is already used or reserved in this campaign; report its existing result without rerunning in another directory")
+            data["final_uses"][content_hash] = {
+                "binding": binding, "status": "reserved", "reservation": key, "reserved_at": _now(),
+            }
         seconds = min(requested_seconds, summary["execution_seconds_remaining"])
         data["reservations"][key] = {"status": "reserved", "reserved_seconds": seconds,
                                      "workdir": str(workdir.relative_to(project)).replace("\\", "/"),
                                      "run_id": run_id, "created_at": _now()}
+        if final_use:
+            data["reservations"][key]["final_content_hash"] = final_use["task_content_hash"]
         _save(path, data)
         return seconds
 
 
-def settle(path, campaign_id, project, key, seconds=None):
+def settle(path, campaign_id, project, key, seconds=None, outcome=None):
     with _lock(path):
         data = _load(path, campaign_id, project)
         item = data["reservations"].get(key)
@@ -219,5 +279,14 @@ def settle(path, campaign_id, project, key, seconds=None):
                 raise CampaignError("Shared settlement requires nonnegative finite elapsed seconds")
             item.update(status="settled", charge_seconds=seconds)
         item["settled_at"] = _now()
+        if item.get("final_content_hash"):
+            usage = data["final_uses"][item["final_content_hash"]]
+            if usage.get("reservation") != key:
+                raise CampaignError("Final-use reservation changed before settlement; reconcile shared records")
+            # A failed command can retry only its unchanged candidate/protocol.
+            # A score already produced, or an unknown execution, closes use.
+            usage.update(status="unknown" if seconds is None or outcome is None else
+                         "completed" if outcome == "ok" else "retryable",
+                         outcome=outcome, settled_at=item["settled_at"])
         _save(path, data)
         return _summary(data)

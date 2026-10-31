@@ -412,7 +412,27 @@ def _settle_shared(workdir, state, contract, attempt, unknown=False):
     binding = _campaign(Path(state["project"]), contract)
     if binding and attempt.get("campaign_reservation"):
         return _campaign_call("settle", binding, attempt["campaign_reservation"],
-                              None if unknown else attempt["budget_charge_seconds"])
+                              None if unknown else attempt["budget_charge_seconds"], attempt.get("outcome"))
+
+
+def _campaign_evaluation(contract, task_identity):
+    evaluation = contract.get("evaluation")
+    return None if not evaluation else dict(evaluation, task_content_hash=task_identity["content_hash"])
+
+
+def _final_use(contract, state, manifest):
+    if contract.get("evaluation", {}).get("split_role") != "final":
+        return None
+    return {
+        "task_content_hash": state["task_set_identity"]["content_hash"],
+        "candidate_id": contract["evaluation"]["frozen_candidate"]["candidate_id"],
+        "candidate_hash": _hash(manifest),
+        "protocol_hash": _hash({
+            "command": contract["command"], "locked_files": state["locked_files"],
+            "environment": state.get("environment_identity"),
+            **{name: contract.get(name) for name in ("metric", "metric_guards", "tie_breaker")},
+        }),
+    }
 
 
 def _final_source(project, workdir, contract, manifest):
@@ -617,6 +637,8 @@ def initialize(project, workdir, contract_path):
     workdir = workdir.resolve()
     if not project.is_dir() or not workdir.is_relative_to(project) or workdir == project:
         raise LoopError("Experiment directory must be a dedicated descendant of the project")
+    if workdir.exists() and (not workdir.is_dir() or any(workdir.iterdir())):
+        raise LoopError("Experiment directory is not empty; use status to resume, never reinitialize")
     # Explicit caller-specified task paths are supported; no generic output
     # directory is chosen by the script.
     contract = _contract(_json(contract_path))
@@ -641,14 +663,11 @@ def initialize(project, workdir, contract_path):
     if binding:
         if contract["campaign"]["record"] in contract["editable_files"] + _protected(contract):
             raise LoopError("The shared budget record cannot be an editable or frozen experiment input")
-        evaluation = contract.get("evaluation")
-        if evaluation:
-            evaluation = dict(evaluation, task_content_hash=task_identity["content_hash"])
-        _campaign_call("register", binding, workdir, evaluation)
-    if workdir.exists() and any(workdir.iterdir()):
-        raise LoopError("Experiment directory is not empty; use status to resume, never reinitialize")
+        _campaign_call("register", binding, workdir, _campaign_evaluation(contract, task_identity), True)
     workdir.mkdir(parents=True, exist_ok=True)
     with _lock(workdir):
+        if any(item.name != ".lock" for item in workdir.iterdir()):
+            raise LoopError("Experiment directory is not empty; use status to resume, never reinitialize")
         manifest = _snapshot(project, contract["editable_files"], workdir / "initial" / "snapshot")
         _write_json(workdir / "contract.json", contract)
         state = {"seq": 0, "attempts": {}}
@@ -665,6 +684,11 @@ def initialize(project, workdir, contract_path):
                               "protected_manifest_hash": _hash(locked), "environment_identity_hash": _hash(environment),
                               "scope": "declared files and selected environment identities; not an OS sandbox or dynamic dependency closure"},
         })
+        # Local evidence commits first. Registration is idempotent and run()
+        # completes it after interruption; a failed snapshot creates no shared
+        # task identity. Neither retry path replays an evaluator.
+        if binding:
+            _campaign_call("register", binding, workdir, _campaign_evaluation(contract, task_identity))
         return _summary(workdir, state, contract)
 
 
@@ -840,13 +864,15 @@ def run(workdir, run_id, hypothesis="", replicate_of=None):
         binding = _campaign(project, contract)
         reservation = _reservation_key(project, workdir, run_id) if binding else None
         if binding:
-            limit = _campaign_call("reserve", binding, reservation, limit, workdir, run_id)
+            _campaign_call("register", binding, workdir, _campaign_evaluation(contract, state.get("task_set_identity")))
+            limit = _campaign_call("reserve", binding, reservation, limit, workdir, run_id,
+                                   _final_use(contract, state, current))
         try:
             destination.mkdir(parents=True)
             manifest = _snapshot(project, contract["editable_files"], destination / "snapshot")
         except (OSError, LoopError):
             if binding:
-                _campaign_call("settle", binding, reservation, 0.0)
+                _campaign_call("settle", binding, reservation, 0.0, "not_started")
             raise
         parent_id = state["best"]
         candidate_id = (contract["evaluation"]["frozen_candidate"]["candidate_id"] if final else
@@ -886,7 +912,7 @@ def run(workdir, run_id, hypothesis="", replicate_of=None):
             })
         except (OSError, LoopError):
             if binding:
-                _campaign_call("settle", binding, reservation, 0.0)
+                _campaign_call("settle", binding, reservation, 0.0, "not_started")
             raise
         start = time.monotonic()
         outcome, error, process = "ok", None, None
@@ -1038,12 +1064,19 @@ def recover(workdir, run_id, reason, confirm_stopped=False):
         attempt = state["attempts"].get(run_id)
         if attempt is None or state["pending"] != run_id:
             raise LoopError("No matching pending attempt")
-        if attempt["status"] in ("deciding", "reporting", "rollback_conflict"):
+        if (attempt["status"] in ("deciding", "reporting", "rollback_conflict") or
+                (attempt["status"] == "evaluated" and attempt.get("kind") in ("final", "replication")
+                 and attempt["outcome"] == "ok")):
             if attempt.get("kind") in ("final", "replication") and attempt["outcome"] == "ok":
+                _metric_evidence(workdir, attempt)
+                if _invalid_observation(attempt):
+                    raise LoopError("Recorded evaluation was marked invalid; resolve it before completing its report")
                 conflicts = [] if attempt["kind"] == "final" else _restore(workdir, state, attempt)
                 if conflicts:
                     raise LoopError("Reconcile managed-file conflicts before completing the measurement report")
-                attempt = dict(attempt, status="reported", conflicts=[])
+                attempt = dict(attempt, status="reported", conflicts=[], eligible=False, decision="report",
+                               guard_failures=_guard_failures(attempt["measurements"], contract),
+                               selection_reason="final_report_only" if attempt["kind"] == "final" else "replication_report_only")
                 update = {"pending": None}
                 if attempt["kind"] == "final":
                     update["finalized"] = run_id

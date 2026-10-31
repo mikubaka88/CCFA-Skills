@@ -48,7 +48,7 @@ Experiments:
 
 - Follow the supplied design and contribution type; select comparisons, ablations, analyses, or case studies only when applicable.
 - Explain supported results in a logical order, including relevant negative findings.
-- For pending results, retain the authorized setup and table scaffold with missing values; do not generate outcome analysis. An explicitly deferred whole experiment section remains deferred.
+- For pending results, retain the authorized setup and table scaffold with missing values. By default, do not generate outcome analysis; deliberate `results_pending_draft=on` may add marked conditional analysis under [the results-pending contract](../materials-to-manuscript.md#optional-complete-results-pending-draft), with its automatic whole-draft alignment pass. An explicitly deferred whole experiment section remains deferred.
 
 ## Quality Pass
 

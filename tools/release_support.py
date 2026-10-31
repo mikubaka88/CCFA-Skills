@@ -18,6 +18,7 @@ RESOURCE_RULES = {
     "ccf-submission-checker": ["ccf-paper-writer/references", "ccf-latex-templates"],
     "ccf-rebuttal-writer": ["ccf-paper-writer/references"],
     "ccf-paper-writer": ["ccf-latex-templates", "ccf-paper-to-exemplar/scripts"],
+    "ccf-paper-to-exemplar": ["ccf-paper-writer/references"],
     "ccf-paper-writer/scripts": ["ccf-paper-writer/references", "ccf-paper-to-exemplar/scripts"],
     "ccf-visual-composer": ["assets/visual-showcase"],
 }

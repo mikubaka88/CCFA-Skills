@@ -1,6 +1,6 @@
 # Personal Preferences
 
-Preferences control optional extra work, not required prerequisites, factual accuracy, review coverage, privacy, file contracts, or the Humanization -> Common preflight. They do not select the model, change host permissions, or replace `quick/standard/exploratory` and `partial/full/off` modes.
+Preferences control optional extra work and the explicitly marked results-pending drafting mode. They do not disable required prerequisites, factual accuracy, review coverage, privacy, file contracts, or the Humanization -> Common preflight. They do not select the model, change host permissions, or replace `quick/standard/exploratory` and `partial/full/off` modes.
 
 ## Resolve Once
 
@@ -20,6 +20,7 @@ Precedence: current explicit user instruction > project overrides > user overrid
 | `reference_style_search` | `on` | During substantive drafting or expression rewriting, reuse matching originals and search for additional well-written passages addressing the actual writing question. Reuse a completed, still-applicable search for the same question; do not search for every paragraph or minor correction. Select by the original passage's quality and fit, without requiring multiple papers. `auto` searches when available examples leave an explanation, section-function, or field gap. `off` skips unrequested extra discovery, not supplied references or explicitly requested searches. |
 | `research_branching` | `off` | Allocate additional whole research branches within an authorized campaign. `auto` needs distinct competing mechanisms, useful independent work, and remaining host/compute budget. `on` favors relevant branches, not a fixed agent count. Explicit multi-direction requests and necessary specialist work remain core work with this off. |
 | `research_policy_evolution` | `off` | Compare task-owned search, context-selection, or tool-use strategies during explicitly authorized research. `auto` needs a repeated search failure and a fixed evaluation split/budget; `on` still requires those inputs. Keep development tasks, selection tasks, and final held-out tests separate. This does not edit installed skills, train the foundation model, or start a background service. |
+| `results_pending_draft` | `off` | Deliberate red caution control for complete results-pending manuscripts. Only `off` and `on` are accepted; no auto activation. `on` permits clearly conditional anticipated analysis and stable missing-result slots, preserves actual negative/mixed observations, and requires one automatic whole-draft alignment pass. It does not permit fabricated results. See the writer's [results-pending contract](../../ccf-paper-writer/references/materials-to-manuscript.md#optional-complete-results-pending-draft). |
 
 `off` skips only unrequested optional extensions. `auto` enables a listed extension only for a concrete trigger with expected benefit. `on` remembers the user's preference for that extension on relevant tasks; it does not run every enhancement for every task, authorize a new experiment campaign, or permit unrelated rewrites. Explicit requests such as “compare two figure designs” override a saved `off` for that task without changing the saved preference. An unavailable optional tool does not block the underlying deliverable or justify pretending the extension ran.
 
@@ -27,7 +28,7 @@ Necessary evidence lookup, source-page inspection, material verification, and pr
 
 The two route/maintenance extensions default to `off`; existing version-1 files that omit them remain valid and inherit `off`. `auto` requires the concrete trigger above; `on` is a preference for relevant comparisons, not a permanent exploration or self-modification loop. The optional extensions add at most one candidate per unresolved decision or maintenance task; changing owners or renaming the same problem does not reset this allowance. Additional unrequested rounds need an agreed scope and budget. A user request such as "find five directions" or "explore more ambitious mechanisms" already authorizes that breadth: do not cap it at one, ask for a budget form, or require turning on this switch. Necessary fixes, recovery checks, and required comparisons also remain part of the base workflow. The Lean and Balanced UI presets keep these extensions `off`; Deep sets them to `auto`.
 
-Explicit autonomous-research requests use the orchestrator's [research loop](../../ccf-pipeline-orchestrator/references/autonomous-research.md) and a task-local execution budget. Neither `maintenance_evolution` nor `alternative_routes` is its activation switch or iteration limit. The ten controls remain compatible with sparse version-1 files: omitted new settings inherit their defaults, and no stored file is rewritten during resolution. A saved enhancement preference does not start a campaign or authorize new charges. All eight UI presets keep policy evolution off; enable it deliberately for a suitable research task.
+Explicit autonomous-research requests use the orchestrator's [research loop](../../ccf-pipeline-orchestrator/references/autonomous-research.md) and a task-local execution budget. Neither `maintenance_evolution` nor `alternative_routes` is its activation switch or iteration limit. The eleven controls remain compatible with sparse version-1 files: omitted new settings inherit their defaults, and no stored file is rewritten during resolution. A saved enhancement preference does not start a campaign or authorize new charges. All eight UI presets keep policy evolution off; enable it deliberately for a suitable research task.
 
 ## Ask Once And Remember
 
@@ -39,7 +40,7 @@ Do not ask again when the choice and scope are unchanged. A material change in e
 
 - User file: `$CODEX_HOME/ccfa/preferences.json`, or `~/.codex/ccfa/preferences.json` when `CODEX_HOME` is unset. It stays outside installed skills and survives their replacement.
 - Project file: `<project-root>/.ccfa/preferences.json`. The root is explicit/established, never discovered by scanning unrelated parent directories. Personal project preferences are local by default; share them only intentionally.
-- Configuration format: `{"version":1,"preferences":{},"ui":{}}`. Preference values are `off`, `auto`, or `on`; `ui.language` is `zh-CN`, `zh-TW`, or `en`; `ui.theme` is `system`, `light`, or `dark`. Omitted entries inherit. Unknown fields, values, duplicate JSON keys, and unsupported versions are errors.
+- Configuration format: `{"version":1,"preferences":{},"ui":{}}`. Preference values are `off`, `auto`, or `on` (except `results_pending_draft`, which accepts only `off` or `on`); `ui.language` is `zh-CN`, `zh-TW`, or `en`; `ui.theme` is `system`, `light`, or `dark`. Omitted entries inherit. Unknown fields, values, duplicate JSON keys, and unsupported versions are errors.
 - Keep only chosen overrides. Deleting an override restores inheritance, not a snapshot of today's inherited value. Do not write resolved settings back to every project or store manuscript content, credentials, source paths, or task logs in this file.
 
 Run `python <ccf-common>/scripts/preferences.py serve [--project <project-root>]` to open the local configurator. `--no-browser` prints a launch URL instead. It binds to loopback and saves to the two fixed destinations only. A static copy of `assets/configurator/index.html` supports JSON import/export; an exported download is not an applied configuration until it is placed at the selected destination. Reading a skill never launches the web server.
@@ -48,9 +49,9 @@ The local page reads/saves through the authenticated service. Unsaved edits, suc
 
 ### Controls And Task Presets
 
-Each of the ten settings uses one native select with **Inherit / Off / Auto / On**. Inherit removes that setting's override; it is not a fourth stored preference value. The four expandable groups organize related choices without coupling their values: sources and expression; review and delivery; exploration and alternatives; strategy experiments. Switching language or theme retains the current draft.
+The ten enhancement settings use one native select with **Inherit / Off / Auto / On**. The red results-pending control uses **Inherit / Off / On** and explains the hallucination risk in all three languages. Inherit removes that setting's override; it is not a fourth stored preference value. The four expandable groups organize related choices without coupling their values: sources and expression; review and delivery; exploration and alternatives; strategy experiments. Switching language or theme retains the current draft.
 
-The eight presets provide starting combinations. The table lists every non-off setting; all unlisted settings are off. Applying a preset replaces all ten enhancement choices in the draft, preserves language and theme, and makes no disk change until **Save preferences**. A preset name is not stored in the version-1 format.
+The eight presets provide starting combinations. The table lists every non-off setting; all unlisted settings are off. Applying a preset replaces all eleven choices in the draft, preserves language and theme, and makes no disk change until **Save preferences**. A preset name is not stored in the version-1 format.
 
 | Preset | Non-off settings | Additional tokens and time |
 | --- | --- | --- |
@@ -63,11 +64,13 @@ The eight presets provide starting combinations. The table lists every non-off s
 | Figure design (`figures`) | `independent_review=auto`, `enhanced_document_parsing=auto`, `figure_variants=on` | Candidate layouts add rendering or generation work; an independent check runs when needed and available. |
 | Autonomous research (`autoresearch`) | `independent_review=auto`, `extended_search=on`, `enhanced_document_parsing=auto`, `detailed_reports=auto`, `alternative_routes=auto`, `reference_style_search=auto`, `research_branching=on` | Complete branches and broader retrieval can shorten waiting while increasing total computation. |
 
-All presets keep `research_policy_evolution=off`; enable it separately when its required inputs are ready. Deep retains its existing `maintenance_evolution=auto` behavior during authorized maintenance. No preset authorizes training, a campaign budget, external charges, or material uploads. Choosing Light does not cancel a user's requested search, figure comparison, or specialist prerequisite.
+All presets keep `research_policy_evolution=off` and `results_pending_draft=off`; enable it separately when its required inputs are ready. Deep retains its existing `maintenance_evolution=auto` behavior during authorized maintenance. No preset authorizes training, a campaign budget, external charges, or material uploads. Choosing Light does not cancel a user's requested search, figure comparison, or specialist prerequisite.
 
 Saving with a stale disk revision preserves the draft and locks further saves until the configuration is reloaded. Dismissing the alert does not resolve the conflict. A storage error remains retryable; it does not become a revision conflict. Scope changes, imports, and reloads preserve or explicitly discard unsaved work, and exporting JSON alone does not apply preferences.
 
 ## Cost And Quality
+
+Results-pending mode may introduce some hallucinations in anticipated analysis. Its red card must keep this warning visible, explain that values remain unfilled and prospective language remains conditional, and state that the whole-draft check adds reading and revision time. It starts no experiment. Current instructions to leave experiments empty still prevail.
 
 Show qualitative marginal impact with the actual extra operation: a second assessment reads evidence again; expanded retrieval adds requests and source text; visual parsing adds page/image processing; additional figures add generation calls; detailed reporting adds output; a route comparison adds reasoning and evidence checks; a maintenance candidate adds a rule revision and fixed-case comparison. Exact latency, tokens, or price depend on the host/model/input and are not known from a toggle. Do not display invented percentages or describe a cost estimate as metering.
 

@@ -869,6 +869,65 @@ class ResearchLoopTests(unittest.TestCase):
         self.contract["campaign"] = {"id": "shared-research", "record": record.relative_to(self.project).as_posix()}
         return record
 
+    def test_nonempty_init_does_not_register_a_shared_task_set(self):
+        record = self.shared()
+        self.contract["evaluation"] = {"split_role": "selection", "task_set_id": "unused-selection"}
+        occupied = self.project / "occupied"
+        occupied.mkdir()
+        (occupied / "user-notes.md").write_text("Keep this input", encoding="utf-8")
+        before = record.read_bytes()
+        with self.assertRaisesRegex(LOOP.LoopError, "not empty"):
+            self.init(occupied)
+        self.assertEqual(record.read_bytes(), before)
+        self.assertEqual((occupied / "user-notes.md").read_text(encoding="utf-8"), "Keep this input")
+        self.assertEqual(self.calls(), [])
+
+    def test_snapshot_failure_leaves_campaign_registration_unchanged(self):
+        record = self.shared()
+        self.contract["evaluation"] = {"split_role": "selection", "task_set_id": "snapshot-not-created"}
+        before = record.read_bytes()
+        with patch.object(LOOP, "_snapshot", side_effect=OSError("Injected snapshot failure")):
+            with self.assertRaisesRegex(OSError, "snapshot failure"):
+                self.init(self.project / "failed-snapshot")
+        self.assertEqual(record.read_bytes(), before)
+        self.assertEqual(self.calls(), [])
+
+    def test_committed_initialization_recovers_missing_shared_registration(self):
+        record = self.shared()
+        self.contract["evaluation"] = {"split_role": "selection", "task_set_id": "recover-init"}
+        work = self.project / "recover-initial-registration"
+        original = LOOP._write_json
+
+        def fail_cache(path, value):
+            if path.name == "state.json":
+                raise OSError("Injected initialization cache failure")
+            return original(path, value)
+
+        with patch.object(LOOP, "_write_json", side_effect=fail_cache):
+            with self.assertRaisesRegex(OSError, "initialization cache"):
+                self.init(work)
+        self.assertEqual(json.loads(record.read_text(encoding="utf-8"))["task_sets"], {})
+        self.assertEqual(LOOP.status(work)["budget"]["attempts_used"], 0)
+        result = LOOP.run(work, "baseline")["attempt"]
+        self.assertEqual(result["status"], "kept")
+        registered = json.loads(record.read_text(encoding="utf-8"))["task_sets"]["recover-init"]
+        self.assertEqual(registered["workdirs"], [work.name])
+        self.assertEqual(len(self.calls()), 1)
+
+    def test_shared_registration_save_failure_can_resume_initialized_record(self):
+        record = self.shared()
+        self.contract["evaluation"] = {"split_role": "selection", "task_set_id": "recover-save"}
+        work = self.project / "recover-registration-save"
+        before = record.read_bytes()
+        with patch.object(LOOP.CAMPAIGN, "_save", side_effect=OSError("Injected registration save failure")):
+            with self.assertRaisesRegex(OSError, "registration save"):
+                self.init(work)
+        self.assertEqual(record.read_bytes(), before)
+        self.assertEqual(LOOP.status(work)["budget"]["attempts_used"], 0)
+        LOOP.run(work, "baseline")
+        self.assertIn("recover-save", json.loads(record.read_text(encoding="utf-8"))["task_sets"])
+        self.assertEqual(len(self.calls()), 1)
+
     def test_shared_attempt_budget_survives_contract_and_branch_changes(self):
         self.shared(attempts=1)
         first, second = self.project / "branch-one", self.project / "branch-two"
@@ -975,13 +1034,19 @@ class ResearchLoopTests(unittest.TestCase):
         self.assertEqual(budget["execution_seconds_reserved"], 0)
         self.assertEqual(len(self.calls()), before)
 
-    def selection_and_final(self):
+    def selection_and_final(self, final_samples=1):
         self.contract["evaluation"] = {"split_role": "selection", "task_set_id": "selection-v1"}
         selection = self.project / "selection-stage"
         self.init(selection)
         selected = LOOP.run(selection, "selected")["attempt"]
         (self.project / "final-data.json").write_text('{"offset":1}', encoding="utf-8")
-        (self.project / "final-evaluator.py").write_text(EVALUATOR.replace('Path("data.json")', 'Path("final-data.json")'), encoding="utf-8")
+        evaluator = EVALUATOR.replace('Path("data.json")', 'Path("final-data.json")')
+        if final_samples > 1:
+            evaluator = evaluator.replace(
+                'measurements = {"score": config["value"] + data["offset"]}',
+                f'samples = [config["value"] + data["offset"] for _ in range({final_samples})]\n'
+                '    measurements = {"score": sum(samples) / len(samples), "sample_count": len(samples)}')
+        (self.project / "final-evaluator.py").write_text(evaluator, encoding="utf-8")
         self.contract["data_files"] = ["final-data.json"]
         self.contract["evaluator_files"] = ["final-evaluator.py"]
         self.contract["command"] = [sys.executable, "final-evaluator.py", "{metrics}"]
@@ -1007,6 +1072,129 @@ class ResearchLoopTests(unittest.TestCase):
         with self.assertRaisesRegex(LOOP.LoopError, "already completed"):
             LOOP.run(final, "again", "Do not tune on the final score")
         self.assertTrue((final / result["metrics"]).is_file())
+
+    def test_campaign_final_cannot_run_again_under_another_directory_or_label(self):
+        record = self.shared(attempts=8)
+        _, final, _ = self.selection_and_final()
+        LOOP.run(final, "report")
+        before = len(self.calls())
+        usage_before = LOOP.status(final)["campaign_budget"]["attempts_used"]
+        self.contract["evaluation"]["task_set_id"] = "renamed-final"
+        other = self.project / "second-final-directory"
+        with self.assertRaisesRegex(LOOP.LoopError, "already used or reserved"):
+            self.init(other)
+        self.assertEqual(len(self.calls()), before)
+        self.assertEqual(LOOP.status(final)["campaign_budget"]["attempts_used"], usage_before)
+        self.assertFalse(other.exists())
+        usage = json.loads(record.read_text(encoding="utf-8"))["final_uses"]
+        self.assertEqual(len(usage), 1)
+        self.assertEqual(next(iter(usage.values()))["status"], "completed")
+
+    def test_campaign_final_rejects_new_candidate_after_seeing_final_result(self):
+        self.shared(attempts=8)
+        selection, final, _ = self.selection_and_final()
+        LOOP.run(final, "first-final")
+        self.edit("normal", 20)
+        LOOP.run(selection, "new-mechanism", "A new selection candidate")
+        selected = LOOP.decide(selection, "new-mechanism", "keep", "Selection improved")["attempt"]
+        self.contract["evaluation"]["frozen_candidate"]["candidate_id"] = selected["candidate_id"]
+        other = self.project / "new-candidate-on-used-final"
+        before = len(self.calls())
+        with self.assertRaisesRegex(LOOP.LoopError, "already bound to a frozen candidate"):
+            self.init(other)
+        self.assertEqual(len(self.calls()), before)
+
+    def test_campaign_final_reservation_blocks_concurrent_final_directories(self):
+        record = self.shared(attempts=8)
+        _, final, _ = self.selection_and_final()
+        other = self.project / "concurrent-final"
+        self.init(other)
+        state = LOOP._load(final)
+        contract = LOOP._contract(LOOP._json(final / "contract.json"))
+        identity = LOOP._final_use(contract, state, state["initial"]["manifest"])
+        LOOP.CAMPAIGN.reserve(record, "shared-research", self.project, "pending-final", 1, final, "pending", identity)
+        before = len(self.calls())
+        with self.assertRaisesRegex(LOOP.LoopError, "already used or reserved"):
+            LOOP.run(other, "parallel-final")
+        self.assertEqual(len(self.calls()), before)
+
+    def test_campaign_final_failed_command_can_retry_unchanged_protocol(self):
+        self.shared(attempts=8)
+        _, final, _ = self.selection_and_final()
+        with patch.object(LOOP.subprocess, "Popen", side_effect=OSError("Transient process start failure")):
+            failed = LOOP.run(final, "failed-launch")["attempt"]
+        self.assertEqual(failed["outcome"], "crash")
+        result = LOOP.run(final, "unchanged-retry")["attempt"]
+        self.assertEqual(result["status"], "reported")
+        self.assertEqual(result["metric"], 11)
+
+    def test_campaign_final_completed_event_recovers_report_without_replaying(self):
+        self.shared(attempts=8)
+        _, final, _ = self.selection_and_final()
+        original = LOOP._write_json
+
+        def fail_finished_cache(path, value):
+            if path.name == "state.json" and value.get("attempts", {}).get("finished", {}).get("status") == "evaluated":
+                raise OSError("Injected final finished-event cache failure")
+            return original(path, value)
+
+        with patch.object(LOOP, "_write_json", side_effect=fail_finished_cache):
+            with self.assertRaisesRegex(OSError, "final finished-event"):
+                LOOP.run(final, "finished")
+        before = len(self.calls())
+        metrics = final / "attempts" / "finished" / "metrics.json"
+        raw = metrics.read_bytes()
+        metrics.write_text('{"score":999}', encoding="utf-8")
+        with self.assertRaisesRegex(LOOP.LoopError, "Raw metrics"):
+            LOOP.recover(final, "finished", "Inspect retained metrics before reporting", True)
+        self.assertIsNotNone(LOOP.status(final)["pending"])
+        metrics.write_bytes(raw)
+        result = LOOP.recover(final, "finished", "Checked completed evaluator and retained metrics", True)["attempt"]
+        self.assertEqual(result["status"], "reported")
+        self.assertEqual(result["decision"], "report")
+        self.assertFalse(result["eligible"])
+        status = LOOP.status(final)
+        self.assertEqual(status["finalized"], "finished")
+        self.assertEqual(status["campaign_budget"]["final_task_uses"][0]["status"], "completed")
+        self.assertEqual(len(self.calls()), before)
+
+    def test_campaign_final_repeat_measurements_stay_inside_frozen_evaluator(self):
+        self.shared(attempts=8)
+        _, final, _ = self.selection_and_final(final_samples=3)
+        # The fixed command may aggregate repeats; controller enforces one use
+        # of that command, not a limit on its internal sample count.
+        result = LOOP.run(final, "frozen-repeat-protocol")["attempt"]
+        self.assertEqual(result["status"], "reported")
+        self.assertEqual(json.loads((final / result["metrics"]).read_text(encoding="utf-8"))["sample_count"], 3)
+        with self.assertRaisesRegex(LOOP.LoopError, "already completed"):
+            LOOP.replicate(final, "adaptive-extra", result["id"], "Additional score-dependent sample")
+
+    def test_campaign_final_rejects_changed_protocol_on_identical_final_tasks(self):
+        self.shared(attempts=8)
+        _, final, _ = self.selection_and_final()
+        with patch.object(LOOP.subprocess, "Popen", side_effect=OSError("Transient process start failure")):
+            LOOP.run(final, "first-protocol")
+        path = self.project / "final-evaluator.py"
+        path.write_text(path.read_text(encoding="utf-8") + "\n# changed evaluation protocol\n", encoding="utf-8")
+        other = self.project / "changed-final-protocol"
+        self.init(other)
+        before = len(self.calls())
+        with self.assertRaisesRegex(LOOP.LoopError, "already bound to a frozen candidate and protocol"):
+            LOOP.run(other, "new-protocol")
+        self.assertEqual(len(self.calls()), before)
+
+    def test_legacy_campaign_final_history_is_not_treated_as_unused(self):
+        record = self.shared(attempts=8)
+        _, final, _ = self.selection_and_final()
+        LOOP.run(final, "legacy-report")
+        data = json.loads(record.read_text(encoding="utf-8"))
+        del data["final_uses"]
+        record.write_text(json.dumps(data), encoding="utf-8")
+        other = self.project / "legacy-history-reuse"
+        before = len(self.calls())
+        with self.assertRaisesRegex(LOOP.LoopError, "Legacy final-task use is unknown"):
+            self.init(other)
+        self.assertEqual(len(self.calls()), before)
 
     def test_final_rejects_changed_candidate_and_reused_task_identity(self):
         selection, final, _ = self.selection_and_final()

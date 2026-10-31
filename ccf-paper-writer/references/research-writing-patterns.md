@@ -87,7 +87,7 @@ Read the actual draft once for the reader's understanding, not for template cove
 - Are the central question and contribution understandable at the relevant level?
 - Do definitions, comparisons, conditions, and adjacent sentences support the intended inference?
 - Did revisions preserve information, emphasis, attribution, and the actual strength of the finding?
-- Are missing results still missing, without outcome-dependent analysis?
+- Are missing results still missing? Under deliberate `results_pending_draft=on`, is anticipated analysis marked, conditional, and aligned across the draft under `materials-to-manuscript.md`, with existing observations preserved? Otherwise leave outcome-dependent analysis unwritten.
 - Did a reference or review rule introduce a new claim, unnecessary apology, or unrelated experiment requirement?
 
 For a substantial draft, reuse the scoped review required by the writer entry. Carry the drafting phase and intended scope into that review. Fix actual findings, preserve sound passages, and stop when the requested writing problem is resolved.

@@ -11,6 +11,7 @@ import os
 from pathlib import Path
 import secrets
 import tempfile
+from manuscript_patch import _dependencies, _plain_path
 
 
 def _digest(path):
@@ -24,16 +25,23 @@ def review_key(packet, model, options=None):
         raise ValueError("Specify the actual reviewer model/runtime identity")
     if options is not None and not isinstance(options, dict):
         raise ValueError("Review options must be a JSON object")
-    raw = json.dumps({"packet": packet, "model": model, "options": options or {}},
+    view = dict(packet)
+    manuscript = Path(packet["manuscript"]["path"]).resolve()
+    active = set(path for path, _ in _dependencies(packet, manuscript, packet.get("targets")))
+    view["dependencies"] = [item for item in packet.get("dependencies", [])
+                            if _plain_path(item["path"], manuscript.parent, require_file=False) in active]
+    raw = json.dumps({"packet": view, "model": model, "options": options or {}},
                      ensure_ascii=False, sort_keys=True, separators=(",", ":"),
                      allow_nan=False).encode("utf-8")
     return hashlib.sha256(raw).hexdigest()
 
 
 def _current(packet):
-    for item in [packet.get("manuscript", {}), *packet.get("dependencies", [])]:
-        path = Path(item["path"])
-        if not path.is_file() or _digest(path) != item["sha256"]:
+    manuscript = packet["manuscript"]
+    entries = [(Path(manuscript["path"]), manuscript["sha256"]),
+               *_dependencies(packet, Path(manuscript["path"]), packet.get("targets"))]
+    for path, expected in entries:
+        if not path.is_file() or _digest(path) != expected:
             raise ValueError("Review inputs changed or disappeared: " + str(path))
 
 
@@ -125,8 +133,10 @@ def review_cache(action, packet, cache_path, model, options=None, *,
     if action not in {"begin", "lookup", "complete", "abandon"}:
         raise ValueError("Unknown review-cache action")
     key = review_key(packet, model, options)
-    inputs = [packet["manuscript"]["path"],
-              *(item["path"] for item in packet.get("dependencies", [])), *forbidden]
+    manuscript = Path(packet["manuscript"]["path"]).resolve()
+    inputs = [manuscript,
+              *(_plain_path(item["path"], manuscript.parent, require_file=False)
+                for item in packet.get("dependencies", [])), *forbidden]
     cache = _path(cache_path, inputs)
     if action != "abandon":
         _current(packet)

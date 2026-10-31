@@ -155,7 +155,7 @@ Use with `score-lifting-loop.md` and, only when explicitly requested or allowed 
 
 ## Final Readiness Checklist
 
-For a content-first draft, use `materials-to-manuscript.md` to check substantive completeness and alignment. Intentionally absent results do not block drafting, but must not be represented as evidence. Inspect summaries, contributions, captions, and conclusion for dependent claims; use `\emptycell` values without fabricated trends, ranks, or analysis. Keep specific missing inputs in the delivery note. Do not invoke page fitting or submission scores for this check.
+For a content-first draft, use `materials-to-manuscript.md` to check substantive completeness and alignment. Intentionally absent results do not block drafting, but must not be represented as evidence. Inspect summaries, contributions, captions, and conclusion for dependent claims; use `\emptycell` values without fabricated trends, ranks, or analysis. The deliberate `results_pending_draft=on` mode may complete marked conditional analysis under the results-pending contract; its whole-draft alignment pass remains mandatory. Keep specific missing inputs in the delivery note. Do not invoke page fitting or submission scores for this check.
 
 For a final submission-readiness request, do not call the paper ready until:
 

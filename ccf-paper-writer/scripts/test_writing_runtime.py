@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """End-to-end CLI checks with real UTF-8 files and no model calls."""
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -37,7 +38,8 @@ class WritingRuntimeTests(unittest.TestCase):
 
     def cli(self, *args, ok=True):
         result = subprocess.run([sys.executable, "-X", "utf8", str(SCRIPT), *map(str, args)],
-                                cwd=self.root, capture_output=True, text=True, encoding="utf-8", timeout=15)
+                                cwd=self.root, capture_output=True, text=True, encoding="utf-8", timeout=15,
+                                env={**os.environ, "CODEX_HOME": str(self.root / "codex-home")})
         if ok:
             self.assertEqual(result.returncode, 0, result.stderr)
             return json.loads(result.stdout)
@@ -118,6 +120,41 @@ class WritingRuntimeTests(unittest.TestCase):
         declarations[0]["id"] = "ccfa-writing-brief"
         self.write(self.sources, declarations)
         self.cli("prepare", "--manuscript", self.paper, "--target", "results", "--sources", self.sources, ok=False)
+
+    def test_pending_mode_resolves_project_and_explicit_override_without_context_change(self):
+        off = self.prepare()
+        project_file = self.root / ".ccfa" / "preferences.json"
+        project_file.parent.mkdir()
+        self.write(project_file, {"version": 1, "preferences": {"results_pending_draft": "on"}})
+        project_before = project_file.read_bytes()
+        on = self.cli("prepare", "--manuscript", self.paper, "--target", "results",
+                      "--brief", self.brief, "--sources", self.sources, "--mode", "results",
+                      "--project", self.root)
+        self.assertEqual(on["context"], off["context"])
+        self.assertEqual(on["draft_policy"]["results_pending"], "on")
+        self.assertTrue(on["draft_policy"]["alignment_required"])
+        self.assertFalse(on["draft_policy"]["fabricated_observations_allowed"])
+        self.assertIn("[[PENDING:claim-id]]", on["guidance"]["text"])
+        explicit = self.cli("prepare", "--manuscript", self.paper, "--target", "results",
+                            "--project", self.root, "--results-pending", "off")
+        self.assertEqual(explicit["draft_policy"]["results_pending"], "off")
+        self.assertNotIn("deliberately enabled", explicit["guidance"]["text"])
+        self.assertEqual(project_file.read_bytes(), project_before)
+        self.assertFalse((self.root / "codex-home").exists())
+
+    def test_pending_review_is_readonly_and_legacy_user_file_stays_sparse(self):
+        user_file = self.root / "codex-home" / "ccfa" / "preferences.json"
+        user_file.parent.mkdir(parents=True)
+        self.write(user_file, {"version": 1, "preferences": {"reference_style_search": "off"}})
+        before = user_file.read_bytes()
+        off = self.prepare()
+        self.assertEqual(off["draft_policy"]["results_pending"], "off")
+        self.assertEqual(user_file.read_bytes(), before)
+        on = self.cli("prepare", "--manuscript", self.paper, "--target", "results",
+                      "--mode", "consistency", "--results-pending", "on")
+        self.assertEqual(on["operation"], "review")
+        self.assertNotIn("patch_schema", on)
+        self.assertIn("assess only", on["guidance"]["text"])
 
     def test_review_cache_cli_lifecycle_does_not_submit_any_request(self):
         self.prepare("consistency")
