@@ -27,14 +27,12 @@ Never average, add, or otherwise fuse the two scorecards. A revision may have a 
 ```text
 Dimension:
 Score:
-Confidence:
 Evidence basis:
 Deduction:
 Repair condition:
-Expected score movement:
 ```
 
-Use score movement conservatively. State the evidence or change that could alter the stance, using only values allowed by the chosen scale if a range is justified. A generic integer manuscript scale does not support half-point promises. Do not guarantee a numerical increase or claim acceptance probability.
+Reuse report-level confidence unless a dimension differs materially. Discuss possible score movement only when requested or useful to the decision, using values allowed by the chosen scale if a range is justified. A repair condition need not predict a score change. Do not guarantee a numerical increase or claim acceptance probability.
 
 ## Report Structure And Finding Quality
 
@@ -46,7 +44,7 @@ Before saying something is absent, inspect the relevant supplied section and app
 
 ## Multi-Reviewer Panel
 
-An optional additional independent pass follows the effective `independent_review` preference in `preferences.md`; explicit user requests take priority. This does not switch off the primary review, evidence counterchecks, necessary specialist contributions, or fixed report structure. With `auto`, use a bounded independent pass only when a consequential unresolved interpretation can change the verdict. With `on`, prefer it for relevant substantial assessments, not for every local edit. Never expand concept-only review to experiment assessment merely because this preference is enabled.
+An optional additional independent pass follows the effective `independent_review` preference in `preferences.md`; explicit user requests take priority. This does not switch off the primary review, evidence counterchecks, necessary specialist contributions, or fixed report structure. With `auto`, use a bounded independent pass for a consequential unresolved judgment or a requested pre-submission check where independent inspection can change the result. With `on`, prefer it for relevant substantial assessments, not for every local edit. Never expand concept-only review to experiment assessment merely because this preference is enabled.
 
 When using actual independent reviewer calls, keep them independent before synthesis. If the host lacks or disallows delegation, use clearly labeled role-based perspectives within one agent; do not claim independent validation or empirical consensus. Each selected role should inspect a relevant distinct failure mode, use evidence from the idea, paper, manuscript text, or searched source, and state uncertainty when evidence is missing.
 
@@ -57,7 +55,7 @@ Required discipline:
 - Do not force rejection when the evidence does not support it.
 - If a role finds no serious concern, say why and name the supporting evidence.
 - If a role cannot judge, mark `insufficient evidence` and state what input would change that.
-- Synthesis must not average away fatal flaws; the final stance follows the strongest unresolved decision-relevant concern.
+- Synthesis weighs the contribution and supported concerns under the selected rubric. A demonstrated fatal flaw cannot be averaged away; a speculative objection or a missing out-of-scope artifact is not a fatal flaw. Explain why a concern changes the stance instead of choosing the most negative wording.
 
 Per-reviewer block:
 

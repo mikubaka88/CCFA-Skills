@@ -10,14 +10,14 @@
 | Template path | `ccf-latex-templates/SIGGRAPH/acmart.cls` |
 | Official URL | https://s2026.siggraph.org |
 | Last verified | Legacy migration on 2026-06-06; official policy must be rechecked before submission. |
-| Source status | Migrated local guide; not independently reverified in v0.4.0. |
+| Source status | Domain guidance retained; obsolete policy blocks removed. Query the target official requirements before formatting. |
 
 ## Usage Boundary
 
-- Use this file for LaTeX, page limit, anonymity, template, camera-ready, rebuttal-template, and venue-format details.
+- Use this file for domain writing guidance. Annual submission rules are resolved through `ccf-submission-checker`, not copied from historical templates.
 - Use `ccf-paper-writer` for actual paper writing and polishing.
 - Use `ccf-paper-reviewer` or `ccf-submission-checker` for format audit, depending on whether the task is manuscript-facing or submission-package-facing.
-- Verify current-year official rules before final submission.
+- Match the exact year/track/stage before applying any format change; reuse current verified official rules and preserve supplied verified templates.
 
 ## Migrated Venue Notes
 
@@ -25,70 +25,7 @@
 
 **CCF-A | Graphics | Publisher: ACM**
 **Conference:** https://s2026.siggraph.org
-**Template:** `SIGGRAPH/acmart.cls` (ACM acmart, siggraph format)
-
-## Document Setup
-
-### Preamble Structure
-
-```latex
-% === SUBMISSION MODE (anonymous, double-blind) ===
-\documentclass[siggraph, review, anonymous]{acmart}
-\settopmatter{printfolios=true}
-
-% === CAMERA-READY MODE ===
-\documentclass[siggraph]{acmart}
-\acmConference[SIGGRAPH 2026]{SIGGRAPH '26: ACM SIGGRAPH 2026 Conference}
-               {July 27--31, 2026}{Vancouver, BC, Canada}
-\acmISBN{978-X-XXXX-XXXX-X/XX/XX}
-\acmDOI{10.5555/XXXXXXX.XXXXXXX}
-```
-
-SIGGRAPH uses the `siggraph` format option (single-column, larger page size for figures).
-
-### Required Packages
-
-```latex
-\usepackage[round]{natbib}     % Author-year citations
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{booktabs}
-\usepackage{graphicx}
-\usepackage{balance}
-\usepackage{cleveref}          % For consistent cross-references
-\usepackage{xcolor}
-```
-
-## Page Limits
-
-| Section | Limit |
-|---------|-------|
-| Main paper (submission) | **8 pages** |
-| References | No limit |
-| Appendix | Permitted (not counted) |
-
-SIGGRAPH enforces a strict 8-page limit for the main body. References and appendix do not count toward this limit. This is one of the tightest page limits among top graphics venues.
-
-## Anonymity Requirements
-
-Double-blind review with `anonymous` class option:
-
-1. No author names or affiliations in submission
-2. Third-person self-citations: "Smith et al. showed..." not "we showed..."
-3. Anonymize all URLs, project pages, video links
-4. Clear PDF metadata
-5. Remove acknowledgments
-6. Anonymize figures — remove author/affiliation watermarks
-
-## Camera-Ready Differences
-
-After acceptance:
-
-1. Remove `review` and `anonymous` options
-2. Fill in `\acmConference`, `\acmISBN`, `\acmDOI`
-3. Restore all author names and affiliations
-4. Add appropriate `\setcopyright` mode
-5. Enable page numbers with `\settopmatter{printfolios=true}`
+**Historical template:** See the local path above for examples only; it is not a verified target submission bundle.
 
 ## Section Organization
 
@@ -161,7 +98,7 @@ SIGGRAPH is known for high visual quality expectations:
 
 ## Quantitative Evaluation
 
-SIGGRAPH papers should include both visual and quantitative comparisons:
+Use visual or quantitative comparisons according to the claimed graphics contribution. The example below illustrates their presentation; its dataset, metric values, and significance notation are not evidence for a new manuscript:
 
 ```latex
 \section{Results}
@@ -197,32 +134,9 @@ quality using perceptual metrics.
 \citep{pharr}             % (Pharr et al.)
 ```
 
-## Formatting Rules
+## Content Checklist
 
-- **Format:** ACM siggraph (single-column, two-column layout also accepted)
-- **Paper size:** US Letter
-- **Body font:** 9pt minimum, Times New Roman
-- **References:** 8pt, unlimited pages
-- **Margins:** Top/bottom 1in, sides 0.75in
-- **Single-column**: siggraph format uses single-column layout by default
-- **High-resolution figures**: minimum 300 DPI for raster graphics
-
-## Submission Checklist
-
-- [ ] 8 pages or fewer (main body)
-- [ ] `\documentclass[siggraph, review, anonymous]`
-- [ ] All author identification removed
-- [ ] Third-person self-citations only
-- [ ] Anonymized all URLs and video links
 - [ ] High-quality, grayscale-legible figures
 - [ ] Detailed captions on all figures
 - [ ] Quantitative evaluation included
 - [ ] References list all authors
-
-## Camera-Ready Checklist
-
-- [ ] Remove `review` and `anonymous` options
-- [ ] Add conference metadata
-- [ ] Restore author information
-- [ ] Enable page numbers
-- [ ] Add acknowledgments if desired

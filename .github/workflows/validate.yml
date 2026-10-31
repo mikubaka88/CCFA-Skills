@@ -21,8 +21,44 @@ jobs:
       - run: python ccf-common/scripts/check_markdown_links.py
       - run: python ccf-common/scripts/check_v04.py
       - run: python ccf-visual-composer/scripts/test_plot_recipes.py
+      - run: python -m pip install numpy matplotlib
+      - name: Install a real CJK font for glyph-export checks
+        run: sudo apt-get update && sudo apt-get install -y fonts-noto-cjk
+      - run: python ccf-visual-composer/scripts/test_analysis_panels.py
+      - run: python ccf-visual-composer/scripts/test_analysis_templates.py
+      - run: python ccf-visual-composer/scripts/test_semantic_panels.py
+      - run: python ccf-visual-composer/scripts/test_figure_library.py
+      - run: python ccf-visual-composer/scripts/test_figure_data.py
+      - run: python ccf-visual-composer/scripts/test_figure_layouts.py
+      - run: python ccf-visual-composer/scripts/test_figure_corpus.py
       - run: python ccf-common/scripts/test_preferences.py
       - run: python ccf-common/scripts/test_continuity.py
+      - run: python ccf-common/scripts/test_artifact_scope.py
+      - run: python ccf-paper-writer/scripts/test_manuscript_patch.py
+      - run: python ccf-paper-writer/scripts/test_writing_context.py
+      - run: python ccf-paper-writer/scripts/test_writing_review_cache.py
+      - run: python ccf-paper-writer/scripts/test_writing_runtime.py
+      - run: python ccf-paper-reviewer/scripts/test_prepare_expert_review.py
       - run: python ccf-pipeline-orchestrator/scripts/test_research_loop.py
+      - run: python evaluation/behavioral/test_evaluate_outputs.py
+      - run: python tools/test_release_tools.py
       - run: node --check ccf-common/assets/configurator/app.js
       - run: node ccf-common/scripts/test_configurator.js
+
+  portable-smoke:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: "3.11"
+      - run: python -m pip install pyyaml
+      - run: python ccf-common/scripts/test_preferences.py
+      - run: python ccf-paper-writer/scripts/test_manuscript_patch.py
+      - run: python ccf-paper-writer/scripts/test_writing_runtime.py
+      - run: python ccf-paper-reviewer/scripts/test_prepare_expert_review.py
+      - run: python tools/test_release_tools.py

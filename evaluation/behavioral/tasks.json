@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "suite": "ccfa-012-content-smoke",
+  "purpose": "Small maintenance comparison, not a broad research-quality benchmark",
+  "tasks": [
+    {
+      "id": "results-progression",
+      "owner": "ccf-paper-writer",
+      "request": "Revise this results paragraph in English. Keep the supplied values and citation key. Explain the relation between the observation, mechanism and implication in connected prose. Return the paragraph only. Supplied passage: For rigor, we provide verifiable and implementable evidence for a module that is feasible. Our event-preserving memory records object states with timestamps. On the supplied delayed-query test, accuracy rises from 42.1% to 47.3% against the same-capacity baseline \\cite{baseline2025}. Rather than only increasing the size of the memory, our method uses a query timestamp to retrieve the earlier state. This result connects the memory's update rule to the information available for retrospective prediction.",
+      "invariants": {"contains": ["42.1%", "47.3%", "baseline2025"], "forbids_fabricated_results": true},
+      "quality_question": "Does the paragraph explain the observation and its interpretation while preserving the supported closing implication?"
+    },
+    {
+      "id": "technical-language",
+      "owner": "ccf-paper-writer",
+      "request": "Polish this English theoretical passage. Preserve the meanings of belief, evidence and verifiable because they are technical here. Preserve the final scientific implication without inventing a result. Return the passage only. Supplied passage: The belief b_t(s) is the posterior probability of state s after observations through time t. The observation supplies evidence for the Bayesian update; it is not a confidence score assigned by the author. Under the stated finite-state assumption, reachability of the unsafe set is verifiable by exhaustive graph traversal. The argument concerns exact transition models and does not establish the same property for an estimated transition model. This connection makes planning uncertainty and reachability part of the same mathematical account.",
+      "invariants": {"contains": ["belief", "evidence", "verifiable"], "forbids_fabricated_results": true},
+      "quality_question": "Are real technical concepts and a material assumption retained, with a coherent closing synthesis?"
+    },
+    {
+      "id": "results-pending-method",
+      "owner": "ccf-paper-writer",
+      "request": "根据材料写一段中文方法说明，约120至180字，实验部分暂不写。直接解释机制，不添加测量结果、审稿回应或进度说明。材料：现有记忆每个对象只保留最新状态，更新会覆盖过去的状态；回溯问题可能询问对象在较早时刻的位置。提出的方法保留状态与时间戳，查询时先根据对象身份定位记录，再以查询时刻筛选此前最近的一条状态。对象关联来自项目已有的跟踪器，不新发明跟踪模块。保留段尾对方法意义的概括。",
+      "invariants": {"contains": ["时间", "对象"], "forbids_fabricated_results": true},
+      "quality_question": "Is the supplied computation clear without invented experiments or repetitive caution about the pending results?"
+    },
+    {
+      "id": "mechanism-diversity",
+      "owner": "ccf-idea-optimizer",
+      "request": "在下列已给事实范围内提出两个机制明显不同的研究方向，解释各自解决的根本缺失及何种观察会否定它。不要联网，不做新颖性排名，不要求先完成实验，也不写完整实验计划。问题：动态场景模型对反事实时序问题表现不稳定；增加记忆容量没有稳定解决问题。已观察到一类错误把同一对象在不同时刻的状态混合，另一类错误在相同观测下对干预后果给出不同答案。资源限制是沿用已有视觉骨干和训练数据，不能靠换更大模型。方向应从不同解释出发，不是给同一结构再堆两个模块。",
+      "invariants": {"contains": [], "forbids_fabricated_results": true},
+      "quality_question": "Do the two directions change distinct scientific mechanisms and offer distinct ways to be wrong within the resource boundary?"
+    }
+  ],
+  "rubric": {
+    "fidelity": "1-5: preserve supplied facts, technical meanings, resource limits and actual result status",
+    "coherence": "1-5: develop the scientific relation in connected sentences or a coherent mechanism",
+    "directness": "1-5: remove empty self-defense without deleting meaningful uncertainty, technical words or the author's closing significance",
+    "task_fit": "1-5: satisfy the requested scope; for ideation, judge mechanism diversity, not unverified novelty"
+  }
+}

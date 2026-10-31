@@ -24,7 +24,7 @@ Integrate necessary specialist contributions under one owner; reuse valid prereq
 
 ## Core Rule
 
-Monitor arXiv, OpenReview, conference/proceedings feeds, project pages, labs, and named competitors for new papers that could overlap with the user's idea or paper. Report findings factually. Do not exaggerate novelty threats, dismiss real overlap, or infer priority from weak evidence. Provide actionable signals: RELAX, RESEARCH, FOLLOW-UP.
+Monitor arXiv, OpenReview, conference and journal feeds, original technical reports, project pages, labs, and named competitors for relevant new work. For novelty watch, inspect overlap; for trend scouting, also identify new observations, changed assumptions, and useful mechanisms. Report findings factually. Do not exaggerate novelty threats, dismiss real overlap, or infer priority from weak evidence. Provide actionable overlap signals: RELAX, RESEARCH, FOLLOW-UP.
 
 ## Modes
 
@@ -60,7 +60,7 @@ Load `../ccf-common/references/review-output-standards.md` when monitor results 
 2. If project state is available (`ccfa.yaml`), read the current idea, target venue, claims, and tracked competitors.
 3. Choose the mode and time window. If the user says "latest", "recent", "new", "this week", or "today", verify the current date and use an explicit date range.
 4. Execute the requested monitoring mode using public-safe queries and source-quality exclusions from the shared policy.
-5. Classify overlaps by problem, mechanism, evidence, benchmark, dataset, claim, and venue positioning.
+5. Classify overlaps by problem, mechanism, evidence, benchmark, dataset, claim, and venue positioning. Keep an inspiration or conflicting observation distinct from a novelty threat; its relevance does not require a high overlap score.
 6. Report new or materially changed findings, with precise implications for the requested research decision. Use existing report history to avoid presenting the same paper as new.
    Reuse stable paper IDs and versioned source evidence from the existing topic report; fetch targeted metadata before full text. Check updates within the actual requested window even when older content is cached. Optional expansion into extra topics follows Common's `extended_search` preference and never replaces the required current scan.
 7. Resolve a concrete evidence gap needed for the current deliverable through its owner and integrate the result. Complete requested downstream work; offer unrelated follow-up only when useful. `RESEARCH` and `FOLLOW-UP` describe findings, not automatic instructions to start retrieval, scoring, redesign, or rewriting.

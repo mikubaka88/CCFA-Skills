@@ -134,7 +134,7 @@ For reported comparisons and executable changes, apply `../../ccf-humanization/r
 
 ## Protocols For Autonomous Research
 
-Use this section only for the experiment stage of an explicitly requested research loop. `ccf-pipeline-orchestrator` owns coordination under [autonomous-research.md](../../ccf-pipeline-orchestrator/references/autonomous-research.md); this skill owns the scientific comparison and interpretation. A concept-only idea review remains outside this stage.
+Use this section only for the experiment stage of an explicitly requested research loop. `ccf-pipeline-orchestrator` owns coordination under [autonomous-research.md](../../ccf-pipeline-orchestrator/references/autonomous-research.md); this skill owns the scientific comparison and interpretation. `ccf-research-engineer` owns the implementation, runnable configuration, baseline reproduction, and training/performance diagnosis needed by that comparison. Reuse available engineering evidence; a concept-only idea review remains outside this stage.
 
 Resolve these items from existing artifacts and authorization, recording only what the next experiment needs:
 
@@ -142,7 +142,7 @@ Resolve these items from existing artifacts and authorization, recording only wh
 | --- | --- |
 | Scientific question | The competing explanations and the observation that would distinguish them. A candidate is a hypothesis, not a predicted success presented as fact. |
 | Comparison | Baseline and candidate versions, controlled inputs/resources, metric meaning and direction, material constraints, and the rule for deciding whether a difference matters. Include uncertainty or repeats when they could change that decision. |
-| Executable specification | Inspected or supplied command and arguments, working directory, environment, data/split, seed or relevant randomization, output paths, and resource estimate. A missing command or dataset is an execution dependency, not an excuse to invent results. |
+| Executable specification | Scientific run conditions from the designer and inspected or supplied command/arguments, working directory, environment, data/split, seed or relevant randomization, output paths, and resource estimate from existing evidence or the research engineer. A missing command or dataset is an execution dependency, not an excuse to invent results. |
 | Evidence | Where actual measurements, configurations, logs, and failures will be found, and which subset is needed to interpret the result. Retain enough source evidence to reproduce the comparison without copying whole datasets. |
 | Budget and stop | The applicable per-run allowance, stopping conditions, and remaining resources supplied by the orchestrator. Count failed runs, evaluation, retries, and other charged work, not only successful experiments. |
 
@@ -152,7 +152,7 @@ Read actual feedback before proposing the next action:
 
 | Observation | Interpretation and next action |
 | --- | --- |
-| Command failed, output missing, or execution identity uncertain | Diagnose the failed dependency. Retry only after a relevant condition changes or a justified transient failure is addressed. This is not evidence against the scientific hypothesis. |
+| Command failed, output missing, or execution identity uncertain | Have the research engineer diagnose the affected dependency or training path. Retry only after a relevant condition changes or a justified transient failure is addressed. This is not evidence against the scientific hypothesis. |
 | Data, budget, split, or evaluator differs materially | Mark the comparison invalid or explicitly scoped to the changed setting; repair and rerun affected comparisons before selection. |
 | Valid result contradicts the prediction | Record the failed assumption and the observation. Suggest a mechanism or strategy change that predicts something different; do not automatically add another module. |
 | Candidate improves a measured dimension but violates a hard constraint | Preserve the measurement, explain the tradeoff, and do not promote it as meeting the original goal. |

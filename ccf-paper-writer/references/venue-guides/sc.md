@@ -100,7 +100,7 @@ SC papers follow the HPC systems structure:
 
 ### Performance Evaluation
 
-SC papers must have rigorous HPC performance evaluation:
+For HPC performance claims, describe the actual system, workload, protocol, and measurements needed to substantiate them. The configuration and values below illustrate a writing structure; replace them with supplied evidence when drafting:
 
 ```latex
 \section{Evaluation}

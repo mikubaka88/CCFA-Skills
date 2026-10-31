@@ -25,7 +25,7 @@ text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
 <text x="72" y="92" font-size="17" font-weight="800" fill="#9D7BFF" text-anchor="start">A skill family for research papers</text>
 <text x="72" y="151" font-size="43" font-weight="900" fill="#233044" text-anchor="start">From research idea</text>
 <text x="72" y="200" font-size="43" font-weight="900" fill="#233044" text-anchor="start">to submission</text>
-<text x="72" y="239" font-size="17" font-weight="500" fill="#667085" text-anchor="start">17 focused skills for literature, experiments, writing,</text>
+<text x="72" y="239" font-size="17" font-weight="500" fill="#667085" text-anchor="start">18 focused skills for literature, experiments, writing,</text>
 <text x="72" y="265" font-size="17" font-weight="500" fill="#667085" text-anchor="start">review, figures, and submission.</text>
 <rect x="72" y="294" width="174" height="42" rx="21" fill="#DDEBFF" stroke="#DDEBFF" stroke-width="1.4" />
 <text x="159" y="321" font-size="13" font-weight="750" fill="#233044" text-anchor="middle">Focused collaboration</text>

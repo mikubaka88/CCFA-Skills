@@ -4,7 +4,7 @@ Use this file for generic computer-science conference paper review when the venu
 
 ## Reading Protocol
 
-Use a three-pass read:
+Cover these three reading purposes, reusing the locations and evidence collected through `review-workflow.md`; they do not require three additional full rereads:
 
 1. First pass: establish category, context, correctness, contributions, and clarity from title, abstract, introduction, headings, conclusion, and references.
 2. Second pass: inspect the core argument, figures, tables, experiments, proofs, related work, limitations, and appendix pointers.

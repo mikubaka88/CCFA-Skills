@@ -33,7 +33,7 @@ One paragraph summary of the monitoring result, including total papers scanned, 
 
 ## High-Relevance Papers
 
-Table of papers that show potential overlap with the user's idea.
+Table of papers relevant to the requested watch. For novelty monitoring, use the overlap columns below. For trend scouting, replace irrelevant overlap columns with the new observation or useful mechanism and its relevance; do not fabricate a novelty threat to fit the table.
 
 | # | Title | Source | Date | Overlap Score (0-5) | Overlap Level | Overlap Type | Evidence Basis | Recommended Action |
 |:---:|:---|:---|:---:|:---:|:---:|:---|:---|:---:|

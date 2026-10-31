@@ -4,19 +4,19 @@ Use this rubric when reviewing a manuscript from the perspective of writing qual
 
 ## Review Dimensions
 
-Score each dimension on 1-5 when enough text is available.
+Score applicable dimensions on 1-5 when enough text is available, or use qualitative judgments for a no-score request. Carry the manuscript phase and assigned scope into the criteria; an internal alignment check does not become a submission assessment.
 
 | Dimension | Weight | What To Inspect |
 | --- | ---: | --- |
-| Storyline and motivation | 10 | Whether the paper makes the problem, gap, and stakes unavoidable before presenting the method. |
+| Storyline and motivation | 10 | Whether the reader can understand the scientific question, its importance, and how the contribution addresses it, in an order suited to the work. |
 | Contribution display | 10 | Whether contributions are specific, non-overlapping, evidence-backed, and visible in abstract/introduction/conclusion. |
 | Paragraph logic | 10 | Whether each paragraph develops a clear point through the actual relation between sentences, with intelligible transitions to adjacent paragraphs. |
 | Claim-evidence alignment | 12 | Whether claims have the appropriate experiment, proof, citation, or analysis, with wording calibrated to that support. A qualifier alone is not evidence. |
 | Method readability | 9 | Whether notation, modules, algorithm steps, assumptions, and design choices are introduced in the right order. |
 | Experiment narration | 9 | Whether tables/figures are introduced before interpretation and the text explains what the observations support, without conflating association and causation. |
-| Related-work positioning | 8 | Whether closest work is compared on technical axes rather than listed chronologically. |
+| Related-work positioning | 8 | Whether the organization explains relevant relationships to closest work; a historical sequence is useful when the development itself matters. |
 | Terminology and notation consistency | 8 | Whether key terms, symbols, dataset names, model names, and claims stay stable across sections. |
-| Prose discipline and voice | 10 | Whether the paper avoids defensive/incremental framing, label-heavy symbols, number-only abstracts, formula dumping, third-person manuscript narration, punctuation-driven structure, unsupported hype, and overlong compound sentences. |
+| Prose discipline and voice | 10 | Whether scientific objects, actions, and relations carry the explanation; diagnose empty self-defense, unsupported hype, or structure that obscures meaning in context. Preserve informative negation, calibrated uncertainty, useful labels, and necessary mathematics. |
 | LaTeX and format discipline | 6 | Whether the manuscript follows venue style, references, captions, labels, equations, algorithms, and page/line constraints. |
 | Reviewer-facing risk | 8 | Whether the writing creates avoidable rejection risks: hidden contribution, exaggerated claim, missing limitation, unclear baseline, or inconsistent story. |
 
@@ -31,7 +31,7 @@ Mark inapplicable criteria `N/A` and unavailable text `not assessed`; neither is
 
 ## Quantitative Writing Feedback
 
-Include this scorecard in standard writing review:
+Include this scorecard in a requested standard writing review when scoring applies; preserve its dimensions with qualitative judgments for a no-score request. A bounded internal contribution returns its relevant findings without a new scorecard.
 
 | Dimension | Weight | Score (1-5) | Confidence (1-5) | Evidence basis | Concrete repair |
 | --- | ---: | ---: | ---: | --- | --- |
@@ -73,7 +73,7 @@ Submission-risk level. The manuscript is incoherent, format-noncompliant, intern
 
 ## No-Filler Deduction Format
 
-Every material issue must use:
+Use the fixed finding record in `../fixed-output-format.md` for material issues. The following questions help develop that record's explanation; they do not create a second mandatory finding format:
 
 ```text
 Location:
@@ -87,30 +87,30 @@ Do not write "improve clarity", "strengthen motivation", "add details", or "poli
 
 ## Prose Anti-Pattern Deductions
 
-Apply `../../../ccf-paper-writer/references/prose-quality-guardrails.md`. Flag these as writing risks even when the science is otherwise plausible:
+Apply `../../../ccf-paper-writer/references/prose-quality-guardrails.md`. Inspect the following signals in context and retain a deduction only when an actual consequence for meaning, support, or readability is established. A phrase match does not establish a scientific or writing defect:
 
-- Defensive or incremental framing that makes the contribution sound like a patch instead of a scientific insight.
-- `Q1`/`C1`/`RQ1`-style labels used as the main narrative structure.
+- Empty self-defense or promotional framing that replaces the actual contribution; an accurately described incremental contribution must remain accurately described.
+- `Q1`/`C1`/`RQ1`-style labels that displace explanation or leave the reader decoding undefined references; useful study identifiers can remain.
 - Abstracts dominated by numbers before the task, gap, insight, and method are clear.
 - Dense theorem, formula, or notation blocks with no explanation of why they matter.
 - Excessive quotation marks, colons, dashes, slash stacks, arrows, or custom symbols replacing natural transitions.
-- Third-person manuscript voice, such as "this paper proposes" or "the authors show", in text meant to be the manuscript itself.
+- Manuscript narration that displaces the scientific object and operation; conventional attribution alone is not a defect.
 - Repeated concepts or inconsistent terms that make the argument feel mechanically generated.
-- Paragraphs whose sentences have the same length, template, or rhetorical rhythm.
+- Mechanically repeated sentence structures that obstruct emphasis or reading; useful procedural or comparative parallelism can remain.
 - Abstract ability labels with no described operation, repeated contrasts without a real comparator, or added qualifiers with no relevant condition. Preserve genuine technical terms, comparisons, and evidence boundaries.
 
 ## Writing Review Panel
 
 Use the relevant perspectives below within the standard report. Call them independent only when separate reviewer calls were actually performed:
 
-- **Storyline reviewer:** checks problem -> gap -> root challenge -> insight -> evidence progression.
+- **Storyline reviewer:** checks whether the actual question, contribution, and findings form a coherent argument without imposing a fixed progression.
 - **Skeptical reviewer-reader:** checks where the prose makes the work look weaker, more incremental, or less supported than it is.
 - **Claim-evidence reviewer:** checks unsupported, over-broad, or misplaced claims.
 - **Paragraph-logic reviewer:** checks topic sentences, paragraph jobs, transitions, and redundancy.
 - **Venue-style reviewer:** checks target-venue expectations, contribution display, and figure/table narration.
 - **LaTeX/format reviewer:** checks captions, labels, equations, algorithms, references, anonymity markers, and page-risk signals.
 
-Each role must output:
+Consolidate useful role observations inside the fixed writing profile. The following fields are available when they add distinct evidence; no per-role score, repair, or predicted movement is required:
 
 ```text
 Role:
@@ -120,7 +120,7 @@ Main readability gain:
 Main reviewer-confusion risk:
 Evidence basis:
 Concrete edit:
-Expected score movement:
+Resolution condition, if a concern remains:
 ```
 
 Do not force praise or criticism. If a role finds the section acceptable on its axis, state why and move to the next role.
@@ -129,6 +129,6 @@ Do not force praise or criticism. If a role finds the section acceptable on its 
 
 - Do not invent results, citations, baselines, or theorem claims.
 - Do not silently rewrite the idea. When a scientific claim is too strong for the evidence, recommend weakening, qualifying, moving, or requesting evidence.
-- Do not reward extra caution by itself. Identify the missing support or misleading implication before recommending a qualification; equally flag unnecessary qualifiers that obscure an adequately supported contribution.
+- Do not reward extra caution by itself. Identify the missing support or misleading implication before recommending a qualification; equally flag unnecessary qualifiers that obscure an adequately supported contribution. Preserve sentence-final synthesis, emphasis, and broader significance; do not penalize a rhetorical ending just because it adds no new measurement or uses a familiar phrase. Judge whether it follows from the paragraph and preserves the distinction between a prospective implication and an observed result.
 - Do not give acceptance probabilities. Report writing risk and likely reviewer confusion.
 - If the user asks for actual rewriting, follow CCFA handoff mode before using `ccf-paper-writer`.

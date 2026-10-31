@@ -7,6 +7,114 @@ default_stale_after_days:
   background_method: 730
   local_reference: 365
 sources:
+  - id: anthropic-agent-evaluation-methods
+    title: Demystifying evals for AI agents
+    url: https://www.anthropic.com/research/demystifying-evals-for-ai-agents
+    source_type: background_method
+    used_by: [ccf-skill-forger, ccf-pipeline-orchestrator]
+    recorded_at: 2026-10-31
+    verified_at: 2026-10-31
+    stale_after_days: 365
+    notes: "Inspected outcome versus transcript distinctions, deterministic and semantic graders, and capability/regression separation. Adapted to a small maintenance-only content smoke suite; one trial and one blind assessment do not establish statistical superiority, novelty or model token savings."
+  - id: anthropic-long-running-harnesses
+    title: Effective harnesses for long-running agents
+    url: https://www.anthropic.com/research/effective-harnesses-for-long-running-agents
+    source_type: background_method
+    used_by: [ccf-common, ccf-pipeline-orchestrator]
+    recorded_at: 2026-10-31
+    verified_at: 2026-10-31
+    stale_after_days: 365
+    notes: "Inspected recoverable state, incremental progress and end-to-end completion checks. Reuse CCFA's existing task/campaign records and real execution evidence; do not import its application initializer, fixed feature itinerary or automatic per-session commits into ordinary research work."
+  - id: openai-gpt6-astra-model
+    title: OpenAI GPT-6 Astra Model
+    url: https://developers.openai.com/api/docs/models/gpt-6-astra
+    source_type: official_policy
+    used_by: [ccf-paper-reviewer, ccf-skill-forger]
+    recorded_at: 2026-10-31
+    verified_at: 2026-10-31
+    stale_after_days: 90
+    notes: "Inspected the exact GPT-6 Astra model identifier and model capabilities. Availability for an independent expert remains an actual host/account capability, not a guarantee supplied by a skill or a reason to override the user's model selection."
+  - id: openai-gpt6-skill-prompts
+    title: Rethinking skills and prompts for GPT-6 Astra
+    url: https://developers.openai.com/blog/rethinking-skills-and-prompts-for-gpt-6-astra
+    source_type: background_method
+    used_by: [ccf-paper-reviewer, ccf-skill-forger]
+    recorded_at: 2026-10-31
+    verified_at: 2026-10-31
+    stale_after_days: 180
+    notes: "Inspected progressive disclosure, compact workflow routing and the risks of overly prescribed procedures. Motivates a brief specialist prompt with isolated scientific inputs; does not establish peer-review accuracy or measured token savings."
+  - id: openai-agents-multi-agent
+    title: OpenAI Agents API Multi-agent
+    url: https://developers.openai.com/api/docs/guides/agents-api/multi-agent
+    source_type: official_policy
+    used_by: [ccf-common, ccf-paper-reviewer]
+    recorded_at: 2026-10-31
+    verified_at: 2026-10-31
+    stale_after_days: 90
+    notes: "Inspected independent subagent contexts and main-agent coordination for separable work. Native host delegation and model selection are required for a real independent reviewer; request preparation alone is not execution or isolation. No Agents API dependency is added."
+  - id: usenix-security-2026-submission-policy
+    title: USENIX Security 2026 Call for Papers
+    url: https://www.usenix.org/conference/usenixsecurity26/call-for-papers
+    source_type: official_policy
+    used_by: [ccf-paper-writer, ccf-submission-checker]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected submission anonymity, page accounting, required appendices and official template requirements. Replaces incorrect legacy non-anonymous, single-column and 16-page claims; applies to 2026 only. Bundled historical styles do not establish target-policy compliance."
+  - id: nsdi-2026-submission-policy
+    title: NSDI 2026 Call for Papers
+    url: https://www.usenix.org/conference/nsdi26/call-for-papers
+    source_type: official_policy
+    used_by: [ccf-paper-writer, ccf-submission-checker]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected What to Submit: research-paper anonymity, page accounting and two-column format. Operational-track exceptions require their own matched check. Does not certify a local template or transfer the policy to a different year."
+  - id: ndss-2026-submission-policy
+    title: NDSS Symposium 2026 Call for Papers
+    url: https://www.ndss-symposium.org/ndss2026/submissions/call-for-papers/
+    source_type: official_policy
+    used_by: [ccf-paper-writer, ccf-submission-checker]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected technical-paper formatting, page accounting, ethics-section treatment and anonymous submissions. Replaces incorrect legacy non-anonymous, single-column and 16-page claims; does not establish final-publication or workshop rules."
+  - id: ieee-sp-2026-submission-policy
+    title: IEEE Symposium on Security and Privacy 2026 Call for Papers
+    url: https://sp2026.ieee-security.org/cfpapers.html
+    source_type: official_policy
+    used_by: [ccf-paper-writer, ccf-submission-checker]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected anonymous submissions, research/SoK page accounting, compsoc template, ethics and LLM-use disclosure sections. Replaces incompatible legacy template commands and non-anonymous claims. Snapshot is a navigation summary, not a complete submission audit."
+  - id: llm-excess-vocabulary-2025
+    title: "Delving into LLM-assisted writing in biomedical publications through excess vocabulary"
+    url: https://arxiv.org/html/2406.07016v5
+    source_type: paper_or_proceeding
+    used_by: [ccf-humanization, ccf-paper-writer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected v5 Results 2.1 and interpretation; published as Science Advances, DOI 10.1126/sciadv.adt3813. English PubMed corpus shows excess use of stylistic vocabulary. Use as contextual precision cues, not a blacklist, an individual authorship judgment, or measured Chinese-language evidence. No source text or data redistributed."
+  - id: llm-grammatical-style-2025
+    title: "Do LLMs write like humans? Variation in grammatical and rhetorical styles"
+    url: https://arxiv.org/html/2410.16107v2
+    source_type: paper_or_proceeding
+    used_by: [ccf-humanization, ccf-paper-writer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected introduction, methods, results and discussion; PNAS DOI 10.1073/pnas.2422455122. GPT-4o and Llama 3 variants differ in nominalization, participial clauses and other register features. Check paragraph function and grammatical relations without banning these structures or generalizing the sample to every model."
+  - id: llm-processing-difficulty-2026
+    title: "Why is AI-generated language so hard to understand?"
+    url: https://arxiv.org/html/2610.29162v1
+    source_type: paper_or_proceeding
+    used_by: [ccf-humanization, ccf-paper-writer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected the October 21 preprint's feature definitions, results, length-penalty experiment and limitations. English linguistic proxies identify rare combinations, noun stacks and other potentially costly constructions; no direct reader-comprehension or CCFA editing improvement is established. Use to inspect clarity and avoid compressing away logical relations; do not add mandatory paraphrasing or translation calls."
   - id: semantic-scholar-field-selection
     title: Semantic Scholar Academic Graph API Tutorial
     url: https://webflow.semanticscholar.org/product/api/tutorial
@@ -20,11 +128,11 @@ sources:
     title: PaperQA Scientific Document Retrieval And Multimodal Support
     url: https://github.com/Future-House/paper-qa
     source_type: background_method
-    used_by: [ccf-common, ccf-literature-searcher, ccf-paper-reviewer]
-    recorded_at: 2026-10-15
+    used_by: [ccf-common, ccf-literature-searcher, ccf-paper-reviewer, ccf-idea-optimizer]
+    recorded_at: 2026-08-11
     verified_at: 2026-10-15
     stale_after_days: 180
-    notes: Adapt separation of source evidence and interpretation, source reuse, and optional page/image enrichment. Additional enrichment can add model calls. Do not import an index, vector database, agent loop, or entire runtime by default.
+    notes: "Adapt scientific-document retrieval, hybrid evidence selection, reranking, contextual compression and citation-grounded synthesis; separate source evidence from interpretation and reuse sources. Optional page/image enrichment can add model calls. Do not import an index, vector database, agent loop or entire runtime by default. Consolidates the earlier paper-qa2 entry for the same repository without changing its workflow scope."
   - id: mcp-selective-tool-discovery
     title: MCP Client Best Practices
     url: https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/docs/2026-07-28/develop/clients/client-best-practices.mdx
@@ -85,36 +193,27 @@ sources:
     source_type: official_policy
     used_by: [ccf-common, ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 90
-    notes: Canonical CCF venue category source; verify before public claims.
-  - id: ccf-directory-mirror
-    title: Searchable CCF 2026 Directory Mirror
-    url: https://ccf.atom.im/
-    source_type: background_method
-    used_by: [ccf-paper-writer]
-    recorded_at: 2026-06-05
-    verified_at: null
-    stale_after_days: 180
-    notes: Convenience mirror only; not authoritative.
+    notes: "Inspected the official indexed seventh-edition directory and its scope notes: full/regular papers and recommendation categories, not individual-paper quality. Check the exact venue entry and target year before classification claims."
   - id: aaai-26-main-track
     title: AAAI-26 Main Technical Track Call
     url: https://aaai.org/conference/aaai/aaai-26/main-technical-track-call/
     source_type: official_policy
     used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 90
-    notes: Use for AAAI significance, novelty, soundness, relevance, clarity, responsible research, and reproducibility criteria.
+    notes: "Inspected official indexed Review Criteria: contribution significance and novelty, soundness, relevance, clarity, responsible research, and reproducibility. The main track recognizes theoretical, empirical, integrative, and critical contributions; special tracks use different rubrics. Recheck the target year."
   - id: aaai-26-submission
     title: AAAI-26 Submission Instructions
     url: https://aaai.org/conference/aaai/aaai-26/submission-instructions/
     source_type: official_policy
     used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 90
-    notes: Use for AAAI reproducibility and submission-policy checks.
+    notes: "Inspected official indexed AAAI-26 instructions covering anonymous formatting, main-text limits, reproducibility checklist, supplements, and concurrent-submission rules. These are AAAI-26 rules; recheck the requested year and track."
   - id: neurips-2026-reviewer-guidelines
     title: NeurIPS 2026 Reviewer Guidelines
     url: https://neurips.cc/Conferences/2026/ReviewerGuidelines
@@ -124,24 +223,6 @@ sources:
     verified_at: 2026-09-16
     stale_after_days: 180
     notes: Use for quality, clarity, significance, originality, and contribution-type review framing.
-  - id: neurips-2024-reviewer-guidelines
-    title: NeurIPS 2024 Reviewer Guidelines
-    url: https://neurips.cc/Conferences/2024/ReviewerGuidelines
-    source_type: review_guideline
-    used_by: [ccf-paper-writer]
-    recorded_at: 2026-06-05
-    verified_at: null
-    stale_after_days: 365
-    notes: Legacy source record from writing-skill creation.
-  - id: icml-2024-reviewer-instructions
-    title: ICML 2024 Reviewer Instructions
-    url: https://icml.cc/Conferences/2024/ReviewerInstructions
-    source_type: review_guideline
-    used_by: [ccf-paper-writer]
-    recorded_at: 2026-06-05
-    verified_at: null
-    stale_after_days: 365
-    notes: Legacy source record from writing-skill creation.
   - id: iclr-2026-reviewer-guide
     title: ICLR 2026 Reviewer Guide
     url: https://iclr.cc/Conferences/2026/ReviewerGuide
@@ -211,90 +292,81 @@ sources:
     source_type: review_guideline
     used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 180
-    notes: Use for CVPR review standards and responsible reviewing.
+    notes: "Official CVPR 2026 guidelines inspected with its reviewing process and responsible-review requirements. Apply to the named year; author-side manuscript assessment does not imply permission to use LLMs for confidential conference reviews."
   - id: cvpr-2026-reviewer-training
     title: CVPR 2026 Reviewer Training Material
     url: https://cvpr.thecvf.com/Conferences/2026/ReviewerTrainingMaterial
     source_type: review_guideline
     used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 180
-    notes: Use for standard review errors and discussion expectations.
-  - id: cvpr-2025-reviewer-guidelines
-    title: CVPR 2025 Reviewer Guidelines
-    url: https://cvpr.thecvf.com/Conferences/2025/ReviewerGuidelines
-    source_type: review_guideline
-    used_by: [ccf-paper-writer]
-    recorded_at: 2026-06-05
-    verified_at: null
-    stale_after_days: 365
-    notes: Legacy source record from writing-skill creation.
+    notes: "Official training sections on contribution, soundness, concrete feedback, novelty fallacy, invented policy, and confidentiality inspected. Minor fixable issues do not by themselves justify rejection; its official-review LLM restrictions remain venue-specific."
   - id: acl-arr-review-form
     title: ACL Rolling Review Review Form
     url: https://aclrollingreview.org/reviewform
     source_type: review_guideline
     used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 180
-    notes: Use for soundness, usefulness, reproducibility, ethics, confidence, strengths, concerns, and questions.
+    notes: "Official form inspected: contribution-aware soundness, excitement, overall assessment, confidence, limitations, ethics and revision tracking. It permits half-point anchors; use its actual scale only when this form applies."
   - id: keshav-how-to-read-paper
     title: S. Keshav, How To Read A Paper
     url: https://www.cs.jhu.edu/~huang/cs624/spring22/readings/paper-reading.pdf
     source_type: background_method
     used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 730
-    notes: Used for three-pass reading and the five Cs.
+    notes: "Original February 17, 2016 article inspected, including three reading passes and five Cs. Reading depth is task-dependent; its time examples and paper-specific comments are not mandatory CCFA stages or universal review criteria."
   - id: cmu-how-to-review-technical-paper
-    title: How To Review A Technical Paper
+    title: "Alan Meier, How to Review a Technical Paper"
     url: https://www.cs.cmu.edu/afs/cs/academic/class/15828-s98/www/review.html
     source_type: background_method
     used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 730
-    notes: Used for constructive technical review structure.
+    notes: "Original 1992 technical note inspected: distinguish major/minor concerns, understand technical content, and give constructive recommendations. Historical paper-mail workflow and praise conventions are not current mandatory instructions."
   - id: plos-reviewer-feedback
     title: PLOS How To Write A Peer Review
-    url: https://plos.org/resource/how-to-write-a-peer-review/
+    url: "https://explore.plos.org/reviewer-resources/how-to-write-a-peer-review"
     source_type: background_method
     used_by: [ccf-paper-reviewer, ccf-idea-reviewer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Use for peer-review process, paper-reading workflow, and specific actionable review feedback.
+    notes: "Official reviewer guidance inspected: prioritized, specific comments and distinction between fundamental issues and next-step work; explicitly advises against out-of-scope extra experiments. Adapt to contribution and journal, not a universal experiment checklist."
   - id: springer-nature-how-to-peer-review
-    title: Springer Nature How To Peer Review
-    url: https://www.springernature.com/gp/reviewers/how-to-peer-review
+    title: "Springer Nature How to Peer Review: Evaluating Manuscripts"
+    url: "https://www.springernature.com/gp/authors/campaigns/how-to-peer-review-2"
     source_type: background_method
     used_by: [ccf-paper-reviewer, ccf-idea-reviewer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Use for review structure, manuscript clarity, evidence, and reviewer responsibility scaffolding.
+    notes: "Official tutorial inspected for research questions, methods, interpretation, and journal fit; extra experiments depend on necessity."
   - id: acm-preparing-article-latex
-    title: ACM Preparing Your Article With LaTeX
-    url: https://authors.acm.org/proceedings/production-information/preparing-your-article-with-latex
+    title: "ACM Conference Proceedings Primary Article Template and LaTeX Guidance"
+    url: "https://www.overleaf.com/latex/templates/acm-conference-proceedings-primary-article-template/wbvnghjbzwpc"
     source_type: official_policy
     used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 180
-    notes: Use for ACM LaTeX template and proceedings-production checks; verify target conference rules separately.
+    notes: "Replaced the inaccessible author-guide page with the ACM-authored official template. Inspected template identity, acmart consolidation, and source comments; use for class and authoring structure, while checking the target venue's review and final-production options separately."
   - id: ieee-authoring-tools-templates
     title: IEEE Authoring Tools And Templates
     url: https://journals.ieeeauthorcenter.ieee.org/create-your-ieee-journal-article/authoring-tools-and-templates/
     source_type: official_policy
     used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 180
-    notes: Use for IEEE LaTeX/template and authoring-tool checks; verify target publication rules separately.
+    notes: "Official IEEE Author Center page inspected: Word/LaTeX template selector, authoring tools, and file validation links. It is an entry to publication-specific templates, not evidence of any particular venue page limit."
   - id: cspaper-review
     title: CSPaper Review
     url: https://cspaper.org/op/20260212.0001v1
@@ -340,42 +412,33 @@ sources:
     verified_at: 2026-06-05
     stale_after_days: 365
     notes: Use as workflow inspiration for independent reviewers, meta-review, and concerns-table style synthesis.
-  - id: local-cspaper-review-format
-    title: Local CSPaper Reply Reference Format
-    url: local:private-reference/cspaper-reply-format
-    source_type: local_reference
-    used_by: [ccf-paper-reviewer]
-    recorded_at: 2026-06-05
-    verified_at: null
-    stale_after_days: 365
-    notes: Historical private format provenance only. Current runtime structure is self-contained in fixed-output-format.md and grounded in the public cspaper-review source; do not require this unavailable private file.
   - id: darpa-heilmeier
     title: DARPA Heilmeier Catechism
     url: https://www.darpa.mil/about/heilmeier-catechism
     source_type: background_method
     used_by: [ccf-idea-optimizer, ccf-idea-reviewer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 730
-    notes: Use as problem-clarity scaffold, not venue scoring.
+    notes: "Official eight questions inspected: objective, current limits, new approach, importance, risks, cost, time and tests. Use to clarify a research proposal; do not turn the funding questions into an early-idea rejection rubric."
   - id: nsf-merit-review
-    title: NSF Merit Review Criteria
-    url: https://www.nsf.gov/bfa/dias/policy/merit_review/
+    title: "NSF Proposal and Award Process: Merit Review"
+    url: "https://www.nsf.gov/funding/overview"
     source_type: background_method
     used_by: [ccf-idea-optimizer, ccf-idea-reviewer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Use as broad research judgment scaffold, not venue scoring.
+    notes: "Official merit-review overview inspected: intellectual merit and broader impacts, with high-risk/high-payoff proposals encouraged. Funding review principles are background, not conference scoring or a demand for immediate application."
   - id: hamming-you-and-your-research
     title: Richard Hamming, You And Your Research
     url: https://www.cs.virginia.edu/~robins/YouAndYourResearch.html
     source_type: background_method
     used_by: [ccf-idea-optimizer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 730
-    notes: Use for research taste and importance framing.
+    notes: "Original talk transcript inspected for important problems, prepared opportunities, courage, and deliberately reserved exploratory thinking. Historical personal practice is inspiration, not a fixed time quota or feasibility gate."
   - id: academic-research-skills
     title: Academic Research Skills
     url: https://github.com/Imbad0202/academic-research-skills
@@ -432,13 +495,166 @@ sources:
     notes: Workflow inspiration for file-backed state, anti-loop pivoting, separation of execution and evaluation, and direction diversity; not a scientific claim source.
   - id: ggsci-palettes
     title: Scientific Journal And Sci-Fi Themed Color Palettes For ggplot2
-    url: https://cran.r-project.org/web/packages/ggsci/vignettes/ggsci.html
+    url: https://github.com/nanxstats/ggsci/blob/master/R/palettes.R
     source_type: background_method
     used_by: [ccf-visual-composer]
     recorded_at: 2026-07-08
-    verified_at: 2026-07-08
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Scientific journal themed palette reference; validate accessibility before final figures.
+    notes: "Inspected Nan Xiao's upstream palette data, blob SHA af11d0f0f7cee7f38bf8bcda367069fc6823f280: AAAS/NEJM/JCO default and Lancet lanonc values and ordering. The package DESCRIPTION declares GPL (>= 3): https://github.com/nanxstats/ggsci/blob/master/DESCRIPTION. Only named color values are recorded with attribution; no R implementation is copied. These optional categorical palettes are not journal requirements or uniformly colorblind-safe. Reuses the existing palette registry entry."
+  - id: alphafold3-figure-layout
+    title: "Accurate Structure Prediction of Biomolecular Interactions with AlphaFold 3"
+    url: https://www.nature.com/articles/s41586-024-07487-w
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected publisher Figure 1: examples, aligned quantitative comparisons and a mechanism strip. Transfer panel hierarchy and stable emphasis into original Python templates, not molecular artwork or reported values. Original figure: https://media.springernature.com/lw1200/springer-static/image/art%3A10.1038%2Fs41586-024-07487-w/MediaObjects/41586_2024_7487_Fig1_HTML.png. The article states CC BY 4.0 with third-party credit exceptions; no figure or code is redistributed."
+  - id: scgpt-figure-layout
+    title: "scGPT: Toward Building a Foundation Model for Single-Cell Multi-Omics Using Generative AI"
+    url: https://www.nature.com/articles/s41592-024-02201-0
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected publisher Figures 3 and 4 for coordinated distributions, embeddings and combination matrices with stable category colors. Original images: https://media.springernature.com/lw1200/springer-static/image/art%3A10.1038%2Fs41592-024-02201-0/MediaObjects/41592_2024_2201_Fig3_HTML.png and https://media.springernature.com/lw1200/springer-static/image/art%3A10.1038%2Fs41592-024-02201-0/MediaObjects/41592_2024_2201_Fig4_HTML.png. Adapt relationships and alignment with original plotting code and labeled synthetic demos; avoid dense labels and treating embedding separation as statistical evidence. No figure or code is redistributed."
+  - id: scfoundation-figure-layout
+    title: "Large-Scale Foundation Model on Single-Cell Transcriptomics"
+    url: https://www.nature.com/articles/s41592-024-02305-7
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected article page and publisher Figure 3: paired prediction scatterplots, ranked improvements and enrichment panels under a compact workflow. Original figure: https://media.springernature.com/lw1200/springer-static/image/art%3A10.1038%2Fs41592-024-02305-7/MediaObjects/41592_2024_2305_Fig3_HTML.png. Transfer analytical relationships and alignment, not biological findings, values or artwork. No figure or code is redistributed."
+  - id: cellpose3-figure-layout
+    title: "Cellpose3: One-Click Image Restoration for Improved Cellular Segmentation"
+    url: https://www.nature.com/articles/s41592-025-02595-5
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected publisher Figure 2: equal-sized paired image grids linked to quantitative curves with stable method colors. Original figure: https://media.springernature.com/lw1200/springer-static/image/art%3A10.1038%2Fs41592-025-02595-5/MediaObjects/41592_2025_2595_Fig2_HTML.png. Maintain sample correspondence and explicit image scaling in original implementations. Published in Nature Methods in 2025, with no best-paper claim. No figure or code is redistributed. Figure-library visual observations: Visually inspected official paper figures: Fig. 1d,f; Fig. 2c,e. Design observations: 每张测试图像为一个点，横轴加噪后AP、纵轴去噪后AP；y=x给无变化参考；两幅小图分别比较传统去噪和目标函数选择。 / 左小图扫描IoU阈值下的AP曲线；右小图扫描激光功率或平均帧数下固定IoU的AP；dense/sparse表达条件分列。. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: prism-figure-layout
+    title: "The PRISM Alignment Dataset: What Participatory, Representative and Individualised Human Feedback Reveals About the Subjective and Multicultural Alignment of Large Language Models"
+    url: https://arxiv.org/abs/2404.16019
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected Figure 4 on PDF page 8 at https://arxiv.org/pdf/2404.16019: coordinated ranking uncertainty, conversational-context and subgroup comparisons. Adapt entity colors and row correspondence while reducing label density. NeurIPS 2024 Datasets and Benchmarks Best Paper verified by neurips-2024-best-paper-awards. The inspected arXiv record uses its non-exclusive distribution license; no figure, data or code is redistributed."
+  - id: neurips-2024-best-paper-awards
+    title: "Announcing the NeurIPS 2024 Best Paper Awards"
+    url: https://blog.neurips.cc/2024/12/10/announcing-the-neurips-2024-best-paper-awards/
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer, ccf-paper-writer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Official awards announcement inspected. VAR is a main-track Best Paper and PRISM is the Datasets and Benchmarks Best Paper. This verifies award identity and track only; it does not measure CCFA plotting quality or make every referenced Nature paper an award winner."
+  - id: icml-2026-flexibility-trap-figures
+    title: "The Flexibility Trap: Rethinking the Value of Arbitrary Order in Diffusion Language Models"
+    url: https://arxiv.org/abs/2601.15165
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected the PDF at https://arxiv.org/pdf/2601.15165: Figure 3 on page 5 is a model-by-task curve grid, Figure 7 on page 6 combines category bars with global reference lines, and Figure 9 on page 10 shows accuracy versus wall time. ICML 2026 Outstanding Paper status is verified by icml-2026-awards. Adapt alignment, local-versus-global comparison and explicit time units; no same-layout hexbin claim, copied artwork, original results or upstream code. Figure-library visual observations: Reused previously recorded visual observations (not a new inspection in this update): Figure 9 (PDF p. 10). Design observations: Accuracy versus measured wall time under different generation choices.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: iclr-2026-lost-conversation-figures
+    title: "LLMs Get Lost In Multi-Turn Conversation"
+    url: https://arxiv.org/abs/2505.06120
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected Figure 6 on page 9 of the arXiv PDF at https://arxiv.org/pdf/2505.06120: interval definitions, aligned model/condition summaries and a gradual sharding sweep. ICLR 2026 Outstanding Paper status is verified by iclr-2026-outstanding-blog. Transfer the relationship between distributions and controlled perturbation, with explicit quantile definitions and fewer numeric labels. This figure is not the source of the user-provided hexbin layout; no artwork, original results or code is copied."
+  - id: neurips-2025-hivemind-figures
+    title: "Artificial Hivemind: The Open-Ended Homogeneity of Language Models (and Beyond)"
+    url: https://arxiv.org/abs/2510.22954
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected Figures 7 and 8 on page 6 of the PDF at https://arxiv.org/pdf/2510.22954: an overall entropy histogram linked to examples and category proportions, and ordered horizontal boxplots overlaid with observations. Best Paper status is verified by neurips-2025-best-paper-awards. Adapt distribution-to-category organization, entity ordering and visible observations, not dense example text or scientific claims. No claim of an identical hexbin figure; no artwork, original data or code is copied. Figure-library visual observations: Reused previously recorded visual observations (not a new inspection in this update): Figure 7 (PDF p. 6); Figure 8 (PDF p. 6). Design observations: Overall entropy histogram linked to category proportions. / Ordered horizontal boxplots overlaid with observations.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: icml-2026-awards
+    title: "Announcing the ICML 2026 Awards"
+    url: https://blog.icml.cc/2026/07/05/announcing-the-icml-2026-awards/
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Official announcement inspected: The Flexibility Trap is an ICML 2026 Outstanding Paper Award recipient. The announcement links its official oral page at https://icml.cc/virtual/2026/oral/71086. Use for award identity; analytical layout observations come from the inspected original PDF, not committee descriptions."
+  - id: neurips-2025-best-paper-awards
+    title: "Announcing the NeurIPS 2025 Best Paper Awards"
+    url: https://blog.neurips.cc/2025/11/26/announcing-the-neurips-2025-best-paper-awards/
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Official announcement inspected. Artificial Hivemind is in the Best Paper winners section before the separately labeled Runners Up. This record verifies award identity; it does not establish the paper's scientific claims or a measured improvement in CCFA figures."
+  - id: tol-color-schemes
+    title: "Paul Tol Colour Schemes"
+    url: https://sronpersonalpages.nl/~pault/
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected official Figures 1 and 4 for the bright and muted categorical sequences and their order. The muted missing-data gray is excluded from the category palette. Record named color values with attribution; no figures, prose or Python implementation are copied. Do not claim the webpage is public domain, or assume grayscale separation at every mark size."
+  - id: nature-panel-export
+    title: "Nature Research Figure Guide: Building and Exporting Figure Panels"
+    url: https://research-figure-guide.nature.com/figures/building-and-exporting-figure-panels/
+    source_type: official_policy
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Official production guidance inspected for 89/183 mm widths, 170 mm figure height, compact panels, editable text, font embedding and accessible colors. Apply to the actual Nature submission stage; do not impose these dimensions on all Nature Portfolio journals or conferences. Initial-submission suggestions differ."
+  - id: nature-figure-specifications
+    title: "Nature Research Figure Guide: Preparing Figures to Our Specifications"
+    url: https://research-figure-guide.nature.com/figures/preparing-figures-our-specifications/
+    source_type: official_policy
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Official specifications inspected: Arial/Helvetica, ordinary labels at 5-7 pt, lowercase upright bold panel letters at 8 pt, editable text and PDF TrueType/type 42 font export. Avoid decorative backgrounds and dense textures. These target-specific production settings override a local font preference only for the applicable destination."
+  - id: nature-final-lines
+    title: "Nature Final Submission Instructions"
+    url: https://www.nature.com/nature/for-authors/final-submission
+    source_type: official_policy
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Official final-submission figure instructions inspected for final line weights of 0.25-1 pt. Set physical figure width before checking strokes and labels; do not generalize this target-specific requirement to every journal or conference."
+  - id: matplotlib-constrained-layout
+    title: "Matplotlib Constrained Layout Guide"
+    url: https://matplotlib.org/stable/users/explain/axes/constrainedlayout_guide.html
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Official guide inspected for layout constraints, aligned axes, legends, colorbars and fixed-aspect panels. Use with GridSpec and inspect the rendered figure after labels are present; automatic layout does not guarantee zero overlap in every composition. Original CCFA panel code, with no upstream example code copied."
+  - id: matplotlib-fonts
+    title: "Matplotlib Fonts"
+    url: https://matplotlib.org/stable/users/explain/text/fonts.html
+    source_type: background_method
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Official font guide inspected for font families, fallback and output behavior. Select an installed Latin font plus a suitable CJK companion, preserve editable SVG text, embed PDF fonts and inspect missing glyphs. Do not assume Times or Comic supplies Chinese glyphs or that an editable SVG renders identically without its fonts."
   - id: fabio-crameri-scientific-colour-maps
     title: Scientific Colour Maps
     url: https://www.fabiocrameri.ch/colourmaps/
@@ -584,32 +800,32 @@ sources:
     stale_after_days: 365
     notes: Related writing-skill repository used for feature-gap audit; not an authoritative venue source and not copied as text.
   - id: ai-scientist
-    title: The AI Scientist
+    title: "The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery"
     url: https://arxiv.org/abs/2408.06292
     source_type: paper_or_proceeding
     used_by: [ccf-idea-optimizer, ccf-idea-reviewer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Automated research reference.
+    notes: "Original paper abstract and workflow scope inspected: idea, coding, experiments, writing and simulated review. Simulated acceptance and reported costs are study results, not CCFA guarantees or real conference acceptance."
   - id: llm-idea-generation-evaluation
-    title: LLM Research Idea Generation And Evaluation Studies
+    title: "Can LLMs Generate Novel Research Ideas? A Large-Scale Human Study with 100+ NLP Researchers"
     url: https://arxiv.org/abs/2409.04109
     source_type: paper_or_proceeding
     used_by: [ccf-idea-optimizer, ccf-idea-reviewer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Automated research idea evaluation reference.
+    notes: "Original paper abstract inspected: blind expert idea comparison, diversity and self-evaluation weaknesses, and distinction between judged novelty and executed research outcomes. Do not equate an agent novelty score with a verified new contribution."
   - id: llava-4d-openreview
-    title: LLaVA-4D OpenReview
+    title: "LLaVA-4D: Embedding SpatioTemporal Prompt into LMMs for 4D Scene Understanding"
     url: https://openreview.net/forum?id=URpbmVEsqB
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer, ccf-visual-composer, ccf-skill-forger]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: User-custom writing-format exemplar source record.
+    notes: "Inspected the local arXiv 2505.12253v1 text for motivation and coordinate/feature construction, and official indexed OpenReview PDF for paper identity and ICLR 2026 header. The local exemplar remains the preprint version; scientific conclusions and wording do not transfer."
   - id: llava-4d-arxiv
     title: LLaVA-4D arXiv
     url: https://arxiv.org/abs/2505.12253
@@ -620,311 +836,284 @@ sources:
     stale_after_days: 365
     notes: User-custom writing-format exemplar source record.
   - id: vggt-cvf
-    title: VGGT CVPR 2025 Open Access
+    title: "VGGT: Visual Geometry Grounded Transformer"
     url: https://openaccess.thecvf.com/content/CVPR2025/html/Wang_VGGT_Visual_Geometry_Grounded_Transformer_CVPR_2025_paper.html
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: User-custom writing-format exemplar and CVPR 2025 best-paper context source record.
+    notes: "Inspected official CVF abstract, citation, and indexed introduction: direct feed-forward prediction of geometric quantities from multiple views. CVPR 2025 award status is separately supported by the official awards record. Exemplar observations remain tied to inspected passages."
   - id: iclr-2026-outstanding-blog
     title: ICLR 2026 Outstanding Papers Blog
     url: https://blog.iclr.cc/2026/04/23/announcing-the-iclr-2026-outstanding-papers/
     source_type: paper_or_proceeding
-    used_by: [ccf-paper-writer]
+    used_by: [ccf-paper-writer, ccf-visual-composer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Verify before claiming award status publicly.
+    notes: "Official award listing and named award categories inspected on 2026-10-30, including the Outstanding Paper award for LLMs Get Lost In Multi-Turn Conversation. Use for award identity and locating originals; writing and figure observations must come from the relevant paper, not the award designation or committee praise."
   - id: iclr-2025-outstanding-blog
     title: ICLR 2025 Outstanding Papers Blog
     url: https://blog.iclr.cc/2025/04/22/announcing-the-outstanding-paper-awards-at-iclr-2025/
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Verify before claiming award status publicly.
+    notes: "Official award listing and named award categories inspected on 2026-10-30. Use for award identity and locating originals; writing observations must come from the relevant paper, not the award designation or committee praise."
   - id: iclr-2024-outstanding-blog
     title: ICLR 2024 Outstanding Papers Blog
     url: https://blog.iclr.cc/2024/05/06/iclr-2024-outstanding-paper-awards/
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Verify before claiming award status publicly.
+    notes: "Official award listing and named award categories inspected on 2026-10-30. Use for award identity and locating originals; writing observations must come from the relevant paper, not the award designation or committee praise."
   - id: cvpr-2025-best-papers
     title: CVPR 2025 Best Papers And Demos
     url: https://cvpr.thecvf.com/Conferences/2025/BestPapersDemos
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Verify before claiming CVPR award status publicly.
+    notes: "Official award listing and named award categories inspected on 2026-10-30. Use for award identity and locating originals; writing observations must come from the relevant paper, not the award designation or committee praise."
   - id: cvpr-2024-awards
     title: CVPR 2024 Awards News
     url: https://cvpr.thecvf.com/Conferences/2024/News/Awards
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Verify before claiming CVPR award status publicly.
+    notes: "Official award listing and named award categories inspected on 2026-10-30. Use for award identity and locating originals; writing observations must come from the relevant paper, not the award designation or committee praise."
   - id: cvf-awards-list
     title: CVF Awards List
     url: https://www.thecvf.com/?page_id=413
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Award context source record.
+    notes: "Official award listing and named award categories inspected on 2026-10-30. Use for award identity and locating originals; writing observations must come from the relevant paper, not the award designation or committee praise."
   - id: aaai-2025-every-bit-helps
-    title: Every Bit Helps, AAAI 2025
+    title: "Every Bit Helps: Achieving the Optimal Distortion with a Few Queries"
     url: https://ojs.aaai.org/index.php/AAAI/article/view/33507
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Exemplar source record.
+    notes: "Official AAAI proceedings abstract and publication record inspected: fixed cardinal utility queries and optimal distortion bounds. This is a theoretical exemplar; its source does not require experiments or establish an award."
   - id: aaai-2024-gxvaes
-    title: GxVAEs, AAAI 2024
+    title: "GxVAEs: Two Joint VAEs Generate Hit Molecules from Gene Expression Profiles"
     url: https://ojs.aaai.org/index.php/AAAI/article/view/29248
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Exemplar source record.
+    notes: "Official AAAI proceedings abstract and publication record inspected: ProfileVAE supplies conditions to MolVAE. The source establishes the paper's mechanism and venue, not a universal writing formula or award."
   - id: icml-2025-collabllm
-    title: CollabLLM, ICML 2025
+    title: "CollabLLM: From Passive Responders to Active Collaborators"
     url: https://proceedings.mlr.press/v267/wu25i.html
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Exemplar source record.
+    notes: "Official PMLR abstract and citation inspected. This is a training framework with multiturn-aware rewards; citing it does not mean CCFA performs its training or inherits its reported gains."
   - id: icml-2024-videopoet
-    title: VideoPoet, ICML 2024
+    title: "VideoPoet: A Large Language Model for Zero-Shot Video Generation"
     url: https://proceedings.mlr.press/v235/kondratyuk24a.html
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Exemplar source record.
+    notes: "Official PMLR abstract and citation inspected: decoder-only multimodal generation, pretraining and task-specific adaptation. Use the actual passage when extracting language or argument structure."
   - id: iccv-2025-brickgpt
-    title: BrickGPT, ICCV 2025
+    title: "Generating Physically Stable and Buildable Brick Structures from Text"
     url: https://openaccess.thecvf.com/content/ICCV2025/html/Pun_Generating_Physically_Stable_and_Buildable_Brick_Structures_from_Text_ICCV_2025_paper.html
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Exemplar source record.
+    notes: "Inspected official ICCV 2025 abstract/citation and first-page PDF: autoregressive brick generation with validity checks and physics-aware rollback. This supports the exemplar's physical-feasibility motivation, not a universal research-loop prescription."
   - id: iccv-2023-passive-uwb
-    title: Passive Ultra-Wideband Single-Photon Imaging, ICCV 2023
+    title: "Passive Ultra-Wideband Single-Photon Imaging"
     url: https://openaccess.thecvf.com/content/ICCV2023/html/Wei_Passive_Ultra-Wideband_Single-Photon_Imaging_ICCV_2023_paper.html
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Exemplar source record.
+    notes: "Inspected official ICCV 2023 abstract and citation for authors, venue, and the passive imaging problem across extreme timescales. Any reuse concerns argument organization; experimental claims stay with the source paper."
   - id: eccv-2024-minimalist-vision
-    title: Minimalist Vision With Freeform Pixels, ECCV 2024
+    title: "Minimalist Vision with Freeform Pixels"
     url: https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/8113_ECCV_2024_paper.php
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Exemplar source record.
+    notes: "Official ECVA abstract inspected: trainable freeform sensing pixels and task-specific minimalist cameras. CVF's awards catalog independently confirms ECCV 2024 best paper; award status does not validate every editorial suggestion."
   - id: eccv-2022-partial-distance-correlation
-    title: Partial Distance Correlation In Deep Learning, ECCV 2022
-    url: https://www.ecva.net/papers/eccv_2022/papers_ECCV/papers/136860318.pdf
+    title: "On the Versatile Uses of Partial Distance Correlation in Deep Learning"
+    url: "https://www.ecva.net/papers/eccv_2022/papers_ECCV/html/3213_ECCV_2022_paper.php"
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Exemplar source record.
+    notes: "Inspected official ECVA paper abstract and accepted-paper listing: partial distance correlation compares feature spaces and supports several regularization applications. The paper's findings are context for the exemplar, not assumed properties of another method."
   - id: acmmm-2025-aff3dfunc
-    title: Open-Vocabulary 3D Affordance Understanding, ACM MM 2025
-    url: https://eprints.gla.ac.uk/360521/
+    title: "Open-Vocabulary 3D Affordance Understanding via Functional Text Enhancement and Multilevel Representation Alignment"
+    url: "https://eprints.gla.ac.uk/360521/2/360521.pdf"
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Exemplar source record.
+    notes: "Inspected the institutional author manuscript and author project page for ACM MM 2025 identity, DOI 10.1145/3746027.3755239, functional-text enhancement, and multilevel alignment. Retain version-specific exemplar observations without transferring reported gains."
   - id: acmmm-2024-speaker-to-dubber
-    title: From Speaker To Dubber, ACM MM 2024
-    url: https://openreview.net/pdf/c1a849c12d7b851fa543b7af787bbc8fc9a945b7.pdf
+    title: "From Speaker to Dubber: Movie Dubbing with Prosody and Duration Consistency Learning"
+    url: "https://doi.org/10.1145/3664647.3680777"
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Exemplar source record.
+    notes: "Inspected the official ACM publication record and author project abstract for MM 2024 identity and two-stage prosody/duration learning. The bundled PDF is an anonymous submission draft with a placeholder DOI; the published DOI here supplies bibliographic identity, not proof of identical versions."
   - id: acl-2025-minilongbench
-    title: MiniLongBench, ACL 2025
+    title: "MiniLongBench: The Low-cost Long Context Understanding Benchmark for Large Language Models"
     url: https://aclanthology.org/2025.acl-long.560/
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Exemplar source record.
+    notes: "Official ACL Anthology abstract, venue and Outstanding Paper field inspected. It compresses LongBench while comparing rankings and cost; its reported percentages belong to that benchmark protocol."
   - id: acl-2024-mission-impossible
-    title: Mission Impossible Language Models, ACL 2024
+    title: "Mission: Impossible Language Models"
     url: https://aclanthology.org/2024.acl-long.787/
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Exemplar source record.
+    notes: "Official ACL Anthology abstract, venue and Best Paper Award field inspected. The study tests synthetic languages against English through training; the source does not justify denying all LLM language learning."
   - id: neurips-2025-1000-layer-ssl-rl
-    title: 1000 Layer Networks For Self-Supervised RL, NeurIPS 2025
+    title: "1000 Layer Networks for Self-Supervised RL: Scaling Depth Can Enable New Goal-Reaching Capabilities"
     url: https://proceedings.neurips.cc/paper_files/paper/2025/hash/e74ee34cc0f2d0780f34ee77d8fba25b-Abstract-Conference.html
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Exemplar source record.
+    notes: "Official NeurIPS proceedings abstract inspected: depth scaling in unsupervised goal-conditioned RL and tested locomotion/manipulation outcomes. Publication metadata alone is not evidence of award status."
   - id: neurips-2024-var
-    title: Visual Autoregressive Modeling, NeurIPS 2024
+    title: "Visual Autoregressive Modeling: Scalable Image Generation via Next-Scale Prediction"
     url: https://proceedings.neurips.cc/paper_files/paper/2024/hash/9a24e284b187f662681440ba15c416fb-Abstract-Conference.html
     source_type: paper_or_proceeding
-    used_by: [ccf-paper-writer]
+    used_by: [ccf-paper-writer, ccf-visual-composer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Exemplar source record.
+    notes: "Official proceedings abstract inspected for coarse-to-fine next-scale prediction and ImageNet comparisons. Inspected Figures 5 and 6 on PDF pages 8 and 9 at https://arxiv.org/pdf/2404.02905: aligned scaling-law panels and compute frontiers distinguish observations, fits and Pareto envelopes. Main-track Best Paper verified by neurips-2024-best-paper-awards. The arXiv record links CC0; no figure, data or source code is reused. Do not transfer study-specific performance or claim a universal need to replace a task primitive."
   - id: arxiv-api
     title: arXiv API User Manual
-    url: https://arxiv.org/help/api/
+    url: "https://info.arxiv.org/help/api/user-manual.html"
     source_type: background_method
     used_by: [ccf-literature-monitor, ccf-literature-searcher]
     recorded_at: 2026-06-09
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Use for recent preprint discovery and category watch queries; verify final claims against paper pages.
+    notes: "Inspected official query interface, category/date filters, sorting, identifier handling, paging, and Atom response sections. Use for preprint discovery and watch queries; inspect paper versions for scientific claims."
   - id: openreview-api
     title: OpenReview API Documentation
-    url: https://docs.openreview.net/
+    url: "https://docs.openreview.net/reference/api-v2"
     source_type: background_method
     used_by: [ccf-literature-monitor, ccf-literature-searcher, ccf-paper-reviewer]
     recorded_at: 2026-06-09
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Use for venue feed and review-platform paper discovery when public; do not expose private manuscript text in queries.
-  - id: semantic-scholar-api
-    title: Semantic Scholar API Documentation
-    url: https://api.semanticscholar.org/api-docs/
-    source_type: background_method
-    used_by: [ccf-literature-searcher]
-    recorded_at: 2026-06-05
-    verified_at: null
-    stale_after_days: 365
-    notes: Discovery index for paper search and metadata; verify final claims with paper pages when possible.
+    notes: "Inspected official API v2 reference and documentation navigation for paper/venue retrieval. Use public or user-authorized records; API availability does not authorize sending private manuscript text."
   - id: openalex-works-api
     title: OpenAlex Works API Documentation
-    url: https://docs.openalex.org/api-entities/works
+    url: "https://help.openalex.org/data/works/"
     source_type: background_method
     used_by: [ccf-literature-searcher]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Discovery index for works, venues, concepts, and citation metadata.
+    notes: "Inspected the current official Works guide and API overview for work types, identifiers, retrieval, search, and filters. Works include preprints and other document types; indexing does not establish peer review or claim support."
   - id: dblp-search-api
     title: DBLP Search API FAQ
     url: https://dblp.org/faq/How+to+use+the+dblp+search+API.html
     source_type: background_method
     used_by: [ccf-literature-searcher]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Computer-science bibliography discovery source.
+    notes: "Inspected official publication, author, and venue search endpoints and query/format/pagination parameters. Bibliographic metadata supports identity and discovery, not scientific claims."
   - id: crossref-rest-api
     title: Crossref REST API Documentation
     url: https://www.crossref.org/documentation/retrieve-metadata/rest-api/
     source_type: background_method
     used_by: [ccf-literature-searcher]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: DOI and publication metadata discovery source.
+    notes: "Inspected the official REST API guide for DOI metadata, works endpoints, identifiers, licenses, and update relationships. Verify scientific claims in the work itself; metadata is not a result validation."
   - id: acm-artifact-review-badging
     title: ACM Artifact Review And Badging
     url: https://www.acm.org/publications/policies/artifact-review-and-badging-current
     source_type: review_guideline
     used_by: [ccf-experiment-designer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Use for reproducibility, artifact availability, and experiment audit framing.
+    notes: "Inspected ACM's indexed current policy for independent badge categories, functional/reusable levels, and replicated results without author artifacts; cross-checked reproduced results with the official SIGSIM implementation. Venue-specific artifact review remains separate from acceptance and may differ."
   - id: ml-reproducibility-checklist
-    title: Machine Learning Reproducibility Checklist
+    title: "Improving Reproducibility in Machine Learning Research: A Report from the NeurIPS 2019 Reproducibility Program"
     url: https://arxiv.org/abs/2003.12206
     source_type: paper_or_proceeding
     used_by: [ccf-experiment-designer, ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Use for experiment, code, data, hyperparameter, and reporting checklist design.
-  - id: acm-best-paper-awards
-    title: ACM Best Paper Awards
-    url: https://awards.acm.org/best-paper
-    source_type: paper_or_proceeding
-    used_by: [ccf-paper-writer]
-    recorded_at: 2026-06-05
-    verified_at: null
-    stale_after_days: 365
-    notes: Source for non-AI exemplar discovery across DB, systems, HCI, PL, theory, graphics, and security-adjacent venues.
+    notes: "Inspected the arXiv abstract and version record describing the NeurIPS 2019 code policy, reproducibility challenge, and checklist. Historical reproducibility background only; current venue requirements require their own official policy."
   - id: sigcomm-2024-program
     title: SIGCOMM 2024 Program
     url: https://conferences.sigcomm.org/sigcomm/2024/program/
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Non-AI systems/networking exemplar source record.
+    notes: "Inspected the official program, award categories, and K. K. Ramakrishnan keynote abstract. L25GC+ appears in that keynote, not as a SIGCOMM 2024 paper. Use this record for program/keynote context only, with individual papers supplying manuscript observations."
   - id: usenix-security-2024-technical-sessions
     title: USENIX Security 2024 Technical Sessions
     url: https://www.usenix.org/conference/usenixsecurity24/technical-sessions
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Security exemplar and distinguished-paper discovery source.
+    notes: "Inspected the official indexed proceedings/session page and distinguished-paper entries, including HYPERPILL and 5GBaseChecker. Use the linked individual paper for its scientific content and writing observations; the program establishes presentation and award context."
   - id: sigact-best-paper
-    title: SIGACT Best Paper Prize List
+    title: "ACM SIGACT STOC Best Paper Award"
     url: https://sigact.org/prizes/best_paper.html
     source_type: paper_or_proceeding
     used_by: [ccf-paper-writer]
     recorded_at: 2026-06-05
-    verified_at: null
+    verified_at: 2026-10-30
     stale_after_days: 365
-    notes: Theory exemplar discovery source for STOC/FOCS-style papers.
-  - id: local-research-paper-writing
-    title: Local Research Paper Writing Skill
-    url: local-skill:research-paper-writing
-    source_type: local_reference
-    used_by: [ccf-paper-writer]
-    recorded_at: 2026-06-05
-    verified_at: null
-    stale_after_days: 365
-    notes: Local architecture reference; not a public source.
+    notes: "Inspected the official STOC award history, including 2024 and 2025 winners. This page supports STOC award discovery only; it is not a FOCS award list or a substitute for reading each paper."
   - id: local-ccfa-architecture-svgs
     title: Local CCFA Architecture SVG Assets
     url: repo:assets/
@@ -938,11 +1127,11 @@ sources:
     title: The Science of Scientific Writing
     url: https://www.cs.tufts.edu/comp/150FP/archive/george-gopen/sci.html
     source_type: background_method
-    used_by: [ccf-common]
+    used_by: [ccf-common, ccf-humanization, ccf-paper-writer]
     recorded_at: 2026-06-06
-    verified_at: 2026-06-06
+    verified_at: 2026-10-30
     stale_after_days: 3650
-    notes: Opening README quote for the research-storyline positioning; use as writing-argument framing, not as venue policy.
+    notes: "Inspected the authorized original and author explanation at https://georgegopen.com/what-is-the-reader-expectation-approach/ for reader expectations, topic/stress positions, and subject-verb relationships. These are contextual writing principles, not rigid templates or grounds to remove scientific detail. Preserve README quote attribution."
   - id: lecun-manyika-learning-abstractions
     title: Learning Abstractions - A Conversation With Yann LeCun
     url: https://www.amacad.org/publication/daedalus/learning-abstractions-conversation-yann-lecun
@@ -1069,15 +1258,6 @@ sources:
     verified_at: 2026-08-11
     stale_after_days: 365
     notes: Workflow reference for planner-executor separation, recursive breadth-depth research, concurrent retrieval, and scoped context aggregation.
-  - id: paper-qa2
-    title: PaperQA2
-    url: https://github.com/Future-House/paper-qa
-    source_type: background_method
-    used_by: [ccf-literature-searcher, ccf-idea-optimizer]
-    recorded_at: 2026-08-11
-    verified_at: 2026-08-11
-    stale_after_days: 365
-    notes: Workflow reference for scientific-document retrieval, hybrid evidence selection, reranking, contextual compression, and citation-grounded synthesis.
   - id: ai-researcher
     title: AI-Researcher
     url: https://github.com/HKUDS/AI-Researcher
@@ -1314,13 +1494,13 @@ sources:
     notes: Informs recovering propositions before Chinese-to-English restructuring while preserving scientific meaning. Upstream skill is marked CC-BY-NC-SA-4.0; its text and code are not redistributed. CCFA independently states a scoped editing procedure and retains provenance here.
   - id: lieflat-contextual-repairs
     title: Lieflat Less AI Tone - Rules And Measurement Boundaries
-    url: https://github.com/larashero3-dotcom/lieflat-less-ai-tone
+    url: "https://github.com/larashero3-dotcom/lieflat-less-ai-tone/blob/main/SKILL.md"
     source_type: background_method
     used_by: [ccf-humanization, ccf-paper-writer]
     recorded_at: 2026-10-19
-    verified_at: 2026-10-19
+    verified_at: 2026-10-30
     stale_after_days: 180
-    notes: Informs locating a specific expression before editing and retaining meaningful language and author conventions. Chinese corpus rates are not universal scientific-writing thresholds. CCFA keeps authorized argument restructuring and uses contextual diagnostics; no upstream rule text or corpus is bundled.
+    notes: "Inspected upstream skill for minimal edits, information preservation, author style, and contextual interpretation of statistical signals. Adapt these principles with authorized argument restructuring; do not import mandatory pre-edit approval, detector goals, corpus thresholds, or claimed performance gains."
   - id: writing-dna-selective-exemplars
     title: Writing DNA Skill - Reusable Writing Patterns
     url: https://github.com/larashero3-dotcom/writing-dna-skill
@@ -1384,3 +1564,793 @@ sources:
     verified_at: 2026-10-19
     stale_after_days: 180
     notes: Informs separating scientific content checks from visual checks and directing a repair to a concrete region. CCFA reuses its existing optional review and figure-variant preferences rather than requiring fixed agents, repeated generation, or an upstream runtime.
+  - id: google-deep-learning-tuning-playbook
+    title: Deep Learning Tuning Playbook
+    url: https://github.com/google-research/tuning_playbook
+    source_type: background_method
+    used_by:
+    - ccf-research-engineer
+    recorded_at: '2026-10-30'
+    verified_at: '2026-10-30'
+    stale_after_days: 365
+    notes: Working baselines, measured throughput and memory, and diagnosis-driven training changes. Adapt to the task; do not
+      impose supervised-learning assumptions on every study.
+  - id: meta-torchtitan-training-engineering
+    title: 'TorchTitan Update: New Models And Training Components'
+    url: https://pytorch.org/blog/torchtitan-update-new-sota-models-performance-at-scale-titanrl/
+    source_type: background_method
+    used_by:
+    - ccf-research-engineer
+    recorded_at: '2026-10-30'
+    verified_at: '2026-10-30'
+    stale_after_days: 365
+    notes: Official October 21, 2026 update. Reuse inspected training components and extension points; no mandatory TorchTitan
+      dependency or imported performance claims.
+  - id: torchtitan-component-overrides
+    title: TorchTitan Component Overrides
+    url: https://github.com/pytorch/torchtitan/blob/main/torchtitan/config/OVERRIDE.md
+    source_type: background_method
+    used_by:
+    - ccf-research-engineer
+    recorded_at: '2026-10-30'
+    verified_at: '2026-10-30'
+    stale_after_days: 365
+    notes: Local component substitution with explicit configuration and conflict handling. Inspect the installed revision before
+      using APIs; preserve scientific semantics.
+  - id: torchtitan-training-profiling
+    title: TorchTitan Observability
+    url: https://github.com/pytorch/torchtitan/blob/main/torchtitan/observability/README.md
+    source_type: background_method
+    used_by:
+    - ccf-research-engineer
+    recorded_at: '2026-10-30'
+    verified_at: '2026-10-30'
+    stale_after_days: 365
+    notes: Actual profiling and memory observations inform engineering changes. No claim that CCFA supplies GPU tooling or distributed
+      execution.
+  - id: openai-paperbench-reproduction
+    title: PaperBench
+    url: https://openai.com/index/paperbench/
+    source_type: background_method
+    used_by:
+    - ccf-research-engineer
+    - ccf-skill-forger
+    recorded_at: '2026-10-30'
+    verified_at: '2026-10-30'
+    stale_after_days: 365
+    notes: Distinguish implementation, actual execution, and result matching. Its original-codebase restrictions belong to that
+      benchmark and are not a rule for everyday research.
+  - id: anthropic-context-engineering
+    title: Effective Context Engineering For AI Agents
+    url: https://www.anthropic.com/research/effective-context-engineering-for-ai-agents
+    source_type: background_method
+    used_by:
+    - ccf-common
+    - ccf-skill-forger
+    recorded_at: '2026-10-30'
+    verified_at: '2026-10-30'
+    stale_after_days: 365
+    notes: Selective high-signal context and flexible task guidance. Actual compaction, caching, or observation masking depends
+      on the host; no fixed threshold or savings claim.
+  - id: transformer-original-writing-example
+    title: Attention Is All You Need
+    url: https://arxiv.org/abs/1706.03762v7
+    source_type: paper_or_proceeding
+    used_by:
+    - ccf-paper-writer
+    - ccf-paper-to-exemplar
+    recorded_at: '2026-10-30'
+    verified_at: '2026-10-30'
+    stale_after_days: 365
+    notes: Original paper for checking the local Transformer writing card. Source observations are anchored to its actual sections;
+      adaptation suggestions are separate and do not supply claims for new manuscripts.
+  - id: aide2-research-policy-evolution
+    title: Recursive self-improvement of AI research agents
+    url: https://arxiv.org/abs/2609.26457v1
+    source_type: background_method
+    used_by:
+    - ccf-skill-forger
+    recorded_at: '2026-10-30'
+    verified_at: '2026-10-30'
+    stale_after_days: 180
+    notes: 'Research planning reference: separate task search, agent-policy evolution, held-out selection, and final
+      evaluation. No AIDE2 implementation or measured CCFA RSI gain is claimed.'
+  - id: ai-research-teams-linear-attention
+    title: Building AI Research Teams for Autonomous Discovery of Linear Attention Architectures
+    url: https://arxiv.org/abs/2610.28887v1
+    source_type: background_method
+    used_by:
+    - ccf-skill-forger
+    recorded_at: '2026-10-30'
+    verified_at: '2026-10-30'
+    stale_after_days: 180
+    notes: 'Research planning reference: complete research branches, private histories, shared findings, and adaptive
+      allocation. No upstream training-scale reproduction or mandatory additional agents.'
+  - id: agentdiscover-public-search-tasks
+    title: AgentDiscover public search tasks
+    url: https://github.com/mhdfb/AgentDiscover/tree/9fc570321cc5bc585cdd535ac175f6d2fa8e5887
+    source_type: background_method
+    used_by:
+    - ccf-skill-forger
+    recorded_at: '2026-10-30'
+    verified_at: '2026-10-30'
+    stale_after_days: 180
+    notes: Local pilot uses official LABS and circle-packing starter programs and evaluators with a reduced Windows
+      CPU budget. Not a run of the upstream agent, container, graph database, or public leaderboard protocol. Repository
+      license unspecified; downloaded code stays outside publication candidates.
+  - id: fml-bench-research-evaluation
+    title: FML-bench
+    url: https://github.com/qrzou/FML-bench
+    source_type: background_method
+    used_by:
+    - ccf-skill-forger
+    recorded_at: '2026-10-30'
+    verified_at: '2026-10-30'
+    stale_after_days: 180
+    notes: Candidate evaluation framework, not yet run here. Pin task, code, and scorer together. Inspect whether
+      quality constraints in task prose are enforced by the scalar score before choosing a comparison.
+  - id: discern-scientific-reasoning
+    title: 'DISCERN: Can AI Agents Work Like Scientists and Guide Discovery?'
+    url: https://arxiv.org/abs/2609.33357v2
+    source_type: background_method
+    used_by:
+    - ccf-skill-forger
+    recorded_at: '2026-10-30'
+    verified_at: '2026-10-30'
+    stale_after_days: 180
+    notes: Planned evaluation of data checks, analysis under confounds, and hypothesis revision. Reviewed abstract
+      and release information; no DISCERN task run or measured improvement.
+  - id: autonomous-science-bench
+    title: 'Autonomous Science Bench: Evaluating AI Agents for Autonomous Scientific Discovery'
+    url: https://arxiv.org/abs/2610.18449v1
+    source_type: background_method
+    used_by:
+    - ccf-skill-forger
+    recorded_at: '2026-10-30'
+    verified_at: '2026-10-30'
+    stale_after_days: 180
+    notes: Planning reference for distinct discovery and held-out learning gates under experiment budgets. Reviewed
+      abstract and release information; no campaign run or imported leaderboard comparison.
+  - id: autoresearch-eval-failures
+    title: 'How Do Agents Fail on AutoResearch: End-to-End Diagnostic Evaluation on 100 Real-World Frontier Research
+      Tasks'
+    url: https://arxiv.org/abs/2608.14905v3
+    source_type: background_method
+    used_by:
+    - ccf-skill-forger
+    recorded_at: '2026-10-30'
+    verified_at: '2026-10-30'
+    stale_after_days: 180
+    notes: Failure diagnosis reference. The paper explicitly leaves open whether orchestration interventions can close
+      observed deficits; adding a harness is not demonstrated to solve them.
+  - id: scienceagentbench-verified-split
+    title: ScienceAgentBench
+    url: https://github.com/OSU-NLP-Group/ScienceAgentBench
+    source_type: background_method
+    used_by:
+    - ccf-skill-forger
+    recorded_at: '2026-10-30'
+    verified_at: '2026-10-30'
+    stale_after_days: 180
+    notes: Candidate workflow benchmark. Prefer the verified release announced April 30, 2026 and pin its matching
+      evaluation data and code. No benchmark run performed here; respect restricted redistribution of its evaluation
+      package.
+  - id: chi-2024-constrained-highlighting
+    title: "Constrained Highlighting in a Document Reader can Improve Reading Comprehension"
+    url: "https://chatw.ch/files/QUANT-Joshi2024.pdf"
+    source_type: "paper_or_proceeding"
+    used_by: [ccf-paper-writer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected author PDF abstract and introduction: selective highlighting theory motivates a UI constraint, followed by a between-subjects comprehension study. Publication identity is DOI 10.1145/3613904.3642314. Use located argument observations, not generic HCI instructions attributed to the paper."
+  - id: popl-2024-megalibm
+    title: "Implementation and Synthesis of Math Library Functions"
+    url: "https://popl24.sigplan.org/details/POPL-2024-popl-research-papers/34/Implementation-and-Synthesis-of-Math-Library-Functions"
+    source_type: "paper_or_proceeding"
+    used_by: [ccf-paper-writer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected official POPL abstract and Distinguished Paper label; cross-checked author arXiv 2311.01515. Development obstacles lead to separate semantic checks, modular components, and tuning controls in MegaLibm. Reuse argument relationships without inventing proof or section-level observations."
+  - id: sigmod-2024-polardb-mp
+    title: "PolarDB-MP: A Multi-Primary Cloud-Native Database via Disaggregated Shared Memory"
+    url: "https://cighao.com/papers/polardb_mp.pdf"
+    source_type: "paper_or_proceeding"
+    used_by: [ccf-paper-writer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected author PDF abstract and introduction, DOI 10.1145/3626246.3653377: write and transaction bottlenecks motivate disaggregated memory/storage and distinct fusion roles. Official https://2024.sigmod.org/sigmod_awards.shtml confirms Industry Track Best Paper, not Research Track Best Paper."
+  - id: usenix-security-2024-inspectre-gadget
+    title: "InSpectre Gadget: Inspecting the Residual Attack Surface of Cross-privilege Spectre v2"
+    url: "https://www.usenix.org/system/files/usenixsecurity24-wiebing.pdf"
+    source_type: "paper_or_proceeding"
+    used_by: [ccf-paper-writer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected official proceedings PDF abstract and Section 1. Prior scanners' pattern restrictions and overapproximation motivate explicit constraints and exploitation models. Used only for located problem-to-method writing observations; the source's attack claims do not transfer to other work."
+  - id: diverse-scientific-ideas-training-2026
+    title: "Training Reasoning Models to Generate Diverse Scientific Ideas"
+    url: "https://arxiv.org/html/2610.22324v1"
+    source_type: "paper_or_proceeding"
+    used_by: [ccf-idea-optimizer, ccf-literature-searcher]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected Section 2 and Appendix E with the research-route agent. Adapt substantive candidate-set deduplication while retaining the strongest route. Prompt-only diversity can trade off quality; the paper's principal training gains are not implemented or claimed by these skills."
+  - id: scideator-facet-recombination
+    title: "Scideator: Human-LLM Scientific Idea Generation Grounded in Research-Paper Facet Recombination"
+    url: "https://arxiv.org/html/2409.14634v1"
+    source_type: "paper_or_proceeding"
+    used_by: [ccf-idea-optimizer, ccf-literature-searcher]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected Sections 3.1-3.2 with the research-route agent for near/far analogical retrieval and purpose, mechanism, and evaluation facets. Adapt selective relation-based inspiration; do not import binary novelty judgment or open-ended iteration."
+  - id: scimon-contextual-inspiration
+    title: "SciMON: Scientific Inspiration Machines Optimized for Novelty"
+    url: "https://aclanthology.org/2024.acl-long.18/"
+    source_type: "paper_or_proceeding"
+    used_by: [ccf-idea-optimizer, ccf-literature-searcher]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected the official abstract and paper Sections 1-2 with the research-route agent for contextual inspirations and prior-work comparisons. Adapt relation-based retrieval and comparison, without an iterate-until-novel loop or a claim of reproducing the system."
+  - id: flashattention-io-awareness-writing
+    title: "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness"
+    url: "https://arxiv.org/abs/2205.14135v2"
+    source_type: "paper_or_proceeding"
+    used_by: [ccf-paper-writer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Inspected the v2 abstract for the distinction between compute complexity and wall-clock behavior, GPU memory traffic, and tiling as the proposed operation. Used as a located writing example only; no speed figures, superiority claims, or full-paper replication are transferred."
+
+  - id: figstudy-iccv2025-calimatch-adaptive-calibration-for-improving-safe-semi-supervised-learni
+    title: "CaliMatch: Adaptive Calibration for Improving Safe Semi-supervised Learning"
+    url: "https://openaccess.thecvf.com/content/ICCV2025/html/Bae_CaliMatch_Adaptive_Calibration_for_Improving_Safe_Semi-supervised_Learning_ICCV_2025_paper.html"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Figure 2 (PDF p. 7); Figure 3 (PDF p. 7). Design observations: Rows compare two methods; columns compare four datasets. Paired bars show mean confidence and observed accuracy in each confidence bin. / Three aligned panels show classification accuracy, unseen-class F1 and accepted-sample ratio as a threshold increases; both methods retain their identities and uncertainty bands.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+
+  - id: figstudy-cvpr2025-image-generation-diversity-issues-and-how-to-tame-them
+    title: "Image Generation Diversity Issues and How to Tame Them"
+    url: "https://openaccess.thecvf.com/content/CVPR2025/html/Dombrowski_Image_Generation_Diversity_Issues_and_How_to_Tame_Them_CVPR_2025_paper.html"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Figure 1 (PDF p. 1); Figure 4 (PDF p. 6). Design observations: A qualitative image montage sits beside horizontally grouped category bars with intervals and a vertical diversity reference. / Many feature extractors produce diversity curves against sample ratio; the theoretical limit is drawn as a distinct reference.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+
+  - id: figstudy-cvpr2025-towards-precise-scaling-laws-for-video-diffusion-transformers
+    title: "Towards Precise Scaling Laws for Video Diffusion Transformers"
+    url: "https://openaccess.thecvf.com/content/CVPR2025/html/Yin_Towards_Precise_Scaling_Laws_for_Video_Diffusion_Transformers_CVPR_2025_paper.html"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Figure 4 (PDF p. 6); Figure 6 (PDF p. 7). Design observations: Two training-token budgets have batch-size by learning-rate heatmaps; red star markers indicate predicted optima and predicted losses. / Two profile panels compare loss versus model size at fixed compute budgets under optimal and suboptimal hyperparameters; a third panel relates fitted minima to compute.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+
+  - id: figstudy-cvpr2025-seeking-consistent-flat-minima-for-better-domain-generalization-via-refi
+    title: "Seeking Consistent Flat Minima for Better Domain Generalization via Refining Loss Landscapes"
+    url: "https://openaccess.thecvf.com/content/CVPR2025/html/Li_Seeking_Consistent_Flat_Minima_for_Better_Domain_Generalization_via_Refining_CVPR_2025_paper.html"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Figure 2 (PDF p. 4). Design observations: A two-row by four-domain grid contrasts loss contours without and with landscape refinement; the trained model is marked by a plus.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+
+  - id: figstudy-cvpr2026-post-training-feature-pruning-for-fundus-images-classification
+    title: "Post-training Feature Pruning for Fundus Images Classification"
+    url: "https://openaccess.thecvf.com/content/CVPR2026/html/Pham_Post-training_Feature_Pruning_for_Fundus_Images_Classification_CVPR_2026_paper.html"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Figure 3 (PDF p. 7). Design observations: Columns are datasets and rows are before/after feature pruning; points are colored by class.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+
+  - id: figstudy-cvpr2026-poca-pareto-optimal-curriculum-alignment-for-visual-text-generation
+    title: "POCA: Pareto-Optimal Curriculum Alignment for Visual Text Generation"
+    url: "https://openaccess.thecvf.com/content/CVPR2026/html/Fan_POCA_Pareto-Optimal_Curriculum_Alignment_for_Visual_Text_Generation_CVPR_2026_paper.html"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Figure 2 (PDF p. 2); Figure 8 (PDF p. 7). Design observations: The left panel colors samples by whether two reward advantages conflict; zero axes define sign quadrants. The right panel places resulting methods in a text-accuracy versus CLIP-score plane. / Three horizontal stacked percentage rows compare human preferences for text accuracy, prompt following and aesthetics across three methods.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+
+  - id: figstudy-cvpr2026-ecoalign-an-economically-rational-framework-for-efficient-lvlm-alignment
+    title: "EcoAlign: An Economically Rational Framework for Efficient LVLM Alignment"
+    url: "https://openaccess.thecvf.com/content/CVPR2026/html/Cheng_EcoAlign_An_Economically_Rational_Framework_for_Efficient_LVLM_Alignment_CVPR_2026_paper.html"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Figure 3 (PDF p. 7). Design observations: Three polar grouped-bar panels compare dynamic, myopic and fixed-horizon policies over task categories for three model backends.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+
+  - id: figstudy-iccv2025-scendi-score-prompt-aware-diversity-evaluation-via-schur-complement-of-c
+    title: "Scendi Score: Prompt-Aware Diversity Evaluation via Schur Complement of CLIP Embeddings"
+    url: "https://openaccess.thecvf.com/content/ICCV2025/html/Ospanov_Scendi_Score_Prompt-Aware_Diversity_Evaluation_via_Schur_Complement_of_CLIP_ICCV_2025_paper.html"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Figure 3 (PDF p. 5); Figure 4 (PDF p. 6). Design observations: A two-by-two controlled grid changes age and gender diversity while fixing the text-prompt distribution; a companion interpolated surface summarizes the diversity score. / A two-row grid changes whether cat breeds are specified in prompts; columns compare conventional and proposed diversity metrics as the number of breeds increases, with sample montages beneath.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+
+  - id: figstudy-eccv2026-quantile-adaptive-temperature-scaling-for-confidence-calibration
+    title: "Quantile‑Adaptive Temperature Scaling for Confidence Calibration"
+    url: "https://eccv.ecva.net/virtual/2026/poster/4026"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Figure 2 (PDF p. 10). Design observations: Each evaluation setting is a point at baseline top-1 accuracy versus the proposed method's accuracy difference; colors identify standard, long-tailed, shift, medical and textual settings. A zero-gain line separates gains from losses.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+
+  - id: figstudy-eccv2026-pushing-the-limits-of-high-resolution-weather-forecasting-through-data-s
+    title: "Pushing the Limits of High-Resolution Weather Forecasting through Data Scaling"
+    url: "https://eccv.ecva.net/virtual/2026/poster/4737"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Fig. 2 (PDF p. 5); Fig. 4 (PDF p. 10). Design observations: Pressure-level variables use tall pressure-by-lead-time heatmaps; surface variables use compact horizontal strips. A common diverging color scale represents relative RMSE differences. / A three-row by four-variable grid plots error against training-data range at several forecast lead times with observed points and power-law curves.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: acl-2025-quantized-calibration
+    title: "Quantized Can Still Be Calibrated: A Unified Framework to Calibration in Quantized Large Language Models"
+    url: "https://aclanthology.org/2025.acl-long.1473/"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Fig. 1 (PDF p. 4); Fig. 3 (PDF p. 8). Design observations: 正确与错误回答各占一幅并排CDF；同一颜色标识模型状态，黑色虚线给理想参考。 / 三个并列可靠性图，各分箱内并排比较全精度、校准前、校准后；共同虚线对角参考。. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: acl-2026-multi-turn-calibration
+    title: "Confidence Should Be Calibrated More Than One Turn Deep"
+    url: "https://aclanthology.org/2026.acl-long.1787/"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Fig. 2a (PDF p. 4); Fig. 2b (PDF p. 4); Fig. 5 (PDF p. 8). Design observations: 每个数据集一列，上下分别首轮/被质疑后；以箭头连接，同一对角线和柱形/差距填充。 / 每个数据集两个100%堆叠柱，分别为置信度升/降；四色表示正确→正确、正确→错、错→错、错→正确。 / 三个数据集并排小图，横轴对话轮数，纵轴准确率；策略颜色/标记跨面板不变，共用顶端图例。. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: acl-2025-m-rewardbench
+    title: "M-RewardBench: Evaluating Reward Models in Multilingual Settings"
+    url: "https://aclanthology.org/2025.acl-long.3/"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Fig. 1 (PDF p. 1); Fig. 2 (PDF p. 4); Fig. 3 (PDF p. 5); Fig. 5 (PDF p. 7). Design observations: 每个模型为一个点，横轴英语基准、纵轴多语言均值；按模型类别着色，虚线y=x，重点模型少量直标。 / 模型按平均跨语言一致性排序，柱色表示奖励模型类别，误差线展示语言变化。 / 上排为一致性分数直方图，下排在完全一致的x分箱里展示四类任务的百分比堆叠条；阈值虚线贯穿分箱解释。 / 资源水平、语系、文字系统各占一幅横向条形小图，按各自类别水平展示多语言表现。. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: nmi-2026-random-noise-calibration
+    title: "Brain-inspired warm-up training with random noise for uncertainty calibration"
+    url: "https://www.nature.com/articles/s42256-026-01215-x"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Fig. 1d; Fig. 3b,e–j; Fig. 4a,d–f; Fig. 5b,d. Design observations: 中心热图以网络深度和训练集规模为两维、校准误差着色；虚线框选特定行列，左右连接对应可靠性小图。 / 校准前后输入空间散点使用同一概率色标；下方对齐logit分布、logit–probability散点和置信度横向直方图。 / loss–accuracy和confidence–accuracy平面中用点和箭头表现训练方向，标出同准确率或同训练长度对照，右侧给轮次曲线。 / 上方叠放未知数据置信度横向直方图和箱图，下方ROC与重复实验AUROC箱图；方法色保持不变。. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: nmi-2025-visual-language-alignment
+    title: "High-level visual representations in the human brain are aligned with large language models"
+    url: "https://www.nature.com/articles/s42256-025-01072-0"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Fig. 3; Fig. 4e. Design observations: 四个脑区分列，每列共享模型/信息层级行；横条叠加参与者散点，完整caption基线在每列用竖虚线延伸。 / 大主图用对数训练数据量对比模型脑区对齐度，不同训练目标着色；右侧两个相同语法的小图给其他脑区。. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: nmi-2025-identity-flattening
+    title: "Large language models that replace human participants can harmfully misportray and flatten identity groups"
+    url: "https://www.nature.com/articles/s42256-025-00986-z"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Fig. 4; Fig. 5. Design observations: 模型为大行、多个多样性指标为列，每个小图内按身份组排列LLM点区间与人类参考叉号，组顺序完全复用。 / 每个群体内纵向堆叠人类基线及三档temperature点区间，虚线隔开群体，列维度是不同多样性指标。. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: nmi-2026-agent-collaboration
+    title: "Capable language models can outgrow the benefits of collaboration"
+    url: "https://www.nature.com/articles/s42256-026-01268-y"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Fig. 1; Fig. 2; Fig. 3. Design observations: 三家模型族分列，横轴能力指标、纵轴任务表现；通信拓扑用形状区分，单体用虚线，重点能力段标注增减。 / 六任务小多图，每幅重复五种架构箱图和均值菱形，顶部少量显示相对单体的变化方向。 / 两个能力级别各一幅小图，横轴离散agent数量，中央化/去中央化两条折线，水平虚线为对应单体基线。. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: nmi-2026-specgp
+    title: "SpecGP as a transformer-based model for predicting energy-adaptable structural spectra of glycopeptides"
+    url: "https://www.nature.com/articles/s42256-026-01246-4"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Fig. 3a; Fig. 3b. Design observations: 两类离子在共同能量纵轴的左右分别画计数横条，零点居中，形成蝶形分布。 / 两种能量条件的离子峰在共享m/z轴上分别向上和向下画stem，离子类型用颜色区分，局部结构标注靠近相关峰。. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: nature-2026-alphagenome
+    title: "Advancing regulatory variant effect prediction with AlphaGenome"
+    url: "https://www.nature.com/articles/s41586-025-10014-0"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Fig. 3b,c; Fig. 3a. Design observations: 基因注释、剪接连线、位点使用、预测RNA-seq与观察RNA-seq纵向排列，共用基因组x坐标；REF/ALT两色复用，变异位置以一条竖虚线贯通。 / 模型为列、可预测模态为行，以实心方块/圆点区分是否支持，少量脚注补充输出分辨率。. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: figstudy-icml2025-parameters-vs-flops-scaling-laws-for-optimal-sparsity-for-mixture-of-exp
+    title: "Parameters vs FLOPs: Scaling Laws for Optimal Sparsity for Mixture-of-Experts Language Models"
+    url: "https://proceedings.mlr.press/v267/abnar25a.html"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Figure 2 (PDF p. 3); Figures 3 and 4 (PDF p. 5). Design observations: Three aligned profile panels vary sparsity, total parameters, and active parameters; curve color represents the held condition and stars identify optima. / A three-panel row plots optimal total size, active size, and loss versus sparsity; a separate panel shows optimal sparsity versus total size across budgets.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: figstudy-icml2025-improving-multi-class-calibration-through-normalization-aware-isotonic-t
+    title: "Improving Multi-Class Calibration through Normalization-Aware Isotonic Techniques"
+    url: "https://proceedings.mlr.press/v267/arad25a.html"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Figure 3 (PDF p. 8). Design observations: Two square method-by-method heatmaps report comparison win fractions for calibration error and negative log-likelihood.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: figstudy-icml2025-distillation-scaling-laws
+    title: "Distillation Scaling Laws"
+    url: "https://proceedings.mlr.press/v267/busbridge25a.html"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Figure 2 (PDF p. 4). Design observations: Two neighboring panels hold different teacher sizes; student parameter size is horizontal, loss vertical, and compute budget is the curve grouping.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: figstudy-icml2025-pareto-merging-multi-objective-optimization-for-preference-aware-model-m
+    title: "Pareto Merging: Multi-Objective Optimization for Preference-Aware Model Merging"
+    url: "https://proceedings.mlr.press/v267/chen25af.html"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Figures 4 and 5 (PDF p. 7). Design observations: Accuracy-accuracy scatter plots compare clouds of preference-selected solutions with isolated baseline solutions using distinct symbols.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: figstudy-iclr2025-reassessing-how-to-compare-and-improve-the-calibration-of-machine-learni
+    title: "Reassessing How to Compare and Improve the Calibration of Machine Learning Models"
+    url: "https://proceedings.iclr.cc/paper_files/paper/2025/hash/9a30247fcca95299c2fd48d4667282de-Abstract-Conference.html"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Figure 2 (PDF p. 10). Design observations: A two-by-two grid places calibration-sharpness curves over reliability diagrams for two recalibration methods; row roles and column identities stay aligned.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: figstudy-iclr2026-the-art-of-scaling-reinforcement-learning-compute-for-llms
+    title: "The Art of Scaling Reinforcement Learning Compute for LLMs"
+    url: "https://proceedings.iclr.cc/paper_files/paper/2026/hash/75ea88aca02640cca54c1231db8cacdd-Abstract-Conference.html"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 365
+    notes: "Visually inspected official paper figures: Figure 2 (PDF p. 2); Figure 4 (PDF p. 5). Design observations: One plot overlays multiple RL recipes; marker types separate fitting observations and later evaluations, while solid and dotted lines separate fit and extrapolation. / Three side-by-side line panels separately compare off-policy algorithms, loss definitions, and numeric precision against a shared compute axis.. Original Python adaptations use supplied data or explicitly labeled synthetic demos; published results and artwork are not bundled or transferred."
+  - id: figure-inventory-acl-2025-listing
+    title: "ACL 2025 paper inventory (listing)"
+    url: "https://aclanthology.org/events/acl-2025/"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: All ACL-named volumes and Findings ACL in official event listing; workshop proceedings excluded; volume forewords excluded. Packaged records for this venue/year: 3353. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figure-inventory-acl-2026-listing
+    title: "ACL 2026 paper inventory (listing)"
+    url: "https://aclanthology.org/events/acl-2026/"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: All ACL-named volumes and Findings ACL in official event listing; workshop proceedings excluded; volume forewords excluded. Packaged records for this venue/year: 4813. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figure-inventory-cvpr-2025-listing
+    title: "CVPR 2025 paper inventory (listing)"
+    url: "https://openaccess.thecvf.com/CVPR2025?day=all"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: All deduplicated main-conference entries in the official day=all listing; figure inspection is separately counted.. Packaged records for this venue/year: 2871. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figure-inventory-cvpr-2026-listing
+    title: "CVPR 2026 paper inventory (listing)"
+    url: "https://openaccess.thecvf.com/CVPR2026?day=all"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: All deduplicated main-conference entries in the official day=all listing; figure inspection is separately counted.. Packaged records for this venue/year: 4042. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figure-inventory-eccv-2026-listing
+    title: "ECCV 2026 paper inventory (listing)"
+    url: "https://eccv.ecva.net/Conferences/2026/AcceptedPapers"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: All deduplicated entries on the available official listing, not every PDF or every figure. ECCV listing is preliminary.. Packaged records for this venue/year: 2834. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figure-inventory-iccv-2025-listing
+    title: "ICCV 2025 paper inventory (listing)"
+    url: "https://openaccess.thecvf.com/ICCV2025?day=all"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: All deduplicated main-conference entries in the official day=all listing; figure inspection is separately counted.. Packaged records for this venue/year: 2701. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figure-inventory-iclr-2025-listing
+    title: "ICLR 2025 paper inventory (listing)"
+    url: "https://proceedings.iclr.cc/paper_files/paper/2025"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: main proceedings. Packaged records for this venue/year: 3703. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figure-inventory-iclr-2026-listing
+    title: "ICLR 2026 paper inventory (listing)"
+    url: "https://proceedings.iclr.cc/paper_files/paper/2026"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: main conference proceedings; page declares 5351 papers and the harvested count matches. Packaged records for this venue/year: 5351. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figure-inventory-icml-2025-listing
+    title: "ICML 2025 paper inventory (listing)"
+    url: "https://proceedings.mlr.press/v267/"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: main proceedings. Packaged records for this venue/year: 3330. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figure-inventory-icml-2026-listing
+    title: "ICML 2026 paper inventory (listing)"
+    url: "https://proceedings.mlr.press/v306/"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: main proceedings. Packaged records for this venue/year: 6552. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figure-inventory-nature-2026-listing
+    title: "Nature 2026 paper inventory (listing)"
+    url: "https://www.nature.com/nature/volumes/649"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: Selected AI research papers with inspected publisher figures; not all AI papers in this journal or Nature Portfolio.. Packaged records for this venue/year: 1. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figure-inventory-nature-machine-intelligence-2025-listing
+    title: "Nature Machine Intelligence 2025 paper inventory (listing)"
+    url: "https://www.nature.com/natmachintell/volumes/7"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: All publisher-deposited Crossref records for NMI ISSN 2522-5839 returned for 2025-01-01 to 2025-12-31; includes editorials/corrections/content types not resolved as research articles. Not a census of all Nature Portfolio AI papers.. Packaged records for this venue/year: 206. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figure-inventory-nature-machine-intelligence-2025-metadata
+    title: "Nature Machine Intelligence 2025 paper inventory (metadata)"
+    url: "https://api.crossref.org/journals/2522-5839/works?filter=from-pub-date:2025-01-01,until-pub-date:2025-12-31&rows=1000"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: All publisher-deposited Crossref records for NMI ISSN 2522-5839 returned for 2025-01-01 to 2025-12-31; includes editorials/corrections/content types not resolved as research articles. Not a census of all Nature Portfolio AI papers.. Packaged records for this venue/year: 206. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figure-inventory-nature-machine-intelligence-2026-listing
+    title: "Nature Machine Intelligence 2026 paper inventory (listing)"
+    url: "https://www.nature.com/natmachintell/volumes/8"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: All publisher-deposited Crossref records for NMI ISSN 2522-5839 returned for 2026-01-01 to 2026-10-30; includes editorials/corrections/content types not resolved as research articles. Not a census of all Nature Portfolio AI papers.. Packaged records for this venue/year: 158. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figure-inventory-nature-machine-intelligence-2026-metadata
+    title: "Nature Machine Intelligence 2026 paper inventory (metadata)"
+    url: "https://api.crossref.org/journals/2522-5839/works?filter=from-pub-date:2026-01-01,until-pub-date:2026-10-30&rows=1000"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: All publisher-deposited Crossref records for NMI ISSN 2522-5839 returned for 2026-01-01 to 2026-10-30; includes editorials/corrections/content types not resolved as research articles. Not a census of all Nature Portfolio AI papers.. Packaged records for this venue/year: 158. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figure-inventory-nature-methods-2025-listing
+    title: "Nature Methods 2025 paper inventory (listing)"
+    url: "https://www.nature.com/nmeth/volumes/22"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: Selected AI research papers with inspected publisher figures; not all AI papers in this journal or Nature Portfolio.. Packaged records for this venue/year: 1. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figure-inventory-neurips-2025-listing
+    title: "NeurIPS 2025 paper inventory (listing)"
+    url: "https://neurips.cc/Downloads/2025"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: all official Downloads page links with Poster class; not a claim of complete published proceedings or a single track. Proceedings fetch failed.. Packaged records for this venue/year: 5857. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figure-inventory-neurips-2026-listing
+    title: "NeurIPS 2026 paper inventory (listing)"
+    url: "https://neurips.cc/Downloads/2026"
+    source_type: paper_or_proceeding
+    used_by: [ccf-visual-composer]
+    recorded_at: 2026-10-30
+    verified_at: 2026-10-30
+    stale_after_days: 90
+    notes: "Inspected available inventory metadata on 2026-10-30. Scope: official poster list; not yet published proceedings. Packaged records for this venue/year: 9117. This verifies the listing's metadata provenance, not every paper, figure, result or publication status. Individual figure observations are registered separately."
+  - id: figstudy-more-iclr2025-ada-k-routing-boosting-the-efficiency-of-moe-based-llms
+    title: 'Ada-K Routing: Boosting the Efficiency of MoE-based LLMs'
+    url: https://proceedings.iclr.cc/paper_files/paper/2025/hash/df22a19686a558e74f038e6277a51f68-Abstract-Conference.html
+    source_type: paper_or_proceeding
+    used_by:
+    - ccf-visual-composer
+    recorded_at: '2026-10-31'
+    verified_at: '2026-10-31'
+    stale_after_days: 365
+    notes: 'Actually downloaded and visually inspected Figure 2 on PDF page 7. PDF: https://proceedings.iclr.cc/paper_files/paper/2025/file/df22a19686a558e74f038e6277a51f68-Paper-Conference.pdf. Official conference-paper PDF inspected. Design cards adapt the observed analytical relationships with original Python and supplied or explicitly labeled simulated data; no paper artwork, author code, published numerical results, statistical conclusions or award claims are transferred.'
+  - id: figstudy-more-iclr2025-adaptive-data-optimization-dynamic-sample-selection-with-scaling-laws
+    title: 'Adaptive Data Optimization: Dynamic Sample Selection with Scaling Laws'
+    url: https://proceedings.iclr.cc/paper_files/paper/2025/hash/923285deb805c3e14e1aeebc9854d644-Abstract-Conference.html
+    source_type: paper_or_proceeding
+    used_by:
+    - ccf-visual-composer
+    recorded_at: '2026-10-31'
+    verified_at: '2026-10-31'
+    stale_after_days: 365
+    notes: 'Actually downloaded and visually inspected Figure 2 on PDF page 2; Figure 3 on PDF page 3. PDF: https://proceedings.iclr.cc/paper_files/paper/2025/file/923285deb805c3e14e1aeebc9854d644-Paper-Conference.pdf. Official conference-paper PDF inspected. Design cards adapt the observed analytical relationships with original Python and supplied or explicitly labeled simulated data; no paper artwork, author code, published numerical results, statistical conclusions or award claims are transferred.'
+  - id: figstudy-more-iclr2025-balancing-act-diversity-and-consistency-in-large-language-model-ensembles
+    title: 'Balancing Act: Diversity and Consistency in Large Language Model Ensembles'
+    url: https://proceedings.iclr.cc/paper_files/paper/2025/hash/a5554e55d7a21e62d0d7a028ec0ea1c7-Abstract-Conference.html
+    source_type: paper_or_proceeding
+    used_by:
+    - ccf-visual-composer
+    recorded_at: '2026-10-31'
+    verified_at: '2026-10-31'
+    stale_after_days: 365
+    notes: 'Actually downloaded and visually inspected Figure 3 on PDF page 7. PDF: https://proceedings.iclr.cc/paper_files/paper/2025/file/a5554e55d7a21e62d0d7a028ec0ea1c7-Paper-Conference.pdf. Official conference-paper PDF inspected. Design cards adapt the observed analytical relationships with original Python and supplied or explicitly labeled simulated data; no paper artwork, author code, published numerical results, statistical conclusions or award claims are transferred.'
+  - id: figstudy-more-iclr2026-atlas-adaptive-transfer-scaling-laws-for-multilingual-pretraining-finetunin
+    title: 'ATLAS: Adaptive Transfer Scaling Laws for Multilingual Pretraining, Finetuning, and Decoding the Curse of Multilinguality'
+    url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/35c26a810471039b3427e524565cbef9-Abstract-Conference.html
+    source_type: paper_or_proceeding
+    used_by:
+    - ccf-visual-composer
+    recorded_at: '2026-10-31'
+    verified_at: '2026-10-31'
+    stale_after_days: 365
+    notes: 'Actually downloaded and visually inspected Figure 1 on PDF page 2; Figure 2 on PDF page 5; Figure 3 on PDF page 6. PDF: https://proceedings.iclr.cc/paper_files/paper/2026/file/35c26a810471039b3427e524565cbef9-Paper-Conference.pdf. Official conference-paper PDF inspected. Design cards adapt the observed analytical relationships with original Python and supplied or explicitly labeled simulated data; no paper artwork, author code, published numerical results, statistical conclusions or award claims are transferred.'
+  - id: figstudy-more-iclr2026-autoqd-automatic-discovery-of-diverse-behaviors-with-quality-diversity-opti
+    title: 'AutoQD: Automatic Discovery of Diverse Behaviors with Quality-Diversity Optimization'
+    url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/a137760f1bc695ce695c328919b553de-Abstract-Conference.html
+    source_type: paper_or_proceeding
+    used_by:
+    - ccf-visual-composer
+    recorded_at: '2026-10-31'
+    verified_at: '2026-10-31'
+    stale_after_days: 365
+    notes: 'Actually downloaded and visually inspected Figure 3 on PDF page 8; Figure 4 on PDF page 9. PDF: https://proceedings.iclr.cc/paper_files/paper/2026/file/a137760f1bc695ce695c328919b553de-Paper-Conference.pdf. Official conference-paper PDF inspected. Design cards adapt the observed analytical relationships with original Python and supplied or explicitly labeled simulated data; no paper artwork, author code, published numerical results, statistical conclusions or award claims are transferred.'
+  - id: figstudy-more-iclr2026-agilepruner-an-empirical-study-of-attention-and-diversity-for-adaptive-visu
+    title: 'AgilePruner: An Empirical Study of Attention and Diversity for Adaptive Visual Token Pruning in Large Vision-Language Models'
+    url: https://proceedings.iclr.cc/paper_files/paper/2026/hash/6c9dcffe0b9cc3b05d83bcdddb250690-Abstract-Conference.html
+    source_type: paper_or_proceeding
+    used_by:
+    - ccf-visual-composer
+    recorded_at: '2026-10-31'
+    verified_at: '2026-10-31'
+    stale_after_days: 365
+    notes: 'Actually downloaded and visually inspected Figure 3a on PDF page 6. PDF: https://proceedings.iclr.cc/paper_files/paper/2026/file/6c9dcffe0b9cc3b05d83bcdddb250690-Paper-Conference.pdf. Official conference-paper PDF inspected. Design cards adapt the observed analytical relationships with original Python and supplied or explicitly labeled simulated data; no paper artwork, author code, published numerical results, statistical conclusions or award claims are transferred.'
+  - id: figstudy-more-icml2025-a-unified-approach-to-routing-and-cascading-for-llms
+    title: A Unified Approach to Routing and Cascading for LLMs
+    url: https://proceedings.mlr.press/v267/dekoninck25a.html
+    source_type: paper_or_proceeding
+    used_by:
+    - ccf-visual-composer
+    recorded_at: '2026-10-31'
+    verified_at: '2026-10-31'
+    stale_after_days: 365
+    notes: 'Actually downloaded and visually inspected Figure 2 on PDF page 7. PDF: https://raw.githubusercontent.com/mlresearch/v267/main/assets/dekoninck25a/dekoninck25a.pdf. Official conference-paper PDF inspected. Design cards adapt the observed analytical relationships with original Python and supplied or explicitly labeled simulated data; no paper artwork, author code, published numerical results, statistical conclusions or award claims are transferred.'
+  - id: figstudy-more-icml2025-best-route-adaptive-llm-routing-with-test-time-optimal-compute
+    title: 'BEST-Route: Adaptive LLM Routing with Test-Time Optimal Compute'
+    url: https://proceedings.mlr.press/v267/ding25d.html
+    source_type: paper_or_proceeding
+    used_by:
+    - ccf-visual-composer
+    recorded_at: '2026-10-31'
+    verified_at: '2026-10-31'
+    stale_after_days: 365
+    notes: 'Actually downloaded and visually inspected Figure 2 on PDF page 5; Figures 3 and 4 on PDF page 7. PDF: https://raw.githubusercontent.com/mlresearch/v267/main/assets/ding25d/ding25d.pdf. Official conference-paper PDF inspected. Design cards adapt the observed analytical relationships with original Python and supplied or explicitly labeled simulated data; no paper artwork, author code, published numerical results, statistical conclusions or award claims are transferred.'
+  - id: figstudy-more-icml2025-beyond-one-hot-labels-semantic-mixing-for-model-calibration
+    title: 'Beyond One-Hot Labels: Semantic Mixing for Model Calibration'
+    url: https://proceedings.mlr.press/v267/luo25k.html
+    source_type: paper_or_proceeding
+    used_by:
+    - ccf-visual-composer
+    recorded_at: '2026-10-31'
+    verified_at: '2026-10-31'
+    stale_after_days: 365
+    notes: 'Actually downloaded and visually inspected Figure 3 on PDF page 8; Figure 5 on PDF page 9. PDF: https://raw.githubusercontent.com/mlresearch/v267/main/assets/luo25k/luo25k.pdf. Official conference-paper PDF inspected. Design cards adapt the observed analytical relationships with original Python and supplied or explicitly labeled simulated data; no paper artwork, author code, published numerical results, statistical conclusions or award claims are transferred.'
+  - id: figstudy-more-icml2026-adversarial-vulnerability-from-interference-between-features-in-superpositi
+    title: Adversarial Vulnerability from Interference Between Features in Superposition
+    url: https://proceedings.mlr.press/v306/stevinson26a.html
+    source_type: paper_or_proceeding
+    used_by:
+    - ccf-visual-composer
+    recorded_at: '2026-10-31'
+    verified_at: '2026-10-31'
+    stale_after_days: 365
+    notes: 'Actually downloaded and visually inspected Figure 3d on PDF page 7. PDF: https://raw.githubusercontent.com/mlresearch/v306/main/assets/stevinson26a/stevinson26a.pdf. Official conference-paper PDF inspected. Design cards adapt the observed analytical relationships with original Python and supplied or explicitly labeled simulated data; no paper artwork, author code, published numerical results, statistical conclusions or award claims are transferred.'
+  - id: figstudy-more-icml2026-agentic-confidence-calibration
+    title: Agentic Confidence Calibration
+    url: https://proceedings.mlr.press/v306/zhang26gy.html
+    source_type: paper_or_proceeding
+    used_by:
+    - ccf-visual-composer
+    recorded_at: '2026-10-31'
+    verified_at: '2026-10-31'
+    stale_after_days: 365
+    notes: 'Actually downloaded and visually inspected Figure 2 on PDF page 5; Figures 5 and 6 on PDF page 8. PDF: https://raw.githubusercontent.com/mlresearch/v306/main/assets/zhang26gy/zhang26gy.pdf. Official conference-paper PDF inspected. Design cards adapt the observed analytical relationships with original Python and supplied or explicitly labeled simulated data; no paper artwork, author code, published numerical results, statistical conclusions or award claims are transferred.'
+  - id: figstudy-more-icml2026-alpharouter-token-level-routing-between-slm-and-llm-with-reinforcement-lear
+    title: 'AlphaRouter: Token-level Routing Between SLM and LLM with Reinforcement Learning and Tree Search'
+    url: https://proceedings.mlr.press/v306/liao26c.html
+    source_type: paper_or_proceeding
+    used_by:
+    - ccf-visual-composer
+    recorded_at: '2026-10-31'
+    verified_at: '2026-10-31'
+    stale_after_days: 365
+    notes: 'Actually downloaded and visually inspected Figure 3 on PDF page 7. PDF: https://raw.githubusercontent.com/mlresearch/v306/main/assets/liao26c/liao26c.pdf. Official conference-paper PDF inspected. Design cards adapt the observed analytical relationships with original Python and supplied or explicitly labeled simulated data; no paper artwork, author code, published numerical results, statistical conclusions or award claims are transferred.'
+  - id: figstudy-more-icml2026-model-merging-scaling-laws-in-large-language-models
+    title: Model Merging Scaling Laws in Large Language Models
+    url: https://proceedings.mlr.press/v306/wang26bl.html
+    source_type: paper_or_proceeding
+    used_by:
+    - ccf-visual-composer
+    recorded_at: '2026-10-31'
+    verified_at: '2026-10-31'
+    stale_after_days: 365
+    notes: 'Actually downloaded and visually inspected Figure 3 on PDF page 5; Figure 8 on PDF page 9. PDF: https://raw.githubusercontent.com/mlresearch/v306/main/assets/wang26bl/wang26bl.pdf. Official conference-paper PDF inspected. Design cards adapt the observed analytical relationships with original Python and supplied or explicitly labeled simulated data; no paper artwork, author code, published numerical results, statistical conclusions or award claims are transferred.'
+  - id: figstudy-more-neurips2026-calarena-a-large-scale-post-hoc-calibration-benchmark
+    title: 'CalArena: A Large-Scale Post-Hoc Calibration Benchmark'
+    url: https://neurips.cc/virtual/2026/poster/139709
+    source_type: paper_or_proceeding
+    used_by:
+    - ccf-visual-composer
+    recorded_at: '2026-10-31'
+    verified_at: '2026-10-31'
+    stale_after_days: 365
+    notes: 'Actually downloaded and visually inspected Figure 1 on PDF page 2; Figure 2 on PDF page 9. PDF: https://arxiv.org/pdf/2605.30188. Official NeurIPS 2026 poster listing checked; figures read from the public arXiv PDF, not claimed as published proceedings. Design cards adapt the observed analytical relationships with original Python and supplied or explicitly labeled simulated data; no paper artwork, author code, published numerical results, statistical conclusions or award claims are transferred.'
+  - id: figstudy-more-neurips2025-ai-research-agents-for-machine-learning-search-exploration-and-generalizati
+    title: 'AI Research Agents for Machine Learning: Search, Exploration, and Generalization in MLE-bench'
+    url: https://proceedings.neurips.cc/paper_files/paper/2025/hash/328b81881da145412f2bc56c998dfb6a-Abstract-Conference.html
+    source_type: paper_or_proceeding
+    used_by:
+    - ccf-visual-composer
+    recorded_at: '2026-10-31'
+    verified_at: '2026-10-31'
+    stale_after_days: 365
+    notes: 'Actually downloaded and visually inspected Figure 4 on PDF page 7; Figure 6 on PDF page 9. PDF: https://proceedings.neurips.cc/paper_files/paper/2025/file/328b81881da145412f2bc56c998dfb6a-Paper-Conference.pdf. Official conference-paper PDF inspected. Design cards adapt the observed analytical relationships with original Python and supplied or explicitly labeled simulated data; no paper artwork, author code, published numerical results, statistical conclusions or award claims are transferred.'

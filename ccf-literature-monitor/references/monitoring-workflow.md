@@ -11,7 +11,8 @@
 
 - Use arXiv API, OpenReview, official venue/proceedings pages, Semantic Scholar, OpenAlex, DBLP, Crossref, and project pages according to the shared source registry.
 - Fetch recent papers in target categories or from the requested venues/labs.
-- For each high-relevance candidate, read at least the title and abstract. Do not claim high overlap without checking the abstract and, when accessible, the introduction or method summary.
+- Include relevant journal articles and original technical reports in the requested scope. For trend scouting, inspect observations or mechanisms that could change the research question even when they are not close competitors; use the requested time window without treating a revision as a new original publication.
+- Screen candidates by title and abstract. Before asserting high mechanism or evidence overlap, inspect the passages that establish the matched operation, assumptions, and comparison; an abstract can establish claimed scope but not verify implementation or results. If those passages are unavailable, report the specific provisional overlap and its coverage limit.
 - If the user has specific keywords, add them to the search or use them as filters after the broad search.
 - Deduplicate by DOI/arXiv identity and normalized title; distinguish a new paper from a new version. Compare with prior reports when available and record the actual scanned date window.
 
@@ -45,14 +46,15 @@ Overlap score (0-5):
 ## 4. Reporting
 
 - Use `references/report-template.md` for a full report; honor the user's format and use compact findings for short updates or internal contributions.
-- Be honest about uncertainty: report what you don't know, not what you suspect.
+- Separate inspected overlap from an inference or unresolved possibility, and state the specific unchecked detail that could change the conclusion. A plausible lead can be reported as provisional without presenting it as an established threat.
+- An important inspiration can have little overlap. State its useful observation or relation to the question separately from the overlap label, and pass it to an already authorized idea-development task without automatically starting redesign.
 - For full reports, use the template's high-relevance table; a short answer retains the relevant sources and changes without mandatory scores or extra sections.
 - Include exact date range and source basis.
 
 ## 5. Follow-up and Persistence
 
 - Store reports only when file output is requested or necessary within the authorized workflow; honor no-new-files. Preserve dated monitoring history when it serves the requested recurring watch. A report does not create a scheduler.
-- When project-state maintenance is requested, propose a summary for `ccfa.yaml` using existing monitoring fields such as `last_monitoring_report`; do not silently overwrite project state unless explicitly asked.
+- When project-state maintenance is requested or already authorized, update the existing relevant monitoring fields such as `last_monitoring_report` with the verified summary and preserve unrelated state. Otherwise return the findings without changing project state.
 - Reuse the existing literature cache when persistence is authorized and useful; a short update or internal finding does not itself require another file.
 
 ## 6. Handoff Rules

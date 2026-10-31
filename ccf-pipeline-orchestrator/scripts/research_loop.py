@@ -17,9 +17,12 @@ best effort and cannot guarantee orphan cleanup or undo external effects.
 from __future__ import annotations
 
 import argparse
+import ast
 import contextlib
 import datetime as dt
 import hashlib
+import importlib.metadata
+import importlib.util
 import json
 import math
 import os
@@ -32,6 +35,11 @@ import subprocess
 import sys
 import time
 import uuid
+
+
+_CAMPAIGN_SPEC = importlib.util.spec_from_file_location("ccfa_campaign_budget", Path(__file__).with_name("campaign_budget.py"))
+CAMPAIGN = importlib.util.module_from_spec(_CAMPAIGN_SPEC)
+_CAMPAIGN_SPEC.loader.exec_module(CAMPAIGN)
 
 
 class LoopError(Exception):
@@ -160,17 +168,18 @@ def _contract(raw):
         "objective", "constraints", "scientific_value", "editable_files",
         "evaluator_files", "data_files", "command", "metric", "budgets",
     }
-    if not isinstance(raw, dict) or set(raw) != required:
-        raise LoopError("Contract requires exactly: " + ", ".join(sorted(required)))
+    optional = {"metric_guards", "tie_breaker", "protected_files", "dependency_preflight", "environment", "campaign", "evaluation"}
+    if not isinstance(raw, dict) or not required.issubset(raw) or set(raw) - required - optional:
+        raise LoopError("Contract requires: " + ", ".join(sorted(required)) + "; optional: " + ", ".join(sorted(optional)))
     for name in ("objective", "scientific_value"):
         if not isinstance(raw[name], str) or not raw[name].strip():
             raise LoopError(f"{name} must be nonempty text")
     if not isinstance(raw["constraints"], list) or not all(isinstance(v, str) and v.strip() for v in raw["constraints"]):
         raise LoopError("constraints must be a list of nonempty strings (an empty list is allowed)")
     all_names = []
-    for field in ("editable_files", "evaluator_files", "data_files"):
-        names = raw[field]
-        if not isinstance(names, list) or (field != "data_files" and not names):
+    for field in ("editable_files", "evaluator_files", "data_files", "protected_files"):
+        names = raw.get(field, [])
+        if not isinstance(names, list) or (field in ("editable_files", "evaluator_files") and not names):
             raise LoopError(f"{field} must be a list; editable/evaluator files cannot be empty")
         all_names.extend(_relative(v) for v in names)
     if len(all_names) != len(set(all_names)):
@@ -200,7 +209,236 @@ def _contract(raw):
     for key in ("max_seconds", "timeout_seconds"):
         if not _finite(budgets[key]) or budgets[key] <= 0:
             raise LoopError(f"{key} must be positive and finite")
+    guards = raw.get("metric_guards", [])
+    if not isinstance(guards, list):
+        raise LoopError("metric_guards must be a list")
+    seen = set()
+    for guard in guards:
+        if not isinstance(guard, dict) or set(guard) - {"name", "min", "max"} or not {"name"}.issubset(guard):
+            raise LoopError("Each metric guard requires name and min and/or max")
+        name = guard["name"]
+        bounds = set(guard) - {"name"}
+        if not isinstance(name, str) or not name.strip() or name in seen or not bounds:
+            raise LoopError("Metric guards need unique names and at least one bound")
+        if any(not _finite(guard[key]) for key in bounds) or (bounds == {"min", "max"} and guard["min"] > guard["max"]):
+            raise LoopError("Metric guard bounds must be finite and ordered")
+        seen.add(name)
+    if "tie_breaker" in raw:
+        tie = raw["tie_breaker"]
+        if not isinstance(tie, dict) or set(tie) != {"name", "direction", "min_delta", "max_primary_loss"}:
+            raise LoopError("tie_breaker requires name, direction, min_delta, max_primary_loss")
+        if not isinstance(tie["name"], str) or not tie["name"].strip() or tie["name"] == metric["name"] or tie["direction"] not in ("min", "max"):
+            raise LoopError("tie_breaker needs a distinct metric name and min|max direction")
+        if any(not _finite(tie[key]) or tie[key] < 0 for key in ("min_delta", "max_primary_loss")):
+            raise LoopError("tie_breaker tolerances must be finite and nonnegative")
+    if raw.get("dependency_preflight", "strict") not in ("strict", "report"):
+        raise LoopError("dependency_preflight must be strict or report")
+    if "environment" in raw:
+        environment = raw["environment"]
+        if not isinstance(environment, dict) or set(environment) - {"variables", "packages"}:
+            raise LoopError("environment accepts variables and packages name lists")
+        for key in ("variables", "packages"):
+            values = environment.get(key, [])
+            if (not isinstance(values, list) or any(not isinstance(v, str) or not v.strip() for v in values)
+                    or len(values) != len(set(values))):
+                raise LoopError("environment variables/packages require unique nonempty names")
+    if "campaign" in raw:
+        campaign = raw["campaign"]
+        if (not isinstance(campaign, dict) or set(campaign) != {"id", "record"}
+                or not isinstance(campaign["id"], str) or not campaign["id"].strip()):
+            raise LoopError("campaign requires id and project-relative record")
+        _relative(campaign["record"])
+    if "evaluation" in raw:
+        evaluation = raw["evaluation"]
+        if (not isinstance(evaluation, dict) or set(evaluation) - {"split_role", "task_set_id", "frozen_candidate", "task_files", "reused_final"}
+                or evaluation.get("split_role") not in ("development", "selection", "final")
+                or not isinstance(evaluation.get("task_set_id"), str) or not evaluation["task_set_id"].strip()):
+            raise LoopError("evaluation requires split_role and a nonempty task_set_id")
+        frozen = evaluation.get("frozen_candidate")
+        if evaluation["split_role"] == "final":
+            if (not isinstance(frozen, dict) or set(frozen) != {"workdir", "candidate_id"}
+                    or not isinstance(frozen["candidate_id"], str) or not frozen["candidate_id"]):
+                raise LoopError("final evaluation requires frozen_candidate workdir and candidate_id")
+            _relative(frozen["workdir"])
+        elif frozen is not None:
+            raise LoopError("frozen_candidate is only valid for final evaluation")
+        tasks = evaluation.get("task_files", raw["data_files"])
+        if (not isinstance(tasks, list) or not tasks or any(not isinstance(name, str) or name not in all_names for name in tasks)
+                or len(tasks) != len(set(tasks)) or set(tasks).intersection(raw["editable_files"])):
+            raise LoopError("evaluation.task_files must identify nonempty unique protected task/split files; defaults to data_files")
+        reuse = evaluation.get("reused_final")
+        if reuse is not None:
+            if (evaluation["split_role"] == "final" or not isinstance(reuse, dict) or set(reuse) != {"task_set_id", "reason"}
+                    or any(not isinstance(v, str) or not v.strip() for v in reuse.values())
+                    or reuse["task_set_id"] == evaluation["task_set_id"] or "campaign" not in raw):
+                raise LoopError("reused_final requires an explicit reason, new non-final task_set_id and shared campaign record")
     return raw
+
+
+def _protected(contract):
+    return contract["evaluator_files"] + contract["data_files"] + contract.get("protected_files", [])
+
+
+def _task_identity(contract, protected_manifest):
+    evaluation = contract.get("evaluation")
+    if not evaluation:
+        return None
+    names = evaluation.get("task_files", contract["data_files"])
+    files = {name: protected_manifest[name] for name in names}
+    return {"id": evaluation["task_set_id"], "files": files,
+            "content_hash": _hash(sorted(info["sha256"] for info in files.values())),
+            "scope": "declared task/split content identity only; not a proof of semantic non-overlap"}
+
+
+def _environment_identity(project, contract):
+    specification = contract.get("environment")
+    if specification is None:
+        return None
+    command = contract["command"][0]
+    executable = str(project / command) if any(separator in command for separator in ("/", "\\")) and not Path(command).is_absolute() else shutil.which(command)
+    if executable is None or not Path(executable).is_file():
+        raise LoopError("Cannot identify the declared command executable for environment checks")
+    executable = Path(executable).resolve()
+    packages = {}
+    if specification.get("packages") and executable != Path(sys.executable).resolve():
+        raise LoopError("Package identity checks require the controller's Python executable; use an environment lockfile otherwise")
+    for name in specification.get("packages", []):
+        try:
+            packages[name] = importlib.metadata.version(name)
+        except importlib.metadata.PackageNotFoundError as exc:
+            raise LoopError(f"Declared environment package is not installed: {name}") from exc
+    return {"executable": str(executable), "executable_sha256": _file_info(executable)["sha256"],
+            "controller_python": sys.version.split()[0], "platform": sys.platform, "packages": packages,
+            "variables": {name: _hash(os.environ.get(name)) for name in specification.get("variables", [])}}
+
+
+def _dependency_preflight(project, contract):
+    """Diagnose literal local inputs/imports; never claim dynamic dependency closure."""
+    declared = set(contract["editable_files"] + _protected(contract))
+    missing = set()
+
+    def record(path, owner):
+        try:
+            path = path.resolve()
+            if path.is_relative_to(project) and path.is_file():
+                relative = path.relative_to(project).as_posix()
+                if relative not in declared:
+                    missing.add((owner, relative))
+        except OSError:
+            pass
+
+    def literal(node):
+        if isinstance(node, ast.Constant) and isinstance(node.value, str):
+            return node.value
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == "Path" and node.args:
+            return literal(node.args[0])
+        return None
+
+    for name in sorted(declared):
+        path = _file(project, name)
+        if path.suffix != ".py" or not path.is_file():
+            continue
+        try:
+            tree = ast.parse(path.read_text(encoding="utf-8-sig"), filename=name)
+        except (SyntaxError, UnicodeError):
+            continue  # The real evaluator reports invalid source; do not execute it here.
+        assigned = {node.targets[0].id: literal(node.value) for node in ast.walk(tree)
+                    if isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name)}
+        for node in ast.walk(tree):
+            if isinstance(node, (ast.Import, ast.ImportFrom)):
+                modules = ([alias.name for alias in node.names] if isinstance(node, ast.Import)
+                           else [node.module] if node.module else [alias.name for alias in node.names])
+                base = path.parent if isinstance(node, ast.ImportFrom) and node.level else project
+                if isinstance(node, ast.ImportFrom):
+                    for _ in range(max(0, node.level - 1)):
+                        base = base.parent
+                for module in modules:
+                    bases = [base] if isinstance(node, ast.ImportFrom) and node.level else [path.parent, project]
+                    for origin in bases:
+                        local = origin.joinpath(*module.split("."))
+                        record(local.with_suffix(".py"), name)
+                        record(local / "__init__.py", name)
+                        if isinstance(node, ast.ImportFrom) and node.module:
+                            for alias in node.names:
+                                if alias.name != "*":
+                                    record((local / alias.name).with_suffix(".py"), name)
+                                    record(local / alias.name / "__init__.py", name)
+                        for depth in range(1, len(module.split("."))):
+                            record(origin.joinpath(*module.split(".")[:depth]) / "__init__.py", name)
+            if not isinstance(node, ast.Call):
+                continue
+            if isinstance(node.func, ast.Name) and node.func.id == "open" and node.args:
+                mode = literal(node.args[1]) if len(node.args) > 1 else next((literal(k.value) for k in node.keywords if k.arg == "mode"), "r")
+                value = literal(node.args[0])
+            elif isinstance(node.func, ast.Attribute) and node.func.attr in ("read_text", "read_bytes", "open"):
+                mode = literal(node.args[0]) if node.func.attr == "open" and node.args else "r"
+                receiver = node.func.value
+                value = assigned.get(receiver.id) if isinstance(receiver, ast.Name) else literal(receiver)
+            else:
+                continue
+            if value and mode and "r" in mode:
+                record(project / value, name)
+    for argument in contract["command"][1:]:
+        if "{" not in argument:
+            record(project / argument, "command")
+    result = {"method": "existing literal local reads/imports and argv files only; dynamic access is not inferred",
+              "unlisted_local_inputs": [{"source": owner, "path": name} for owner, name in sorted(missing)],
+              "mode": contract.get("dependency_preflight", "strict")}
+    if missing and result["mode"] == "strict":
+        raise LoopError("Unlisted local dependencies; declare them as editable/data/protected files before comparison: "
+                        + ", ".join(sorted({name for _, name in missing})))
+    return result
+
+
+def _campaign(project, contract):
+    specification = contract.get("campaign")
+    if specification is None:
+        return None
+    return _file(project, specification["record"]), specification["id"], project
+
+
+def _campaign_call(name, binding, *args):
+    try:
+        return getattr(CAMPAIGN, name)(*binding, *args)
+    except CAMPAIGN.CampaignError as exc:
+        raise LoopError(str(exc)) from exc
+
+
+def _reservation_key(project, workdir, run_id):
+    return workdir.relative_to(project).as_posix() + ":" + run_id
+
+
+def _settle_shared(workdir, state, contract, attempt, unknown=False):
+    binding = _campaign(Path(state["project"]), contract)
+    if binding and attempt.get("campaign_reservation"):
+        return _campaign_call("settle", binding, attempt["campaign_reservation"],
+                              None if unknown else attempt["budget_charge_seconds"])
+
+
+def _final_source(project, workdir, contract, manifest):
+    evaluation = contract.get("evaluation", {})
+    if evaluation.get("split_role") != "final":
+        return
+    reference = evaluation["frozen_candidate"]
+    source_dir = project / reference["workdir"]
+    if source_dir.resolve() == workdir.resolve():
+        raise LoopError("Final evaluation must reference a separate selection record")
+    _file(project, reference["workdir"] + "/contract.json")
+    source = _load(source_dir)
+    source_contract = _integrity(source_dir, source)
+    source_evaluation = source_contract.get("evaluation", {})
+    if source_evaluation.get("split_role") != "selection" or source_evaluation.get("task_set_id") == evaluation["task_set_id"]:
+        raise LoopError("Final evaluation needs a distinct task-set identity and a selection-stage source")
+    identity = _task_identity(contract, _manifest(project, _protected(contract), required=True))
+    previous_identity = source.get("task_set_identity")
+    if previous_identity is None or previous_identity["content_hash"] == identity["content_hash"]:
+        raise LoopError("Final task/split content matches selection; a different display name is not held-out identity")
+    selected = next((attempt for attempt in source["attempts"].values()
+                     if attempt.get("status") == "kept" and attempt.get("candidate_id") == reference["candidate_id"]), None)
+    if selected is not None:
+        _metric_evidence(source_dir, selected)
+    if selected is None or _invalid_observation(selected) or selected["manifest"] != manifest:
+        raise LoopError("Final evaluation bytes must match the referenced retained selection candidate")
 
 
 @contextlib.contextmanager
@@ -283,15 +521,33 @@ def _integrity(workdir, state):
     contract = _contract(_json(workdir / "contract.json"))
     if _hash(contract) != state["contract_hash"]:
         raise LoopError("Frozen contract changed; start a new experiment for a different protocol")
-    actual = _manifest(Path(state["project"]), contract["evaluator_files"] + contract["data_files"], required=True)
+    project = Path(state["project"])
+    actual = _manifest(project, _protected(contract), required=True)
     if actual != state["locked_files"]:
         raise LoopError("Frozen evaluator/data changed; restore the known version or start a new experiment")
+    if _environment_identity(project, contract) != state.get("environment_identity"):
+        raise LoopError("Frozen environment identity changed; restore it or establish a corrected comparison")
+    state["dependency_preflight"] = _dependency_preflight(project, contract)
+    if state["best"] is not None:
+        anchors = ([item for item in state["attempts"].values() if item["status"] == "kept"]
+                   if "tie_breaker" in contract else [state["attempts"][state["best"]]])
+        for anchor in anchors:
+            _metric_evidence(workdir, anchor)
+            if _invalid_observation(anchor):
+                raise LoopError("Retained comparison evidence was marked invalid; correct the interpretation explicitly or establish a corrected protocol")
     return contract
 
 
 def _checked(workdir, state):
     try:
-        return _integrity(workdir, state)
+        contract = _integrity(workdir, state)
+        verification = {"checked_at": _now(), "contract_hash": state["contract_hash"],
+                        "protected_manifest_hash": _hash(state["locked_files"]),
+                        "environment_identity_hash": _hash(state.get("environment_identity")),
+                        "scope": "declared files and selected environment identities; not an OS sandbox or dynamic dependency closure"}
+        _event(workdir, state, "integrity_checked", update={"last_verified": verification,
+                                                          "dependency_preflight": state["dependency_preflight"]})
+        return contract
     except LoopError as exc:
         _event(workdir, state, "integrity_error", details={"error": str(exc)})
         raise
@@ -365,7 +621,7 @@ def initialize(project, workdir, contract_path):
     # directory is chosen by the script.
     contract = _contract(_json(contract_path))
     resolved = []
-    for name in contract["editable_files"] + contract["evaluator_files"] + contract["data_files"]:
+    for name in contract["editable_files"] + _protected(contract):
         path = _file(project, name)
         if path.is_relative_to(workdir):
             raise LoopError("Declared input files cannot live in the experiment evidence directory")
@@ -375,7 +631,20 @@ def initialize(project, workdir, contract_path):
             ):
                 raise LoopError("Declared paths must identify different files, including case aliases and hardlinks")
         resolved.append(path)
-    locked = _manifest(project, contract["evaluator_files"] + contract["data_files"], required=True)
+    locked = _manifest(project, _protected(contract), required=True)
+    environment = _environment_identity(project, contract)
+    preflight = _dependency_preflight(project, contract)
+    task_identity = _task_identity(contract, locked)
+    current = _manifest(project, contract["editable_files"])
+    _final_source(project, workdir, contract, current)
+    binding = _campaign(project, contract)
+    if binding:
+        if contract["campaign"]["record"] in contract["editable_files"] + _protected(contract):
+            raise LoopError("The shared budget record cannot be an editable or frozen experiment input")
+        evaluation = contract.get("evaluation")
+        if evaluation:
+            evaluation = dict(evaluation, task_content_hash=task_identity["content_hash"])
+        _campaign_call("register", binding, workdir, evaluation)
     if workdir.exists() and any(workdir.iterdir()):
         raise LoopError("Experiment directory is not empty; use status to resume, never reinitialize")
     workdir.mkdir(parents=True, exist_ok=True)
@@ -389,11 +658,17 @@ def initialize(project, workdir, contract_path):
             "initial": {"manifest": manifest, "snapshot": "initial/snapshot"},
             "best": None, "pending": None, "attempt_count": 0, "charged_seconds": 0.0,
             "budgets": contract["budgets"],
+            "environment_identity": environment, "dependency_preflight": preflight,
+            "evaluation": contract.get("evaluation"), "finalized": None,
+            "task_set_identity": task_identity,
+            "last_verified": {"checked_at": _now(), "contract_hash": _hash(contract),
+                              "protected_manifest_hash": _hash(locked), "environment_identity_hash": _hash(environment),
+                              "scope": "declared files and selected environment identities; not an OS sandbox or dynamic dependency closure"},
         })
         return _summary(workdir, state, contract)
 
 
-def _read_metric(path, name):
+def _read_measurements(path, contract):
     if not path.is_file() or path.is_symlink() or path.stat().st_size > 1024 * 1024:
         raise LoopError("Evaluator must write a fresh regular metrics JSON file (at most 1 MiB)")
     raw = path.read_bytes()
@@ -401,20 +676,60 @@ def _read_metric(path, name):
         result = _parse_json(raw)
     except (UnicodeError, ValueError) as exc:
         raise LoopError(f"Cannot read metrics JSON: {exc}") from exc
-    if not isinstance(result, dict) or name not in result or not _finite(result[name]):
-        raise LoopError(f"Metric {name!r} must be one finite JSON number, not bool or text")
+    names = {contract["metric"]["name"]}
+    names.update(guard["name"] for guard in contract.get("metric_guards", []))
+    if "tie_breaker" in contract:
+        names.add(contract["tie_breaker"]["name"])
+    for name in names:
+        if not isinstance(result, dict) or name not in result or not _finite(result[name]):
+            raise LoopError(f"Metric {name!r} must be one finite JSON number, not bool or text")
     # Preserve exact integer metrics (e.g. counts above 2**53).
-    return result[name], hashlib.sha256(raw).hexdigest()
+    return {name: result[name] for name in sorted(names)}, hashlib.sha256(raw).hexdigest()
+
+
+def _guard_failures(measurements, contract):
+    return [guard["name"] for guard in contract.get("metric_guards", [])
+            if ("min" in guard and measurements[guard["name"]] < guard["min"])
+            or ("max" in guard and measurements[guard["name"]] > guard["max"])]
+
+
+def _selection(attempt, parent, state, contract):
+    direction = 1 if contract["metric"]["direction"] == "max" else -1
+    gain = direction * (attempt["metric"] - parent["metric"])
+    if not _finite(gain):
+        raise LoopError("Metric delta exceeds the supported finite numeric range")
+    failures = _guard_failures(attempt["measurements"], contract)
+    result = {"improvement": gain, "guard_failures": failures, "eligible": False,
+              "selection_reason": "metric_guard_failed" if failures else "insufficient_improvement"}
+    if failures:
+        return result
+    if gain > contract["metric"]["min_delta"]:
+        return dict(result, eligible=True, selection_reason="primary_improvement")
+    tie = contract.get("tie_breaker")
+    if tie:
+        # Anchor tolerable loss to the best accepted primary value, not the
+        # latest cost-saving candidate: repeated small losses cannot drift.
+        anchor = max(direction * item["metric"] for item in state["attempts"].values()
+                     if item["status"] == "kept")
+        loss = anchor - direction * attempt["metric"]
+        change = attempt["measurements"][tie["name"]] - parent["measurements"][tie["name"]]
+        improvement = change if tie["direction"] == "max" else -change
+        if not _finite(loss) or not _finite(improvement):
+            raise LoopError("Tie-break comparison exceeds the supported finite numeric range")
+        if loss <= tie["max_primary_loss"] and improvement > tie["min_delta"]:
+            result.update(eligible=True, selection_reason="bounded_quality_cost_improvement")
+    return result
 
 
 def _metric_evidence(workdir, attempt):
     path = workdir / attempt["metrics"]
     if not path.is_file() or path.is_symlink() or _file_info(path)["sha256"] != attempt.get("metrics_sha256"):
-        raise LoopError("Raw metrics evidence changed or is missing; cannot promote this evaluation")
+        raise LoopError(f"Raw metrics evidence changed or is missing for {attempt['id']}; cannot use this evaluation")
 
 
 def _stop(process):
     """Best-effort process-tree termination; this cannot undo external effects."""
+    tree_confirmed = True
     if os.name == "nt":
         try:
             stopped = subprocess.run(
@@ -422,8 +737,10 @@ def _stop(process):
                 shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=5,
             )
             tree_result = f"taskkill_exit_{stopped.returncode}"
+            tree_confirmed = stopped.returncode == 0
         except (OSError, subprocess.TimeoutExpired):
             tree_result = "tree_termination_unconfirmed"
+            tree_confirmed = False
     else:
         try:
             os.killpg(process.pid, signal.SIGKILL)
@@ -436,6 +753,11 @@ def _stop(process):
         process.wait(timeout=5)
     except (OSError, subprocess.TimeoutExpired) as exc:
         raise LoopError("Evaluator termination is unconfirmed; inspect surviving processes, then recover explicitly") from exc
+    if not tree_confirmed:
+        raise LoopError(
+            f"Evaluator process-tree termination is unconfirmed ({tree_result}); "
+            "pending run retained. Inspect surviving workers, then recover explicitly"
+        )
     return tree_result
 
 
@@ -453,12 +775,23 @@ def _wait(process, seconds):
                 raise
 
 
-def run(workdir, run_id, hypothesis=""):
+def _check_recorded_attempt(workdir, state, attempt):
+    """Idempotent reuse must still reject stale or invalid recorded evidence."""
+    _checked(workdir, state)
+    if attempt["outcome"] == "ok":
+        _metric_evidence(workdir, attempt)
+        if _invalid_observation(attempt):
+            raise LoopError("Recorded evaluation was marked invalid; inspect or correct its interpretation before reuse")
+
+
+def run(workdir, run_id, hypothesis="", replicate_of=None):
     with _lock(workdir):
         state = _load(workdir)
         # Repeating a completed or started ID never repeats the subprocess.
         if run_id in state["attempts"]:
-            return {"replayed": False, "already_recorded": True, "attempt": state["attempts"][run_id]}
+            attempt = state["attempts"][run_id]
+            _check_recorded_attempt(workdir, state, attempt)
+            return {"replayed": False, "already_recorded": True, "attempt": attempt}
         contract = _checked(workdir, state)
         if state["pending"] is not None:
             raise LoopError(f"Resolve pending run {state['pending']} with decide/recover before another run")
@@ -468,33 +801,70 @@ def run(workdir, run_id, hypothesis=""):
             raise LoopError("Experiment attempt or execution-time budget is exhausted")
         project = Path(state["project"])
         current = _manifest(project, contract["editable_files"])
+        final = contract.get("evaluation", {}).get("split_role") == "final"
+        if final:
+            if state.get("finalized") is not None:
+                raise LoopError("Final evaluation is report-only and already completed; do not reuse it for tuning")
+            if replicate_of is not None:
+                raise LoopError("A final task set does not accept adaptive replication; freeze repeated measurements inside its evaluator protocol")
+            if current != state["initial"]["manifest"]:
+                raise LoopError("Final evaluation candidate is frozen; edits cannot be evaluated on final tasks")
+            _final_source(project, workdir, contract, current)
+        source = None
+        if replicate_of is not None:
+            if not isinstance(hypothesis, str) or not hypothesis.strip():
+                raise LoopError("Replication requires a reason describing the repeated measurement")
+            source_id = state["best"] if replicate_of == "best" else replicate_of
+            source = state["attempts"].get(source_id)
+            if source is None or source["outcome"] != "ok" or _invalid_observation(source):
+                raise LoopError("Replication requires an existing valid measured candidate")
+            _metric_evidence(workdir, source)
+            if current != source["manifest"]:
+                raise LoopError("Replication must use the source candidate's identical managed bytes")
         baseline = state["best"] is None
         if baseline and current != state["initial"]["manifest"]:
             raise LoopError("Run the initial snapshot as baseline before editing a candidate")
-        if not baseline:
+        if not baseline and source is None:
             if not isinstance(hypothesis, str) or not hypothesis.strip():
                 raise LoopError("A candidate needs --hypothesis describing the proposed mechanism/change")
             if current == _target(state)["manifest"]:
                 raise LoopError("Candidate is unchanged from its parent; no subprocess was started")
+        previous_evaluations = [
+            previous["id"] for previous in state["attempts"].values()
+            if previous["outcome"] == "ok" and current == previous["manifest"]
+        ]
         destination = _attempt_dir(workdir, run_id)
         if destination.exists():
             raise LoopError("Unrecorded attempt directory exists; inspect it instead of overwriting evidence")
-        destination.mkdir(parents=True)
-        manifest = _snapshot(project, contract["editable_files"], destination / "snapshot")
+        limit = min(budgets["timeout_seconds"], remaining)
+        binding = _campaign(project, contract)
+        reservation = _reservation_key(project, workdir, run_id) if binding else None
+        if binding:
+            limit = _campaign_call("reserve", binding, reservation, limit, workdir, run_id)
+        try:
+            destination.mkdir(parents=True)
+            manifest = _snapshot(project, contract["editable_files"], destination / "snapshot")
+        except (OSError, LoopError):
+            if binding:
+                _campaign_call("settle", binding, reservation, 0.0)
+            raise
         parent_id = state["best"]
-        candidate_id = _hash({
+        candidate_id = (contract["evaluation"]["frozen_candidate"]["candidate_id"] if final else
+                        source["candidate_id"] if source else _hash({
             "contract": state["contract_hash"], "parent": parent_id,
             "parent_candidate": None if baseline else _target(state)["candidate_id"], "manifest": manifest,
-        })
+        }))
         metrics_path = destination / "metrics.json"
         argv = [
             arg.replace("{metrics}", str(metrics_path)).replace("{attempt_dir}", str(destination))
             for arg in contract["command"]
         ]
-        limit = min(budgets["timeout_seconds"], remaining)
+        if state.get("environment_identity") is not None:
+            argv[0] = state["environment_identity"]["executable"]
         attempt = {
-            "id": run_id, "kind": "baseline" if baseline else "candidate",
+            "id": run_id, "kind": "final" if final else "replication" if source else "baseline" if baseline else "candidate",
             "candidate_id": candidate_id, "parent": parent_id, "hypothesis": hypothesis,
+            "previous_evaluations": previous_evaluations,
             "manifest": manifest, "snapshot": str((destination / "snapshot").relative_to(workdir)).replace("\\", "/"),
             "status": "running", "outcome": None, "started_at": _now(), "pid": None,
             "reserved_seconds": limit, "argv": argv, "metric": None,
@@ -503,9 +873,21 @@ def run(workdir, run_id, hypothesis=""):
             "environment": {"python": sys.version.split()[0], "platform": sys.platform,
                             "executable": shutil.which(argv[0])},
         }
-        _event(workdir, state, "run_started", attempt=attempt, update={
-            "pending": run_id, "attempt_count": state["attempt_count"] + 1,
-        })
+        if source:
+            attempt["replicate_of"] = source["id"]
+            attempt["measurement_parent"] = source["id"]
+        if "evaluation" in contract:
+            attempt["evaluation"] = contract["evaluation"]
+        if binding:
+            attempt["campaign_reservation"] = reservation
+        try:
+            _event(workdir, state, "run_started", attempt=attempt, update={
+                "pending": run_id, "attempt_count": state["attempt_count"] + 1,
+            })
+        except (OSError, LoopError):
+            if binding:
+                _campaign_call("settle", binding, reservation, 0.0)
+            raise
         start = time.monotonic()
         outcome, error, process = "ok", None, None
         try:
@@ -565,33 +947,57 @@ def run(workdir, run_id, hypothesis=""):
             outcome, error = "integrity_error", str(exc)
         if outcome == "ok":
             try:
-                attempt["metric"], attempt["metrics_sha256"] = _read_metric(metrics_path, contract["metric"]["name"])
+                attempt["measurements"], attempt["metrics_sha256"] = _read_measurements(metrics_path, contract)
+                attempt["metric"] = attempt["measurements"][contract["metric"]["name"]]
+                if baseline and not final and _guard_failures(attempt["measurements"], contract):
+                    outcome, error = "constraint_violation", "Initial baseline violates frozen metric guards"
             except (LoopError, OSError) as exc:
                 outcome, error = "invalid_metric", str(exc)
         attempt.update(outcome=outcome, status="evaluated", error=error, elapsed_seconds=elapsed, budget_charge_seconds=elapsed)
         _event(workdir, state, "run_finished", attempt=attempt, update={
             "charged_seconds": state["charged_seconds"] + elapsed,
         })
+        _settle_shared(workdir, state, contract, attempt)
         if outcome != "ok":
             attempt = _discard(workdir, state, attempt, error or outcome)
+        elif source or final:
+            attempt.update(status="reporting", eligible=False, decision="report",
+                           guard_failures=_guard_failures(attempt["measurements"], contract),
+                           selection_reason="final_report_only" if final else "replication_report_only")
+            _event(workdir, state, "report_started", attempt=attempt)
+            conflicts = [] if final else _restore(workdir, state, attempt)
+            if conflicts:
+                attempt.update(status="rollback_conflict", conflicts=conflicts)
+                _event(workdir, state, "rollback_conflict", attempt=attempt)
+            else:
+                attempt.update(status="reported", conflicts=[])
+                update = {"pending": None}
+                if final:
+                    update["finalized"] = run_id
+                _event(workdir, state, "measurement_reported", attempt=attempt, update=update)
         elif baseline:
             attempt.update(status="kept", decision="keep", reason="Initial measured baseline")
             _event(workdir, state, "baseline_kept", attempt=attempt, update={"best": run_id, "pending": None})
         else:
-            parent_metric = state["attempts"][parent_id]["metric"]
-            gain = attempt["metric"] - parent_metric
-            if contract["metric"]["direction"] == "min":
-                gain = -gain
-            if not _finite(gain):
-                attempt.update(outcome="invalid_metric", error="Metric delta exceeds the supported finite numeric range")
+            try:
+                selection = _selection(attempt, state["attempts"][parent_id], state, contract)
+            except LoopError as exc:
+                attempt.update(outcome="invalid_metric", error=str(exc))
                 _event(workdir, state, "invalid_metric", attempt=attempt)
                 return {"attempt": _discard(workdir, state, attempt, attempt["error"])}
-            attempt.update(improvement=gain, eligible=gain > contract["metric"]["min_delta"], status="awaiting_decision")
+            attempt.update(selection, status="awaiting_decision")
             _event(workdir, state, "awaiting_decision", attempt=attempt)
         return {"attempt": attempt}
 
 
+def replicate(workdir, run_id, source_id, reason):
+    """Measure identical bytes again without using noise to promote a candidate."""
+    return run(workdir, run_id, reason, replicate_of=source_id)
+
+
 def decide(workdir, run_id, action, reason):
+    if action not in ("keep", "discard"):
+        raise LoopError("Decision action must be keep or discard")
     if not reason.strip():
         raise LoopError("Decision requires a concrete reason; metric improvement alone is not novelty evidence")
     with _lock(workdir):
@@ -599,17 +1005,22 @@ def decide(workdir, run_id, action, reason):
         attempt = state["attempts"].get(run_id)
         if attempt is None:
             raise LoopError("Unknown run id")
+        if attempt.get("kind") in ("final", "replication"):
+            raise LoopError("Final and replication measurements are report-only; they cannot be promoted")
         if attempt["status"] in ("kept", "discarded"):
             if attempt.get("decision") != action:
                 raise LoopError("Completed decisions are immutable")
+            if action == "keep":
+                _check_recorded_attempt(workdir, state, attempt)
             return {"already_recorded": True, "attempt": attempt}
         if state["pending"] != run_id or attempt["status"] not in ("awaiting_decision", "deciding", "rollback_conflict"):
-            raise LoopError("Run has not finished; inspect status and use recover if its process has stopped")
+            raise LoopError("Run is not ready for decide; inspect status and use recover after its process and workers have stopped")
         if action == "discard":
             return {"attempt": _discard(workdir, state, attempt, reason)}
         contract = _checked(workdir, state)
-        if attempt["outcome"] != "ok" or not attempt.get("eligible"):
-            raise LoopError("Keep requires a valid metric improving strictly beyond the frozen min_delta")
+        if (attempt["outcome"] != "ok" or not attempt.get("eligible")
+                or _invalid_observation(attempt)):
+            raise LoopError("Keep requires valid measurements satisfying the frozen selection rule and metric guards")
         _metric_evidence(workdir, attempt)
         if _manifest(Path(state["project"]), contract["editable_files"]) != attempt["manifest"]:
             raise LoopError("Candidate changed after evaluation; cannot keep unmeasured bytes")
@@ -623,10 +1034,22 @@ def recover(workdir, run_id, reason, confirm_stopped=False):
         raise LoopError("Recovery requires --confirm-stopped and a reason after checking any surviving evaluator/children")
     with _lock(workdir):
         state = _load(workdir)
+        contract = _checked(workdir, state)
         attempt = state["attempts"].get(run_id)
         if attempt is None or state["pending"] != run_id:
             raise LoopError("No matching pending attempt")
-        if attempt["status"] in ("deciding", "rollback_conflict"):
+        if attempt["status"] in ("deciding", "reporting", "rollback_conflict"):
+            if attempt.get("kind") in ("final", "replication") and attempt["outcome"] == "ok":
+                conflicts = [] if attempt["kind"] == "final" else _restore(workdir, state, attempt)
+                if conflicts:
+                    raise LoopError("Reconcile managed-file conflicts before completing the measurement report")
+                attempt = dict(attempt, status="reported", conflicts=[])
+                update = {"pending": None}
+                if attempt["kind"] == "final":
+                    update["finalized"] = run_id
+                _settle_shared(workdir, state, contract, attempt)
+                _event(workdir, state, "measurement_reported", attempt=attempt, update=update)
+                return {"attempt": attempt}
             return {"attempt": _discard(workdir, state, attempt, reason)}
         if attempt["status"] == "running":
             # Parent death removes timeout supervision: a surviving child can
@@ -643,11 +1066,134 @@ def recover(workdir, run_id, reason, confirm_stopped=False):
                 "duration_unknown": True,
                 "budget_stop_reason": "Controller lost timeout supervision; reconcile actual costs before any new experiment",
             })
+            _settle_shared(workdir, state, contract, attempt, unknown=True)
         elif attempt["status"] != "evaluated":
             raise LoopError("Completed evaluation requires decide, not recovery")
+        else:
+            _settle_shared(workdir, state, contract, attempt)
         # An interrupted transaction is never silently promoted, even if a
         # metrics file happens to exist.
         return {"attempt": _discard(workdir, state, attempt, reason)}
+
+
+def recover_reservation(workdir, run_id, reason, confirm_stopped=False):
+    """Close an orphan shared reservation without guessing or replaying work."""
+    if not confirm_stopped or not isinstance(reason, str) or not reason.strip():
+        raise LoopError("Reservation recovery requires --confirm-stopped and a reason after checking workers")
+    with _lock(workdir):
+        state = _load(workdir)
+        contract = _checked(workdir, state)
+        if run_id in state["attempts"]:
+            raise LoopError("A recorded attempt exists; use its normal recover/decide workflow")
+        project = Path(state["project"])
+        binding = _campaign(project, contract)
+        if binding is None:
+            raise LoopError("No shared campaign budget is attached")
+        key = _reservation_key(project, workdir, run_id)
+        result = _campaign_call("settle", binding, key, None)
+        _event(workdir, state, "orphan_reservation_closed", details={"reservation": key, "reason": reason})
+        return {"campaign_budget": result, "replayed": False,
+                "note": "Unknown duration closes remaining shared allowance; managed inputs and partial evidence were preserved"}
+
+
+OBSERVATION_CATEGORIES = (
+    "environment_error", "implementation_error", "invalid_comparison",
+    "negative_result", "supports_prediction", "inconclusive",
+)
+INVALID_OBSERVATIONS = {"environment_error", "implementation_error", "invalid_comparison"}
+
+
+def _invalid_observation(attempt):
+    return (attempt.get("invalidated_by") is not None
+            or attempt.get("observation", {}).get("category") in INVALID_OBSERVATIONS)
+
+
+def note(workdir, run_id, category, finding, next_action, evidence, corrects=None):
+    """Record a host interpretation separately from immutable measurements."""
+    if category not in OBSERVATION_CATEGORIES:
+        raise LoopError("Unknown observation category")
+    for value in (finding, next_action):
+        if not isinstance(value, str) or not value.strip() or len(value) > 4000:
+            raise LoopError("Finding and next action must contain 1-4000 characters")
+    if not evidence or len(evidence) > 8 or len(set(evidence)) != len(evidence):
+        raise LoopError("Provide 1-8 distinct task-relative evidence paths")
+    if corrects is not None and (type(corrects) is not int or corrects < 1):
+        raise LoopError("corrects must identify the invalidation event sequence")
+    with _lock(workdir):
+        state = _load(workdir)
+        attempt = state["attempts"].get(run_id)
+        if attempt is None or attempt["status"] not in ("kept", "discarded", "awaiting_decision", "reported"):
+            raise LoopError("Interpret only a completed measurement or recorded failure")
+        if category in ("negative_result", "supports_prediction", "inconclusive") and attempt["outcome"] != "ok":
+            raise LoopError("An execution failure is not a scientific result")
+        if attempt["outcome"] == "ok":
+            _metric_evidence(workdir, attempt)
+        anchors = {}
+        for relative in evidence:
+            path = _file(workdir, relative)
+            if not path.is_file():
+                raise LoopError("Observation evidence must be an existing task file")
+            anchors[relative] = _file_info(path)["sha256"]
+        observation = {"category": category, "finding": finding, "next_action": next_action,
+                       "evidence": anchors, "origin": "host_interpretation"}
+        if corrects is not None:
+            observation["corrects"] = corrects
+        if attempt.get("observation") == observation:
+            return {"already_recorded": True, "attempt": attempt}
+        invalidated_by = attempt.get("invalidated_by")
+        if corrects is not None:
+            if corrects != invalidated_by or category in INVALID_OBSERVATIONS:
+                raise LoopError("Correction must name the active invalidation and explain its resolved interpretation")
+            invalidated_by = None
+        elif category in INVALID_OBSERVATIONS:
+            invalidated_by = state["seq"] + 1
+        attempt = dict(attempt, observation=observation, invalidated_by=invalidated_by,
+                       observation_event_seq=state["seq"] + 1)
+        _event(workdir, state, "observation", attempt=attempt)
+        return {"attempt": attempt}
+
+
+def context(workdir, query="", limit=3, fast=False):
+    """Return matching past attempts without loading raw logs into a prompt."""
+    if type(limit) is not int or not 1 <= limit <= 20 or not isinstance(query, str) or len(query) > 500:
+        raise LoopError("Context needs a query of at most 500 characters and limit 1-20")
+    state = _load(workdir)
+    result = _status_from_state(workdir, state, fast=fast)
+    terms = query.casefold().split()
+    ranked = []
+    for index, attempt in enumerate(state["attempts"].values()):
+        text = " ".join(str(attempt.get(key, "")) for key in ("id", "hypothesis", "reason", "observation")).casefold()
+        hits = sum(term in text for term in terms)
+        if terms and not hits:
+            continue
+        ranked.append((hits, index, attempt))
+    cards = []
+    for _, _, attempt in sorted(ranked, key=lambda item: (item[0], item[1]), reverse=True)[:limit]:
+        card = {key: attempt.get(key) for key in (
+            "id", "kind", "candidate_id", "parent", "replicate_of", "measurement_parent", "evaluation",
+            "hypothesis", "outcome", "decision", "metric", "measurements",
+            "elapsed_seconds", "reason", "observation", "invalidated_by", "observation_event_seq",
+            "snapshot", "stdout", "stderr", "metrics")}
+        issues = []
+        if attempt["outcome"] == "ok" and not fast:
+            try:
+                _metric_evidence(workdir, attempt)
+            except LoopError as exc:
+                issues.append(str(exc))
+        for relative, expected in (() if fast else attempt.get("observation", {}).get("evidence", {}).items()):
+            try:
+                actual = _file_info(_file(workdir, relative))
+                if actual is None or actual["sha256"] != expected:
+                    issues.append("Observation evidence changed: " + relative)
+            except (LoopError, OSError) as exc:
+                issues.append(str(exc))
+        card["evidence_issues"] = issues
+        card["evidence_rechecked"] = not fast
+        cards.append(card)
+    result["related_attempts"] = cards
+    result["retrieval"] = {"query": query, "limit": limit, "matching_attempts": len(ranked),
+                           "method": "literal term matching; not semantic or scientific ranking"}
+    return result
 
 
 def _summary(workdir, state, contract):
@@ -655,17 +1201,28 @@ def _summary(workdir, state, contract):
     reserved = pending["reserved_seconds"] if pending and pending["status"] == "running" else 0
     best = state["attempts"].get(state["best"])
     if pending:
-        next_action = "inspect process; recover only after it and its children stop" if pending["status"] == "running" else "decide or resolve rollback conflict"
+        if pending["status"] == "running":
+            next_action = "inspect process; recover only after it and its children stop"
+        elif pending["status"] == "evaluated":
+            next_action = "inspect completed evidence and confirm workers stopped; recover the unfinished transaction without rerunning"
+        elif pending["status"] in ("deciding", "rollback_conflict"):
+            next_action = "reconcile managed-file conflicts, then retry decide --action discard"
+        else:
+            next_action = "inspect measured evidence, then decide keep or discard"
     elif state["attempt_count"] >= state["budgets"]["max_attempts"] or state["charged_seconds"] >= state["budgets"]["max_seconds"]:
         next_action = "stop: experiment budget exhausted"
     elif best is None:
-        next_action = "run unchanged initial files as baseline"
+        next_action = ("final evaluation completed; report frozen candidate results without selection or tuning"
+                       if state.get("finalized") else "run unchanged frozen candidate for final report"
+                       if contract.get("evaluation", {}).get("split_role") == "final"
+                       else "run unchanged initial files as baseline")
     else:
         next_action = "host proposes and edits one allowed candidate, then run with a new id"
-    return {
+    result = {
+        "event_seq": state["seq"],
         "objective": state["objective"], "constraints": contract["constraints"],
         "scientific_value": contract["scientific_value"], "contract_hash": state["contract_hash"],
-        "best": None if best is None else {key: best[key] for key in ("id", "candidate_id", "metric", "hypothesis")},
+        "best": None if best is None else {key: best.get(key) for key in ("id", "candidate_id", "metric", "measurements", "hypothesis", "elapsed_seconds")},
         "pending": None if pending is None else {key: pending.get(key) for key in ("id", "status", "outcome", "pid", "error")},
         "budget": {
             "attempts_used": state["attempt_count"],
@@ -678,30 +1235,53 @@ def _summary(workdir, state, contract):
             "meter_scope": "foreground command elapsed time only; host planning time, model tokens, and descendant CPU time are not measured; detached workers are unsupported",
         },
         "recent_failures": [
-            {"id": item["id"], "outcome": item["outcome"], "error": item.get("error")}
+            {key: item.get(key) for key in ("id", "parent", "hypothesis", "outcome", "error", "snapshot", "stdout", "stderr", "metrics")}
             for item in list(state["attempts"].values()) if item["outcome"] not in (None, "ok")
         ][-3:],
         "recent_decisions": [
-            {key: item.get(key) for key in ("id", "parent", "hypothesis", "metric", "decision", "reason")}
+            {key: item.get(key) for key in ("id", "parent", "hypothesis", "outcome", "metric", "decision", "reason", "snapshot", "metrics")}
             for item in state["attempts"].values() if item.get("decision")
         ][-3:],
         "next_action": next_action,
         "paths": {"workdir": str(workdir), "events": str(workdir / "events.jsonl"),
                   "contract": str(workdir / "contract.json"), "attempts": str(workdir / "attempts")},
     }
+    result["declared_integrity"] = {"protected_files": _protected(contract),
+                                    "dynamic_dependency_closure": False,
+                                    "dependency_preflight": state.get("dependency_preflight")}
+    result["last_verified"] = state.get("last_verified")
+    if "evaluation" in contract:
+        result["evaluation"] = contract["evaluation"]
+        result["task_set_identity"] = state.get("task_set_identity")
+        result["finalized"] = state.get("finalized")
+    binding = _campaign(Path(state["project"]), contract)
+    if binding:
+        result["campaign_budget"] = _campaign_call("status", binding)
+    return result
 
 
-def status(workdir):
+def status(workdir, fast=False):
     # Reads can observe an active run without taking its exclusive writer lock.
-    state = _load(workdir)
+    return _status_from_state(workdir, _load(workdir), fast=fast)
+
+
+def _status_from_state(workdir, state, fast=False):
     contract = _contract(_json(workdir / "contract.json"))
     result = _summary(workdir, state, contract)
+    if fast:
+        result["integrity"] = "not_rechecked"
+        result["verification"] = {"rechecked": False, "basis": "last_verified is a prior receipt, not current file validation"}
+        return result
     try:
         _integrity(workdir, state)
         result["integrity"] = "ok"
+        result["declared_integrity"]["dependency_preflight"] = state.get("dependency_preflight")
+        result["verification"] = {"rechecked": True, "passed": True, "checked_at": _now(), "contract_hash": state["contract_hash"]}
     except LoopError as exc:
         result["integrity"] = str(exc)
-        result["next_action"] = "resolve frozen protocol integrity before another execution"
+        result["verification"] = {"rechecked": True, "passed": False, "checked_at": _now()}
+        resolution = "resolve recorded protocol or evidence integrity before another execution"
+        result["next_action"] = result["next_action"] + "; " + resolution if state["pending"] else resolution
     return result
 
 
@@ -712,12 +1292,37 @@ def main(argv=None):
     init_parser.add_argument("--project", type=Path, default=Path.cwd())
     init_parser.add_argument("--workdir", type=Path, required=True)
     init_parser.add_argument("--contract", type=Path, required=True)
+    campaign_parser = commands.add_parser("campaign-init", help="Create one opt-in shared campaign allowance; never reset an existing record")
+    campaign_parser.add_argument("--project", type=Path, default=Path.cwd())
+    campaign_parser.add_argument("--record", type=Path, required=True)
+    campaign_parser.add_argument("--id", required=True)
+    campaign_parser.add_argument("--max-attempts", type=int, required=True)
+    campaign_parser.add_argument("--max-seconds", type=float, required=True)
     status_parser = commands.add_parser("status", help="Compact state; safe to inspect while a run is executing")
     status_parser.add_argument("--workdir", type=Path, required=True)
+    status_parser.add_argument("--fast", action="store_true", help="Read last verified identity without rehashing protected inputs")
+    context_parser = commands.add_parser("context", help="Retrieve compact matching experiments and recovery state")
+    context_parser.add_argument("--workdir", type=Path, required=True)
+    context_parser.add_argument("--query", default="")
+    context_parser.add_argument("--limit", type=int, default=3)
+    context_parser.add_argument("--fast", action="store_true", help="Retrieve records without rechecking files or evidence")
+    note_parser = commands.add_parser("note", help="Record an evidence-linked interpretation without changing a measurement")
+    note_parser.add_argument("--workdir", type=Path, required=True)
+    note_parser.add_argument("--id", required=True)
+    note_parser.add_argument("--category", choices=OBSERVATION_CATEGORIES, required=True)
+    note_parser.add_argument("--finding", required=True)
+    note_parser.add_argument("--next-action", required=True)
+    note_parser.add_argument("--evidence", action="append", required=True)
+    note_parser.add_argument("--corrects", type=int, help="Explicitly correct the active invalidation event after reinspection; finding must explain why")
     run_parser = commands.add_parser("run", help="Execute once per unique id; first valid run establishes the baseline")
     run_parser.add_argument("--workdir", type=Path, required=True)
     run_parser.add_argument("--id", required=True)
     run_parser.add_argument("--hypothesis", default="")
+    replicate_parser = commands.add_parser("replicate", help="Re-measure identical candidate bytes without promotion")
+    replicate_parser.add_argument("--workdir", type=Path, required=True)
+    replicate_parser.add_argument("--id", required=True)
+    replicate_parser.add_argument("--of", dest="source_id", required=True, help="A valid measured attempt ID, or best")
+    replicate_parser.add_argument("--reason", required=True)
     decision_parser = commands.add_parser("decide", help="Keep an eligible candidate or restore only its managed files")
     decision_parser.add_argument("--workdir", type=Path, required=True)
     decision_parser.add_argument("--id", required=True)
@@ -728,19 +1333,38 @@ def main(argv=None):
     recovery_parser.add_argument("--id", required=True)
     recovery_parser.add_argument("--reason", required=True)
     recovery_parser.add_argument("--confirm-stopped", action="store_true")
+    reservation_parser = commands.add_parser("recover-reservation", help="Close an orphan shared reservation without replaying a command")
+    reservation_parser.add_argument("--workdir", type=Path, required=True)
+    reservation_parser.add_argument("--id", required=True)
+    reservation_parser.add_argument("--reason", required=True)
+    reservation_parser.add_argument("--confirm-stopped", action="store_true")
     args = parser.parse_args(argv)
     try:
-        if args.operation == "init":
+        if args.operation == "campaign-init":
+            record = args.record if args.record.is_absolute() else args.project / args.record
+            try:
+                result = CAMPAIGN.initialize(record, args.project, args.id, args.max_attempts, args.max_seconds)
+            except CAMPAIGN.CampaignError as exc:
+                raise LoopError(str(exc)) from exc
+        elif args.operation == "init":
             workdir = args.workdir if args.workdir.is_absolute() else args.project / args.workdir
             result = initialize(args.project, workdir, args.contract)
         else:
             workdir = args.workdir.resolve(strict=True)
             if args.operation == "status":
-                result = status(workdir)
+                result = status(workdir, fast=args.fast)
+            elif args.operation == "context":
+                result = context(workdir, args.query, args.limit, fast=args.fast)
+            elif args.operation == "note":
+                result = note(workdir, args.id, args.category, args.finding, args.next_action, args.evidence, args.corrects)
             elif args.operation == "run":
                 result = run(workdir, args.id, args.hypothesis)
+            elif args.operation == "replicate":
+                result = replicate(workdir, args.id, args.source_id, args.reason)
             elif args.operation == "decide":
                 result = decide(workdir, args.id, args.action, args.reason)
+            elif args.operation == "recover-reservation":
+                result = recover_reservation(workdir, args.id, args.reason, args.confirm_stopped)
             else:
                 result = recover(workdir, args.id, args.reason, args.confirm_stopped)
         print(_encoded(result).decode("utf-8"))

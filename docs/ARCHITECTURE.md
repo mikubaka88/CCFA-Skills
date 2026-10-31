@@ -1,6 +1,6 @@
 # CCFA Architecture
 
-CCFA is a paper-project workflow family, not a loose collection of unrelated writing prompts. The current 17-skill architecture has one owner per responsibility area, a first-priority humanization overlay, and `ccfa.yaml` plus explicit artifact contracts to keep stages connected.
+CCFA is a paper-project workflow family, not a loose collection of unrelated writing prompts. The current 18-skill architecture has one owner per responsibility area, a first-priority humanization overlay, and `ccfa.yaml` plus explicit artifact contracts to keep stages connected.
 
 ![Architecture](../assets/ccfa-skills-architecture.svg)
 
@@ -11,7 +11,7 @@ The family has four layers:
 | Layer | Purpose | Skills |
 | --- | --- | --- |
 | First family preflight | Before every skill, keep communication direct and evidence-faithful; apply detailed prose/experiment modes when relevant. | `ccf-humanization` |
-| Research production chain | Move a paper project from project setup to rebuttal. | `ccf-project-scaffolder`, `ccf-pipeline-orchestrator`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, `ccf-rebuttal-writer` |
+| Research production chain | Move a paper project from project setup to rebuttal. | `ccf-project-scaffolder`, `ccf-pipeline-orchestrator`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-research-engineer`, `ccf-visual-composer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, `ccf-rebuttal-writer` |
 | Shared family preflight | After Humanization and before every specialist, establish scope, routing, prerequisites, evidence, and artifact controls. | `ccf-common` |
 | Family maintenance | Maintain skills, docs, generated SVGs, validation, and releases. | `ccf-skill-forger` |
 
@@ -21,6 +21,7 @@ Compose work around requested outcomes and their prerequisites. One owner integr
 idea judgment: closest-work grounding when missing -> concept review
 substantial writing: evidence/citation grounding -> writer -> affected review -> verified revision
 review + revision: reviewer -> writer -> affected checks, retaining resolved concerns
+research implementation: inspect existing stack -> engineer -> relevant execution checks
 new scientific figure: data/topology prerequisites -> visual composer -> render QA
 existing figure label update: reuse scientific inputs -> source edit -> affected exports
 
@@ -66,7 +67,7 @@ The family intentionally merged helper skills into owner modes. `ccf-visual-comp
 | Capability | Owner | Boundary |
 | --- | --- | --- |
 | Humanization and publication-faithfulness | `ccf-humanization` | First preflight for every CCFA skill, including planning, review, and visuals. Preserve rigorous criticism and facts; apply detailed editing only to authorized prose and relevant experiment work. |
-| Workflow planning | `ccf-pipeline-orchestrator` | Coordinates stages; does not write, search, review, or rebut. |
+| Research coordination | `ccf-pipeline-orchestrator` | Coordinates planning and authorized research execution, integrates specialist contributions, and continues through the requested deliverable. Scientific owners retain their responsibilities. |
 | Literature monitoring | `ccf-literature-monitor` | Tracks recent papers, venue feeds, labs, and competitors; deep retrieval stays with literature search. |
 | Compression and presentations | `ccf-paper-writer` | Changes manuscript-derived text; does not judge acceptance risk. |
 | Exemplar extraction | `ccf-paper-to-exemplar` | Converts PDFs into writing pattern cards; does not draft or review manuscripts. |
@@ -89,14 +90,15 @@ ccf-paper-writer/references/venue-guides/index.md
 ccf-paper-writer/references/venue-guides/<venue>.md
 ```
 
-Use `ccf-paper-writer` for venue-aware manuscript text and page-budget-aware drafting. Use `ccf-submission-checker` for final page limits, anonymity, PDF metadata, camera-ready checks, and package readiness. If a from-scratch writing request names a venue, writer reads the venue guide and length budget first; if no venue is named or the guide is missing, writer falls back to the NeurIPS template. Writer expands substantive omissions and compresses overlength drafts before final submission checks; page fill alone does not justify padding or repeated compile loops.
+Use `ccf-paper-writer` to draft the scientific content and `ccf-submission-checker` for submission rules and package readiness. Initial drafts explain the research before page fitting; apply a venue limit when fitting or submission readiness is requested. Preserve an existing format and use the selected venue's verified template when needed. A generic template fallback does not choose a submission venue or impose its page budget. Page fill alone does not justify padding or repeated compile loops.
 
 ## Source Of Truth
 
 `SKILL.md` is authoritative for runtime behavior. These files are public indexes and audit aids:
 
 - [SKILLS_CATALOG.md](SKILLS_CATALOG.md)
-- [NAMING_AND_MERGE_AUDIT.md](NAMING_AND_MERGE_AUDIT.md)
 - `ccf-common/references/routing.md`
 - `ccf-common/references/skill-trigger-registry.yaml`
 - `ccf-common/references/artifact-contracts.md`
+
+Legacy skill names and their current owners are recorded once in the trigger registry's `merged_runtime_entries` mapping. The old naming audit repeated this architecture and contained superseded execution and installation rules, so it has been removed. Use the installation matrix for current subsets and preserve unrelated local skills during updates.

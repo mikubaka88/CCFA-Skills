@@ -25,6 +25,7 @@ EXPECTED_SKILLS = {
     "ccf-humanization",
     "ccf-common",
     "ccf-experiment-designer",
+    "ccf-research-engineer",
     "ccf-idea-optimizer",
     "ccf-idea-reviewer",
     "ccf-integrity-auditor",
@@ -169,7 +170,7 @@ def check_registry(skill_names: list[str], errors: list[str]) -> None:
     if not registered_order or registered_order[0] != "ccf-humanization":
         fail(errors, "ccf-humanization must be the first registry entry")
     if data.get("runtime_skill_count") != len(EXPECTED_SKILLS):
-        fail(errors, "skill-trigger-registry runtime_skill_count must be 17")
+        fail(errors, f"skill-trigger-registry runtime_skill_count must be {len(EXPECTED_SKILLS)}")
 
 
 def check_venue_guides(errors: list[str]) -> None:
@@ -414,7 +415,7 @@ def check_project_and_plugins(errors: list[str]) -> None:
                 continue
             discovered = {path.parent.name for path in base.glob("*/SKILL.md")}
             if discovered != EXPECTED_SKILLS:
-                fail(errors, f"{rel}: skill root does not expose the 17 family packages")
+                fail(errors, f"{rel}: skill root does not expose all expected family packages")
             if rel.startswith(".claude-plugin"):
                 entries = manifest.get("entrypoints", [])
                 if not entries or entries[0] != "ccf-humanization" or set(entries) - EXPECTED_SKILLS:
@@ -472,8 +473,16 @@ def check_prose_regressions(errors: list[str]) -> None:
         percentage = "Accuracy is 90%. We do not claim to solve every task."
         if not any(item["code"] == "defensive_framing" for item in inspect(percentage, "paragraph")["issues"]):
             fail(errors, "prose checker mistakes a Markdown percentage for a TeX comment")
-        if not any(item["code"] == "em_dash_limit" for item in inspect("A — B — C — D — E.", "paper")["issues"]):
-            fail(errors, "prose checker lost the full-paper punctuation preference")
+        for gap in (" ", "\t", "\u00a0", "\u2009"):
+            spaced_percentage = f"Accuracy is 90{gap}%. We might potentially improve robustness."
+            if not any(item["code"] == "defensive_framing" for item in inspect(spaced_percentage, "paragraph")["issues"]):
+                fail(errors, "prose checker hides text after a spaced percentage")
+        for comment in ("A result. % We might potentially improve robustness.",
+                        "Accuracy is 90 %. % We might potentially improve robustness."):
+            if any(item["code"] == "defensive_framing" for item in inspect(comment, "paragraph")["issues"]):
+                fail(errors, "prose checker scans text inside a genuine inline comment")
+        if any(item["code"] == "em_dash_limit" for item in inspect("A — B — C — D — E.", "paper")["issues"]):
+            fail(errors, "prose checker imposes an unselected full-paper punctuation quota")
         selected_style = "A — B — C — D — E."
         for selected_limit in (4, "off"):
             if any(item["code"] == "em_dash_limit" for item in inspect(selected_style, "paper", em_dash_limit=selected_limit)["issues"]):

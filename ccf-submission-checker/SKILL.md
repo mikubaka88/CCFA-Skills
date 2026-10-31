@@ -36,11 +36,11 @@ Treat submission as a build, venue-policy, page-budget, and artifact-readiness g
 ## Workflow
 
 1. Identify venue/year/track, submission mode, project directory, TeX/PDF files, supplementary/artifact files, and deadline pressure.
-2. Read `ccfa.yaml` when available. If absent, proceed with supplied files and state that project-state tracking is unavailable.
-3. For venue questions, read `../ccf-paper-writer/references/venue-guides/index.md` and the specific venue guide before checking official freshness.
+2. Read `ccfa.yaml` when available. If absent, proceed with supplied files; report only missing information that affects a requested check.
+3. For venue questions, read `../ccf-paper-writer/references/venue-guides/index.md` and the specific guide as navigation. Apply format, page and anonymity rules only from a verified official source matching the venue/year/track/stage; reuse a current verified result. Legacy guide examples cannot override a supplied verified template. Resolve a real mismatch against the target official requirements before changing the manuscript.
 4. For package checks, inspect the actual TeX/PDF/build output, page accounting for the exact venue/year/track, anonymity, fonts, metadata, references, and applicable required forms. For ICLR 2027, apply the matched guide's year-specific template, stage-specific page budget, and AI-use statement/form checks; unconfirmed usage facts remain not verified. Read logs and affected pages; do not infer a successful build from file presence.
 5. For artifact checks, build a reproducibility checklist: code, data, models, environment, seeds, hardware, license, access restrictions, and README.
-6. Hand off to `ccf-paper-writer` for text/page rewrites: compression when over limit, substantive expansion when actual explanation is missing, and normal polishing when within budget. Hand off to `ccf-experiment-designer` for missing reproducibility experiments, `ccf-visual-composer` for figure/table float order, caption placement, font, clipping, palette, or visual readability fixes, and `ccf-rebuttal-writer` for post-review response packaging.
+6. Route actual findings or authorized fixes through their owners: paper writer for needed text/page revisions, visual composer for figure/table layout defects, and rebuttal writer for post-review response packaging. A paper within the page budget does not automatically need polishing. For a reproducibility gap, distinguish missing documentation, configuration, code, and scientific evidence: research engineer handles implementation or reproduction work, and experiment designer resolves a comparison or protocol question. A missing checklist item alone does not require a new experiment.
 
 ## Output Contract
 

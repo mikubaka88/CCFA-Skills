@@ -8,6 +8,8 @@ Activate Humanization before every CCFA skill, then apply Common's controls. Use
 
 Write from the scientific work itself: the problem, insight, mechanism, observations, and what they establish. Use the strongest wording supported by the supplied evidence. Write for a reader trying to understand the work. Do not draft an answer to an imagined hostile reviewer and then decorate it as a paper.
 
+Before drafting a passage, recover its scientific content and intended emphasis from the supplied material. A method paragraph may explain a computation; a theoretical passage may develop a distinction or implication, and a result paragraph interprets an observation. Preserve the function and depth of the passage rather than forcing every paragraph into an operation list. Internal checks about support and readiness remain checks, not a source of manuscript nouns or sentence templates. Use relevant original passages through the writer's exemplar guidance; ordinary local edits need no extra retrieval or analysis report.
+
 Humanization preserves technical precision, equations, citation keys, terminology, numerical results, relevant assumptions, negative findings, reproducibility details, and mandatory disclosures. It is not detector-evasion or a license to strengthen evidence. A direct sentence can express uncertainty accurately.
 
 ## Apply The Right Evidence Stage
@@ -22,15 +24,15 @@ These are decisions within the current task, not three extra workflow stages or 
 
 ## Sentence Decision
 
-For each sentence that sounds defensive, recover its scientific payload before editing:
+For each sentence that sounds defensive, recover its scientific payload and its role in the requested passage before editing. Preserving relevant scientific meaning does not require copying every task-status note from the input into the output. An unfinished experiment constrains empirical claims; it is not automatically a limitation sentence in a passage that makes no such claim.
 
 1. Identify the observation, mechanism, assumption, comparison, or inference it contributes.
-2. If it contains a supported fact, state that fact directly with the scope needed to interpret it.
-3. If it contains a genuine uncertainty, state what remains unresolved and why. Retain calibrated verbs such as `may` or `suggests` when the evidence warrants them.
+2. If it contains a supported fact relevant to that role or necessary to interpret a claim, state it directly with the needed scope.
+3. If uncertainty affects the claim or requested specification, explain the specific unresolved point. Retain calibrated verbs such as `may` or `suggests` when the evidence warrants them; keep unrelated project status in working context.
 4. If deleting it loses no scientific information, delete it. Do not replace it with another disclaimer or an advisory warning.
 5. If support is missing, leave the result pending or isolate the affected claim. Ask only when an unresolved user choice is needed to proceed; continue authorized edits and unaffected work.
 
-Ordinary authorized editing includes preserving material facts, removing rhetorical padding, and rewriting a claim to accurately express its supplied evidence. These edits do not need a second approval. A factual limitation already supplied by the user is scientific content, not a warning to be kept out of the paper.
+Ordinary authorized editing includes preserving material facts, removing rhetorical padding, and rewriting a claim to accurately express its supplied evidence. These edits do not need a second approval. A factual limitation that changes interpretation is scientific content, not a warning to hide outside the paper. A note about unfinished work serves a different purpose and belongs in the text only when the requested content needs it.
 
 ## Defensive Patterns And Repairs
 
@@ -53,14 +55,19 @@ These examples illustrate edits, not factual claims about the user's research. A
 | 空泛能力标签 | 我们提出一个可验证、可实现的自适应检索框架。 | 说明实际操作，例如：我们根据候选答案之间的分歧决定是否继续检索。 |
 | 无对象的优越比较 | 比起简单地堆叠模块，我们更重视可靠的机制。 | 说明改变了哪个操作、为什么改变；只有存在相关比较对象时才展开差异。 |
 | 无依据的多重限定 | 在一定程度上，这或许提供了一条相对可行的路径。 | 说明提出的机制及其依据；尚未完成的检验保持为计划，不堆叠弱化词。 |
+| 无内容的流程抽象 | 我们构建证据闭环，通过信念更新接口增强可靠性。 | 若设计确实如此，直接写：当新观测与已存对象状态冲突时，模型按观测时间更新该对象的状态。该规则本身不证明可靠性提高。 |
+| Action hidden in abstract nouns | The model performs the integration of observations for the realization of state refinement. | The model combines observations to update the state. Keep a defined technical noun when replacing it would change the operation. |
+| Significance-bearing ending | [Result or mechanism], highlighting its potential for [broader purpose]. / [结果或机制]，为[更广的问题]提供了新的思路。 | Preserve the author's closing emphasis and broader significance. Refine its connection to the paragraph when needed; do not delete it for being rhetorical or using a familiar phrase. Keep a proposed implication distinct from an observed result. |
 
 Do not mechanically delete `not`, `only`, `may`, `however`, `limited`, `可验证`, `可实现`, or their equivalents. Negation can define a method, `only` can specify an experimental control, and feasibility or verifiability can be the actual technical question. For example, “该索引可在给定内存预算内构建” states a meaningful constraint when supported. Rewrite the rhetorical function, not a blacklist of words. Likewise, a real contrast such as “Unlike the fixed-budget baseline, the proposed policy stops retrieval when the candidates agree” can explain an actual design difference.
 
+Keep `belief` when it denotes a defined distribution over states, and `evidence` when it denotes observations, a probabilistic quantity, or support for a specific inference. Explain that object and operation in the field's terms. The problem is substituting an undefined label for an explanation, not the vocabulary itself. Never invent a concrete operation to make an underspecified method sound fluent.
+
 ## Paragraph And Section Discipline
 
-Give each paragraph a scientific purpose and a retained message. Develop the reason, operation, or evidence that supports it. End where that point is complete; do not append a caution, future-work sentence, or novelty disclaimer to every paragraph.
+Give each paragraph a scientific purpose and a retained message. Develop the reason, operation, or evidence that supports it. Preserve a closing sentence that synthesizes the point, raises its significance, or connects it to a broader research question; this rhetorical role need not introduce another measurement or technical detail. Refine a weak connection while retaining the author's intended emphasis. Do not delete an ending solely because it uses `highlighting`, `underscoring`, or a familiar significance phrase, and do not force every paragraph to use one. Do not append a caution, future-work sentence, or novelty disclaimer to every paragraph.
 
-Read adjacent sentences as an argument: identify what the next sentence explains, supports, qualifies, or follows from. Reorder, merge, or split within the authorized passage when the relationship is missing; preserve connected claim-and-evidence sentences together. A new transition word cannot supply an unstated causal link. Use the established subject to introduce new information and carry that information into the next relevant point. For whole sections, reuse the writer's reverse-outline check rather than producing another outline.
+Read adjacent sentences as an argument: identify what the next sentence explains, supports, qualifies, or follows from. Reorder, merge, or split within the authorized passage when the relationship is missing; preserve connected claim-and-evidence sentences together. A new transition word cannot supply an unstated causal link. Preserve emphasis and modifier attachment as well as facts: a rewrite can keep every noun and number yet change which result matters or which condition limits it. Use established information where it helps orient the reader, without mechanically repeating the preceding sentence's last term. For whole sections, reuse the writer's reverse-outline check rather than producing another outline.
 
 - Abstract: explain the problem, contribution, mechanism, and decisive evidence. Express scope in the task or result statement. A separate limitations sentence is needed only when omission would materially misrepresent the central finding or the venue requires it.
 - Introduction and related work: establish the actual technical difference from the closest work. Do not pre-empt accusations of incrementalism or dismiss prior work to make the contribution appear larger.
@@ -79,10 +86,11 @@ State a recurring scope condition at its natural location and use cross-referenc
 - Prefer scientific relations and actual dependencies over mechanical ordinal lead-ins such as `First`, `Second`, `Finally`, “第一、第二” and “首先、其次、最后”. Keep them when a real ordered procedure or enumeration benefits from them. This is a prose preference, not a forbidden-word check; preserve mathematical indices, algorithm numbering, standard terms, and user/venue conventions.
 - Explain scientific relationships and actual computations instead of an execution log or a list of interfaces. Retain necessary structure and reproducibility facts; standard technical words are not banned simply because they also occur in engineering.
 - Do not force every argument into exactly three items. Choose structure from the content, preserving required enumerations and study questions.
-- Use punctuation and rhythm explicitly selected by the user or project, including selected conventions recorded on an exemplar card, before generic surface defaults; this never overrides facts or evidence. A paper supplied for content analysis does not select its writing style. Otherwise prefer zero em dashes and at most three per full paper, excluding direct quotations. LaTeX `---` counts in prose; preserve numeric ranges, minus signs, citation keys, commands, and code.
-- Use varied sentence rhythm where it helps the argument. Regular procedures and parallel comparisons may remain regular. The checker treats five similar-length sentences, similar paragraph lengths, three or more `;`/`；` or repeated contrast forms in one paragraph as contextual review signals. Its two-semicolon-per-1,000-word signal applies only to samples of at least 500 English words drawn from predominantly English paragraphs, not to short passages or Chinese character counts. These thresholds locate candidates; they do not require rewrites.
+- Use punctuation and rhythm explicitly selected by the user or project before generic surface preferences; this never overrides facts or evidence. A paper supplied for content analysis does not select its writing style. Prefer restrained em-dash use, with no default numeric quota. Repair decorative interruptions when they impede the sentence; retain a useful dash. LaTeX `---` counts as an em dash in prose; preserve numeric ranges, minus signs, citation keys, commands, code, and quotations.
+- Let rhythm follow the argument; regular procedures and parallel comparisons may remain regular. Similar sentence or paragraph lengths alone do not justify an edit. The checker treats three or more `;`/`；` or repeated contrast forms in one paragraph as contextual signals. Its two-semicolon-per-1,000-word signal applies only to samples of at least 500 English words drawn from predominantly English paragraphs, not to short passages or Chinese character counts. These signals locate candidates; they do not require rewrites.
 - Retain `rather than`, `而不是`, `而非`, and `不是…而是` when they distinguish real alternatives. For clustered contrasts, recover the paragraph's positive argument and actual sentence relationships before changing phrasing. Do not simply substitute synonyms or remove useful comparisons to clear a diagnostic.
-- Check inflated or vague terms such as `groundbreaking`, `pivotal`, `comprehensive`, `robust`, and `novel` against a concrete meaning and evidence. Retain standard terms such as `robust optimization` when technically correct.
+- Review vague or inflated uses of `delve`, `underscore`, `showcase`, `pivotal`, `comprehensive`, `robust`, and `novel` for their actual meaning. Use the operation or finding when the word merely advertises depth or importance. Corpus-level excess vocabulary is a review cue, not proof of authorship or a universal forbidden-word list; preserve defined terms such as `robust optimization`, and do not replace familiar words with rare synonyms.
+- Unpack invented noun compounds, abstract noun chains, and awkward personification when they hide who does what. Keep the subject close to its governing verb and clarify an omitted link when the relation is hard to parse. Saving tokens must not remove an explanatory dependency or turn the prose into compressed labels; retain established technical compounds and useful complex sentences.
 - Every reported finding needs appropriate support. Keep proposed mechanisms and planned tests in their actual stage. Before adding a qualification or reducing a claim, identify the condition or evidence gap that makes it necessary; keep the original strength when the supplied support warrants it.
 - Preserve the user's Markdown/LaTeX format, citations, and requested section boundaries. Local sentence and paragraph reorganization is part of an authorized logic edit; respect explicit no-restructure requests. Do not insert internal warnings, hidden comments, prompt notes, or workflow metadata into manuscript files.
 
@@ -109,6 +117,19 @@ For a warning-only issue:
 
 Warnings are not the default output of humanization. Return the requested artifact first; include a short warning only when one remains. Exact-output requests keep their schema; use an allowed field or seek the one essential clarification rather than inserting an extra section.
 
+When a concrete unresolved scientific decision needs a warning, use this compact form outside manuscript artifacts:
+
+```text
+CCF Humanization Warning: not inserted into artifacts
+Affected claim / file / experiment:
+Evidence gap and material consequence:
+Decision needed:
+Materiality: advisory / blocking
+File changes made for this warning: none
+```
+
+`blocking` applies only to the dependent claim or change. Style choices, known limitations and ordinary accurate edits are authorized work; do not pause the whole task or edit a source merely to encode a warning.
+
 ## SHA-256 And Checksum Rule
 
 Do not add SHA-256, checksum files, hashes, or hash-based identity as generic writing, deduplication, provenance, or confirmation requirements. Use method names, versions, configurations, dataset splits, checkpoint labels, and repository revisions when relevant.
@@ -128,6 +149,8 @@ Read the revised prose once for its scientific argument, before counting surface
 - Terminology, citations, numbers, units, equations, and requested structure are preserved. Reordering or translating prose also preserves who does what, conditions, negation, comparison direction, and the strength of evidence.
 - The em-dash preference and context-dependent pattern signals have been checked.
 
-For full sections or papers, use `ccf-paper-writer/scripts/check_prose_quality.py` for candidate locations. For an explicitly selected em-dash convention, pass `--em-dash-limit N` for its numeric limit or `--em-dash-limit off` when it has none; the script's default quota does not override that choice. Fix real problems; keep justified scientific language even when a pattern matches. A clean script result alone does not establish natural prose, correctness, or publication readiness.
+For full sections or papers, use `ccf-paper-writer/scripts/check_prose_quality.py` for candidate locations. It counts em dashes without a default quota; `--em-dash-limit N` still applies an explicitly chosen limit and `--em-dash-limit off` disables one. Fix real problems; keep justified scientific language even when a pattern matches. A clean script result alone does not establish natural prose, correctness, or publication readiness.
+
+The shared source registry records `llm-excess-vocabulary-2025`, `llm-grammatical-style-2025`, and `llm-processing-difficulty-2026`. Their English corpus findings motivate contextual inspection; Chinese examples above are editing illustrations, not measured translations of English word-frequency results. These studies do not establish editing gains for this skill or a universal model signature.
 
 The checker also locates clustered ability labels, repeated “比起／相比／相较” comparisons, and generic justifications such as “为保险起见.” These are advisory reading cues, including in table cells. It cannot determine whether a property is technically meaningful, an experiment is necessary, or a paragraph's logic is sound. One valid technical term does not need a replacement; evaluate the actual sentence and decision.

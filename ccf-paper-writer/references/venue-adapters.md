@@ -1,6 +1,6 @@
 # Venue Adapters
 
-Use this file after identifying the target CCF A family. Treat it as a writing-priority selector, not as a substitute for the official call for papers.
+Use this file after identifying the target CCF A family. Select the priorities relevant to the contribution and current drafting phase; venue preferences do not create new claims, experiments, or an initial page budget. Final venue requirements come from verified official policy.
 
 ## Universal CCF A Review Priorities
 
@@ -21,9 +21,9 @@ Target venues include AAAI, NeurIPS, ICML, ICLR, ACL, CVPR, ICCV.
 Writing emphasis:
 
 - State the core challenge and contribution early; reviewers should not wait until Method to learn what is new.
-- Connect insight -> mechanism -> measurable benefit.
-- Make the contribution sound non-obvious without hiding concrete implementation.
-- Use strong baselines, ablations, and clear claim-evidence alignment.
+- Connect the proposed insight to its mechanism and the observation or derivation actually available.
+- Explain the specific contribution and its relation to prior work without manufacturing surprise or hiding concrete implementation.
+- Explain the relevant comparisons and component evidence when the stated claims need them; preserve intentionally pending results under `materials-to-manuscript.md`.
 - For CV and multimodal papers, treat figures and qualitative results as primary evidence.
 - For NLP papers, clarify task/data assumptions, linguistic or semantic claims, annotation quality, evaluation validity, and ethical concerns.
 - For ML papers, distinguish empirical novelty from conceptual, theoretical, or algorithmic novelty.
@@ -44,10 +44,10 @@ Target venues include SIGMOD, VLDB, ICDE, SIGKDD, SIGIR.
 Writing emphasis:
 
 - Make the problem setting concrete: workload, data scale, query/user scenario, deployment constraint, or retrieval task.
-- Explain why existing systems or algorithms fail under this setting.
+- Explain the documented limitation or unresolved question in this setting without inventing a failure of existing systems.
 - Show both effectiveness and efficiency when relevant.
 - Describe indexes, data structures, optimization objectives, pipelines, or system components in enough detail to reproduce.
-- Use large-scale or realistic datasets; avoid toy-only evidence.
+- Match the reported workload or data scale to the claim; small controlled examples can explain a mechanism but do not establish large-scale performance.
 - Tie experiments to claims about accuracy, latency, throughput, scalability, robustness, or user utility.
 
 Common reviewer questions:
@@ -65,9 +65,9 @@ Writing emphasis:
 
 - Start from a real bottleneck, workload, deployment pain, or architectural constraint.
 - Make design goals explicit before introducing the design.
-- Explain why simple alternatives fail.
+- Explain the observed or derived tradeoff with simple alternatives; do not assume they fail.
 - Describe implementation details, system architecture, assumptions, and overheads.
-- Use realistic workloads, ablations, sensitivity studies, and end-to-end evaluation.
+- Describe the workloads and analyses that support the actual systems claims, including component or end-to-end evidence when relevant.
 - Present failure modes and operational boundaries honestly.
 
 Common reviewer questions:
@@ -170,7 +170,7 @@ Common reviewer questions:
 
 ## Venue Plan Template
 
-Use this compact plan before drafting:
+Use the relevant fields internally when venue adaptation needs a plan; a local edit can reuse established context. Show the plan only when requested or needed for an unresolved decision:
 
 ```text
 Target venue:

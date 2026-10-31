@@ -9,7 +9,9 @@ Use when: the user explicitly asks for recent CVPR best-paper style, especially 
 - `Visual Programming: Compositional Visual Reasoning Without Training`
 - `Planning-Oriented Autonomous Driving`
 
-## Shared Writing Signals
+## Adaptation Guidance
+
+The guidance below suggests adaptations for the named research topics. The award source establishes award context, not these writing techniques; inspect a selected paper passage before attributing a specific move to it.
 
 - Frame the task around an end-to-end behavior that matters: compositional reasoning or planning.
 - Make the intermediate representation explicit: programs, perception-planning links, or task-oriented outputs.
@@ -23,7 +25,7 @@ Use when: the user explicitly asks for recent CVPR best-paper style, especially 
 - Use qualitative chains or trajectories to make decision structure inspectable.
 - Let the method section mirror the task decomposition.
 
-## Reviewer-Facing Warnings
+## Adaptation Conditions
 
-- Do not claim "without training" or "planning-oriented" unless the experimental protocol proves that exact property.
+- Use "without training" only for the relevant supplied training configuration, and explain which operation or objective makes a method planning-oriented.
 - Make sure the output evaluated is the output the paper claims to optimize.

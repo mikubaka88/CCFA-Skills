@@ -1,8 +1,8 @@
 schema_version: 4
-generated_at: 2026-09-16
+generated_at: 2026-10-30
 authority: SKILL.md wins if this registry conflicts with a skill body.
 naming_policy: canonical runtime names use ccf-<object>-<role/action>; ccf-common is the governance exception.
-runtime_skill_count: 17
+runtime_skill_count: 18
 # Triggers/exclusions define primary ownership. Handoffs also support prerequisite
 # resolution and targeted checks; routing.md governs integration and scope.
 skills:
@@ -11,17 +11,17 @@ skills:
     exclude: "Does not take over specialist ownership, hide material evidence, soften valid criticism, fabricate results, or rewrite an assessed artifact without authorization."
     handoff: "ccf-paper-writer, ccf-experiment-designer, ccf-paper-reviewer, ccf-integrity-auditor"
   - name: ccf-project-scaffolder
-    trigger: "Initialize CCF project folders, LaTeX templates, artifact directories, and ccfa.yaml. Use for 项目初始化, 目录搭建, template setup, and reproducible workspace scaffolding. Preserve existing files. Workflow planning belongs to ccf-pipeline-orchestrator; research content belongs to its specialist owner."
+    trigger: "Initialize CCF project folders, LaTeX templates, artifact directories, and ccfa.yaml. Use for 项目初始化, 目录搭建, and paper template setup. Preserve existing files. Research codebase selection and training environments belong to ccf-research-engineer; workflow planning belongs to ccf-pipeline-orchestrator."
     exclude: "Does not plan workflow stages/gates only, coordinate handoffs, or create research content."
-    handoff: "ccf-pipeline-orchestrator, ccf-paper-writer, ccf-submission-checker"
+    handoff: "ccf-pipeline-orchestrator, ccf-paper-writer, ccf-submission-checker, ccf-research-engineer"
   - name: ccf-pipeline-orchestrator
-    trigger: "Plan or coordinate CCF research stages, goals, gates, artifacts, and ccfa.yaml state. Use for 任务拆解, 流程规划, project status, end-to-end coordination, and explicitly requested autonomous research, autoresearch, or 自主科研迭代. Coordinate scientific hypotheses, experiments, feedback, and strategy changes within the task budget. Specialist skills own research outputs; scaffolder owns folder/template creation."
+    trigger: "Plan or coordinate CCF research stages, goals, gates, artifacts, and ccfa.yaml state. Use for 任务拆解, 流程规划, project status, end-to-end coordination, and explicitly requested autonomous research, autoresearch, or 自主科研迭代. Coordinate hypotheses, engineering, experiments, and feedback within the task budget; research engineer owns code and training."
     exclude: "Does not replace specialist scientific ownership, create templates as the main task, or execute experiments for a plan-only request."
     handoff: "All owning workflow skills"
   - name: ccf-idea-optimizer
     trigger: "Develop and optimize rough CCF research ideas into problems, insights, mechanisms, and evidence plans. Use for 优化idea, 具象化idea, 找方向, 方向探索, and rescue routes when development is the requested deliverable. Judging whether an idea is worthwhile, novel, or coherent belongs to ccf-idea-reviewer even without scores; manuscript edits belong to ccf-paper-writer."
     exclude: "Does not rank or score multiple ideas as the main task."
-    handoff: "ccf-idea-reviewer, ccf-literature-monitor, ccf-literature-searcher, ccf-experiment-designer, ccf-paper-writer"
+    handoff: "ccf-idea-reviewer, ccf-literature-monitor, ccf-literature-searcher, ccf-experiment-designer, ccf-paper-writer, ccf-research-engineer"
   - name: ccf-idea-reviewer
     trigger: "Assess research ideas for value, novelty, insight, and mechanism. Use for 思路审核, 靠谱吗, 值得做吗, 创新够不够, idea review, scoring, and ranking; no numeric-score request is needed. Default to concept-only review without experiment assessment, including ideas extracted from manuscripts. Developing an idea belongs to ccf-idea-optimizer; evaluating manuscript evidence or writing belongs to ccf-paper-reviewer."
     exclude: "Does not develop ideas as the main deliverable or assess manuscript prose; experiment assessment is outside default scope. Qualitative concept judgment does not require scores."
@@ -35,11 +35,15 @@ skills:
     exclude: "Does not own supplied-result table schemas, experiment evidence structure, full manuscript review, already-cited-only audits, or manuscript writing."
     handoff: "ccf-idea-optimizer, ccf-idea-reviewer, ccf-experiment-designer, ccf-paper-writer, ccf-paper-reviewer, ccf-integrity-auditor"
   - name: ccf-experiment-designer
-    trigger: "Design and interpret CCF experiments: datasets, baselines, metrics, ablations, execution specifications, observed feedback, and result-table contents. Use for 设计实验, 消融, benchmark planning, 实验结果分析, and evidence design within requested autonomous research. Preserve real values. Orchestrator coordinates research-loop execution; visual styling and broad retrieval have separate owners."
+    trigger: "Design and interpret CCF experiments: datasets, baselines, metrics, ablations, run requirements, observed feedback, and result-table contents. Use for 设计实验, 消融, benchmark planning, 实验结果分析, and research evidence design. Research engineer owns code implementation, reproduction, and training diagnostics; orchestrator coordinates campaigns."
     exclude: "Does not invent results, draw docs diagrams, search literature as the main deliverable, or improve layout/colors/readability of an already specified table/figure."
-    handoff: "ccf-humanization, ccf-literature-searcher, ccf-visual-composer, ccf-paper-writer, ccf-paper-reviewer, ccf-integrity-auditor, ccf-submission-checker"
+    handoff: "ccf-humanization, ccf-literature-searcher, ccf-visual-composer, ccf-paper-writer, ccf-paper-reviewer, ccf-integrity-auditor, ccf-submission-checker, ccf-research-engineer"
+  - name: ccf-research-engineer
+    trigger: "Implement and debug research code, select suitable codebases, reproduce baselines, map mechanisms into model architecture, and optimize training from measurements. Use for 科研编码, 论文复现, codebase选型, 模型实现, 训练调试, 显存/吞吐优化, and research dependency conflicts. Experiment protocols belong to designer; campaign coordination belongs to orchestrator."
+    exclude: "Does not own scientific comparison protocols, ordinary application coding, concept judgment, or campaign budgets. Plan-only work does not start training."
+    handoff: "ccf-idea-optimizer, ccf-experiment-designer, ccf-pipeline-orchestrator, ccf-literature-searcher, ccf-project-scaffolder"
   - name: ccf-visual-composer
-    trigger: "Render and redesign scientific figures, visual tables, and method/architecture diagrams from supplied content, including biological data. Use for 绘图美化, 排版, 配色, GPT Image 2 generation, pure SVG, and editable SVG/PDF/PPTX. Preserve values and topology. Experiment evidence design belongs to ccf-experiment-designer; manuscript rewriting and PDF-to-writing exemplars are separate."
+    trigger: "Render and redesign scientific figures, visual tables, and method/architecture diagrams from supplied content, including biological data. Use for 绘图美化, 多面板分析图, 定量与消融可视化, 排版, 配色, GPT Image 2 generation, pure SVG, and editable SVG/PDF/PPTX. Preserve values and topology. Experiment evidence design belongs to ccf-experiment-designer; manuscript rewriting and PDF-to-writing exemplars are separate."
     exclude: "Does not design experiments, invent results/components, write manuscript prose, convert PDFs into writing exemplars, or perform final submission compliance."
     handoff: "ccf-experiment-designer, ccf-idea-optimizer, ccf-paper-writer, ccf-integrity-auditor, ccf-submission-checker"
   - name: ccf-paper-to-exemplar
@@ -63,7 +67,7 @@ skills:
     exclude: "Does not polish manuscript content."
     handoff: "ccf-paper-writer, ccf-experiment-designer, ccf-visual-composer, ccf-paper-reviewer, ccf-rebuttal-writer"
   - name: ccf-rebuttal-writer
-    trigger: "Write CCF rebuttals, author responses, revision ledgers, response letters, and conservative resubmission plans. Use for 审稿意见回复, rebuttal, revision ledger, and 重投迁移. Ground promises in feasible changes and actual evidence. Ordinary manuscript writing has a separate owner."
+    trigger: "Write CCF rebuttals, author responses, revision ledgers, response letters, and resubmission plans. Use for 审稿意见回复, rebuttal, revision ledger, and 重投迁移. Ground promises in feasible changes and actual evidence. Ordinary manuscript writing has a separate owner."
     exclude: "Does not trigger for ordinary manuscript writing."
     handoff: "ccf-paper-writer, ccf-experiment-designer, ccf-paper-reviewer, ccf-integrity-auditor, ccf-submission-checker"
   - name: ccf-common

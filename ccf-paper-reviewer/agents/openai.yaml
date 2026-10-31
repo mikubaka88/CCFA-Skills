@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Paper Reviewer"
   short_description: "Review manuscript evidence with a structured report."
-  default_prompt: "Apply $ccf-humanization, then $ccf-common; reuse their applicable active rules. Use $ccf-paper-reviewer to assess this manuscript using the default detailed structured review report, or brief format when requested, with anchored concerns, applicable ratings, confidence, and preserved version-comparison criteria."
+  default_prompt: "Apply $ccf-humanization, then $ccf-common; reuse their applicable active rules. Use $ccf-paper-reviewer for the requested manuscript review with anchored concerns, applicable ratings, confidence, and preserved version-comparison criteria. Keep its fixed final report or the user's requested format. When an independent scientific/full pass is enabled and useful, follow plain-expert-review.md for one fresh-context GPT-6 specialist reading with the short prompt; integrate its checked findings without stacking another pass. Keep writing-only and concept-only scope."

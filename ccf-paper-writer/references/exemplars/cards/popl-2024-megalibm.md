@@ -1,39 +1,29 @@
 # MegaLibm Style Card
 
-Venue/year: POPL 2024 family.
-Source: ACM Best Paper Awards source record `acm-best-paper-awards`; verify the exact paper page before public award-status claims.
+Venue/year: POPL 2024.
+Source: shared registry record `popl-2024-megalibm`; direct original locations below.
 Use when: programming languages, program synthesis, compiler/tool papers, numerical libraries, formal methods, or papers combining correctness with empirical tool evaluation.
+
+Inspected writing: Official POPL 2024 paper abstract at `https://popl24.sigplan.org/details/POPL-2024-popl-research-papers/34/Implementation-and-Synthesis-of-Math-Library-Functions`; DOI `https://doi.org/10.1145/3632874`.
+
+This card navigates selected original passages. The source observations below are distinct from the adaptation advice; read the relevant original when using it.
 
 ## Story Pattern
 
-The paper type is PL/tool research: start with a correctness, synthesis, or verification bottleneck that practitioners face, state the formal object being produced or checked, then explain how the method bridges proof, implementation, and empirical utility.
+**Source observation:** The abstract starts from the difficulty of implementing mathematical library functions in low-level code. It presents MegaLibm through the development activities it separates: mathematical error checking, assembling implementations, and tuning orthogonal parameters. Interactive synthesis and evaluation then show how the approach is used.
 
 ## Abstract Moves
 
-- State the artifact or formal target clearly.
-- Explain why existing synthesis, verification, or library-engineering approaches are insufficient.
-- Present the key technical idea before the tool name.
-- Preview evidence as correctness, coverage, performance, or usability, not only speed.
+**Writing observation in the inspected passage:** The tool is defined through the tasks it supports and the distinctions between them. This gives meaning to the system description without requiring a feature-list narrative.
 
-## Introduction Moves
+## Reusable Techniques
 
-- Use one concrete failure mode or maintenance pain point to motivate the formal problem.
-- Define the core formal challenge before implementation details.
-- State how the technique changes the search, proof, or compilation space.
-- Separate theoretical guarantee, implementation, and evaluation contributions.
+**Adaptation advice for matching work:**
 
-## Method Moves
-
-- Put definitions before algorithms.
-- Give a proof or soundness roadmap before dense formalism.
-- Explain tool architecture only after the core semantics or synthesis idea is clear.
-
-## Evidence Moves
-
-- Combine formal guarantees with benchmarks on real programs or libraries.
-- Report coverage, correctness, performance, and failure cases.
-- Include threats to validity for benchmark selection and specification assumptions.
+- Explain the developer's actual problem before naming tool components.
+- Distinguish mathematical correctness, implementation assembly, and tuning when the contribution depends on those boundaries.
+- Use a synthesis or tool example only when it illustrates the current construction; do not invent formal guarantees.
 
 ## Do-Not-Copy Boundary
 
-Do not reuse library-specific examples, theorem wording, or tool claims. Transfer only the PL proof-plus-artifact writing pattern.
+Use the target study's own definitions, mechanisms, conditions, results, and claims. Common academic phrasing and established terms may be reused when they fit; distinctive source sentences and scientific conclusions may not be transplanted.

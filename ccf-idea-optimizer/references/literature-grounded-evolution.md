@@ -6,7 +6,7 @@ Use this file when the optimizer receives papers, a literature-search report, re
 
 Convert literature into compact, decision-relevant research memory. Sources support observations and constraints; the optimizer proposes the gap, mechanism transfer, and new claim. Keep those two layers visibly separate.
 
-This workflow adapts useful primitives from public research agents: question decomposition and scoped retrieval, evidence selection and compression, reference-based ideation, branched hypothesis search, and feedback-guided refinement. It does not reproduce another system's full workflow or turn a target paper into an answer template.
+Retrieve for both explanation and inspiration. One source may identify a missing capability, another supply an operation, and a third expose a condition under which that operation fails. Keep these roles distinct from the closest-work comparison. A source's limitations section is one starting point, not the boundary of possible research questions.
 
 ## Grounding Modes
 
@@ -16,28 +16,29 @@ This workflow adapts useful primitives from public research agents: question dec
 
 ## Compact Research Memory
 
-Keep a compact active set: around 4 evidence cards for quick work, 8 for standard work, or 12 for a multi-cluster topic are context-packing defaults, not retrieval quotas or evidence ceilings. Use fewer when sufficient and expand only when a missing relationship affects the requested decision. Reference already stored sources rather than duplicating them. Each useful card contains:
+Retain sources that change the current question or mechanism choice. Reuse stored source locations and summaries; expand the working set when a missing relationship affects the decision. Use compact notes for sources that need to survive handoff or recovery, rather than creating a card for every paper. A useful note contains:
 
 ```text
 Source:
 Supported observation or result:
-Reported limitation or unresolved condition:
+Relevant assumption, unexplained finding, or unresolved condition:
 Mechanism primitive:
-Protocol anchor: dataset / baseline / metric / setting
+Setting or protocol anchor, when relevant:
 Transfer condition:
 Confidence: direct / inferred / unknown
 ```
 
-Do not retain whole abstracts, introductions, or generic background. Keep a source only when it changes the problem boundary, mechanism choice, comparison set, or experiment protocol.
+Keep the relevant passage or result location and its interpretation, not a copied abstract collection. Retain a source when it changes the question, mechanism choice, comparison, protocol, or supplies a structurally justified alternative. Good original technical reports and preprints can supply mechanisms before formal publication; distinguish inspected findings from the lab's or authors' claims.
 
 ## Relation Map And Gap Triangulation
 
-Build a small internal map with nodes for `problem`, `constraint`, `mechanism`, `evidence`, and `source`. Use only these decision-relevant edges:
+When several sources or hypotheses interact, a small internal map can clarify their relationships. Reuse the existing research record if persistence is needed; an ordinary idea response needs no graph file. Useful relations are:
 
 - `supports`: a source supports an observation or constraint;
-- `conflicts-with`: two sources make incompatible assumptions or report different behavior;
+- `conflicts-with`: sources disagree under genuinely comparable assumptions; first check whether settings or measurements explain the difference;
 - `leaves-open`: a limitation is not resolved by the source's method;
 - `depends-on`: a mechanism requires a resource or assumption;
+- `analogous-to`: different objects share a relevant information constraint, invariant, or operation, with the transfer conditions stated;
 - `evaluated-by`: a protocol tests a claim or mechanism.
 
 Independent sources strengthen a gap claim when available; two cards are not an admission requirement for an idea. A single anomaly, theoretical inconsistency, or reasoned counterfactual may motivate an untested hypothesis. State the premise, mechanism, and discriminating prediction separately from verified prior-art claims. Strong gap patterns include:
@@ -53,15 +54,15 @@ Do not infer a gap merely because two keywords have not appeared together.
 
 ## Branch Operators And Lineage
 
-Generate candidate children with an explicit parent and one primary operator:
+For iterative exploration, these operations can help vary an existing hypothesis. Use the bounded inspiration selection in `frontier-ideation.md` when diverse or random exploration is requested. Record parent relationships when needed to interpret the research history, without imposing labels on every standalone idea:
 
-- `refine`: narrow a broad gap to a measurable bottleneck;
+- `refine`: clarify the limiting condition or mechanism without automatically narrowing the research objective;
 - `combine`: join complementary mechanisms through a named interaction;
 - `transfer`: move a mechanism to a new setting after checking its assumptions;
 - `invert`: challenge a shared assumption or optimize the opposite objective;
 - `instrument`: turn an unmeasured failure into a benchmark, metric, diagnostic, or causal test.
 
-Record compact lineage internally:
+When a branch will be revisited or implemented, preserve the useful parts of its lineage in the current research record:
 
 ```text
 Candidate:
@@ -79,17 +80,18 @@ Reject branches whose novelty is only naming, component stacking, or target-pape
 
 Compare candidates internally, without presenting numeric rankings unless the user explicitly requests review:
 
-1. Is the gap grounded and important?
+1. What concrete need, unexplained phenomenon, or knowledge barrier makes the question worth answering?
 2. Does the mechanism causally address the root challenge?
 3. Is the new claim distinguishable from the closest work?
 4. What observation, proof, counterexample, or experiment would distinguish or falsify the central claim?
-5. Are data, compute, code, and timeline plausible?
+5. Which known setting or resource constraints affect the route, and what remains unknown about execution?
 6. Would the result teach something if headline performance is modest?
 
-Develop the selected route and retain a genuinely different fallback when useful; an options request still receives the requested candidate set. Challenge the route where a material uncertainty remains:
+Keep conceptual value distinct from near-term execution cost. Unknown feasibility does not settle concept quality; a demonstrated hard-constraint conflict does limit which route can be pursued. Allocate actual runs under the user's scope and budget. Develop the selected route and retain a genuinely different fallback when useful; an options request still receives the requested candidate set. Challenge the route where a material uncertainty remains:
 
 - `overlap challenge`: the closest source already covers more than assumed;
-- `evidence challenge`: the proposed protocol cannot isolate the new mechanism.
+- `explanation challenge`: another cause explains the same observation, or the proposed operation leaves the diagnosed limitation unchanged;
+- `evidence challenge`: when a protocol is part of the requested plan, it cannot distinguish the proposed mechanism.
 
 Start with one material challenge and targeted revision, not a mandatory extra review. Continue necessary corrections when new evidence or a changed mechanism supports another step. Stop optional refinement once the requested result is coherent and further repetition would not change the decision; if a decisive gap remains, name its discriminator rather than hiding it. Carry the unresolved issue and attempted conditions across owners, without restarting the same challenge on each handoff.
 
@@ -105,7 +107,7 @@ Carry protocol anchors into the evidence plan:
 
 ## Context And Batch Discipline
 
-For large batches or cost-sensitive runs, start with a compact working set and a few distinct branches; retain the requested number of useful outputs. Evidence-card counts and one-challenge defaults manage active context, not scientific coverage. Reuse stable protocol anchors and source summaries. Additional work should resolve a missing relation, repair a concrete defect, test a distinct mechanism, or complete the requested breadth; repetitive critique and score chasing add none of these.
+For large batches or cost-sensitive runs, start with a compact working set and distinct branches; retain the requested breadth. Reuse source summaries and applicable protocol anchors. Additional work should resolve a missing relation, repair a concrete defect, test a different explanation, or complete the request; repetitive critique and score chasing add none of these.
 
 ## Audit Boundary
 
@@ -118,4 +120,4 @@ User constraint:
 Unknown / needs search:
 ```
 
-Do not reveal hidden chain-of-thought. Return concise evidence links, design rationale, lineage labels, and unresolved facts that the user can verify.
+Return the scientific explanation, relevant source links, and unresolved facts. Keep lineage labels and source-status fields in internal records unless the user requests them. Do not reveal hidden chain-of-thought.

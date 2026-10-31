@@ -2,7 +2,7 @@
 
 Use this file to convert evidence-backed writing-review findings into concrete improvements. Diagnose the actual confusion, revise its cause, and close it when the affected text and evidence satisfy the stated condition.
 
-Before producing a revision plan, load `references/review-checklists.md` and apply its writing-revision checks. If the user asks for scientific re-score, acceptance-style scoring, simulated reviewers, or AC/meta-review, route to `ccf-paper-reviewer` under the CCFA handoff mode.
+Before producing a revision plan, load `review-checklists.md` in this directory and apply its writing-revision checks. Scientific re-scoring or acceptance-style judgment selects the scientific/full mode of this same reviewer skill; writing perspectives alone keep writing scope. Requested manuscript edits belong to `ccf-paper-writer`.
 
 ## Action Classes
 
@@ -10,7 +10,7 @@ Classify every issue:
 
 - Writing-fixable: contribution statement, paragraph flow, terminology, figure narration, related-work framing, limitation wording.
 - Structure-fixable: reorder sections, move paragraphs, split mixed paragraphs, merge repeated paragraphs, or change section headings.
-- Prose-quality: remove defensive framing, label-heavy shorthand, third-person manuscript voice, punctuation-driven structure, unsupported hype, number-led abstract prose, formula dumping, or mechanically uniform sentence rhythm.
+- Prose-quality: repair empty self-defense, unsupported hype, or a demonstrated explanation/readability problem; keep scientifically useful notation, qualifications, and structure.
 - Claim-qualification: weaken, scope, move, or support claims that currently exceed evidence.
 - Analysis-fixable: add deeper explanation, error analysis, complexity analysis, sensitivity analysis, qualitative analysis, or proof intuition using existing results.
 - Citation/positioning: add close related work and explain the technical difference, not just a citation.
@@ -129,7 +129,7 @@ Reviewer deduction: "This paragraph mixes roles or does not advance the argument
 
 Actions:
 
-- Assign the paragraph one job: motivation, gap, insight, method, evidence, limitation, or transition.
+- Identify the paragraph's main message and the related roles that develop it: motivation, explanation, evidence, comparison, or transition. Several coherent roles can support one message.
 - Split unrelated arguments; keep a claim with the explanation or evidence that develops it.
 - Move details to the section where a reviewer expects them.
 - Replace vague transition sentences with the specific logical link to the next paragraph.
@@ -140,12 +140,12 @@ Reviewer deduction: "The writing sounds mechanical, defensive, or artificially s
 
 Actions:
 
-- Replace `Q1`/`C1`/`RQ1` labels in running prose with natural names and transitions.
-- Rewrite third-person manuscript narration into direct scientific voice.
-- Split compound sentences that combine motivation, mechanism, evidence, and conclusion.
-- Convert punctuation-heavy chains into explicit cause, contrast, or consequence sentences.
+- Replace unexplained or unnecessary labels with the scientific objects and relations; preserve useful research-question and cross-reference identifiers.
+- Rewrite manuscript narration when it displaces the actual scientific explanation.
+- Split compound sentences when their combined roles obscure the relation between ideas.
+- Repair punctuation-heavy chains when their relationships are unclear, preserving useful parallelism, contrast, and connected reasoning.
 - Move formula-heavy derivations to appendix unless they are necessary for first-pass understanding.
-- Rebuild number-led abstract sentences around task, gap, insight, method, and scoped evidence.
+- Explain what an abstract's numbers mean when their role is unclear. Preserve a result-led opening when the measured quantity or bound carries the contribution; no fixed abstract sequence is required.
 - Remove repeated concept definitions and choose one canonical term.
 - Replace empty ability labels such as “可验证的路径” with the specific object, operation, or relation being proposed. Preserve technical feasibility and verifiability statements when they answer the actual research question.
 - For repeated “比起”, `rather than`, or qualifiers, identify the real comparison or condition. Rebuild the positive argument when these phrases supply no information; do not substitute synonyms merely to pass a pattern check.
@@ -218,8 +218,8 @@ After revision, ask:
 3. Are the closest baselines and related works handled?
 4. Are limitations honest and bounded?
 5. Is the evidence needed for the affected claim visible or clearly referenced, using the appropriate contribution type and any verified venue requirements?
-6. Does the paragraph now have one clear role and one retained message?
-7. Does the revised prose avoid defensive framing, unnecessary labels, third-person manuscript voice, punctuation-driven structure, and unsupported hype?
+6. Does the paragraph develop a clear message through connected sentences?
+7. Does the revised prose explain the science directly while preserving necessary uncertainty, notation, and useful structure?
 8. Are labels, citations, captions, notation, and format issues actually fixed in source?
 
 Mark an issue fixed when its concrete acceptance condition is met. Score movement is not a closure condition. Re-score only when requested; reopen a closed issue for new evidence or an actual remaining defect, not to obtain a more reassuring assessment.

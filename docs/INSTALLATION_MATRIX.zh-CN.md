@@ -1,5 +1,26 @@
 # CCFA 安装矩阵
 
+## 轻量 release 安装（推荐）
+
+从 [0.12.0 Release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.0) 下载 `ccfa-skills-0.12.0-lean.zip` 和 `SHA256SUMS`。先核对压缩包 SHA-256（PowerShell 使用 `Get-FileHash -Algorithm SHA256`，macOS/Linux 使用 `shasum -a 256`），再解压。包内的 `tools/install_release.py` 只需 Python 3.10+，不联网、不安装额外依赖。将下面两个带引号的路径换成解压目录与客户端实际 skills 根目录：
+
+```text
+python -B "<lean-dir>/tools/install_release.py" --source "<lean-dir>" --target "<skills-root>" --dry-run
+python -B "<lean-dir>/tools/install_release.py" --source "<lean-dir>" --target "<skills-root>"
+```
+
+默认安装全部 18 个 skills，并补齐相邻模板与必要资源。只装子集时重复 `--skill`，例如 `--skill ccf-paper-reviewer --skill ccf-integrity-auditor`。Humanization 和 Common 始终包含。写作参考、脚本、旧转换入口和模板按所选能力补齐；不会为资源所属技能额外复制未选中的 `SKILL.md`。仓库根 README 和 release 工具不会混入 skills 根目录。安装位置仍以客户端实际发现目录为准，完成后开启新会话。
+
+轻量包保留原文 Markdown、范例卡、全部旧绘图示例和模板。完整写作范例 PDF 单独放在可选的 `ccfa-skills-0.12.0-papers.zip`；需要时核验、单独解压，再显式安装：
+
+```text
+python -B "<papers-dir>/tools/install_release.py" --source "<papers-dir>" --target "<skills-root>"
+```
+
+先安装同版 lean；也可在安装 lean 时增加 `--papers "<papers-dir>"`。工具不会自动下载 PDF。原文学习仍使用保留的真实段落，遇到必须检查原版排版或提取错误时，再安装完整包或读取获准使用的原始来源。Git clone 与 `npx skills` 仍取得包含 PDF 的完整源码，不能把它们当作轻量下载。
+
+两个包使用同一发布身份、版本和 manifest 格式，记录相对路径、技能列表、文件大小与 SHA-256。安装前校验完整来源，拒绝路径穿越和符号链接，用 `.ccfa-release-receipt.json` 记录工具管理的文件哈希。后续只替换未被改动的旧安装文件，完全相同的文件可安全接管；发现个人修改会在复制前停止，留给你合并。额外用户文件、偏好、上游已移除的旧文件均不自动删除，也没有强制覆盖选项。旧手动/npx 安装若有差异，先核对合并再接管。详见[更新说明](getting-started/AUTO_UPDATE.md)。
+
 可以只安装部分 skills，但任何子集都必须包含 `ccf-humanization` 和 `ccf-common`。下表列出任务负责人；还需保留所用模式读取的相邻资源：审稿、实验、脚手架和投稿模式可能读取 `ccf-paper-writer/references/`，模板模式需要安装根目录下相邻的 `ccf-latex-templates/`，旧版写作转换命令依赖 `ccf-paper-to-exemplar/scripts/convert.py`。资源依赖不代表授权运行对应 skill。完整仓库或插件布局保留这些路径；仅复制 skill 的安装器还需同步所需资源树。
 
 各子集只提供列出的能力，不保证包含所有条件协作者。当前任务若需要尚未安装的审计、检索或审稿能力，应补齐该依赖或明确受影响结果的限制，不能省略必要检查或声称未安装的技能已运行。写作子集遇到来源或数字冲突可能需要 `ccf-integrity-auditor`；图表呈现与投稿子集遇到实质性论证改动可能需要 `ccf-paper-reviewer`。
@@ -18,8 +39,9 @@
 
 | 使用场景 | 安装 | 不安装会缺什么 |
 | --- | --- | --- |
-| 全流程 | 17 个 runtime skills 全部安装 | 完整 CCFA 流程。 |
-| NeurIPS 论文路径 | `ccf-common`, `ccf-humanization`, `ccf-project-scaffolder`, `ccf-pipeline-orchestrator`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, `ccf-rebuttal-writer` | 只缺家族维护能力。 |
+| 全流程 | 18 个 runtime skills 全部安装 | 完整 CCFA 流程。 |
+| 科研代码与训练 | `ccf-humanization`, `ccf-common`, `ccf-research-engineer` | 实现、复现与训练诊断；比较协议需要 designer，重复科研迭代需要 orchestrator。 |
+| NeurIPS 论文路径 | `ccf-common`, `ccf-humanization`, `ccf-project-scaffolder`, `ccf-pipeline-orchestrator`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-research-engineer`, `ccf-visual-composer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, `ccf-rebuttal-writer` | 只缺家族维护能力。 |
 | 写作子集 | `ccf-common`, `ccf-humanization`, `ccf-paper-writer`, `ccf-visual-composer`, `ccf-paper-reviewer`, `ccf-submission-checker` | 没有 idea、文献、实验和 rebuttal 流程；视觉任务仍需要已提供结果。 |
 | 审稿/审计子集 | `ccf-common`, `ccf-humanization`, `ccf-paper-reviewer`, `ccf-integrity-auditor` | 可以诊断问题，但不能写作、广泛检索、设计实验或检查投稿包。 |
 | 监控子集 | `ccf-common`, `ccf-humanization`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-idea-reviewer`, `ccf-idea-optimizer` | 能追踪新论文和竞品信号，但不能写作或投稿。 |
@@ -65,7 +87,7 @@ foreach ($ccfaPath in $ccfaPaths) {
 
 ## 补齐相邻资源
 
-`npx skills add ... --skill '*' --copy` 安装全部 17 个 skills，但不会复制没有 `SKILL.md` 的根目录 `ccf-latex-templates/`。请从与安装 skills 相同版本的仓库执行以下命令。这组资源同时补齐部分安装所需的参考文件和旧版转换脚本。仅复制资源不代表安装或调用资源所属 skill；任务需要它的能力时，仍需单独安装对应技能。完整仓库或插件布局已保留这些相邻路径。
+`npx skills add ... --skill '*' --copy` 安装全部 18 个 skills，但不会复制没有 `SKILL.md` 的根目录 `ccf-latex-templates/`。请从与安装 skills 相同版本的仓库执行以下命令。这组资源同时补齐部分安装所需的参考文件和旧版转换脚本。仅复制资源不代表安装或调用资源所属 skill；任务需要它的能力时，仍需单独安装对应技能。完整仓库或插件布局已保留这些相邻路径。
 
 Bash:
 

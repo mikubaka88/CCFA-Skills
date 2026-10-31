@@ -12,22 +12,24 @@ Use when: the user explicitly asks for recent ICLR outstanding-paper style, espe
 - `Protein Discovery with Discrete Walk-Jump Sampling`
 - `Vision Transformers Need Registers`
 
-## Shared Writing Signals
+## Adaptation Guidance
+
+The guidance below suggests adaptations for the named research topics. The award source establishes award context, not these writing techniques; inspect a selected paper passage before attributing a specific move to it.
 
 - Identify a surprising gap in how strong models are understood, evaluated, or trained.
 - Prefer one crisp observation over a list of incremental improvements.
 - Connect practical impact to a deeper explanation: geometry, unified interfaces, priors, discrete sampling, or feature artifacts.
-- Make the evidence package unusually complete for the claim: theory plus experiments, system scale plus examples, or in-silico plus wet-lab validation.
+- Choose the analysis or study that answers the actual question; theory, scale studies, or domain experiments serve different purposes.
 
 ## Transferable Moves
 
 - Use a "hidden cause" structure: observed behavior -> diagnosis -> simple or principled remedy.
 - For systems work, show why the engineering unification changes what can be studied.
 - For model-analysis work, make qualitative artifacts visible before abstracting them.
-- For biological or robotics applications, close the loop with domain-valid evidence.
+- For biological or robotics applications, explain how the supplied domain study tests the claimed behavior.
 
-## Reviewer-Facing Warnings
+## Adaptation Conditions
 
-- ICLR outstanding-paper style rewards depth; do not imitate broad scope without enough analysis.
-- If the paper proposes a simple fix, spend extra space proving the diagnosis.
+- Transfer a selected explanation from the source, not a presumed award-winning scope or level of confidence.
+- For a simple fix, explain the diagnosed cause and the reasoning or observations supporting it.
 - If the paper aggregates data or systems, make interface assumptions and failure cases explicit.

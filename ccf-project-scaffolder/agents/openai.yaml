@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Project Scaffolder"
-  short_description: "Create CCF paper project folders, select or copy LaTeX templates, initialize ccfa.yaml, and prepare artifact directories."
-  default_prompt: "Apply $ccf-humanization, then $ccf-common; reuse their applicable active rules. Use $ccf-project-scaffolder to initialize the requested folders, available template, and ccfa.yaml while preserving existing user files and honoring dry-run or no-new-files limits. Resolve existing artifact paths first and create working source/cache/build directories only when needed."
+  short_description: "Create paper folders, LaTeX templates, and project state."
+  default_prompt: "Apply $ccf-humanization, then $ccf-common; reuse their applicable active rules. Use $ccf-project-scaffolder to initialize the requested folders, available template, and ccfa.yaml while preserving existing user files and honoring dry-run or no-new-files limits. Resolve existing artifact paths first and create working directories only when needed. Use $ccf-research-engineer for codebase selection, runnable research baselines, and training environments, carrying the same project paths."

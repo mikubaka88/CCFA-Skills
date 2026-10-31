@@ -4,41 +4,26 @@ Venue/year: ECCV 2022.
 Source: ECVA PDF `https://www.ecva.net/papers/eccv_2022/papers_ECCV/papers/136860318.pdf`; arXiv `https://arxiv.org/abs/2207.09684`.
 Use when: writing representation analysis, statistical tools for deep learning, regularization, disentanglement, or robustness papers.
 
+Inspected writing: Stored original text `references/exemplars/papers/eccv-2022-partial-distance-correlation.md`, Abstract and Introduction's hypothetical comparison of two visual models.
+
+This card navigates selected original passages. The source observations below are distinct from the adaptation advice; read the relevant original when using it.
+
 ## Story Pattern
 
-The paper revives a statistical dependence measure and shows that it solves several deep-learning problems that look different on the surface. The writing move is to make a tool feel versatile without becoming vague: each application is tied to a shared need to compare or constrain functional behavior across feature spaces.
+**Source observation:** The introduction poses a comparison between two models and asks what one has learned that the other has not. It explains why the asymmetry matters, then connects the question to conditioning and comparison of feature spaces. The abstract introduces distance correlation and its partial variant before listing applications.
 
 ## Abstract Moves
 
-- Start from a broad recurring need: comparing what neural networks learn.
-- Explain why existing comparison tools are awkward at scale or across dimensions.
-- Introduce the statistical tool and its partial variant.
-- List diverse applications only after the common mechanism is clear.
-
-## Introduction Moves
-
-- Use a thought experiment to make "functional behavior comparison" intuitive.
-- Contrast layer-wise analysis with cross-network functional comparison.
-- Position the method as a general regularizer or constraint, then prove utility by applications.
-
-## Method Moves
-
-- Explain the statistical quantity before using it as a loss or constraint.
-- Provide deployment details needed for large-scale models.
-- Separate diagnostic use from training-time regularization.
-
-## Evidence Moves
-
-- Choose applications that demonstrate different faces of the same mechanism.
-- Avoid a scattershot feeling by returning to the shared dependence-control theme.
-- Include robustness or disentanglement evidence where the constraint should matter.
+**Writing observation in the inspected passage:** An intuitive question motivates a statistical object. The examples explain what is being compared instead of asking the name of a statistic to carry the whole argument.
 
 ## Reusable Techniques
 
-- Turn an old tool into a new ML contribution by explaining deployment friction.
-- Use one unifying mechanism to justify many applications.
-- Make versatility credible through recurring notation and repeated evidence pattern.
+**Adaptation advice for matching work:**
+
+- Use a concrete comparison to motivate an abstract quantity.
+- Explain whether the desired relation is symmetric or conditional when that distinction matters.
+- Connect applications through a shared mathematical purpose; do not manufacture versatility claims.
 
 ## Do-Not-Copy Boundary
 
-Do not reuse the partial-distance-correlation method or versatility claim unless the user's work genuinely supports multiple validated uses.
+Use the target study's own definitions, mechanisms, conditions, results, and claims. Common academic phrasing and established terms may be reused when they fit; distinctive source sentences and scientific conclusions may not be transplanted.

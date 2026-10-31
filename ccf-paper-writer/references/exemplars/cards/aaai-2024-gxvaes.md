@@ -4,43 +4,26 @@ Venue/year: AAAI 2024.
 Source: AAAI OJS `https://ojs.aaai.org/index.php/AAAI/article/view/29248`.
 Use when: writing biomedical AI, conditional molecule generation, paired representation learning, or application-driven generative model papers.
 
+Inspected writing: Official abstract at the AAAI OJS source above.
+
+This card navigates selected original passages. The source observations below are distinct from the adaptation advice; read the relevant original when using it.
+
 ## Story Pattern
 
-The paper starts from a practical drug-discovery goal: generate molecules that are both drug-like and bioactive. The gap is that molecular generators often ignore disease-related cellular context. The method is framed as a two-part bridge between gene expression profiles and molecule generation, with one representation model extracting disease context and another generating molecules conditioned on that context.
+**Source observation:** The abstract starts from hit-like molecule generation and identifies disease-specific cellular context as missing from the conditioning information. It then connects gene-expression features from ProfileVAE to conditional molecule generation in MolVAE before reporting the study's results.
 
 ## Abstract Moves
 
-- Start with a real application and its scientific constraint.
-- Identify what previous generative models leave out.
-- Introduce the architecture as two coupled modules with distinct roles.
-- Tie the method to biological meaning, not only chemical validity.
-- End with experiments plus case studies to support applied relevance.
-
-## Introduction Moves
-
-- Explain the domain stakes before model details.
-- Convert "context matters" into a clear modeling gap.
-- Make the conditioning variable scientifically meaningful.
-- Use case studies as a bridge from metrics to expert plausibility.
-
-## Method Moves
-
-- Separate the profile representation module from the molecule generator.
-- State how the latent spaces interact.
-- Keep domain constraints visible: bioactivity, drug-likeness, and disease specificity.
-
-## Evidence Moves
-
-- Combine standard generative metrics with disease-oriented case studies.
-- Compare against baselines that lack the biological condition.
-- Avoid claiming therapeutic efficacy unless validated experimentally.
+**Writing observation in the inspected passage:** The information missing from the scientific task supplies the reason for the conditioning variable. The model names enter after their roles can be understood.
 
 ## Reusable Techniques
 
-- For applied AI, make the omitted context the root gap.
-- Pair quantitative baselines with domain case studies.
-- Show how architecture mirrors the scientific causal story.
+**Adaptation advice for matching work:**
+
+- Explain what information a conditioning signal carries before naming the component that supplies it.
+- Connect biological context to the actual generation problem, keeping biological interpretation distinct from model output.
+- Use the appropriate evidence for the current study; case studies and assay results are not requirements imported from this exemplar.
 
 ## Do-Not-Copy Boundary
 
-Do not reuse molecule-generation claims, disease-profile conditioning, or therapeutic language unless the user's work has matching biomedical evidence.
+Use the target study's own definitions, mechanisms, conditions, results, and claims. Common academic phrasing and established terms may be reused when they fit; distinctive source sentences and scientific conclusions may not be transplanted.

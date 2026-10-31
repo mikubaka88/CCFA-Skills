@@ -81,14 +81,15 @@ ROLES = {
     "ccf-literature-searcher": ("Search literature", "文献检索", "文獻檢索"),
     "ccf-literature-monitor": ("Track new work", "前沿追踪", "前沿追蹤"),
     "ccf-experiment-designer": ("Design evidence", "实验设计", "實驗設計"),
+    "ccf-research-engineer": ("Research code", "科研工程", "科研工程"),
     "ccf-integrity-auditor": ("Check integrity", "完整性核验", "完整性核驗"),
-    "ccf-paper-reviewer": ("Independent review", "独立评审", "獨立評審"),
+    "ccf-paper-reviewer": ("Review papers", "独立评审", "獨立評審"),
     "ccf-paper-writer": ("Write and revise", "写作改写", "寫作改寫"),
-    "ccf-humanization": ("Natural academic prose", "自然学术表达", "自然學術表達"),
+    "ccf-humanization": ("Academic prose", "自然学术表达", "自然學術表達"),
     "ccf-rebuttal-writer": ("Rebuttal", "回复审稿", "回覆審稿"),
     "ccf-visual-composer": ("Figures", "绘图", "繪圖"),
     "ccf-submission-checker": ("Submission", "投稿检查", "投稿檢查"),
-    "ccf-paper-to-exemplar": ("Writing exemplars", "范文学习", "範文學習"),
+    "ccf-paper-to-exemplar": ("Exemplars", "范文学习", "範文學習"),
     "ccf-skill-forger": ("Maintain skills", "家族维护", "家族維護"),
 }
 
@@ -96,7 +97,7 @@ ROLES = {
 GROUPS = {
     "governance": ["ccf-common", "ccf-pipeline-orchestrator", "ccf-project-scaffolder"],
     "ideation": ["ccf-idea-reviewer", "ccf-idea-optimizer"],
-    "evidence": ["ccf-literature-searcher", "ccf-literature-monitor", "ccf-experiment-designer", "ccf-integrity-auditor"],
+    "evidence": ["ccf-literature-searcher", "ccf-literature-monitor", "ccf-experiment-designer", "ccf-research-engineer", "ccf-integrity-auditor"],
     "writing": ["ccf-paper-reviewer", "ccf-paper-writer", "ccf-humanization", "ccf-rebuttal-writer"],
     "delivery": ["ccf-visual-composer", "ccf-submission-checker", "ccf-paper-to-exemplar"],
     "maintenance": ["ccf-skill-forger"],
@@ -194,7 +195,7 @@ def build_hero(lang: str) -> None:
             "eyebrow": "A skill family for research papers",
             "title_lines": ["From research idea", "to submission"],
             "subtitle_lines": [
-                "17 focused skills for literature, experiments, writing,",
+                "18 focused skills for literature, experiments, writing,",
                 "review, figures, and submission.",
             ],
             "chips": ["Focused collaboration", "Evidence-grounded writing", "Editable scientific figures"],
@@ -206,7 +207,7 @@ def build_hero(lang: str) -> None:
         "zh-CN": {
             "eyebrow": "为科研论文而生的 skill 家族",
             "title_lines": ["从研究想法到论文投稿"],
-            "subtitle_lines": ["17 个彼此协作的 skills，覆盖文献、实验、写作、审稿、绘图与投稿检查。"],
+            "subtitle_lines": ["18 个彼此协作的 skills，覆盖文献、实验、写作、审稿、绘图与投稿检查。"],
             "chips": ["清晰分工", "证据支撑写作", "可编辑科研图"],
             "nodes": ["选题", "证据", "论文", "绘图", "投稿"],
             "hub_label": "家族",
@@ -216,7 +217,7 @@ def build_hero(lang: str) -> None:
         "zh-TW": {
             "eyebrow": "為研究論文而生的 skill 家族",
             "title_lines": ["從研究想法到論文投稿"],
-            "subtitle_lines": ["17 個彼此協作的 skills，涵蓋文獻、實驗、寫作、審稿、繪圖與投稿檢查。"],
+            "subtitle_lines": ["18 個彼此協作的 skills，涵蓋文獻、實驗、寫作、審稿、繪圖與投稿檢查。"],
             "chips": ["清晰分工", "證據支撐寫作", "可編輯科研圖"],
             "nodes": ["選題", "證據", "論文", "繪圖", "投稿"],
             "hub_label": "家族",
@@ -295,19 +296,19 @@ def build_architecture(lang: str) -> None:
     labels = {
         "en": [
             ("Research direction", "idea review · idea optimization"),
-            ("Evidence construction", "literature · experiments · integrity"),
+            ("Evidence construction", "literature · experiments · code · integrity"),
             ("Publication narrative", "review · writing · humanization · rebuttal"),
             ("Scientific delivery", "figures · exemplars · submission"),
         ],
         "zh-CN": [
             ("研究方向", "选题评审 · 选题优化"),
-            ("证据构建", "文献 · 实验 · 完整性核验"),
+            ("证据构建", "文献 · 实验 · 科研工程 · 核验"),
             ("论文叙事", "评审 · 写作 · 学术表达 · 审稿回复"),
             ("科研交付", "绘图 · 范文 · 投稿检查"),
         ],
         "zh-TW": [
             ("研究方向", "選題評審 · 選題優化"),
-            ("證據構建", "文獻 · 實驗 · 完整性核驗"),
+            ("證據構建", "文獻 · 實驗 · 科研工程 · 核驗"),
             ("論文敘事", "評審 · 寫作 · 學術表達 · 審稿回覆"),
             ("研究交付", "繪圖 · 範文 · 投稿檢查"),
         ],
@@ -370,14 +371,14 @@ def build_architecture(lang: str) -> None:
 def build_workflow(lang: str) -> None:
     title = {"en": "A research workflow that stays coherent", "zh-CN": "彼此衔接的科研工作流", "zh-TW": "彼此銜接的研究工作流程"}[lang]
     steps = {
-        "en": [("Plan", ""), ("Review", "ideas"), ("Search", "literature"), ("Design", "experiments"), ("Write", ""), ("Refine", "prose"), ("Audit", ""), ("Create", "figures"), ("Check", "submission")],
-        "zh-CN": [("规划", ""), ("评审", "选题"), ("检索", "文献"), ("设计", "实验"), ("撰写", "论文"), ("改善", "表达"), ("核验", "证据"), ("绘制", "图表"), ("检查", "投稿")],
-        "zh-TW": [("規劃", ""), ("評審", "選題"), ("檢索", "文獻"), ("設計", "實驗"), ("撰寫", "論文"), ("改善", "表達"), ("核驗", "證據"), ("繪製", "圖表"), ("檢查", "投稿")],
+        "en": [("Plan", ""), ("Review", "ideas"), ("Search", "literature"), ("Design", "experiments"), ("Implement", "and train"), ("Write", ""), ("Audit", ""), ("Create", "figures"), ("Check", "submission")],
+        "zh-CN": [("规划", ""), ("评审", "选题"), ("检索", "文献"), ("设计", "实验"), ("实现", "与训练"), ("撰写", "论文"), ("核验", "证据"), ("绘制", "图表"), ("检查", "投稿")],
+        "zh-TW": [("規劃", ""), ("評審", "選題"), ("檢索", "文獻"), ("設計", "實驗"), ("實作", "與訓練"), ("撰寫", "論文"), ("核驗", "證據"), ("繪製", "圖表"), ("檢查", "投稿")],
     }[lang]
     owners = {
-        "en": ["Project planning", "Idea review", "Literature search", "Experiment design", "Paper writing", "Humanization", "Integrity audit", "Visual composer", "Submission check"],
-        "zh-CN": ["项目规划", "选题评审", "文献检索", "实验设计", "论文写作", "学术表达", "完整性核验", "科研绘图", "投稿检查"],
-        "zh-TW": ["專案規劃", "選題評審", "文獻檢索", "實驗設計", "論文寫作", "學術表達", "完整性核驗", "科研繪圖", "投稿檢查"],
+        "en": ["Project planning", "Idea review", "Literature search", "Experiment design", "Research engineer", "Paper writing", "Integrity audit", "Visual composer", "Submission check"],
+        "zh-CN": ["项目规划", "选题评审", "文献检索", "实验设计", "科研工程", "论文写作", "完整性核验", "科研绘图", "投稿检查"],
+        "zh-TW": ["專案規劃", "選題評審", "文獻檢索", "實驗設計", "科研工程", "論文寫作", "完整性核驗", "科研繪圖", "投稿檢查"],
     }[lang]
     colors = [PALETTE["blue"], PALETTE["purple"], PALETTE["green"], PALETTE["green"], PALETTE["red"], PALETTE["red"], PALETTE["orange"], PALETTE["orange"], "#EEF2FF"]
     body = [text(60, 62, title, 30, 800), text(60, 92, LANG[lang]["subtitle"], 15, 500, PALETTE["muted"])]
@@ -395,9 +396,9 @@ def build_workflow(lang: str) -> None:
             body.append(line(x + card_w + 4, 230, x + card_w + gap - 5, 230))
         x += card_w + gap
     note = {
-        "en": "Humanization refines publication prose while Paper Writer keeps the argument coherent.",
-        "zh-CN": "学术表达模块改善文字，论文写作模块保持论证连贯。",
-        "zh-TW": "學術表達模組改善文字，論文寫作模組保持論證連貫。",
+        "en": "Humanization and Common apply first; each task uses the stages it needs.",
+        "zh-CN": "Humanization 与 Common 先行，各任务按需进入相关阶段。",
+        "zh-TW": "Humanization 與 Common 先行，各任務按需進入相關階段。",
     }[lang]
     body.append(rect(340, 365, 920, 82, PALETTE["white"], r=22, extra='filter="url(#softShadow)"'))
     body.append(text(800, 408, note, 17, 700, PALETTE["ink"], "middle"))
@@ -407,9 +408,9 @@ def build_workflow(lang: str) -> None:
 def build_catalog(lang: str) -> None:
     title = {"en": "Skill catalog by responsibility", "zh-CN": "按职责划分的技能目录", "zh-TW": "按職責劃分的技能目錄"}[lang]
     subtitle = {
-        "en": "17 skills with distinct responsibilities and purposeful collaboration",
-        "zh-CN": "17 个 skills 各有专长，并在需要时彼此协作",
-        "zh-TW": "17 個 skills 各有專長，並在需要時彼此協作",
+        "en": "18 skills with distinct responsibilities and purposeful collaboration",
+        "zh-CN": "18 个 skills 各有专长，并在需要时彼此协作",
+        "zh-TW": "18 個 skills 各有專長，並在需要時彼此協作",
     }[lang]
     body = [text(60, 58, title, 30, 800), text(60, 88, subtitle, 15, 500, PALETTE["muted"])]
     layout = [("governance", 60, 125, PALETTE["blue"]), ("ideation", 430, 125, PALETTE["purple"]), ("evidence", 800, 125, PALETTE["green"]), ("writing", 60, 380, PALETTE["red"]), ("delivery", 430, 380, PALETTE["orange"]), ("maintenance", 800, 380, "#EEF2FF")]

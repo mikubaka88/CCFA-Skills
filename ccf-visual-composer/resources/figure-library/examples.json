@@ -1,0 +1,113 @@
+[
+  {
+    "id": "original:mechanism_overview",
+    "category": "original",
+    "title": "方法总览与支持分析",
+    "template": "mechanism_overview",
+    "why": "方法图与关键结果分工，读者从整体进入具体分析。",
+    "preserved_from": "initial nine-template library"
+  },
+  {
+    "id": "original:benchmark_atlas",
+    "category": "original",
+    "title": "基准、分布与资源图谱",
+    "template": "benchmark_atlas",
+    "why": "总体比较之外保留样本差异和实际成本。",
+    "preserved_from": "initial nine-template library"
+  },
+  {
+    "id": "original:ablation_interactions",
+    "category": "original",
+    "title": "消融与模块交互",
+    "template": "ablation_interactions",
+    "why": "将单因素贡献与组合交互分开，避免用一个排名解释机制。",
+    "preserved_from": "initial nine-template library"
+  },
+  {
+    "id": "original:scaling_robustness",
+    "category": "original",
+    "title": "规模、预算与鲁棒性",
+    "template": "scaling_robustness",
+    "why": "同一方法跨规模与扰动条件保持身份。",
+    "preserved_from": "initial nine-template library"
+  },
+  {
+    "id": "original:representation_diagnostics",
+    "category": "original",
+    "title": "表征诊断",
+    "template": "representation_diagnostics",
+    "why": "嵌入、矩阵和分布互补解释表征结构。",
+    "preserved_from": "initial nine-template library"
+  },
+  {
+    "id": "original:biological_atlas",
+    "category": "original",
+    "title": "生物数据分析图谱",
+    "template": "biological_atlas",
+    "why": "群体、表达和效应分别呈现，同时保留群体颜色。",
+    "preserved_from": "initial nine-template library"
+  },
+  {
+    "id": "original:paired_effects",
+    "category": "original",
+    "title": "配对变化与群体效应",
+    "template": "paired_effects",
+    "why": "相同观察单位连接前后变化，再看群体差异。",
+    "preserved_from": "initial nine-template library"
+  },
+  {
+    "id": "original:calibration_errors",
+    "category": "original",
+    "title": "校准与错误结构",
+    "template": "calibration_errors",
+    "why": "概率解释、分类错误和分布分工明确。",
+    "preserved_from": "initial nine-template library"
+  },
+  {
+    "id": "original:sensitivity_dynamics",
+    "category": "original",
+    "title": "密度、扰动与状态演化组合",
+    "template": "sensitivity_dynamics",
+    "why": "保留用户参考图中的四个分析关系：密度、扰动、状态曲线、类别占比。",
+    "preserved_from": "initial nine-template library"
+  },
+  {
+    "id": "reference:sensitivity-pair",
+    "category": "reference",
+    "title": "用户参考图：密度与径向扰动双面板",
+    "template": "sensitivity_dynamics",
+    "panel_pair": "sensitivity",
+    "why": "六边形密度展示状态分布，分箱箱线和上分位数解释敏感性差异。",
+    "preserved_from": "user-supplied reference image"
+  },
+  {
+    "id": "reference:dynamics-pair",
+    "category": "reference",
+    "title": "用户参考图：状态演化与类别占比双面板",
+    "template": "sensitivity_dynamics",
+    "panel_pair": "dynamics",
+    "why": "整体状态随迭代变化与类别内部变化相邻展示，保留同一类别顺序和占比分母。",
+    "preserved_from": "user-supplied reference image"
+  },
+  {
+    "id": "layout:joint_marginals",
+    "category": "layout",
+    "title": "联合关系与两个边缘分布",
+    "layout": "joint_marginals",
+    "why": "二维关系与边缘计数来自同一批观测，在完全对应的坐标上读取。"
+  },
+  {
+    "id": "layout:aligned_tracks",
+    "category": "layout",
+    "title": "共同位置的多轨观测与预测",
+    "layout": "aligned_tracks",
+    "why": "所有轨道共享位置范围与图形宽度，各自保留单位，定位误差发生在哪里。"
+  },
+  {
+    "id": "layout:matrix_slices",
+    "category": "layout",
+    "title": "响应矩阵与同源行列切片",
+    "layout": "matrix_slices",
+    "why": "主矩阵定位交互，选定行列标记与切片使用同一矩阵，不另造趋势。"
+  }
+]

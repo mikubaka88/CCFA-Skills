@@ -19,9 +19,9 @@ python ..\ccf-common\scripts\check_sources.py
 ## Idea-Optimizer Use Rules
 
 - Use official venue pages for current review forms, policies, tracks, anonymity, artifacts, ethics, and page limits.
-- Use papers, proceedings, official project pages, and credible scholar pages for literature grounding.
+- Use original papers, proceedings, technical reports, and primary project artifacts for literature grounding; scholar pages help locate them. Inspect the relevant passage and its version before relying on a scientific claim.
 - Do not treat source lists as proof of novelty. Novelty requires checking the specific idea against close work.
 - Treat unsearched prior art as uncertainty, not as novelty.
 - Avoid copying source wording. Extract evaluation structure, problem-framing questions, and research-taste signals only.
 - Follow `../ccf-common/references/privacy-and-evidence.md` before using private idea text in any search query.
-- For literature-grounded idea evolution, use the public-system records in the shared registry as workflow provenance only. Current relevant records include `ai-scientist-v2`, `rd-agent`, `storm`, `gpt-researcher`, `paper-qa2`, `ai-researcher`, and `arbor-agent`. Do not present their GitHub popularity or claimed benchmark performance as evidence that an idea is scientifically valid.
+- Use the relevant records in the shared registry for workflow provenance. Distinguish an adapted retrieval or candidate-selection principle from a reproduced system, trained model, or measured improvement. GitHub popularity and reported benchmark performance do not establish the validity of a new research idea.

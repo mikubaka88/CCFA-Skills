@@ -213,8 +213,8 @@ All references must list **every author by full name**.
 
 ## UbiComp Writing Conventions
 
-- **System substantiation**: The system must be real, implemented, and evaluated
-- **Evidence-based**: Claims must be supported by data or evaluation
+- **System substantiation**: For system contributions, describe what was implemented and evaluated; other contribution types retain their own study, design, or analytical structure
+- **Evidence-based**: Match each asserted finding to its actual data, analysis, or evaluation; distinguish proposed work from completed evidence
 - **Methodological transparency**: Enough detail to understand the system
 - **Contribution clarity**: Explicit contribution statement in the introduction
 - **Privacy considerations**: Address data collection and privacy implications

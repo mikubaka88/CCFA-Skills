@@ -11,7 +11,7 @@ Use this for one paragraph, one small subsection, or single-pass polish:
 - Technical meaning, results, datasets, baselines, and conclusion direction are preserved.
 - Local claims accurately express supplied evidence; retain justified uncertainty without reflexively softening every result.
 - No citation, result, experiment, or reviewer impact is invented.
-- Prose follows `prose-quality-guardrails.md`: no defensive framing, label-heavy symbols, number-only abstract style, third-person manuscript voice, or punctuation-driven structure.
+- Prose follows `prose-quality-guardrails.md`: no empty defensive framing or structure that obscures meaning; useful labels, mathematics, numerical findings, and author voice remain.
 - Short edited prose follows Humanization's selected punctuation and rhythm preferences; remove empty throat-clearing, forced triads, synonym cycling, or needless repeated templates.
 - Full paper storyline, full score-risk loop, and final-readiness checks are skipped unless the user requests standard mode.
 
@@ -50,7 +50,7 @@ Use applicable remaining sections for substantial writing, score-risk work, or f
 
 ## Global Story Checklist
 
-Every major output must preserve this chain:
+For a substantial manuscript, check the scientific relationships relevant to its contribution. The following chain is a useful method-paper pattern, not a mandatory sequence for every section, benchmark, proof, or empirical study:
 
 ```text
 task -> gap -> root challenge -> insight -> method mechanism -> evidence -> supported implication
@@ -71,30 +71,30 @@ Check:
 
 - The section role is named before revision.
 - Each paragraph has one main message.
-- The first sentence of each paragraph signals that message.
+- The paragraph makes its message recoverable in a natural order; a useful transition or definition may precede its main claim.
 - Terminology is stable across sections.
 - Previously defined concepts are not repeated without adding new logic.
 - Transitions show cause, contrast, consequence, refinement, or example.
-- Sentence lengths vary naturally; the paragraph does not repeat the same syntactic template.
+- Sentence structure makes the relationships and emphasis clear; length variation is not a target.
 - Figures and tables are introduced before interpretation.
-- Captions state what the reviewer should learn.
+- Captions explain the depicted quantities or relationships and the scientific point of the comparison.
 - The section ends with the intended next-step logic when appropriate.
 
 ## Prose Quality Checklist
 
 Use with `prose-quality-guardrails.md` before calling a draft polished:
 
-- The manuscript speaks from the authors' scientific position, not from a third-person report about "the paper" or imagined reviewers.
+- The manuscript develops the authors' scientific argument. Conventional manuscript voice is acceptable; commentary about imagined reviewers does not replace the explanation.
 - The abstract contains task, gap, insight or method, evidence, and scope; it is not a column of numbers in sentence form.
-- `Q1`, `Q2`, `C1`, `C2`, `RQ1`, and similar labels are absent from running prose unless explicitly required.
+- Question or claim labels support navigation when useful and defined; they do not replace the explanation with shorthand.
 - Equations, theorems, and symbols are introduced with their scientific purpose and do not appear as dense blocks without narration.
 - Quotation marks, colons, dashes, slashes, arrows, and bracketed labels are not used as substitutes for logical transitions.
-- Authored prose follows the punctuation and rhythm priority in `../../ccf-humanization/references/humanization-policy.md`; its generic em-dash default applies only without an explicitly selected user or project convention.
+- Authored prose follows the punctuation and rhythm priority in `../../ccf-humanization/references/humanization-policy.md`; its restrained em-dash preference has no default numeric quota.
 - Throat-clearing openers are removed when the following clause can stand directly.
 - Contributions and arguments use their natural number of parts instead of forced three-item lists.
 - Canonical technical terms remain stable; near-synonyms are not rotated for surface variety.
-- Nearly uniform sentence runs have been reviewed for readability; keep justified procedural or comparative parallelism.
-- Long compound sentences are split when they mix motivation, mechanism, evidence, and conclusion.
+- Repeated wording is changed only when it adds no information or obscures the argument; retain useful procedural or comparative parallelism.
+- Split sentences when unrelated thoughts or ambiguous modifier scope impede reading; preserve a connected claim and its reason or qualification.
 - Canonical terms are used consistently across abstract, introduction, method, experiments, and conclusion.
 - Strong claims avoid hype and are scoped to available evidence.
 - Each paragraph progresses by cause, contrast, refinement, example, or consequence.
@@ -161,7 +161,7 @@ For a final submission-readiness request, do not call the paper ready until:
 
 - The target venue/custom format is clear.
 - The global story is internally consistent.
-- The prose quality checklist has no high-risk pattern remaining.
+- Contextual prose checks leave no unresolved material obstruction to the scientific explanation.
 - `scripts/check_prose_quality.py` candidate locations have been reviewed in context. Correct defensive prose and punctuation violations; keep justified scientific language. A warning-free `--strict` run is not required for publication readiness.
 - Central claims have visible support.
 - Closest prior work and strongest baselines are handled.
@@ -173,7 +173,7 @@ For a final submission-readiness request, do not call the paper ready until:
 
 ## Minimal Checklist Status
 
-Use this compact status when output space is limited:
+Use this compact status only when the user requests checklist or review status. Ordinary writing returns the requested prose, without a status block. Omit inapplicable fields:
 
 ```text
 Checklist status:

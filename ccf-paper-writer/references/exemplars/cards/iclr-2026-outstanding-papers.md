@@ -9,22 +9,24 @@ Use when: the user explicitly asks for recent ICLR outstanding-paper style, espe
 - `Transformers are Inherently Succinct`
 - `LLMs Get Lost In Multi-Turn Conversation`
 
-## Shared Writing Signals
+## Adaptation Guidance
+
+The guidance below suggests adaptations for the named research topics. The award source establishes award context, not these writing techniques; inspect a selected paper passage before attributing a specific move to it.
 
 - State a broad field assumption, then challenge it with a sharper evaluation or theory lens.
 - Make the central contribution legible as a new way to look at a familiar object: transformer expressivity, or LLM conversation ability.
 - Use the introduction to justify why the paper's measurement or theory target was previously under-examined.
-- Keep limitations visible when the finding might be controversial.
+- State the assumptions and conditions that determine how the finding should be interpreted.
 
 ## Transferable Moves
 
 - For theory papers: make the conceptual measure intuitive before formal machinery.
 - For evaluation papers: define the deployment mismatch before benchmark construction.
-- Explain why the result matters even when the exact setup can be debated.
+- Explain which scientific question the selected setting resolves and which distinctions it leaves open.
 - Use rigorous selection of problem setting as part of the contribution.
 
-## Reviewer-Facing Warnings
+## Adaptation Conditions
 
-- Do not borrow the "outstanding" confidence unless the user's paper has a similarly crisp thesis and strong validation.
+- An award does not determine the strength of a new manuscript's claims; use its own definitions, derivations, and observations.
 - Do not use broad LLM or transformer claims without a clear scope statement.
 - If the paper studies a failure mode, include controls that distinguish artifact from real capability gap.

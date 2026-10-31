@@ -1,12 +1,13 @@
 {
   "name": "ccfa-skills",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "A coordinated skill family for CCF research papers.",
   "skills_root": ".",
   "catalog": "docs/SKILLS_CATALOG.md",
   "entrypoints": [
     "ccf-humanization",
     "ccf-pipeline-orchestrator",
+    "ccf-research-engineer",
     "ccf-literature-monitor",
     "ccf-visual-composer",
     "ccf-paper-writer",

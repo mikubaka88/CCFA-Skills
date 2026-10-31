@@ -1,6 +1,6 @@
 ---
 name: ccf-project-scaffolder
-description: "Initialize CCF project folders, LaTeX templates, artifact directories, and ccfa.yaml. Use for 项目初始化, 目录搭建, template setup, and reproducible workspace scaffolding. Preserve existing files. Workflow planning belongs to ccf-pipeline-orchestrator; research content belongs to its specialist owner."
+description: "Initialize CCF project folders, LaTeX templates, artifact directories, and ccfa.yaml. Use for 项目初始化, 目录搭建, and paper template setup. Preserve existing files. Research codebase selection and training environments belong to ccf-research-engineer; workflow planning belongs to ccf-pipeline-orchestrator."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -41,4 +41,4 @@ Create the requested project structure, template, and state without inventing re
 
 ## Boundaries
 
-Use `../ccf-common/references/artifact-contracts.md` for file ownership. Project workflow planning belongs to `ccf-pipeline-orchestrator`, manuscript prose to `ccf-paper-writer`, and final package checks to `ccf-submission-checker`. Do not invent a title, abstract, claim, experiment, or citation.
+Use `../ccf-common/references/artifact-contracts.md` for file ownership. Research codebase selection, model implementation, and training/dependency environments belong to `ccf-research-engineer`; a request to set up a runnable research baseline needs that owner rather than only a directory tree. For combined requests, complete the requested structure and pass existing paths to the engineer without replacing the project or creating a second scaffold. Project workflow planning belongs to `ccf-pipeline-orchestrator`, manuscript prose to `ccf-paper-writer`, and final package checks to `ccf-submission-checker`. Do not invent a title, abstract, claim, experiment, or citation.

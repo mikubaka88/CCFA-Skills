@@ -8,95 +8,27 @@
 | Venue family | TBD |
 | CCF tier | TBD |
 | Template path | `TBD - verify official template` |
-| Official URL | TBD |
-| Last verified | Legacy migration on 2026-06-06; official policy must be rechecked before submission. |
-| Source status | Migrated local guide; not independently reverified in v0.4.0. |
+| Official URL | https://sp2026.ieee-security.org/cfpapers.html |
+| Last verified | 2026-10-30: named 2026 submission snapshot only. |
+| Source status | Official CFP checked for the snapshot; domain examples are writing guidance. |
 
 ## Usage Boundary
 
-- Use this file for LaTeX, page limit, anonymity, template, camera-ready, rebuttal-template, and venue-format details.
+- Use the named policy snapshot only for its year/track/stage; use domain examples as writing guidance.
 - Use `ccf-paper-writer` for actual paper writing and polishing.
 - Use `ccf-paper-reviewer` or `ccf-submission-checker` for format audit, depending on whether the task is manuscript-facing or submission-package-facing.
-- Verify current-year official rules before final submission.
+- Before applying format changes, reuse or obtain verified official requirements through `ccf-submission-checker`; keep supplied verified templates.
 
-## Migrated Venue Notes
+## IEEE S&P 2026 research/SoK submission snapshot
 
-# IEEE S&P Writing Guide
+Checked 2026-10-30 against the [official 2026 CFP](https://sp2026.ieee-security.org/cfpapers.html).
 
-IEEE S&P (Symposium on Security and Privacy) is a **CCF-A security conference** (https://sp2026.ieee-security.org). **IMPORTANT: IEEE S&P is NOT double-blind — author identities are visible to reviewers.** Known for high-quality security and privacy research with rigorous standards.
+- Anonymous review: omit identifying author information and acknowledgments; anonymize artifacts too.
+- Research submissions: up to 13 pages of text plus 5 pages of references/appendices, at most 18 total. The CFP specifies a separate SoK reference exception; check the selected paper type rather than applying one budget to both.
+- Use US Letter and the official `conference,compsoc` IEEEtran 1.8b template. Do not load IEEEtran as a package or add a USENIX formatting overlay.
+- Include `Ethics considerations`; include `LLM usage considerations` when applicable. These sections have specific accounting and disclosure rules in the CFP.
 
-## Document Setup
-
-### Template Files
-- Template folder: `S&P/`
-- Document class: `IEEEtran.cls` from the S&P folder
-- Mode: `conference` option for two-column format
-
-### Required LaTeX Structure
-
-```latex
-\documentclass[conference]{IEEEtran}
-\usepackage{IEEEtran}  % Use class from S&P folder
-
-% Optional packages
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{cite}
-
-% Column control if needed
-\IEEEoverridewithcntl % For line spacing control
-
-\begin{document}
-
-% Title
-\title{Your Paper Title}
-
-% Author blocks — IEEE format
-\author{
-  \IEEEauthorblockN{Author Name}
-  \IEEEauthorblockA{Institution\\Department\\email@example.com}
-}
-
-\maketitle
-
-% Two-column begin (IEEE conference format starts two-column here)
-\begin{IEEEabstract}
-\IEEEabstractnarrowsection
-Your abstract content here.
-\end{IEEEabstract}
-
-% Main content (single-column at top, then two-column)
-\section{Introduction}
-...
-
-% References: IEEE style
-\bibliographystyle{IEEEtran}
-\bibliography{references}
-
-\end{document}
-```
-
-### Key Formatting Requirements
-- **Document class**: `IEEEtran` with `[conference]`
-- **Layout**: Two-column (IEEE standard)
-- **Font size**: 10pt (IEEE default)
-- **Author format**: `\IEEEauthorblockN{}` and `\IEEEauthorblockA{}`
-
-## Page Limits
-
-- **12 pages** maximum for IEEE S&P 2026
-- References count within the page limit
-- Supplementary materials may be submitted separately
-
-## Submission Requirements
-
-### Double-Blind Status
-**IEEE S&P is NOT anonymous.** Author information is visible to reviewers.
-
-### Submission Format
-- Single PDF submission
-- Ensure PDF/A compliance if required
-- Include all figures embedded
+Use the official template linked by that CFP. The old handwritten LaTeX skeleton has been removed because it mixed incompatible class/package and abstract commands.
 
 ## Security-Specific Writing Conventions
 
@@ -139,7 +71,9 @@ If paper addresses privacy:
 8. **Related Work** — Context
 9. **Discussion/Limitations** — Scope, open questions
 10. **Conclusion** — Summary
-11. **References**
+11. **Ethics considerations** — Required for 2026; report actual facts
+12. **LLM usage considerations** — When applicable, using actual usage details
+13. **References**
 
 ## Figure and Table Guidelines
 
@@ -173,13 +107,13 @@ If paper addresses privacy:
 1. Finalize all content
 2. Add author acknowledgments
 3. Verify two-column layout
-4. Check page limits (12 pages)
+4. Check the verified final-publication page budget
 5. Ensure PDF compliance
-6. Submit through IEEE PaperPlaza
+6. Use the submission or final-publication portal named by the official instructions
 
 ## Common Mistakes to Avoid
 
-1. Exceeding 12-page limit
+1. Applying a page budget from another paper type or year
 2. Missing threat model section
 3. Insufficient formal treatment
 4. Weak evaluation
@@ -188,5 +122,5 @@ If paper addresses privacy:
 ## Useful Resources
 
 - [IEEE S&P 2026 Author Information](https://sp2026.ieee-security.org)
-- [IEEE PaperPlaza](https://paperplaza.net/conferences/)
+- [IEEE S&P 2026 Call for Papers](https://sp2026.ieee-security.org/cfpapers.html)
 - Publisher: IEEE Computer Society

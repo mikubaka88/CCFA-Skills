@@ -27,6 +27,23 @@ Good CCF-A problems tend to have at least one of these properties:
 
 ## Method Mechanism
 
+For a model-capability question, first locate what prevents the requested behavior. Start from the supplied failure or a precisely stated hypothetical case; do not invent an observed failure. Compare the explanations that are plausible for this setting rather than filling every row:
+
+| Possible limitation | Question that separates it from nearby explanations |
+| --- | --- |
+| Information unavailable | Can two cases require different answers while providing the same permitted observations? If so, which additional observation or assumption would distinguish them? |
+| Representation loses a distinction | Does an encoding, compression, invariance, or state update merge cases that the task must distinguish? Which distinction must survive? |
+| Objective rewards the wrong behavior | Can a shortcut satisfy the training objective while missing the desired capability? What would an objective or supervision change reward instead? |
+| Learning or data coverage fails | Can the model express a suitable solution, but the data, gradients, optimization, or numerical behavior prevent learning it? What separates these causes? |
+| Computation cannot use available information | Is the information present but inaccessible to the current retrieval, composition, memory update, or inference procedure? Which operation is missing? |
+| Evaluation misses the behavior | Could the metric improve without the requested capability, or fail to recognize it? Which task distinction should the evaluation preserve? |
+
+Use the smallest useful counterexample, limiting case, derivation, existing analysis, or diagnostic observation to distinguish these explanations. A proof is useful when the question is mathematical; it is not a mandatory artifact for every idea. Keep an untested diagnosis as a hypothesis. If the available material cannot separate causes, state what remains open and develop the plausible alternatives without pretending one is established.
+
+For example, if a fixed representation maps two inputs to the same state but their correct answers differ, a predictor that sees only that state cannot distinguish them. Adding layers after that fixed state cannot recover the lost information. This argument identifies the encoding or available input as a possible intervention; it does not establish that a particular real model has this defect. If the representation is trainable or another input reaches the predictor, recheck the premise.
+
+Select a mechanism for the limitation it changes. State which information, operation, assumption, or objective changes, why this addresses the difficulty, and what would contradict that explanation. A performance failure alone does not identify its cause, and a named theoretical framework alone does not explain a mechanism. For non-model ideas, use the corresponding mathematical, empirical, systems, or human-centered objects instead of forcing this model-specific diagnosis.
+
 Translate method labels into mechanisms:
 
 ```text
@@ -50,7 +67,7 @@ This is a proposed explanation until supported. Theory, measurement, and dataset
 
 When a mechanism comes from prior work, record the source-supported primitive and the optimizer's new interaction separately. The source may justify that a primitive works under its original assumptions; it does not automatically justify transfer, compatibility, or the new paper's central claim.
 
-If the method is a combination of known components, identify the non-obvious interaction, the compatibility condition, and the observation that would distinguish the combination from either component alone. If no such interaction exists, the idea is likely an engineering assembly and needs a sharper contribution or a stronger benchmark/evidence story.
+If the method combines known components, identify the interaction and compatibility condition, and explain what changes when a component is absent. Without an interaction or another substantive contribution, adding components does not address the research question. A useful systems design, diagnostic finding, or simpler formulation may still be a contribution in its own right; judge its stated purpose rather than requiring a new module.
 
 ## Coherence Filter
 

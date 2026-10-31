@@ -1,39 +1,29 @@
 # Constrained Highlighting Style Card
 
-Venue/year: CHI 2024 family.
-Source: ACM Best Paper Awards source record `acm-best-paper-awards`; verify the exact CHI paper page before public award-status claims.
+Venue/year: CHI 2024.
+Source: shared registry record `chi-2024-constrained-highlighting`; direct original locations below.
 Use when: HCI, reading interfaces, interaction technique evaluation, user studies, education technology, or human-centered design papers.
+
+Inspected writing: Author-hosted paper `https://chatw.ch/files/QUANT-Joshi2024.pdf`, Abstract and Section 1; formal DOI `https://doi.org/10.1145/3613904.3642314`.
+
+This card navigates selected original passages. The source observations below are distinct from the adaptation advice; read the relevant original when using it.
 
 ## Story Pattern
 
-The paper type is HCI research: start from a human activity and a measurable difficulty, introduce the design intervention, then connect study design to the claim. The contribution is not the interface alone; it is the evidence about how and why the interaction changes user behavior or understanding.
+**Source observation:** The abstract starts with highlighting as a reading activity, connects selectivity to learning, and asks whether a quantity constraint changes comprehension. The introduction explains how excessive highlighting reduces visual distinction and connects the interface constraint to self-regulated selection.
 
 ## Abstract Moves
 
-- State the human task and population/context.
-- Describe the intervention without overselling it as universally better.
-- Preview study design, measures, and core finding using user-supplied results only.
-- Bound the claim to the studied context.
+**Writing observation in the inspected passage:** The design intervention follows from a specific behavioral explanation. The study outcome is separate from that explanation, so the intervention is not treated as beneficial merely because it is plausible.
 
-## Introduction Moves
+## Reusable Techniques
 
-- Motivate through user need, not only technical novelty.
-- Convert the design intuition into research questions.
-- Explain why prior interfaces or studies leave the question unresolved.
-- State contributions as design, empirical finding, and implications.
+**Adaptation advice for matching work:**
 
-## Method Moves
-
-- Make participants, tasks, measures, procedure, and analysis plan easy to audit.
-- Distinguish design rationale from study outcome.
-- Include limitations and ethics as part of trust, not afterthought.
-
-## Evidence Moves
-
-- Report quantitative and qualitative evidence according to the study design.
-- Avoid causal language if the study design does not support it.
-- Include failure cases, subgroup caveats, or ecological-validity limits when relevant.
+- Connect an interface choice to the behavior it is meant to change.
+- Distinguish design rationale, study design, and observed outcome.
+- Preserve the studied population and timing when they affect interpretation; do not import a universal HCI experiment package.
 
 ## Do-Not-Copy Boundary
 
-Do not reuse study claims or intervention specifics. Transfer only the HCI story and evidence structure.
+Use the target study's own definitions, mechanisms, conditions, results, and claims. Common academic phrasing and established terms may be reused when they fit; distinctive source sentences and scientific conclusions may not be transplanted.

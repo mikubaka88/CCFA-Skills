@@ -4,46 +4,26 @@ Venue/year: NeurIPS 2025.
 Source: NeurIPS Proceedings `https://proceedings.neurips.cc/paper_files/paper/2025/hash/e74ee34cc0f2d0780f34ee77d8fba25b-Abstract-Conference.html`.
 Use when: writing scaling, RL, self-supervised learning, architecture depth, goal-conditioned learning, or capability-emergence papers.
 
+Inspected writing: Stored original text `references/exemplars/papers/neurips-2025-1000-layer-ssl-rl.md`, Abstract and opening Introduction.
+
+This card navigates selected original passages. The source observations below are distinct from the adaptation advice; read the relevant original when using it.
+
 ## Story Pattern
 
-The paper imports a familiar scaling lesson from language and vision into reinforcement learning, then argues that RL had not benefited because the right building blocks were missing. The specific axis is network depth, and the evidence is both quantitative improvement and qualitative change in learned behavior.
+**Source observation:** The abstract contrasts depth scaling in self-supervised learning with the RL setting, defines the unsupervised goal-conditioned evaluation, and describes reported behavioral changes as well as success rates. The introduction asks whether larger RL networks can produce qualitative capability changes.
 
 ## Abstract Moves
 
-- Open with a cross-field contrast: scaling transformed language/vision but not RL.
-- Identify one design axis as critical.
-- State the experimental setting in a way that raises difficulty: no rewards or demonstrations.
-- Quantify gains across tasks.
-- Add that scaling changes behaviors, not only metrics.
-
-## Introduction Moves
-
-- Explain why existing shallow RL architectures may be a bottleneck.
-- Make the unsupervised goal-conditioned setting central to the difficulty.
-- Present depth scaling as a systematic study, not a one-off architecture trick.
-
-## Method Moves
-
-- Define the base algorithm before scaling modifications.
-- Separate architecture depth, stability tricks, objective, and training protocol.
-- Keep compute and implementation details visible for reproducibility.
-
-## Evidence Moves
-
-- Show scaling curves rather than only best numbers.
-- Compare against goal-conditioned baselines.
-- Include qualitative behavior examples to support the capability-change claim.
+**Writing observation in the inspected passage:** The study question connects architecture scale to behavior. The evaluation setting is defined before the claims are interpreted, rather than appended as a general caution.
 
 ## Reusable Techniques
 
-- Use cross-domain analogy carefully, then validate it in the target domain.
-- Pair scaling laws with concrete downstream behaviors.
-- Make absence of supervision part of the challenge framing.
+**Adaptation advice for matching work:**
 
-## User Notes
-
-Use for papers where a simple scaling dimension unlocks surprising performance or behavior.
+- Formulate the scientific question behind a scaling variable.
+- Distinguish quantitative improvement from a newly observed behavior.
+- Retain setting and evidence identity without borrowing depth values, gains, or emergence claims.
 
 ## Do-Not-Copy Boundary
 
-Do not reuse the depth-scaling claim, unsupervised RL setup, or magnitude of gains unless supported by the user's experiments.
+Use the target study's own definitions, mechanisms, conditions, results, and claims. Common academic phrasing and established terms may be reused when they fit; distinctive source sentences and scientific conclusions may not be transplanted.

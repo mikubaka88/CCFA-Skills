@@ -1,0 +1,2369 @@
+{
+  "version": 1,
+  "intents": {
+    "comparison": {
+      "title": "比较总体水平",
+      "terms": [
+        "compare",
+        "comparison",
+        "比较",
+        "对比",
+        "benchmark",
+        "比較",
+        "對比"
+      ]
+    },
+    "distribution": {
+      "title": "分布、长尾与异质性",
+      "terms": [
+        "distribution",
+        "tail",
+        "分布",
+        "长尾",
+        "异质",
+        "長尾",
+        "異質"
+      ]
+    },
+    "shift": {
+      "title": "条件变化与分布漂移",
+      "terms": [
+        "shift",
+        "drift",
+        "漂移",
+        "偏移",
+        "条件变化",
+        "條件變化"
+      ]
+    },
+    "paired_change": {
+      "title": "配对变化与谁受益",
+      "terms": [
+        "paired",
+        "before",
+        "after",
+        "配对",
+        "前后",
+        "提升",
+        "受益",
+        "配對",
+        "前後"
+      ]
+    },
+    "agreement": {
+      "title": "两种测量是否一致",
+      "terms": [
+        "agreement",
+        "bias",
+        "一致性",
+        "测量偏差",
+        "測量偏差"
+      ]
+    },
+    "uncertainty": {
+      "title": "不确定性与群体效应",
+      "terms": [
+        "uncertainty",
+        "interval",
+        "subgroup",
+        "不确定",
+        "区间",
+        "亚组",
+        "群体效应",
+        "分位数",
+        "扇形",
+        "不確定",
+        "區間",
+        "亞組",
+        "群體效應"
+      ]
+    },
+    "calibration": {
+      "title": "置信度与可靠性",
+      "terms": [
+        "calibration",
+        "reliability",
+        "校准",
+        "置信度",
+        "可靠性",
+        "校準",
+        "信心"
+      ]
+    },
+    "operating_tradeoff": {
+      "title": "阈值、检索与拒答权衡",
+      "terms": [
+        "threshold",
+        "retrieval",
+        "precision",
+        "recall",
+        "roc",
+        "coverage",
+        "阈值",
+        "召回",
+        "拒答",
+        "覆盖率",
+        "閾值",
+        "覆蓋率"
+      ]
+    },
+    "ranking": {
+      "title": "排名与稳定性",
+      "terms": [
+        "ranking",
+        "rank",
+        "排名",
+        "排序稳定",
+        "排序穩定"
+      ]
+    },
+    "dynamics": {
+      "title": "时间、训练与收敛",
+      "terms": [
+        "training",
+        "convergence",
+        "dynamics",
+        "trajectory",
+        "训练",
+        "收敛",
+        "轨迹",
+        "动态",
+        "存活",
+        "时间到事件",
+        "訓練",
+        "收斂",
+        "軌跡",
+        "動態",
+        "相空間",
+        "相空间"
+      ]
+    },
+    "composition": {
+      "title": "比例组成与状态转移",
+      "terms": [
+        "composition",
+        "proportion",
+        "transition",
+        "组成",
+        "占比",
+        "比例",
+        "状态转移",
+        "分箱组成",
+        "三组分",
+        "組成",
+        "佔比",
+        "狀態轉移",
+        "分箱組成",
+        "三組分"
+      ]
+    },
+    "association": {
+      "title": "关联、表征与矩阵结构",
+      "terms": [
+        "correlation",
+        "association",
+        "embedding",
+        "representation",
+        "相关",
+        "关联",
+        "表征",
+        "嵌入",
+        "谱峰",
+        "镜像谱",
+        "相關",
+        "關聯",
+        "表徵",
+        "譜峰",
+        "鏡像譜"
+      ]
+    },
+    "error_structure": {
+      "title": "错误集中在哪里",
+      "terms": [
+        "error",
+        "residual",
+        "mistake",
+        "错误",
+        "误差",
+        "残差",
+        "錯誤",
+        "誤差",
+        "殘差"
+      ]
+    },
+    "tradeoff": {
+      "title": "资源、多目标与前沿",
+      "terms": [
+        "tradeoff",
+        "pareto",
+        "cost",
+        "budget",
+        "多目标",
+        "前沿",
+        "资源",
+        "预算",
+        "权衡",
+        "目标冲突",
+        "Pareto",
+        "多维能力",
+        "多目標",
+        "資源",
+        "預算",
+        "權衡",
+        "目標衝突",
+        "多維能力"
+      ]
+    },
+    "response": {
+      "title": "超参数、机制和响应面",
+      "terms": [
+        "response",
+        "interaction",
+        "sensitivity",
+        "mechanism",
+        "响应",
+        "交互",
+        "敏感",
+        "消融",
+        "机制",
+        "響應",
+        "機制"
+      ]
+    },
+    "generalization": {
+      "title": "跨域、扰动与泛化",
+      "terms": [
+        "generalization",
+        "robustness",
+        "perturbation",
+        "泛化",
+        "跨域",
+        "鲁棒",
+        "扰动",
+        "魯棒",
+        "擾動"
+      ]
+    }
+  },
+  "charts": [
+    {
+      "id": "comparison_intervals",
+      "title": "点与区间比较",
+      "intents": [
+        "comparison",
+        "uncertainty"
+      ],
+      "module": "ccfa_analysis_panels",
+      "function": "comparison_intervals",
+      "required": [
+        "labels",
+        "values"
+      ],
+      "signature": "(ax, labels, values, *, lower=None, upper=None, runs=None, colors=None, xlabel='', seed=0)",
+      "why": "位置表达差异，区间表达给定的不确定性；横排为方法名留出空间。",
+      "avoid_when": "缺少区间时保留点，不补造误差条。",
+      "fusion_role": "接分组森林图或原始观测图",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [],
+      "source_ids": [
+        "figstudy-cvpr2025-image-generation-diversity-issues-and-how-to-tame-them",
+        "acl-2025-m-rewardbench",
+        "nmi-2025-visual-language-alignment",
+        "figstudy-more-neurips2026-calarena-a-large-scale-post-hoc-calibration-benchmark"
+      ],
+      "study_ids": [
+        "vision-diversity-paired-intervals",
+        "acl25-multifactor-cohort-comparison",
+        "nmi25-hierarchical-region-ablation",
+        "neurips26-calarena-binary-multiclass"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {},
+      "horizontal_labels": true
+    },
+    {
+      "id": "line_band",
+      "title": "趋势与给定范围",
+      "intents": [
+        "dynamics",
+        "response",
+        "generalization"
+      ],
+      "module": "ccfa_analysis_panels",
+      "function": "line_band",
+      "required": [
+        "x",
+        "y"
+      ],
+      "signature": "(ax, x, y, *, lower=None, upper=None, label=None, color=None, marker=None, xlabel='', ylabel='')",
+      "why": "沿有序条件连接观测，带状区域与主线共用横轴，便于同时读趋势和范围。",
+      "avoid_when": "无序类别不连成连续曲线；范围不自动当作置信区间。",
+      "fusion_role": "接响应热图的横纵切片",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "切片",
+        "趋势"
+      ],
+      "source_ids": [
+        "figstudy-iccv2025-calimatch-adaptive-calibration-for-improving-safe-semi-supervised-learni",
+        "figstudy-cvpr2025-image-generation-diversity-issues-and-how-to-tame-them",
+        "figstudy-cvpr2025-towards-precise-scaling-laws-for-video-diffusion-transformers",
+        "figstudy-iccv2025-scendi-score-prompt-aware-diversity-evaluation-via-schur-complement-of-c",
+        "figstudy-eccv2026-pushing-the-limits-of-high-resolution-weather-forecasting-through-data-s",
+        "acl-2026-multi-turn-calibration",
+        "nmi-2026-random-noise-calibration",
+        "nmi-2026-agent-collaboration",
+        "cellpose3-figure-layout",
+        "nature-2026-alphagenome",
+        "figstudy-icml2025-parameters-vs-flops-scaling-laws-for-optimal-sparsity-for-mixture-of-exp",
+        "figstudy-icml2025-distillation-scaling-laws",
+        "figstudy-iclr2025-reassessing-how-to-compare-and-improve-the-calibration-of-machine-learni",
+        "figstudy-iclr2026-the-art-of-scaling-reinforcement-learning-compute-for-llms",
+        "icml-2026-flexibility-trap-figures",
+        "figstudy-more-iclr2025-ada-k-routing-boosting-the-efficiency-of-moe-based-llms",
+        "figstudy-more-iclr2025-adaptive-data-optimization-dynamic-sample-selection-with-scaling-laws",
+        "figstudy-more-iclr2026-atlas-adaptive-transfer-scaling-laws-for-multilingual-pretraining-finetunin",
+        "figstudy-more-iclr2026-autoqd-automatic-discovery-of-diverse-behaviors-with-quality-diversity-opti",
+        "figstudy-more-icml2025-best-route-adaptive-llm-routing-with-test-time-optimal-compute",
+        "figstudy-more-icml2025-beyond-one-hot-labels-semantic-mixing-for-model-calibration",
+        "figstudy-more-icml2026-model-merging-scaling-laws-in-large-language-models",
+        "figstudy-more-neurips2026-calarena-a-large-scale-post-hoc-calibration-benchmark",
+        "figstudy-more-neurips2025-ai-research-agents-for-machine-learning-search-exploration-and-generalizati"
+      ],
+      "study_ids": [
+        "vision-calimatch-threshold",
+        "vision-diversity-saturation",
+        "vision-scaling-optimum-grid",
+        "vision-scaling-isoflop",
+        "vision-scendi-context-conditioned-metrics",
+        "vision-weather-scaling-facets",
+        "acl26-multi-turn-retention-facets",
+        "nmi26-parameter-surface-with-slices",
+        "nmi26-training-phase-trajectories",
+        "nmi26-capability-coordination-crossings",
+        "nmi26-agent-count-baseline-sweeps",
+        "nm25-acquisition-budget-threshold-pair",
+        "nature26-aligned-genomic-tracks",
+        "ml25-moe-isoflop-slices",
+        "ml25-moe-budget-design",
+        "ml25-distillation-fixed-budget",
+        "iclr25-calibration-generalization",
+        "iclr26-scaling-fit-observation",
+        "iclr26-scaling-controlled-ablations",
+        "icml26-quality-walltime",
+        "iclr25-adak-activation-knee",
+        "iclr25-ado-extrapolation-domain",
+        "iclr25-ado-learning-meta-loss",
+        "iclr26-atlas-language-scaling",
+        "iclr26-autoqd-adaptation-population",
+        "icml25-bestroute-sampling-returns",
+        "icml25-bestroute-cost-quality-envelope",
+        "icml25-calibration-training-distribution",
+        "icml26-merging-subsets-mean-variance",
+        "neurips26-calarena-class-count-boundary",
+        "neurips25-research-validation-test-trajectories",
+        "neurips25-research-selection-gap"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "ordered_x": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "density_map",
+      "title": "密集关系与局部计数",
+      "intents": [
+        "association",
+        "distribution"
+      ],
+      "module": "ccfa_analysis_panels",
+      "function": "density_map",
+      "required": [
+        "x",
+        "y"
+      ],
+      "signature": "(ax, x, y, *, gridsize=28, xscale='linear', yscale='linear', cmap='viridis', xlabel='', ylabel='')",
+      "why": "六边形聚合解决点遮挡，用颜色编码局部计数，同时保留二维位置。",
+      "avoid_when": "需要逐点身份时改散点；计数密度不是概率。",
+      "fusion_role": "接分箱分位数或残差图",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "密集",
+        "六边形",
+        "局部计数"
+      ],
+      "source_ids": [
+        "nmi-2026-random-noise-calibration"
+      ],
+      "study_ids": [
+        "nmi26-input-space-and-marginals"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "raw_samples": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "binned_summary",
+      "title": "分组主体与上尾",
+      "intents": [
+        "distribution",
+        "uncertainty"
+      ],
+      "module": "ccfa_analysis_panels",
+      "function": "binned_summary",
+      "required": [
+        "samples",
+        "labels"
+      ],
+      "signature": "(ax, samples, labels, *, color=None, quantile=0.95, line_color='#D85E32', ylabel='')",
+      "why": "中位数、四分位区间和P95分别表达典型状态与尾部；共用组顺序便于比较。",
+      "avoid_when": "箱体不是均值置信区间，不掩藏离群点。",
+      "fusion_role": "接密度图或条件变化曲线",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "P95",
+        "上尾",
+        "分位数摘要"
+      ],
+      "source_ids": [
+        "neurips-2025-hivemind-figures",
+        "figstudy-more-iclr2026-atlas-adaptive-transfer-scaling-laws-for-multilingual-pretraining-finetunin"
+      ],
+      "study_ids": [
+        "neurips25-category-distributions",
+        "iclr26-atlas-reciprocity-groups"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "raw_samples": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "category_comparison",
+      "title": "类别占比与同单位指标",
+      "intents": [
+        "comparison",
+        "composition"
+      ],
+      "module": "ccfa_analysis_panels",
+      "function": "category_comparison",
+      "required": [
+        "labels",
+        "bars",
+        "series"
+      ],
+      "signature": "(ax, labels, bars, series, *, bar_label='Occupancy', bar_color='#619ACA', ylabel='Share (%)')",
+      "why": "柱形提供类别基准，点线在同轴显示另一组同单位数值，便于读类别差异。",
+      "avoid_when": "单位不同不能强行共轴；不靠双轴放大关系。",
+      "fusion_role": "接整体分布与类别细分",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [],
+      "source_ids": [],
+      "study_ids": [],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {},
+      "horizontal_labels": false
+    },
+    {
+      "id": "matrix_heatmap",
+      "title": "二维条件或关系矩阵",
+      "intents": [
+        "association",
+        "response",
+        "comparison",
+        "error_structure"
+      ],
+      "module": "ccfa_analysis_panels",
+      "function": "matrix_heatmap",
+      "required": [
+        "values",
+        "row_labels",
+        "col_labels"
+      ],
+      "signature": "(ax, values, row_labels, col_labels, *, cmap='viridis', vmin=None, vmax=None, center=None, annotate=False, fmt='.1f', missing_color='#EEEEEE')",
+      "why": "行列位置编码两个离散条件，连续色阶揭示交互、区块与局部异常。",
+      "avoid_when": "色阶必须按数值意义设置，不能为突出方法随意截断。",
+      "fusion_role": "接指定行列切片或排名图",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "热图",
+        "胜率矩阵"
+      ],
+      "source_ids": [
+        "figstudy-cvpr2025-towards-precise-scaling-laws-for-video-diffusion-transformers",
+        "figstudy-iccv2025-scendi-score-prompt-aware-diversity-evaluation-via-schur-complement-of-c",
+        "figstudy-eccv2026-pushing-the-limits-of-high-resolution-weather-forecasting-through-data-s",
+        "nmi-2026-random-noise-calibration",
+        "figstudy-icml2025-improving-multi-class-calibration-through-normalization-aware-isotonic-t",
+        "figstudy-more-iclr2026-atlas-adaptive-transfer-scaling-laws-for-multilingual-pretraining-finetunin",
+        "figstudy-more-icml2025-a-unified-approach-to-routing-and-cascading-for-llms",
+        "figstudy-more-icml2026-model-merging-scaling-laws-in-large-language-models"
+      ],
+      "study_ids": [
+        "vision-scaling-optimum-grid",
+        "vision-scendi-controlled-surface",
+        "vision-weather-variable-horizon-heatmap",
+        "nmi26-parameter-surface-with-slices",
+        "ml25-calibration-win-matrices",
+        "iclr26-atlas-transfer-matrix",
+        "icml25-routing-estimator-noise-surface",
+        "icml26-merging-order-stability"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {},
+      "horizontal_labels": false
+    },
+    {
+      "id": "dot_matrix",
+      "title": "强度与覆盖的双编码",
+      "intents": [
+        "association",
+        "composition"
+      ],
+      "module": "ccfa_analysis_panels",
+      "function": "dot_matrix",
+      "required": [
+        "values",
+        "sizes",
+        "row_labels",
+        "col_labels"
+      ],
+      "signature": "(ax, values, sizes, row_labels, col_labels, *, cmap='viridis', vmin=None, vmax=None, size_max=100, size_scale=80)",
+      "why": "同一格中颜色与面积表达两个明确不同的量，使强度和出现比例可同时读取。",
+      "avoid_when": "未定义大小分母时不要画面积，不把面积当半径。",
+      "fusion_role": "接群体嵌入或效应筛选",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "强度和比例"
+      ],
+      "source_ids": [
+        "nature-2026-alphagenome"
+      ],
+      "study_ids": [
+        "nature26-output-capability-matrix"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {},
+      "horizontal_labels": false
+    },
+    {
+      "id": "pareto_scatter",
+      "title": "双指标非支配关系",
+      "intents": [
+        "tradeoff",
+        "comparison"
+      ],
+      "module": "ccfa_analysis_panels",
+      "function": "pareto_scatter",
+      "required": [
+        "x",
+        "y",
+        "labels"
+      ],
+      "signature": "(ax, x, y, labels, *, colors=None, x_direction='min', y_direction='max', connect=True, sizes=None, xlabel='', ylabel='', annotate=True)",
+      "why": "点位置保留两项指标，明确优化方向后仅连接非支配点，展示取舍。",
+      "avoid_when": "未指明最大化/最小化方向不能解释为前沿。",
+      "fusion_role": "接实际预算或机制剖面",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "Pareto",
+        "前沿",
+        "非支配"
+      ],
+      "source_ids": [
+        "figstudy-cvpr2026-poca-pareto-optimal-curriculum-alignment-for-visual-text-generation",
+        "acl-2025-m-rewardbench",
+        "nmi-2025-visual-language-alignment",
+        "figstudy-icml2025-pareto-merging-multi-objective-optimization-for-preference-aware-model-m"
+      ],
+      "study_ids": [
+        "vision-poca-reward-conflict",
+        "acl25-cross-domain-identity-scatter",
+        "nmi25-data-scale-versus-alignment",
+        "ml25-pareto-preference-frontiers"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {},
+      "horizontal_labels": false
+    },
+    {
+      "id": "paired_distribution",
+      "title": "配对观测与分布",
+      "intents": [
+        "paired_change",
+        "distribution"
+      ],
+      "module": "ccfa_analysis_panels",
+      "function": "paired_distribution",
+      "required": [
+        "values",
+        "labels"
+      ],
+      "signature": "(ax, values, labels, *, colors=None, paired=False, seed=0, ylabel='', violin=True)",
+      "why": "保留相同样本的连接，同时显示每组观测和分布，避免平均提升掩盖个体变化。",
+      "avoid_when": "没有样本对应关系时禁用配对线。",
+      "fusion_role": "接变化量与基线依赖",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "配对样本"
+      ],
+      "source_ids": [
+        "nmi-2026-agent-collaboration",
+        "nmi-2026-specgp"
+      ],
+      "study_ids": [
+        "nmi26-task-specific-distribution-atlas",
+        "nmi26-mirrored-spectrum-comparison"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "raw_samples": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "embedding_scatter",
+      "title": "已有嵌入的群体结构",
+      "intents": [
+        "association",
+        "distribution"
+      ],
+      "module": "ccfa_analysis_panels",
+      "function": "embedding_scatter",
+      "required": [
+        "coordinates",
+        "groups"
+      ],
+      "signature": "(ax, coordinates, groups, *, order=None, colors=None, size=10, alpha=0.65, rasterized=False)",
+      "why": "二维位置编码已提供的坐标，稳定群体颜色帮助比较不同条件。",
+      "avoid_when": "此模块不计算降维；视觉距离不自动证明因果或簇分离。",
+      "fusion_role": "接组分比例或特征矩阵",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "嵌入",
+        "表征分布"
+      ],
+      "source_ids": [
+        "figstudy-cvpr2026-post-training-feature-pruning-for-fundus-images-classification",
+        "nmi-2026-random-noise-calibration",
+        "figstudy-more-icml2026-agentic-confidence-calibration"
+      ],
+      "study_ids": [
+        "vision-pruning-paired-embeddings",
+        "nmi26-input-space-and-marginals",
+        "icml26-agentic-transfer-geometry-reliability"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "embedding_supplied": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "forest_intervals",
+      "title": "群体效应与区间",
+      "intents": [
+        "uncertainty",
+        "comparison"
+      ],
+      "module": "ccfa_analysis_panels",
+      "function": "forest_intervals",
+      "required": [
+        "labels",
+        "estimates",
+        "lower",
+        "upper"
+      ],
+      "signature": "(ax, labels, estimates, lower, upper, *, colors=None, reference=0, xlabel='Effect')",
+      "why": "水平区间围绕共同参考线展开，正负方向和跨参考线情况容易辨认。",
+      "avoid_when": "区间类型由输入定义；不推断显著性。",
+      "fusion_role": "接总体效应或群体样本量",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "群体效应",
+        "森林"
+      ],
+      "source_ids": [
+        "figstudy-cvpr2025-image-generation-diversity-issues-and-how-to-tame-them",
+        "nmi-2025-identity-flattening"
+      ],
+      "study_ids": [
+        "vision-diversity-paired-intervals",
+        "nmi25-group-diversity-forest-atlas",
+        "nmi25-hyperparameter-cohort-ladder"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "intervals_supplied": true
+      },
+      "horizontal_labels": true
+    },
+    {
+      "id": "volcano",
+      "title": "变化幅度与统计量筛选",
+      "intents": [
+        "uncertainty",
+        "association"
+      ],
+      "module": "ccfa_analysis_panels",
+      "function": "volcano",
+      "required": [
+        "effects",
+        "probabilities"
+      ],
+      "signature": "(ax, effects, probabilities, *, labels=None, statistic='q', effect_threshold=1, probability_threshold=0.05, annotate_indices=(), zero_floor=None, colors=None, xlabel='Log2 fold change')",
+      "why": "横轴效应大小与纵轴负对数统计量分工，阈值交点突出少量候选。",
+      "avoid_when": "p值与q值要区分；零值显示下限必须显式声明。",
+      "fusion_role": "接选中候选的原始分布",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [],
+      "source_ids": [],
+      "study_ids": [],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {},
+      "horizontal_labels": false
+    },
+    {
+      "id": "calibration",
+      "title": "置信度与实际准确率",
+      "intents": [
+        "calibration",
+        "operating_tradeoff"
+      ],
+      "module": "ccfa_analysis_panels",
+      "function": "calibration",
+      "required": [
+        "confidence",
+        "accuracy",
+        "counts"
+      ],
+      "signature": "(ax, confidence, accuracy, counts, *, edges=None, color=None, label=None)",
+      "why": "共同概率轴和理想对角线让过度自信与低估置信直接可见，分箱数量支持汇总。",
+      "avoid_when": "缺少每箱计数不能伪造总体校准误差。",
+      "fusion_role": "接风险覆盖、样本分布或泛化指标",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "校准",
+        "置信度",
+        "校準"
+      ],
+      "source_ids": [
+        "figstudy-iccv2025-calimatch-adaptive-calibration-for-improving-safe-semi-supervised-learni",
+        "acl-2025-quantized-calibration",
+        "acl-2026-multi-turn-calibration",
+        "nmi-2026-random-noise-calibration",
+        "figstudy-iclr2025-reassessing-how-to-compare-and-improve-the-calibration-of-machine-learni",
+        "figstudy-more-icml2025-beyond-one-hot-labels-semantic-mixing-for-model-calibration",
+        "figstudy-more-icml2026-agentic-confidence-calibration"
+      ],
+      "study_ids": [
+        "vision-calimatch-reliability",
+        "acl25-reliability-method-facets",
+        "acl26-turn-paired-reliability",
+        "nmi26-parameter-surface-with-slices",
+        "iclr25-calibration-generalization",
+        "icml25-semantic-calibration-gap",
+        "icml26-agentic-transfer-geometry-reliability"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {},
+      "horizontal_labels": false
+    },
+    {
+      "id": "ecdf",
+      "title": "累计分布与阈值覆盖",
+      "intents": [
+        "distribution",
+        "operating_tradeoff",
+        "shift"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "ecdf",
+      "required": [
+        "samples"
+      ],
+      "signature": "(ax, samples, *, color=None, label=None, xlabel='Value', ylabel='Cumulative fraction')",
+      "why": "每个观测形成累积阶梯，不依赖直方图分箱，便于读取阈值以下比例与尾部。",
+      "avoid_when": "不要把ECDF当成存活估计或连续概率密度。",
+      "fusion_role": "接雨云图或镜像直方图",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "CDF",
+        "累计分布",
+        "阈值比例"
+      ],
+      "source_ids": [
+        "figstudy-cvpr2025-image-generation-diversity-issues-and-how-to-tame-them",
+        "acl-2025-quantized-calibration",
+        "nmi-2026-random-noise-calibration",
+        "nmi-2026-specgp"
+      ],
+      "study_ids": [
+        "vision-diversity-saturation",
+        "acl25-class-conditional-confidence-cdf",
+        "nmi26-input-space-and-marginals",
+        "nmi26-optimal-setting-butterfly"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "raw_samples": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "survival_step",
+      "title": "时间到事件的给定存活曲线",
+      "intents": [
+        "dynamics",
+        "uncertainty"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "survival_step",
+      "required": [
+        "time",
+        "survival"
+      ],
+      "signature": "(ax, time, survival, *, lower=None, upper=None, color=None, label=None, xlabel='Time', ylabel='Survival probability')",
+      "why": "阶梯保留事件时刻，给定区间与曲线一起表达事件未发生概率。",
+      "avoid_when": "输入必须是外部正确估计结果；不忽略删失自行计算。",
+      "fusion_role": "接风险人数或事件类型组成",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "存活",
+        "时间到事件"
+      ],
+      "source_ids": [],
+      "study_ids": [],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "ordered_x": true,
+        "survival_estimate": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "raincloud",
+      "title": "观测、分布与摘要",
+      "intents": [
+        "distribution",
+        "comparison"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "raincloud",
+      "required": [
+        "samples",
+        "labels"
+      ],
+      "signature": "(ax, samples, labels, *, colors=None, seed=0, xlabel='Observed value')",
+      "why": "密度显示形状，散点保留实际样本，箱体表达中位数与四分位，避免只读均值。",
+      "avoid_when": "样本极少时密度形状不稳定，应以实际点为主。",
+      "fusion_role": "接ECDF或群体效应",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "原始观测",
+        "雨云",
+        "密度和样本"
+      ],
+      "source_ids": [
+        "acl-2025-m-rewardbench",
+        "nmi-2026-random-noise-calibration",
+        "neurips-2025-hivemind-figures",
+        "figstudy-more-icml2026-model-merging-scaling-laws-in-large-language-models"
+      ],
+      "study_ids": [
+        "acl25-ranked-agreement-intervals",
+        "nmi26-ood-distribution-and-roc",
+        "neurips25-category-distributions",
+        "icml26-merging-subsets-mean-variance",
+        "icml26-merging-order-stability"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "raw_samples": true
+      },
+      "horizontal_labels": true
+    },
+    {
+      "id": "ridgeline",
+      "title": "有序条件下的分布变化",
+      "intents": [
+        "distribution",
+        "shift"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "ridgeline",
+      "required": [
+        "samples",
+        "labels"
+      ],
+      "signature": "(ax, samples, labels, *, colors=None, xlabel='Observed value')",
+      "why": "沿共享数值轴堆叠密度，读者能跟踪峰位、多峰与尾部随条件如何移动。",
+      "avoid_when": "行顺序必须有含义，密度高度不能当样本量。",
+      "fusion_role": "接样本量或组分条带",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [],
+      "source_ids": [],
+      "study_ids": [],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "raw_samples": true
+      },
+      "horizontal_labels": true
+    },
+    {
+      "id": "ranked_intervals",
+      "title": "排序效应与不确定性",
+      "intents": [
+        "ranking",
+        "uncertainty",
+        "comparison"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "ranked_intervals",
+      "required": [
+        "labels",
+        "values",
+        "lower",
+        "upper"
+      ],
+      "signature": "(ax, labels, values, lower, upper, *, colors=None, order='input', reference=0, xlabel='Effect estimate')",
+      "why": "在保持标签与区间配对的前提下按效应排列，便于寻找最大变化及不确定排序。",
+      "avoid_when": "区间重叠不等于成对检验结论。",
+      "fusion_role": "接稳健排名轨迹",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "效应排序"
+      ],
+      "source_ids": [
+        "acl-2025-m-rewardbench"
+      ],
+      "study_ids": [
+        "acl25-ranked-agreement-intervals"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "intervals_supplied": true
+      },
+      "horizontal_labels": true
+    },
+    {
+      "id": "dumbbell",
+      "title": "匹配对象的前后变化",
+      "intents": [
+        "paired_change",
+        "comparison"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "dumbbell",
+      "required": [
+        "labels",
+        "before",
+        "after"
+      ],
+      "signature": "(ax, labels, before, after, *, colors=None, endpoints=('Before', 'After'), xlabel='Value')",
+      "why": "一条连接锁定同一对象，两个端点保留基线与结果，长度表达变化。",
+      "avoid_when": "非配对群体不能连线。",
+      "fusion_role": "接mean-delta查看谁受益",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "前后",
+        "配对值"
+      ],
+      "source_ids": [],
+      "study_ids": [],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "paired": true
+      },
+      "horizontal_labels": true
+    },
+    {
+      "id": "bland_altman",
+      "title": "一致性、系统偏差和差值范围",
+      "intents": [
+        "agreement",
+        "error_structure"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "bland_altman",
+      "required": [
+        "first",
+        "second"
+      ],
+      "signature": "(ax, first, second, *, color=None, limits_multiplier=1.96, xlabel='Pair mean', ylabel='Second − first')",
+      "why": "横轴均值和纵轴差值分离量级与差异，揭示高相关之外的偏差和异方差。",
+      "avoid_when": "描述性差值范围不是置信区间；不同单位不可直接相减。",
+      "fusion_role": "接原始两测量散点",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "一致性",
+        "agreement",
+        "测量偏差"
+      ],
+      "source_ids": [],
+      "study_ids": [],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "paired": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "residual_diagnostics",
+      "title": "预测误差的结构",
+      "intents": [
+        "error_structure",
+        "association"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "residual_diagnostics",
+      "required": [
+        "fitted",
+        "residuals"
+      ],
+      "signature": "(ax, fitted, residuals, *, color=None, xlabel='Supplied fitted value', ylabel='Supplied residual')",
+      "why": "将残差围绕零参考线展开，使非线性、偏差及随量级扩大的误差可见。",
+      "avoid_when": "残差与预测必须逐样本对应。",
+      "fusion_role": "接校准图或误差分布",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "残差",
+        "殘差"
+      ],
+      "source_ids": [],
+      "study_ids": [],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {},
+      "horizontal_labels": false
+    },
+    {
+      "id": "quantile_fan",
+      "title": "条件分位数扇形",
+      "intents": [
+        "uncertainty",
+        "dynamics"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "quantile_fan",
+      "required": [
+        "x",
+        "quantiles",
+        "probabilities"
+      ],
+      "signature": "(ax, x, quantiles, probabilities, *, color=None, xlabel='Input', ylabel='Response')",
+      "why": "中位数与嵌套分位数表达不对称和随条件变化的离散范围。",
+      "avoid_when": "分位数不能交叉，也不能当作均值置信区间。",
+      "fusion_role": "接训练均值曲线或阈值事件比例",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "分位数",
+        "扇形"
+      ],
+      "source_ids": [],
+      "study_ids": [],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "ordered_x": true,
+        "quantiles_supplied": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "precision_recall",
+      "title": "检索与类别稀缺下的权衡",
+      "intents": [
+        "operating_tradeoff",
+        "comparison"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "precision_recall",
+      "required": [
+        "recall",
+        "precision"
+      ],
+      "signature": "(ax, recall, precision, *, color=None, prevalence=None, label=None, xlabel='Recall', ylabel='Precision')",
+      "why": "召回与精确率共享概率范围，已知基准率帮助解释正类稀缺时的实际价值。",
+      "avoid_when": "不同样本正例率影响可比性；不擅自插值。",
+      "fusion_role": "接风险覆盖或类别错误结构",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "precision",
+        "recall",
+        "精确率",
+        "召回"
+      ],
+      "source_ids": [],
+      "study_ids": [],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "ordered_x": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "roc",
+      "title": "敏感度与误报权衡",
+      "intents": [
+        "operating_tradeoff",
+        "comparison"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "roc",
+      "required": [
+        "false_positive_rate",
+        "true_positive_rate"
+      ],
+      "signature": "(ax, false_positive_rate, true_positive_rate, *, color=None, label=None, xlabel='False-positive rate', ylabel='True-positive rate')",
+      "why": "同时呈现真阳性与假阳性变化，随机参考线帮助区分阈值选择与模型排序。",
+      "avoid_when": "类极不平衡时不能只看ROC忽视精确率。",
+      "fusion_role": "接precision-recall互补展示",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "ROC",
+        "误报"
+      ],
+      "source_ids": [
+        "nmi-2026-random-noise-calibration"
+      ],
+      "study_ids": [
+        "nmi26-ood-distribution-and-roc"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "ordered_x": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "risk_coverage",
+      "title": "拒答、风险与保留比例",
+      "intents": [
+        "operating_tradeoff",
+        "calibration"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "risk_coverage",
+      "required": [
+        "coverage",
+        "risk"
+      ],
+      "signature": "(ax, coverage, risk, *, color=None, label=None, xlabel='Retained fraction', ylabel='Risk on retained observations')",
+      "why": "将筛选后风险与覆盖率放在同一关系中，明确更低错误是否来自放弃更多样本。",
+      "avoid_when": "风险分母必须是保留样本，不能混用整体错误率。",
+      "fusion_role": "接校准和群体覆盖差异",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "拒答",
+        "覆盖率",
+        "risk coverage",
+        "覆蓋率"
+      ],
+      "source_ids": [],
+      "study_ids": [],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "ordered_x": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "rank_trajectories",
+      "title": "排名随条件变化",
+      "intents": [
+        "ranking",
+        "shift"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "rank_trajectories",
+      "required": [
+        "stages",
+        "ranks",
+        "labels"
+      ],
+      "signature": "(ax, stages, ranks, labels, *, colors=None, xlabel='Condition')",
+      "why": "连接同一方法在多个阶段的名次，突出交叉和稳定性而不过度重复数字。",
+      "avoid_when": "名次不能表达分数差距，需与实际分数配合。",
+      "fusion_role": "接grouped-dot实际幅度",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "排名变化",
+        "排名交叉"
+      ],
+      "source_ids": [],
+      "study_ids": [],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {},
+      "horizontal_labels": false
+    },
+    {
+      "id": "parallel_coordinates",
+      "title": "多维能力与冲突",
+      "intents": [
+        "tradeoff",
+        "association"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "parallel_coordinates",
+      "required": [
+        "values",
+        "dimensions",
+        "ranges",
+        "labels"
+      ],
+      "signature": "(ax, values, dimensions, ranges, labels, *, colors=None)",
+      "why": "同一对象跨多个给定域范围的轴连接，暴露维度间的取舍。",
+      "avoid_when": "必须声明各维原始范围和方向，不能悄悄按当前样本归一化。",
+      "fusion_role": "接双目标前沿展示重点维度",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "多维能力",
+        "平行坐标"
+      ],
+      "source_ids": [
+        "figstudy-more-iclr2025-balancing-act-diversity-and-consistency-in-large-language-model-ensembles"
+      ],
+      "study_ids": [
+        "iclr25-ensemble-composition-tradeoffs"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {},
+      "horizontal_labels": false
+    },
+    {
+      "id": "ternary",
+      "title": "三部分组成的平衡",
+      "intents": [
+        "composition",
+        "tradeoff"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "ternary",
+      "required": [
+        "fractions",
+        "labels"
+      ],
+      "signature": "(ax, fractions, labels, *, color=None)",
+      "why": "三角位置同时保留三个非负、和为一的组分，使混合与偏向可比较。",
+      "avoid_when": "只有组成数据适用，不对任意三项分数强制归一化。",
+      "fusion_role": "接不同条件组分变化",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "三部分",
+        "三组分"
+      ],
+      "source_ids": [],
+      "study_ids": [],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "composition": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "transition_matrix",
+      "title": "状态转移与去向",
+      "intents": [
+        "composition",
+        "dynamics"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "transition_matrix",
+      "required": [
+        "values",
+        "labels",
+        "normalization"
+      ],
+      "signature": "(ax, values, labels, *, normalization, colors=None)",
+      "why": "行列对应起点和终点，显式计数或按行归一化后表达转移规模或条件概率。",
+      "avoid_when": "必须声明normalization；不能把零计数行解释为稳定状态。",
+      "fusion_role": "接状态占比随时间的变化",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "转移",
+        "去向"
+      ],
+      "source_ids": [],
+      "study_ids": [],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {},
+      "horizontal_labels": false
+    },
+    {
+      "id": "mosaic_composition",
+      "title": "群体规模与内部组成",
+      "intents": [
+        "composition",
+        "distribution"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "mosaic_composition",
+      "required": [
+        "counts",
+        "group_labels",
+        "component_labels"
+      ],
+      "signature": "(ax, counts, group_labels, component_labels, *, colors=None)",
+      "why": "宽度表达群体样本量，高度表达群体内部组成，避免不同分母下的比例混淆。",
+      "avoid_when": "精确比例比较可另用条形；不得省略计数分母。",
+      "fusion_role": "接整体分布和群体效应",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "群体规模",
+        "组成宽度"
+      ],
+      "source_ids": [
+        "figstudy-cvpr2026-poca-pareto-optimal-curriculum-alignment-for-visual-text-generation",
+        "acl-2026-multi-turn-calibration",
+        "neurips-2025-hivemind-figures",
+        "figstudy-more-iclr2025-balancing-act-diversity-and-consistency-in-large-language-model-ensembles"
+      ],
+      "study_ids": [
+        "vision-poca-preference-composition",
+        "acl26-answer-state-transitions",
+        "neurips25-overall-to-category",
+        "iclr25-ensemble-composition-tradeoffs"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "counts_supplied": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "matrix_bubbles",
+      "title": "带符号矩阵与幅度",
+      "intents": [
+        "association",
+        "response"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "matrix_bubbles",
+      "required": [
+        "values",
+        "row_labels",
+        "col_labels",
+        "magnitude_max"
+      ],
+      "signature": "(ax, values, row_labels, col_labels, *, magnitude_max, colors=None)",
+      "why": "位置对应条件对，颜色表达方向、面积表达大小，显示稀疏强相互作用。",
+      "avoid_when": "显式大小参考范围；不能让每张图单独重标面积。",
+      "fusion_role": "接响应面或单因素效应",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "交互矩阵",
+        "带符号矩阵"
+      ],
+      "source_ids": [],
+      "study_ids": [],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {},
+      "horizontal_labels": false
+    },
+    {
+      "id": "signed_effects",
+      "title": "相对参考的正负变化",
+      "intents": [
+        "paired_change",
+        "response",
+        "comparison"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "signed_effects",
+      "required": [
+        "labels",
+        "effects"
+      ],
+      "signature": "(ax, labels, effects, *, colors=None, xlabel='Change from reference')",
+      "why": "共同零线和双向条形把改善与退化直接区分，适合消融和类别差异。",
+      "avoid_when": "先定义指标方向；变化不等于因果效应。",
+      "fusion_role": "接基线绝对值或交互矩阵",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "消融",
+        "正负变化"
+      ],
+      "source_ids": [],
+      "study_ids": [],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {},
+      "horizontal_labels": true
+    },
+    {
+      "id": "convergence_envelope",
+      "title": "多次运行的训练稳定性",
+      "intents": [
+        "dynamics",
+        "uncertainty"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "convergence_envelope",
+      "required": [
+        "steps",
+        "runs"
+      ],
+      "signature": "(ax, steps, runs, *, color=None, xlabel='Training step', ylabel='Objective')",
+      "why": "保留每次运行并给出逐点中位数和四分位范围，显示速度差异与不稳定阶段。",
+      "avoid_when": "包络范围不是自动置信区间；不同运行要共用步骤。",
+      "fusion_role": "接最终分布与跨域性能",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "训练稳定",
+        "多次运行",
+        "訓練穩定",
+        "多次運行"
+      ],
+      "source_ids": [
+        "figstudy-more-iclr2025-adaptive-data-optimization-dynamic-sample-selection-with-scaling-laws"
+      ],
+      "study_ids": [
+        "iclr25-ado-learning-meta-loss"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {},
+      "horizontal_labels": false
+    },
+    {
+      "id": "grouped_dot",
+      "title": "多个条件的准确位置比较",
+      "intents": [
+        "comparison",
+        "ranking"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "grouped_dot",
+      "required": [
+        "labels",
+        "values",
+        "series_labels"
+      ],
+      "signature": "(ax, labels, values, series_labels, *, colors=None, xlabel='Value')",
+      "why": "共享横向数值轴，不同符号和颜色区分系列，减少成组柱形的大面积墨水。",
+      "avoid_when": "系列过多会拥挤，需分面或只突出核心系列。",
+      "fusion_role": "接排名轨迹或效应差值",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "多个指标",
+        "分组比较"
+      ],
+      "source_ids": [
+        "figstudy-cvpr2026-poca-pareto-optimal-curriculum-alignment-for-visual-text-generation",
+        "figstudy-cvpr2026-ecoalign-an-economically-rational-framework-for-efficient-lvlm-alignment",
+        "figstudy-eccv2026-quantile-adaptive-temperature-scaling-for-confidence-calibration",
+        "nature-2026-alphagenome",
+        "figstudy-more-icml2026-agentic-confidence-calibration",
+        "figstudy-more-icml2026-model-merging-scaling-laws-in-large-language-models",
+        "figstudy-more-neurips2025-ai-research-agents-for-machine-learning-search-exploration-and-generalizati"
+      ],
+      "study_ids": [
+        "vision-poca-preference-composition",
+        "vision-ecoalign-policy-profile",
+        "vision-qats-baseline-gain",
+        "nature26-output-capability-matrix",
+        "icml26-agentic-calibration-base-model",
+        "icml26-merging-order-stability",
+        "neurips25-research-selection-gap"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {},
+      "horizontal_labels": false
+    },
+    {
+      "id": "contour_response",
+      "title": "双因素响应与交互",
+      "intents": [
+        "response",
+        "tradeoff"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "contour_response",
+      "required": [
+        "x",
+        "y",
+        "response"
+      ],
+      "signature": "(ax, x, y, response, *, colors=None, xlabel='Control A', ylabel='Control B', levels=8)",
+      "why": "等高线将两个控制量对应到同一响应，谷底、平台和耦合方向可同时读取。",
+      "avoid_when": "必须有真实网格，不从几个散点伪造平滑表面。",
+      "fusion_role": "接固定行列的切片和最优点",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "双因素",
+        "二维响应",
+        "响应面",
+        "雙因素",
+        "二維響應",
+        "響應面"
+      ],
+      "source_ids": [
+        "figstudy-cvpr2025-seeking-consistent-flat-minima-for-better-domain-generalization-via-refi",
+        "figstudy-iccv2025-scendi-score-prompt-aware-diversity-evaluation-via-schur-complement-of-c"
+      ],
+      "study_ids": [
+        "vision-landscape-alignment",
+        "vision-scendi-controlled-surface"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "complete_grid": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "robustness_profile",
+      "title": "扰动强度下的性能",
+      "intents": [
+        "generalization",
+        "shift",
+        "comparison"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "robustness_profile",
+      "required": [
+        "severity",
+        "scores",
+        "labels"
+      ],
+      "signature": "(ax, severity, scores, labels, *, colors=None, xlabel='Perturbation severity', ylabel='Score')",
+      "why": "同一强度轴上跟踪多个方法，暴露平均分数看不到的崩溃点和曲线交叉。",
+      "avoid_when": "强度必须同定义；不跨不同扰动量混连。",
+      "fusion_role": "接最坏组或错误类型",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "鲁棒",
+        "扰动",
+        "魯棒",
+        "擾動"
+      ],
+      "source_ids": [
+        "figstudy-more-iclr2026-autoqd-automatic-discovery-of-diverse-behaviors-with-quality-diversity-opti"
+      ],
+      "study_ids": [
+        "iclr26-autoqd-best-policy-robustness"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "ordered_x": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "cost_quality_frontier",
+      "title": "成本与质量的取舍",
+      "intents": [
+        "tradeoff",
+        "comparison"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "cost_quality_frontier",
+      "required": [
+        "cost",
+        "quality",
+        "labels"
+      ],
+      "signature": "(ax, cost, quality, labels, *, colors=None, cost_direction='min', quality_direction='max', xlabel='Measured cost', ylabel='Measured quality')",
+      "why": "同时显示全部候选和准确非支配集合，让增加成本换来的改善可衡量。",
+      "avoid_when": "成本非负并明示单位；不把被支配点偷偷删除。",
+      "fusion_role": "接训练轨迹和固定预算剖面",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "成本",
+        "资源前沿",
+        "计算开销"
+      ],
+      "source_ids": [
+        "icml-2026-flexibility-trap-figures",
+        "figstudy-more-icml2025-best-route-adaptive-llm-routing-with-test-time-optimal-compute",
+        "figstudy-more-icml2026-alpharouter-token-level-routing-between-slm-and-llm-with-reinforcement-lear"
+      ],
+      "study_ids": [
+        "icml26-quality-walltime",
+        "icml25-bestroute-cost-quality-envelope",
+        "icml26-alpharouter-efficiency-facets"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {},
+      "horizontal_labels": false
+    },
+    {
+      "id": "quadrant_scatter",
+      "title": "双目标变化的协同与冲突",
+      "intents": [
+        "tradeoff",
+        "response",
+        "paired_change"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "quadrant_scatter",
+      "required": [
+        "x",
+        "y",
+        "labels"
+      ],
+      "signature": "(ax, x, y, labels, *, x_reference=0, y_reference=0, colors=None, xlabel='Change in objective A', ylabel='Change in objective B', annotate=False)",
+      "why": "两条参考线划分协同、牺牲与共同退化区域，逐点保留同一候选的两项变化。",
+      "avoid_when": "参考线是技术定义，不为美观移动；边界点不强分组。",
+      "fusion_role": "接非支配前沿或候选机制",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "目标冲突",
+        "象限",
+        "协同",
+        "目標衝突",
+        "協同"
+      ],
+      "source_ids": [
+        "figstudy-cvpr2026-poca-pareto-optimal-curriculum-alignment-for-visual-text-generation",
+        "figstudy-more-iclr2025-balancing-act-diversity-and-consistency-in-large-language-model-ensembles",
+        "figstudy-more-iclr2026-atlas-adaptive-transfer-scaling-laws-for-multilingual-pretraining-finetunin",
+        "figstudy-more-iclr2026-agilepruner-an-empirical-study-of-attention-and-diversity-for-adaptive-visu",
+        "figstudy-more-icml2026-adversarial-vulnerability-from-interference-between-features-in-superpositi"
+      ],
+      "study_ids": [
+        "vision-poca-reward-conflict",
+        "iclr25-ensemble-composition-tradeoffs",
+        "iclr26-atlas-reciprocity-groups",
+        "iclr26-agile-feature-task-dependence",
+        "icml26-superposition-profile-agreement"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {},
+      "horizontal_labels": false
+    },
+    {
+      "id": "mean_delta",
+      "title": "基线水平与改善量",
+      "intents": [
+        "paired_change",
+        "association",
+        "response"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "mean_delta",
+      "required": [
+        "before",
+        "after",
+        "labels"
+      ],
+      "signature": "(ax, before, after, labels, *, colors=None, xlabel='Before', ylabel='After − before (same unit)', annotate=False)",
+      "why": "横轴保留原始水平，纵轴显示同对象变化，直接判断提升集中于哪些对象。",
+      "avoid_when": "这是基线与差值关系，数学耦合可能造成相关，不能据此宣称因果。",
+      "fusion_role": "接配对图和异质性森林图",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "基线",
+        "谁受益",
+        "提升量",
+        "基線"
+      ],
+      "source_ids": [
+        "figstudy-eccv2026-quantile-adaptive-temperature-scaling-for-confidence-calibration",
+        "acl-2025-m-rewardbench",
+        "cellpose3-figure-layout"
+      ],
+      "study_ids": [
+        "vision-qats-baseline-gain",
+        "acl25-cross-domain-identity-scatter",
+        "nm25-per-image-restoration-gains"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "paired": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "mirrored_histogram",
+      "title": "共同分箱的双组分布",
+      "intents": [
+        "distribution",
+        "shift"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "mirrored_histogram",
+      "required": [
+        "first",
+        "second",
+        "bin_edges"
+      ],
+      "signature": "(ax, first, second, bin_edges, *, colors=None, labels=('First', 'Second'), xlabel='Observed value', ylabel=None)",
+      "why": "两组计数沿同一分箱镜像展开，峰位与尾部差异可直接对照。",
+      "avoid_when": "显示原始计数，群体大小不同应另说明；镜像负方向不代表负计数。",
+      "fusion_role": "接ECDF或相同区间内的群体组成",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "镜像直方",
+        "蝶形",
+        "双组分布",
+        "鏡像直方",
+        "雙組分布"
+      ],
+      "source_ids": [
+        "acl-2025-m-rewardbench",
+        "nmi-2026-random-noise-calibration",
+        "nmi-2026-specgp",
+        "neurips-2025-hivemind-figures",
+        "figstudy-more-icml2025-beyond-one-hot-labels-semantic-mixing-for-model-calibration"
+      ],
+      "study_ids": [
+        "acl25-distribution-conditioned-composition",
+        "nmi26-ood-distribution-and-roc",
+        "nmi26-optimal-setting-butterfly",
+        "neurips25-overall-to-category",
+        "icml25-calibration-training-distribution"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "raw_samples": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "mirror_stem",
+      "title": "共同位置的双侧谱峰",
+      "intents": [
+        "association",
+        "agreement"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "mirror_stem",
+      "required": [
+        "x",
+        "first",
+        "second"
+      ],
+      "signature": "(ax, x, first, second, *, colors=None, labels=('First', 'Second'), xlabel='Shared position', ylabel=None)",
+      "why": "两组峰沿同一横坐标镜像，保留幅值与峰位，不把峰藏进密集连线。",
+      "avoid_when": "上下方向仅为展示，原始幅值非负；不自动对峰或归一化。",
+      "fusion_role": "接峰位差异或分布比较",
+      "adaptation_controls": [
+        "panel width and aspect ratio",
+        "final-size typography",
+        "shared entity colors",
+        "axis meaning and units",
+        "selective annotations"
+      ],
+      "terms": [
+        "谱峰",
+        "镜像谱",
+        "譜峰",
+        "鏡像譜"
+      ],
+      "source_ids": [
+        "nmi-2026-specgp"
+      ],
+      "study_ids": [
+        "nmi26-mirrored-spectrum-comparison"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "ordered_x": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "binned_group_composition",
+      "title": "共分箱的群体组成",
+      "intents": [
+        "composition",
+        "distribution",
+        "error_structure"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "binned_group_composition",
+      "required": [
+        "values",
+        "groups",
+        "bin_edges",
+        "group_order"
+      ],
+      "signature": "(ax, values, groups, bin_edges, group_order, *, colors=None, xlabel='Value')",
+      "why": "在同一分箱边界上显示群体内部占比，与上方计数分布保持横轴严格对齐，直接解释整体分布由哪些群体构成。",
+      "avoid_when": "空分箱没有定义比例，应保留空白；各分箱分母不同，不能把比例当计数。",
+      "fusion_role": "与相同观测和bin_edges的直方图上下对齐。",
+      "adaptation_controls": [
+        "shared bin edges",
+        "fixed group colors",
+        "count denominator strip",
+        "final-size typography"
+      ],
+      "terms": [
+        "共分箱",
+        "分箱组成",
+        "分箱組成"
+      ],
+      "source_ids": [
+        "acl-2025-m-rewardbench"
+      ],
+      "study_ids": [
+        "acl25-distribution-conditioned-composition"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "raw_samples": true
+      },
+      "horizontal_labels": false
+    },
+    {
+      "id": "ordered_trajectory",
+      "title": "按检查点顺序的状态轨迹",
+      "intents": [
+        "dynamics",
+        "association",
+        "response"
+      ],
+      "module": "ccfa_semantic_panels",
+      "function": "ordered_trajectory",
+      "required": [
+        "x",
+        "y"
+      ],
+      "signature": "(ax, x, y, *, steps=None, color=None, xlabel='State X', ylabel='State Y', arrows=2)",
+      "why": "横纵轴各是一种状态量，按检查点顺序连接并标记方向，让回折、阶段切换和趋向可见；不按x排序破坏时间。",
+      "avoid_when": "状态量与检查点必须逐项对应；状态相关不能据此解释为因果；首末点和箭头不代表等时间间隔。",
+      "fusion_role": "与同检查点的时间曲线、校准图或响应面联动。",
+      "adaptation_controls": [
+        "time order",
+        "start and end markers",
+        "sparse direction arrows",
+        "shared units"
+      ],
+      "terms": [
+        "相空间",
+        "状态轨迹",
+        "回折",
+        "有序轨迹",
+        "相空間",
+        "狀態軌跡",
+        "有序軌跡"
+      ],
+      "source_ids": [
+        "nmi-2026-random-noise-calibration"
+      ],
+      "study_ids": [
+        "nmi26-training-phase-trajectories"
+      ],
+      "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
+      "data_requirements": {
+        "checkpoint_order": true
+      },
+      "horizontal_labels": false
+    }
+  ],
+  "fusions": [
+    {
+      "id": "distribution_tails",
+      "title": "整体分布、阈值与尾部",
+      "panels": [
+        "raincloud",
+        "ecdf",
+        "binned_summary"
+      ],
+      "why": "先看分布形状，再读阈值比例，最后比较上尾。",
+      "alignment_contract": "同一观测集合；分组顺序与阈值定义一致。",
+      "primary_intents": [
+        "distribution"
+      ]
+    },
+    {
+      "id": "paired_benefit",
+      "title": "改变了谁、改变多少",
+      "panels": [
+        "dumbbell",
+        "mean_delta",
+        "bland_altman"
+      ],
+      "why": "从个体前后值，推进到基线依赖，再检查差值偏差。",
+      "alignment_contract": "样本ID、单位与配对关系一致；差值范围不是CI。",
+      "primary_intents": [
+        "paired_change",
+        "agreement"
+      ]
+    },
+    {
+      "id": "calibration_decision",
+      "title": "可靠性与实际决策",
+      "panels": [
+        "calibration",
+        "risk_coverage",
+        "precision_recall"
+      ],
+      "why": "把置信度是否可靠与拒答、检索的实际代价联系起来。",
+      "alignment_contract": "每箱计数、保留样本分母与正例率明确。",
+      "primary_intents": [
+        "calibration",
+        "operating_tradeoff"
+      ]
+    },
+    {
+      "id": "rank_robustness",
+      "title": "名次与真实性能变化",
+      "panels": [
+        "grouped_dot",
+        "rank_trajectories",
+        "robustness_profile"
+      ],
+      "why": "分数、名次和扰动曲线相互补充，防止只按排名夸大差异。",
+      "alignment_contract": "方法ID稳定；不同扰动仅在各自可比强度内作线。",
+      "primary_intents": [
+        "ranking",
+        "generalization"
+      ]
+    },
+    {
+      "id": "scaling_optimum",
+      "title": "响应面与资源最优",
+      "panels": [
+        "contour_response",
+        "line_band",
+        "cost_quality_frontier"
+      ],
+      "why": "先定位二维地形，再检查切片，最后落到实际资源取舍。",
+      "alignment_contract": "网格、切片和成本定义来自同一实验配置。",
+      "primary_intents": [
+        "tradeoff",
+        "response"
+      ]
+    },
+    {
+      "id": "multiobjective_conflict",
+      "title": "双目标冲突与多维能力",
+      "panels": [
+        "quadrant_scatter",
+        "pareto_scatter",
+        "parallel_coordinates"
+      ],
+      "why": "参考线划分改变方向，前沿呈现取舍，多维轴检查被平均掩盖的能力。",
+      "alignment_contract": "各目标方向、量纲与维度范围显式声明。",
+      "primary_intents": [
+        "tradeoff"
+      ]
+    },
+    {
+      "id": "composition_flow",
+      "title": "组分、去向与平衡",
+      "panels": [
+        "mosaic_composition",
+        "transition_matrix",
+        "ternary"
+      ],
+      "why": "群体组成、状态去向和三部分混合分别回答规模、变化与平衡。",
+      "alignment_contract": "群体分母、转移归一化及三组分和为一分别保留。",
+      "primary_intents": [
+        "composition"
+      ]
+    },
+    {
+      "id": "representation_atlas",
+      "title": "表征与特征覆盖",
+      "panels": [
+        "embedding_scatter",
+        "density_map",
+        "dot_matrix"
+      ],
+      "why": "用空间结构定位群体，再看局部关系，最后核对特征强度和覆盖。",
+      "alignment_contract": "嵌入坐标由上游提供；颜色对应稳定群体ID。",
+      "primary_intents": [
+        "association"
+      ]
+    },
+    {
+      "id": "effect_screening",
+      "title": "筛选与原始差异",
+      "panels": [
+        "volcano",
+        "forest_intervals",
+        "raincloud"
+      ],
+      "why": "从全量候选筛选到效应区间，再返回实际样本分布。",
+      "alignment_contract": "统计量p/q、筛选规则及候选样本身份对应。",
+      "primary_intents": [
+        "uncertainty"
+      ]
+    },
+    {
+      "id": "training_stability",
+      "title": "训练稳定、范围与泛化",
+      "panels": [
+        "convergence_envelope",
+        "quantile_fan",
+        "robustness_profile"
+      ],
+      "why": "训练运行轨迹、条件分位数和扰动结果组成不同层面的稳定性分析。",
+      "alignment_contract": "各次运行中位数与IQR、条件分位数、泛化性能不能混称CI。",
+      "primary_intents": [
+        "dynamics"
+      ]
+    },
+    {
+      "id": "response_slices",
+      "title": "二维响应与行列切片",
+      "panels": [
+        "contour_response",
+        "line_band",
+        "line_band"
+      ],
+      "why": "中心响应面给全局结构，两条切片解释具体控制变量的影响。",
+      "alignment_contract": "切片坐标和固定条件明确；不从不对应网格另生成切片。",
+      "layout": {
+        "rows": 2,
+        "columns": 2,
+        "height_mm": 135,
+        "positions": [
+          {
+            "row": 0,
+            "column": 0,
+            "rowspan": 2
+          },
+          {
+            "row": 0,
+            "column": 1
+          },
+          {
+            "row": 1,
+            "column": 1
+          }
+        ]
+      },
+      "primary_intents": [
+        "response"
+      ]
+    },
+    {
+      "id": "common_bins",
+      "title": "共分箱分布与群体组成",
+      "panels": [
+        "mirrored_histogram",
+        "binned_group_composition",
+        "ecdf"
+      ],
+      "why": "总体计数、区间内组成与累积比例表达分布差异来自哪里。",
+      "alignment_contract": "所有分箱由同一bin_edges计算；各图保留自身分母。",
+      "layout": {
+        "rows": 2,
+        "columns": 2,
+        "height_mm": 135,
+        "positions": [
+          {
+            "row": 0,
+            "column": 0
+          },
+          {
+            "row": 1,
+            "column": 0
+          },
+          {
+            "row": 0,
+            "column": 1,
+            "rowspan": 2
+          }
+        ]
+      },
+      "primary_intents": [
+        "distribution",
+        "composition"
+      ]
+    },
+    {
+      "id": "heterogeneity",
+      "title": "平均值背后的群体差异",
+      "panels": [
+        "forest_intervals",
+        "raincloud",
+        "grouped_dot"
+      ],
+      "why": "区间、样本和多个指标检查结果是否只由少数组别推动。",
+      "alignment_contract": "组ID、指标方向、区间类型以及样本量一致。",
+      "primary_intents": [
+        "uncertainty",
+        "comparison"
+      ]
+    },
+    {
+      "id": "mechanism_change",
+      "title": "机制交互与变化方向",
+      "panels": [
+        "contour_response",
+        "quadrant_scatter",
+        "mean_delta"
+      ],
+      "why": "从控制变量作用到目标冲突，再追踪基线依赖的改变。",
+      "alignment_contract": "响应面与配对变化需有真实关联；图形组合不等于因果证明。",
+      "primary_intents": [
+        "response"
+      ]
+    },
+    {
+      "id": "error_diagnosis",
+      "title": "错误结构与可用范围",
+      "panels": [
+        "residual_diagnostics",
+        "calibration",
+        "risk_coverage"
+      ],
+      "why": "先定位误差结构，再检查概率解释，最后衡量拒答后的保留风险。",
+      "alignment_contract": "残差、校准分箱和覆盖筛选来自明确预测集。",
+      "primary_intents": [
+        "error_structure"
+      ]
+    },
+    {
+      "id": "spectral_comparison",
+      "title": "峰位与整体分布",
+      "panels": [
+        "mirror_stem",
+        "mirrored_histogram",
+        "ecdf"
+      ],
+      "why": "用共同位置的峰比较局部结构，再检查幅值分布和累计比例。",
+      "alignment_contract": "谱峰绝对量、分布样本和横轴单位分别标清。",
+      "primary_intents": [
+        "agreement",
+        "association"
+      ]
+    }
+  ]
+}

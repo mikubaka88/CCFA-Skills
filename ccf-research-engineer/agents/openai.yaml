@@ -1,0 +1,6 @@
+interface:
+  display_name: "CCF Research Engineer"
+  short_description: "Implement research methods and debug training on suitable code."
+  default_prompt: "Apply $ccf-humanization, then $ccf-common; use $ccf-research-engineer to select or extend suitable research code, preserve the intended mechanism, and complete the requested implementation, reproduction, or training diagnosis with actual evidence and the available budget. Reuse valid baselines and existing environments, load only relevant engineering guidance, and coordinate protocol or campaign decisions with their owners."
+policy:
+  allow_implicit_invocation: true

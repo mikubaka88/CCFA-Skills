@@ -8,87 +8,33 @@
 | Venue family | TBD |
 | CCF tier | TBD |
 | Template path | `ccf-latex-templates/NSDI` |
-| Official URL | TBD |
-| Last verified | Legacy migration on 2026-06-06; official policy must be rechecked before submission. |
-| Source status | Migrated local guide; not independently reverified in v0.4.0. |
+| Official URL | https://www.usenix.org/conference/nsdi26/call-for-papers |
+| Last verified | 2026-10-30: named 2026 submission snapshot only. |
+| Source status | Official CFP checked for the snapshot; domain examples are writing guidance. |
 
 ## Usage Boundary
 
-- Use this file for LaTeX, page limit, anonymity, template, camera-ready, rebuttal-template, and venue-format details.
+- Use the named policy snapshot only for its year/track/stage; use domain examples as writing guidance.
 - Use `ccf-paper-writer` for actual paper writing and polishing.
 - Use `ccf-paper-reviewer` or `ccf-submission-checker` for format audit, depending on whether the task is manuscript-facing or submission-package-facing.
-- Verify current-year official rules before final submission.
+- Before applying format changes, reuse or obtain verified official requirements through `ccf-submission-checker`; keep supplied verified templates.
 
-## Migrated Venue Notes
+## NSDI 2026 research-paper submission snapshot
 
-# NSDI Writing Guide
+Checked 2026-10-30 against the [official 2026 CFP](https://www.usenix.org/conference/nsdi26/call-for-papers).
 
-NSDI (Symposium on Network System Design and Implementation) is a **CCF-A networks conference** (https://www.usenix.org/conference/nsdi26). **IMPORTANT: NSDI is NOT double-blind — author identities are visible to reviewers.** NSDI is a systems paper venue emphasizing practical design and real-world evaluation.
+- Research papers use anonymous review; follow the CFP's non-destructive anonymization rules. Do not transfer this rule to an operational track without checking that track.
+- Main text: at most 12 pages, including figures, tables and footnotes, for submissions and final papers. References and supplementary appendices are outside this limit.
+- Use US Letter, two columns and 10-point type with 12-point leading. Keep the official template's text area and column gap.
 
-## Document Setup
-
-### Template Files
-- Style file: `NSDI/usenix-2020-09.sty` (same as USENIX Security, OSDI, ATC, etc.)
-- Note: NSDI shares the same USENIX template family with OSDI, USENIX ATC, FAST, HotStorage
-
-### Required LaTeX Structure
-
-```latex
-\documentclass[11pt]{article}
-\usepackage{usenix-2020-09}
-
-% Optional packages
-\usepackage{graphicx}
-\usepackage{hyperref}
-
-\begin{document}
-
-% IMPORTANT: Use \maketitles (NOT \maketitle)
-\maketitles
-
-\begin{abstract}
-Your abstract here — motivation, problem, design decisions, key results.
-\end{abstract}
-
-% Main content
-\section{Introduction}
-...
-
-% Bibliography: plain style
-\bibliographystyle{plain}
-\bibliography{references}
-
-\end{document}
-```
-
-### Key Formatting Requirements
-- **Document class**: `article` (11pt)
-- **Layout**: Single-column
-- **Font size**: 10pt (enforced by style file)
-- **Title command**: `\maketitles` — NSDI uses this USENIX-style command
-
-## Page Limits
-
-- **16 pages** maximum for NSDI 2026
-- References and appendices do NOT count toward the page limit
-- Balance depth with accessibility
-
-## Submission Requirements
-
-### Double-Blind Status
-**NSDI is NOT anonymous.** Author names and affiliations are visible to reviewers.
-
-### Submission Format
-- Single PDF submission
-- Embed all fonts
-- Include all figures in PDF
+The bundled `ccf-latex-templates/NSDI/` files are historical examples. USENIX styles use `\maketitle`. Use the verified target template before formatting a manuscript.
 
 ## Systems Paper Conventions
 
 NSDI publishes **systems papers** — papers about the design, implementation, and evaluation of practical systems. Key characteristics:
 
 ### What Makes a Good NSDI Paper
-1. **Real systems**: Must be implemented and evaluated, not just designed
+1. **System evidence**: Claims about an implemented system need actual implementation and evaluation evidence; distinguish proposed design from measured behavior
 2. **Design rationale**: Explain why design decisions were made
 3. **Practical evaluation**: Show real-world deployment or realistic experiments
 4. **Lessons learned**: Insights that benefit the community
@@ -99,7 +45,7 @@ NSDI publishes **systems papers** — papers about the design, implementation, a
 **Introduction** (critical for NSDI):
 - Problem statement and motivation
 - Key challenges
-- Contributions (3-5 concrete, verifiable claims)
+- Contributions stated at their natural number, with the actual capability, insight, or result identified
 - Roadmap of the paper
 
 **Design Section**:
@@ -133,7 +79,7 @@ NSDI publishes **systems papers** — papers about the design, implementation, a
 8. **Discussion/Limitations** — Scope, future directions
 9. **Conclusion** — Summary
 10. **References**
-11. **Appendix** — Additional evaluation, proofs, source links
+11. **Appendix** (optional) — Additional evaluation and proofs; provide supporting artifacts through the permitted anonymous review channels
 
 ## Figure and Table Guidelines
 
@@ -179,7 +125,7 @@ NSDI publishes **systems papers** — papers about the design, implementation, a
 ## Common Mistakes to Avoid
 
 1. Submitting theory papers (NSDI is for systems)
-2. Using `\maketitle` instead of `\maketitles`
+2. Replacing the verified template with an incompatible legacy skeleton
 3. Lightweight evaluation (NSDI expects rigorous evaluation)
 4. Missing design rationale (just showing, not explaining)
 5. Claiming contributions without sufficient evidence

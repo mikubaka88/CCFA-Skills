@@ -1,24 +1,24 @@
 # Venue Idea Adapters
 
-Use this file after mapping the target to a CCF-A venue family. It adapts idea-stage optimization, not final writing.
+Use this file when the intended audience affects the idea or a research plan. These are contribution lenses, not requirements for completed experiments during exploration. Apply only the relevant family; an unspecified venue does not restrict the research question. Match the lens to the actual contribution: a theoretical systems result, a new scientific question, and a deployed system need different support. Do not make every field's idea satisfy its typical empirical submission package or immediate deployment need.
 
 ## Universal CCF-A Idea Priorities
 
-Make these visible before writing:
+Use the relevant questions to connect the research to its audience:
 
-- A problem the venue community recognizes as important.
+- A consequential need, knowledge gap, or phenomenon whose significance the intended community can understand, including a newly formulated question.
 - A gap against strong current work.
 - A mechanism that explains why the proposed method should work.
-- An evidence package that can test the central claim.
-- A contribution type that matches the venue's taste.
+- A meaningful observation, analysis, or argument that could resolve the central question.
+- A suitable audience for the contribution; revisit venue choice when it fits poorly instead of distorting a useful scientific question.
 
 ## AI / ML: NeurIPS, ICML, ICLR, AAAI
 
-Prioritize conceptual insight, learning mechanism, rigorous empirical validation, ablations, and scope. A good idea should explain what is learned about models, optimization, data, representations, agents, evaluation, or reasoning. Avoid pure leaderboard chasing without diagnostic value.
+Prioritize conceptual insight and the learning mechanism. Explain what the idea could teach about models, optimization, data, representations, agents, evaluation, or reasoning. When an empirical plan is requested, choose comparisons and analyses that separate the proposed explanation from alternatives. Avoid pure leaderboard chasing without diagnostic value.
 
 ## CV / Vision: CVPR, ICCV, ECCV
 
-Prioritize visual task importance, fair baselines, visual evidence, ablations, failure cases, dataset or protocol credibility, and generalization. A strong idea often combines a clear visual bottleneck with an inspectable mechanism.
+Prioritize visual task importance and the distinction the model currently misses. A strong idea connects a visual bottleneck with the operation that could resolve it. For a requested empirical plan, consider visual diagnostics, fair comparisons, data or protocol validity, and generalization where they answer the question.
 
 ## NLP / ACL-Family
 

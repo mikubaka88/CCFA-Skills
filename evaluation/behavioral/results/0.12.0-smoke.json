@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "suite": "ccfa-012-content-smoke",
+  "date": "2026-10-31",
+  "tasks_per_version": 4,
+  "versions": [
+    "public",
+    "prior-012",
+    "candidate"
+  ],
+  "generator_model": "gpt-6-astra",
+  "generator_reasoning_override": null,
+  "judge": "one independent fresh-context blind model assessment; inherited host model",
+  "provider_token_usage": null,
+  "provider_cost": null,
+  "generation_trials_per_task_version": 1,
+  "factual_anchor_checks_passed": 12,
+  "outputs": {
+    "candidate": {
+      "results-progression": "On the supplied delayed-query test, our event-preserving memory improves accuracy from 42.1% with the same-capacity baseline to 47.3% \\cite{baseline2025}. The memory records object states with timestamps and uses the query timestamp to retrieve an earlier state, making past information available when the prediction concerns that time. The gain at the same memory capacity is consistent with this retrieval mechanism: the memory's update rule determines which information remains available for retrospective prediction.",
+      "technical-language": "The belief b_t(s) is the posterior probability of state s given observations through time t. Each observation supplies evidence for the Bayesian update, rather than an author-assigned confidence score. Under the stated finite-state assumption, reachability of the unsafe set is verifiable by exhaustive graph traversal. This argument applies to exact transition models and does not establish the same property for an estimated transition model. Together, the belief representation and reachability analysis bring planning uncertainty and reachability into the same mathematical account.",
+      "results-pending-method": "现有记忆为每个对象仅保留最新状态，更新时会覆盖回溯问题所需的历史位置。我们保留对象状态及其时间戳，并沿用项目已有跟踪器提供的对象关联。查询时，先按对象身份定位历史记录，再根据查询时刻，选取此前最近的一条状态作为回答依据。这一机制将对象身份与状态发生的时间共同纳入检索，使记忆能够为回溯推理提供相应时刻的状态信息。",
+      "mechanism-diversity": "方向一：保留对象状态的时间归属。状态混合可能源于表示或更新操作丢失了时间区分：即使存下更多内容，同一对象在不同时刻的状态仍可能被合并。可研究按对象与时刻组织状态的记忆表示，用查询的时间条件限定读取范围，并在反事实分支中从干预前的相应状态开始推演。该方向改变的是状态如何被区分和读取，沿用现有视觉骨干及训练数据，不依赖扩充模型容量。其预测是，纠正时间归属应先减少跨时刻状态混用，并改善依赖该状态的反事实回答。如果错误案例中所需状态及其时间归属本来就完整保留、被正确读取，且混用仍在后续推理中发生，那么记忆中的时间区分丢失是根本瓶颈这一解释就受到否定。\n\n方向二：让多个回答共享同一次干预推演。相同观测下答案不同，也可能来自回答目标允许每次独立构造一套干预后果，缺少跨问题共同约束。可保持既有状态表示，研究一种推理规则：由同一观测建立共同的初始状态假设，在指定时刻只替换干预涉及的变量或更新关系，其余条件保持一致，再由同一后续轨迹回答关于该反事实的多个问题。训练可从已有样本构造逻辑等价的问题或同一轨迹的不同查询，约束它们对共享事件的判断一致，无需新增干预结果标签。这里需要区分逻辑矛盾与真实不确定性：观测不足以确定隐变量时，应保留多个可能轨迹，同一轨迹内的回答才要求相容。其预测是，在时间状态已正确读取的情况下，共享推演仍能减少相互矛盾的回答。如果不同答案其实分别对应观测无法区分、均符合现有数据的可能世界，而每个世界内部的推演已经一致，那么缺失一致性约束就不是这些差异的原因；强迫单一答案反而会掩盖不可辨识性。"
+    },
+    "prior-012": {
+      "results-progression": "Our event-preserving memory records object states with timestamps, allowing a query timestamp to select an earlier state for retrospective prediction. On the supplied delayed-query test, accuracy rises from 42.1% for the same-capacity baseline \\cite{baseline2025} to 47.3% with this memory. Because memory capacity is held constant, the improvement is consistent with the benefit of retaining and retrieving temporally relevant states. The result connects the memory's update rule to the information available for retrospective prediction.",
+      "technical-language": "The belief b_t(s) is the posterior probability of state s given observations through time t. Each observation supplies evidence for the Bayesian update, giving belief a probabilistic meaning distinct from an author's confidence score. Under the stated finite-state assumption, reachability of the unsafe set is verifiable by exhaustive graph traversal. This argument applies to exact transition models and does not establish the same property for an estimated transition model. Together, the posterior representation of state uncertainty and the reachability analysis bring planning uncertainty and reachability into the same mathematical account.",
+      "results-pending-method": "现有记忆为每个对象仅保留最新状态，更新时会覆盖回溯查询所需的历史位置。我们提出保留对象状态及其时间戳，并沿用项目已有跟踪器提供的对象关联。查询时，先按对象身份定位历史记录，再筛选查询时刻之前的状态，选取其中时间最近的一条作为回答依据。通过将状态与时间绑定，该方法使记忆检索对应于问题指定的历史时刻，为动态场景中的回溯推理保留所需信息。",
+      "mechanism-diversity": "方向一：把跨时刻状态混合解释为表示丢失了对象状态的时间归属。增加容量可以存下更多信息，却未必保留“哪个状态属于哪个时刻”的区别。可沿用已有视觉骨干，将同一对象的状态组织为带时间索引的轨迹；回答反事实问题时，从干预时刻对应的状态建立分支，后续推演只读取该分支的状态，不把事实轨迹中干预后的状态混入其中。这里改变的是状态的归属与读取规则，根本假设是推理起点或分支受到了其他时刻状态的污染。若错误案例中的时间归属与分支读取原本就正确，而且在固定正确起点后仍出现同样的不稳定，便会否定这种污染是主要瓶颈的解释。\n\n方向二：把相同观测下的干预答案分歧解释为推理过程缺少共享的转移规则。模型可能逐题生成看似合理的后果，却没有让这些答案服从同一组动力学关系。可保留现有视觉表示和记忆结构，用已有训练序列学习共享的状态转移函数；对相同观测固定初始状态和潜在外部条件，干预仅替换指定变量或更新规则，再通过同一转移函数推演后果。对于语义相同的干预，训练目标约束其预测分布一致，同时用已有观测中的下一状态约束转移，避免靠统一输出获得表面一致。这个方向改变的是推演规则及其学习目标，依赖现有数据能够约束相关状态变化。若现有系统在相同初始状态、外部条件和干预下已遵循一致的转移规则，而分歧实际来自观测无法区分的隐藏条件，那么该解释就不成立；强制单一后果反而会掩盖真实的不确定性。"
+    },
+    "public": {
+      "results-progression": "On the supplied delayed-query test, our event-preserving memory improves accuracy from 42.1% for the same-capacity baseline \\cite{baseline2025} to 47.3%. The memory records object states with timestamps and uses the query timestamp to retrieve the earlier state, making past information accessible without increasing memory capacity. The improvement is consistent with the value of retaining and retrieving temporally relevant states for retrospective prediction. It thus connects the memory's update rule to the information available when answering questions about the past.",
+      "technical-language": "The belief b_t(s) is the posterior probability of state s given observations through time t. Each observation supplies evidence for the Bayesian update, so belief has a probabilistic meaning rather than representing an author-assigned confidence score. Under the stated finite-state assumption, reachability of the unsafe set is verifiable by exhaustive graph traversal of the exact transition model. This argument does not establish the same property for an estimated transition model. Together, the posterior representation of state uncertainty and the reachability analysis place planning uncertainty and reachability within the same mathematical account.",
+      "results-pending-method": "现有记忆仅保留每个对象的最新状态，更新时覆盖的历史信息可能正是回溯问题所需的位置。为此，我们保留对象状态及其时间戳，并沿用项目已有跟踪器提供的对象关联。查询时，根据对象身份定位历史记录，再筛选查询时刻之前最近的一条状态，用于回答该对象较早时刻的位置。这一机制将对象身份与时间条件共同纳入检索，使历史状态能够服务于回溯推断。",
+      "mechanism-diversity": "1. 按对象与时刻绑定状态，研究反事实推演的起点是否被污染。\n\n第一种解释是，模型缺少状态所属时刻的约束：同一对象的多个状态混入同一表示，后续推演因此从一个从未出现过的状态出发。可沿用已有视觉特征，将历史表示绑定到对象和时刻；读取反事实干预起点时，按问题指定的时刻选择状态，并阻止较晚状态参与起点构造。在相同记忆预算下改变状态组织和读取规则，核心变化是让推演起点具有明确的时间归属。该方向预期减少跨时刻状态混合，并使受这类混合影响的答案更稳定。若在起点状态的对象和时间归属均已正确的样本中，原有不稳定依然存在且不随混合程度变化，就会否定状态混合是这些错误主要来源的解释。\n\n2. 共享事实世界的隐变量，研究反事实答案是否来自相互冲突的世界解释。\n\n第二种解释是，模型每次回答都重新选择一套潜在场景原因，即使观测相同，干预后的推演也可能隐含不同的初始条件或外部作用。可保持原有记忆和视觉骨干，用现有序列学习状态转移，并从给定观测推断一份潜在世界条件；同一场景的不同反事实查询共享该条件，干预只替换指定变量或转移规则，再推演其后果。若观测容许多种解释，则保留一个共同的条件分布，使各查询在同一组可能世界上推演，而不是强行得到唯一答案。这个方向改变的是反事实推断中哪些原因保持不变。它预期在时间状态读取正确时，仍能减少由世界条件反复切换造成的答案冲突。若固定潜在条件后，冲突仍原样保留，或不同答案实际对应观测无法区分的合理后果且概率稳定，就会削弱这一解释；单纯答案不同不足以证明推断失效。\n\n两个方向分别改变历史状态的时间绑定和干预推演的条件共享，可作为独立假设研究，均沿用已有视觉骨干和训练数据。这里不作新颖性判断。"
+    }
+  },
+  "assessments": [
+    {
+      "task": "results-progression",
+      "scores": {
+        "fidelity": 5,
+        "coherence": 5,
+        "directness": 5,
+        "task_fit": 5
+      },
+      "reason": "保留42.1%、47.3%、同容量比较与引用键；先给观察，再说明时间戳检索如何提供过去信息，最后以consistent with限定机制解释并保留更新规则的科学意义。",
+      "violations": [],
+      "version": "candidate"
+    },
+    {
+      "task": "results-progression",
+      "scores": {
+        "fidelity": 5,
+        "coherence": 5,
+        "directness": 5,
+        "task_fit": 5
+      },
+      "reason": "状态与时间戳、同容量基线、两个数值及引用均保留；机制介绍与结果衔接清楚，恒定容量支持的解释表述为一致性而非因果证明，段尾概括得到保留。",
+      "violations": [],
+      "version": "prior-012"
+    },
+    {
+      "task": "results-progression",
+      "scores": {
+        "fidelity": 5,
+        "coherence": 5,
+        "directness": 5,
+        "task_fit": 5
+      },
+      "reason": "准确保留给定数值、基线容量与引用；从结果转到历史状态检索，再说明与回溯预测的关系，未添加实验或把改进写成排他性机制证据。",
+      "violations": [],
+      "version": "public"
+    },
+    {
+      "task": "technical-language",
+      "scores": {
+        "fidelity": 5,
+        "coherence": 5,
+        "directness": 5,
+        "task_fit": 5
+      },
+      "reason": "belief仍是后验概率，evidence仍属于贝叶斯更新，verifiable仍由有限状态图遍历支持；精确与估计转移模型的适用边界以及最终数学联系均完整。",
+      "violations": [],
+      "version": "candidate"
+    },
+    {
+      "task": "technical-language",
+      "scores": {
+        "fidelity": 5,
+        "coherence": 5,
+        "directness": 5,
+        "task_fit": 5
+      },
+      "reason": "用概率意义衔接belief与evidence，保留有限状态前提、图遍历可验证性和估计模型未获证明的限制；结尾明确联系后验状态不确定性与可达性。",
+      "violations": [],
+      "version": "prior-012"
+    },
+    {
+      "task": "technical-language",
+      "scores": {
+        "fidelity": 5,
+        "coherence": 5,
+        "directness": 5,
+        "task_fit": 5
+      },
+      "reason": "将精确转移模型直接并入图遍历句，仍保留原有前提与论证范围；三个技术词的含义、作者置信度的区别和末句科学概括均准确。",
+      "violations": [],
+      "version": "public"
+    },
+    {
+      "task": "results-pending-method",
+      "scores": {
+        "fidelity": 5,
+        "coherence": 5,
+        "directness": 5,
+        "task_fit": 5
+      },
+      "reason": "清楚交代覆盖历史状态的问题、沿用已有跟踪器、按对象定位再取查询时刻此前最近状态的计算过程；段尾说明对象身份与时间联合检索的意义，未添加结果或进度说明。",
+      "violations": [],
+      "version": "candidate"
+    },
+    {
+      "task": "results-pending-method",
+      "scores": {
+        "fidelity": 5,
+        "coherence": 5,
+        "directness": 5,
+        "task_fit": 5
+      },
+      "reason": "先定位对象历史记录，再筛选查询之前的状态并取时间最近者，检索次序明确；对象关联来源与状态时间绑定的意义完整，保持方法段范围。",
+      "violations": [],
+      "version": "prior-012"
+    },
+    {
+      "task": "results-pending-method",
+      "scores": {
+        "fidelity": 5,
+        "coherence": 5,
+        "directness": 5,
+        "task_fit": 5
+      },
+      "reason": "覆盖历史信息为何影响较早位置查询、状态时间戳如何保存和读取均有交代；已有跟踪器的资源边界保留，结尾自然概括回溯推断用途，没有虚构测量结果。",
+      "violations": [],
+      "version": "public"
+    },
+    {
+      "task": "mechanism-diversity",
+      "scores": {
+        "fidelity": 5,
+        "coherence": 5,
+        "directness": 5,
+        "task_fit": 5
+      },
+      "reason": "第一方向改变时间归属与状态读取，第二方向改变多个查询共享干预推演的规则，属于不同解释；两者均给出针对自身瓶颈的否定观察，并区分矛盾与真实不确定性。沿用既有骨干和数据，没有新颖性排名或完整实验计划。",
+      "violations": [],
+      "version": "candidate"
+    },
+    {
+      "task": "mechanism-diversity",
+      "scores": {
+        "fidelity": 5,
+        "coherence": 5,
+        "directness": 5,
+        "task_fit": 5
+      },
+      "reason": "时间归属及分支读取与共享转移规则及学习目标形成明确机制差异；给出起点已正确、转移规则已一致时各自解释会失效的观察。现有序列约束动力学的条件说清楚，也保留隐藏条件导致合理分歧的可能。",
+      "violations": [],
+      "version": "prior-012"
+    },
+    {
+      "task": "mechanism-diversity",
+      "scores": {
+        "fidelity": 5,
+        "coherence": 5,
+        "directness": 5,
+        "task_fit": 5
+      },
+      "reason": "分别针对历史状态时间绑定与反事实查询的潜在世界条件共享，机制区分具体；共同条件分布容纳观测不充分的情况，各方向都有可削弱或否定解释的观察。既有视觉骨干、训练数据和不依赖容量扩张的边界得到遵守。",
+      "violations": [],
+      "version": "public"
+    }
+  ],
+  "entry_characters": {
+    "ccf-humanization": {
+      "before_characters": 9300,
+      "after_characters": 5197
+    },
+    "ccf-common": {
+      "before_characters": 9846,
+      "after_characters": 4977
+    },
+    "ccf-paper-writer": {
+      "before_characters": 15499,
+      "after_characters": 8437
+    },
+    "ccf-paper-reviewer": {
+      "before_characters": 14505,
+      "after_characters": 8027
+    },
+    "ccf-literature-searcher": {
+      "before_characters": 13003,
+      "after_characters": 5722
+    }
+  },
+  "conclusion": "All three versions satisfied these four small tasks; this trial did not distinguish prose quality. Entry text was reduced without observed task regression. No general superiority or model-token saving is established.",
+  "limitations": [
+    "仅依据指定输入中的四个题目、四维rubric和匿名P/Q/R回答进行一次盲评，未读取候选来源或版本映射。",
+    "本组回答均在各维度达到所给任务要求，因此允许完全并列；同分不代表内容完全相同，也不证明候选在更广任务上等效。",
+    "这是四题小样本的单轮内容检查，不能据此宣称统计优势、总体研究质量或稳定优劣。",
+    "研究方向仅按机制差异、解释的可否定性与给定资源边界评估；未联网，未核实新颖性，也未验证其经验效果或数据可辨识性。"
+  ]
+}

@@ -1,5 +1,26 @@
 # CCFA Installation Matrix
 
+## Lean release installation (recommended)
+
+Download `ccfa-skills-0.12.0-lean.zip` and `SHA256SUMS` from the [0.12.0 release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.0). Check the archive's SHA-256 (`Get-FileHash -Algorithm SHA256` in PowerShell or `shasum -a 256` on macOS/Linux), then extract it. The extracted directory contains `tools/install_release.py`; it requires Python 3.10+ and no network or extra packages. Replace both quoted paths below with your extracted folder and the client's actual skills root:
+
+```text
+python -B "<lean-dir>/tools/install_release.py" --source "<lean-dir>" --target "<skills-root>" --dry-run
+python -B "<lean-dir>/tools/install_release.py" --source "<lean-dir>" --target "<skills-root>"
+```
+
+The default installs all 18 skills, their sibling templates and required resources. For a subset, repeat `--skill`, for example `--skill ccf-paper-reviewer --skill ccf-integrity-auditor`. Humanization and Common are always included. Required writer references/scripts, legacy converter resources and template resources are copied where applicable, without adding an unselected owner's `SKILL.md`. Root README and release tools are not copied into the skills root. Existing client discovery rules still apply; start a new session after installation.
+
+The lean archive keeps original Markdown passages, exemplar cards, all figure examples and templates. Complete writing-example PDFs are in the optional `ccfa-skills-0.12.0-papers.zip`. To add those explicitly, check and extract that archive separately, then run:
+
+```text
+python -B "<papers-dir>/tools/install_release.py" --source "<papers-dir>" --target "<skills-root>"
+```
+
+Install the matching lean release first. Alternatively supply `--papers "<papers-dir>"` during its installation. No PDF download occurs automatically. Original-text learning remains available in lean mode; install the optional pack or use an authorized original source when the selected passage needs visual PDF inspection. Git clones and `npx skills` still obtain the full source, including its PDFs; the repository itself has not been made lean.
+
+Both profiles use the same release identity, version and manifest format, with relative paths, skill inventory, file sizes and SHA-256 hashes. The installer validates the source before copying, rejects unsafe paths and symlinks, and records its own managed hashes in `.ccfa-release-receipt.json`. Later installations replace only matching old managed files or adopt identical files. Personal edits stop the preflight for reconciliation; extra user files, saved preferences and removed-upstream files are retained. There is no force-overwrite or cleanup option. For an older manual/npx installation, compare and reconcile differing files before adoption. See [updates](getting-started/AUTO_UPDATE.md).
+
 Partial installation is supported, but both `ccf-humanization` and `ccf-common` must be installed with every subset. The sets below describe task owners. Also retain the sibling resource directories read by the selected modes: reviewer, experiment, scaffolding, and submission modes can read `ccf-paper-writer/references/`; template modes need `ccf-latex-templates/` beside the installed skills. The legacy writer converter uses `ccf-paper-to-exemplar/scripts/convert.py`. A resource dependency does not authorize running its owning skill. A full repository/plugin layout preserves these paths; a skill-only installer may need the resource trees copied as well.
 
 These subsets provide the listed capabilities, not every possible helper. If the current task needs an absent audit, retrieval, or reviewer capability, resolve that dependency or explicitly limit the dependent result; do not skip a necessary check or claim an uninstalled skill ran. Writing-only subsets may need `ccf-integrity-auditor` for source/number conflicts; presentation and submission subsets may need `ccf-paper-reviewer` for substantial argument changes.
@@ -18,8 +39,9 @@ These subsets provide the listed capabilities, not every possible helper. If the
 
 | Use case | Install | Missing impact |
 | --- | --- | --- |
-| Full workflow | All 17 runtime skills | Complete CCFA flow. |
-| NeurIPS paper path | `ccf-common`, `ccf-humanization`, `ccf-project-scaffolder`, `ccf-pipeline-orchestrator`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, `ccf-rebuttal-writer` | Omits only family maintenance. |
+| Full workflow | All 18 runtime skills | Complete CCFA flow. |
+| Research implementation and training | `ccf-humanization`, `ccf-common`, `ccf-research-engineer` | Implementation, reproduction, and training diagnosis; add designer for comparison protocols and orchestrator for repeated campaigns. |
+| NeurIPS paper path | `ccf-common`, `ccf-humanization`, `ccf-project-scaffolder`, `ccf-pipeline-orchestrator`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer`, `ccf-research-engineer`, `ccf-visual-composer`, `ccf-paper-to-exemplar`, `ccf-paper-writer`, `ccf-paper-reviewer`, `ccf-integrity-auditor`, `ccf-submission-checker`, `ccf-rebuttal-writer` | Omits only family maintenance. |
 | Writing subset | `ccf-common`, `ccf-humanization`, `ccf-paper-writer`, `ccf-visual-composer`, `ccf-paper-reviewer`, `ccf-submission-checker` | No idea/literature/experiment pipeline or rebuttal; visual work still requires supplied results. |
 | Review/audit subset | `ccf-common`, `ccf-humanization`, `ccf-paper-reviewer`, `ccf-integrity-auditor` | Can diagnose but cannot write, search broadly, design experiments, or check packages. |
 | Monitoring subset | `ccf-common`, `ccf-humanization`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-idea-reviewer`, `ccf-idea-optimizer` | Tracks new overlap signals and routes deeper search or idea repair, but cannot write or submit. |
@@ -65,7 +87,7 @@ foreach ($ccfaPath in $ccfaPaths) {
 
 ## Sibling resources
 
-`npx skills add ... --skill '*' --copy` installs all 17 skills, but does not copy the root-level `ccf-latex-templates/` directory, which has no `SKILL.md`. Run the following from the same repository revision used for the skills. This small resource bundle also covers partial-install references and legacy conversion scripts. Copying these resources does not install or authorize their owning skills; add a specialist separately when the task needs its capability. Full repository/plugin layouts already retain the sibling paths.
+`npx skills add ... --skill '*' --copy` installs all 18 skills, but does not copy the root-level `ccf-latex-templates/` directory, which has no `SKILL.md`. Run the following from the same repository revision used for the skills. This resource bundle also covers partial-install references and legacy conversion scripts. Copying these resources does not install or authorize their owning skills; add a specialist separately when the task needs its capability. Full repository/plugin layouts already retain the sibling paths.
 
 Bash:
 

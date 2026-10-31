@@ -10,14 +10,14 @@
 | Template path | `ccf-latex-templates/IMC/usenix-2020-09.sty` |
 | Official URL | https://www.imc2026.org |
 | Last verified | Legacy migration on 2026-06-06; official policy must be rechecked before submission. |
-| Source status | Migrated local guide; not independently reverified in v0.4.0. |
+| Source status | Domain guidance retained; obsolete policy blocks removed. Query the target official requirements before formatting. |
 
 ## Usage Boundary
 
-- Use this file for LaTeX, page limit, anonymity, template, camera-ready, rebuttal-template, and venue-format details.
+- Use this file for domain writing guidance. Annual submission rules are resolved through `ccf-submission-checker`, not copied from historical templates.
 - Use `ccf-paper-writer` for actual paper writing and polishing.
 - Use `ccf-paper-reviewer` or `ccf-submission-checker` for format audit, depending on whether the task is manuscript-facing or submission-package-facing.
-- Verify current-year official rules before final submission.
+- Match the exact year/track/stage before applying any format change; reuse current verified official rules and preserve supplied verified templates.
 
 ## Migrated Venue Notes
 
@@ -25,62 +25,7 @@
 
 **CCF-B | Networks | Publisher: ACM/USENIX**
 **Conference:** https://www.imc2026.org
-**Template:** `IMC/usenix-2020-09.sty` (or `usenix2019_v3.sty`)
-
-## Document Setup
-
-### Preamble Structure
-
-```latex
-\documentclass[letterpaper,twocolumn,10pt]{article}
-\usepackage{usenix-2020-09}
-% OR: \usepackage{usenix2019_v3}
-
-% Optional packages
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{cite}
-\usepackage{hyperref}
-```
-
-### Required Packages
-
-```latex
-\usepackage{usenix-2020-09}  % or usenix2019_v3
-\usepackage{cite}             % order multiple entries in \cite{...}
-\usepackage{url}             % allow \url in bibtex for clickable links
-\usepackage{xcolor}           % color definitions
-\usepackage[]{hyperref}      % clickable refs within pdf
-```
-
-## Page Limits
-
-| Section | Limit |
-|---------|-------|
-| Main paper (submission) | **14 pages** |
-| References | No limit |
-| Appendix | Permitted |
-
-IMC enforces a 14-page limit for the main body. References and appendix do not count.
-
-## Anonymity Requirements
-
-IMC uses double-blind review:
-
-1. No author names anywhere in the submission
-2. Use third person for self-citations: "Smith et al. showed..." not "we showed..."
-3. Anonymize all URLs (GitHub repos, institutional pages)
-4. Clear PDF metadata
-5. Do not include acknowledgments in submission
-
-## Camera-Ready Differences
-
-After acceptance:
-
-1. Restore all author names and affiliations
-2. Add acknowledgments if desired
-3. Verify figure quality and resolution
-4. USENIX provides page numbers for camera-ready
+**Historical template:** See the local path above for examples only; it is not a verified target submission bundle.
 
 ## Section Organization
 
@@ -174,28 +119,7 @@ and privacy.
 
 Use `plain` bibstyle with numerical citations.
 
-## Formatting Rules
+## Content Checklist
 
-- **Format:** USENIX two-column, 10pt body
-- **Paper size:** US Letter
-- **Margins:** 0.75" sides, 1" top/bottom
-- **Text width:** 7"
-- **Column gap:** 0.33"
-- **Font:** Times New Roman (mathptmx)
-
-## Submission Checklist
-
-- [ ] 14 pages or fewer (main body)
-- [ ] All author identification removed
-- [ ] Third-person self-citations only
-- [ ] Anonymized all URLs
-- [ ] PDF metadata cleared
 - [ ] References properly formatted
 - [ ] Figures legible in grayscale
-
-## Camera-Ready Checklist
-
-- [ ] Restore author names and affiliations
-- [ ] Verify figure quality (high resolution)
-- [ ] Add acknowledgments
-- [ ] Ensure no forbidden packages
