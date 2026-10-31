@@ -4,6 +4,8 @@ Use the local execution helper for a substantial manuscript revision, a long ses
 
 The helper prepares context and applies checked edits. It does not call a model, search the web, establish scientific truth, or replace Humanization, Common, the writer, the reviewer, or the integrity auditor. Existing permissions, preferences and source-verification rules still apply. `ccfa.yaml` and personal preference formats are unchanged.
 
+For the optional red `results_pending_draft` control, `prepare` reads user preferences and any explicit `--project` overrides without writes. Pass `--results-pending on|off` to reuse Common's already resolved value or a current task choice. `on` injects conditional-draft and mandatory alignment instructions into draft/results/consistency guidance; it does not change context selection, budgets, or source trimming. A results-pending packet remains an editing/review aid, not a completed alignment check. Ordinary complete-paper requests do not imply permission for anticipated analysis.
+
 ## Prepare Only The Material Needed
 
 Start with the current manuscript and its established paths. Inspect its actual section IDs before choosing a target:
@@ -97,6 +99,14 @@ Report concrete findings with a section location, an exact available quotation, 
 
 State what was actually read. Unseen sections and excerpt-only dependencies remain unchecked; hashes and successful local checks do not establish semantic agreement. Return the requested review shape, with no automatic acceptance score, new experiment request or manuscript patch.
 <!-- /prompt:consistency -->
+
+<!-- prompt:pending-results -->
+The author has deliberately enabled complete results-pending drafting. In write mode, complete the authorized argument and prospective interpretation with missing quantities left as stable [[PENDING:claim-id]] slots. A conditional passage may use [[PENDING:claim-id|If the measured effect persists, it would support this interpretation.]]. Give the artifact one visible results-pending label. Honor any current request to leave experiments empty. In review mode, assess only; do not write or fill values.
+
+Existing observations, including negative and mixed findings, govern the manuscript. Never invent measurements, completed runs, rankings, statistical significance, citations, mechanisms or qualitative observations. Anticipated analysis must remain conditional, with the consequence of an opposite finding where material; it cannot establish the intended claim. Keep the scientific prose coherent and the author's supported closing significance.
+
+Before delivering a whole draft, automatically inspect abstract, contributions, definitions, methods, result tables, captions, analysis, conclusion and any supplied appendix together. Track pending claim IDs across these locations, distinguish expected from observed outcomes, and resolve conflicting quantities, units, directions, protocols or versions. Repair within scope and recheck affected passages. Do not mark unseen dependencies checked or present internal agreement as empirical support. A local patch checks its affected relations; the whole-draft pass occurs when integrating the completed draft. No extra independent reviewer or experiments are activated. The output remains results-pending until actual outcomes replace all dependent assertions consistently.
+<!-- /prompt:pending-results -->
 
 ## Reuse Only Matching Review Work
 

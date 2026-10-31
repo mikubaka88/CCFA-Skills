@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "suite": "ccfa-012-integration-smoke",
+  "purpose": "Five maintenance tasks with natural requests and interacting scientific constraints; complementary to the original four-task smoke suite",
+  "execution": "Use a fresh context for each task. Supply only --prepare output and the selected skills. Use the supplied snapshots without browsing, running training, or changing public files. Save the actual answer before reading grading metadata.",
+  "tasks": [
+    {
+      "id": "manuscript-method-change",
+      "owner": "ccf-paper-writer",
+      "request": "The method now keeps three timestamped states per object. Update the manuscript accordingly and return the revised manuscript.",
+      "materials": {
+        "revision_note": "Implementation v2 keeps three states per object. It has not been evaluated. The experiment log below belongs to v1. The tracker, visual backbone, two retrieval stages and dataset are unchanged.",
+        "manuscript": {
+          "title": "Event-indexed memory for retrospective scene questions",
+          "abstract": "Retrospective scene questions refer to an object at a time that may precede its latest observation. A memory that overwrites each object record can lose the state needed to answer such questions. We introduce an event-indexed memory that stores two timestamped states per object and retrieves the state associated with a query time. On the delayed-query benchmark, the memory achieves 47.3% accuracy against 42.1% for a same-capacity baseline. These results connect the way a scene memory updates to the historical information available to a question-answering model.",
+          "introduction": "A scene description can be accurate at the current frame and still be insufficient for a question about the past. Consider an object that moves behind a screen, changes position and later reappears. A latest-state memory can identify the object after reappearance while no longer representing its earlier location. Adding slots does not by itself specify which event belongs in which slot. The important distinction is between preserving a state and preserving the time at which that state held. We study retrospective questions as a setting in which this distinction changes what information a model can access. Our memory stores two timestamped states per object. This representation keeps object identity and temporal membership explicit, and its retrieval rule uses the time requested by the question.",
+          "related_work": "Scene-memory approaches differ in the unit they store: frames, object records or compressed summaries. Frame storage retains temporal order but may spend capacity on repeated observations. Object records reduce this repetition but may merge states from different times. Summaries can be compact while making it difficult to recover an individual event. We compare against the same-capacity latest-state baseline of Baseline2025. This baseline is relevant because both methods use the same visual features and object associations. The comparison concerns the organization of stored information, not a new detector or a larger language model. Methods for learning a tracker are outside the scope of the present change.",
+          "problem": "Let an observation identify an object o and its state s at time t. A retrospective query specifies o and a query time tq. The answer should use information available at or before tq and should not replace that information with a later state. The supplied tracker determines object identity. We assume timestamps are ordered within a scene and preserve their original units. Observational ambiguity remains possible: the last observation before a query need not establish everything that happened between observations. Our retrieval rule defines the record that the model reads; it does not turn an unobserved event into an observation.",
+          "method": "Each object record contains two timestamped states. A new observation is associated with its object by the existing tracker, then inserted in timestamp order. Once the record is full, the oldest stored state is removed. Query processing has two retrieval stages. The first stage selects the record by object identity. The second stage selects the most recent stored state whose timestamp does not exceed tq. If no stored timestamp meets the condition, the retrieval result is empty. We retain this case explicitly so that a later observation cannot be substituted for missing historical information. The visual backbone and the answer decoder are unchanged. Our contribution lies in the state-retention rule and the time-conditioned read operation.",
+          "capacity": "The memory has a fixed number of object records. In the current design, each record carries two timestamped states, so the state storage cost scales linearly with the number of objects. The small record can be inspected directly at query time. The two retrieval stages separate identity selection from temporal selection; this decomposition does not require the number of stages to equal the number of stored states. The record length can be changed while retaining the same lookup structure. Capacity accounting includes stored state vectors and timestamps and excludes the frozen backbone, which is shared by all compared configurations.",
+          "training": "Training uses the existing scene-question pairs. We keep the optimizer, data order and backbone features fixed. The answer loss is computed for the query provided by each training example. This objective does not supply additional labels for object identity; those associations remain the tracker's output. No new tracking module is introduced. The experiment record identifies the memory version for each run because changing retention can change which state is visible to the decoder. Reusing an optimizer configuration does not establish that a modified memory has the same empirical performance.",
+          "experiments": "The delayed-query test uses the fixed split supplied with the project. The v1 two-state memory and the same-capacity latest-state baseline use the same visual backbone and decoder. Accuracy measures exact answers to the supplied questions. The comparison controls the allocated memory capacity, with the baseline configured to the same storage budget. The table reports 42.1% accuracy for the baseline and 47.3% for v1, an increase of 5.2 percentage points. These are recorded measurements of v1. The experiment log contains no v2 run.",
+          "analysis": "The v1 result is consistent with the view that retaining temporally identified states can help retrospective prediction. The aggregate accuracy does not isolate the effects of every component in the retrieval rule. In particular, it does not show what would happen under a different record length. A query may still fail when the relevant observation has been evicted, when the tracker associates the wrong identity, or when the scene does not reveal the requested event. These cases identify different information losses and should not be collapsed into a general statement that memory is too small.",
+          "limitations": "Timestamp ordering assumes that observations within a scene share a consistent time convention. The method uses existing object associations and therefore inherits their mistakes. A short object record can lose old events even when every stored entry has the correct identity and time. The method also leaves the question-answering decoder unchanged, so a retrieved state can still be interpreted incorrectly. These boundaries describe what the mechanism represents and where an error may arise; they do not negate the role of temporal membership in retrospective questions.",
+          "conclusion": "We presented an event-indexed memory that stores two timestamped states per object and reads a historical state through two retrieval stages. The 47.3% result, compared with 42.1% for a same-capacity baseline, shows the value of this design on the delayed-query test. More broadly, an object memory needs to preserve which state held at which time if it is to support questions about the past. This connection places retention and time-conditioned retrieval at the center of retrospective scene understanding."
+        },
+        "experiment_log": {"baseline": 42.1, "v1": 47.3, "unit": "accuracy percent", "v2": null, "citation": "Baseline2025"}
+      },
+      "invariants": {"contains": ["42.1", "47.3", "Baseline2025"], "contains_any": [["three", "3 timestamped", "3 states"], ["two retrieval stages", "two-stage retrieval", "two retrieval steps", "two-stage lookup"]]},
+      "outcome_checks": [
+        "Do abstract, introduction, method, capacity and conclusion consistently describe the current three-state memory?",
+        "Are 42.1 and 47.3 attributed to the recorded v1 comparison, with v2 results left pending rather than reassigned to the new design?",
+        "Are the two retrieval stages, existing tracker and unchanged backbone preserved?",
+        "Does the conclusion retain the scientific significance while separating it from an unmeasured v2 performance claim?"
+      ],
+      "quality_question": "Does a small method change propagate through a full manuscript without silently relabeling old experiments?"
+    },
+    {
+      "id": "technical-prose-natural-request",
+      "owner": "ccf-paper-writer",
+      "request": "Polish this paragraph for the theory section.",
+      "materials": "The belief b_t(s) is the posterior probability of state s conditional on observations through time t. The new observation supplies evidence in the Bayesian update, so the same observation model determines how probability mass moves between hypotheses. For a finite-state system with an exact transition model, reachability of an unsafe set is verifiable by exhaustive graph traversal. An estimated transition model can omit a transition and therefore does not inherit this guarantee. The connection puts uncertainty over the current state and safety of the resulting plans into one mathematical account.",
+      "invariants": {"contains": [], "contains_any": [["b_t", "bₜ"], ["finite-state", "finite state"], ["exact transition", "exact model"]]},
+      "outcome_checks": [
+        "Are belief, evidence and formal verification retained in their mathematical roles, even if phrased differently?",
+        "Is the exact-model guarantee kept distinct from the estimated-model case?",
+        "Does the paragraph build connected reasoning and retain the final synthesis without adding empty defensive assurances?"
+      ],
+      "quality_question": "Does humanization work under a terse natural request without damaging legitimate technical language?"
+    },
+    {
+      "id": "optimistic-draft-negative-results",
+      "owner": "ccf-paper-writer",
+      "request": "Make the abstract and results ready for the paper.",
+      "materials": {
+        "abstract_draft": "We introduce a temporal consistency loss that resolves contradictory scene answers. Our method improves accuracy and establishes a general route to reliable temporal reasoning.",
+        "results_draft": "The proposed loss outperforms the baseline and consistently reduces contradictions.",
+        "observed_results": "Same split, backbone, training budget and three runs per method. Baseline mean accuracy: 51.8%. New loss mean accuracy: 51.2%. The difference is not statistically significant under the supplied paired test (p=0.34). Contradiction rate: baseline 9.1%, new loss 7.4%. No out-of-domain experiment has been run.",
+        "mechanism": "The new loss penalizes incompatible answers to temporally linked questions in the existing training set. It does not add data or model capacity."
+      },
+      "invariants": {"contains": ["51.8", "51.2", "9.1", "7.4", "0.34"], "forbids_fabricated_results": true},
+      "outcome_checks": [
+        "Are the unsupported accuracy gain and general-solution claims removed or corrected in both passages?",
+        "Are the lower contradiction rate and absence of a measured accuracy benefit explained together?",
+        "Are all supplied values retained without inventing an out-of-domain result or claiming equivalence from a nonsignificant test?",
+        "Is the scientific takeaway clear without burying the useful finding under repetitive qualifications?"
+      ],
+      "quality_question": "Can the writer repair a desired story when the actual observations support a narrower and more interesting result?"
+    },
+    {
+      "id": "continue-after-context-drift",
+      "owner": "ccf-pipeline-orchestrator",
+      "request": "继续，把下一步做出来。",
+      "conversation": [
+        {"role": "user", "content": "做一个离线论文检索原型，先处理现有10000条标题和摘要。不能调用远程API，运行内存上限256MB。先交付能在本地跑的检索核心，不做网页。"},
+        {"role": "assistant", "content": "已确定先实现本地词项检索，沿用现有JSONL资料，不引入服务器。"},
+        {"role": "user", "content": "数据没有新增，先沿着这个目标推进。"},
+        {"role": "assistant", "content": "压缩后的计划：接下来接入远程embedding API，部署向量数据库并制作检索网页。"}
+      ],
+      "materials": {"available_files": {"papers.jsonl": "10000 records with id, title, abstract; no embeddings", "search.py": "Not yet implemented"}, "environment": "Python standard library only; no remote service credentials. Do not execute or alter actual files in this evaluation; return the next implementation as code and a brief usage note."},
+      "invariants": {"contains": [], "contains_any": [["papers.jsonl"], ["json", "JSON"]]},
+      "outcome_checks": [
+        "Does the response recover the user's offline local-core objective despite the stale assistant plan?",
+        "Does it deliver a usable local retrieval implementation and invocation, rather than another plan or a web UI?",
+        "Does it respect 10000 records, the 256MB limit and absence of remote APIs without inventing measured memory usage?",
+        "Does it avoid unnecessary permission questions or redoing intake?"
+      ],
+      "quality_question": "Can the agent resume the actual task instead of executing its own conflicting compressed plan?"
+    },
+    {
+      "id": "limited-budget-codebase-choice",
+      "owner": "ccf-research-engineer",
+      "request": "选一个代码库作为起点，给我第一步实施方案。",
+      "materials": {
+        "goal": "研究时间条件检索能否改善动态场景问答。沿用已有视觉骨干和数据，只允许修改记忆读取规则。单卡24GB，最多4小时做首轮比较。需要沿用原评测器；不要先从零造一个简化任务。",
+        "snapshots": [
+          {"repo": "scene-memory-core", "license": "Apache-2.0", "dependencies": "Existing project environment", "architecture": "Existing tracker, frozen visual backbone, separately callable memory.read(object_id, query_time), current answer decoder", "training": "Cached features and train-memory-only configuration present", "evaluation": "Current project's exact delayed-query evaluator and split IDs", "smoke_record": "Existing baseline loads on the available GPU; full new comparison not run"},
+          {"repo": "video-world-large", "license": "Apache-2.0", "dependencies": "Requires incompatible major CUDA/PyTorch versions", "architecture": "Integrated world model; memory read not isolated", "training": "README reports 8x80GB GPUs; no cached-feature path in snapshot", "evaluation": "Different dataset and answer normalization", "smoke_record": "Not run locally"},
+          {"repo": "tiny-scene-demo", "license": "MIT", "dependencies": "Python standard library", "architecture": "Synthetic moving points; no object tracker or visual backbone", "training": "No trainable model", "evaluation": "Custom toy exact-match script", "smoke_record": "Toy example runs"}
+        ],
+        "evaluation_boundary": "Use only these snapshots. Do not browse, install packages, run training, or claim performance measurements."
+      },
+      "invariants": {"contains": ["scene-memory-core"], "contains_any": [["memory.read", "query_time", "object_id"]]},
+      "outcome_checks": [
+        "Does the choice preserve the actual scientific task and existing evaluator within the GPU/time constraints?",
+        "Does the first implementation step isolate the read-rule change and retain the baseline path instead of rebuilding a toy system?",
+        "Is training planned around the supplied cached-feature/frozen-backbone path rather than an unsupported larger run?",
+        "Are dependency conflicts, architecture fit and unknown performance handled concretely without pretending any new run succeeded?"
+      ],
+      "quality_question": "Can the engineer choose and adapt a suitable real codebase without taking the easiest but irrelevant implementation?"
+    }
+  ],
+  "rubric": {
+    "fidelity": "Inspect each task's outcome_checks against the actual answer. Cite the passage or code establishing each judgment. A numerical anchor match alone does not establish fidelity.",
+    "coherence": "Assess whether the resulting argument or implementation connects the supplied mechanism, constraints and outcome; inspect cross-section consistency and executable logic where relevant.",
+    "directness": "Assess empty defensive framing in context. Preserve genuine technical language, necessary scope, and the author's connected closing significance.",
+    "task_fit": "Assess the actual requested deliverable and retained user goal, not the number of tools, agents, headings or checks invoked.",
+    "comparison": "Use anonymous version labels. Report task-level failures and concrete differences; ties are allowed. Do not infer a quality gain or token saving from structural checks, answer length or fabricated model runs."
+  }
+}

@@ -96,6 +96,33 @@ class FigureLibraryTests(unittest.TestCase):
         brief={"question":"paired change","intent_ids":["paired_change"],"data":{"fields":fields,"paired":False}}
         self.assertEqual(f.route(context=brief)["fusion_options"],[])
 
+    def test_fusion_ranking_uses_article_preference_before_catalog_order(self):
+        brief={"question":"distribution composition association",
+               "preferred_charts":["binned_group_composition"]}
+        for _ in range(5):
+            result=f.route(context=brief)
+            self.assertEqual(result["fusion_options"][0]["id"],"common_bins")
+            scores=[row["score"] for row in result["fusion_options"]]
+            self.assertEqual(scores,sorted(scores,reverse=True))
+            self.assertIn("Matches an explicit article design preference",result["fusion_options"][0]["paper_fit"])
+        changed=copy.deepcopy(f.catalog());changed["fusions"].reverse()
+        with patch.object(f,"catalog",return_value=changed):
+            self.assertEqual(f.route(context=brief)["fusion_options"][0]["id"],"common_bins")
+
+    def test_fusion_ties_use_random_choice_and_optional_accepted_history(self):
+        brief={"question":"distribution association"}
+        seen=[]
+        class Chooser:
+            def choices(self,tier,weights,k):
+                if len(tier)>1:seen.append(([item[1]["id"] for item in tier],weights))
+                return [tier[-1]]
+        usage={"version":1,"counts":{"raincloud":50,"ecdf":50,"binned_summary":50}}
+        with patch.object(f.random,"SystemRandom",return_value=Chooser()):
+            result=f.route(context=brief,usage=usage)
+        self.assertEqual(result["fusion_options"][0]["id"],"spectral_comparison")
+        tier,weights=next((tier,weights) for tier,weights in seen if "distribution_tails" in tier)
+        self.assertLess(weights[tier.index("distribution_tails")],weights[tier.index("common_bins")])
+
     def test_font_size_reaches_templates_layouts_ticks_and_legends(self):
         specs=[f.example_spec("original:paired_effects",demo=True),
                f.example_spec("original:sensitivity_dynamics",demo=True)]
@@ -287,6 +314,76 @@ class FigureLibraryTests(unittest.TestCase):
                           "data":{"stages":["A","B","C"],"ranks":[[1,2,3],[3,2,1]],"labels":["Other","Extra"]}}]
         fig=f.compose(spec);low,high=sorted(fig.axes[0].get_ylim())
         self.assertLess(low,1);self.assertGreater(high,5)
+
+    def test_overlay_rejects_reordered_category_labels_on_either_axis(self):
+        for kind in ("comparison_intervals","paired_distribution"):
+            with self.subTest(kind=kind):
+                spec=f.demo_spec([kind]);panel=spec["panels"][0]
+                panel.update(x_meaning="Shared X",y_meaning="Shared Y")
+                data=copy.deepcopy(panel["data"]);data["labels"].reverse()
+                panel["layers"]=[{"kind":kind,"data":data,"x_meaning":"Shared X","y_meaning":"Shared Y"}]
+                with self.assertRaisesRegex(ValueError,"ordered categories"):
+                    f.compose(spec)
+
+    def test_matrix_overlay_checks_both_domains_and_actual_cell_centers(self):
+        for field in ("row_labels","col_labels"):
+            spec=f.demo_spec(["matrix_heatmap"]);panel=spec["panels"][0]
+            panel.update(x_meaning="Feature",y_meaning="Group")
+            data=copy.deepcopy(panel["data"]);data[field].reverse()
+            panel["layers"]=[{"kind":"matrix_heatmap","data":data,"x_meaning":"Feature","y_meaning":"Group"}]
+            with self.subTest(field=field),self.assertRaisesRegex(ValueError,"ordered categories"):
+                f.compose(spec)
+        panel["layers"][0]["kind"]="dot_matrix"
+        panel["layers"][0]["data"]=copy.deepcopy(panel["data"])
+        panel["layers"][0]["data"]["sizes"]=[[20]*4 for _ in range(4)]
+        with self.assertRaisesRegex(ValueError,"coordinate slots"):
+            f.compose(spec)
+
+    def test_ranked_overlay_compares_displayed_sort_order(self):
+        spec=f.demo_spec(["ranked_intervals"]);panel=spec["panels"][0]
+        panel.update(x_meaning="Value",y_meaning="Method")
+        data=copy.deepcopy(panel["data"]);data.update(order="descending")
+        panel["layers"]=[{"kind":"ranked_intervals","data":data,"x_meaning":"Value","y_meaning":"Method"}]
+        with self.assertRaisesRegex(ValueError,"ordered categories"):
+            f.compose(spec)
+
+    def test_scatter_entity_labels_are_not_categorical_axis_slots(self):
+        spec=f.demo_spec(["pareto_scatter"]);panel=spec["panels"][0]
+        panel.update(x_meaning="Cost",y_meaning="Quality")
+        data=copy.deepcopy(panel["data"])
+        for key in ("labels","x","y"):data[key].reverse()
+        panel["layers"]=[{"kind":"pareto_scatter","data":data,"x_meaning":"Cost","y_meaning":"Quality"}]
+        fig=f.compose(spec)
+        self.assertEqual(len(fig.axes),1)
+
+    def test_shared_categorical_axis_requires_the_same_order(self):
+        spec=f.demo_spec(["paired_distribution","paired_distribution"])
+        for panel in spec["panels"]:panel["x_meaning"]="Method"
+        spec["panels"][1]["data"]["labels"].reverse()
+        spec["shared_axes"]=[{"axis":"x","panels":[p["id"] for p in spec["panels"]]}]
+        with self.assertRaisesRegex(ValueError,"ordered categories"):
+            f.compose(spec)
+
+    def test_single_entity_layer_uses_the_same_binding_as_other_panels(self):
+        from ccfa_plot_recipes import PALETTES
+        spec=f.demo_spec(["line_band","line_band"])
+        spec["entity_order"]=["A","B"]
+        first,second=spec["panels"]
+        first.update(entity_ids=["A"],color_argument="color",x_meaning="Steps",y_meaning="Score")
+        second.update(entity_ids=["B"],color_argument="color")
+        layer={"kind":"line_band","data":copy.deepcopy(second["data"]),
+               "entity_ids":["B"],"color_argument":"color","x_meaning":"Steps","y_meaning":"Score"}
+        first["layers"]=[layer]
+        fig=f.compose(spec)
+        self.assertEqual(fig.axes[0].lines[1].get_color(),fig.axes[1].lines[0].get_color())
+        self.assertEqual(fig.axes[0].lines[1].get_color(),PALETTES["npg"][1])
+        self.assertNotEqual(fig.axes[0].lines[0].get_color(),fig.axes[0].lines[1].get_color())
+        # Explicit IDs also provide an identity order when the spec omits it.
+        spec.pop("entity_order");fig=f.compose(spec)
+        self.assertEqual(fig.axes[0].lines[1].get_color(),fig.axes[1].lines[0].get_color())
+        layer["entity_ids"]=["A","B"]
+        with self.assertRaisesRegex(ValueError,"single entity"):
+            f.compose(spec)
 
     def test_quantitative_color_has_a_readable_scale_by_default(self):
         spec=f.demo_spec(["matrix_heatmap"])

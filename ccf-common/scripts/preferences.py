@@ -39,6 +39,7 @@ DEFAULTS = {
         "reference_style_search": "on",
         "research_branching": "off",
         "research_policy_evolution": "off",
+        "results_pending_draft": "off",
     },
     "ui": {"language": "zh-CN", "theme": "system"},
 }
@@ -108,6 +109,8 @@ def validate_config(config):
             if key not in DEFAULTS[section]:
                 raise PreferenceError("invalid_config", "Unknown field: " + section + "." + key)
             allowed = MODES if section == "preferences" else (LANGUAGES if key == "language" else THEMES)
+            if section == "preferences" and key == "results_pending_draft":
+                allowed = {"off", "on"}  # Deliberate opt-in, never an automatic extension.
             if type(value) is not str or value not in allowed:
                 raise PreferenceError("invalid_config", "Unsupported value for " + section + "." + key)
     return copy.deepcopy(config)

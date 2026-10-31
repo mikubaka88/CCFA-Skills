@@ -71,6 +71,42 @@ class ReviewCacheTests(unittest.TestCase):
         self.result.unlink()
         self.assertFalse(self.call("lookup")["hit"])
 
+    def test_unrelated_source_change_or_removal_keeps_scoped_review(self):
+        appendix = self.root / "appendix.csv"
+        appendix.write_text("count,2", encoding="utf-8")
+        dependency = {"id": "appendix", "path": str(appendix),
+                      "sha256": hashlib.sha256(appendix.read_bytes()).hexdigest(),
+                      "used_by": ["appendix"]}
+        self.packet["dependencies"].append(dependency)
+        key = review_key(self.packet, "actual-model")
+        self.complete()
+        appendix.write_text("count,3", encoding="utf-8")
+        self.assertTrue(self.call("lookup")["hit"])
+        dependency["sha256"] = hashlib.sha256(appendix.read_bytes()).hexdigest()
+        self.assertEqual(review_key(self.packet, "actual-model"), key)
+        self.assertTrue(self.call("lookup")["hit"])
+        appendix.unlink()
+        self.assertTrue(self.call("lookup")["hit"])
+
+    def test_unknown_dependency_scope_remains_conservative(self):
+        self.packet["dependencies"][0]["used_by"] = []
+        self.complete()
+        self.source.write_text('{"accuracy": 0.5}', encoding="utf-8")
+        with self.assertRaises(ValueError):
+            self.call("lookup")
+
+    def test_relative_active_source_refresh_changes_key_and_prevents_reuse(self):
+        dependency = self.packet["dependencies"][0]
+        dependency["path"] = self.source.name  # Resolved against manuscript, not caller CWD.
+        key = review_key(self.packet, "actual-model")
+        with self.assertRaisesRegex(ValueError, "overwrite"):
+            review_cache("begin", self.packet, self.source, "actual-model")
+        self.complete()
+        self.source.write_text('{"accuracy": 0.4}', encoding="utf-8")
+        dependency["sha256"] = hashlib.sha256(self.source.read_bytes()).hexdigest()
+        self.assertNotEqual(review_key(self.packet, "actual-model"), key)
+        self.assertFalse(self.call("lookup")["hit"])
+
     def test_changed_source_or_manuscript_blocks_completion(self):
         self.call("begin")
         self.source.write_text('{"accuracy": 0.9}', encoding="utf-8")

@@ -7,8 +7,9 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..', '..');
 const html = fs.readFileSync(path.join(root, 'ccf-common/assets/configurator/index.html'), 'utf8');
 const script = fs.readFileSync(path.join(root, 'ccf-common/assets/configurator/app.js'), 'utf8');
+const styles = fs.readFileSync(path.join(root, 'ccf-common/assets/configurator/styles.css'), 'utf8');
 const copy = (v) => JSON.parse(JSON.stringify(v));
-const defaults = {version:1,preferences:{independent_review:'off',extended_search:'auto',enhanced_document_parsing:'auto',figure_variants:'off',detailed_reports:'off',alternative_routes:'off',maintenance_evolution:'off',reference_style_search:'on',research_branching:'off',research_policy_evolution:'off'},ui:{language:'zh-CN',theme:'system'}};
+const defaults = {version:1,preferences:{independent_review:'off',extended_search:'auto',enhanced_document_parsing:'auto',figure_variants:'off',detailed_reports:'off',alternative_routes:'off',maintenance_evolution:'off',reference_style_search:'on',research_branching:'off',research_policy_evolution:'off',results_pending_draft:'off'},ui:{language:'zh-CN',theme:'system'}};
 
 class Element {
   constructor(tag) { this.tagName=tag.toLowerCase();this.children=[];this.attributes={};this.dataset={};this.listeners={};this.parentNode=null;this.disabled=false;this.hidden=false;this.className='';this.value='';this._text='';this.classList={toggle:(name,on)=>{const list=new Set(this.className.split(/\s+/).filter(Boolean));if(on===undefined)on=!list.has(name);if(on)list.add(name);else list.delete(name);this.className=[...list].join(' ');}}; }
@@ -78,7 +79,7 @@ async function choosePreset(f,name){
 async function run(){
   const f=fixture();await flush();
   const expectedKeys=Object.keys(defaults.preferences);
-  assert.equal(expectedKeys.length,10);
+  assert.equal(expectedKeys.length,11);
   assert.deepEqual(JSON.parse(f.eval('JSON.stringify(KEYS)')),expectedKeys);
   assert.deepEqual(JSON.parse(f.eval('JSON.stringify(DEFAULTS)')),defaults);
   assert.equal(f.document.querySelectorAll('.feature').length,expectedKeys.length);
@@ -86,13 +87,13 @@ async function run(){
   assert.equal(f.document.querySelectorAll('.mode-select').length,expectedKeys.length);
   for(const key of expectedKeys){
     const control=modeControl(f,key);
-    assert.deepEqual(control.querySelectorAll('option').map(node=>node.value),['inherit','off','auto','on']);
+    assert.deepEqual(control.querySelectorAll('option').map(node=>node.value),key==='results_pending_draft'?['inherit','off','on']:['inherit','off','auto','on']);
     assert.equal(control.value,'inherit','Initial defaults remain inherited, not pinned');
     assert.ok(control.getAttribute('aria-label'),'A combined control still has an accessible label');
   }
   for(const oldClass of ['.celestial-toggle','.auto-button','.inherit-button'])assert.equal(f.document.querySelectorAll(oldClass).length,0,'Replaced controls must not remain as duplicate UI');
   assert.equal(f.document.querySelectorAll('.summary-meter span').length,expectedKeys.length);
-  assert.equal(f.document.querySelector('.art-index').textContent,'01 — 10');
+  assert.equal(f.document.querySelector('.art-index').textContent,'01 — 11');
   assert.equal(f.eval('current().loaded'),true);
   assert.equal(f.document.querySelector('#save').disabled,false,'Missing config can explicitly save inherited defaults');
   await f.document.querySelector('#save').click();
@@ -289,9 +290,10 @@ async function run(){
     for(const name of presetNames){
       await choosePreset(profiles,name);
       const settings=JSON.parse(profiles.eval('JSON.stringify(current().draft.preferences)'));
-      assert.deepEqual(Object.keys(settings),expectedKeys,'A preset covers all ten existing settings');
+      assert.deepEqual(Object.keys(settings),expectedKeys,'A preset covers every setting');
       assert.ok(Object.values(settings).every(value=>['off','auto','on'].includes(value)));
       assert.equal(settings.research_policy_evolution,'off','General presets never enable research policy evolution');
+      assert.equal(settings.results_pending_draft,'off','Presets never enable results-pending drafting');
       assert.equal(profiles.eval('current().draft.ui.language'),language,'Applying a preset preserves UI language');
       assert.equal(profiles.files.user,null,'Preset selection must not save implicitly');
       const button=profiles.document.querySelectorAll('[data-preset]').find(node=>node.dataset.preset===name);
@@ -300,7 +302,7 @@ async function run(){
       for(const key of expectedKeys){
         const control=modeControl(profiles,key);
         assert.equal(control.value,settings[key]);
-        assert.ok(control.querySelectorAll('option').every(node=>node.textContent.trim()),'Four modes are translated');
+        assert.ok(control.querySelectorAll('option').every(node=>node.textContent.trim()),'All available modes are translated');
       }
     }
   }
@@ -309,6 +311,65 @@ async function run(){
     await choosePreset(profiles,name);
     assert.notEqual(profiles.eval(`effective().preferences.${key}`),'off',`${name} must enable its defining enhancement`);
   }
+
+  const cautious=fixture();await flush();
+  const cautionCard=cautious.document.querySelector('.feature-caution');
+  assert.ok(cautionCard,'Results-pending drafting has its own caution treatment');
+  assert.equal(cautious.document.querySelectorAll('.feature-caution').length,1);
+  assert.equal(cautionCard.dataset.key,'results_pending_draft');
+  assert.equal(cautionCard.parentNode.parentNode.dataset.group,'reading');
+  assert.equal(cautious.eval('effective().preferences.results_pending_draft'),'off');
+  assert.equal(modeControl(cautious,'results_pending_draft').getAttribute('aria-describedby'),cautionCard.querySelector('.caution-note').id);
+  for(const language of ['zh-CN','zh-TW','en']){
+    const picker=cautious.document.querySelector('#language');picker.value=language;await picker.emit('change');
+    const expected=JSON.parse(cautious.eval(`JSON.stringify(COPY[${JSON.stringify(language)}])`));
+    assert.equal(cautionCard.querySelector('.caution-badge').textContent,expected.cautionLabel);
+    assert.equal(cautionCard.querySelector('.caution-note').textContent,expected.cautionRisk);
+    assert.equal(cautionCard.querySelector('h3').textContent,expected.features.results_pending_draft.title);
+    assert.equal(cautionCard.querySelector('.cost-token').textContent,expected.features.results_pending_draft.token);
+    assert.equal(cautionCard.querySelector('.cost-time').textContent,expected.features.results_pending_draft.time);
+    assert.equal(modeControl(cautious,'results_pending_draft').querySelectorAll('option').find(node=>node.value==='on').textContent,expected.cautionOn);
+  }
+  for(const selector of [':root', ':root[data-theme="dark"]']){
+    const block=styles.slice(styles.indexOf(selector+' {')).split('}')[0];
+    const color=block.match(/--caution:\s*#([a-f0-9]{6});/i);
+    assert.ok(color,'Both themes define a caution color');
+    const [red,green,blue]=color[1].match(/../g).map(value=>parseInt(value,16));
+    assert.ok(red>green+30&&red>blue+30,'Caution treatment stays red in both themes');
+  }
+  await cautious.document.querySelector('#reset').click();
+  await chooseMode(cautious,'results_pending_draft','on');
+  assert.equal(cautionCard.dataset.mode,'on');
+  await cautious.document.querySelector('#save').click();
+  assert.deepEqual(cautious.files.user,{version:1,preferences:{results_pending_draft:'on'}});
+  await cautious.document.querySelectorAll('[data-scope]')[1].click();
+  assert.equal(cautious.eval('effective().preferences.results_pending_draft'),'on');
+  assert.equal(modeControl(cautious,'results_pending_draft').value,'inherit');
+  await chooseMode(cautious,'results_pending_draft','off');
+  await cautious.document.querySelector('#save').click();
+  assert.deepEqual(cautious.files.project,{version:1,preferences:{results_pending_draft:'off'}});
+  await chooseMode(cautious,'results_pending_draft','inherit');
+  await cautious.document.querySelector('#save').click();
+  assert.deepEqual(cautious.files.project,{version:1});
+  assert.equal(cautious.eval('effective().preferences.results_pending_draft'),'on');
+  const beforeInvalidCaution=cautious.eval('JSON.stringify(current().draft)');
+  for(const value of ['auto',true,'always']){
+    const content=JSON.stringify({version:1,preferences:{results_pending_draft:value}});
+    cautious.context.invalidCaution={size:content.length,arrayBuffer:async()=>new TextEncoder().encode(content).buffer};
+    await cautious.eval('importConfig(invalidCaution)');
+    assert.equal(cautious.eval('JSON.stringify(current().draft)'),beforeInvalidCaution);
+    assert.equal(cautious.eval('currentError.key'),'errorValue');
+  }
+  cautious.context.legacyCaution={size:13,arrayBuffer:async()=>new TextEncoder().encode('{"version":1}').buffer};
+  await cautious.eval('importConfig(legacyCaution)');
+  assert.equal(cautious.eval('current().draft.preferences?.results_pending_draft'),undefined);
+  assert.equal(cautious.eval('effective().preferences.results_pending_draft'),'on','Legacy imports retain sparse inheritance');
+  for(const name of presetNames){
+    await chooseMode(cautious,'results_pending_draft','on');
+    await choosePreset(cautious,name);
+    assert.equal(cautious.eval('current().draft.preferences.results_pending_draft'),'off','Every preset explicitly turns cautious drafting off');
+  }
+  assert.ok(cautious.calls.every(call=>new URL(call.url,'http://127.0.0.1').pathname==='/api/preferences'),'The new switch only saves preferences; no experiments or writing calls launch from the UI');
 
   const postConflict=fixture();await flush();
   await chooseMode(postConflict,'independent_review','on');
@@ -329,6 +390,6 @@ async function run(){
   await postConflict.document.querySelector('#reload').click();
   assert.equal(postConflict.eval('current().conflict'),false);
   assert.deepEqual(JSON.parse(postConflict.eval('JSON.stringify(current().draft)')),externalConfig);
-  console.log('PASS: actual app controller renders 10 combined controls in 4 groups; missing-file save; 3-language parity; theme; draft-only edits; sparse persistence; scope draft retention; inheritance reset; external-change revision conflict; storage-lock error and retry; async import locking; bad/duplicate JSON; failed load/retry; static export and no backend requests; 8 complete presets; new-setting persistence and inheritance; legacy version-1 imports.');
+  console.log('PASS: actual app controller renders 11 combined controls in 4 groups; missing-file save; 3-language parity; theme; draft-only edits; sparse persistence; scope draft retention; inheritance reset; external-change revision conflict; storage-lock error and retry; async import locking; bad/duplicate JSON; failed load/retry; static export and no backend requests; 8 complete presets; new-setting persistence and inheritance; legacy version-1 imports; red cautious results-pending drafting with explicit off/on, no Auto, and presets off.');
 }
 run().catch(error=>{console.error(error);process.exitCode=1;});

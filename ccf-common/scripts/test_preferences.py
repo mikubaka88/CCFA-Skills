@@ -45,6 +45,16 @@ class StoreTests(unittest.TestCase):
         self.assertEqual(self.store.snapshot("user")["revision"], "missing")
         self.assertEqual(list(self.root.rglob("*")), before)
 
+    def test_pending_draft_requires_deliberate_binary_choice(self):
+        self.assertEqual(self.store.resolve()["effective"]["preferences"]["results_pending_draft"], "off")
+        self.write("user", {"version": 1, "preferences": {"results_pending_draft": "on"}})
+        self.assertEqual(self.store.resolve()["effective"]["preferences"]["results_pending_draft"], "on")
+        self.write("project", {"version": 1, "preferences": {"results_pending_draft": "off"}})
+        self.assertEqual(self.store.resolve()["effective"]["preferences"]["results_pending_draft"], "off")
+        for invalid in ("auto", True, "yes"):
+            self.assert_error("invalid_config", prefs.validate_config,
+                              {"version": 1, "preferences": {"results_pending_draft": invalid}})
+
     def test_sparse_layer_precedence_and_ui(self):
         self.write("user", {"version": 1, "preferences": {"independent_review": "on", "extended_search": "off"}, "ui": {"language": "zh-TW"}})
         self.write("project", {"version": 1, "preferences": {"independent_review": "auto"}, "ui": {"theme": "dark"}})
@@ -64,7 +74,7 @@ class StoreTests(unittest.TestCase):
         resolved = self.store.resolve()
         expected = {"alternative_routes": "off", "maintenance_evolution": "off",
                     "reference_style_search": "on", "research_branching": "off",
-                    "research_policy_evolution": "off"}
+                    "research_policy_evolution": "off", "results_pending_draft": "off"}
         for key, default in expected.items():
             self.assertEqual(resolved["effective"]["preferences"][key], default)
             self.assertEqual(resolved["origins"]["preferences"][key], "default")

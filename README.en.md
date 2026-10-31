@@ -10,7 +10,7 @@
 
 [Simplified Chinese](README.md) · [English](README.en.md) · [Traditional Chinese](README.zh-TW.md)
 
-**[Latest updates · v0.12.0](#latest-updates)**
+**[Latest updates · v0.12.1](#latest-updates)**
 
 <img src="assets/ccfaskills.png" alt="CCFA-Skills logo" width="560">
 
@@ -55,7 +55,7 @@ Choose the agent you use:
 
 [Codex](docs/getting-started/CODEX.md) · [Claude Code](docs/getting-started/CLAUDE_CODE.md) · [Cursor](docs/getting-started/CURSOR.md) · [Gemini CLI](docs/getting-started/GEMINI_CLI.md) · [Other agents](docs/getting-started/OTHER_AGENTS.md) · [Automatic updates](docs/getting-started/AUTO_UPDATE.md)
 
-Download and extract the lean package from the [0.12.0 Release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.0). It retains skills, original paper text, the figure library and sibling templates; full paper PDFs are available as an optional offline pack. Use the local installer described in the [installation matrix](docs/INSTALLATION_MATRIX.md) to preview and apply the installation. Personal preferences remain separate, and existing personal edits are checked first.
+Download and extract the lean package from the [0.12.1 Release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.1). It retains skills, original paper text, the figure library and sibling templates; full paper PDFs are available as an optional offline pack. Use the local installer described in the [installation matrix](docs/INSTALLATION_MATRIX.md) to preview and apply the installation. Personal preferences remain separate, and existing personal edits are checked first.
 
 The complete GitHub repository also supports one-line installation. This route still obtains the repository's full paper resources:
 
@@ -136,9 +136,9 @@ When you are tightening an abstract, you may want a quick edit. Three days befor
 
 ![The CCFA-Skills local configurator](assets/configurator-preview.png)
 
-*The actual local configuration page. Adjust the options in your browser, then click “Save preferences” to apply them.*
+*The 0.12.0 configuration page; 0.12.1 adds a red drafting control under Sources & expression. Adjust the options, then click “Save preferences” to apply them.*
 
-Choose from eight modes that match the work in front of you. The ten enhancements are organized into four expandable groups: **Sources & expression**, **Review & delivery**, **Exploration & alternatives**, and **Strategy experiments**. Each setting now has one selector for **Inherit · ☾ Off · ◐ Auto · ☀ On**, combining the previous switch, Auto button, and inheritance action. Settings remain independent, with explanations of their additional work. Simplified Chinese, Traditional Chinese, English, and light, dark, and system themes remain available.
+Choose from eight modes that match the work in front of you. The eleven settings are organized into four expandable groups: **Sources & expression**, **Review & delivery**, **Exploration & alternatives**, and **Strategy experiments**. Each regular enhancement has one selector for **Inherit · ☾ Off · ◐ Auto · ☀ On**, combining the previous switch, Auto button, and inheritance action. Settings remain independent, with explanations of their additional work. Simplified Chinese, Traditional Chinese, English, and light, dark, and system themes remain available.
 
 From the repository root, run this command with Python 3.10+; no extra dependencies are needed:
 
@@ -159,9 +159,11 @@ Your browser will open the local configurator. Start with the mode closest to yo
 | **Figure design** | Comparing layouts and choosing a clearer presentation | Adds figure candidates; Python figures mainly add layout and rendering work, while image generation adds its own waiting |
 | **Autonomous research** | Research iterations with an established task and budget | Favors complete research branches and broader search; parallel work may reduce waiting while increasing total compute |
 
-Choosing a mode replaces the ten enhancement choices in the draft while keeping your language and theme. Click **Save preferences** to apply it. **Inherit** removes one override: project settings follow personal preferences, and personal settings follow built-in defaults. Deep retains its existing conditional maintenance-rule iteration; all eight modes keep research policy evolution off until you select it separately. A mode does not authorize training, budgets, or material uploads. Actual effort depends on the task, inputs, and tools.
+Choosing a mode replaces the eleven choices in the draft while keeping your language and theme. Click **Save preferences** to apply it. **Inherit** removes one override: project settings follow personal preferences, and personal settings follow built-in defaults. Deep retains its existing conditional maintenance-rule iteration; all eight modes keep research policy evolution off until you select it separately. A mode does not authorize training, budgets, or material uploads. Actual effort depends on the task, inputs, and tools.
 
 Three new controls target different work: **Find strong writing examples** defaults to On: substantive drafting and expression rewriting reuse matching originals and search for other well-written passages. Select by actual quality and fit without requiring multiple papers. Reuse applicable searches for the same question; minor corrections do not trigger fresh retrieval. Auto remains available for searching only when examples leave a gap. **Complete research branches** defaults to Off, and **Research policy evolution** defaults to Off. Enable policy comparisons deliberately with a task budget. Existing sparse configurations inherit new defaults without being rewritten.
+
+**Caution: results-pending drafting.** The red control offers Inherit / Off / On, with no Auto mode. Every preset keeps it off. It permits marked conditional analysis and missing-result slots, with a warning about possible hallucinations. A whole-draft alignment pass adds reading and revision tokens and time, without starting experiments. An explicit request to leave experiments empty still takes precedence.
 
 To give a paper its own settings, start the configurator with its directory. Replace the example path with yours:
 
@@ -318,7 +320,11 @@ Chinese output uses explicit UTF-8 I/O with optional BOM support on input. Shell
 
 ## Latest updates: keep every revision part of the same paper
 
-**v0.12.0 · Updated 2026-10-31**
+**v0.12.1 · Updated 2026-10-31**
+
+Sometimes the research argument is ready before the final runs finish. The red **Results-pending drafting** control lets you complete a connected manuscript with conditional analysis and unfilled result slots. Anticipated analysis may introduce hallucinations, so this control defaults to off and every preset keeps it off. Actual positive and negative results stay intact. Before delivery, the writer checks the abstract, body, tables, captions and conclusion together, keeping expected outcomes distinct from observations.
+
+This patch also fixes categorical figure overlays and entity colors, completes standalone-skill dependencies, and makes interrupted installations resumable. Final-test use is tracked across campaign directories, while scoped reviews reuse still-valid inputs. Writing-context selection and trimming remain unchanged.
 
 By the fifth revision, the results have changed, the method has grown, and the introduction still answers the old question. Each passage makes sense on its own, yet together they seem to belong to different papers. Another polish can make the sentences sound more formal without recovering the argument.
 
@@ -471,7 +477,7 @@ For the two sensitivity panels, replace `--demo all` above with `--demo sensitiv
 
 After editing a figure or moving to another skill, you should still be able to find its source and current result. Skills now share clearly named working directories, update current files during ordinary revisions, and pass along the locations of relevant evidence. Original material, editable sources, and useful validation records are retained. Disposable files are cleaned up within the task that created them. Detailed instructions load when needed, reducing repeated copies of the entire history. See [Repository](#repository) for directory examples.
 
-The family now includes 18 skills and retains the existing review structure, with personalization expanded to ten settings. We hope that the next time you open your project, you can reconnect with the work sooner and save your attention for the questions worth solving.
+The family now includes 18 skills and retains the existing review structure, with personalization expanded to eleven settings. We hope that the next time you open your project, you can reconnect with the work sooner and save your attention for the questions worth solving.
 
 [Full changelog](CHANGELOG.md) · [Earlier ICLR 2027 adaptation](ccf-paper-writer/references/venue-guides/iclr.md)
 

@@ -15,7 +15,7 @@ import zipfile
 from release_support import MANIFEST, digest, is_paper_pdf, no_links, public_path, read_json
 
 
-def build(root, output, tracked_only=False):
+def build(root, output, tracked_only=True):
     root = no_links(root).resolve()
     output = no_links(output).resolve()
     codex = read_json(root / ".codex-plugin/plugin.json")["version"]
@@ -25,6 +25,13 @@ def build(root, output, tracked_only=False):
     if not tracked_only:
         command += ["-o", "--exclude-standard"]
     names = subprocess.check_output(command).decode("utf-8").split("\0")
+    head = subprocess.run(["git", "-C", str(root), "rev-parse", "--verify", "HEAD"],
+                          capture_output=True, text=True, encoding="utf-8")
+    source_identity = {
+        "commit": head.stdout.strip() if head.returncode == 0 else None,
+        "dirty": bool(subprocess.check_output(["git", "-C", str(root), "status", "--porcelain", "--untracked-files=normal"])),
+        "file_selection": "tracked" if tracked_only else "tracked-and-untracked",
+    }
     files = []
     for name in sorted(set(names)-{""}):
         if not public_path(name):
@@ -43,7 +50,7 @@ def build(root, output, tracked_only=False):
                   or (profile == "papers" and name in controls)]
         entries = [{"path": name, "sha256": digest(root / name), "bytes": (root / name).stat().st_size} for name in chosen]
         manifest = {"schema_version": 1, "release_id": "ccfa-skills-"+codex, "version": codex,
-                    "profile": profile, "skills": skills, "files": entries}
+                    "profile": profile, "skills": skills, "files": entries, "source": source_identity}
         base = "ccfa-skills-"+codex+"-"+profile
         target = output / (base+".zip")
         fd, temporary = tempfile.mkstemp(prefix=".ccfa-release-", suffix=".zip", dir=output)
@@ -73,7 +80,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--out", type=Path, default=Path("ccfa-workfiles/skill-maintenance/release-012/build"))
-    parser.add_argument("--tracked-only", action="store_true", help="Package indexed paths only, after staging release files")
+    selection = parser.add_mutually_exclusive_group()
+    selection.add_argument("--tracked-only", dest="tracked_only", action="store_true", default=True,
+                           help="Package indexed paths only (default); bytes come from the working tree")
+    selection.add_argument("--include-untracked", dest="tracked_only", action="store_false",
+                           help="Development only: also package non-ignored untracked files")
     args = parser.parse_args()
     try:
         print(json.dumps(build(args.root, args.out, args.tracked_only), indent=2))

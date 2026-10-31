@@ -2,7 +2,7 @@
 
 ## 轻量 release 安装（推荐）
 
-从 [0.12.0 Release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.0) 下载 `ccfa-skills-0.12.0-lean.zip` 和 `SHA256SUMS`。先核对压缩包 SHA-256（PowerShell 使用 `Get-FileHash -Algorithm SHA256`，macOS/Linux 使用 `shasum -a 256`），再解压。包内的 `tools/install_release.py` 只需 Python 3.10+，不联网、不安装额外依赖。将下面两个带引号的路径换成解压目录与客户端实际 skills 根目录：
+从 [0.12.1 Release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.1) 下载 `ccfa-skills-0.12.1-lean.zip` 和 `SHA256SUMS`。先核对压缩包 SHA-256（PowerShell 使用 `Get-FileHash -Algorithm SHA256`，macOS/Linux 使用 `shasum -a 256`），再解压。包内的 `tools/install_release.py` 只需 Python 3.10+，不联网、不安装额外依赖。将下面两个带引号的路径换成解压目录与客户端实际 skills 根目录：
 
 ```text
 python -B "<lean-dir>/tools/install_release.py" --source "<lean-dir>" --target "<skills-root>" --dry-run
@@ -11,7 +11,7 @@ python -B "<lean-dir>/tools/install_release.py" --source "<lean-dir>" --target "
 
 默认安装全部 18 个 skills，并补齐相邻模板与必要资源。只装子集时重复 `--skill`，例如 `--skill ccf-paper-reviewer --skill ccf-integrity-auditor`。Humanization 和 Common 始终包含。写作参考、脚本、旧转换入口和模板按所选能力补齐；不会为资源所属技能额外复制未选中的 `SKILL.md`。仓库根 README 和 release 工具不会混入 skills 根目录。安装位置仍以客户端实际发现目录为准，完成后开启新会话。
 
-轻量包保留原文 Markdown、范例卡、全部旧绘图示例和模板。完整写作范例 PDF 单独放在可选的 `ccfa-skills-0.12.0-papers.zip`；需要时核验、单独解压，再显式安装：
+轻量包保留原文 Markdown、范例卡、全部旧绘图示例和模板。完整写作范例 PDF 单独放在可选的 `ccfa-skills-0.12.1-papers.zip`；需要时核验、单独解压，再显式安装：
 
 ```text
 python -B "<papers-dir>/tools/install_release.py" --source "<papers-dir>" --target "<skills-root>"
@@ -115,3 +115,5 @@ foreach ($ccfaPath in $ccfaPaths) {
   Get-ChildItem -LiteralPath $ccfaPath -Force | Copy-Item -Destination $ccfaDestination -Recurse -Force
 }
 ```
+
+安装中断时，回执会记录 pending。使用同一个包、相同技能选择和相同目标重新执行即可继续；安装后又被手工修改的文件会停止更新，保留你的内容。正式构建默认只打包 Git 已登记路径；开发时如需未跟踪文件，显式使用 `--include-untracked`。manifest 记录源码提交与 dirty 状态。

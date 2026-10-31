@@ -22,7 +22,7 @@ Use one integrating owner, bring in the specialist needed to resolve a material 
 
 ## Preferences And Continuity
 
-Resolve optional preferences once with `python <ccf-common>/scripts/preferences.py resolve`, adding `--project <established-root>` when known. Reuse the compact result at handoffs. Missing files mean defaults with no write or question. Read [preferences.md](references/preferences.md) only for a relevant trigger, configuration change, resolver error, or unavailable Python. Preferences govern optional extras, not preflights, accuracy, requested scope, model selection, or host permissions.
+Resolve optional preferences once with `python <ccf-common>/scripts/preferences.py resolve`, adding `--project <established-root>` when known. Reuse the compact result at handoffs. Missing files mean defaults with no write or question. Read [preferences.md](references/preferences.md) only for a relevant trigger, configuration change, resolver error, or unavailable Python. Preferences govern optional enhancements and marked draft modes, not preflights, accuracy, requested scope, model selection, or host permissions.
 
 Keep the user's goal, justified route, and next action distinct. Discovery can change mechanisms; execution preserves the selected route unless a material reason reopens it. Distinguish proposed, executed, and verified work. A repeated action needs a new observation, changed hypothesis, or concrete repair. For long tasks, stalled progress, or lost/conflicting context, apply [continuity.md](references/continuity.md) and reconcile actual artifacts before one bounded next action. Short tasks need no continuity record.
 
