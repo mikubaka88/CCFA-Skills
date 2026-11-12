@@ -14,59 +14,55 @@ metadata:
 
 ## Family File Contract
 
-Before file work, reuse canonical paths and one task/artifact working directory; default to project-root `ccfa-workfiles/<purpose>/<artifact-id>/`. Update in place, preserve inputs, and use UTF-8 with Chinese-text checks. Apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) for naming, ownership, and task-created cleanup; handoffs inherit these paths.
+Reuse canonical paths and one stable task directory, normally `ccfa-workfiles/<purpose>/<artifact-id>/`. Update current artifacts in place, preserve inputs, and check UTF-8/Chinese text. Apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) when writing files.
 
 ## Collaboration Contract
 
-Before specialist execution, read and apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md). At every handoff, reuse their applicable active rules or refresh missing/changed ones. Both preflights are required even without prose; detailed editing, experiment, and maintenance modes run only when relevant.
-
-Integrate necessary specialist contributions under one owner; reuse valid prerequisites and verify affected results. Follow the [cooperation routes](../ccf-common/references/routing.md) without duplicate reports.
+Apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md), once. Reuse their active rules and valid prerequisites at handoffs. Integrate only a needed contribution through [routing.md](../ccf-common/references/routing.md); no duplicate intake or reports.
 
 ## Invocation Controls
 
-**CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode`, `../ccf-common/references/handoff-modes.md`, and `../ccf-common/references/task-modes.md`. Reuse shared rules already in context.
+**CCFA Handoff Mode: PARTIAL (Recommended).** Preserve `metadata.ccf_skill_controls` and Common's [handoff modes](../ccf-common/references/handoff-modes.md). User-specified tools, formats and existing authoring sources take priority.
 
-For a new scientific method or architecture concept, GPT Image 2 remains the default first-pass renderer unless the user requests pure SVG/code-first output or opts out. Use the verified host capability and its privacy/image instructions. Do not label an unknown backend as GPT Image 2. Existing authorization covers necessary generation and requested reconstruction; offer extra formats only when outside the request.
-
-## Core Rule
-
-Create readable visuals from supplied content. Preserve values, units, uncertainty, exact labels, method modules, and typed connections. Quantitative plots use reproducible code. Missing data or topology requires the relevant evidence owner; do not invent it to complete a composition. Preserve scientific terminology and canonical uppercase acronyms; use natural case for ordinary labels.
-
-For paired long-table groups, declare the sample identity or an explicit matched-order contract through the existing data-binding route; equal group lengths do not establish correspondence. Preserve the selected final-size font settings across panels, templates and linked layouts, and resolve missing Chinese glyphs before export.
-
-Classify the destination as paper mechanism figure, presentation/poster, or README/outreach. Paper figures show representations and computation. Choose visual grammar from the method, not a fixed stage-card template.
-
-For new compositions, use `references/visual-contract.md`: a compact content-fit canvas, shared alignment anchors, scaled gaps, and typography checked at final size. Do not default to a square or force a fixed aspect ratio. Times New Roman is the default; Comic Sans MS serves a requested comic treatment, subject to user/venue typography. For a new visual direction, choose one functional preset from `references/adaptive-architecture-style.md`. Inspect supplied references, allocate space by explanatory importance, and keep only necessary labels/numbers.
-
-## Modes And Selective References
-
-Read only the relevant sections below. A local edit starts from the existing source and applicable QA; it does not reload the complete generation workflow.
-
-| Mode | Use and reference |
+| Current artifact | Preferred route |
 | --- | --- |
-| `visual-contract` | Non-trivial content/evidence/output decisions: `references/visual-contract.md`. |
-| `figure-design`, `python-plotting` | Numerical plots, benchmarks, ablations and biological data: `references/python-plot-recipes.md`. For a new composition, query `resources/python/ccfa_figure_library.py route` by scientific question and available fields, then `explain` only selected candidates. See `references/figure-design-library.md` for paper-aware briefs, data bindings and three linked layouts, and `references/figure-examples.md` for preserved examples and paper cards. Existing `ccfa_analysis_templates.py`, `ccfa_analysis_panels.py` and the dependency-free SVG route remain available. |
-| `architecture-generation` | New concept: `references/architecture-diagram-generation.md`; paper-specific grammar only from `references/paper-vs-presentation-diagrams.md`. |
-| `pure-svg-generation` | Explicit deterministic route: use the supported topology and vector authoring source directly. |
-| `editable-reconstruction` | Semantic reconstruction sections in `references/architecture-diagram-generation.md`; load `references/editable-pptx.md` only for PPTX. |
-| `reference-layout-blueprint` | Supplied reference composition: `references/reference-layout-blueprint.md`; use `references/adaptive-architecture-style.md` when prompt refinement is needed. |
-| `icon-system` | Native primitives, reusable licensed icons, or necessary custom assets: `references/icon-system.md`. |
-| `table-design`, `layout-integration` | Supplied values, panel/float/caption placement: `references/figure-table-layout.md`. |
-| `render-qa` | Inspect the requested formats using the relevant checks in `references/render-qa.md`. |
+| New method, architecture or flow diagram | Generate a complete composition with GPT Image from the supplied science and actual reference images. Let the model arrange groups, proportions, illustrations and typography together. Straight lines, alignment and readable labels are quality requirements, not reasons by themselves to build a Python skeleton. |
+| Numerical analysis, ablation, benchmark or biological data | Use Python and supplied data. Compose supported elements into one coherent analysis unit; preserve exact values and statistics. |
+| Method figure containing quantitative plots | Preserve code-rendered numeric marks, axes and labels; use image generation for the surrounding scientific illustration without redrawing results. |
+| Existing raster / code / native editable figure | Edit its current authoring source through the host's relevant workflow; refresh affected exports. A local edit does not restart concept generation. |
+| Explicit code route, exact geometric tolerances, or requested editable output | Use appropriate code/native authoring. An unspecified editability request prefers native PPTX; SVG requires an explicit SVG request. |
 
-Use `references/palette-and-accessibility.md` only when choosing or changing color semantics. Reuse an established palette and icon family when they remain suitable.
+Deliver PNG by default. Follow host image instructions and use an available authorized alternative if image generation is unavailable. Numerical reproducibility does not imply a need to reconstruct every diagram in code.
+
+## Preserve The User's Visual Requirements
+
+- Preserve scientific modules, typed connections, labels, equations, values, units and uncertainty. Resolve a material data/topology gap with its owner; do not invent content to finish the layout.
+- Fit the actual paper slot, with compact meaningful groups, aligned peers, short clear connections and legible text. Use the reference's visual hierarchy; allow content-fit asymmetry and adequate connector clearance. No default square, mandatory grid, equal-width boxes or prescribed orientation. Honor explicit pixel/gap requirements; otherwise leave detailed placement to the renderer.
+- Use Times New Roman by default or selected Comic Sans MS, subject to user/venue overrides. Bold titles, legends and axis/colorbar labels and ticks. Method headings stand out; body labels and equations keep a restrained hierarchy. Use coherent semantic colors, lighter bar/box fills and substantial darker same-hue outlines; dense points and heatmaps keep their own encoding.
+- Build information density from article-specific relationships: density + conditional region + state/weighted shares; quantile boxes + tail whiskers + a quantile curve; or bars + same-unit trends + supplied ranges. Labels alone do not add analysis. Keep additional views when their scientific questions or domains require them.
+- Preserve sample IDs or an explicit matched-order contract; equal lengths do not prove pairing. Match units, shared scales, entity colors and actual observation times. Retain all required reference elements and keep Chinese/math glyphs readable.
 
 ## Workflow
 
-1. Resolve the requested artifact, existing source, final size, destination, formats, and scientific takeaway. For file work, read `../ccf-common/references/artifact-contracts.md` once and resolve canonical output and working paths before rendering. Keep unrelated figures in separate stable working directories; honor existing project paths.
-2. Resolve scientific prerequisites before rendering dependent content: source values, units, metric meaning, topology, and intended message. For related panels, resolve entity IDs/order, shared encodings, comparable scales, and any required image aspect ratios. Reject invalid inputs before plotting; do not clamp them into plausible results. Use `ccf-experiment-designer` for unresolved result semantics, the method's owner for topology, or `ccf-integrity-auditor` for source conflicts; reuse valid evidence and integrate only the missing contribution. Keep one specification for topology, labels, data locations, layout, style, and provenance, without duplicate contract, prompt, wireframe, or QA files.
-3. Select the smallest rendering route that completes the task. New data-led compositions start from the current paper's claim, analytical question, observation unit, data relationships and final-size constraints. Use route --brief for a compact existing-context brief when helpful, or a direct question for a simple figure; inspect only selected design cards. Random choice happens automatically within equally suitable candidates, without asking the user for a seed or forcing global usage balance. Optional task history may diversify tied choices. Keep the selected specification during subsequent edits, and load only relevant cards or signatures. Use ccfa_figure_data.py through compose --spec for explicit CSV/TSV/JSON table bindings; preserve matched rows and declared orders. For joint marginals, aligned position tracks and matrix-linked slices, use the corresponding real linked layout. Keep original templates and requested reference pairs in the examples index; see references/figure-examples.md. Existing templates remain valid starting points, including numerical analyses embedded in a main figure. A purely conceptual architecture uses the default image workflow. For a mixed figure, keep numeric axes, marks and text in their code-generated layer; an optional illustration pass edits a separate region and never redraws the results. For an existing SVG, PPTX, or plot script, directly edit that authoring source and export affected requested formats; do not run a new raster concept pass for a label, color, spacing, data, or export change. Raster edits follow the host image-editing workflow and use the existing image as reference.
-4. Preserve a detailed user prompt and add missing constraints once. For a full redesign, include the reference roles, layout geometry, text inventory, typography, and palette needed to make it concrete; do not truncate these to an arbitrary word limit. Reuse approved topology, layout tokens, and assets. Start with one complete candidate. Requested alternatives or Common's applicable `figure_variants` preference can add a meaningfully different composition using the same approved content; `auto` requires an unresolved design choice and `on` applies to new design comparisons, not local edits. Keep each retained candidate in the existing artifact working directory and identify the chosen canonical result. Search or generate assets only to resolve a specific unmet need.
-5. Inspect the draft against the layout and scientific contract. Correct vector/native text and geometry during requested reconstruction; for raster delivery, use a targeted image edit for text, spacing, or illustration defects and preserve accepted regions. If two attempts fail to fix the same defect, diagnose the cause and change the relevant strategy. Never stop merely at an attempt count while a feasible correction remains.
-6. Build requested editable outputs as semantic groups, live text, shapes, and typed connectors. Do not embed a whole raster and claim editability. Keep unavoidable raster assets separate and describe their actual editability. Generate downstream PDF/PPTX from the canonical authoring source without lossy round trips; retain only necessary reusable source and assets.
-7. Use one integrated inspection with two distinct decisions: scientific fidelity (data, scales, IDs, topology, labels) and visual quality (alignment, compactness, final-size type, contrast, clipping, editability). A local edit checks its affected dependencies and protected regions; reuse satisfactory inspections. Save one current preview under the working build directory. An additional independent assessment follows Common's effective `independent_review` preference or an explicit request; ordinary QA does not require another agent or generation call.
-8. Finish the requested deliverable and check file placement, current exports, and disposable temporary files. New data/protocol decisions belong to `ccf-experiment-designer`, manuscript prose to `ccf-paper-writer`, and claim mismatches to `ccf-integrity-auditor`; keep unaffected authorized work moving.
+1. Reuse the current paper, data, references and decisions. Establish the scientific message, essential content, final size and requested formats internally; save one compact source record only when useful. Missing visual preferences are routine design choices, not a new intake form.
+2. Select the route above. For a new data composition, classify input data and chart type independently with `resources/python/ccfa_figure_library.py route`, then inspect only selected candidates and their `element_plan`. Reuse source data through existing bindings. Primitives/extracted panels are components, and original templates and reference pairs remain available. For equally suitable choices, use the library's automatic selection without asking for a seed or forcing usage balance.
+3. For image generation, attach useful authorized references and identify their roles. Preserve a good user prompt; append only missing refinements. Otherwise send the supported content/connections, reference roles, and a short finish request. Keep exact science; omit duplicated inventories, whole skill text, speculative warnings and pixel-by-pixel prescriptions unless the task needs them. Start with one complete candidate; additional designs follow the request or effective `figure_variants` preference.
+4. Inspect the actual result once at final size for scientific fidelity and visual quality: topology/values/text, grouping, alignment, information density, contrast and readable spacing. Verify required source-to-target paths rather than inferring connections from proximity. Group related defects in one region into one local correction, preserve accepted content, and recheck its attached connections afterward. Code edits rerender their affected source; raster edits follow host image instructions. If the same defect survives two corrections, change the relevant strategy rather than repeating the same attempt.
+5. Deliver the figure and requested formats with necessary reusable sources. Editable delivery uses live native objects, not a whole embedded raster. Keep one current source/prompt and preview, remove task-created disposable files, and preserve inputs and required examples. No automatic SVG, editable rebuild, QA ledger or second generation pass.
 
-## Output Contract
+## Modes And Selective References
 
-Deliver the requested visual and necessary editable source/formats first. A specification-only request needs no render. Return canonical paths, useful provenance, actual QA results, and material editability limits. Keep the full prompt, specification, and inventory in one reusable source record only when needed or requested; do not also repeat them in the final answer. Preserve explicit exact-output requests.
+The entry above is sufficient for a straightforward generation. Load only detail needed for the current decision; do not read the table as a checklist.
+
+| Mode | Load when needed |
+| --- | --- |
+| `visual-contract` | [visual-contract.md](references/visual-contract.md): unresolved scientific encodings, complex composition or cross-panel consistency. |
+| `architecture-generation` | [architecture-diagram-generation.md](references/architecture-diagram-generation.md): complex topology, prompt examples, code authoring or reconstruction. |
+| `reference-layout-blueprint` | [reference-layout-blueprint.md](references/reference-layout-blueprint.md): an ambiguous reference role or detailed reconstruction. [adaptive-architecture-style.md](references/adaptive-architecture-style.md): a missing visual direction; an adequate supplied reference needs no preset search. |
+| `figure-design`, `python-plotting` | [figure-design-library.md](references/figure-design-library.md): routing/bindings/linked layouts; [python-plot-recipes.md](references/python-plot-recipes.md): selected renderer; [figure-examples.md](references/figure-examples.md): requested examples/paper cards. |
+| `pure-svg-generation`, `editable-reconstruction` | Explicit format request: [editable-pptx.md](references/editable-pptx.md) or architecture reference's semantic reconstruction. Preserve existing editable sources. |
+| `icon-system` | [icon-system.md](references/icon-system.md): an unmet reusable asset or licensing decision, not a compulsory icon-extraction pass. |
+| `table-design`, `layout-integration` | [figure-table-layout.md](references/figure-table-layout.md): table or manuscript integration. |
+| `render-qa` | [render-qa.md](references/render-qa.md): a relevant unresolved defect or requested format check. |
+
+Use [palette-and-accessibility.md](references/palette-and-accessibility.md) for a palette/accessibility decision. Return the artifact first, with concise provenance and actual checks; keep process instructions out of the figure and do not repeat the full prompt unless requested.

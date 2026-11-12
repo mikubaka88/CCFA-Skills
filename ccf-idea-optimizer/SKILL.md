@@ -30,7 +30,7 @@ Integrate necessary specialist contributions under one owner; reuse valid prereq
 
 Turn a rough direction into a concrete question, an explanation of its difficulty, and a proposed mechanism or research approach. Distinguish source-backed observations from inferred opportunities. Do not invent prior work, results, reviewer sentiment, or novelty. Related work should clarify differentiation; an unsearched or crowded direction is uncertain, not automatically dead.
 
-Preserve the user's theme and constraints. Vary framing or mechanism within the authorized development scope, and explain consequential changes. A useful idea has a coherent reason the intervention should change an observable result; a list of familiar modules is insufficient.
+Preserve the user's research objective and hard constraints, separating them from the current baseline and provisional diagnosis. Before selecting components, ask what distinction, information, objective or computation prevents the desired behavior; use a concrete failure, limiting case or competing explanation when useful. Vary the assumption or mechanism that causes that difficulty, and explain why the change matters. Adding a module or making a design easier to run is not by itself progress toward the objective.
 
 Requested innovation authorizes distinct candidate mechanisms even with optional route comparison off. Preserve the user's objective and hard constraints; an exploratory working question may change when a new phenomenon, missing distinction, or useful connection gives a better formulation within that scope. Preserve a selected mechanism during execution unless a material reason reopens it. Use Common's progress test to stop repeated critique or search that adds no decision-relevant information.
 

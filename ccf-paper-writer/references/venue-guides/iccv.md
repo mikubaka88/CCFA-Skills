@@ -26,11 +26,11 @@
 **CCF-A | AI | Publisher: CVF (IEEE)**
 **Conference:** https://iccv2026.thecvf.com
 **Template:** `ccf-latex-templates/ICCV/main.tex`, `ICCV/preamble.tex`, `ICCV/iccv.sty`
-**Shared with CVPR** — same `cvpr.sty` class and formatting
+**Related template family:** select the exact ICCV year/track bundle; CVPR updates do not establish ICCV rules.
 
-## IMPORTANT: Shared Template with CVPR
+## Year-Specific Template Selection
 
-ICCV and CVPR use **identical formatting rules** via the same `cvpr.sty` class. See the CVPR skill for complete formatting guidance. This skill covers ICCV-specific details only.
+ICCV and CVPR templates share historical components, but their year-specific packages and submission policies must be verified separately. Do not apply the CVPR 2027 disclosure or page-accounting rules to ICCV without its own official policy.
 
 ## Document Setup
 

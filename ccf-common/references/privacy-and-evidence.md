@@ -15,6 +15,8 @@ The safety level is moderate by default:
 5. When exact private wording matters, ask before using it in a query unless the user already made it public in the current request.
 6. Before sending private research content to an external image model, identify the exact authorized inputs and minimize the outbound prompt. Show the complete prompt and reference-image list for approval only when the transfer crosses a boundary not already authorized; follow the host image-tool instructions. Minimize it to the content required for the figure; confirmation authorizes only those shown inputs, not the full manuscript, source tree, result files, reviewer text, identities, or unrelated proprietary details.
 
+For assigned CVPR 2027 reviewers/area chairs, confidential conference submissions may be processed only with the conference-approved tools provided through OpenReview, following that year's official policy. A simulated expert prompt does not establish tool approval. Author-owned drafts and internal pre-submission reviews keep their ordinary authorized workflow; do not apply the assigned-review restriction to them or insert a routine warning into every review.
+
 ## Path And Identity Privacy
 
 - Do not commit or publish personal absolute paths, usernames, expanded home directories, private local skill roots, or machine-specific command examples.

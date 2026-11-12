@@ -1,44 +1,39 @@
 # Reference-Driven Layout Blueprint
 
-Inspect references before describing them. Translate observable composition into a layout that explains the supplied method; a reference name or a vague request to make it beautiful is insufficient.
+Inspect supplied references and use their actual images when authorized. For an ordinary new diagram, a few observed composition properties are enough; this reference is for an ambiguous role, a detailed reconstruction, or a defect that needs measured repair.
 
 ## Reference Selection
 
-Use, in order: user-provided references; public figures from relevant papers; then public design examples. Select references by topology, reading direction, aspect ratio, information density, and target venue—not merely by topic or color. Do not upload private manuscripts or unpublished screenshots to an external model without explicit authorization.
+Prefer the user's references, then already inspected relevant paper figures. Search only for an unresolved design decision. Identify each included image by order and role: scientific content, composition, object appearance, palette or existing draft. A reference for appearance does not supply this method's scientific topology. Include only needed images within the existing privacy boundary.
 
-For each relevant reference, record observations in the existing specification, distinguishing measurements from estimates. The primary reference governs the overall treatment; each supporting reference serves a specific region or property. A style reference does not supply scientific topology, and a component suitable as a visual reference is not automatically a reusable licensed asset.
-
-```text
-Source and provenance:
-Why it matches this topology:
-Dominant reading path:
-Hierarchy and anchor region:
-Canvas ratio, approximate panel bounds/proportions, and anchor lines:
-Grid, visible edge gaps, padding, repeated icon size, and label baselines:
-Grouping and connector routing:
-Text-to-visual density:
-Useful principles to borrow:
-Reference elements to retain or exclude:
-```
-
-Attach the actual reference through the host image workflow when it is authorized and useful. For multiple images, identify each by input order and role: layout, object appearance, palette, or existing draft to edit. State which reference governs a conflict. Only include images needed for those roles; do not send the surrounding manuscript or load the entire bundled image collection.
-
-Describe observable geometry rather than a named style: for example, two aligned lanes share a merge column, the contribution occupies the wider middle region, and matching image tiles have equal edge gaps. Express panel bounds as canvas fractions when dimensions differ; then apply the chosen pixel tokens from `visual-contract.md`. A normalized measurement is an estimate unless measured from the source. Keep the method's correct topology when a reference cannot accommodate its branches.
+Record source/credits in the current source record when persistence is useful. Preserve explicit template geometry, otherwise describe a few useful properties—aligned input strips, a shared trunk, compact output branches, a restrained palette or clear text hierarchy. Do not create a separate measurement sheet, read the entire asset library or upload a full manuscript to explain a figure. An adequate reference does not need exhaustive verbal reconstruction.
 
 ## Layout-First Workflow
 
-1. Freeze the supported node and edge inventory.
-2. Choose a content-fit aspect ratio and assign areas to the main transformation and its supporting context. Sketch an internal wireframe with text slots and connectors; reuse approved component geometry when it fits. For explicit alignment or gap requirements, use a renderable skeleton as the image reference when supported; reuse the same source for later editable assembly. The skeleton guides raster composition, while exact coordinates and final live fonts are enforced in the requested vector/native output.
-3. Choose a modular grid appropriate to the aspect ratio. Align outer boundaries, repeated box dimensions, text baselines, icon centers, and connector lanes across groups. Fit sizes to final-font text extents; do not default to equal-width columns when explanatory needs differ.
-4. Establish one dominant scan path and one visual anchor for the contribution. Use proximity, similarity, continuity, containment, and whitespace to express grouping.
-5. Use spacing tokens rather than arbitrary gaps. Keep boxes with equal semantic rank visually consistent; vary size only when information hierarchy justifies it.
-6. Route edges before decorating. Reserve lanes for feedback, cross-stage, or supervision edges so they do not cut through labels and icons.
-7. Place icon slots after the layout is stable, then apply palette and typography.
-8. Inspect the whole-figure bounds and internal gaps, then render at final column width. Resolve accidental empty regions and crowded corners by rearranging supported content. If the mechanism remains unclear, revise its representation or hierarchy before adding decoration.
+1. Keep the supported scientific objects, connections and exact labels; adapt the reference to the current method rather than copying its science.
+2. For a new diagram, generate a complete composition from that content and the actual references. Leave module sizes, positions, grouping and local illustration to the image model unless the user fixed them. Straight lines and alignment do not require a pre-rendered skeleton.
+3. Inspect compactness, explanatory hierarchy, peer alignment, legibility and clear paths at the final paper size, together with the scientific content. Boxes are optional; proximity, open lanes, light groups and supported asymmetry may communicate better.
+4. Repair actual defects locally. For an explicit measured reconstruction, existing native source, or requested editability, use coordinates/shared baselines/ports and the visual contract's optional measurements. A skeleton is an optional tool for a specific unresolved geometry problem, not a mandatory stage before image generation.
 
-Boxes are not mandatory. Use containers only for true semantic groups; a sequence may read better as open lanes, a hierarchy as nested regions, and an iterative method as a state-centered loop. Controlled asymmetry is preferable when the scientific contribution is not uniform across stages.
+An overview/detail pair preserves object identity, coordinate frame and crop correspondence. Data views keep their actual scales and entity mappings. Changing a style does not change observations, statistical definitions, topology or text meaning.
 
-For an overview plus detail view, identify the same object in both places. Use a source-region marker and non-directional detail leaders where needed; do not depict magnification as another computation or data-flow edge. In matrices or repeated frames, share the overview and enlarge only the relevant cells/frames, preserving indices instead of duplicating the full array. Keep legend entries only where the encoding would otherwise be ambiguous.
+## Numerical Reference Reconstruction
+
+For a supplied analytical figure, inventory encodings before choosing a nearby template. A density map plus boxes is incomplete when the reference also encodes a threshold region, a mass-weighted statistic, explicitly named quantiles, or different observation times. Preserve these elements when the corresponding data are supplied:
+
+| Reference element | Preserve in the editable reconstruction |
+| --- | --- |
+| Density with logarithmic distance and count colorbar | The actual x/y transforms, log count normalization, count scale and units. Do not replace log counts with a linear intensity legend. |
+| Corridor defined by two thresholds | Both boundaries, the highlighted intersection and a concise leader annotation. Compute state share from the full stated population; compute mass share only from supplied weights. Missing mass data do not become an assumed percentage. |
+| Median–P90 boxes, P99 whiskers and P95 diamonds | These exact quantile meanings. The ordinary median/IQR default is a different statistic and remains available for other tasks. Supplied summaries and raw samples are alternative inputs, not interchangeable hidden fallbacks. |
+| Series observed at different steps | Keep each series' actual x coordinates. A curve beginning at step 4 does not acquire synthetic observations at steps 0 and 2 merely to share an axis. |
+| Outlined bars with two line criteria | Retain their shared percentage axis, method colors and marker differences. Draw bands only when lower/upper values are supplied. Annotate a small useful subset of line values; bar labels remain optional. |
+
+The `sensitivity_dynamics` template supports these details without changing legacy calls. Use `density.corridor={x_max,y_max,weights?,label?,annotation_xy?}` with optional axis limits and log-count colorbar settings. A sensitivity block can use `summary={median,p90,p95,p99}` without `samples`, or `summary_mode="median_p90"` with actual samples; `annotate` and `quantile_label` govern labels. Dynamic series may supply their own `x`, marker and line style. Category blocks support `bar_style="outlined"`, `bar_labels`, `label_wrap`, `tick_font_size`, provided bands, and selected annotation indices. Wrapping labels changes display only, not group identity or order.
+
+The maintained demonstration and both reference-pair examples exercise the complete encodings above with marked synthetic inputs. In the four-panel form, the colorbar occupies a dedicated GridSpec column so upper and lower data rectangles align, including the density/time-series right edge. Demo typography inherits the requested final-size font setting; it does not pin small ticks or legends when a caller selects larger type.
+
+Keep visual hierarchy tied to the message: small aligned panel labels, restrained grids, a common baseline, enough headroom for legends, and one warm annotation color against quieter data colors. Do not add density, uncertainty, a corridor or extra panels only to make a sparse dataset look more elaborate. Explain statistical definitions in the caption or supplied metadata rather than crowding the canvas; transfer a reference caption's scientific facts only when they apply to the current data.
 
 ## Reference Boundaries
 

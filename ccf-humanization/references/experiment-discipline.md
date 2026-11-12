@@ -23,7 +23,7 @@ The `confirmed` label is internal metadata. Do not copy `confirmed`, `approved`,
 
 If compute or availability prevents the confirmed version from running, do not silently substitute a simplified version. Keep that comparison unresolved and identify the needed method or evidence. Continue supported writing and planning. Ask only if the remaining choice changes the claim or protocol and is not already authorized.
 
-An ablation is not a simplified substitute when it is clearly labeled, starts from the confirmed full method, changes exactly the intended component, and is reported only as an ablation rather than as the main method or baseline.
+An ablation is not a simplified substitute when it is clearly labeled, starts from the confirmed full method, changes only its intended factor or declared factor combination, and is reported as that controlled comparison. An interaction study may vary multiple declared factors; hold unrelated conditions fixed and interpret the joint change for its stated question.
 
 ## Smoke-Test Scope
 

@@ -34,6 +34,7 @@ jobs:
       - run: python ccf-common/scripts/test_preferences.py
       - run: python ccf-common/scripts/test_continuity.py
       - run: python ccf-common/scripts/test_artifact_scope.py
+      - run: python ccf-submission-checker/scripts/test_cvpr2027.py
       - run: python ccf-paper-writer/scripts/test_manuscript_patch.py
       - run: python ccf-paper-writer/scripts/test_writing_context.py
       - run: python ccf-paper-writer/scripts/test_writing_review_cache.py
@@ -58,6 +59,7 @@ jobs:
           python-version: "3.11"
       - run: python -m pip install pyyaml
       - run: python ccf-common/scripts/test_preferences.py
+      - run: python ccf-submission-checker/scripts/test_cvpr2027.py
       - run: python ccf-paper-writer/scripts/test_manuscript_patch.py
       - run: python ccf-paper-writer/scripts/test_writing_runtime.py
       - run: python ccf-paper-reviewer/scripts/test_prepare_expert_review.py

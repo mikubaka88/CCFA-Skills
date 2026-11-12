@@ -26,6 +26,20 @@ BUILD = ROOT / "ccfa-workfiles/skill-maintenance/analytical-figures/build"
 
 
 class AnalysisTemplateTests(unittest.TestCase):
+    def test_aggregate_corridor_uses_counts_and_explicit_weight_units(self):
+        fig,ax=plt.subplots();ax.set_xlim(0,40);ax.set_ylim(.01,10);ax.set_yscale("log")
+        block={"x":[1,30],"y":[.05,1],"counts":[3,7],
+               "corridor":{"x_max":20,"y_max":.1,"weights":[2,1],"weight_kind":"per_state"}}
+        result=templates._density_corridor(ax,block)
+        self.assertAlmostEqual(result["state_share"],30)
+        self.assertAlmostEqual(result["mass_share"],100*6/13)
+        block["corridor"].update(weights=[6,7],weight_kind="bin_total")
+        self.assertAlmostEqual(templates._density_corridor(ax,block)["mass_share"],100*6/13)
+        block["corridor"].pop("weight_kind")
+        with self.assertRaisesRegex(ValueError,"weight_kind"):
+            templates._density_corridor(ax,block)
+        plt.close(fig)
+
     @classmethod
     def setUpClass(cls):
         cls.examples = templates.demo_data(17)
@@ -284,10 +298,131 @@ class AnalysisTemplateTests(unittest.TestCase):
             templates.main(["--out", str(self.folder)])
         self.assertEqual(list(self.folder.iterdir()), [])
 
+    def test_four_panel_reference_aligns_data_rectangles_with_dedicated_colorbar_column(self):
+        fig = self.render("sensitivity_dynamics")
+        fig.canvas.draw()
+        self.assertEqual(len(fig.axes), 5)
+        density, colorbar, quantiles, dynamics, categories = fig.axes
+        for top, bottom in ((density, dynamics), (quantiles, categories)):
+            self.assertAlmostEqual(top.get_position().x0, bottom.get_position().x0, places=8)
+            self.assertAlmostEqual(top.get_position().x1, bottom.get_position().x1, places=8)
+        self.assertGreater(colorbar.get_position().x0, density.get_position().x1)
+        self.assertLess(colorbar.get_position().x1, quantiles.get_position().x0)
+
+    def test_default_cli_is_png_only_without_editable_exports(self):
+        out = self.folder / "ordinary-default"
+        with contextlib.redirect_stdout(io.StringIO()):
+            code = templates.main(["--demo", "paired_effects", "--out", str(out)])
+        self.assertEqual(code, 0)
+        self.assertTrue((out / "figures" / "paired_effects.png").is_file())
+        self.assertEqual(list(out.rglob("*.svg")), [])
+        self.assertEqual(list(out.rglob("*.pdf")), [])
+
+    def test_default_reference_examples_exercise_complete_native_encodings(self):
+        import ccfa_figure_library as library
+        for example_id, pair in (("reference:sensitivity-pair", "sensitivity"),
+                                 ("reference:dynamics-pair", "dynamics")):
+            with self.subTest(example=example_id):
+                spec = library.example_spec(example_id, demo=True)
+                before = json.dumps(spec, sort_keys=True)
+                fig = library.compose(spec)
+                data, details = spec["data"], fig._ccfa_reference_details
+                self.assertEqual(data["panel_pair"], pair)
+                if pair == "sensitivity":
+                    density = data["density"]
+                    self.assertEqual(density["yscale"], "log")
+                    self.assertEqual(density["count_range"], [1, 1000])
+                    self.assertEqual((density["corridor"]["x_max"], density["corridor"]["y_max"]), (20, .1))
+                    mask = (np.asarray(density["x"]) < 20) & (np.asarray(density["y"]) < .1)
+                    weights = np.asarray(density["corridor"]["weights"])
+                    self.assertAlmostEqual(details["corridor"]["state_share"], 100*mask.mean())
+                    self.assertAlmostEqual(details["corridor"]["mass_share"], 100*weights[mask].sum()/weights.sum())
+                    self.assertEqual(details["quantiles"]["summary_mode"], "median_p90")
+                    self.assertEqual(details["quantiles"]["quantile_line"].get_marker(), "D")
+                    np.testing.assert_allclose(details["quantiles"]["quantiles"], [.119, .319, .602, .817])
+                    self.assertEqual(len(details["quantiles"]["annotations"]), 4)
+                else:
+                    near = next(line for line in fig.axes[0].lines if line.get_label() == data["methods"][2])
+                    self.assertEqual((near.get_xdata()[0], near.get_linestyle(), near.get_marker()), (4, "--", "s"))
+                    self.assertEqual(data["categories"]["bar_style"], "outlined")
+                    self.assertEqual(len(details["categories"]["bars"]), 10)
+                    self.assertEqual(len(details["categories"]["bands"]), 2)
+                    self.assertEqual(len(details["categories"]["annotations"]), 14)
+                self.assertEqual(json.dumps(spec, sort_keys=True), before)
+                plt.close(fig)
+
+    def test_reference_corridor_and_quantile_elements_follow_supplied_data(self):
+        data = self.data("sensitivity_dynamics")
+        data["panel_pair"] = "sensitivity"
+        density = data["density"]
+        density.pop("threshold", None)
+        density.update(x=[0, 10, 30, 40], y=[.02, .2, .03, .4], xlim=[0, 60], ylim=[.01, 1],
+                       count_range=[1, 1000], colorbar_ticks=[1, 10, 100, 1000],
+                       corridor={"x_max": 20, "y_max": .1, "weights": [3, 1, 2, 4], "label": "Corridor"})
+        data["sensitivity"].pop("samples")
+        data["sensitivity"].update(labels=["Low", "High"], annotate=True,
+            summary={"median": [.02, .1], "p90": [.08, .3], "p95": [.119, .319], "p99": [.2, .6]})
+        before = json.dumps(data, sort_keys=True)
+        fig = self.render("sensitivity_dynamics", data)
+        details = fig._ccfa_reference_details
+        self.assertEqual(details["corridor"]["state_share"], 25)
+        self.assertEqual(details["corridor"]["mass_share"], 30)
+        self.assertEqual(details["corridor"]["annotation"].get_text(), "25.0% of states\n30.0% of sensitivity mass")
+        density_ax = next(ax for ax in fig.axes if ax.get_title(loc="left") == "State-space exposure")
+        self.assertEqual(density_ax.get_yscale(), "log")
+        self.assertEqual(density_ax.collections[0].norm.vmax, 1000)
+        self.assertEqual(details["corridor"]["region"].get_width(), 20)
+        np.testing.assert_allclose(details["quantiles"]["quantiles"], [.119, .319])
+        self.assertEqual(json.dumps(data, sort_keys=True), before)
+        density["corridor"].pop("weights")
+        without_weights = self.render("sensitivity_dynamics", data)
+        self.assertIsNone(without_weights._ccfa_reference_details["corridor"]["mass_share"])
+        self.assertNotIn("sensitivity mass", without_weights._ccfa_reference_details["corridor"]["annotation"].get_text())
+
+    def test_reference_bounds_and_mass_require_actual_valid_inputs(self):
+        data = self.data("sensitivity_dynamics")
+        data["panel_pair"] = "sensitivity"
+        data["density"].update(x=[0, 10, 30, 40], y=[.02, .2, .03, .4], xlim=[0, 60], ylim=[.01, 1])
+        for weights in ([1], [0, 0, 0, 0], [1, -1, 1, 1]):
+            data["density"]["corridor"] = {"x_max": 20, "y_max": .1, "weights": weights}
+            with self.subTest(weights=weights), self.assertRaises(ValueError):
+                self.render("sensitivity_dynamics", data)
+        data["density"].pop("corridor")
+        data["density"]["xlim"] = [0, 20]
+        with self.assertRaisesRegex(ValueError, "hide"):
+            self.render("sensitivity_dynamics", data)
+
+    def test_reference_dynamics_markers_bands_and_outlined_labels_are_optional(self):
+        data = self.data("sensitivity_dynamics")
+        data["panel_pair"] = "dynamics"
+        data["dynamics"]["series"][2].update(marker="s", linestyle="--")
+        partial = data["dynamics"]["series"][2]
+        partial["x"] = data["dynamics"]["x"][2:]
+        data["dynamics"]["title"] = "Regime evolution"
+        categories = data["categories"]
+        categories.update(bar_style="outlined", bar_labels=True, ylim=[0, 110], yticks=[0, 25, 50, 75, 100], title="Variation across edits")
+        for field in ("lower", "upper", "annotate"):
+            categories["series"][1].pop(field, None)
+        series = categories["series"][0]
+        series.update(lower=[v-2 for v in series["values"]], upper=[v+2 for v in series["values"]], annotate=[1, 4])
+        fig = self.render("sensitivity_dynamics", data)
+        dynamics_ax = next(ax for ax in fig.axes if ax.get_title(loc="left") == "Regime evolution")
+        green = next(line for line in dynamics_ax.lines if line.get_label() == data["methods"][2])
+        self.assertEqual((green.get_linestyle(), green.get_marker()), ("--", "s"))
+        self.assertEqual(green.get_xdata()[0], 4)
+        self.assertEqual(len(green.get_xdata()), len(partial["y"]))
+        categories_ax = next(ax for ax in fig.axes if ax.get_title(loc="left") == "Variation across edits")
+        self.assertEqual(len(categories_ax.collections), 1)
+        self.assertEqual(len(categories_ax.texts), 1+len(categories["bars"])+2)
+        self.assertEqual(categories_ax.patches[0].get_edgecolor()[3], 1)
+        self.assertLess(categories_ax.patches[0].get_facecolor()[3], .2)
+
     def test_sensitivity_summary_and_threshold_share_come_from_the_supplied_observations(self):
         data = self.data("sensitivity_dynamics")
+        data["density"].pop("corridor", None)
         data["density"].update(x=[0, 1, 2, 3], y=[.1, .2, .25, .5], threshold=.25)
         data["sensitivity"].update(samples=[[0, 10], [-5, -1, 3]], labels=["Low", "High"], quantile=.95)
+        data["sensitivity"].pop("ylim", None)
         before = copy.deepcopy(data)
         fig = self.render("sensitivity_dynamics", data)
         density_ax = next(ax for ax in fig.axes if ax.get_title(loc="left") == "State-space exposure")
@@ -305,6 +440,9 @@ class AnalysisTemplateTests(unittest.TestCase):
             with self.subTest(pair=pair):
                 data = {"methods": full["methods"][:], "panel_pair": pair,
                         **{key: copy.deepcopy(full[key]) for key in blocks}}
+                for key, title in (("dynamics", "Regime evolution"), ("categories", "Variation across edits")):
+                    if key in data:
+                        data[key]["title"] = title
                 before = copy.deepcopy(data)
                 fig = self.render("sensitivity_dynamics", data)
                 main_axes = [ax for ax in fig.axes if ax.get_title(loc="left")]

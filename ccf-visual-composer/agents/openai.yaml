@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Visual Composer"
-  short_description: "Compose Python analysis figures and editable scientific diagrams."
-  default_prompt: "Apply $ccf-humanization, then $ccf-common; reuse their applicable active rules. Use $ccf-visual-composer for supplied-data plots and scientific diagrams. Start data-led multi-panel analysis from reusable Python templates; preserve the numerical layer when adding illustrations. Use GPT Image 2 for a purely conceptual architecture unless pure SVG/code-first output is requested. Inspect the result and complete already requested editable formats without another confirmation. Preserve data, topology, and labels. Reuse existing editable source and assets for local changes; refresh only affected requested exports. Keep one canonical source and orderly working directory per figure."
+  short_description: "Compose scientific diagrams and dense data figures."
+  default_prompt: "Use $ccf-visual-composer after $ccf-humanization and $ccf-common: generate new method diagrams as complete GPT Image compositions from the supplied science and references; use Python for multi-element data figures, preserve the user's typography/layout/output requirements, inspect once and repair actual defects."

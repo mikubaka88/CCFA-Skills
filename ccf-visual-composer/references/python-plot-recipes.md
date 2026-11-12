@@ -1,10 +1,10 @@
 # Python Plot Recipes
 
-Use `resources/python/ccfa_plot_recipes.py` for runnable numerical plots across fields, including biological data. Reuse an existing plotting pipeline when suitable; the bundled SVG recipes give a standard-library starting point without installing a new plotting framework.
+Use the Matplotlib panels/templates and composer for numerical plots across fields, including biological data. They deliver PNG by default, retaining reusable Python and data specifications. Use `resources/python/ccfa_plot_recipes.py` only for an explicitly requested SVG or maintenance of an existing SVG source. Reuse an established plotting pipeline when suitable.
 
 ## Recipe Library Contract
 
-The original `ccfa_plot_recipes.py` library must remain:
+The original explicit-SVG `ccfa_plot_recipes.py` library remains available without becoming the ordinary rendering route:
 
 - Self-contained: standard library only, so demos run in bare environments.
 - Editable: exports SVG text and shapes rather than raster-only images.
@@ -14,7 +14,16 @@ The original `ccfa_plot_recipes.py` library must remain:
 
 ## Multi-Panel Python Templates
 
-For a new analytical composition, use the semantic router below; reuse an already suitable template or project script. `resources/python/ccfa_analysis_templates.py` provides nine complete layouts, while `ccfa_figure_library.py` composes selected panels. These routes need NumPy/Matplotlib; do not install them for an existing SVG-only task. Use the target environment's existing compatible packages. No model call is needed to rerun a saved specification.
+For a new analytical figure, set its paper slot and use the semantic router below. Start with one rich coordinate system; reuse a suitable project script or individual panel, and choose a multi-panel template only when its separate domains/questions are needed. `resources/python/ccfa_analysis_templates.py` provides nine complete layouts, while `ccfa_figure_library.py` composes selected panels. These routes need NumPy/Matplotlib; do not install them for an explicitly requested SVG-only task. Use the target environment's existing compatible packages. No model call is needed to rerun a saved specification.
+
+
+An existing supplied-data composition can provide one standalone chart without duplicating its input files:
+
+```bash
+python ccf-visual-composer/resources/python/ccfa_figure_library.py compose --spec path/to/figure-data.json --panel panel-1 --out ccfa-workfiles/figures/selected-analysis/build/figure
+```
+
+`single_panel_spec` keeps that panel’s overlays, scales, labels, values and original entity-color order. It removes unrelated panels and shared-axis groups, uses an initial 88 × 68 mm slot, and leaves the source intact. Linked layouts remain coupled when their scientific meaning needs the shared domains. An extracted primitive is reusable material; a final rich graphic may combine compatible encodings in it, without adding unsupported observations or turning unrelated metrics into a misleading shared scale.
 
 ### Choose By Meaning, Then Compose
 
@@ -39,7 +48,7 @@ python ccf-visual-composer/resources/python/ccfa_figure_corpus.py --query calibr
 
 Inventory coverage and inspected figures are tracked separately: **78 design cards from 43 papers**, including **75 newly inspected cards and 3 reused visual records**, document actual design observations. `ccfa_figure_corpus.py --coverage` lists the 18 coverage records, publication gaps and listing scope. Metadata search does not imply a paper's figures were inspected or reproduced. Use the selected paper only when a missing design question warrants reading it, not as a compulsory batch retrieval.
 
-Exports retain the specification, editable Python authoring source and available vector/preview outputs at one canonical base path. `compose --spec` consumes supplied panel data and never falls back to demo values. Explicit demo exports identify their synthetic numbers; paper values or original artwork are not bundled. Keep original-paper attribution in the central source registry and selected design cards.
+Exports retain the specification, reproducible Python source and default PNG at one canonical base path; SVG/PDF require explicit format selection. `compose --spec` consumes supplied panel data and never falls back to demo values. Explicit demo exports identify their synthetic numbers; paper values or original artwork are not bundled. Keep original-paper attribution in the central source registry and selected design cards.
 
 The **43 single-axis grammars** also work with **three linked layouts** in `ccfa_figure_layouts.py`: `joint_marginals` shares supplied observations and bin edges with central and marginal views; `aligned_tracks` shares positions while retaining each track's units; `matrix_slices` extracts the selected row/column from the same response grid. They are coordinated layouts, not three additional single-axis grammars. Use `layout <kind> --demo --out <base>` for explicit simulated examples, or `compose --spec` with actual supplied values.
 
@@ -73,7 +82,7 @@ From the repository root:
 python ccf-visual-composer/resources/python/ccfa_analysis_templates.py --demo all --out ccfa-workfiles/figures/analysis-demo
 ```
 
-This explicit legacy demo generates labeled synthetic data for the nine preserved templates. It saves one `source/demo-data.json`, current SVG/PDF/PNG exports under `figures/`, and one `manifest.json` with export paths and basic QA. Repeat the same command to update these files in place. `--palette-showcase` uses different palettes for these independent examples only. Related figures normally keep one palette and an explicit entity-to-color mapping.
+This explicit legacy demo generates labeled synthetic data for the nine preserved templates. It saves one `source/demo-data.json`, current PNG exports under `figures/` (SVG/PDF only through explicit `--formats`), and one `manifest.json` with export paths and basic QA. Repeat the same command to update these files in place. `--palette-showcase` uses different palettes for these independent examples only. Related figures normally keep one palette and an explicit entity-to-color mapping.
 
 For a paper's two-panel combination, replace `--demo all` with `--demo sensitivity_dynamics --panel-pair sensitivity` (density + box/percentile), or `--panel-pair dynamics` (temporal states + category shares). Omit `--panel-pair` for all four panels. Keep a distinct artifact ID for each retained figure. The Python API accepts the same selection in `data["panel_pair"]`; it needs only the selected pair's data. These are separate views of the supplied analyses, not invented extra experiments.
 
@@ -212,3 +221,9 @@ For combined heatmaps, `show_colorbar=False` suppresses a repeated colorbar only
 ## External-Inspiration Boundary
 
 Use inspected papers and public galleries to understand why an analytical arrangement works. Rebuild the selected relationship with the bundled original Python code and supplied data, or label an explicit synthetic demonstration. Preserve source attribution and the distinction between a design reconstruction and a reproduction of reported results. Reuse appropriately licensed external code only under its actual license; do not copy paper artwork or substitute invented values for the original results.
+
+### 分箱数据与多元素计划
+
+`density_map(..., counts=...)`可直接接收格点计数，按计数合并，避免先伪装成原始观测。条件占比使用计数加权；分箱数据同时提供敏感度权重时，应明确 `weight_kind=per_state`（每状态平均权重）或 `bin_total`（每箱总质量），防止重复乘计数。
+
+用`--input-type`与`--chart-type`分别筛选后，查看候选的`element_plan`。根据当前文章选择给定范围、条件区域、分层摘要、参考值或关键转折；不要把一个基本图法直接当作最终论文分析，也不要补造额外实验值来增加层次。`compact_legend`按实际加粗文字宽度排图例，默认放入图轴上方的紧凑区域，避免盖住曲线，并保留明确指定的位置、字号和列数。导出前检查实际成图；越界检查不能代替遮挡检查。

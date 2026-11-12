@@ -46,7 +46,7 @@ These subsets provide the listed capabilities, not every possible helper. If the
 | Review/audit subset | `ccf-common`, `ccf-humanization`, `ccf-paper-reviewer`, `ccf-integrity-auditor` | Can diagnose but cannot write, search broadly, design experiments, or check packages. |
 | Monitoring subset | `ccf-common`, `ccf-humanization`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-idea-reviewer`, `ccf-idea-optimizer` | Tracks new overlap signals and routes deeper search or idea repair, but cannot write or submit. |
 | Early research subset | `ccf-common`, `ccf-humanization`, `ccf-pipeline-orchestrator`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer` | No manuscript, submission, or rebuttal support. |
-| Visual/manuscript presentation subset | `ccf-common`, `ccf-humanization`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-writer`, `ccf-integrity-auditor`, `ccf-submission-checker` | Can turn supplied results into paper-ready visuals, Python SVG plots, and consistency checks, but cannot search literature or run full review. |
+| Visual/manuscript presentation subset | `ccf-common`, `ccf-humanization`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-writer`, `ccf-integrity-auditor`, `ccf-submission-checker` | Can turn supplied results into paper-ready visuals, Python-rendered PNG figures, and consistency checks, but cannot search literature or run full review. |
 | Submission subset | `ccf-common`, `ccf-humanization`, `ccf-paper-writer`, `ccf-visual-composer`, `ccf-submission-checker`, `ccf-integrity-auditor` | Can check format/package/artifacts and visual placement, but not run full review. |
 | Maintenance subset | `ccf-common`, `ccf-humanization`, `ccf-skill-forger` | Only family maintenance and docs/SVG generation. |
 
@@ -87,7 +87,7 @@ foreach ($ccfaPath in $ccfaPaths) {
 
 ## Sibling resources
 
-`npx skills add ... --skill '*' --copy` installs all 18 skills, but does not copy the root-level `ccf-latex-templates/` directory, which has no `SKILL.md`. Run the following from the same repository revision used for the skills. This resource bundle also covers partial-install references and legacy conversion scripts. Copying these resources does not install or authorize their owning skills; add a specialist separately when the task needs its capability. Full repository/plugin layouts already retain the sibling paths.
+`npx skills add ... --skill '*' --copy` installs all 18 skills, but does not copy the root-level `ccf-latex-templates/` and `assets/visual-showcase/` resource directories, which have no `SKILL.md`. Run the following from the same repository revision used for the skills. This resource bundle also covers partial-install references and legacy conversion scripts. Copying these resources does not install or authorize their owning skills; add a specialist separately when the task needs its capability. Full repository/plugin layouts already retain the sibling paths.
 
 Bash:
 
@@ -96,7 +96,7 @@ ccfa_codex_home="${CODEX_HOME:-}"
 ccfa_codex_home="${ccfa_codex_home#"${ccfa_codex_home%%[![:space:]]*}"}"
 ccfa_codex_home="${ccfa_codex_home%"${ccfa_codex_home##*[![:space:]]}"}"
 ccfa_skills_dir="${ccfa_codex_home:-$HOME/.codex}/skills"
-ccfa_paths=(ccf-paper-writer/references ccf-paper-writer/scripts ccf-paper-to-exemplar/scripts ccf-latex-templates)
+ccfa_paths=(ccf-paper-writer/references ccf-paper-writer/scripts ccf-paper-to-exemplar/scripts ccf-latex-templates assets/visual-showcase)
 for ccfa_path in "${ccfa_paths[@]}"; do
   mkdir -p "$ccfa_skills_dir/$ccfa_path"
   cp -R "$ccfa_path/." "$ccfa_skills_dir/$ccfa_path/"
@@ -108,7 +108,7 @@ PowerShell:
 ```powershell
 $ccfaCodexHome = if ([string]::IsNullOrWhiteSpace($env:CODEX_HOME)) { Join-Path $HOME ".codex" } else { $env:CODEX_HOME.Trim() }
 $ccfaSkillsDir = Join-Path $ccfaCodexHome "skills"
-$ccfaPaths = @("ccf-paper-writer/references", "ccf-paper-writer/scripts", "ccf-paper-to-exemplar/scripts", "ccf-latex-templates")
+$ccfaPaths = @("ccf-paper-writer/references", "ccf-paper-writer/scripts", "ccf-paper-to-exemplar/scripts", "ccf-latex-templates", "assets/visual-showcase")
 foreach ($ccfaPath in $ccfaPaths) {
   $ccfaDestination = Join-Path $ccfaSkillsDir $ccfaPath
   New-Item -ItemType Directory -Force -Path $ccfaDestination | Out-Null

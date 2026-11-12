@@ -42,6 +42,8 @@ Use the smallest useful counterexample, limiting case, derivation, existing anal
 
 For example, if a fixed representation maps two inputs to the same state but their correct answers differ, a predictor that sees only that state cannot distinguish them. Adding layers after that fixed state cannot recover the lost information. This argument identifies the encoding or available input as a possible intervention; it does not establish that a particular real model has this defect. If the representation is trainable or another input reaches the predictor, recheck the premise.
 
+Keep the diagnosis distinct from the baseline's implementation. A convenient module, familiar benchmark or available codebase does not establish the cause of a failure. For a proposed improvement, explain what would still be impossible if that component were added while the suspected limitation remained unchanged; this can reveal an unchanged information loss, objective mismatch or missing distinction. Use a different explanation when that test undermines the proposed route, without silently replacing the user's goal with a smaller task.
+
 Select a mechanism for the limitation it changes. State which information, operation, assumption, or objective changes, why this addresses the difficulty, and what would contradict that explanation. A performance failure alone does not identify its cause, and a named theoretical framework alone does not explain a mechanism. For non-model ideas, use the corresponding mathematical, empirical, systems, or human-centered objects instead of forcing this model-specific diagnosis.
 
 Translate method labels into mechanisms:

@@ -64,6 +64,8 @@ Review emphasis:
 
 ## CVPR / ICCV / ECCV
 
+Use the exact venue/year/track guidance rather than transferring rules across these venues. CVPR 2027 author-owned pre-review follows the ordinary internal-review scope; an assigned confidential review must observe the approved-tool boundary in Common's privacy reference and the official policy registered as `cvpr-2027-author-guidelines`. Keep generic dimensions below separate from a verified official scoring form.
+
 Primary dimensions: novelty, technical quality, empirical validation, visual evidence, clarity, and fair comparison.
 
 Review emphasis:

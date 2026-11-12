@@ -14,43 +14,51 @@ Final size / destination / requested formats:
 Aspect ratio / occupied bounds / selected preset, if needed:
 Relevant panel map or topology:
 Exact labels, units, and visual encodings:
+Information carried by each encoding; reason for any extra axes/panel:
 ```
 
 Add only mode-specific information: uncertainty, metric direction, entity IDs/order, units and shared scales for related quantitative panels; node/edge semantics for architectures; float/caption placement for manuscript integration; icon provenance or editability levels when those assets are used; reference-layout principles only when a reference is actually used. Do not emit empty fields for unrelated formats. The architecture specification and this contract are the same state, not two documents to maintain.
 
+## Article To Elements
+
+Reuse one source record. Establish the paper question, observation unit, actual input format and available fields before selecting a grammar. Classify input data independently from chart type: raw samples are not quantile summaries, binned counts are not recovered observations, and given envelopes are not automatically confidence intervals. Read the relevant caption/protocol when its statistical definition matters.
+
+Build an element plan from the current article: primary data -> conditioning/comparison -> relevant summary -> clear reading key. Choose complementary analyses supported by these inputs. A density may carry a two-condition corridor, threshold bounds, a conditional count and a separate weighted share when weights exist. A quantile summary can combine a central range, tail whiskers and a selected-quantile curve. Category measurements can combine outlined bars, same-unit curves, provided ranges and selected values. A trajectory can carry event markers or reference regimes only when their locations/meaning are supplied. Actual raw samples can support declared descriptive summaries; do not fabricate raw runs from summary tables.
+
+Plan semantic relationships, not a fixed number of layers. Maintain coordinate/identity correspondence, denominators and interval definitions. A label, grid or legend alone is not another analysis. Library primitives and extracted views are building blocks; enrich the final graphic using article-specific conditions, uncertainty or comparisons rather than accepting the first primitive export. Keep additional views when their units/domains need separation.
+
+For an explicitly requested screenshot reconstruction, approximate visible values with per-field provenance and keep the input frozen. If a visible aggregate is used to calibrate a reconstruction, state that calibration in the input record. Do not present fitted reconstruction weights as recovered measurements. Before/after comparisons use the same reference-derived brief, data and declared render budget; preserve the baseline's complete supported elements.
+
 ## Layout And Typography
 
-Apply these rules to architectures, numerical plots, image plates, and visual tables. Preserve an approved existing design for local edits. User constraints and venue requirements take precedence over the starting values below.
+New method diagrams default to a whole GPT Image composition; quantitative figures use Python. Mixed figures preserve code-rendered numerical marks, axes and labels. Existing source edits, explicit backend choices and requested exact/editable outputs retain their appropriate route. Deliver PNG by default; an unspecified editable request prefers native PPTX, and SVG requires an explicit request.
 
-Choose the final physical width and available height first, then a nominal design canvas. There is no default square: choose the ratio from the available paper region and supported topology, retaining the approved ratio for local edits. A wide single flow, a taller hierarchy, or aligned parallel lanes may need different ratios. Fit all parts into one coordinated figure; do not scatter isolated islands across an oversized canvas. Do not stretch axes, images, or scientific geometry to match the boundary.
+Start from the actual paper slot and a content-fit aspect ratio. If no numerical slot is supplied, about 85–90 mm is a useful single-column starting width; a method can use a short full-width slot. Do not force a square, uniform grid, fixed orientation or equal-width blocks. Group related objects tightly, align peers and use short clear connection paths. Give the important mechanism room while removing redundant containers, labels and accidental gaps. Preserve whitespace that separates meanings or belongs to data geometry; do not stretch axes, hide observations or add content to fill space.
 
-For a 1536 px-wide canvas, use an 8 px base unit; scale all lengths by actual width / 1536. Pixel gaps mean visible edge-to-edge distance, not center distance. Choose one value per token for the figure, allowing documented exceptions where topology or content needs them.
+Use Times New Roman by default or selected Comic Sans MS, preserving user/venue overrides. Bold titles, legends, x/y labels and ticks, including quantitative colorbar text. In method diagrams, emphasize headings while keeping body labels/equations subordinate. Keep one coherent family with compatible math/CJK glyph coverage. Bar/box/whisker/cap edges use opaque darker shades paired with lighter fills, around 1.1–1.3 pt at normal paper size; dense points and matrix cells keep their own encoding.
 
-| Token | Starting value at 1536 px width |
+Check readability at final size. Typical compact paper labels start around 8–9 pt, headings around 9–10 pt, subject to the venue; reflow before shrinking secondary text below about 7 pt. Keep the chosen physical font settings across panels and linked layouts. Image-generated type is an appearance target; verify true fonts in requested native/editable output. Reorganize or wrap an overlong label before shrinking it below its peers.
+
+For data figures, combine supported relationships in a coherent analysis unit: joint positions, method/cohort colors, input-condition markers, supplied sizes/pairing, threshold regions and conditional summaries. Different marker shapes need equal-area normalization when size encodes a separate quantity. Heatmaps may use aligned annotation strips. Add a real zoom or separate view only when needed by its question, units or domain; keep crop/scale correspondence explicit. Use sparse meaningful labels and light grids so observations and decisive trends remain dominant.
+
+### Optional Coordinate Measurements
+
+Use the following starting values only for explicit pixel constraints, measured reconstruction or code/native authoring. They are not a mandatory image-generation prompt suffix. For ordinary whole-image generation, the actual reference plus compactness/alignment requirements is sufficient. Exact user dimensions override these defaults.
+
+At 1536 px width, scale lengths by actual width / 1536. Measure gaps edge-to-edge and reuse one value per role, with content-driven exceptions:
+
+| Role | Starting value |
 | --- | --- |
-| Outer margin | 48 px; 64 px when labels need more clearance |
-| Between semantic panels | 32 px |
-| Between peer modules | 24 px |
-| Container padding | 24 px; 16 px for a compact inset |
-| Between peer icons | 16 px |
-| Icon to its label | 8 px |
-| Connector to unrelated text/objects | At least 12 px |
-| Repeated icon slot | 48 or 64 px square, with a common optical size |
-| Ordinary connector stroke | 2 px; use 3 px for a meaningful primary path |
+| Outer margin | 24–32 px |
+| Between necessary semantic regions | 16–24 px |
+| Between peer modules | 12–20 px |
+| Container padding | 12–16 px |
+| Between peer icons / icon to label | 16 px / 8 px |
+| Connector clearance from unrelated content | At least 12 px |
+| Repeated icon optical slot | 48 or 64 px |
+| Ordinary / primary connector stroke | 2 px / 3 px |
 
-Record panel bounds or lane proportions, shared top/bottom edges, text baselines, icon centers, and connector ports. Pack related objects more tightly than unrelated groups. Route connections through reserved whitespace. Equal-role modules share alignment and spacing; differing content may require different widths. Give the contribution enough area to explain its mechanism, without inflating generic blocks. Remove accidental holes and redundant containers; retain whitespace that separates meanings. Never distort topology to fill a grid.
-
-Allocate the figure's rows/columns before detailing objects. Measure text and object extents to choose module sizes; one long label must not inflate every peer box. Align logical rows across group boundaries, not just objects inside each container. Shared input/output objects, branch entry/exit ports, panel labels, and captions use common anchors where their roles match. Align actual data rectangles rather than forcing equal outer boxes around unequal tick labels. Preserve spatial aspect ratios, equal image crop rules, and comparable plot scales; adjust neighboring space or panel placement instead of stretching geometry.
-
-Check outer margins and unused internal regions separately. A continuous unused patch comparable in size to a meaningful module is a reason to inspect the layout, not a quota to fill. Tighten an oversized container, relocate a supported detail beside its parent operation, or adjust the canvas height/width. Preserve whitespace for data plotting, connector lanes, and semantic separation. Colored backgrounds and empty frames do not count as useful content; do not add modules, decorative objects, or duplicated labels to consume space.
-
-Use **Times New Roman** for new scientific figures. A requested comic treatment uses **Comic Sans MS** with the same disciplined grid. Keep one primary family across titles, labels, axes, legends, and numbers; use compatible math/CJK or code fonts only for glyphs that need them. Keep ordinary text at regular/bold weights and natural case. Preserve an explicit user font or mandatory venue font. Avoid silent fallback in editable exports: check font availability and report a substitution if necessary.
-
-Size labels for the final artifact, not the enlarged preview. A useful paper starting point is 9-11 pt body labels, 11-13 pt group headings, and 8-9 pt secondary labels, subject to the venue. Convert with `design_px = point_size * canvas_width_px / (72 * final_width_inches)`. For example, 9 pt at a 7-inch width is about 27 px on a 1536 px canvas. Increase space or reorganize groups before making labels smaller. Presentation labels must be readable at the intended viewing distance.
-
-Choose a compact type scale once, such as 10 pt labels, 12 pt group headings, and 9 pt secondary labels; apply it across all blocks of the same role. When composing or resizing panels, scale data geometry separately from labels and strokes, then restore these physical sizes in the final figure. Mathematical operators and subscripts must remain legible beside those labels. Measure rendered text, wrapping, and line height after choosing the font. When a label does not fit, remove redundant explanation or enlarge/reflow its slot before shrinking it. Check the actual embedded figure width after export; preview pixels or an SVG viewBox alone cannot certify readability.
-
-For image generation, these coordinates, fonts, and gaps are explicit targets; raster output cannot guarantee exact pixel geometry or a genuine font face. In requested SVG/PPTX reconstruction, enforce coordinates and live fonts in the authoring source, convert units consistently, and inspect the rendered result.
+Use shared edges, baselines and explicit ports when authoring coordinates. Fit boxes to rendered text, preserve image/spatial aspect ratios, and align actual data rectangles despite unequal outer label margins. Convert physical labels with `design_px = point_size * canvas_width_px / (72 * final_width_inches)`; e.g. 9 pt at 7 inches is about 27 px on a 1536 px canvas. Raster inspection does not certify exact pixels or a font face; requested native output enforces them in source.
 
 ## Text And Illustration Restraint
 
@@ -94,7 +102,7 @@ The CCFA visual identity is a clear mechanism, dark readable type, restrained se
 - Distinguish data flow, control flow, supervision, retrieval, feedback, and gradients when the distinction matters.
 - Mark training-only and inference-only elements explicitly; do not collapse them into a misleading single path.
 - Use the strongest visual emphasis for the actual contribution, not for generic encoders, databases, or decorative icons.
-- Keep an exact label inventory for generation QA and later editable SVG reconstruction.
+- Keep an exact label inventory for generation QA and any explicitly requested editable reconstruction, preferring native PPTX unless another format was named.
 - Plan icon semantics before rendering. Prefer native primitives or one coherent public SVG family; reserve custom generation for method-specific concepts.
 - Record reference roles, measured geometric relationships, and provenance. Apply the requested layout relationships to the supplied science; preserve an explicitly supplied template when requested. Do not transplant unrelated labels, scientific claims, or artwork.
 - When PPTX is requested, define which elements must be native-editable and which custom assets may remain separately movable raster objects.

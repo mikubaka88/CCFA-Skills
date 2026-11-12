@@ -1,6 +1,6 @@
 # Editable PPTX Reconstruction
 
-Use this reference when the user requests PowerPoint. The PPTX is a reconstruction of the approved scientific topology and layout—not a slide containing the generated figure as one background image.
+Use this reference only when the user requests editability or PowerPoint. Native PPTX is the first choice for an unspecified editable format; do not initiate it for an ordinary image request. The PPTX is a reconstruction of the approved scientific topology and layout—not a slide containing the generated figure as one background image.
 
 ## Editability Levels
 
@@ -15,10 +15,10 @@ Prefer `native` for the complete information structure. Use `svg-convertible` fo
 ## Reconstruction Workflow
 
 1. Use the user-requested page size or approved figure aspect ratio. A standalone editable paper figure keeps its content-fit bounds; a requested presentation slide may use 16:9 when no size is specified. Do not add empty slide margins merely to place a paper figure on a slide template.
-2. Recreate the approved reference-layout blueprint with the chosen margins, alignment lines, and spacing tokens from `visual-contract.md`. Convert design coordinates once with `slide_inches / canvas_pixels`; set native font sizes in points using the same scale. Use the selected Times New Roman or Comic Sans MS family unless the user/venue specifies another, and check for substitution before export.
+2. Recreate the approved reference-layout blueprint with the chosen margins, alignment lines, and spacing tokens from `visual-contract.md`. Convert design coordinates once with `slide_inches / canvas_pixels`; set native font sizes in points using the same scale. Use the selected Times New Roman or Comic Sans MS family unless the user/venue specifies another, and check for substitution before export. Bold titles, legends, x/y labels and ticks. Use darker same-hue substantial bar/box outlines, lighter fills, aligned data regions and compact spacing.
 3. Build stages, boxes, nodes, labels, arrows, and connectors as native objects. Keep text live and connectors anchored where the authoring library permits.
 4. Group objects by semantic module, use stable z-order, and give groups or assets meaningful names in the accompanying element map.
-5. Insert public icons as separate SVG assets. Build simple method-specific icons from native shapes or SVG paths; use a cleaned transparent PNG only for custom icons whose intended appearance cannot be preserved otherwise.
+5. Prefer native PowerPoint icons/shapes. Reuse existing authorized SVG icon assets when appropriate; a PPTX request alone does not authorize generating new SVG files. Build simple method-specific icons from native shapes; use a cleaned transparent PNG only for custom icons whose intended appearance cannot be preserved otherwise.
 6. Never place the generated whole-figure raster as the final slide background. It may be used temporarily as a visual comparison layer and must be removed or hidden before delivery.
 7. Prefer deterministic generation with PptxGenJS when available because it supports native shapes, text, connectors, SVG assets, and reproducible coordinates. Another PowerPoint library is acceptable if the same editability contract is met.
 8. Render the PPTX to a preview image or PDF and inspect it. Validate that there is no full-slide raster, live text remains searchable, key objects are separately selectable, and source icon files are present.

@@ -8,6 +8,7 @@ experimental protocol. Caller-owned axes make layouts and later edits explicit.
 from __future__ import annotations
 
 from contextlib import contextmanager
+import colorsys
 import json
 import math
 import os
@@ -26,8 +27,21 @@ import numpy as np
 from ccfa_plot_recipes import PALETTES
 
 INK = "#24313A"
+EDGE_WIDTH = 1.15
 GRID = "#E6E9EB"
 MARKERS = ("o", "s", "^", "D", "v", "P", "X", "h")
+
+
+def paired_edge(color):
+    """An opaque darker shade of the same hue; independent of fill alpha.
+
+    Neutral fills keep neutral borders. Saturated categories keep their own
+    color identity instead of receiving the same near-black outline.
+    """
+    red, green, blue, _ = mcolors.to_rgba(color)
+    hue, lightness, saturation = colorsys.rgb_to_hls(red, green, blue)
+    shade = min(.38, lightness * .66)
+    return (*colorsys.hls_to_rgb(hue, shade, saturation), 1.0)
 
 
 def _vector(values, name, *, finite=True):
@@ -129,18 +143,26 @@ def paper_style(font="serif", font_size=8.5):
         raise ValueError("font_size must exceed 0.5 points")
     settings = {
         "font.family": _font_families(font), "font.size": size,
+        "axes.labelweight": "bold", "axes.titleweight": "bold",
         "axes.labelsize": size, "axes.titlesize": size + 0.5,
         "xtick.labelsize": size - 0.5, "ytick.labelsize": size - 0.5,
         "legend.fontsize": size - 0.5, "axes.labelcolor": INK,
         "text.color": INK, "xtick.color": INK, "ytick.color": INK,
-        "axes.edgecolor": INK, "axes.linewidth": 0.65,
-        "xtick.major.width": 0.6, "ytick.major.width": 0.6,
+        "axes.edgecolor": INK, "axes.linewidth": 0.85,
+        "xtick.major.width": 0.8, "ytick.major.width": 0.8,
         "xtick.major.size": 3, "ytick.major.size": 3,
         "lines.linewidth": 1.3, "lines.markersize": 3.5,
         "figure.facecolor": "white", "axes.facecolor": "white",
         "savefig.facecolor": "white", "svg.fonttype": "none",
-        "pdf.fonttype": 42, "ps.fonttype": 42, "mathtext.fontset": "stix",
+        "pdf.fonttype": 42, "ps.fonttype": 42, "mathtext.fontset": "stix", "mathtext.default": "bf",
         "axes.unicode_minus": True, "legend.frameon": False,
+        "axes.labelpad": 3, "axes.titlepad": 5,
+        "xtick.major.pad": 2.5, "ytick.major.pad": 2.5,
+        "legend.borderaxespad": .3, "legend.labelspacing": .25,
+        "legend.handletextpad": .4, "legend.columnspacing": .9,
+        "boxplot.boxprops.color": INK, "boxplot.boxprops.linewidth": EDGE_WIDTH,
+        "boxplot.whiskerprops.color": INK, "boxplot.whiskerprops.linewidth": EDGE_WIDTH,
+        "boxplot.capprops.color": INK, "boxplot.capprops.linewidth": EDGE_WIDTH,
     }
     with mpl.rc_context(settings):
         yield
@@ -152,6 +174,48 @@ def new_figure(width_mm=180, height_mm=120, **kwargs):
                                _positive(height_mm, "height_mm") / 25.4), **kwargs)
 
 
+def _figure_axes(fig):
+    axes = list(fig.axes)
+    for parent in axes:
+        axes.extend(child for child in parent.child_axes if child not in axes)
+    return axes
+
+
+def finish_paper_style(fig):
+    """Apply final typography, including legends created after the style context.
+
+    Do not alter values, bounds, coordinate scales, aspect ratios or artist geometry.
+    BarContainer patches are observations; arbitrary region/heatmap patches are not.
+    """
+    from matplotlib.container import BarContainer
+    for ax in _figure_axes(fig):
+        labels = [ax.title, ax._left_title, ax._right_title, ax.xaxis.label, ax.yaxis.label,
+                  ax.xaxis.get_offset_text(), ax.yaxis.get_offset_text(),
+                  *ax.get_xticklabels(which="both"), *ax.get_yticklabels(which="both")]
+        for text in labels:
+            text.set_fontweight("bold")
+        for container in ax.containers:
+            if isinstance(container, BarContainer):
+                for bar in container.patches:
+                    face = bar.get_facecolor()
+                    # A fully transparent face has no color identity; retain
+                    # its original explicit edge as the categorical base.
+                    base = face if face[3] > 0 else getattr(bar, "_ccfa_edge_base", bar.get_edgecolor())
+                    bar._ccfa_edge_base = base
+                    bar.set_alpha(None)
+                    bar.set_facecolor(face)  # Keep fill transparency; outline stays opaque.
+                    bar.set_edgecolor(paired_edge(base))
+                    bar.set_linewidth(max(EDGE_WIDTH, bar.get_linewidth()))
+        legend = ax.get_legend()
+        if legend is not None:
+            for text in [legend.get_title(), *legend.get_texts()]:
+                text.set_fontweight("bold")
+    for legend in fig.legends:
+        for text in [legend.get_title(), *legend.get_texts()]:
+            text.set_fontweight("bold")
+    return fig
+
+
 def clean_axes(ax, grid="y"):
     ax.spines[["top", "right"]].set_visible(False)
     ax.set_axisbelow(True)
@@ -159,7 +223,41 @@ def clean_axes(ax, grid="y"):
         ax.grid(True, axis=grid, color=GRID, linewidth=0.55)
     elif grid is not None:
         raise ValueError("grid must be x, y, both, or None")
+    ax.xaxis.label.set_weight("bold"); ax.yaxis.label.set_weight("bold")
+    for text in [*ax.get_xticklabels(which="both"), *ax.get_yticklabels(which="both")]:
+        text.set_weight("bold")
     return ax
+
+
+def compact_legend(ax, handles=None, labels=None, **kwargs):
+    """Pack a compact header key from bold text metrics; honor explicit placement."""
+    from matplotlib.font_manager import FontProperties
+    if handles is None:
+        handles,found=ax.get_legend_handles_labels()
+        if labels is None:labels=found
+    if labels is None:labels=[artist.get_label() for artist in handles]
+    kwargs.setdefault("frameon",False)
+    kwargs.setdefault("fontsize",max(7,float(mpl.rcParams["font.size"])-1))
+    # A best-position key can still straddle several curves. Reserve a shallow
+    # header by default; constrained layout includes it in the final paper slot.
+    if "loc" not in kwargs and "bbox_to_anchor" not in kwargs:
+        kwargs.update(loc="lower left",bbox_to_anchor=(0,1.01),borderaxespad=0)
+    if handles and "ncol" not in kwargs and "ncols" not in kwargs:
+        size=kwargs["fontsize"]
+        prop=FontProperties(family=mpl.rcParams["font.family"],size=size,weight="bold")
+        renderer=ax.figure.canvas.get_renderer()
+        widths=[max(renderer.get_text_width_height_descent(line,prop,line.count("$")>=2 and line.count("$")%2==0)[0]
+                    for line in label.split("\n")) for label in labels]
+        unit=prop.get_size_in_points()*ax.figure.dpi/72
+        available=ax.bbox.width*.94
+        for columns in range(min(3,len(handles)),0,-1):
+            groups=np.array_split(np.asarray(widths),columns)
+            needed=sum(max(group)+2.4*unit for group in groups)+(columns-1)*unit
+            if needed<=available or columns==1:
+                kwargs["ncol"]=columns;break
+        kwargs.setdefault("columnspacing",.8)
+        kwargs.setdefault("handletextpad",.35)
+    return ax.legend(handles=handles,labels=labels,**kwargs)
 
 
 def panel_label(ax, letter, title="", *, label_x=-0.14):
@@ -168,7 +266,7 @@ def panel_label(ax, letter, title="", *, label_x=-0.14):
                     ha="left", va="bottom", weight="bold", fontsize=10.5,
                     clip_on=False, gid=f"panel-{letter}")
     if title:
-        ax.set_title(title, loc="left", pad=8, weight="bold")
+        ax.set_title(title, loc="left", pad=5, weight="bold")
     return label
 
 
@@ -202,7 +300,7 @@ def comparison_intervals(ax, labels, values, *, lower=None, upper=None, runs=Non
 
 
 def line_band(ax, x, y, *, lower=None, upper=None, label=None, color=None,
-              marker=None, xlabel="", ylabel=""):
+              marker=None, xlabel="", ylabel="", fill_to=None):
     x, y = _vector(x, "x"), _vector(y, "y"); _same_length(x, y)
     if np.any(np.diff(x) <= 0):
         raise ValueError("x must be strictly increasing; align and order the input first")
@@ -211,12 +309,17 @@ def line_band(ax, x, y, *, lower=None, upper=None, label=None, color=None,
     if low is not None:
         ax.fill_between(x, low, high, color=line.get_color(), alpha=0.15,
                         linewidth=0, zorder=2)
+    if fill_to is not None:
+        baseline=float(fill_to)
+        if not math.isfinite(baseline):raise ValueError("Fill baseline must be finite")
+        ax.fill_between(x,baseline,y,color=line.get_color(),alpha=.12,linewidth=0,zorder=1)
     ax.set_xlabel(xlabel); ax.set_ylabel(ylabel); clean_axes(ax)
     return line
 
 
 def density_map(ax, x, y, *, gridsize=28, xscale="linear", yscale="linear",
-                cmap="viridis", xlabel="", ylabel=""):
+                cmap="viridis", xlabel="", ylabel="", counts=None, corridor=None,
+                xlim=None, ylim=None):
     """Hexagonal counts of supplied observations; color uses a logarithmic scale.
 
     Empty bins are omitted. Axis transforms do not change the input coordinates
@@ -230,25 +333,67 @@ def density_map(ax, x, y, *, gridsize=28, xscale="linear", yscale="linear",
             raise ValueError(f"{name}scale must be linear or log")
         if scale == "log" and np.any(values <= 0):
             raise ValueError(f"Log {name} axis requires strictly positive observations")
+    original_x,original_y=x,y
+    extra={};original_counts=None
+    if counts is not None:
+        counts=_vector(counts,"counts");_same_length(x,counts)
+        if np.any(counts<0) or not np.equal(counts,np.floor(counts)).all() or not np.isfinite(counts.sum()) or not np.any(counts>0):
+            raise ValueError("Aggregate counts must be nonnegative integers with positive total")
+        original_counts=counts
+        keep=counts>0;x,y,counts=x[keep],y[keep],counts[keep]
+        extra={"C":counts,"reduce_C_function":np.sum}
     artist = ax.hexbin(x, y, gridsize=int(gridsize), mincnt=1, cmap=cmap,
                       norm=mcolors.LogNorm(), xscale=xscale, yscale=yscale,
-                      linewidths=0, rasterized=False)
+                      linewidths=0, rasterized=False,**extra)
     ax.set_xlabel(xlabel); ax.set_ylabel(ylabel); clean_axes(ax, None)
+    for axis,limits,observed,scale in (("x",xlim,x,xscale),("y",ylim,y,yscale)):
+        if limits is not None:
+            bounds=_vector(limits,axis+" limits")
+            if len(bounds)!=2 or bounds[0]>=bounds[1] or (scale=="log" and bounds[0]<=0):
+                raise ValueError("Density display limits need an increasing valid domain")
+            if np.min(observed)<bounds[0] or np.max(observed)>bounds[1]:
+                raise ValueError("Density limits cannot hide supplied observations")
+            getattr(ax,"set_"+axis+"lim")(bounds)
+    if corridor is not None:
+        if not isinstance(corridor,dict):raise ValueError("Corridor requires named thresholds and optional weights")
+        import ccfa_analysis_templates as templates
+        block={"x":original_x,"y":original_y,"corridor":corridor}
+        if original_counts is not None:block["counts"]=original_counts
+        artist.ccfa_corridor=templates._density_corridor(ax,block)
     return artist
 
 
 def binned_summary(ax, samples, labels, *, color=None, quantile=.95,
-                   line_color="#D85E32", ylabel=""):
-    """Observed median/IQR boxes with 1.5-IQR whiskers and a supplied quantile.
+                   line_color="#D85E32", ylabel="", summary=None,
+                   summary_mode="iqr", annotate=False, value_format=".3f", quantile_label=None):
+    """Observed IQR boxes, or explicit median–P90 boxes with P99 whiskers.
 
-    Every group must contain observations. Quantiles use NumPy's linear sample
-    interpolation; they are not means or uncertainty intervals. Outliers remain
-    visible. There is one legend entry for the boxes and one for the quantile.
+    The default retains median/IQR, 1.5-IQR whiskers and visible outliers.
+    median_p90 uses sample-derived quantiles, or a supplied summary with no raw
+    samples, and marks P95 as diamonds. These are quantiles, not confidence
+    intervals. Numeric annotations are optional and use only supplied values.
     """
     labels = _labels(labels)
-    if len(samples) != len(labels):
-        raise ValueError("Supply one observed sample group per label")
-    groups = [_vector(group, "sample group") for group in samples]
+    if summary_mode not in ("iqr", "median_p90"):
+        raise ValueError("summary_mode must be iqr or median_p90")
+    if summary is not None:
+        if samples is not None:
+            raise ValueError("Supply raw samples or explicit quantile summary, not both")
+        if not isinstance(summary, Mapping) or not {"median", "p90", "p95", "p99"} <= set(summary):
+            raise ValueError("Quantile summary requires median, p90, p95 and p99")
+        summaries = {key: _vector(summary[key], key) for key in ("median", "p90", "p95", "p99")}
+        if any(len(values) != len(labels) for values in summaries.values()):
+            raise ValueError("Quantile summary lengths must match labels")
+        if np.any(np.diff(np.vstack(list(summaries.values())), axis=0) < 0):
+            raise ValueError("Quantiles must satisfy median <= P90 <= P95 <= P99")
+        summary_mode = "median_p90"
+        groups = None
+    else:
+        if samples is None or len(samples) != len(labels):
+            raise ValueError("Supply one observed sample group per label")
+        groups = [_vector(group, "sample group") for group in samples]
+        summaries = {key: np.array([np.quantile(group, q, method="linear") for group in groups])
+                     for key, q in (("median", .5), ("p90", .9), ("p95", .95), ("p99", .99))}
     quantile = float(quantile)
     if not math.isfinite(quantile) or not 0 <= quantile <= 1:
         raise ValueError("quantile must lie in [0, 1]")
@@ -256,31 +401,60 @@ def binned_summary(ax, samples, labels, *, color=None, quantile=.95,
     if not mcolors.is_color_like(color) or not mcolors.is_color_like(line_color):
         raise ValueError("Box and quantile colors must be valid colors")
     positions = np.arange(len(labels))
-    quantiles = np.array([np.quantile(group, quantile, method="linear") for group in groups])
-    medians = np.array([np.median(group) for group in groups])
-    boxes = ax.boxplot(groups, positions=positions, widths=.42, whis=1.5,
+    if summary_mode == "median_p90" and not math.isclose(quantile, .95):
+        raise ValueError("The median–P90/P99 summary uses P95 diamonds; quantile must be .95")
+    quantiles = summaries["p95"] if summary_mode == "median_p90" else np.array([np.quantile(group, quantile, method="linear") for group in groups])
+    medians = summaries["median"]
+    styling = dict(positions=positions, widths=.42,
                        patch_artist=True, showfliers=True, manage_ticks=False,
-                       boxprops={"facecolor": color, "edgecolor": color, "alpha": .45, "linewidth": .8},
-                       medianprops={"color": INK, "linewidth": 1.2},
-                       whiskerprops={"color": color, "linewidth": .9},
-                       capprops={"color": color, "linewidth": .9},
+                       boxprops={"facecolor": mcolors.to_rgba(color, .35), "edgecolor": paired_edge(color), "linewidth": EDGE_WIDTH},
+                       medianprops={"color": paired_edge(color), "linewidth": 1.4},
+                       whiskerprops={"color": paired_edge(color), "linewidth": EDGE_WIDTH},
+                       capprops={"color": paired_edge(color), "linewidth": EDGE_WIDTH},
                        flierprops={"marker": ".", "markersize": 3, "markerfacecolor": color,
                                    "markeredgecolor": "none", "alpha": .6})
+    if summary_mode == "median_p90":
+        statistics = [{"med": summaries["median"][i], "q1": summaries["median"][i],
+                       "q3": summaries["p90"][i], "whislo": summaries["median"][i],
+                       "whishi": summaries["p99"][i], "fliers": []} for i in positions]
+        boxes = ax.bxp(statistics, **styling)
+    else:
+        boxes = ax.boxplot(groups, whis=1.5, **styling)
     percent = quantile * 100
     suffix = "th"
     if percent.is_integer() and not 10 <= int(percent) % 100 <= 20:
         suffix = {1: "st", 2: "nd", 3: "rd"}.get(int(percent) % 10, "th")
-    line, = ax.plot(positions, quantiles, color=line_color, marker="o", markersize=3.5,
+    line, = ax.plot(positions, quantiles, color=line_color, marker="D" if summary_mode == "median_p90" else "o", markersize=3.5,
                     linewidth=1.3, label=f"{percent:g}{suffix} percentile", zorder=4)
-    boxes["boxes"][0].set_label("Median / IQR")
-    ax.legend(handles=[boxes["boxes"][0], line], frameon=False)
+    boxes["boxes"][0].set_label("Median–P90 range" if summary_mode == "median_p90" else "Median / IQR")
+    if summary_mode == "median_p90":
+        from matplotlib.lines import Line2D
+        whisker = Line2D([], [], color=paired_edge(color), marker="_", markersize=7, linewidth=EDGE_WIDTH, label="P99 whisker")
+        compact_legend(ax,handles=[boxes["boxes"][0], whisker, line],
+                  labels=["Median–P90 range", "P99 whisker", quantile_label or "P95 value"], frameon=False,
+                  loc="upper left", handlelength=1.35, handletextpad=.45, labelspacing=.3)
+    else:
+        compact_legend(ax,handles=[boxes["boxes"][0], line], frameon=False)
+    annotations = []
+    if annotate:
+        indices = list(range(len(labels))) if annotate is True else list(annotate)
+        if any(isinstance(i, bool) or not isinstance(i, (int, np.integer)) or not 0 <= i < len(labels) for i in indices):
+            raise ValueError("Annotation indices must identify supplied groups")
+        for i in indices:
+            annotations.append(ax.annotate(format(float(quantiles[i]), value_format), (i, quantiles[i]),
+                                          xytext=(0, 8), textcoords="offset points", ha="center", va="bottom",
+                                          color=line_color, fontsize=mpl.rcParams["font.size"]-.7, fontweight="bold"))
+        ax.margins(y=.18)
     ax.set_xticks(positions, labels); ax.set_xlim(-.6, len(labels) - .4)
     ax.set_ylabel(ylabel); clean_axes(ax)
-    return {"boxes": boxes, "quantiles": quantiles, "quantile_line": line, "medians": medians}
+    return {"boxes": boxes, "quantiles": quantiles, "quantile_line": line, "medians": medians,
+            "summary_mode": summary_mode, "summary": summaries, "annotations": annotations}
 
 
 def category_comparison(ax, labels, bars, series, *, bar_label="Occupancy",
-                        bar_color="#619ACA", ylabel="Share (%)"):
+                        bar_color="#619ACA", ylabel="Share (%)", bar_style="filled",
+                        bar_labels=False, value_format=".1f", legend=True, legend_options=None,
+                        label_wrap=None, tick_font_size=None):
     """Same-unit bars and line series on one axis, without normalization.
 
     The caller supplies a common unit through ylabel and converts quantities
@@ -291,6 +465,8 @@ def category_comparison(ax, labels, bars, series, *, bar_label="Occupancy",
         raise ValueError("Bars and category labels must have the same length")
     if not mcolors.is_color_like(bar_color):
         raise ValueError("bar_color must be a valid color")
+    if bar_style not in ("filled", "outlined"):
+        raise ValueError("bar_style must be filled or outlined")
     if not series:
         raise ValueError("Supply at least one line series")
     names = [str(bar_label)]; checked = []
@@ -304,18 +480,52 @@ def category_comparison(ax, labels, bars, series, *, bar_label="Occupancy",
         if not mcolors.is_color_like(color):
             raise ValueError("Each series needs a valid color")
         MarkerStyle(marker)  # Validate before creating any bars or lines.
-        checked.append((name, values, color, marker))
+        low, high = _bounds(values, block.get("lower"), block.get("upper"))
+        alpha = float(block.get("band_alpha", .12))
+        if not math.isfinite(alpha) or not 0 <= alpha <= 1:
+            raise ValueError("band_alpha must be between zero and one")
+        checked.append((name, values, color, marker, low, high, alpha, block))
     _labels(names, name="legend labels")
     positions = np.arange(len(labels))
-    bar_artists = ax.bar(positions, bars, width=.6, label=str(bar_label), color=bar_color,
-                         alpha=.55, edgecolor="none", zorder=2)
-    lines = [ax.plot(positions, values, label=name, color=color, marker=marker,
-                     linewidth=1.3, markersize=3.5, zorder=3)[0]
-             for name, values, color, marker in checked]
-    ax.set_xticks(positions, labels); ax.set_xlim(-.6, len(labels) - .4)
+    bar_artists = ax.bar(positions, bars, width=.6, label=str(bar_label),
+                         color=mcolors.to_rgba(bar_color, .10 if bar_style == "outlined" else .55),
+                         alpha=None,
+                         edgecolor=paired_edge(bar_color), linewidth=EDGE_WIDTH, zorder=2)
+    lines, bands, annotations = [], [], []
+    if bar_labels:
+        for position, value in zip(positions, bars):
+            annotations.append(ax.annotate(format(float(value), value_format), (position, value),
+                              xytext=(0, 2.5), textcoords="offset points", ha="center", va="bottom",
+                              color=bar_color, fontsize=mpl.rcParams["font.size"]-1.1, fontweight="bold"))
+    for name, values, color, marker, low, high, alpha, block in checked:
+        if low is not None:
+            bands.append(ax.fill_between(positions, low, high, color=color, alpha=alpha, linewidth=0, zorder=1))
+        line = ax.plot(positions, values, label=name, color=color, marker=marker,
+                       linestyle=block.get("linestyle", "-"), linewidth=1.3, markersize=3.5, zorder=3)[0]
+        lines.append(line)
+        chosen = block.get("annotate", [])
+        indices = list(range(len(labels))) if chosen is True else list(chosen or [])
+        if any(isinstance(i, bool) or not isinstance(i, (int, np.integer)) or not 0 <= i < len(labels) for i in indices):
+            raise ValueError("Series annotation indices must identify supplied categories")
+        for i in indices:
+            annotations.append(ax.annotate(format(float(values[i]), block.get("value_format", value_format)),
+                              (i, values[i]), xytext=(0, float(block.get("annotation_offset", 5))),
+                              textcoords="offset points", ha="center", va="bottom", color=color,
+                              fontsize=mpl.rcParams["font.size"]-.7, fontweight="bold"))
+    display_labels = labels
+    if label_wrap is not None:
+        if isinstance(label_wrap, bool) or not isinstance(label_wrap, int) or label_wrap < 2:
+            raise ValueError("label_wrap must be an integer of at least two characters")
+        import textwrap
+        display_labels = ["\n".join(textwrap.fill(line, width=label_wrap, break_on_hyphens=False)
+                                   for line in label.split("\n")) for label in labels]
+    ax.set_xticks(positions, display_labels); ax.set_xlim(-.6, len(labels) - .4)
+    if tick_font_size is not None:
+        ax.tick_params(axis="x", labelsize=_positive(tick_font_size, "tick_font_size"))
     ax.set_ylabel(ylabel); clean_axes(ax)
-    ax.legend(handles=[bar_artists, *lines], frameon=False)
-    return {"bars": bar_artists, "lines": lines}
+    if legend:
+        compact_legend(ax,handles=[bar_artists, *lines], **(legend_options or {}))
+    return {"bars": bar_artists, "lines": lines, "bands": bands, "annotations": annotations}
 
 
 def _matrix(values, row_labels, col_labels):
@@ -572,10 +782,22 @@ def audit_figure(fig):
     with warnings.catch_warnings(record=True) as captured:
         warnings.simplefilter("always")
         fig.canvas.draw()
+        if fig.get_layout_engine() is not None:
+            # Constrained axes can change tick domains during the first draw.
+            # Measure the settled layout that the actual export will use.
+            fig.canvas.draw()
     glyphs = sorted({str(w.message) for w in captured if "Glyph" in str(w.message) and "missing" in str(w.message)})
     renderer = fig.canvas.get_renderer(); bounds = fig.bbox
     outside_ticks = set()
-    for ax in fig.axes:
+    for ax in _figure_axes(fig):
+        if not ax.axison:
+            # Axis-off layout cells keep tick Text objects that are not painted.
+            outside_ticks.update([ax.xaxis.label, ax.yaxis.label,
+                                  ax.xaxis.get_offset_text(), ax.yaxis.get_offset_text()])
+            for axis in (ax.xaxis, ax.yaxis):
+                for tick in [*axis.get_major_ticks(), *axis.get_minor_ticks()]:
+                    outside_ticks.update((tick.label1, tick.label2))
+            continue
         for axis in (ax.xaxis, ax.yaxis):
             low, high = sorted(axis.get_view_interval())
             for tick in [*axis.get_major_ticks(), *axis.get_minor_ticks()]:
@@ -596,12 +818,13 @@ def audit_figure(fig):
             "width_mm": float(fig.get_figwidth() * 25.4), "height_mm": float(fig.get_figheight() * 25.4)}
 
 
-def save_figure(fig, base_path, formats=("svg", "pdf", "png"), dpi=220,
+def save_figure(fig, base_path, formats=("png",), dpi=300,
                 metadata=None, protected_paths=()):
     """Export at the figure's physical size; never change numeric artists.
 
-    SVG keeps live text and vector cells; PDF uses embedded TrueType fonts.
-    PNG is a preview. Supply protected_paths for every upstream input file.
+    PNG is the ordinary deliverable. SVG/PDF are explicit format opt-ins.
+    An unspecified editable request routes to native PPTX in the skill workflow.
+    Supply protected_paths for every upstream input file.
     """
     base = Path(base_path)
     if base.suffix.lower() in (".svg", ".pdf", ".png"): base = base.with_suffix("")
@@ -617,6 +840,7 @@ def save_figure(fig, base_path, formats=("svg", "pdf", "png"), dpi=220,
     protected = {Path(path).resolve() for path in protected_paths}
     if any(path.resolve() in protected for path in targets.values()):
         raise ValueError("An export would overwrite protected source data")
+    finish_paper_style(fig)
     qa = audit_figure(fig)
     if qa["missing_glyphs"]:
         raise ValueError("Missing glyphs: select an installed CJK/font fallback before export: " + "; ".join(qa["missing_glyphs"]))

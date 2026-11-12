@@ -26,6 +26,35 @@ class LinkedLayoutTests(unittest.TestCase):
     def tearDown(self):
         plt.close("all")
 
+    def test_method_node_uses_quiet_frame_and_role_based_font_weight(self):
+        fig,ax=plt.subplots();ax.set_xlim(0,10);ax.set_ylim(0,10)
+        ordinary=layouts.diagram_node(ax,(1,1,3,2),"Conv")
+        primary=layouts.diagram_node(ax,(5,1,4,2),"Transformer",emphasis=True)
+        self.assertEqual(ordinary["texts"][0].get_fontweight(),"normal")
+        self.assertEqual(primary["texts"][0].get_fontweight(),"bold")
+        self.assertTrue(all(value>.8 for value in ordinary["frame"].get_facecolor()[:3]))
+        count=len(ax.patches)
+        with self.assertRaisesRegex(ValueError,"exceeds"):
+            layouts.diagram_node(ax,(1,5,.01,.01),"A long label")
+        self.assertEqual(len(ax.patches),count)
+
+    def test_route_audit_distinguishes_crossing_from_a_branch_port(self):
+        crossing=layouts.audit_connector_routes([[[0,1],[2,1]],[[1,0],[1,2]]])
+        self.assertEqual(len(crossing["interior_crossings"]),1)
+        branch=layouts.audit_connector_routes([[[0,1],[2,1]],[[1,1],[1,2]]])
+        self.assertEqual(branch["interior_crossings"],[])
+
+    def test_coordinate_connector_preserves_requested_ports_and_rejects_diagonals(self):
+        fig,ax=plt.subplots()
+        points=[[1,2],[4,2],[4,5]]
+        artists=layouts.orthogonal_connector(ax,points)
+        self.assertEqual(len(artists),2)
+        np.testing.assert_array_equal(artists[0].get_xydata(),points[:2])
+        with self.assertRaisesRegex(ValueError,"horizontal or vertical"):
+            layouts.orthogonal_connector(ax,[[1,2],[4,5]])
+        with self.assertRaises(ValueError):
+            layouts.orthogonal_connector(ax,[[1,2],[1,2]])
+
     def joint(self):
         return {"x":[0,.5,1,2],"y":[4,2,1,0],"bin_edges_x":[0,1,2],
                 "bin_edges_y":[0,1,2,4],"xlabel":"测量 A","ylabel":"测量 B"}
@@ -227,7 +256,7 @@ class LinkedLayoutTests(unittest.TestCase):
                     qa=p.audit_figure(fig)
                     self.assertEqual(qa["missing_glyphs"],[])
                     self.assertEqual(qa["text_outside_canvas"],[])
-                    outputs=p.save_figure(fig,Path(folder)/kind)
+                    outputs=p.save_figure(fig,Path(folder)/kind,formats=("svg","pdf","png"))
                     self.assertTrue(outputs["svg"].exists() and outputs["pdf"].exists() and outputs["png"].exists())
                     self.assertIn("<text",outputs["svg"].read_text(encoding="utf-8"))
                     self.assertFalse([w for w in caught if "Glyph" in str(w.message)])

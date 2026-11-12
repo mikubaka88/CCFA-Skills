@@ -285,7 +285,17 @@
       ],
       "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
       "data_requirements": {},
-      "horizontal_labels": true
+      "horizontal_labels": true,
+      "input_types": [
+        "estimates_intervals",
+        "grouped_samples"
+      ],
+      "chart_types": [
+        "interval"
+      ],
+      "analysis_elements": [
+        "estimates"
+      ]
     },
     {
       "id": "line_band",
@@ -380,7 +390,16 @@
       "data_requirements": {
         "ordered_x": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "ordered_series"
+      ],
+      "chart_types": [
+        "line"
+      ],
+      "analysis_elements": [
+        "curve"
+      ]
     },
     {
       "id": "density_map",
@@ -421,7 +440,17 @@
       "data_requirements": {
         "raw_samples": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "raw_xy",
+        "binned_counts"
+      ],
+      "chart_types": [
+        "density"
+      ],
+      "analysis_elements": [
+        "density"
+      ]
     },
     {
       "id": "binned_summary",
@@ -464,7 +493,20 @@
       "data_requirements": {
         "raw_samples": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "grouped_samples",
+        "quantile_summaries"
+      ],
+      "chart_types": [
+        "distribution",
+        "interval",
+        "line"
+      ],
+      "analysis_elements": [
+        "central_range",
+        "tail_quantiles"
+      ]
     },
     {
       "id": "category_comparison",
@@ -496,7 +538,18 @@
       "study_ids": [],
       "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
       "data_requirements": {},
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "category_series"
+      ],
+      "chart_types": [
+        "bar",
+        "line"
+      ],
+      "analysis_elements": [
+        "category_levels",
+        "condition_curves"
+      ]
     },
     {
       "id": "matrix_heatmap",
@@ -551,7 +604,16 @@
       ],
       "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
       "data_requirements": {},
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "matrix_values"
+      ],
+      "chart_types": [
+        "heatmap"
+      ],
+      "analysis_elements": [
+        "matrix"
+      ]
     },
     {
       "id": "dot_matrix",
@@ -590,7 +652,17 @@
       ],
       "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
       "data_requirements": {},
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "matrix_values"
+      ],
+      "chart_types": [
+        "heatmap",
+        "scatter"
+      ],
+      "analysis_elements": [
+        "matrix"
+      ]
     },
     {
       "id": "pareto_scatter",
@@ -636,7 +708,17 @@
       ],
       "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
       "data_requirements": {},
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "estimates_intervals",
+        "raw_xy"
+      ],
+      "chart_types": [
+        "scatter"
+      ],
+      "analysis_elements": [
+        "joint_metrics"
+      ]
     },
     {
       "id": "paired_distribution",
@@ -677,7 +759,18 @@
       "data_requirements": {
         "raw_samples": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "paired_samples"
+      ],
+      "chart_types": [
+        "distribution",
+        "scatter"
+      ],
+      "analysis_elements": [
+        "paired_observations",
+        "group_summary"
+      ]
     },
     {
       "id": "embedding_scatter",
@@ -721,7 +814,17 @@
       "data_requirements": {
         "embedding_supplied": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "spatial_coordinates"
+      ],
+      "chart_types": [
+        "scatter",
+        "trajectory"
+      ],
+      "analysis_elements": [
+        "spatial_structure"
+      ]
     },
     {
       "id": "forest_intervals",
@@ -766,7 +869,17 @@
       "data_requirements": {
         "intervals_supplied": true
       },
-      "horizontal_labels": true
+      "horizontal_labels": true,
+      "input_types": [
+        "estimates_intervals"
+      ],
+      "chart_types": [
+        "interval"
+      ],
+      "analysis_elements": [
+        "estimates",
+        "supplied_intervals"
+      ]
     },
     {
       "id": "volcano",
@@ -797,7 +910,17 @@
       "study_ids": [],
       "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
       "data_requirements": {},
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "estimates_intervals"
+      ],
+      "chart_types": [
+        "scatter"
+      ],
+      "analysis_elements": [
+        "effect_significance",
+        "threshold_reference"
+      ]
     },
     {
       "id": "calibration",
@@ -849,7 +972,18 @@
       ],
       "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
       "data_requirements": {},
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "binned_counts"
+      ],
+      "chart_types": [
+        "line",
+        "bar"
+      ],
+      "analysis_elements": [
+        "calibration_curve",
+        "reference_comparison"
+      ]
     },
     {
       "id": "ecdf",
@@ -896,7 +1030,17 @@
       "data_requirements": {
         "raw_samples": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "grouped_samples"
+      ],
+      "chart_types": [
+        "distribution",
+        "line"
+      ],
+      "analysis_elements": [
+        "cumulative_distribution"
+      ]
     },
     {
       "id": "survival_step",
@@ -933,7 +1077,16 @@
         "ordered_x": true,
         "survival_estimate": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "ordered_series"
+      ],
+      "chart_types": [
+        "line"
+      ],
+      "analysis_elements": [
+        "survival_curve"
+      ]
     },
     {
       "id": "raincloud",
@@ -981,7 +1134,20 @@
       "data_requirements": {
         "raw_samples": true
       },
-      "horizontal_labels": true
+      "horizontal_labels": true,
+      "input_types": [
+        "grouped_samples"
+      ],
+      "chart_types": [
+        "distribution",
+        "scatter",
+        "interval"
+      ],
+      "analysis_elements": [
+        "raw_samples",
+        "distribution_shape",
+        "group_summary"
+      ]
     },
     {
       "id": "ridgeline",
@@ -1014,7 +1180,16 @@
       "data_requirements": {
         "raw_samples": true
       },
-      "horizontal_labels": true
+      "horizontal_labels": true,
+      "input_types": [
+        "grouped_samples"
+      ],
+      "chart_types": [
+        "distribution"
+      ],
+      "analysis_elements": [
+        "group_distributions"
+      ]
     },
     {
       "id": "ranked_intervals",
@@ -1056,7 +1231,17 @@
       "data_requirements": {
         "intervals_supplied": true
       },
-      "horizontal_labels": true
+      "horizontal_labels": true,
+      "input_types": [
+        "estimates_intervals"
+      ],
+      "chart_types": [
+        "interval"
+      ],
+      "analysis_elements": [
+        "ranked_estimates",
+        "supplied_intervals"
+      ]
     },
     {
       "id": "dumbbell",
@@ -1093,7 +1278,19 @@
       "data_requirements": {
         "paired": true
       },
-      "horizontal_labels": true
+      "horizontal_labels": true,
+      "input_types": [
+        "paired_samples",
+        "estimates_intervals"
+      ],
+      "chart_types": [
+        "interval",
+        "scatter"
+      ],
+      "analysis_elements": [
+        "matched_values",
+        "paired_change"
+      ]
     },
     {
       "id": "bland_altman",
@@ -1130,7 +1327,18 @@
       "data_requirements": {
         "paired": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "paired_samples"
+      ],
+      "chart_types": [
+        "scatter"
+      ],
+      "analysis_elements": [
+        "pair_mean",
+        "pair_difference",
+        "agreement_summary"
+      ]
     },
     {
       "id": "residual_diagnostics",
@@ -1164,7 +1372,17 @@
       "study_ids": [],
       "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
       "data_requirements": {},
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "raw_xy"
+      ],
+      "chart_types": [
+        "scatter"
+      ],
+      "analysis_elements": [
+        "prediction_error",
+        "zero_reference"
+      ]
     },
     {
       "id": "quantile_fan",
@@ -1202,7 +1420,19 @@
         "ordered_x": true,
         "quantiles_supplied": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "ordered_series",
+        "quantile_summaries"
+      ],
+      "chart_types": [
+        "line",
+        "interval"
+      ],
+      "analysis_elements": [
+        "central_curve",
+        "quantile_ranges"
+      ]
     },
     {
       "id": "precision_recall",
@@ -1240,7 +1470,16 @@
       "data_requirements": {
         "ordered_x": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "ordered_series"
+      ],
+      "chart_types": [
+        "line"
+      ],
+      "analysis_elements": [
+        "precision_recall"
+      ]
     },
     {
       "id": "roc",
@@ -1280,7 +1519,17 @@
       "data_requirements": {
         "ordered_x": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "ordered_series"
+      ],
+      "chart_types": [
+        "line"
+      ],
+      "analysis_elements": [
+        "roc_curve",
+        "chance_reference"
+      ]
     },
     {
       "id": "risk_coverage",
@@ -1318,7 +1567,16 @@
       "data_requirements": {
         "ordered_x": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "ordered_series"
+      ],
+      "chart_types": [
+        "line"
+      ],
+      "analysis_elements": [
+        "risk_coverage"
+      ]
     },
     {
       "id": "rank_trajectories",
@@ -1353,7 +1611,19 @@
       "study_ids": [],
       "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
       "data_requirements": {},
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "ordered_series",
+        "category_series"
+      ],
+      "chart_types": [
+        "line",
+        "trajectory"
+      ],
+      "analysis_elements": [
+        "rank_change",
+        "identity_paths"
+      ]
     },
     {
       "id": "parallel_coordinates",
@@ -1393,7 +1663,18 @@
       ],
       "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
       "data_requirements": {},
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "matrix_values",
+        "category_series"
+      ],
+      "chart_types": [
+        "line"
+      ],
+      "analysis_elements": [
+        "multiple_metrics",
+        "identity_paths"
+      ]
     },
     {
       "id": "ternary",
@@ -1429,7 +1710,17 @@
       "data_requirements": {
         "composition": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "compositions"
+      ],
+      "chart_types": [
+        "composition",
+        "scatter"
+      ],
+      "analysis_elements": [
+        "three_part_composition"
+      ]
     },
     {
       "id": "transition_matrix",
@@ -1464,7 +1755,18 @@
       "study_ids": [],
       "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
       "data_requirements": {},
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "matrix_values",
+        "compositions"
+      ],
+      "chart_types": [
+        "heatmap",
+        "composition"
+      ],
+      "analysis_elements": [
+        "transition_counts"
+      ]
     },
     {
       "id": "mosaic_composition",
@@ -1511,7 +1813,18 @@
       "data_requirements": {
         "counts_supplied": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "compositions"
+      ],
+      "chart_types": [
+        "composition",
+        "bar"
+      ],
+      "analysis_elements": [
+        "group_composition",
+        "denominators"
+      ]
     },
     {
       "id": "matrix_bubbles",
@@ -1547,7 +1860,17 @@
       "study_ids": [],
       "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
       "data_requirements": {},
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "matrix_values"
+      ],
+      "chart_types": [
+        "heatmap",
+        "scatter"
+      ],
+      "analysis_elements": [
+        "joint_matrix_encodings"
+      ]
     },
     {
       "id": "signed_effects",
@@ -1582,7 +1905,18 @@
       "study_ids": [],
       "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
       "data_requirements": {},
-      "horizontal_labels": true
+      "horizontal_labels": true,
+      "input_types": [
+        "estimates_intervals",
+        "category_series"
+      ],
+      "chart_types": [
+        "bar"
+      ],
+      "analysis_elements": [
+        "signed_values",
+        "zero_reference"
+      ]
     },
     {
       "id": "convergence_envelope",
@@ -1622,7 +1956,19 @@
       ],
       "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
       "data_requirements": {},
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "ordered_series",
+        "grouped_samples"
+      ],
+      "chart_types": [
+        "line",
+        "interval"
+      ],
+      "analysis_elements": [
+        "central_curve",
+        "supplied_range"
+      ]
     },
     {
       "id": "grouped_dot",
@@ -1673,7 +2019,18 @@
       ],
       "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
       "data_requirements": {},
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "category_series",
+        "estimates_intervals"
+      ],
+      "chart_types": [
+        "scatter",
+        "interval"
+      ],
+      "analysis_elements": [
+        "group_estimates"
+      ]
     },
     {
       "id": "contour_response",
@@ -1720,7 +2077,17 @@
       "data_requirements": {
         "complete_grid": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "matrix_values"
+      ],
+      "chart_types": [
+        "heatmap"
+      ],
+      "analysis_elements": [
+        "response_surface",
+        "isolines"
+      ]
     },
     {
       "id": "robustness_profile",
@@ -1764,7 +2131,17 @@
       "data_requirements": {
         "ordered_x": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "ordered_series",
+        "category_series"
+      ],
+      "chart_types": [
+        "line"
+      ],
+      "analysis_elements": [
+        "condition_profiles"
+      ]
     },
     {
       "id": "cost_quality_frontier",
@@ -1808,7 +2185,19 @@
       ],
       "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
       "data_requirements": {},
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "estimates_intervals",
+        "raw_xy"
+      ],
+      "chart_types": [
+        "scatter",
+        "line"
+      ],
+      "analysis_elements": [
+        "cost_quality",
+        "dominance_relation"
+      ]
     },
     {
       "id": "quadrant_scatter",
@@ -1859,7 +2248,18 @@
       ],
       "basis": "Adaptable statistical grammar; linked source cards describe inspected designs and explicit adaptations.",
       "data_requirements": {},
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "raw_xy",
+        "estimates_intervals"
+      ],
+      "chart_types": [
+        "scatter"
+      ],
+      "analysis_elements": [
+        "joint_metrics",
+        "quadrant_reference"
+      ]
     },
     {
       "id": "mean_delta",
@@ -1907,7 +2307,18 @@
       "data_requirements": {
         "paired": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "paired_samples"
+      ],
+      "chart_types": [
+        "scatter",
+        "interval"
+      ],
+      "analysis_elements": [
+        "baseline",
+        "change_relation"
+      ]
     },
     {
       "id": "mirrored_histogram",
@@ -1959,7 +2370,19 @@
       "data_requirements": {
         "raw_samples": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "grouped_samples",
+        "binned_counts"
+      ],
+      "chart_types": [
+        "distribution",
+        "bar"
+      ],
+      "analysis_elements": [
+        "matched_bins",
+        "group_comparison"
+      ]
     },
     {
       "id": "mirror_stem",
@@ -2002,7 +2425,18 @@
       "data_requirements": {
         "ordered_x": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "ordered_series"
+      ],
+      "chart_types": [
+        "line",
+        "bar"
+      ],
+      "analysis_elements": [
+        "aligned_positions",
+        "two_group_response"
+      ]
     },
     {
       "id": "binned_group_composition",
@@ -2045,7 +2479,19 @@
       "data_requirements": {
         "raw_samples": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "grouped_samples",
+        "compositions"
+      ],
+      "chart_types": [
+        "bar",
+        "composition"
+      ],
+      "analysis_elements": [
+        "bin_totals",
+        "conditional_composition"
+      ]
     },
     {
       "id": "ordered_trajectory",
@@ -2090,7 +2536,19 @@
       "data_requirements": {
         "checkpoint_order": true
       },
-      "horizontal_labels": false
+      "horizontal_labels": false,
+      "input_types": [
+        "spatial_coordinates",
+        "ordered_series"
+      ],
+      "chart_types": [
+        "trajectory",
+        "scatter"
+      ],
+      "analysis_elements": [
+        "trajectory",
+        "order_encoding"
+      ]
     }
   ],
   "fusions": [
@@ -2365,5 +2823,155 @@
         "association"
       ]
     }
-  ]
+  ],
+  "input_types": {
+    "raw_xy": {
+      "title": "二维原始观测",
+      "description": "成对的连续坐标；可有显式权重。"
+    },
+    "grouped_samples": {
+      "title": "分组样本",
+      "description": "各组的逐项观测，允许从样本计算已说明的摘要。"
+    },
+    "paired_samples": {
+      "title": "配对观测",
+      "description": "有共同样本身份或明确配对顺序的两组测量。"
+    },
+    "ordered_series": {
+      "title": "有序序列",
+      "description": "时间、步数、位置或阈值上的有序测量。"
+    },
+    "estimates_intervals": {
+      "title": "估计值与区间",
+      "description": "逐项汇总值，以及给定的上下界和区间定义。"
+    },
+    "quantile_summaries": {
+      "title": "分位数摘要",
+      "description": "已给定的median/P90/P95/P99等，不等同于原始样本。"
+    },
+    "binned_counts": {
+      "title": "分箱计数",
+      "description": "箱/格点中心或边界及计数，不冒充逐项观测。"
+    },
+    "category_series": {
+      "title": "类别与多指标",
+      "description": "同一组类别上的柱值、曲线或多组指标。"
+    },
+    "matrix_values": {
+      "title": "矩阵数据",
+      "description": "明确行列身份、顺序、单位和缺失值的矩阵。"
+    },
+    "spatial_coordinates": {
+      "title": "空间或嵌入坐标",
+      "description": "已提供的空间或嵌入结果；不现场捏造投影。"
+    },
+    "compositions": {
+      "title": "组成与流转",
+      "description": "有明确分母的份额、组成或转移计数。"
+    }
+  },
+  "chart_types": {
+    "line": {
+      "title": "曲线与带状"
+    },
+    "bar": {
+      "title": "柱形与差值"
+    },
+    "interval": {
+      "title": "区间与分位数"
+    },
+    "distribution": {
+      "title": "分布与密度摘要"
+    },
+    "density": {
+      "title": "二维密度"
+    },
+    "scatter": {
+      "title": "散点与取舍"
+    },
+    "heatmap": {
+      "title": "矩阵与热图"
+    },
+    "composition": {
+      "title": "组成与流转"
+    },
+    "trajectory": {
+      "title": "轨迹与空间"
+    }
+  },
+  "element_names": {
+    "curve": "曲线",
+    "density": "密度",
+    "central_range": "中心区间",
+    "tail_quantiles": "尾部分位数",
+    "category_levels": "类别量",
+    "condition_curves": "条件曲线",
+    "matrix": "矩阵",
+    "estimates": "估计值",
+    "joint_metrics": "联合指标",
+    "paired_observations": "配对观测",
+    "group_summary": "分组摘要",
+    "spatial_structure": "空间结构",
+    "supplied_intervals": "给定区间",
+    "effect_significance": "效应与显著性",
+    "supplied_thresholds": "指定阈值",
+    "calibration_curve": "校准曲线",
+    "reference_comparison": "参考关系",
+    "cumulative_distribution": "累计分布",
+    "survival_curve": "生存曲线",
+    "raw_samples": "逐项样本",
+    "distribution_shape": "分布形态",
+    "group_distributions": "分组分布",
+    "ranked_estimates": "排序估计值",
+    "matched_values": "配对取值",
+    "paired_change": "配对变化",
+    "pair_mean": "配对均值",
+    "pair_difference": "配对差",
+    "agreement_summary": "一致性摘要",
+    "prediction_error": "预测误差",
+    "zero_reference": "零值基线",
+    "central_curve": "中心趋势",
+    "quantile_ranges": "分位范围",
+    "precision_recall": "查准查全",
+    "roc_curve": "ROC曲线",
+    "chance_reference": "随机基线",
+    "risk_coverage": "拒答取舍",
+    "rank_change": "排名变化",
+    "identity_paths": "身份连线",
+    "multiple_metrics": "多个指标",
+    "three_part_composition": "三元组成",
+    "transition_counts": "转移计数",
+    "group_composition": "分组组成",
+    "denominators": "分母",
+    "joint_matrix_encodings": "矩阵多重编码",
+    "signed_values": "正负效应",
+    "run_variation": "重复运行变化",
+    "group_estimates": "分组估计",
+    "response_surface": "响应面",
+    "isolines": "等高线",
+    "condition_profiles": "条件变化",
+    "cost_quality": "代价质量",
+    "dominance_relation": "支配关系",
+    "supplied_quadrants": "给定分区",
+    "baseline": "基线",
+    "change_relation": "变化关联",
+    "matched_bins": "共同分箱",
+    "group_comparison": "组间比较",
+    "aligned_positions": "对齐位置",
+    "two_group_response": "两组响应",
+    "bin_totals": "分箱总量",
+    "conditional_composition": "条件组成",
+    "trajectory": "轨迹",
+    "order_encoding": "顺序编码",
+    "supplied_range": "给定范围",
+    "conditional_region": "条件区域",
+    "threshold_boundaries": "阈值边界",
+    "conditional_state_share": "条件占比",
+    "weighted_share": "加权占比",
+    "supplied_reference": "给定参考",
+    "supplied_threshold": "给定阈值",
+    "selected_value_labels": "关键数值",
+    "threshold_reference": "阈值参考",
+    "quadrant_reference": "分区参考"
+  }
 }
