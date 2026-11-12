@@ -4,7 +4,7 @@ For Chinese or mixed-script figures, check UTF-8 source text separately from fon
 
 Capture native converter diagnostics as bytes and decode them with the verified tool encoding before reporting them as UTF-8. Some Windows converters emit GBK logs even when their SVG/PDF text is correct. Confirm the encoding against known text or paths; do not apply a blanket GBK fallback or rewrite correct input files. A readable font/cache warning still needs its own assessment; successful log decoding does not resolve the underlying warning.
 
-Visual QA is based on rendered output, not source optimism. When source files exist, compile or render and inspect the pages or exported images that contain the target figures/tables.
+Ordinary figure work delivers PNG through GPT Image, Python, or their combination. Editable delivery is opt-in and prefers native PPTX; new SVG files require an explicit SVG request. Visual QA is based on rendered output, not source optimism. When source files exist, compile or render and inspect the pages or exported images that contain the target figures/tables.
 
 ## Scope And Reuse
 
@@ -22,14 +22,19 @@ Use one current build preview per artifact under the shared working directory. O
 
 ## Visual Quality
 
+- For reference reconstruction, compare an element inventory against the actual render: data mark, scales/ticks, quantitative colorbar, threshold region, summary-statistic definitions, uncertainty, marker/line encoding, selected labels, legend and caption. Record a genuine omission or unavailable input in the current specification; a similar-looking layout alone is not complete reconstruction.
+- Check analytical semantics in the artists: a median–P90 box is not an IQR box, a P99 whisker is not a 1.5-IQR whisker, and a P95 marker is not a mean. A two-condition corridor uses both inequalities. State occupancy and weighted sensitivity share require their respective denominators; do not substitute one for the other. Log-count color scales and line-series domains remain explicit.
+
 - Inspect the overview for a clear reading path and content-fit canvas, then the final paper/display width for text and object recognition. A paper mechanism figure exposes its computations; remove decorative banners, prose cards, or generic icons that obscure them.
 - Check axis labels, legends, panel labels, captions, table notes, and surrounding content for clipping/overlap. Captions remain near the artifact, float order follows the argument, and cross-references resolve. Tables fit margins without unreadable shrinkage.
 - Align data rectangles and corresponding crop regions across panels, accounting for unequal outer tick-label margins and fixed-aspect geometry. Shared legends describe matching encodings and do not duplicate every panel's entries.
 - Check peer edges, text baselines, branch ports, repeated visible gaps, padding, icon optical sizes, and connector clearance against chosen anchors/tokens. Equal roles may have different widths to fit their content. In vector/native output, verify intended equalities within 1 design px after unit conversion; raster inspection cannot certify pixel-exact geometry.
 - Inspect outer margins and internal holes separately. A module-sized empty patch prompts a layout check; retain plotting whitespace and connector lanes. Compactness comes from arranging supported content, without adding empty frames or decorative objects.
 - Verify the final physical font sizes after embedding or composing panels, including axes, legends, math, and indices. Resize geometry separately from typography/strokes when necessary; reflow crowded content before reducing one label below its peers' readable scale.
-- Use the selected Times New Roman, Comic Sans MS, or user/venue font consistently, with actual CJK coverage and appropriate math glyphs. Check substitution/embedding in editable formats; raster appearance cannot prove a font face. Ordinary labels use natural case while canonical acronyms remain uppercase.
+- Use Times New Roman by default, Comic Sans MS when selected, or an explicit user/venue override. Bold titles, legend labels/titles, x/y labels/ticks and colorbar text consistently; inspect the actual artists. Bars and box/whisker/cap boundaries use opaque darker shades paired with their fill hue (about 1.1–1.3 pt at the normal figure size) with lighter fills. Do not apply those borders to every scatter point, density bin or heatmap cell. Use the chosen font consistently, with actual CJK coverage and appropriate math glyphs. Check substitution/embedding in editable formats; raster appearance cannot prove a font face. Ordinary labels use natural case while canonical acronyms remain uppercase.
 - Color roles remain stable and legible in grayscale/color-vision checks. The chosen preset coordinates strokes, fills, type, and recognizable illustrations with consistent viewpoint/detail. Its venue suggestion has not been presented as an official rule.
+
+For a compact paper graphic, inspect the real single-column/full-width slot rather than a large preview. Count the distinct supported relationships conveyed by position, grouping and additional keys; do not reward raw mark count or a filled background. Remove duplicate titles, legends, marginal whitespace and unjustified subplots before shrinking type. A necessary zoom keeps the main coordinate definitions and makes the crop explicit. For code-authored diagrams, verify horizontal/vertical connector segments, target ports, labeled junctions and text clearance from source coordinates; repair the source rather than resampling its raster output.
 
 ## Requested Format And Edit Checks
 
@@ -39,7 +44,7 @@ Use one current build preview per artifact under the shared working directory. O
 
 ## QA Ledger
 
-Use this table inside the current specification/report only when QA findings must persist; do not create another ledger by default:
+Inspect science and appearance together once, and repair observed defects locally; a checklist is not an instruction to regenerate a satisfactory figure. Use this table inside the current specification/report only when QA findings must persist; do not create another ledger by default:
 
 ```text
 | Issue | Artifact | Page/section | Severity | Fix | Owner | Status |

@@ -4,7 +4,7 @@ Use this file to design CCF-A evidence packages without fabricating results.
 
 ## Evidence Principle
 
-Start from the research claim or decision, not the table. Each experiment should resolve a relevant question such as:
+Start from the scientific question and competing explanations, then choose the observation that can separate them. Keep the intended capability distinct from its convenient metric: a score can improve through a shortcut while the target failure persists. A diagnostic, counterexample, scaling relation or controlled comparison may be more informative than another module ablation. Use an observed result as an observation, and a planned discriminator as a plan. Each experiment should resolve a relevant question such as:
 
 - Does the method solve the stated problem?
 - Why does the mechanism work?

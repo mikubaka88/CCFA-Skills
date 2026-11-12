@@ -25,6 +25,209 @@ class FigureLibraryTests(unittest.TestCase):
     def tearDown(self):
         plt.close("all")
 
+    def test_two_taxonomies_cover_every_grammar_and_filter_independently(self):
+        catalog=f.catalog()
+        for entry in catalog["charts"]:
+            self.assertTrue(entry["input_types"] and entry["chart_types"] and entry["analysis_elements"])
+            self.assertTrue(set(entry["input_types"])<=set(catalog["input_types"]))
+            self.assertTrue(set(entry["chart_types"])<=set(catalog["chart_types"]))
+        result=f.route("category_comparison",fields=["labels","bars","series"],input_type="category_series",chart_type="bar")
+        self.assertEqual([row["id"] for row in result["candidates"]],["category_comparison"])
+        self.assertEqual(f.route("category_comparison",input_type="paired_samples")["candidates"],[])
+        with self.assertRaisesRegex(ValueError,"Unknown input"):
+            f.route("comparison",input_type="invented")
+
+    def test_element_plan_only_adds_layers_supported_by_supplied_fields(self):
+        plain=f.element_plan("line_band",["x","y"])
+        self.assertTrue(plain["needs_enrichment"])
+        rich=f.element_plan("line_band",["x","y","lower","upper"])
+        self.assertIn("supplied_range",rich["add_from_supplied_data"])
+        self.assertFalse(rich["needs_enrichment"])
+        density=f.element_plan("density_map",["x","y","corridor"])
+        self.assertNotIn("weighted_share",density["add_from_supplied_data"])
+        self.assertIn("weighted_share",f.element_plan("density_map",["x","y","corridor","weights"])["add_from_supplied_data"])
+        self.assertNotIn("weighted_share",f.element_plan("density_map",["x","y","counts","corridor","weights"])["add_from_supplied_data"])
+        self.assertIn("weighted_share",f.element_plan("density_map",["x","y","counts","corridor","weights","weight_kind"])["add_from_supplied_data"])
+
+    def test_actual_data_format_separates_raw_samples_and_summaries(self):
+        self.assertEqual(f.describe_plot("binned_summary",{"summary":{"median":[1]}})["input_types"],["quantile_summaries"])
+        self.assertEqual(f.describe_plot("binned_summary",{"samples":[[1,2,3]]})["input_types"],["grouped_samples"])
+        self.assertEqual(f.describe_plot("density_map",{"counts":[2,3]})["input_types"],["binned_counts"])
+        empty=f.describe_plot("line_band",{"x":[1,2],"y":[3,4],"lower":None,"upper":None,"annotate":False})
+        self.assertEqual(empty["element_plan"]["add_from_supplied_data"],[])
+
+    def test_single_panel_keeps_data_layers_identity_and_original(self):
+        original=f.demo_spec(["line_band","line_band"])
+        original["panels"][0].update(entity_ids=["Earlier"],color_argument="color")
+        node=original["panels"][1]
+        node.update(entity_ids=["Selected"],color_argument="color",x_meaning="Step",y_meaning="Rate")
+        layer=copy.deepcopy(node);layer.pop("layers",None)
+        node["layers"]=[layer]
+        before=copy.deepcopy(original)
+        selected=f.single_panel_spec(original,node["id"])
+        self.assertEqual(original,before)
+        self.assertEqual(selected["panels"][0]["data"],node["data"])
+        self.assertEqual(selected["panels"][0]["layers"],node["layers"])
+        self.assertEqual(selected["entity_order"],["Earlier","Selected"])
+        self.assertEqual((selected["rows"],selected["columns"]),(1,1))
+        fig=f.compose(selected)
+        self.assertEqual(len(fig.axes),1)
+        self.assertFalse(any(t.get_text().startswith("(a)") for t in fig.axes[0].texts))
+        from ccfa_analysis_panels import audit_figure
+        self.assertEqual(audit_figure(fig)["text_outside_canvas"],[])
+
+    def test_single_panel_rejects_missing_and_atomic_layouts(self):
+        with self.assertRaisesRegex(ValueError,"unique panel"):
+            f.single_panel_spec(f.demo_spec(["line_band"]),"missing")
+        with self.assertRaisesRegex(ValueError,"atomic"):
+            f.single_panel_spec({"version":1,"layout":"joint_marginals"},"main")
+
+    def test_compose_cli_selects_one_panel_without_new_svg(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            source=root/"original.json"
+            spec=f.demo_spec(["line_band","line_band"])
+            source.write_text(json.dumps(spec),encoding="utf-8")
+            result=subprocess.run([sys.executable,"-B",str(MODULES/"ccfa_figure_library.py"),
+                "compose","--spec",str(source),"--panel",spec["panels"][1]["id"],"--out",str(root/"single")],
+                capture_output=True,text=True,encoding="utf-8")
+            self.assertEqual(result.returncode,0,result.stderr)
+            self.assertTrue((root/"single.png").is_file())
+            self.assertFalse((root/"single.svg").exists())
+            self.assertEqual(json.loads(source.read_text()),spec)
+
+    def test_structural_families_ignore_values_titles_palette_and_panel_names(self):
+        before={"version":1,"rows":1,"columns":2,"panels":[
+            {"id":"a","kind":"line_band","row":0,"column":0,"data":{"x":[1,2],"y":[.2,.5]}},
+            {"id":"b","kind":"line_band","row":0,"column":1,"data":{"x":[1,2],"y":[.3,.7]}}],
+            "shared_axes":[{"axis":"x","panels":["a","b"]}]}
+        after=copy.deepcopy(before);after.update(title="Another scientific context",palette="ccfa")
+        for i,panel in enumerate(after["panels"]):
+            panel["id"]="new-"+str(i);panel["title"]="Different text"
+            panel["data"]["y"]=[.8,.9]
+        after["shared_axes"][0]["panels"]=["new-0","new-1"]
+        self.assertEqual(f.family_for_spec(before)["id"],f.family_for_spec(after)["id"])
+        after["panels"][0]["colspan"]=2
+        self.assertEqual(f.family_for_spec(before)["id"],f.family_for_spec(after)["id"])
+        self.assertNotEqual(f.family_for_spec(before)["variant_id"],f.family_for_spec(after)["variant_id"])
+
+    def test_family_identity_preserves_scientific_visual_elements_and_layers(self):
+        base={"version":1,"panels":[{"id":"p","kind":"density_map","data":{"x":[1,2],"y":[.1,.2]}}]}
+        family=f.family_for_spec(base)["id"]
+        for addition in ({"yscale":"log"},{"corridor":{"x_max":20,"y_max":.1}},
+                         {"count_range":[1,1000]},{"annotate":[0]}):
+            modified=copy.deepcopy(base);modified["panels"][0]["data"].update(addition)
+            self.assertNotEqual(f.family_for_spec(modified)["id"],family)
+        modified=copy.deepcopy(base)
+        modified["panels"][0]["layers"]=[{"kind":"line_band","data":{"x":[1,2],"y":[.1,.2]}}]
+        self.assertNotEqual(f.family_for_spec(modified)["id"],family)
+        corridor=copy.deepcopy(base);corridor["panels"][0]["data"]["corridor"]={"x_max":20,"y_max":.1}
+        weighted=copy.deepcopy(corridor);weighted["panels"][0]["data"]["corridor"]["weights"]=[1,2]
+        self.assertNotEqual(f.family_for_spec(corridor)["id"],f.family_for_spec(weighted)["id"])
+
+    def test_template_pairs_quantile_summary_and_repeated_facets_stay_distinct(self):
+        spec={"version":1,"template":"sensitivity_dynamics","data":{"panel_pair":"sensitivity"}}
+        first=f.family_for_spec(spec)
+        self.assertEqual(first["panel_count"],2)
+        spec["data"]["sensitivity"]={"summary_mode":"median_p90","summary":{"median":[.1],"p90":[.2],"p95":[.3],"p99":[.4]}}
+        enhanced=f.family_for_spec(spec)
+        self.assertNotEqual(first["id"],enhanced["id"])
+        spec["data"]["panel_pair"]="dynamics"
+        self.assertNotEqual(enhanced["id"],f.family_for_spec(spec)["id"])
+        one=f._panel_structure(["calibration"])
+        eight=f._panel_structure(["calibration"]*8,columns=4)
+        self.assertNotEqual(f.family_for_spec(one)["id"],f.family_for_spec(eight)["id"])
+
+    def test_pair_signature_ignores_the_inactive_half_but_retains_its_own_elements(self):
+        spec={"version":1,"template":"sensitivity_dynamics","data":{
+            "panel_pair":"sensitivity","density":{"yscale":"log"},
+            "dynamics":{"series":[{"marker":"s","x":[4,8],"y":[30,80]}]}}}
+        before=f.family_for_spec(spec)
+        spec["data"]["dynamics"]["series"][0]["lower"]=[20,60]
+        spec["data"]["dynamics"]["series"][0]["upper"]=[40,90]
+        self.assertEqual(f.family_for_spec(spec)["id"],before["id"])
+        self.assertEqual(f.family_for_spec(spec)["variant_id"],before["variant_id"])
+        spec["data"]["density"]["corridor"]={"x_max":20,"y_max":.1,"weights":[1,2]}
+        self.assertNotEqual(f.family_for_spec(spec)["id"],before["id"])
+
+    def test_standard_reference_family_declarations_match_the_native_demo_encodings(self):
+        _,specs=f._standard_family_inputs()
+        for key in ("original:sensitivity_dynamics","reference:sensitivity-pair","reference:dynamics-pair"):
+            with self.subTest(example=key):
+                native=f.family_for_spec(f.example_spec(key,demo=True))
+                declared=f.family_for_spec(specs[key])
+                self.assertEqual(native["family_signature"],declared["family_signature"])
+                self.assertEqual(native["features"],declared["features"])
+                self.assertEqual(native["panel_count"],declared["panel_count"])
+
+    def test_actual_gallery_groups_equivalent_variants_without_losing_context(self):
+        spec=f._panel_structure(["line_band"])
+        rows=[{"id":"primitive--curve","type":"primitive","title":"Curve","intent_ids":["dynamics"]},
+              {"id":"study--curve","type":"study","title":"Learning in another domain","intent_ids":["generalization"],"source_id":"paper-identity"},
+              {"id":"legacy--asset","type":"legacy","title":"Preserved original"}]
+        index=f.families(rows,specs={rows[0]["id"]:spec,rows[1]["id"]:copy.deepcopy(spec)})
+        self.assertEqual((index["total_examples"],index["total_families"]),(3,2))
+        family=next(row for row in index["families"] if len(row["member_ids"])==2)
+        self.assertEqual(family["representative_id"],"study--curve")
+        self.assertEqual(family["variant_count"],1)
+        self.assertEqual(family["intent_ids"],["dynamics","generalization"])
+        self.assertEqual(next(row for row in family["members"] if row["id"]=="study--curve")["source_id"],"paper-identity")
+        with self.assertRaisesRegex(ValueError,"unique"):
+            f.families(rows+rows[:1],specs={})
+
+    def test_repeated_facets_share_a_family_with_discoverable_structural_variants(self):
+        rows=[];specs={}
+        for count in (1,2,4,8):
+            key="curve-"+str(count)
+            rows.append({"id":key,"type":"reference" if count==2 else "study", "title":str(count)+" distinct datasets"})
+            specs[key]=f._panel_structure(["line_band"]*count,columns=min(count,4))
+        index=f.families(rows,specs=specs)
+        self.assertEqual((index["total_families"],index["total_variants"]),(2,4))
+        family=next(row for row in index["families"] if len(row["member_ids"])==3)
+        self.assertEqual(family["variant_count"],3)
+        self.assertEqual(set(family["member_ids"]),{"curve-2","curve-4","curve-8"})
+        self.assertEqual({row["panel_count"] for row in family["variants"]},{2,4,8})
+        self.assertEqual(family["representative_id"],"curve-2")
+        self.assertEqual(family["panel_count"],2)
+        self.assertEqual({key for variant in family["variants"] for key in variant["member_ids"]},set(family["member_ids"]))
+
+    def test_grid_layout_changes_are_variants_but_shared_relationships_stay_distinct(self):
+        horizontal=f._panel_structure(["line_band"]*4,columns=4)
+        grid=f._panel_structure(["line_band"]*4,columns=2)
+        self.assertEqual(f.family_for_spec(horizontal)["id"],f.family_for_spec(grid)["id"])
+        self.assertNotEqual(f.family_for_spec(horizontal)["variant_id"],f.family_for_spec(grid)["variant_id"])
+        shared=copy.deepcopy(grid)
+        shared["shared_axes"]=[{"axis":"x","panels":[row["id"] for row in shared["panels"]]}]
+        self.assertNotEqual(f.family_for_spec(grid)["id"],f.family_for_spec(shared)["id"])
+        two=f._panel_structure(["line_band"]*2,columns=2)
+        two["shared_axes"]=[{"axis":"x","panels":[row["id"] for row in two["panels"]]}]
+        self.assertEqual(f.family_for_spec(shared)["id"],f.family_for_spec(two)["id"])
+
+    def test_mixed_ordered_drawing_plan_merges_layouts_not_analysis_order(self):
+        first=f._panel_structure(["matrix_heatmap","line_band"],columns=2)
+        repeated=f._panel_structure(["matrix_heatmap","matrix_heatmap","line_band"],columns=1)
+        reversed_spec=f._panel_structure(["line_band","matrix_heatmap"],columns=2)
+        self.assertEqual(f.family_for_spec(first)["id"],f.family_for_spec(repeated)["id"])
+        self.assertNotEqual(f.family_for_spec(first)["variant_id"],f.family_for_spec(repeated)["variant_id"])
+        self.assertNotEqual(f.family_for_spec(first)["id"],f.family_for_spec(reversed_spec)["id"])
+
+    def test_catalog_families_preserve_every_existing_example_without_plotting_imports(self):
+        index=f.families()
+        self.assertEqual(index["total_examples"],151)
+        member_ids=[key for row in index["families"] for key in row["member_ids"]]
+        self.assertEqual(len(member_ids),len(set(member_ids)))
+        self.assertTrue({row["id"] for row in f.examples()}<=set(member_ids))
+        self.assertLess(index["total_families"],index["total_examples"])
+        code="import sys;sys.path.insert(0,sys.argv[1]);import ccfa_figure_library as f;f.families();assert 'numpy' not in sys.modules;assert 'matplotlib' not in sys.modules"
+        subprocess.run([sys.executable,"-c",code,str(MODULES)],check=True,capture_output=True)
+
+    def test_route_has_one_candidate_per_drawing_family_and_keeps_field_checks(self):
+        result=f.route("uncertainty",count=12,seed=0)
+        ids=[row["family_id"] for row in result["candidates"]]
+        self.assertEqual(len(ids),len(set(ids)))
+        for row in result["candidates"]:
+            self.assertEqual(row["required"],f.explain(row["id"])["required"])
+
     def test_routing_needs_no_plotting_dependencies_or_network(self):
         code="import sys;sys.path.insert(0,sys.argv[1]);import ccfa_figure_library as f;f.route('分布',seed=2);assert 'numpy' not in sys.modules;assert 'matplotlib' not in sys.modules;assert 'requests' not in sys.modules"
         subprocess.run([sys.executable,"-c",code,str(MODULES)],check=True,capture_output=True)
@@ -469,6 +672,23 @@ class FigureLibraryTests(unittest.TestCase):
                 runpy.run_path(str(outputs["python"]),run_name="__main__")
             self.assertEqual(writer.call_args.kwargs["formats"],("svg",))
 
+    def test_default_cli_and_generated_source_never_add_svg_or_pdf(self):
+        import runpy
+        with tempfile.TemporaryDirectory() as folder:
+            base = Path(folder) / "ordinary"
+            cli = subprocess.run([sys.executable, "-B", "-X", "utf8", str(MODULES / "ccfa_figure_library.py"),
+                "demo", "line_band", "--out", str(base)], capture_output=True, text=True, encoding="utf-8")
+            self.assertEqual(cli.returncode, 0, cli.stderr)
+            result = json.loads(cli.stdout)
+            self.assertTrue(base.with_suffix(".png").is_file())
+            self.assertNotIn("svg", result)
+            self.assertNotIn("pdf", result)
+            with patch.object(f, "export", return_value={}) as writer:
+                runpy.run_path(str(base.with_suffix(".py")), run_name="__main__")
+            self.assertEqual(writer.call_args.kwargs["formats"], ("png",))
+            self.assertFalse(base.with_suffix(".svg").exists())
+            self.assertFalse(base.with_suffix(".pdf").exists())
+
     def test_edited_source_is_exported_without_overwriting_inputs(self):
         with tempfile.TemporaryDirectory() as folder:
             base=Path(folder)/"图例"
@@ -477,7 +697,9 @@ class FigureLibraryTests(unittest.TestCase):
             self.assertTrue(outputs["python"].exists())
             source=outputs["python"].read_text(encoding="utf-8")
             compile(source,str(outputs["python"]),"exec")
-            self.assertIn("Simulated",outputs["svg"].read_text(encoding="utf-8"))
+            self.assertEqual(set(outputs), {"png", "metadata", "python"})
+            self.assertFalse(base.with_suffix(".svg").exists())
+            self.assertTrue(json.loads(outputs["metadata"].read_text(encoding="utf-8"))["composition"]["_meta"]["synthetic"])
             namespace={"__name__":"library_test","__file__":str(outputs["python"])}
             exec(compile(source,str(outputs["python"]),"exec"),namespace)
             self.assertEqual(namespace["SPEC"],spec)

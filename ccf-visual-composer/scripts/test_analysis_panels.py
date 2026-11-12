@@ -208,7 +208,7 @@ class AnalysisPanelTests(unittest.TestCase):
     def test_export_has_live_text_vector_cells_and_true_physical_size(self):
         panels.matrix_heatmap(self.ax, [[-1, 1]], ["Feature"], ["Before", "After"], annotate=True)
         with matplotlib.rc_context({"svg.fonttype": "path", "pdf.fonttype": 3}):
-            targets = panels.save_figure(self.fig, self.folder / "editable", metadata={"kind": "synthetic", "seed": 4})
+            targets = panels.save_figure(self.fig, self.folder / "editable", formats=("svg", "pdf", "png"), metadata={"kind": "synthetic", "seed": 4})
             self.assertEqual(matplotlib.rcParams["svg.fonttype"], "path")
         svg = ET.fromstring(targets["svg"].read_text(encoding="utf-8"))
         self.assertTrue(svg.findall(".//s:text", NS))
@@ -218,6 +218,102 @@ class AnalysisPanelTests(unittest.TestCase):
         self.assertIn(b"/FontFile2", targets["pdf"].read_bytes())
         self.assertTrue(targets["png"].read_bytes().startswith(b"\x89PNG"))
         self.assertIn('"synthetic"', targets["metadata"].read_text(encoding="utf-8"))
+
+    def test_default_export_creates_png_only_and_preserves_existing_svg(self):
+        svg = self.folder / "ordinary.svg"
+        svg.write_text("Existing explicitly requested source", encoding="utf-8")
+        panels.line_band(self.ax, [1, 2], [2, 3], label="Observed", xlabel="Time", ylabel="Score")
+        self.ax.legend()
+        result = panels.save_figure(self.fig, self.folder / "ordinary")
+        self.assertEqual(set(result), {"png"})
+        self.assertFalse((self.folder / "ordinary.pdf").exists())
+        self.assertEqual(svg.read_text(encoding="utf-8"), "Existing explicitly requested source")
+
+    def test_bold_type_and_dark_borders_keep_values_and_light_fills(self):
+        from matplotlib.colors import to_rgba
+        before = list(matplotlib.rcParams["font.family"])
+        with panels.paper_style("serif", 9):
+            self.assertEqual(matplotlib.rcParams["axes.labelweight"], "bold")
+            self.ax.set_title("Comparison")
+            result = panels.category_comparison(self.ax, ["A", "B"], [3, 5],
+                [{"label": "Method", "values": [4, 6]}], bar_labels=True)
+            self.ax.set_xlabel("Group")
+        # Formatting still works after the rc context, including later legends.
+        panels.finish_paper_style(self.fig)
+        self.assertEqual(self.ax.get_title(), "Comparison")
+        text = [self.ax.title, self.ax.xaxis.label, self.ax.yaxis.label,
+                *self.ax.get_xticklabels(), *self.ax.get_yticklabels(),
+                *self.ax.get_legend().get_texts()]
+        self.assertTrue(all(item.get_fontweight() == "bold" for item in text))
+        self.assertEqual([p.get_height() for p in result["bars"]], [3, 5])
+        for bar in result["bars"]:
+            self.assertEqual(bar.get_edgecolor(), panels.paired_edge(bar.get_facecolor()))
+            self.assertGreaterEqual(bar.get_linewidth(), 1.1)
+            self.assertLess(bar.get_facecolor()[3], 1)
+        self.assertEqual(matplotlib.rcParams["font.family"], before)
+        result = panels.binned_summary(self.ax, [[1, 2, 3, 4]], ["C"])
+        for box in result["boxes"]["boxes"]:
+            self.assertEqual(box.get_edgecolor(), panels.paired_edge(box.get_facecolor()))
+            self.assertGreaterEqual(box.get_linewidth(), 1.1)
+        for line in result["boxes"]["whiskers"] + result["boxes"]["caps"]:
+            self.assertEqual(to_rgba(line.get_color()), panels.paired_edge(result["boxes"]["boxes"][0].get_facecolor()))
+            self.assertGreaterEqual(line.get_linewidth(), 1.1)
+
+    def test_paired_border_preserves_each_hue_and_repeated_finishing(self):
+        import colorsys
+        colors = ["#397EB5", "#D66B2C", "#2D8984"]
+        bars = self.ax.bar([0, 1, 2], [1, 2, 3], color=colors, alpha=.24)
+        panels.finish_paper_style(self.fig)
+        edges = [bar.get_edgecolor() for bar in bars]
+        for bar, color, edge in zip(bars, colors, edges):
+            original_hls = colorsys.rgb_to_hls(*matplotlib.colors.to_rgb(color))
+            edge_hls = colorsys.rgb_to_hls(*edge[:3])
+            self.assertAlmostEqual(original_hls[0], edge_hls[0])
+            self.assertLess(edge_hls[1], original_hls[1])
+            self.assertAlmostEqual(bar.get_facecolor()[3], .24)
+            self.assertEqual(edge[3], 1)
+            self.assertGreaterEqual(bar.get_linewidth(), 1.1)
+        self.assertEqual(len(set(edges)), 3)
+        panels.finish_paper_style(self.fig)
+        self.assertEqual(edges, [bar.get_edgecolor() for bar in bars])
+        np.testing.assert_array_equal([bar.get_height() for bar in bars], [1, 2, 3])
+
+    def test_aggregate_density_preserves_supplied_bin_counts(self):
+        artist=panels.density_map(self.ax,[1,1,3],[1,1,3],counts=[2,3,7],gridsize=4)
+        np.testing.assert_allclose(sorted(artist.get_array()),[5,7])
+        with self.assertRaises(ValueError):
+            panels.density_map(self.ax,[1,3],[1,3],counts=[1.5,2])
+
+    def test_density_composes_conditional_region_and_count_aware_shares(self):
+        artist=panels.density_map(self.ax,[1,30],[.05,1],counts=[3,7],yscale="log",xlim=[0,40],ylim=[.01,10],
+            corridor={"x_max":20,"y_max":.1,"weights":[2,1],"weight_kind":"per_state"})
+        self.assertAlmostEqual(artist.ccfa_corridor["state_share"],30)
+        self.assertAlmostEqual(artist.ccfa_corridor["mass_share"],100*6/13)
+
+    def test_curve_reference_fill_preserves_observations(self):
+        line=panels.line_band(self.ax,[1,2,3],[2,4,3],fill_to=0)
+        np.testing.assert_array_equal(line.get_ydata(),[2,4,3])
+        self.assertEqual(len(self.ax.collections),1)
+
+    def test_compact_legend_preserves_labels_and_explicit_columns(self):
+        self.ax.plot([0,1],[0,1],label="One")
+        self.ax.plot([0,1],[1,0],label="Two")
+        legend=panels.compact_legend(self.ax,ncol=1)
+        self.assertEqual([t.get_text() for t in legend.get_texts()],["One","Two"])
+        self.assertEqual(legend._ncols,1)
+        self.fig.canvas.draw()
+        self.assertGreaterEqual(legend.get_window_extent().y0,self.ax.bbox.y1)
+        explicit=panels.compact_legend(self.ax,loc="lower right")
+        self.assertEqual(explicit._loc,4)
+
+    def test_inset_inherits_bold_type_and_paired_borders(self):
+        inset=self.ax.inset_axes([.2,.2,.5,.5])
+        bars=inset.bar([1,2],[3,4],color="#82BFCB")
+        inset.set_title("Zoom");inset.set_xlabel("Position")
+        panels.finish_paper_style(self.ax.figure)
+        self.assertEqual(inset.title.get_fontweight(),"bold")
+        self.assertTrue(all(label.get_fontweight()=="bold" for label in inset.get_xticklabels()))
+        self.assertTrue(np.allclose(bars.patches[0].get_edgecolor(),panels.paired_edge("#82BFCB")))
 
     def test_cjk_font_fallback_preserves_chinese_in_editable_svg(self):
         self.ax.set_title("中文图形 繁體測試")
@@ -335,6 +431,45 @@ class AnalysisPanelTests(unittest.TestCase):
                                            ([[1]], ["A"], np.nan)):
             with self.subTest(quantile=quantile), self.assertRaises(ValueError):
                 panels.binned_summary(self.ax, samples, labels, quantile=quantile)
+
+    def test_explicit_reference_quantiles_preserve_median_p90_p99_and_p95_semantics(self):
+        summary = {"median": [.02, .1], "p90": [.08, .3], "p95": [.119, .319], "p99": [.2, .6]}
+        result = panels.binned_summary(self.ax, None, ["Low", "High"], summary=summary, annotate=True,
+                                       quantile_label="P95 displacement")
+        np.testing.assert_array_equal(result["quantiles"], [.119, .319])
+        self.assertEqual(result["quantile_line"].get_marker(), "D")
+        for i, box in enumerate(result["boxes"]["boxes"]):
+            y = box.get_path().vertices[:, 1]
+            self.assertEqual(float(y.min()), summary["median"][i])
+            self.assertEqual(float(y.max()), summary["p90"][i])
+        self.assertEqual(float(result["boxes"]["whiskers"][1].get_ydata().max()), .2)
+        self.assertEqual([text.get_text() for text in result["annotations"]], ["0.119", "0.319"])
+        self.assertEqual([text.get_text() for text in self.ax.get_legend().texts],
+                         ["Median–P90 range", "P99 whisker", "P95 displacement"])
+
+    def test_reference_quantiles_from_samples_and_invalid_summaries(self):
+        result = panels.binned_summary(self.ax, [[0, 1, 2, 3, 4]], ["A"], summary_mode="median_p90")
+        np.testing.assert_allclose(result["summary"]["p90"], [3.6])
+        np.testing.assert_allclose(result["summary"]["p99"], [3.96])
+        summary = {"median": [1], "p90": [2], "p95": [3], "p99": [4]}
+        for invalid in ({**summary, "p90": [5]}, {**summary, "p99": []}, {"median": [1]}):
+            with self.subTest(summary=invalid), self.assertRaises(ValueError):
+                panels.binned_summary(self.ax, None, ["A"], summary=invalid)
+        with self.assertRaises(ValueError):
+            panels.binned_summary(self.ax, [[1, 2]], ["A"], summary=summary)
+
+    def test_reference_category_bands_and_sparse_labels_use_supplied_values(self):
+        result = panels.category_comparison(self.ax, ["A", "B", "C"], [39.2, 40.1, 38.2],
+            [{"label": "Mass", "values": [62, 64, 58], "lower": [60, 61, 56], "upper": [64, 67, 60],
+              "marker": "s", "annotate": [1]}], bar_style="outlined", bar_labels=True)
+        self.assertEqual(len(result["bands"]), 1)
+        self.assertEqual(result["lines"][0].get_marker(), "s")
+        self.assertEqual([text.get_text() for text in result["annotations"]], ["39.2", "40.1", "38.2", "64.0"])
+        np.testing.assert_allclose([bar.get_height() for bar in result["bars"]], [39.2, 40.1, 38.2])
+        self.assertLess(result["bars"][0].get_facecolor()[3], .2)
+        self.assertEqual(result["bars"][0].get_edgecolor()[3], 1)
+        with self.assertRaises(ValueError):
+            panels.category_comparison(self.ax, ["A"], [1], [{"label": "B", "values": [2], "lower": [3], "upper": [4]}])
 
     def test_category_comparison_uses_one_unclipped_common_unit_axis(self):
         bars = [-3, 0, 130]

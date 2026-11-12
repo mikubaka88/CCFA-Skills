@@ -92,16 +92,31 @@ def _panel(fig, spec, letter, title):
 def _lines(ax, block, enc):
     if not block["series"]:
         raise ValueError("A curve panel needs at least one supplied series")
+    plotted_x = []
     for series in block["series"]:
         key = series["method"]
         if key not in enc:
             raise ValueError(f"Unknown method ID {key!r}")
-        p.line_band(ax, block["x"], series["y"], lower=series.get("lower"),
+        series_x = series.get("x", block["x"])
+        plotted_x.extend(series_x)
+        artist = p.line_band(ax, series_x, series["y"], lower=series.get("lower"),
                     upper=series.get("upper"), color=enc[key]["color"],
-                    marker=enc[key]["marker"], label=key,
+                    marker=series.get("marker", enc[key]["marker"]), label=key,
                     xlabel=block["xlabel"], ylabel=block["ylabel"])
+        if "linestyle" in series:
+            artist.set_linestyle(series["linestyle"])
+        annotations = series.get("annotate", [])
+        if annotations is True:
+            annotations = range(len(series["y"]))
+        for index in annotations or []:
+            if isinstance(index, bool) or not isinstance(index, int) or not 0 <= index < len(series["y"]):
+                raise ValueError("Line annotation indices must identify supplied observations")
+            ax.annotate(format(float(series["y"][index]), series.get("value_format", ".1f")),
+                        (series_x[index], series["y"][index]), xytext=(0, float(series.get("annotation_offset", 5))),
+                        textcoords="offset points", ha="center", va="bottom", color=artist.get_color(),
+                        fontsize=p.mpl.rcParams["font.size"]-.7, fontweight="bold")
     scale = block.get("xscale", "linear")
-    if scale == "log" and (np.asarray(block["x"], dtype=float) <= 0).any():
+    if scale == "log" and (np.asarray(plotted_x, dtype=float) <= 0).any():
         raise ValueError("Log axes require strictly positive x values")
     ax.set_xscale(scale)
     if "ylim" in block:
@@ -377,26 +392,124 @@ def calibration_errors(data, enc, width, height):
     return fig
 
 
+def _analytical_axes(ax, block, *, x=None, y=None):
+    """Apply supplied bounds without hiding observations or interval endpoints."""
+    for axis, observed in (("x", x), ("y", y)):
+        limits = block.get(axis + "lim")
+        if limits is not None:
+            limits = _vector(limits, axis + "lim")
+            if len(limits) != 2 or limits[0] >= limits[1]:
+                raise ValueError(axis + "lim requires two increasing bounds")
+            if observed is not None:
+                values = _vector(observed, "displayed " + axis)
+                if np.any(values < limits[0]) or np.any(values > limits[1]):
+                    raise ValueError(axis + "lim would hide supplied observations or uncertainty")
+            getattr(ax, "set_" + axis + "lim")(*limits)
+        ticks = block.get(axis + "ticks")
+        if ticks is not None:
+            ticks = _vector(ticks, axis + "ticks")
+            bounds = getattr(ax, "get_" + axis + "lim")()
+            if np.any(ticks < min(bounds)) or np.any(ticks > max(bounds)):
+                raise ValueError(axis + "ticks must lie within the visible limits")
+            getattr(ax, "set_" + axis + "ticks")(ticks)
+
+
+def _density_corridor(ax, block):
+    corridor = block["corridor"]
+    x_max, y_max = float(corridor["x_max"]), float(corridor["y_max"])
+    if not np.isfinite([x_max, y_max]).all():
+        raise ValueError("Corridor thresholds must be finite")
+    left, right = ax.get_xlim(); bottom, top = ax.get_ylim()
+    if not left < x_max < right or not bottom < y_max < top:
+        raise ValueError("Corridor thresholds must lie inside the displayed axes")
+    x, y = _vector(block["x"], "density x"), _vector(block["y"], "density y")
+    mask = (x < x_max) & (y < y_max)
+    counts=np.ones(len(x))
+    if block.get("counts") is not None:
+        counts=_vector(block["counts"],"density counts",nonnegative=True)
+        if len(counts)!=len(x) or not np.equal(counts,np.floor(counts)).all() or not np.isfinite(counts.sum()) or counts.sum()<=0:
+            raise ValueError("Density counts must be matching nonnegative integers with positive total")
+    state_share = 100 * float(counts[mask].sum()/counts.sum())
+    mass_share = None
+    if corridor.get("weights") is not None:
+        weights = _vector(corridor["weights"], "corridor weights", nonnegative=True)
+        if len(weights) != len(x) or not np.isfinite(weights.sum()) or weights.sum() <= 0:
+            raise ValueError("Corridor weights must match observations and have positive total mass")
+        kind=corridor.get("weight_kind")
+        if block.get("counts") is not None and kind not in ("per_state","bin_total"):
+            raise ValueError("Aggregate corridor weights require weight_kind=per_state or bin_total")
+        if kind not in (None,"per_state","bin_total"):
+            raise ValueError("Unknown corridor weight kind")
+        if kind!="bin_total":weights=weights*counts
+        if not np.isfinite(weights.sum()) or weights.sum()<=0:
+            raise ValueError("Corridor mass must have a finite positive total after applying counts")
+        mass_share = 100 * float(weights[mask].sum() / weights.sum())
+    color = corridor.get("color", "#D37232")
+    region = Rectangle((left, bottom), x_max-left, y_max-bottom, facecolor=color, edgecolor="none", alpha=.09, zorder=1)
+    ax.add_patch(region)
+    border, = ax.plot([left, x_max, x_max], [y_max, y_max, bottom], color=color,
+                      linestyle=(0, (3, 2)), linewidth=.9, zorder=5)
+    if corridor.get("label"):
+        label_y = np.sqrt(bottom * y_max) if ax.get_yscale() == "log" else (bottom+y_max)/2
+        ax.annotate(corridor["label"], (x_max, label_y), xytext=(7, 8), textcoords="offset points",
+                    color=color, fontsize=p.mpl.rcParams["font.size"]-.8, fontweight="bold", ha="left", va="center")
+    message = f"{state_share:.1f}% of states"
+    if mass_share is not None:
+        message += f"\n{mass_share:.1f}% of sensitivity mass"
+    location = corridor.get("annotation_xy", [.97, .065])
+    location = _vector(location, "corridor annotation position")
+    if len(location) != 2 or (location < 0).any() or (location > 1).any():
+        raise ValueError("Corridor annotation position uses two axes fractions in [0, 1]")
+    center_y = np.sqrt(bottom * y_max) if ax.get_yscale() == "log" else (bottom+y_max)/2
+    note = ax.annotate(message, ((left+x_max)/2, center_y), xytext=location, textcoords="axes fraction",
+                       ha="right", va="bottom", fontsize=p.mpl.rcParams["font.size"]-.8, fontweight="bold",
+                       bbox={"boxstyle": "round,pad=.27", "facecolor": "white", "edgecolor": color, "linewidth": .8},
+                       arrowprops={"arrowstyle": "->", "color": color, "linewidth": .8,
+                                   "connectionstyle": "angle,angleA=0,angleB=90,rad=0"}, zorder=7)
+    return {"state_share": state_share, "mass_share": mass_share, "region": region, "border": border, "annotation": note}
+
+
 def sensitivity_dynamics(data, enc, width, height):
     """Four linked analyses, or either two-panel pair at a paper-friendly size."""
     pair = data.get("panel_pair", "all")
     if pair not in ("all", "sensitivity", "dynamics"):
         raise ValueError("panel_pair must be all, sensitivity or dynamics")
     fig = p.new_figure(width, height if pair == "all" else height * .56)
-    fig.set_layout_engine("constrained", w_pad=.04, h_pad=.055, wspace=.10,
+    fig.set_layout_engine("constrained", w_pad=.04, h_pad=.055, wspace=.035,
                           hspace=.10, rect=(0, .04, 1, .95))
-    grid = fig.add_gridspec(2 if pair == "all" else 1, 2)
+    ratios = _vector(data.get("column_ratios", [1, 1]), "column ratios")
+    if len(ratios) != 2 or (ratios <= 0).any():
+        raise ValueError("column_ratios requires two positive widths")
+    has_density = pair in ("all", "sensitivity")
+    grid = fig.add_gridspec(2 if pair == "all" else 1, 3 if has_density else 2,
+                           width_ratios=[ratios[0], .045, ratios[1]] if has_density else ratios)
+    right_column = 2 if has_density else 1
+    reference_details = {}
     if data.get("_meta", {}).get("synthetic"):
         fig.text(.995, .008, "Simulated data · layout demonstration", ha="right", va="bottom", fontsize=8, color="#69737d")
     if pair in ("all", "sensitivity"):
         block = data["density"]
         ax = _panel(fig, grid[0, 0], "a", block.get("title", "State-space exposure"))
         density = p.density_map(ax, block["x"], block["y"], gridsize=block.get("gridsize", 30),
+                                counts=block.get("counts"),
                                 xscale=block.get("xscale", "linear"), yscale=block.get("yscale", "log"),
                                 cmap=block.get("cmap", "viridis"), xlabel=block["xlabel"], ylabel=block["ylabel"])
-        bar = fig.colorbar(density, ax=ax, fraction=.04, pad=.035)
+        if block.get("count_range") is not None:
+            bounds = _vector(block["count_range"], "density count range", nonnegative=True)
+            if len(bounds) != 2 or bounds[0] <= 0 or bounds[0] >= bounds[1] or np.any(density.get_array() < bounds[0]) or np.any(density.get_array() > bounds[1]):
+                raise ValueError("Density count range must be positive and contain all displayed counts")
+            density.set_clim(*bounds)
+            if block.get("colorbar_ticks") is not None:
+                ticks = _vector(block["colorbar_ticks"], "density colorbar ticks")
+                if (ticks < bounds[0]).any() or (ticks > bounds[1]).any():
+                    raise ValueError("Density colorbar ticks must lie within the count range")
+        colorbar_ax = fig.add_subplot(grid[0, 1])
+        bar = fig.colorbar(density, cax=colorbar_ax, ticks=block.get("colorbar_ticks"))
         bar.solids.set_rasterized(False)
-        bar.set_label("Samples per bin")
+        bar.set_label(block.get("colorbar_label", "Samples per bin"), labelpad=3)
+        _analytical_axes(ax, block, x=block["x"], y=block["y"])
+        if "corridor" in block:
+            reference_details["corridor"] = _density_corridor(ax, block)
         if "threshold" in block:
             threshold = float(block["threshold"])
             if not np.isfinite(threshold) or (block.get("yscale", "log") == "log" and threshold <= 0):
@@ -408,10 +521,16 @@ def sensitivity_dynamics(data, enc, width, height):
                     ha="right", va="bottom", fontsize=8, color="#9d4d24",
                     bbox={"facecolor":"white", "edgecolor":"none", "alpha":.88, "pad":2})
         block = data["sensitivity"]
-        ax = _panel(fig, grid[0, 1], "b", block.get("title", "Perturbation by group"))
-        p.binned_summary(ax, block["samples"], block["labels"], color="#80b5ca",
-                         line_color="#d86a38", quantile=block.get("quantile", .95), ylabel=block["ylabel"])
+        ax = _panel(fig, grid[0, right_column], "b", block.get("title", "Perturbation by group"))
+        reference_details["quantiles"] = p.binned_summary(ax, block.get("samples"), block["labels"], color=block.get("box_color", "#80b5ca"),
+                         line_color=block.get("line_color", "#d86a38"), quantile=block.get("quantile", .95), ylabel=block["ylabel"],
+                         summary=block.get("summary"), summary_mode=block.get("summary_mode", "iqr"),
+                         annotate=block.get("annotate", False), value_format=block.get("value_format", ".3f"),
+                         quantile_label=block.get("quantile_label", "P95 displacement"))
         ax.set_xlabel(block["xlabel"])
+        values = reference_details["quantiles"]["summary"]
+        endpoints = np.concatenate(list(values.values())) if reference_details["quantiles"]["summary_mode"] == "median_p90" else np.concatenate(block["samples"])
+        _analytical_axes(ax, block, y=endpoints)
     if pair in ("all", "dynamics"):
         row = 1 if pair == "all" else 0
         block = data["dynamics"]
@@ -424,13 +543,17 @@ def sensitivity_dynamics(data, enc, width, height):
         ax = _panel(fig, grid[row, 0], "c" if pair == "all" else "a", block.get("title", "Regime evolution"))
         _lines(ax, block, enc)
         ax.set_ylim(0, 100)
+        _analytical_axes(ax, block, x=np.concatenate([s.get("x", block["x"]) for s in block["series"]]), y=np.concatenate([s[field] for s in block["series"] for field in ("y", "lower", "upper") if s.get(field) is not None]))
         if block.get("fill_method") is not None:
             matches = [s for s in block["series"] if s["method"] == block["fill_method"]]
             if len(matches) != 1:
                 raise ValueError("fill_method must identify one supplied state series")
             selected = matches[0]
-            ax.fill_between(block["x"], 0, selected["y"], alpha=.10, color=enc[selected["method"]]["color"])
-        ax.legend(loc="lower right", fontsize=p.mpl.rcParams["font.size"]-1, handlelength=1.5)
+            ax.fill_between(selected.get("x", block["x"]), 0, selected["y"], alpha=.10, color=enc[selected["method"]]["color"])
+        options = {"loc": "lower right", "fontsize": p.mpl.rcParams["font.size"]-1, "handlelength": 1.5,
+                   "labelspacing": .25, "handletextpad": .4}
+        options.update(block.get("legend", {}))
+        ax.legend(**options)
         block = data["categories"]
         bar_values = _vector(block["bars"], "category percentages")
         series = []
@@ -439,15 +562,34 @@ def sensitivity_dynamics(data, enc, width, height):
             if (values < 0).any() or (values > 100).any():
                 raise ValueError("Category shares must be percentages in [0, 100]")
             code = enc[entry["method"]]
-            series.append({"label":entry["method"], "values":entry["values"], **code})
+            series_row = {"label":entry["method"], "values":entry["values"], **code}
+            for key in ("lower", "upper", "band_alpha", "linestyle", "marker", "annotate", "value_format", "annotation_offset"):
+                if key in entry:
+                    series_row[key] = entry[key]
+            for field in ("lower", "upper"):
+                if series_row.get(field) is not None:
+                    endpoints = _vector(series_row[field], "category interval")
+                    if (endpoints < 0).any() or (endpoints > 100).any():
+                        raise ValueError("Category intervals must be percentages in [0, 100]")
+            series.append(series_row)
         if (bar_values < 0).any() or (bar_values > 100).any():
             raise ValueError("Category shares must be percentages in [0, 100]")
-        ax = _panel(fig, grid[row, 1], "d" if pair == "all" else "b", block.get("title", "Variation across edits"))
-        p.category_comparison(ax, block["labels"], block["bars"], series,
-                              bar_label=block["bar_method"], bar_color=enc[block["bar_method"]]["color"], ylabel="Share (%)")
+        ax = _panel(fig, grid[row, right_column], "d" if pair == "all" else "b", block.get("title", "Variation across edits"))
+        reference_details["categories"] = p.category_comparison(ax, block["labels"], block["bars"], series,
+                              bar_label=block["bar_method"], bar_color=enc[block["bar_method"]]["color"], ylabel=block.get("ylabel", "Share (%)"),
+                              bar_style=block.get("bar_style", "filled"), bar_labels=block.get("bar_labels", False),
+                              value_format=block.get("value_format", ".1f"), legend=False,
+                              label_wrap=block.get("label_wrap"), tick_font_size=block.get("tick_font_size"))
         ax.set_ylim(0, 110)
+        endpoints = [block["bars"]] + [s[field] for s in block["series"] for field in ("values", "lower", "upper") if s.get(field) is not None]
+        _analytical_axes(ax, block, y=np.concatenate(endpoints))
         ax.set_xlabel(block["xlabel"])
-        ax.legend(loc="upper center", ncol=1, fontsize=p.mpl.rcParams["font.size"]-1)
+        options = {"loc": "upper center", "ncol": 1, "fontsize": p.mpl.rcParams["font.size"]-1,
+                   "handlelength": 1.5, "labelspacing": .25, "handletextpad": .4}
+        options.update(block.get("legend", {}))
+        artists = reference_details["categories"]
+        ax.legend(handles=[artists["bars"], *artists["lines"]], **options)
+    fig._ccfa_reference_details = reference_details
     return fig
 
 
@@ -478,7 +620,7 @@ def render_template(name, data, *, palette="ccfa", font="serif", font_size=8.5,
             if 'fig' not in locals():
                 for number in set(plt.get_fignums()) - previous_figures:
                     plt.close(number)
-        return fig
+        return p.finish_paper_style(fig)
 
 
 def _interval_block(rng, methods, means, *, unit="Score (%)", n=8):
@@ -598,26 +740,55 @@ def demo_data(seed=17):
         "confusion":_matrix(confusion,["A","B","C","D","E"],["A","B","C","D","E"],"Samples",cmap="Blues",annotate=True,fmt=".0f",vmin=0,vmax=90),
         "errors":[{"method":key,"values":abs(rng.normal(0,1.6-.25*i,150)).tolist()} for i,key in enumerate(methods)],
         "error_unit":"Absolute error (a.u.)","failure_counts":{"labels":["Temporal","Identity","Spatial","Other"],"counts":[42,31,18,9]}}
-    angle = rng.beta(2.2, 2.0, 7000) * 120
-    distance = 10 ** (-2 + .032 * angle + rng.normal(0, .35, len(angle)))
+    angle = rng.beta(1.35, 2.6, 7000) * 120
+    log_distance = -2 + .027 * angle + rng.normal(0, .35, len(angle))
+    visible = (log_distance > -2) & (log_distance < 1)
+    angle, distance = angle[visible], 10 ** log_distance[visible]
+    mass_weights = .3 + rng.gamma(2, .5, len(angle))
+    sensitivity_samples = []
+    for target_p95 in (.119, .319, .602, .817):
+        # Synthetic order statistics retain the reference's supplied P95 labels;
+        # the unobserved distribution is illustrative, not an inferred result.
+        median = target_p95 * rng.uniform(.20, .27)
+        p90 = target_p95 * rng.uniform(.64, .74)
+        p99 = target_p95 * rng.uniform(1.45, 1.60)
+        samples = np.interp(np.linspace(0, 1, 101), [0, .5, .9, .95, .99, 1],
+                            [median*.2, median, p90, target_p95, p99, p99*1.05])
+        rng.shuffle(samples)
+        sensitivity_samples.append(samples.tolist())
     step = np.arange(0, 33, 2)
     corridor = 100 / (1 + np.exp(-(step-21)/2.4))
     drift = 94 / (1 + np.exp(-(step-20.5)/2.8))
-    alignment = 14 + 86 * (1-np.exp(-step/4.2))
-    states = ["Corridor occupancy", "High-drift share", "Near-aligned state"]
+    aligned_steps = step[2:]
+    alignment = 16 + 84 * (1-np.exp(-(aligned_steps-4)/2.0))
+    states = ["Corridor occupancy", "Sensitivity mass", "Near-aligned state"]
+    mass_by_edit = np.array([59.3, 60.5, 59.2, 60.6, 56.1, 65.4, 61.2, 57.8, 61.7, 54.8])
+    aligned_by_edit = np.array([75.8, 69.7, 77.8, 75.2, 72.2, 81.1, 75.8, 83.3, 76.9, 76.3])
     examples["sensitivity_dynamics"] = {**base, "methods":states,
-        "density":{"x":angle.tolist(),"y":distance.tolist(),"yscale":"log", "threshold":.25,
-                   "xlabel":"Branch separation (degrees)", "ylabel":"State distance"},
-        "sensitivity":{"samples":[rng.lognormal(-2+i*.47,.65,80).tolist() for i in range(4)],
-                       "labels":["Low","Medium","High","Highest"], "quantile":.95,
-                       "xlabel":"Predicted sensitivity group", "ylabel":"Feature displacement"},
-        "dynamics":{"x":step.tolist(),"series":[{"method":key,"y":value.tolist()} for key,value in zip(states,[corridor,drift,alignment])],
-                    "xlabel":"Integration step", "ylabel":"State share (%)", "fill_method":states[0],
-                    "note":"Three overlapping state criteria, not a mutually exclusive partition."},
-        "categories":{"labels":["Object","Action","Color","Material","Layout","Style"],
-                      "bars":[34,32,29,38,35,31], "bar_method":states[0], "xlabel":"Editing type",
-                      "series":[{"method":states[1],"values":[51,55,50,48,57,53]},
-                                {"method":states[2],"values":[72,78,74,71,83,77]}]}}
+        "entity_colors":["#397EB5", "#C96735", "#2D8984"],
+        "density":{"x":angle.tolist(),"y":distance.tolist(),"yscale":"log", "gridsize":35,
+                   "xlim":[0,120], "ylim":[.01,10], "cmap":"YlGnBu_r",
+                   "count_range":[1,1000], "colorbar_ticks":[1,10,100,1000], "colorbar_label":"State density (log counts)",
+                   "corridor":{"x_max":20,"y_max":.1,"weights":mass_weights.tolist(), "label":"Radial-balance\ncorridor"},
+                   "xlabel":r"Branch separation $\vartheta$ (deg)", "ylabel":r"Radial-balance distance $D_\rho$"},
+        "sensitivity":{"samples":sensitivity_samples, "summary_mode":"median_p90", "annotate":True,
+                       "labels":["Lowest","Low","High","Highest"], "quantile":.95, "ylim":[0,1.4],
+                       "xlabel":r"Predicted sensitivity $\chi_{\mathrm{rad}}$", "ylabel":"Heading displacement (rad)"},
+        "dynamics":{"x":step.tolist(),"series":[{"method":states[0],"y":corridor.tolist(),"marker":"o"},
+                    {"method":states[1],"y":drift.tolist(),"marker":"o"},
+                    {"method":states[2],"x":aligned_steps.tolist(),"y":alignment.tolist(),"marker":"s","linestyle":"--"}],
+                    "xlabel":"Integration step", "ylabel":"State share / distortion mass (%)", "title":"",
+                    "xlim":[0,32], "ylim":[0,108], "xticks":[0,8,16,24,32], "yticks":[0,25,50,75,100],
+                    "legend":{"loc":"upper left","bbox_to_anchor":[0,1.12],"borderaxespad":0},
+                    "note":"State occupancy, weighted sensitivity mass and alignment use distinct supplied criteria; they are not a partition."},
+        "categories":{"labels":["Rand.\nChange","Add\nObj.","Delete\nObj.","Con-\ntent","Pose","Color","Mate-\nrial","Back-\nground","Layout","Style"],
+                      "bars":[39.2,40.1,38.2,40.8,35.8,39.1,46.7,35.9,41.6,36.2],
+                      "bar_method":states[0], "bar_style":"outlined", "bar_labels":True,
+                      "xlabel":"PIE-Bench edit type", "ylabel":"Percentage (%)", "title":"", "ylim":[0,112], "yticks":[0,25,50,75,100],
+                      "legend":{"loc":"upper left","bbox_to_anchor":[0,1.12],"borderaxespad":0},
+                      "series":[{"method":states[1],"values":mass_by_edit.tolist(), "lower":(mass_by_edit-3).tolist(), "upper":(mass_by_edit+3).tolist(), "marker":"o", "annotate":[5,9]},
+                                {"method":states[2],"values":aligned_by_edit.tolist(), "lower":(aligned_by_edit-4).tolist(), "upper":(aligned_by_edit+4).tolist(), "marker":"s", "annotate":[1,7]}],
+                      "note":"Illustrative supplied bands, not measured confidence intervals."}}
     # JSON-compatible serialization rejects nonfinite fixture values.
     json.dumps(examples,allow_nan=False)
     return examples
@@ -668,8 +839,8 @@ def main(argv=None):
     parser.add_argument("--font-size",type=float,default=8.5)
     parser.add_argument("--width-mm",type=float,default=183)
     parser.add_argument("--seed",type=int,default=17)
-    parser.add_argument("--formats",nargs="+",choices=["svg","pdf","png"],default=["svg","pdf","png"])
-    parser.add_argument("--dpi",type=int,default=220)
+    parser.add_argument("--formats",nargs="+",choices=["svg","pdf","png"],default=["png"],help="PNG by default; request SVG/PDF explicitly")
+    parser.add_argument("--dpi",type=int,default=300)
     args=parser.parse_args(argv)
     if args.list:
         print(json.dumps({k:{"purpose":v[0],"height_mm":v[1]} for k,v in CATALOG.items()},indent=2));return 0

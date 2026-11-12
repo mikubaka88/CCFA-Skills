@@ -89,7 +89,7 @@ Keep Times New Roman as the CCFA default for analytical figures; use Comic Sans 
 
 Set physical width before choosing font sizes and line weights, and inspect the export at that width. Keep comparable panel labels, ticks, and legends consistent. Reduce redundant labels or split a crowded figure before shrinking text below the selected size. Layout spacing is measured after tick labels and legends are present, not only between the bare axes.
 
-For Chinese labels, retain the selected Latin font and supply an installed CJK companion such as Noto Serif CJK SC, Source Han Serif SC, or SimSun for serif text; use the corresponding CJK sans family for a sans-serif destination. Confirm glyph coverage rather than assuming Times or Comic contains Chinese. Export as UTF-8, embed fonts in PDF with TrueType/type 42 when supported, keep SVG text editable, and inspect Chinese, minus signs, Greek letters, and superscripts in the rendered result. Do not hide missing-glyph warnings or replace unavailable characters with blank boxes.
+For Chinese labels, retain the selected Latin font and supply an installed CJK companion such as Noto Serif CJK SC, Source Han Serif SC, or SimSun for serif text; use the corresponding CJK sans family for a sans-serif destination. Confirm glyph coverage rather than assuming Times or Comic contains Chinese. Export as UTF-8, embed fonts in PDF with TrueType/type 42 when supported, keep text live in an explicitly requested SVG, and inspect Chinese, minus signs, Greek letters, and superscripts in the rendered result. Do not hide missing-glyph warnings or replace unavailable characters with blank boxes.
 
 ## Source Notes
 

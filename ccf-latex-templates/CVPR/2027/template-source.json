@@ -1,0 +1,72 @@
+{
+  "venue": "CVPR",
+  "year": 2027,
+  "release": "CVPR2027-v1",
+  "checked": "2026-11-12",
+  "source_url": "https://media.eventhosts.cc/Conferences/CVPR2027/author-kit-CVPR2027-v1-latex.zip",
+  "author_guidelines": "https://cvpr.thecvf.com/Conferences/2027/AuthorGuidelines",
+  "upstream_release": "https://github.com/cvpr-org/author-kit/releases/tag/CVPR2027-v1",
+  "upstream_tag_commit": "a2369342011145be8c85e5ad21a9b61f9fa53473",
+  "archive_sha256": "da1ec5db9b73531ea82a87723e4aedb631083331fe655d1972279b48a7bdb2fe",
+  "local_modifications": "none; official download mirrored unchanged",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "82154abbe11cdbc336bfb9ecc7e6cf9f2be823c4ff18de16235f2cca2561101a"
+    },
+    {
+      "path": "sec/X_suppl.tex",
+      "sha256": "594291f94cf3b925908dc127a93f3525c1998e96abf37a14f69d6077a7e58bd7"
+    },
+    {
+      "path": "sec/3_finalcopy.tex",
+      "sha256": "ae261b3daaff50cf609bb3ca7dfd030bb1e835fd85aa4fda45cdaf53cc35cc1a"
+    },
+    {
+      "path": "sec/2_formatting.tex",
+      "sha256": "bd4233b307bfe3ad791c433e021b00ed4e4017db7adde8ee8e475c267fc7191d"
+    },
+    {
+      "path": "sec/1_intro.tex",
+      "sha256": "6b7bf826be4e68e92a037d3d238a108ed7e4432204353826d237e00faeecf7a6"
+    },
+    {
+      "path": "sec/0_abstract.tex",
+      "sha256": "ac059e9cb8595bab8f7795d088d71e321ee46e8397d5cfb56957107d43c868ed"
+    },
+    {
+      "path": "rebuttal.tex",
+      "sha256": "e64a94a7a4c41f0758c9309983f195a5b7e85b2f8d73fd436badede9ddf5b292"
+    },
+    {
+      "path": "preamble.tex",
+      "sha256": "f666a85903f49929395951e7afb620e96d4e208334623f23135298b4d7f06228"
+    },
+    {
+      "path": "main.tex",
+      "sha256": "9f6d8ef0ffaeac9494283f563d2666b125af5951f8d9604f7f805dca87460bfe"
+    },
+    {
+      "path": "main.bib",
+      "sha256": "1d6d78b4c02eae2607a40e15376f6ac96ef491e311241acd6c8a8a970ac3c1b2"
+    },
+    {
+      "path": "ieeenat_fullname.bst",
+      "sha256": "e38e6166bd7b1e6d23a1b79dcdb55c656e4fcdbe91bdf6b50d827e6b5d1aacfc"
+    },
+    {
+      "path": "cvpr.sty",
+      "sha256": "1cd7f434b13d41c475df4a1901a5d82d9ca8b80b8cf6205dc4602a5c164286b4"
+    }
+  ],
+  "upstream_tag_is_archive_identity": false,
+  "archive_variant": "Official conference-linked archive omits the GitHub teaser input/assets; cvpr.sty differs only in one indentation line.",
+  "equivalent_styles": [
+    {
+      "source": "GitHub CVPR2027-v1 tag",
+      "url": "https://raw.githubusercontent.com/cvpr-org/author-kit/a2369342011145be8c85e5ad21a9b61f9fa53473/cvpr.sty",
+      "sha256": "ae8e51adc7270b118833b2092310ca1151a19fab0c09b1ab35a485ac4004ac0f",
+      "difference": "One indentation line only; verified against the conference-linked style"
+    }
+  ]
+}

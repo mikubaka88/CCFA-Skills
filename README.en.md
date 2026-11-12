@@ -72,7 +72,7 @@ Review and rank these three ideas, and identify the most likely rejection reason
 Find recent work, benchmarks, and published baselines for temporal visual reasoning.
 Design the main experiments, ablations, and robustness evidence for this paper without inventing results.
 Rewrite the method section in a CVPR style while preserving equations, terminology, and citations.
-Draw the method architecture, create an aesthetic draft first, and then ask whether to rebuild it as PPTX.
+Draw the method architecture and deliver PNG by default; create native PPTX when editability is explicitly requested.
 ```
 
 ## Why a family of skills
@@ -85,7 +85,7 @@ The difficulties of paper research are connected, but they do not require the sa
 | Literature facts, experimental values, and manuscript claims drift apart | Sources, experiment design, and whole-paper consistency remain distinct responsibilities |
 | A revision begins to sound like a review response full of caveats and internal status language | Writing forms the argument; Humanization restores direct and natural academic prose |
 | Each review round changes its focus, obscuring whether the manuscript actually improved | Current publication readiness and progress over the previous version are considered separately |
-| Architecture figures are either plain box diagrams or attractive but impossible to edit | A content-aware visual draft comes first, followed by optional SVG, PDF, or PPTX reconstruction |
+| Architecture figures are either plain box diagrams or attractive but impossible to edit | Precise geometry and meaningful scientific illustrations, with PNG delivery and native PPTX on an editability request |
 | More installed skills create more noise instead of better work | Only capabilities relevant to the present question enter the conversation |
 
 ## What we value
@@ -200,7 +200,7 @@ The figure below extracts the computational relationships from `output/DynTrace.
 
 ![Paper method architecture](assets/visual-showcase/dyntrace-paper-mechanism-llava4d-reference.png)
 
-**How it was made:** The DynTrace paper was distilled into mechanism relationships and representation–operation pairs. GPT Image 2 then generated a layered architecture draft, followed by a check that the method remained complete. The displayed artifact is a PNG visual draft; after composition approval, it can be rebuilt as semantic SVG, vector PDF, or native-object PPTX.
+**How it was made:** The DynTrace paper was distilled into mechanism relationships and representation–operation pairs. GPT Image 2 then generated a layered architecture draft, followed by a check that the method remained complete. The displayed artifact is a PNG visual draft. An explicit editability request defaults to native-object PPTX; SVG requires a specific request, and paper-ready PDF is exported when requested.
 
 <details>
 <summary>Reference figure, source, and composition principles</summary>
@@ -268,13 +268,13 @@ Manuscript re-review answers two different questions:
 
 ![Visual delivery](assets/ccfa-skills-artifacts.svg)
 
-Quantitative figures begin with reproducible code and traceable data. Method, system, and architecture figures usually begin with GPT Image 2 exploring a visual language that suits the content. Requested editable SVG, vector PDF, or PPTX deliverables continue under the existing authorization; additional formats can be offered when useful. Existing editable figures are revised in their authoring source, with only affected exports rebuilt; local text, color, spacing, value, or format changes do not restart image generation. Common concepts use a coherent open-source icon family, while method-specific scientific objects can be drawn together in the initial draft and isolated as assets when reuse or editing requires it. In PPTX, text, boxes, nodes, and connectors remain native objects wherever possible, so the final figure can still be meaningfully revised.
+Quantitative figures begin with reproducible code and traceable data. New method diagrams default to complete GPT Image compositions from the supplied science and actual references. Alignment, compactness and straight connections remain quality requirements; they do not by themselves require a code skeleton. Prompts preserve the science and add only missing design requirements. One integrated inspection checks content and appearance, followed by local repairs when needed. Code/native authoring serves explicit choices, exact tolerances or existing sources. Requested editable SVG, vector PDF, or PPTX deliverables continue under the existing authorization; additional formats follow an explicit request. Existing editable figures are revised in their authoring source, with only affected exports rebuilt; local text, color, spacing, value, or format changes do not restart image generation. Common concepts use a coherent open-source icon family, while method-specific scientific objects can be drawn together in the initial draft and isolated as assets when reuse or editing requires it. In PPTX, text, boxes, nodes, and connectors remain native objects wherever possible, so the final figure can still be meaningfully revised.
 
 Figure aspect ratio follows the content and paper placement, with no default square. Allocate space to the main mechanism before placing compact modules, illustrations, and connectors. Align peer edges, text baselines, and ports across groups, and inspect unused regions. Set a consistent type scale at final paper width: Times New Roman by default, or Comic Sans MS for a requested comic treatment. Keep essential scientific labels while removing repeated explanation and ornamental numbers.
 
 Five coordinated presets cover formal mechanisms, soft mechanisms, visual evidence, geometric flows, and compact comic illustrations, alongside seven additional palettes. Venue context helps select a preset; actual template requirements take precedence. These are design suggestions, not official conference styles. Each preset coordinates type, strokes, grouping, and color, while each reference has a specific region or property to guide. Pixel gaps are generation targets; requested editable outputs enforce live fonts and coordinates. Local edits check attached connectors and protected regions, with current artifacts organized per figure.
 
-When a user does not want GPT Image 2 or explicitly prefers code-first drawing, `ccf-visual-composer` uses a pure-SVG route and labels it clearly.
+For a requested code route, Python renders PNG by default. Editable delivery prefers native PPTX; SVG requires an explicit SVG request. Existing authoring sources remain in use.
 
 ## Distinct roles, shared story
 
@@ -319,6 +319,14 @@ Chinese output uses explicit UTF-8 I/O with optional BOM support on input. Shell
 <a id="latest-updates"></a>
 
 ## Latest updates: keep every revision part of the same paper
+
+### CVPR 2027 and workflow repairs · 2026-11-12
+
+The template, manuscript and submission check should follow the same rules. This update adds the complete year-specific [official CVPR 2027 kit](ccf-latex-templates/CVPR/2027/main.tex) and [guide](ccf-paper-writer/references/venue-guides/cvpr.md), with local checks for mode, page geometry, anonymity, main-text length and the required LLM Usage Statement. Enrollment and author eligibility remain explicit author checks.
+
+Substantive drafting and expression repair now consistently use matched real paper passages. Compose the scientific point and sentence relationships first, then remove empty labels and unnecessary qualifications; preserve the author's closing significance. Research design starts with missing information, representation, objectives or computation before choosing a mechanism. Experiments distinguish explanations, including declared factor combinations and interaction ablations when useful.
+
+Code drawing defaults to PNG, editable delivery prefers native PPTX, and SVG remains explicit. Copy-install instructions now include the visual reference assets. Humanization and Common still run first, with details loaded as needed.
 
 **v0.12.1 · Updated 2026-10-31**
 
@@ -422,6 +430,8 @@ A complex analysis figure should help the reader follow one question across its 
 
 ![Analytical chart combinations with simulated values](assets/semantic-figures-gallery.png)
 
+Figures use GPT Image, Python, or both, with PNG delivery by default. Editable output is opt-in and prefers native PPTX; SVG requires an explicit request. Use Times New Roman or the selected Comic Sans MS, bold titles/legends/axis text, darker same-hue substantial bar and box borders, light fills, and compact aligned layouts.
+
 Chart selection now begins with the question the reader needs to understand. **43 chart grammars, 16 analytical purposes, and 16 fusion plans** cover tails and distributions, matched gains, error structure, ranking changes, resource trade-offs, and related questions. Each design explains why the arrangement works, what data it needs, what readers might misinterpret, and which complementary view can share the figure. These explanations give later revisions and new combinations a scientific starting point.
 
 The library keeps two levels of coverage explicit: **54,890 paper metadata records** support recent-paper lookup, while **78 design cards from 43 papers** document figures actually inspected—75 directly inspected cards and three reused visual records, including 25 cards added in this update. The coverage manifest records editions, article scopes, and gaps. Runnable reconstructions adapt analytical relationships and layouts with labeled simulated values; real tasks supply their own observations.
@@ -456,7 +466,7 @@ The [figure design and fusion guide](ccf-visual-composer/references/figure-desig
 
 These nine templates compose the original 13 reusable panel types, including interval comparisons, curve bands, heatmaps, dot matrices, distributions, embeddings, density maps, binned summaries, and category comparisons. The new 30 components join them in the 43-grammar router. Swap a panel when the question changes without rebuilding the whole figure. Typography and strokes follow the final physical width; related panels align, repeated legends are consolidated, and each entity keeps its color. Comparable quantities share axes or color ranges, while different units retain separate labels. Times New Roman remains the default, with CJK fallbacks and explicit font choices; the destination's submission rules take precedence.
 
-All 14 existing palettes remain available alongside six additions: AAAS, NEJM, Lancet, JCO, Tol bright, and Tol muted. These are palette choices, not journal mandates. Related results retain the same color mapping. SVG and PDF preserve editable text and vector elements; PNG provides a preview. Python renders the numerical plots first, with illustrations or mechanism components added locally when needed; image models do not redraw the data.
+All 14 existing palettes remain available alongside six additions: AAAS, NEJM, Lancet, JCO, Tol bright, and Tol muted. These are palette choices, not journal mandates. Related results retain the same color mapping. PNG is the default finished format. Export vector PDF or SVG when requested; native PPTX is preferred for editable object delivery. Python renders the numerical plots first, with illustrations or mechanism components added locally when needed; image models do not redraw the data.
 
 The gallery uses simulated values. Only an explicit `--demo` request creates synthetic examples. Real tasks load supplied data with `--data`, without filling missing results or silently changing values to make a plot work. The tools retain p-value, adjusted-p-value, and q-value distinctions and check intervals, probabilities, axis ranges, and labels.
 

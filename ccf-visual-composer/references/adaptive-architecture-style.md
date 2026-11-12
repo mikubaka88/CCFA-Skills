@@ -6,7 +6,7 @@ Use this reference only for scientific method, system, model, and pipeline diagr
 
 Choose the smallest intervention that preserves the user's scientific intent.
 
-1. **Detailed prompt:** Keep the user's prompt verbatim. Append only missing refinements; for a local edit, a short delta usually suffices. For a requested layout redesign, supply enough geometry, typography, reference roles, and label constraints to make the design executable. Do not impose a word/percentage ceiling that discards requirements, and do not restate inventories or constraints already present.
+1. **Detailed prompt:** Keep the user's prompt verbatim. Append only missing refinements; for a local edit, a short delta usually suffices. For a requested redesign, use the actual references and supply only missing scientific content and important output requirements; leave detailed geometry open unless it was explicitly fixed. Do not impose a word/percentage ceiling that discards requirements, and do not restate inventories or constraints already present.
 2. **Partial prompt:** Preserve supplied wording and topology. Add only missing scientific relationships, reading order, label constraints, or output constraints that affect correctness.
 3. **Manuscript or notes only:** Extract a factual diagram specification first, then write a complete content-derived prompt. Minimize private material to module names, relationships, short labels, and the scientific takeaway needed for the figure.
 
@@ -16,7 +16,7 @@ Lock acronym handling before generation. If the source gives a canonical expansi
 
 ## Transferable Design Principles
 
-Select the few principles that address the actual composition. Apply the concrete spacing and typography tokens in `visual-contract.md`; do not load every principle into every prompt.
+Select the few principles that address the actual composition. Use the supplied reference and relevant typography/compactness requirements; measured tokens in `visual-contract.md` are optional for exact/code authoring. Do not load every principle into every prompt.
 
 - **Information-scale hierarchy:** Establish macro regions, meso modules, and micro evidence only when all three carry different scientific roles.
 - **Semantic regions:** Use restrained background tint, boundaries, or headings to group real stages, phases, branches, or evidence families.
@@ -61,7 +61,7 @@ Select one preset for a new design or explicit style change. A preset coordinate
 | `geometric-flow` / Geometric flow | Supported distributions, trajectories, or spatial structures; sparse reference geometry under a stronger transformation path. | Times New Roman with compatible math; shared viewpoint, light mesh/contours, clear foreground path. | `ccfa_nocturne` or `ccfa_ceramic`: muted context and one warm transformation accent. |
 | `compact-comic` / Compact comic | Recognizable simplified scientific objects on a precise grid; compact rounded grouping where useful. | Comic Sans MS with legible math; consistent optical size and clean connectors, no decorative line wobble. | `ccfa_orchid` or `ccfa_ceramic`: limited muted accents with dark labels. |
 
-All presets use the final-size type scale in `visual-contract.md`. A comic treatment must fit the requested reference or user preference; do not infer it solely from a conference name. Sparse geometry is a representation choice, not permission to add an unsupported field, probability density, or result. For numerical plots, carry over typography/color roles only; render all values and geometry reproducibly from data.
+All presets use the final-size type scale in `visual-contract.md`. Titles, legends and axis labels/ticks use bold weight; bar/box edges are dark and substantial, while light fills and quiet grid lines retain hierarchy. A comic treatment must fit the requested reference or user preference; do not infer it solely from a conference name. Sparse geometry is a representation choice, not permission to add an unsupported field, probability density, or result. For numerical plots, carry over typography/color roles only; render all values and geometry reproducibly from data.
 
 ## Venue Context
 
@@ -82,7 +82,7 @@ Reference-workflow provenance is registered as `astradraw-visual-workflow` in `.
 For an already detailed prompt, append one short paragraph rather than rewriting it:
 
 ```text
-Style refinement: [Missing alignment anchors, chosen spacing tokens, primary font, and text constraints.] Keep the specified topology and exact labels. Give the proposed mechanism the clearest visual weight; place its scientific illustrations inside the allocated slots.
+Style refinement: [Only missing reference, alignment, typography or color requirements.] Keep the specified science and exact labels; let the model balance the complete composition. Include numeric layout constraints only when explicitly needed.
 ```
 
 Remove clauses that duplicate the original prompt. The final suffix should be specific enough to affect composition and short enough that the user's wording remains dominant.

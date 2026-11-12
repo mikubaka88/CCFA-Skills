@@ -46,7 +46,7 @@ python -B "<papers-dir>/tools/install_release.py" --source "<papers-dir>" --targ
 | 審稿/審計子集 | `ccf-common`, `ccf-humanization`, `ccf-paper-reviewer`, `ccf-integrity-auditor` | 可以診斷問題，但不能寫作、廣泛檢索、設計實驗或檢查投稿包。 |
 | 監控子集 | `ccf-common`, `ccf-humanization`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-idea-reviewer`, `ccf-idea-optimizer` | 能追蹤新論文和競品訊號，但不能寫作或投稿。 |
 | 早期研究子集 | `ccf-common`, `ccf-humanization`, `ccf-pipeline-orchestrator`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-monitor`, `ccf-literature-searcher`, `ccf-experiment-designer` | 沒有正文寫作、圖表視覺整合、投稿檢查和 rebuttal。 |
-| 圖表/正文呈現子集 | `ccf-common`, `ccf-humanization`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-writer`, `ccf-integrity-auditor`, `ccf-submission-checker` | 能基於真實結果製作論文圖表、Python SVG 繪圖、配色、caption、正文嵌入和一致性檢查，但不能做完整文獻檢索或完整審稿。 |
+| 圖表/正文呈現子集 | `ccf-common`, `ccf-humanization`, `ccf-experiment-designer`, `ccf-visual-composer`, `ccf-paper-writer`, `ccf-integrity-auditor`, `ccf-submission-checker` | 能基於真實結果製作論文圖表、Python 數值繪圖、配色、caption、正文嵌入和一致性檢查，但不能做完整文獻檢索或完整審稿。 |
 | 投稿子集 | `ccf-common`, `ccf-humanization`, `ccf-paper-writer`, `ccf-visual-composer`, `ccf-submission-checker`, `ccf-integrity-auditor` | 能查格式、投稿包、artifact 和圖表展示，但不能完整審稿。 |
 | 維護子集 | `ccf-common`, `ccf-humanization`, `ccf-skill-forger` | 只做家族維護和文件 SVG 生成。 |
 
@@ -87,7 +87,7 @@ foreach ($ccfaPath in $ccfaPaths) {
 
 ## 補齊相鄰資源
 
-`npx skills add ... --skill '*' --copy` 安裝全部 18 個 skills，但不會複製沒有 `SKILL.md` 的根目錄 `ccf-latex-templates/`。請從與安裝 skills 相同版本的倉庫執行以下命令。這組資源同時補齊部分安裝所需的參考檔案與舊版轉換腳本。僅複製資源不代表安裝或呼叫資源所屬 skill；任務需要它的能力時，仍需另外安裝對應技能。完整倉庫或外掛已保留這些相鄰路徑。
+`npx skills add ... --skill '*' --copy` 安裝全部 18 個 skills，但不會複製沒有 `SKILL.md` 的根目錄 `ccf-latex-templates/` 與 `assets/visual-showcase/`。請從與安裝 skills 相同版本的倉庫執行以下命令。這組資源同時補齊部分安裝所需的參考檔案與舊版轉換腳本。僅複製資源不代表安裝或呼叫資源所屬 skill；任務需要它的能力時，仍需另外安裝對應技能。完整倉庫或外掛已保留這些相鄰路徑。
 
 Bash:
 
@@ -96,7 +96,7 @@ ccfa_codex_home="${CODEX_HOME:-}"
 ccfa_codex_home="${ccfa_codex_home#"${ccfa_codex_home%%[![:space:]]*}"}"
 ccfa_codex_home="${ccfa_codex_home%"${ccfa_codex_home##*[![:space:]]}"}"
 ccfa_skills_dir="${ccfa_codex_home:-$HOME/.codex}/skills"
-ccfa_paths=(ccf-paper-writer/references ccf-paper-writer/scripts ccf-paper-to-exemplar/scripts ccf-latex-templates)
+ccfa_paths=(ccf-paper-writer/references ccf-paper-writer/scripts ccf-paper-to-exemplar/scripts ccf-latex-templates assets/visual-showcase)
 for ccfa_path in "${ccfa_paths[@]}"; do
   mkdir -p "$ccfa_skills_dir/$ccfa_path"
   cp -R "$ccfa_path/." "$ccfa_skills_dir/$ccfa_path/"
@@ -108,7 +108,7 @@ PowerShell:
 ```powershell
 $ccfaCodexHome = if ([string]::IsNullOrWhiteSpace($env:CODEX_HOME)) { Join-Path $HOME ".codex" } else { $env:CODEX_HOME.Trim() }
 $ccfaSkillsDir = Join-Path $ccfaCodexHome "skills"
-$ccfaPaths = @("ccf-paper-writer/references", "ccf-paper-writer/scripts", "ccf-paper-to-exemplar/scripts", "ccf-latex-templates")
+$ccfaPaths = @("ccf-paper-writer/references", "ccf-paper-writer/scripts", "ccf-paper-to-exemplar/scripts", "ccf-latex-templates", "assets/visual-showcase")
 foreach ($ccfaPath in $ccfaPaths) {
   $ccfaDestination = Join-Path $ccfaSkillsDir $ccfaPath
   New-Item -ItemType Directory -Force -Path $ccfaDestination | Out-Null

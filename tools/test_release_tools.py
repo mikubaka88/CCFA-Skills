@@ -46,6 +46,8 @@ class ReleaseTests(unittest.TestCase):
             "ccf-paper-writer/scripts/convert.py": "# legacy bridge\n",
             "ccf-paper-to-exemplar/scripts/convert.py": "# shared converter\n",
             "ccf-latex-templates/NeurIPS/template.tex": "Template retained",
+            "ccf-latex-templates/CVPR/2027/main.tex": "Year-specific template retained",
+            "ccf-latex-templates/CVPR/2027/template-source.json": '{"venue":"CVPR","year":2027}',
             "assets/visual-showcase/reference.svg": "<svg/>",
             "README.md": "Download documentation",
             "LICENSE": "Fixture license",
@@ -102,7 +104,7 @@ class ReleaseTests(unittest.TestCase):
         result = installer.install(self.source, self.target)
         self.assertEqual(len(result["skills"]), 18)
         self.assertEqual(sorted(p.name for p in self.target.glob("ccf-*") if (p/"SKILL.md").exists()), SKILLS)
-        for name in ("ccf-latex-templates/NeurIPS/template.tex", "ccf-paper-to-exemplar/scripts/convert.py", "assets/visual-showcase/reference.svg"):
+        for name in ("ccf-latex-templates/NeurIPS/template.tex", "ccf-latex-templates/CVPR/2027/main.tex", "ccf-latex-templates/CVPR/2027/template-source.json", "ccf-paper-to-exemplar/scripts/convert.py", "assets/visual-showcase/reference.svg"):
             self.assertTrue((self.target/name).is_file(), name)
         self.assertFalse((self.target/"README.md").exists())
         self.assertFalse((self.target/(support.PAPERS+"original.pdf")).exists())
@@ -124,6 +126,9 @@ class ReleaseTests(unittest.TestCase):
                 self.assertEqual(set(skills), support.REQUIRED | {skill})
                 entries = {e["path"] for e in files}
                 self.assertEqual({p.split("/")[0] for p in entries if p.endswith("/SKILL.md")}, set(skills))
+                if skill in {"ccf-paper-writer", "ccf-project-scaffolder", "ccf-submission-checker"}:
+                    self.assertTrue({"ccf-latex-templates/CVPR/2027/main.tex",
+                                     "ccf-latex-templates/CVPR/2027/template-source.json"}.issubset(entries))
         installer.install(self.source, self.target, ["ccf-paper-to-exemplar"])
         for name in ("exemplar-style-analysis.md", "exemplars/index.md", "custom-format/default-user-format.md"):
             self.assertTrue((self.target/"ccf-paper-writer/references"/name).is_file(), name)

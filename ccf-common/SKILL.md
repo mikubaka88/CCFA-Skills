@@ -18,7 +18,7 @@ First apply [ccf-humanization](../ccf-humanization/SKILL.md), then this entry, b
 
 Resolve the requested result, scope/permissions, integrating owner, and reusable or missing prerequisites. Current user instructions override defaults. Preserve plan-only, review-only, supplied-evidence-only, no-browsing, no-new-files, exact-output, and session-denylist constraints. Necessary local steps and specialist contributions remain authorized within the requested deliverable; do not re-ask solely because ownership changes.
 
-Use one integrating owner, bring in the specialist needed to resolve a material gap, and verify affected results before finalizing. Reuse valid evidence rather than repeating intake, searches, full reports, or model calls. Do not skip groundwork to save tokens. A specialist remains responsible for its research deliverable; Common supplies shared controls.
+Use one integrating owner and only the contributions needed to resolve material gaps. Preserve required outcomes and prerequisites while leaving implementation choices flexible unless the user, correctness or an existing source fixes them. Reuse valid evidence and compact context rather than repeating intake, full reports, skill text or model calls. Do not skip groundwork to save tokens. Verify affected results; specialists retain their deliverables.
 
 ## Preferences And Continuity
 
