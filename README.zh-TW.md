@@ -55,7 +55,7 @@ Yann LeCun and James M. Manyika, [*Learning Abstractions*](https://www.amacad.or
 
 [Codex 安裝](docs/getting-started/CODEX.md) · [Claude Code 安裝](docs/getting-started/CLAUDE_CODE.md) · [Cursor 安裝](docs/getting-started/CURSOR.md) · [Gemini CLI 安裝](docs/getting-started/GEMINI_CLI.md) · [其他 Agent](docs/getting-started/OTHER_AGENTS.md) · [自動更新](docs/getting-started/AUTO_UPDATE.md)
 
-建議從 [0.12.1 Release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.1) 下載輕量安裝包並解壓縮。它包含技能、原文文字、繪圖素材庫與相鄰範本，完整論文 PDF 以可選離線包另行提供。進入解壓目錄後，依[安裝矩陣](docs/INSTALLATION_MATRIX.zh-TW.md)使用本機安裝器預覽並安裝；個人偏好保留，既有個人修改會先被識別。
+建議從 [0.12.1 Release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.1) 下載輕量安裝包並解壓縮。它包含技能、原文文字、繪圖素材庫與相鄰範本，完整論文 PDF 以可選離線包另行提供。進入解壓目錄後，依[安裝矩陣](docs/INSTALLATION_MATRIX.zh-TW.md)使用本機安裝器預覽並安裝；個人偏好保留，既有個人修改會先被識別；更新也會清理所選範圍內未改動的受管退役檔案。
 
 也可以從完整 GitHub 倉庫一行安裝；這條路徑仍會取得倉庫中的完整論文資源：
 
@@ -72,7 +72,7 @@ npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes -
 檢索近三年與時序視覺推理相關的工作、benchmark 和公開 baseline。
 根據這篇論文設計主實驗、消融和穩健性證據，不要虛構結果。
 把方法部分改寫為 CVPR 風格，並保留公式、術語和引用。
-根據論文繪製方法架構圖，預設交付 PNG；明確要求可編輯時優先製作 PPTX。
+根據論文和參考圖繪製方法架構圖：整理提示詞、GPT Image整圖生成、同提示詞微調，交付PNG。
 ```
 
 ## 為什麼需要一個 skill 家族
@@ -85,7 +85,7 @@ npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes -
 | 文獻事實、實驗數字和正文結論逐漸脫節 | 分別核對來源、實驗設計與全文一致性，讓每個 claim 都能找到證據 |
 | 論文愈改愈像審稿回覆，充滿防禦、解釋和內部狀態 | 寫作負責形成正文，Humanization 讓語言回到自然、直接的學術表達 |
 | 新一輪評審不斷更換關注點，難以判斷修訂是否真正進步 | 同時觀察當前稿件的錄用準備度與相對上一版的實際改進 |
-| 架構圖要麼只是方框流程，要麼漂亮卻無法繼續編輯 | 先探索適合內容的視覺語言，明確要求可編輯時優先重建為 PPTX，指定 SVG 時再生成 SVG |
+| 方法圖容易變成機械方框，資料圖又偏離所選範本 | 流程圖由GPT Image三階段成圖；資料圖重用原JSON/Python與真實資料 |
 | 載入的 skills 愈多，結果反而愈容易受到無關規則干擾 | 只載入與當前問題直接相關的能力，減少無關上下文 |
 
 ## 我們珍視什麼
@@ -94,7 +94,7 @@ npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes -
 - **讓證據始終有據可查。** 文獻、實驗協議、數值、結論、圖表和引用不會被混成一團。缺失的事實保持缺失，直到它被可靠地找到或驗證。
 - **讓論文聽起來像學術，而不是辯護。** Humanization 刪除防禦性鋪墊、機械枚舉、過度破折號和內部工程措辭，同時保留真正影響結論的限制、證據與披露。
 - **讓評審保持獨立。** Reviewer 負責判斷，Writer 負責修改。先看問題，再決定如何改，避免一邊審稿一邊替自己解釋。
-- **讓科研圖表達清楚，也足夠美觀。** 數值圖保持可重現；方法圖先尋找與內容相稱的構圖，再由使用者決定是否轉成可編輯版本。
+- **讓科研圖表達清楚，也足夠美觀。** 數值圖保持可重現；方法圖先理解科學內容，再完成提示詞、整圖生成與微調。
 - **讓範文成為方向，而不是模板。** 使用者提供目標論文後，系統學習它的敘事節奏、段落職責和證據組織，但不複製原句，也不把一種寫法強加給所有研究。
 
 ## 家族架構
@@ -121,7 +121,7 @@ npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes -
 | 論文寫作 | `ccf-paper-writer` | 起草、改寫、潤飾與壓縮論文內容 |
 | 學術表達 | `ccf-humanization` | 去除防禦性和機械感，保留自然嚴謹的學術表達 |
 | 審稿回覆 | `ccf-rebuttal-writer` | 組織 rebuttal、response letter 與修訂記錄 |
-| 科研繪圖 | `ccf-visual-composer` | 生成數值圖、視覺表格、方法圖及可編輯版本 |
+| 科研繪圖 | `ccf-visual-composer` | 重用數值圖範本、三階段生成方法圖、修改已有圖 |
 | 投稿檢查 | `ccf-submission-checker` | 檢查模板、頁數、匿名、PDF 與補充材料 |
 | 範文學習 | `ccf-paper-to-exemplar` | 從使用者提供的論文中提煉可重用的寫作方法 |
 | 家族維護 | `ccf-skill-forger` | 改進 skills，消除衝突，完成發布前檢查 |
@@ -200,7 +200,7 @@ python ccf-common/scripts/preferences.py serve --project "path/to/paper"
 
 ![論文方法架構圖](assets/visual-showcase/dyntrace-paper-mechanism-llava4d-reference.png)
 
-**成圖方式：** 先從 DynTrace 論文中提煉機制關係，梳理每種表示及其對應操作，由 GPT Image 2 生成分層架構圖，並核對方法資訊是否完整。目前展示的是 PNG 視覺稿；明確要求可編輯時，優先重建為由原生物件組成的 PPTX。SVG 需明確指定，論文排版用 PDF 按需匯出。
+**成圖方式：** 保留的 DynTrace 範例由論文機制及表徵—操作關係生成。目前流程圖的新繪／重繪統一為提示詞整理、GPT Image整圖生成、同提示詞微調三階段，交付PNG；不做向量或原生形狀重建。
 
 <details>
 <summary>查看參考圖、出處與構圖原則</summary>
@@ -223,7 +223,7 @@ python ccf-common/scripts/preferences.py serve --project "path/to/paper"
 
 ![GPT Image 2 概念稿](assets/visual-showcase/dyntrace-method-architecture-gpt-image-2.png)
 
-**成圖方式：** 從 DynTrace 的三階段方法出發，把影片、軌跡和圖結構轉化為鮮明的視覺敘事，再由 GPT Image 2 完成概念探索。
+**成圖方式：** 保留的 DynTrace 範例由論文機制及表徵—操作關係生成。目前流程圖的新繪／重繪統一為提示詞整理、GPT Image整圖生成、同提示詞微調三階段，交付PNG；不做向量或原生形狀重建。
 
 #### 參考驅動的 PPT/Poster
 
@@ -266,21 +266,13 @@ python ccf-common/scripts/preferences.py serve --project "path/to/paper"
 
 ## 讓圖既好看，也能繼續修改
 
-論文裡的空間有限。現在預設先設計能獨立使用的高資訊量單圖，把相關指標、條件和變化放進同一座標系統；多面板在確有必要時再使用。流程圖的連線與文字按座標生成，調整間距和線段只需修改原始碼後重新匯出。
+資料圖選中了哪個範本，就沿用它的 JSON 與 Python 繪製程式。替換真實資料時保留原本的版面、字級、配色、圖層與統計定義；不重新執行 demo 或改選近似的基礎圖。新設計才依輸入資料類型、圖類型與文章問題選擇組合。
 
-繪圖按「輸入資料類型」和「圖類型」分別檢索，再根據文章選擇能共同解釋問題的元素。密度與條件區域、分位數與尾部、柱線與給定範圍都可在一個分析單元裡組合；基礎圖法保留作元件。流程圖使用輕框、少量角色色和有層級的字體，主路徑與輔助輸出分開排線。
-
-繪圖預設透過GPT Image、Python或兩者結合輸出PNG；需要可編輯版本時再製作，優先原生PPTX，SVG只在明確要求時產生。採用Times New Roman或選定的Comic Sans MS，標題、圖例與座標文字加粗，柱與箱體使用同色系深色粗邊及淺色填充，依最終版面緊湊對齊。
+新繪／重繪論文流程圖、方法圖及架構圖採用三階段：從使用者提示詞、參考圖與文章整理 P；帶著 P 與這些材料交給 GPT Image 生成 G0；再以同一個 P 和 G0 微調為 G1。微調是同一候選的必需階段，關閉額外候選也會執行。圖像模型負責緊湊、對齊、連線清楚且資訊豐富的整體構圖，不搭向量骨架，也不重建為 SVG 或 PPT 形狀。
 
 ![繪圖交付方式](assets/ccfa-skills-artifacts.zh-TW.svg)
 
-數值圖繼續由 Python 保證數值與統計表達，流程圖則優先參考原圖直接整圖生成。Prompt 保留科學內容，只補充必要的排版、字體與配色要求；生成後一起檢查內容與美感，發現具體問題再局部修改。精確座標、指定程式路線或已有來源檔案的修改按需處理，需要可編輯時首選原生 PPTX；SVG 仍需明確要求。這樣保留緊湊、高資訊量與字體配色要求，也讓模型有空間把整張圖設計好。
-
-繪圖依內容與論文版面選擇畫布比例，不預設方形。先確定整體分區和重點機制，再安排緊湊的模組、圖示與連線路徑；同類模組跨區域對齊邊緣、文字基線和連接埠，並檢查大塊無效留白。字型依最終論文寬度統一分級，預設 Times New Roman，需要 comic 效果時使用 Comic Sans MS；保留必要科學標註，減少重複解釋和裝飾性數字。
-
-可選預設包括正式機制、柔和機制、視覺證據、幾何流與緊湊漫畫，搭配七套擴充配色。會議情境協助選擇預設，實際模板要求優先；這些是設計建議，不是會議官方風格。預設同時協調字型、線寬、分組和顏色，參考圖各自負責明確的區域或屬性。像素間距是生成目標，精確座標和真實字型在已要求的可編輯版本中校準。局部修改檢查關聯連線和未修改區域，中間檔案仍按圖歸檔並更新目前版本。
-
-使用者選擇程式繪圖時，預設由 Python 產生 PNG；需要可編輯版本時首選原生 PPTX，明確指定 SVG 時再匯出 SVG。已有作者來源檔案繼續沿用。
+已有圖的局部修改與調優沿用目前圖像或原始來源，不必重跑三階段。流程圖預設交付 PNG；放入 PPTX／PDF 時仍是原圖，應準確說明實際可編輯程度。數值圖仍支援明確要求的格式匯出。Times New Roman 或選定的 Comic Sans MS、加粗標題／圖例／座標、同色系深色柱箱邊沿、配色預設與緊湊對齊均保留。
 
 ## 各司其職，彼此接力
 
@@ -296,7 +288,7 @@ python ccf-common/scripts/preferences.py serve --project "path/to/paper"
 | 設計 baseline、指標與消融 | `ccf-experiment-designer` | 不改動或虛構結果 |
 | 評審、評分與診斷 | `ccf-paper-reviewer` | 不在評審過程中改寫正文 |
 | 改寫、潤飾與壓縮 | `ccf-paper-writer` | 不擅自改變研究問題、方法和結論 |
-| 繪製圖表與 PPTX | `ccf-visual-composer` | 不選擇資料集、指標或數字 |
+| 繪製圖表與放入文件 | `ccf-visual-composer` | 不選擇資料集、指標或數字 |
 
 ## 倉庫結構
 
@@ -326,13 +318,19 @@ CCFA-Skills/
 
 ## 最新更新：讓改過的每一段，仍然屬於同一篇論文
 
+### 繪圖鏈路修復 · 2026-11-14
+
+選好了範本，交付圖卻變了樣，可能是重新demo換了資料、尺寸被忽略或二次縮放，或展示參數與圖層流失。現在直接重用選中的JSON/Python、完整替換科學資料；命名範本鎖定，明確寬高生效，色形依對象身分保持。同輸入132×84 mm回歸中，修復後的輸出與直接範本繪製逐像素一致。
+
+繪圖先釐清讀者需要理解什麼、必要對象與真實關係，再擴展提示詞。流程圖的新繪／重繪固定為三階段：提示詞、參考圖與文章整理P → GPT Image生成G0 → 同P與G0微調G1。第三階段不受額外候選開關控制；主動向量骨架與SVG/PPT形狀重建已退出此路線。已有圖的局部修改沿用目前圖像／來源。字型、加粗、配色、緊湊對齊及科學內容檢查均保留。
+
 ### CVPR 2027 與本輪修復 · 2026-11-12
 
 準備投稿時，模板、正文與檢查清單應該遵循同一套規則。這輪接入了 [CVPR 2027 官方模板](ccf-latex-templates/CVPR/2027/main.tex)和[對應指南](ccf-paper-writer/references/venue-guides/cvpr.md)：依年份保留完整依賴，檢查模式、紙張尺寸、匿名資訊、正文頁數及必需的 LLM Usage Statement。註冊、作者資格等事項會單獨列出，方便作者最後核對。
 
 實質起草與表達修復預設參考匹配的真實論文，先把觀點與句間關係寫順，再處理空泛標籤和不必要的限定；保留句尾的總結與意義。研究設計先分析缺失的資訊、表徵、目標或計算能力，再選擇機制；實驗圍繞能區分解釋的比較設計，允許有明確含義的因素組合與交互消融。
 
-這輪也統一了程式繪圖預設 PNG、按需 PPTX／SVG 的約定，並補齊複製安裝時的圖例素材。Humanization 與 Common 仍先啟動，詳細規則按需讀取。
+這輪也統一了數值繪圖預設 PNG、按需數值格式匯出的約定，並補齊複製安裝時的圖例素材。Humanization 與 Common 仍先啟動，詳細規則按需讀取。
 
 **v0.12.1 · 更新於 2026-10-31**
 
@@ -470,7 +468,7 @@ python ccf-visual-composer/resources/python/ccfa_figure_library.py demo --fusion
 
 這九套範本由區間比較、趨勢帶、熱圖、點陣、分布、嵌入散點、密度圖、分箱彙整和分類對照等原有 13 類基礎元件組成；本輪新增 30 類元件，與它們共同接入 43 種圖法的路由。需要新組合時可以換面板，無須整張圖重寫。圖形依最終紙面寬度設定字級與線寬，統一圖例、對齊相關面板，同一對象始終沿用同一顏色；可比較的資料共用座標或色階，不同單位保留獨立標註。預設使用 Times New Roman，支援中文字型回退與明確指定字型，投稿時以目標期刊的要求為準。
 
-配色保留原有 14 套，新增 AAAS、NEJM、Lancet、JCO、Tol bright 和 Tol muted 六套。它們提供不同的清晰度與冷暖關係，並不等於期刊指定配色；同一組結果不會為了好看而反覆換色。PNG 是預設成品格式；需要向量圖時按要求匯出 PDF 或 SVG，可編輯物件交付首選原生 PPTX。數值圖先由 Python 生成；需要插畫或機制元件時再局部補充，不交給圖像模型重畫資料。
+配色保留原有 14 套，新增 AAAS、NEJM、Lancet、JCO、Tol bright 和 Tol muted 六套。它們提供不同的清晰度與冷暖關係，並不等於期刊指定配色；同一組結果不會為了好看而反覆換色。數值圖預設交付 PNG，按明確要求匯出 PDF 或 SVG，並保留 Python／JSON 來源。方法圖交付 PNG，放入 PPTX 時仍保留為點陣圖；已有可編輯來源檔案可繼續局部修改。數值圖先由 Python 生成；需要插畫或機制元件時再局部補充，不交給圖像模型重畫資料。
 
 預覽中的數值都是模擬資料。只有明確選擇 `--demo` 才生成範例；真實任務以 `--data` 讀取提供的資料，不補造缺失結果，也不會為了出圖悄悄修改數值。工具繼續區分 p 值、校正 p 值和 q 值，檢查區間、機率、座標範圍與標籤。
 
@@ -481,11 +479,11 @@ python -m pip install numpy matplotlib
 python ccf-visual-composer/resources/python/ccfa_analysis_templates.py --demo all --out ccfa-workfiles/figures/analysis-demo
 ```
 
-只有這條多面板路線需要 NumPy 和 Matplotlib；原有純 SVG 繪圖仍只依賴 Python 標準函式庫，既有呼叫繼續可用。[繪圖呼叫說明](ccf-visual-composer/references/python-plot-recipes.md)提供範本選擇、真實資料接入與字級配色參數。重複執行更新同一任務目錄，額外候選圖與獨立複核沿用原有開關。
+Python 數值繪圖使用 NumPy 和 Matplotlib；早期 SVG 數值範例作為既有來源檔案保留。[繪圖呼叫說明](ccf-visual-composer/references/python-plot-recipes.md)提供範本選擇、真實資料接入與字級配色參數。重複執行更新同一任務目錄，額外候選圖與獨立複核沿用原有開關。
 
 只想看敏感性分析的兩個面板，將上面指令中的 `--demo all` 換成 `--demo sensitivity_dynamics --panel-pair sensitivity`；把 `sensitivity` 改為 `dynamics` 則輸出狀態演化與分類對照，保留原來的 `--out` 路徑即可。
 
-> 請把這些結果整理成一張多面板分析圖，先判斷哪些關係需要並排比較，再選範本。依論文最終寬度安排字級，對齊相關面板，同一方法保持同色，保留必要的不確定性，匯出 SVG、PDF 和 PNG。
+> 請把這些結果整理成一張多面板分析圖，先判斷哪些關係需要並排比較，再選範本。依論文最終寬度安排字級，對齊相關面板，同一方法保持同色，保留必要的不確定性，輸出 PNG 及可重用的 Python／JSON 來源。
 
 ### 檔案與上下文：下次打開，還能接著做
 
@@ -518,7 +516,7 @@ node --check ccf-common/assets/configurator/app.js
 node ccf-common/scripts/test_configurator.js
 ```
 
-這些檢查驗證 18 個技能的靜態結構、設定與引用路徑，以及現有腳本的迴歸案例；它們不等同於實際模型品質或 token 消耗的對照實驗。實驗與效率結果見 [實驗結果.md](实验结果.md)。
+這些檢查驗證 18 個技能的靜態結構、設定與引用路徑，以及現有腳本的迴歸案例；它們不等同於實際模型品質或 token 消耗的對照實驗。v0.9.0 的實驗與效率檔案見[歷史實驗紀錄](实验结果.md)，其數值對應當時的模型與執行路線。
 
 歷史實驗保留原始版本與條件；結構檢查、情境案例與腳本回歸分別說明檢查了什麼，不據此推算目前模型的品質提升或 token 節省比例。
 

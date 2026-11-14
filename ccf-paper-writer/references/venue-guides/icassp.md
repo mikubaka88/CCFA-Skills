@@ -53,7 +53,6 @@ Standard ICASSP paper structure:
 \end{figure}
 ```
 
-- Use vector formats (.pdf) where possible
 - Caption **below** figures, **above** tables
 - Number figures and tables sequentially
 - Ensure figures are legible in grayscale

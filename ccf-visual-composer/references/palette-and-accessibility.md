@@ -8,7 +8,7 @@ Color is evidence encoding, not decoration. Choose palettes that remain legible 
 - Alternative categorical set: ggsci NPG when its series remain distinguishable at final size.
 - Sequential and diverging maps: prefer perceptually uniform scientific colour maps such as batlow, lajolla, tokyo, oslo, vik, roma, broc, or cork.
 - Discrete alternatives: use ColorBrewer families that pass colorblind/print checks.
-- Never use rainbow or jet for ordered scientific quantities.
+- Avoid rainbow/jet for new numerical encodings of ordered quantities; preserve actual supplied image/depth data and approved template mappings.
 
 ## Recommended Hex Sets
 
@@ -65,8 +65,12 @@ These variants are starting sets, not certified color-vision-safe combinations. 
 
 ## Semantic Color Rules
 
+When no user/reference/template mapping is established and the figure has these roles, an optional starting map is reference/target `#1A1A1A`, primary method/result `#2C7FB8`, comparator/ablation `#E07A2D`, limit/constraint `#7A5195`, neutral substrate `#F5F5F5`. Use only the roles actually present. Preserve the role across lines, outline/fill pairs, annotations and any meaningful background region; a group fill must not imply a scientific category it does not have. This map does not replace the existing palettes, real image/depth encodings or sequential/diverging scales. Missing/invalid data remain distinct from ordinary background.
+
+For quantitative plots, encode real distinctions with consistent line/marker treatment when not fixed by the template: solid reference, modestly stronger solid primary, distinct dashed/dash-dot comparison, and a translucent band only for a supplied or explicitly computed interval. About 1.5 pt can be a starting main-line width at the intended print size, subject to destination rules, density and template fidelity. Point jitter is only a declared display treatment for overlapping repeated observations; do not perturb meaningful time/position or alter pairing. Retain actual observations and the underlying values. Contours should expose useful levels sparsely, not manufacture extra analytical content.
+
 - Map stable entity IDs to colors once across related figures, whether the entities are models, cell types, cohorts, or conditions. Keep the proposed method's mapping fixed; panel order must not silently reassign colors.
-- Use neutral gray for secondary baselines unless a baseline is itself the scientific focus.
+- If no user/template/role mapping is established, secondary baselines can use neutral gray; retain an already assigned comparator color across related figures.
 - Use positive/negative colors only for true directional meaning.
 - Do not encode a critical distinction with red/green alone; add markers, line styles, hatches, direct labels, or grouping.
 - Keep color roles stable across main text, appendix, tables, and slides.
@@ -85,7 +89,7 @@ For monochrome delivery, assign distinguishable lightness, marker shapes, and li
 
 ## Typography And Final Size
 
-Keep Times New Roman as the CCFA default for analytical figures; use Comic Sans only when the user requests that presentation choice. An explicit destination's current rules take precedence. For example, Nature's main-figure guidance asks for Arial/Helvetica, 5–7 pt ordinary labels, 8 pt bold upright lowercase panel letters, and editable text. Its final figure widths are 89 or 183 mm, with a 170 mm figure-height limit in the current figure-building guide; final line weights are 0.25–1 pt. These are Nature settings, not a universal preset for every Nature Portfolio journal or conference.
+Use Times New Roman by default or selected Comic Sans MS for the actual requested figure. A destination may specify different type, dimensions or production formats; verify the exact journal/venue, stage and track only when those requirements affect this deliverable. A journal-inspired palette does not activate that journal's production rules or override the user's font choice.
 
 Set physical width before choosing font sizes and line weights, and inspect the export at that width. Keep comparable panel labels, ticks, and legends consistent. Reduce redundant labels or split a crowded figure before shrinking text below the selected size. Layout spacing is measured after tick labels and legends are present, not only between the bare axes.
 
@@ -93,8 +97,8 @@ For Chinese labels, retain the selected Latin font and supply an installed CJK c
 
 ## Source Notes
 
-Useful palette sources include ggsci journal palettes, Fabio Crameri Scientific Colour Maps, ColorBrewer, Okabe-Ito Color Universal Design, and the Nature Communications warning against misleading color maps. Treat these as design references, not venue rules.
+Source URLs, versions and verification dates live in Common's `source-registry.yaml`; inspect the relevant row only. Preserve attribution without treating a palette as a venue requirement.
 
-- Journal palette values and order: Nan Xiao's [ggsci palette definitions](https://github.com/nanxstats/ggsci/blob/master/R/palettes.R), checked 2026-10-30; AAAS/NEJM/JCO use `default`, Lancet uses `lanonc`. The ggsci package is [GPL-3.0-or-later](https://github.com/nanxstats/ggsci/blob/master/DESCRIPTION). This library records the named color values and attribution; it does not vendor ggsci's R implementation.
-- Tol values and ordering: Paul Tol's [official notes, Figures 1 and 4](https://sronpersonalpages.nl/~pault/), checked 2026-10-30. Muted's missing-data gray is excluded from the category sequence. The author retains attribution; this library does not copy the note's figures, prose, or Python implementation.
-- Destination-specific production requirements: Nature's [figure specifications](https://research-figure-guide.nature.com/figures/preparing-figures-our-specifications/), [panel building/export guide](https://research-figure-guide.nature.com/figures/building-and-exporting-figure-panels/), and [final submission instructions](https://www.nature.com/nature/for-authors/final-submission), checked 2026-10-30. Initial-submission width suggestions differ slightly, so use the guide for the actual stage and journal.
+- Nan Xiao's ggsci palette definitions: `ggsci-palettes`. The named values/order are recorded with attribution; ggsci is GPL-3.0-or-later and its R implementation is not vendored here.
+- Paul Tol's official notes: `tol-color-schemes`. The muted missing-data gray is outside the category sequence; the author retains attribution and this library does not copy his figures, prose or implementation.
+- Exact-destination production guidance: `nature-figure-specifications`, `nature-panel-export` and `nature-final-lines`. Check the actual journal and submission stage when relevant, without importing those requirements into an unrelated paper.

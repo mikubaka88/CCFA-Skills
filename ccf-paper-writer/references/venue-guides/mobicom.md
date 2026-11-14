@@ -165,7 +165,6 @@ We evaluate WiFiSense through:
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) for all figures
 - Ensure grayscale legibility
 - Include system diagrams and hardware photos
 - Tables should have clear column headers and units

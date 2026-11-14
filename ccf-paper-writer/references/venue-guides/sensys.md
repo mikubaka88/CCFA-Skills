@@ -176,7 +176,6 @@ We evaluate ForestWatch through:
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) for all figures
 - Ensure grayscale legibility
 - Include hardware diagrams and deployment photos
 - Tables should have clear column headers and units

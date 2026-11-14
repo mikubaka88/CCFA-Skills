@@ -188,7 +188,6 @@ The main contributions of this work are:
 ```
 
 - Caption **below** figures
-- Use vector formats (PDF, EPS)
 - 800 DPI minimum for line drawings
 - 6pt minimum font size in figures
 

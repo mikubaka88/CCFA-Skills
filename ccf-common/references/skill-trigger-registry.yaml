@@ -43,7 +43,7 @@ skills:
     exclude: "Does not own scientific comparison protocols, ordinary application coding, concept judgment, or campaign budgets. Plan-only work does not start training."
     handoff: "ccf-idea-optimizer, ccf-experiment-designer, ccf-pipeline-orchestrator, ccf-literature-searcher, ccf-project-scaffolder"
   - name: ccf-visual-composer
-    trigger: "Render and redesign scientific figures, visual tables, and method/architecture diagrams from supplied content, including biological data. Use for 绘图美化, 多面板分析图, 定量与消融可视化, 排版, 配色, GPT Image 2 generation, pure SVG, and editable SVG/PDF/PPTX. Preserve values and topology. Experiment evidence design belongs to ccf-experiment-designer; manuscript rewriting and PDF-to-writing exemplars are separate."
+    trigger: "Render data analyses with Python and create or redraw scientific method, architecture and flow diagrams through a three-stage GPT Image workflow. Use for 数据分析图, quantitative and ablation plots, 绘图美化, 流程图, 架构图, 重绘, 排版 and existing-figure edits. Preserve selected templates, values and topology. Experiment protocols and manuscript prose have separate owners."
     exclude: "Does not design experiments, invent results/components, write manuscript prose, convert PDFs into writing exemplars, or perform final submission compliance."
     handoff: "ccf-experiment-designer, ccf-idea-optimizer, ccf-paper-writer, ccf-integrity-auditor, ccf-submission-checker"
   - name: ccf-paper-to-exemplar

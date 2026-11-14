@@ -137,7 +137,6 @@ ICDCS papers focus on:
 - System architecture diagrams
 - Performance charts
 - Network topology diagrams
-- Use vector graphics (PDF)
 
 ### Table Best Practices
 - Clear headers with units

@@ -141,7 +141,6 @@ After acceptance:
 \end{table}
 ```
 
-- Use vector formats (.pdf, .eps) where possible
 - Ensure grayscale legibility
 - Caption **below** figures, **above** tables
 

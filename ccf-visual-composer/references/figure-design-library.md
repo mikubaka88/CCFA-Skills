@@ -4,11 +4,27 @@
 
 先说清楚图要让读者发现什么，再选图法。一个均值差异、一个长尾问题和一次配对变化，需要的观察单位与布局并不相同。素材库按这些表达目的组织；会议和期刊只用于定位已检查的图例，不作为固定外观预设。
 
+## 已选模板：复用原规格，只换数据
+
+用户选中图库入口、命名模板、JSON或Python后，直接读取该规格和绘制实现。不要重新运行demo、换一个相似原语或凭缩略图重写。画布、字号、配色身份、图层与统计定义沿用所选规格；输入不兼容就解决具体字段，不默默换图。
+
+```bash
+python ccf-visual-composer/resources/python/ccfa_figure_library.py compose --spec selected.json --data supplied.json --out ccfa-workfiles/figures/analysis/build/figure
+```
+
+`replace_data(spec, supplied)`返回新规格，不改原文件。原生template/layout传入完整新data对象；普通面板组合传入`{"panels":[{"id":"panel-1","data":{...},"layers":[{"data":{...}}]}]}`，提供所有选中面板及叠加层。`compose --panel <id>`先提取目标面板，再绑定其新数据，不要求未选面板。CSV/TSV仍用已有table bindings修改源路径/列映射；不要混用半份原始JSON替换和旧表格绑定。
+
+展示参数与观测分开：颜色、点形、字号等可以继承，series按稳定method/label身份匹配；缺失的观测、范围或权重不能用旧demo补上。检查`_meta.retained_text_to_check`中的静态标题／说明是否仍符合新数据，按实际任务更新。demo来源元数据不冒充新数据来源。
+
+只有未选定设计的新任务才运行问题／数据路由。同分的可用设计可以随机选择；选定之后的渲染与修改保持该设计，不再抽样换图。
+
+`original:mechanism_overview`保留为“已批准的方法PNG＋数值分析”的混合模板：`data.mechanism.image`必须指向现有PNG，代码只放置原图，不从stage标签重建框和箭头。示例使用已有插图与明确标记的模拟分析；真实任务需换成当前方法图。
+
 ## 三层入口
 
 - `resources/figure-library/catalog.json`：43 种原语的表达目的、必需字段、选择理由，以及 16 种组合入口。先通过路由读少量候选，不把整个文件塞进上下文。
 - `resources/figure-library/studies.json`：78 张已检查图例的设计卡。每张说明原图布局、为什么这样设计、真实数据需要哪些字段、可以怎样融合及当前实现的适配范围。累计 75 张有直接视觉检查记录，3 张复用早期记录；本轮新增 25 张；复用情况单独标记。
-- `resources/python/ccfa_figure_library.py`：小路由、图例演示和组合器。调用已有 `ccfa_analysis_panels.py` 及新增 `ccfa_semantic_panels.py`；原来的九套 `ccfa_analysis_templates.py` 模板和纯 SVG 路线在明确要求 SVG 时继续可用。
+- `resources/python/ccfa_figure_library.py`：小路由、图例演示和组合器。调用已有 `ccfa_analysis_panels.py` 及新增 `ccfa_semantic_panels.py`；原来的九套 `ccfa_analysis_templates.py` 数值模板继续可用；数值 SVG/PDF 仅按明确要求导出。
 
 设计卡使用 `source_id` 连接 Common 的来源登记，不重复收录论文 URL，也不附带原论文图片。这里复现的是**可用于新数据的分析关系与排版结构**，不是原论文的数值结果或逐像素图像。非直接支持的极坐标、三维示意、图像拼贴、生物结构注释等，逐卡在 `adaptation_notes` 说明如何转换或继续编辑。
 
@@ -107,7 +123,7 @@ python ccf-visual-composer/resources/python/ccfa_figure_library.py reproduce acl
 python ccf-visual-composer/resources/python/ccfa_figure_library.py demo --fusion response_slices --out ccfa-workfiles/figures/response-slices/figure
 ```
 
-默认生成 PNG、Python 源和元数据，不自动导出 SVG；PDF/SVG 需显式指定 `--formats`。一般的可编辑请求首选原生 PPTX，不能把 Python 可复现或 PDF 可缩放等同于 PowerPoint 对象可编辑。文件保存在同一具名图稿目录；后续更新同一文件。Python 源含明确的 `SPEC`，可以替换输入、改面板跨度、标题、尺寸和配色后再次导出。共享模块在同一解压目录树或仓库中时，生成源会自行找到它；其他项目可将 `ccf-visual-composer/resources/python` 加入 Python 导入路径。
+默认生成 PNG、Python 源和元数据，不自动导出 SVG；PDF/SVG 需显式指定 `--formats`。数值图的可编辑请求需按其真实源码／对象能力交付，不能把 Python 可复现或 PDF 可缩放等同于 PowerPoint 对象可编辑；新方法图放入 PPTX 仍是位图。文件保存在同一具名图稿目录；后续更新同一文件。Python 源含明确的 `SPEC`，可以替换输入、改面板跨度、标题、尺寸和配色后再次导出。共享模块在同一解压目录树或仓库中时，生成源会自行找到它；其他项目可将 `ccf-visual-composer/resources/python` 加入 Python 导入路径。
 
 真实作图不加 `--demo`，传入包含实际数据的组合规范：
 
@@ -194,6 +210,22 @@ python ccf-visual-composer/resources/python/ccfa_figure_library.py route --brief
 ```bash
 python ccf-visual-composer/resources/python/ccfa_figure_library.py layout matrix_slices --demo --out ccfa-workfiles/figures/response-slices/build/figure
 ```
+
+## 参考分析图的完整编码
+
+指定参考图不仅是一种外框。使用 `sensitivity_dynamics`、`reference:sensitivity-pair` 或 `reference:dynamics-pair` 时，保留实际提供的分析元素：
+
+| 参考元素 | 保留的含义与输入 |
+| --- | --- |
+| 对数距离密度与计数色条 | 实际轴变换、log-count归一化、计数范围和单位。 |
+| 双阈值走廊 | 两个边界及交集；状态份额用完整人群分母，加权份额只由实际权重计算。 |
+| median–P90箱、P99须、P95菱形 | 明确的分位数，不换成普通IQR箱、1.5-IQR须或均值；使用原始样本或完整给定分位数。 |
+| 独立采样步的多条曲线 | 各系列保留自身横坐标，不补不存在的起始观测。 |
+| 轮廓柱与同单位曲线 | 保留类别身份、百分比定义和色形；范围仅来自给定上下界，稀疏标注不重复全部数值。 |
+
+实现支持 `density.corridor={x_max,y_max,weights?,label?,annotation_xy?}`、密度轴与计数色条参数；敏感度块支持 `summary={median,p90,p95,p99}` 或 `summary_mode="median_p90"` 和实际样本。动态系列保留自身 `x`；类别块支持 `bar_style="outlined"`、`bar_labels`、`label_wrap`、给定区间及选定标注。标签换行只改显示，不改实体顺序。具体参数只读当前所用模板，不加载所有卡。
+
+这两组用户参考示例和原始案例继续保留。使用冻结的模拟输入看版式，真实任务替换完整数据；缺少权重、区间或采样点时不伪造，按所需科学范围解决输入。
 
 ## 原示例继续保留
 

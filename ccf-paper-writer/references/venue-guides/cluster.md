@@ -137,7 +137,6 @@ CLUSTER papers focus on:
 - Cluster architecture diagrams
 - Performance charts
 - Scaling plots
-- Use vector graphics (PDF)
 
 ### Table Best Practices
 - Clear headers with units

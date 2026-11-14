@@ -77,7 +77,6 @@ the number of vertices.
 
 SIGGRAPH is known for high visual quality expectations:
 
-- **Figures**: High-resolution, preferably vector-based (.pdf)
 - **Images**: Minimum 300 DPI for raster images
 - **Color**: Use perceptually uniform colormaps for quantitative plots
 - **Grayscale**: Ensure all figures are legible in grayscale

@@ -156,7 +156,6 @@ SIGMETRICS papers focus on:
 - Throughput/latency curves
 - Queueing model diagrams
 - CDF/ECDF plots
-- Use vector graphics (PDF)
 
 ### Table Best Practices
 - Clear headers with units

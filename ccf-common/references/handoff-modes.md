@@ -98,7 +98,7 @@ When an additional independent review is enabled or requested, give the first re
 | Optional idea scoring, full review, rewrite, or new experiment outside the request | Offer it only when useful; obtain authorization before expanding scope in every mode. OFF removes handoff questions for work already within scope. |
 | Any CCFA task or contributor | Establish Humanization first, then Common, or reuse their applicable active rules. Detailed prose and experiment modes run only when relevant; non-prose work still receives both preflights. |
 | Warning identifies an unknown result or research decision | Pause the affected claim/change; continue independent work. Known material facts and ordinary accurate edits do not require new approval. |
-| User already requested editable SVG/PDF/PPTX reconstruction | Complete it; optional additional formats can be offered without delaying requested formats. |
+| User requests a scientific figure or an output format | Follow the visual composer's current route. New/redrawn conceptual diagrams use GPT Image and PNG; requested PPTX/PDF placement keeps the raster. Maintain an existing source locally or export numerical figures in an explicitly requested format without recreating a new diagram as native/vector objects. |
 | Private content would leave the authorized tool/input boundary | Minimize inputs and obtain the missing authorization before that transfer. |
 | Rebuttal or author response | Execute only when requested; an ordinary review does not authorize it. |
 

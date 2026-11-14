@@ -141,7 +141,6 @@ Use `algorithm` and `algorithmic` environments with `noend` option:
 
 ## Figures and Tables
 
-- Vector formats (.pdf) for diagrams and system architectures
 - Ensure grayscale legibility (reviewers often print in B&W)
 - Number sequentially
 - Use `booktabs` for tables (no vertical rules)

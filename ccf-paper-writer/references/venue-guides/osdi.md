@@ -286,7 +286,6 @@ We evaluate [Name] to answer:
 
 ## Figures and Tables
 
-- Use vector formats (.pdf, .eps) where possible
 - Ensure figures are legible in grayscale (reviewers often print in B&W)
 - Number figures and tables sequentially
 - Captions should be descriptive and self-contained

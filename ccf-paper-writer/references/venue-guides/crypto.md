@@ -186,7 +186,6 @@ previous best construction.
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) for all figures
 - Ensure readability at LNCS margins
 - Include protocol diagrams and reduction graphs
 

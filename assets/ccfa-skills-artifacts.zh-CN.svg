@@ -15,26 +15,26 @@
 
 <rect width="1200" height="560" fill="url(#hero)"/>
 <style>
-text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; }
+text { font-family: "Noto Sans CJK SC", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; }
 .small { fill: #667085; font-size: 13px; }
 .mono { font-family: "JetBrains Mono", Consolas, monospace; }
 </style>
-<text x="60" y="58" font-size="30" font-weight="800" fill="#233044" text-anchor="start">从研究内容到可编辑图形</text>
+<text x="60" y="58" font-size="30" font-weight="800" fill="#233044" text-anchor="start">科学流程图三阶段生成</text>
 <rect x="80" y="170" width="210" height="130" rx="24" fill="#DDEBFF" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
-<text x="185" y="215" font-size="20" font-weight="850" fill="#233044" text-anchor="middle">研究内容</text>
-<text x="185" y="252" font-size="13" font-weight="600" fill="#667085" text-anchor="middle">论文、指令、数据</text>
+<text x="185" y="215" font-size="20" font-weight="850" fill="#233044" text-anchor="middle">理解绘图任务</text>
+<text x="185" y="252" font-size="13" font-weight="600" fill="#667085" text-anchor="middle">科学内容、范围与真实关系</text>
 <line x1="295" y1="235" x2="340" y2="235" stroke="#AAB7D4" stroke-width="2.0" stroke-linecap="round" marker-end="url(#arrow)"/>
 <rect x="345" y="170" width="210" height="130" rx="24" fill="#E9DFFF" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
-<text x="450" y="215" font-size="20" font-weight="850" fill="#233044" text-anchor="middle">视觉构图</text>
-<text x="450" y="252" font-size="13" font-weight="600" fill="#667085" text-anchor="middle">版式、图标、层次</text>
+<text x="450" y="215" font-size="20" font-weight="850" fill="#233044" text-anchor="middle">扩展提示词 P</text>
+<text x="450" y="252" font-size="13" font-weight="600" fill="#667085" text-anchor="middle">机制、标签与视觉要求</text>
 <line x1="560" y1="235" x2="605" y2="235" stroke="#AAB7D4" stroke-width="2.0" stroke-linecap="round" marker-end="url(#arrow)"/>
 <rect x="610" y="170" width="210" height="130" rx="24" fill="#DFF7EA" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
-<text x="715" y="215" font-size="20" font-weight="850" fill="#233044" text-anchor="middle">成图检查</text>
-<text x="715" y="252" font-size="13" font-weight="600" fill="#667085" text-anchor="middle">含义、文字、对齐</text>
+<text x="715" y="215" font-size="20" font-weight="850" fill="#233044" text-anchor="middle">整图生成 G0</text>
+<text x="715" y="252" font-size="13" font-weight="600" fill="#667085" text-anchor="middle">P、参考图与文章</text>
 <line x1="825" y1="235" x2="870" y2="235" stroke="#AAB7D4" stroke-width="2.0" stroke-linecap="round" marker-end="url(#arrow)"/>
 <rect x="875" y="170" width="210" height="130" rx="24" fill="#FFE9C7" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
-<text x="980" y="215" font-size="20" font-weight="850" fill="#233044" text-anchor="middle">可编辑交付</text>
-<text x="980" y="252" font-size="13" font-weight="600" fill="#667085" text-anchor="middle">SVG、PDF、PPTX</text>
+<text x="980" y="215" font-size="20" font-weight="850" fill="#233044" text-anchor="middle">微调成图 G1</text>
+<text x="980" y="252" font-size="13" font-weight="600" fill="#667085" text-anchor="middle">同 P 与 G0；交付 PNG</text>
 <rect x="250" y="390" width="700" height="70" rx="24" fill="#FFFFFF" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
-<text x="600" y="433" font-size="17" font-weight="700" fill="#233044" text-anchor="middle">最终图形保持清晰、可追溯，并且能够真正编辑。</text>
+<text x="600" y="433" font-size="17" font-weight="700" fill="#233044" text-anchor="middle">流程图两次图像调用；数据图沿用选定 Python / JSON。</text>
 </svg>

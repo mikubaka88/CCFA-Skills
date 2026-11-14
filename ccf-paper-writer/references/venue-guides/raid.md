@@ -193,7 +193,6 @@ We evaluate RansomGuard on:
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) for all figures
 - Include attack flow diagrams, detection system architecture, and evaluation plots
 
 ```latex

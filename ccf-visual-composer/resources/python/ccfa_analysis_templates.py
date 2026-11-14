@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Editable, data-driven multi-panel scientific figures.
+"""Data-driven scientific analyses with optional approved raster placement.
 
 Run --list, or --demo all --out <task-directory>. Real data requires --data.
 Synthetic examples are generated only by an explicit --demo request.
@@ -15,7 +15,7 @@ from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
-from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Rectangle
+from matplotlib.patches import FancyBboxPatch, Rectangle
 from matplotlib.ticker import MaxNLocator
 
 import ccfa_analysis_panels as p
@@ -164,43 +164,26 @@ def _pareto(ax, block, enc):
                             annotate=False)
 
 
-def _mechanism(ax, block, enc):
-    labels = block["stages"]
-    if len(labels) != 3:
-        raise ValueError("mechanism_overview expects three supplied stage labels")
-    ax.set(xlim=(0, 1), ylim=(0, 1)); ax.axis("off")
-    positions = [.025, .365, .705]
-    colors = list(enc.values())
-    for i, (left, label) in enumerate(zip(positions, labels)):
-        color = colors[i % len(colors)]["color"]
-        ax.add_patch(FancyBboxPatch((left, .17), .27, .63,
-                     boxstyle="round,pad=0.006,rounding_size=0.018",
-                     facecolor=color, alpha=.09, edgecolor="none"))
-        ax.text(left + .135, .72, label, ha="center", va="center", fontweight="bold")
-        if i == 0:
-            for j in range(3):
-                ax.add_patch(Rectangle((left + .045 + j*.025, .32 + j*.05), .135, .20,
-                             facecolor="white", edgecolor=color, linewidth=.9))
-        elif i == 1:
-            for row in range(3):
-                for col in range(5):
-                    ax.add_patch(Rectangle((left+.04+col*.038, .30+row*.065), .029, .045,
-                                 facecolor=color, alpha=.3 + .15*row, edgecolor="none"))
-        else:
-            for j in range(4):
-                cc = colors[j % len(colors)]["color"]
-                ax.add_patch(FancyBboxPatch((left+.035+j*.052, .34), .038, .17,
-                             boxstyle="round,pad=.003,rounding_size=.01",
-                             facecolor=cc, alpha=.75, edgecolor="none"))
-        if i < 2:
-            ax.add_patch(FancyArrowPatch((left+.28, .46), (positions[i+1]-.015, .46),
-                         arrowstyle="-|>", mutation_scale=10, linewidth=1, color="#43515e"))
-    ax.text(.5, .035, block["note"], ha="center", va="bottom", color="#4c5966", fontsize=8)
+def _mechanism(ax, block):
+    """Place an existing raster; never construct a conceptual diagram as shapes."""
+    name = block.get("image")
+    if not isinstance(name, str) or not name:
+        raise ValueError("mechanism_overview needs mechanism.image: an approved PNG from the image workflow; stage labels are not a diagram")
+    image = Path(name).expanduser()
+    if not image.is_absolute() and not image.is_file():
+        image = Path(__file__).resolve().parents[3] / image
+    if image.suffix.lower() != ".png" or not image.is_file():
+        raise ValueError("mechanism.image must name an existing approved PNG")
+    pixels = plt.imread(image)
+    if pixels.ndim not in (2, 3) or not pixels.size:
+        raise ValueError("mechanism.image must contain a nonempty raster")
+    ax.imshow(pixels, aspect="equal", interpolation="none")
+    ax.axis("off")
 
 
 def mechanism_overview(data, enc, width, height):
     fig, g = _figure(data, enc, width, height)
-    _mechanism(_panel(fig, g[1, :2], "a", "Representation flow"), data["mechanism"], enc)
+    _mechanism(_panel(fig, g[1, :2], "a", "Method illustration"), data["mechanism"])
     _lines(_panel(fig, g[1, 2], "b", "Memory growth"), data["memory_curve"], enc)
     _comparison(_panel(fig, g[2, 0], "c", "Task performance"), data["performance"], enc)
     _pareto(_panel(fig, g[2, 1], "d", "Resource trade-off"), data["tradeoff"], enc)
@@ -474,7 +457,7 @@ def sensitivity_dynamics(data, enc, width, height):
     pair = data.get("panel_pair", "all")
     if pair not in ("all", "sensitivity", "dynamics"):
         raise ValueError("panel_pair must be all, sensitivity or dynamics")
-    fig = p.new_figure(width, height if pair == "all" else height * .56)
+    fig = p.new_figure(width, height)
     fig.set_layout_engine("constrained", w_pad=.04, h_pad=.055, wspace=.035,
                           hspace=.10, rect=(0, .04, 1, .95))
     ratios = _vector(data.get("column_ratios", [1, 1]), "column ratios")
@@ -605,11 +588,16 @@ def render_template(name, data, *, palette="ccfa", font="serif", font_size=8.5,
         raise ValueError(f"Unknown palette {palette!r}")
     if not isinstance(data, dict):
         raise ValueError("Template data must be a JSON object")
+    if data.get("title") is not None and not isinstance(data["title"],str):
+        raise ValueError("title must be text")
     with p.paper_style(font=font, font_size=font_size):
         previous_figures = set(plt.get_fignums())
         try:
             enc = _encoding(data, palette)
-            fig = BUILDERS[name](data, enc, width_mm, CATALOG[name][1] if height_mm is None else height_mm)
+            default_height=CATALOG[name][1]
+            if name=="sensitivity_dynamics" and data.get("panel_pair","all")!="all":
+                default_height*=.56
+            fig = BUILDERS[name](data, enc, width_mm, default_height if height_mm is None else height_mm)
         except KeyError as error:
             raise ValueError(f"{name}: missing required data field {error.args[0]!r}; see the demo schema") from error
         except Exception:
@@ -620,6 +608,8 @@ def render_template(name, data, *, palette="ccfa", font="serif", font_size=8.5,
             if 'fig' not in locals():
                 for number in set(plt.get_fignums()) - previous_figures:
                     plt.close(number)
+        if data.get("title"):
+            fig.suptitle(data["title"],fontsize=float(font_size)+1.5,fontweight="bold")
         return p.finish_paper_style(fig)
 
 
@@ -661,7 +651,7 @@ def demo_data(seed=17):
     benchmark = np.array(means)[:,None] + rng.normal(0, 2, (4, 6))
     examples = {}
     examples["mechanism_overview"] = {**base,
-        "mechanism":{"stages":["Frames", "Local tokens", "Object states"], "note":"Current observations → compact state → persistent scene memory"},
+        "mechanism":{"image":"assets/visual-showcase/dyntrace-paper-mechanism-llava4d-reference.png"},
         "memory_curve":_curve(methods, x, [1+.4*x, 1+.3*x, 1+.13*x, 1.5+.035*x], "Windows", "Memory (GB)", spread=.12),
         "performance":performance, "tradeoff":tradeoff,
         "gain_matrix":_matrix(rng.uniform(.1, 6.9, (4, 4)), ["Near", "Medium", "Far", "Very far"],

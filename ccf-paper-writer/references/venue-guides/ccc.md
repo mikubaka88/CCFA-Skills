@@ -132,7 +132,6 @@ includegraphics[width=0.9\linewidth]{fig/reduction}
 \end{figure}
 ```
 
-- Use vector formats (.pdf, .eps) preferred
 - Ensure grayscale legibility
 - Self-contained captions
 

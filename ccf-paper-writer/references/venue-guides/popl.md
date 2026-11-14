@@ -164,7 +164,6 @@ Each reference must list **all authors** — do not use "et al." in the bibliogr
 
 ## Figures and Tables
 
-- Use vector formats (.pdf, .eps) where possible
 - Ensure figures are legible in grayscale
 - Number figures and tables sequentially
 - Captions should be descriptive and self-contained

@@ -138,7 +138,6 @@ IPDPS papers focus on:
 - Speedup curves
 - Scaling plots
 - Resource utilization charts
-- Use vector graphics (PDF)
 
 ### Table Best Practices
 - Clear headers with units

@@ -139,7 +139,6 @@ ICPR papers typically follow a pattern recognition research structure:
 \end{table}
 ```
 
-- Use vector formats (.pdf, .eps) where possible
 - Ensure grayscale legibility
 - Caption **below** figures, **above** tables
 

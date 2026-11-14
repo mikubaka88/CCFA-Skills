@@ -147,7 +147,6 @@ BIBM papers typically follow this structure:
 \end{table}
 ```
 
-- Use vector formats (.pdf, .eps) where possible
 - Ensure grayscale legibility
 - Caption **below** figures, **above** tables
 

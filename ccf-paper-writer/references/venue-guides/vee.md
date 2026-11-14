@@ -158,7 +158,6 @@ VEE papers focus on virtualization and execution environments:
 - Architecture diagrams
 - Data flow diagrams
 - Performance comparison charts
-- Use vector graphics (PDF)
 
 ### Table Best Practices
 - Clear headers with units

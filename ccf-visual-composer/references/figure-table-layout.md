@@ -12,14 +12,14 @@ The visual must sit inside the paper's argument, not after it. Place each figure
 
 ## Figure Composition
 
-- Apply the shared typography and scaled spacing tokens in `visual-contract.md` to panels, image tiles, legends, and tables. Align plot areas as well as their outer boxes; long tick labels may require unequal outer padding to keep the data regions aligned.
+- Apply the shared typography and layout decisions in `visual-contract.md` to panels, image tiles, legends, and tables. Align plot areas as well as their outer boxes; long tick labels may require unequal outer padding to keep the data regions aligned.
 - Decide single-column versus full-width before arranging panels.
 - Choose the combined figure's aspect ratio from those bounds and its contents. Align plot areas, panel labels, and caption baselines across blocks; reserve a shared legend only when its encodings are genuinely shared. Tighten unused outer and between-panel space without distorting data axes or image geometry.
 - Use full-width (`figure*`) when the reader must compare many panels horizontally or when labels would be unreadable in one column.
 - Avoid excessive panel counts in the main paper; use appendix for secondary robustness grids.
 - Use lowercase panel labels `(a)`, `(b)`, `(c)` unless the venue/template requires another style.
 - Collect identical legend entries into a shared strip/panel outside dense data regions. Retain separate legends for different units, normalization, or meanings; deduplicate by encoding identity, not just a matching label.
-- Deliver PNG by default through Python, GPT Image or a combination. Export PDF when requested for paper integration. New SVG requires an explicit SVG request; only then keep `svg.fonttype = 'none'` for live text. An unspecified editable request prefers native PPTX. Bold titles, legends and coordinate text in Times New Roman or the selected Comic Sans MS, use darker same-hue substantial bar/box outlines, and keep aligned panels compact.
+- Deliver PNG by default through Python, GPT Image or a combination. Export PDF when requested for paper integration. Numerical SVG export requires an explicit SVG request; only then keep `svg.fonttype = 'none'` for live text. New/redrawn conceptual diagrams use the mandatory three-stage raster workflow; requested PPTX placement does not reconstruct them as native objects. Existing source edits and numerical exports keep their appropriate formats. Bold titles, legends and coordinate text in Times New Roman or the selected Comic Sans MS, use darker same-hue substantial bar/box outlines, and keep aligned panels compact.
 - Use consistent axis names, units, limits, and entity ordering across comparable panels. For distinct quantities, label each scale and its units. Preserve fixed-aspect spatial or microscopy panels and scale bars; distribute spare space among flexible panels rather than stretching those images to fill a grid.
 - Keep only necessary annotations and a shared legend where it remains unambiguous. Remove duplicate explanation, not meaningful ticks, values, uncertainty, or scale information. Avoid an internal hero title when the manuscript caption already supplies it.
 - For image plates, include scale bars, crop rules, channel labels, and contrast notes; do not use contrast adjustments that change scientific interpretation.

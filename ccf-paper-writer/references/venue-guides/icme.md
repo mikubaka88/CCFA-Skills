@@ -158,7 +158,6 @@ Standard ICME paper structure:
 \end{table}
 ```
 
-- Use vector formats (.pdf) where possible
 - Caption **below** figures, **above** tables
 - Use `booktabs` for professional tables (no vertical rules)
 - Number figures and tables sequentially

@@ -175,7 +175,6 @@ Generate CCS Concepts at http://dl.acm.org/ccs.cfm and include them as shown abo
 
 UbiComp emphasizes visual communication of system architecture and sensor data:
 
-- Use high-quality vector figures (.pdf, .eps)
 - Ensure grayscale legibility
 - Include system diagrams, deployment maps, sensor placement visuals
 - Number figures/tables sequentially

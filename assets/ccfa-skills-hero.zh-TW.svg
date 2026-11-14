@@ -15,7 +15,7 @@
 
 <rect width="1400" height="620" fill="url(#hero)"/>
 <style>
-text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; }
+text { font-family: "Noto Sans CJK TC", "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif; }
 .small { fill: #667085; font-size: 13px; }
 .mono { font-family: "JetBrains Mono", Consolas, monospace; }
 </style>
@@ -30,7 +30,7 @@ text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
 <rect x="234" y="258" width="168" height="42" rx="21" fill="#DFF7EA" stroke="#DFF7EA" stroke-width="1.4" />
 <text x="318" y="285" font-size="13" font-weight="750" fill="#233044" text-anchor="middle">證據支撐寫作</text>
 <rect x="416" y="258" width="156" height="42" rx="21" fill="#FFE9C7" stroke="#FFE9C7" stroke-width="1.4" />
-<text x="494" y="285" font-size="13" font-weight="750" fill="#233044" text-anchor="middle">可編輯科研圖</text>
+<text x="494" y="285" font-size="13" font-weight="750" fill="#233044" text-anchor="middle">科研圖表</text>
 <circle cx="1035" cy="305" r="88" fill="#FFFFFF" stroke="#9D7BFF" stroke-width="3.0" filter="url(#softShadow)"/>
 <circle cx="1035" cy="305" r="58" fill="#F2ECFF" stroke="#9D7BFF" stroke-width="1.5" />
 <text x="1035" y="302" font-size="25" font-weight="900" fill="#233044" text-anchor="middle">CCFA</text>

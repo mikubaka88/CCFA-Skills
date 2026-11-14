@@ -176,7 +176,6 @@ We evaluate BatteryMind through:
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) for all figures
 - Ensure grayscale legibility
 - Include system architecture and UI screenshots
 - Tables should have clear column headers and units

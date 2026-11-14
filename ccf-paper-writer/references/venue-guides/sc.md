@@ -160,7 +160,6 @@ Common HPC benchmarks and workloads:
 
 ## Figures and Tables
 
-- Use vector formats (.pdf, .eps) for all figures
 - Ensure grayscale legibility
 - Include error bars for performance measurements
 - Report confidence intervals where applicable

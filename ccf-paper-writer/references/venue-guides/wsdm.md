@@ -112,7 +112,6 @@ Standard WSDM paper structure:
 \end{figure}
 ```
 
-- Vector formats (.pdf) preferred
 - Ensure grayscale legibility
 - Self-contained captions
 - Number figures and tables sequentially

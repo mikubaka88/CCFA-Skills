@@ -6,21 +6,21 @@ This map records design ideas to borrow conceptually from open-source visualizat
 
 | Source family | Design ideas worth adapting | CCFA implementation direction |
 | --- | --- | --- |
-| Matplotlib gallery | Broad plot taxonomy, explicit source-code examples, tight control over axes and artists. | Keep the standalone SVG recipes and use the analytical panel library for editable multi-panel figures. |
+| Matplotlib gallery | Broad plot taxonomy, explicit source-code examples, tight control over axes and artists. | Reuse the Python analytical library and selected data specifications; numerical SVG remains an explicit export. |
 | Seaborn examples | Statistical defaults, distribution summaries, grids, small multiples. | Provide ridgelines, small multiples, and semantic grouping defaults. |
-| Plotly Python | Interactive thinking, hover-ready data structure, dashboard composition. | Keep data records explicit and make demo dashboards easy to extend, even when static SVG is the output. |
+| Plotly Python | Interactive thinking, hover-ready data structure, dashboard composition. | Keep data records explicit and interactive exploration distinct from the default static PNG. |
 | Bokeh gallery | Linked views, exploratory dashboards, web-native composition. | Encourage multi-panel analytical views when a single chart hides structure. |
-| Altair/Vega-Lite | Declarative grammar: data, mark, encoding, transform. | Ask for data shape, mark type, encoding, and transform before coding a custom chart. |
+| Altair/Vega-Lite | Declarative grammar: data, mark, encoding, transform. | Infer data shape, marks, encoding and transforms from the supplied material; ask only about a missing scientific fact. |
 | Plotnine/ggplot | Grammar-of-graphics layering and theme discipline. | Separate data, scale, marks, labels, and theme in recipes. |
 | Python Graph Gallery | Chart-type taxonomy and examples grouped by analytical purpose. | Route users by evidence shape: compare, distribute, relate, rank, change, compose. |
-| Scientific Visualization book | Publication-quality layout, spacing, annotation, and typographic restraint. | Prefer direct labels, whitespace discipline, and vector exports over decorative effects. |
-| SciencePlots/LovelyPlots | Paper-ready style sheets and editable scientific figures. | Keep palettes, font, SVG editability, and LaTeX integration as first-class concerns. |
+| Scientific Visualization book | Publication-quality layout, spacing, annotation, and typographic restraint. | Use direct labels, disciplined spacing and final-size readability without decorative clutter. |
+| SciencePlots/LovelyPlots | Paper-ready style sheets and editable scientific figures. | Maintain coherent palettes/type and final-size manuscript integration; numerical formats remain explicit. |
 | ComplexHeatmap | Related matrices and annotations share entity order and group boundaries. | Join by stable IDs, retain common ordering, and use shared normalization only for comparable quantities. |
 | patchwork | Align data areas, collect shared legends, respect fixed-aspect panels. | Plan plot rectangles separately from label margins; let flexible panels absorb spare space. |
 | Scientific Inkscape | Resize figures while preserving typographic and stroke dimensions. | Bind font sizes to final physical width, then reflow panels without shrinking labels. |
-| Bioicons | Editable scientific objects from biology and chemistry. | Retrieve a fitting SVG only when needed, inspect individual license/attribution, and normalize visual weight. |
-| PaperVizAgent | Plan content, render, and revise from specific visual feedback. | Distinguish scientific fidelity from visual quality in one inspection; repair named regions and keep optional extra generation/review gated. |
-| AstraDraw | Reusable editable elements and local modification. | Reuse project-approved components, stable object IDs, and their topology before drawing new assets. |
+| Bioicons | Editable scientific objects from biology and chemistry. | Use suitable authorized scientific-object references with individual licenses/credits; do not assemble new method diagrams from SVG icons. |
+| PaperVizAgent | Plan content, render, and revise from specific visual feedback. | Inspect science and appearance together; new diagrams still complete required same-P image refinement, while additional candidates/reviews are optional. |
+| AstraDraw | Reusable editable elements and local modification. | Use content-aware reference guidance and scoped edits; preserve existing sources without reviving a native component-building workflow. |
 
 ## Meaning-Indexed Design Library
 
@@ -30,7 +30,7 @@ Use `resources/python/ccfa_figure_library.py route` for a new chart choice and `
 
 The separate compressed metadata inventory contains 54,890 records across 18 declared coverage entries for the 2025–2026 publication years. Query `resources/python/ccfa_figure_corpus.py --coverage` for available editions, tracks and gaps; use bounded title queries when discovering another useful paper. A metadata record is not a figure-inspection record. The bundled inventory covers the listed conference proceedings and declared Nature AI-related journal scopes rather than every AI-related article across all Nature journals.
 
-Keep scientific fit ahead of novelty in appearance. The router first matches meaning and data fields, then can use a seed and task-owned accepted-use history to spread choices among equally suitable alternatives. Do not rotate charts during a local edit. Fusion preserves observation correspondence, denominators, scales and category identity; a visually similar matrix, composition or distribution with a different denominator is not an interchangeable panel.
+Keep scientific fit ahead of novelty in appearance. The router first matches meaning and data fields, then chooses naturally among equally suitable alternatives, with optional task-owned accepted-use history. Users do not need a seed. Do not rotate charts during a local edit. Fusion preserves observation correspondence, denominators, scales and category identity; a visually similar matrix, composition or distribution with a different denominator is not an interchangeable panel.
 
 ## Earlier Inspected Paper Figures
 
@@ -66,7 +66,7 @@ For implementation details, load only the needed source: `matplotlib-constrained
 - Do not limit output to common bar/line/scatter charts when the evidence suggests richer structure.
 - Use an unusual plot grammar when it explains a scientific relationship more clearly; a new appearance alone does not justify extra panels.
 - Use animation or interactivity only for exploration or demos, not for static paper evidence unless the venue supports it.
-- Prefer a boring chart with honest evidence over a beautiful chart that exaggerates.
+- Make scientific fidelity and visual quality work together; do not exaggerate measurements to increase visual impact.
 
 ## Chart Grammar Menu
 
@@ -83,6 +83,6 @@ Use this menu to invent new charts:
 | Effect-size screening | Volcano plot, MA plot, ranked hit map, thresholded scatter. |
 | Relationship matrix | Correlation heatmap, pair grid, clustered heatmap, annotated matrix. |
 | Time or scale trends | Small multiples, direct-labeled line families, horizon strips. |
-| Mechanism path or pipeline | Annotated flow, layered schematic, evidence-linked block diagram. |
+| Mechanism path or pipeline | Route to the three-stage GPT Image workflow; conceptual diagrams are not numerical chart primitives. |
 | Multi-view analysis | Coordinated panels selected for the actual question; shared entity encodings and appropriate common scales. |
 | Multiple quality dimensions | Radar only for secondary summary; prefer parallel coordinates or scorecard when exact comparison matters. |

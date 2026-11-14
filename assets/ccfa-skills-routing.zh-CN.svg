@@ -15,7 +15,7 @@
 
 <rect width="1200" height="630" fill="url(#hero)"/>
 <style>
-text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; }
+text { font-family: "Noto Sans CJK SC", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; }
 .small { fill: #667085; font-size: 13px; }
 .mono { font-family: "JetBrains Mono", Consolas, monospace; }
 </style>
@@ -43,5 +43,5 @@ text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
 <rect x="70" y="505" width="1060" height="62" rx="18" fill="#FFFFFF" stroke="#D9E1F2" stroke-width="1.4" filter="url(#softShadow)"/>
 <text x="100" y="543" font-size="16" font-weight="800" fill="#233044" text-anchor="start">科研绘图</text>
 <text x="420" y="543" font-size="15" font-weight="800" fill="#9D7BFF" text-anchor="start">ccf-visual-composer</text>
-<text x="720" y="543" font-size="14" font-weight="600" fill="#667085" text-anchor="start">默认先用 GPT Image 2，除非指定纯 SVG</text>
+<text x="720" y="543" font-size="14" font-weight="600" fill="#667085" text-anchor="start">数据图沿用模板；流程图三阶段生成</text>
 </svg>

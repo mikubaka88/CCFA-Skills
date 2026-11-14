@@ -189,7 +189,6 @@ We evaluate SideChannel along two dimensions:
 
 ## Figures and Tables
 
-- Vector formats (.pdf) for diagrams
 - Ensure grayscale legibility
 - Self-contained captions
 - Security figures often use attack trees or protocol diagrams

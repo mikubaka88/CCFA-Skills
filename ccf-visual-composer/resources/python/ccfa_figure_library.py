@@ -524,8 +524,26 @@ def route(question=None, *, fields=None, count=3, seed=None, usage=None, exclude
     if seed is not None:_nonnegative_integer(seed, "seed")
     counts = _usage(usage)
     text = " ".join([question,brief.get("claim","")]).casefold()
+    if fields is not None and (isinstance(fields,str) or not all(isinstance(v,str) for v in fields)):
+        raise ValueError("fields must be a list of parameter names")
+    known_fields=brief.get("data",{}).get("fields")
+    if fields is not None and known_fields is not None and set(fields)!=set(known_fields):
+        raise ValueError("CLI fields and paper brief fields disagree")
+    available = None if fields is None and known_fields is None else set(fields if fields is not None else known_fields)
     named_text=question.casefold()
     named=next((entry for entry in catalog()["charts"] if entry["id"]==named_text),None)
+    # A chosen exemplar is a rendering contract, not another semantic search.
+    selection_name=named_text
+    for prefix,target in (("template--","original:"),("reference--","reference:"),("linked--","layout:"),
+                          ("fusion--","fusion:"),("study--","paper:")):
+        if selection_name.startswith(prefix):selection_name=target+selection_name[len(prefix):];break
+    pinned=next((entry for entry in examples() if entry["id"].casefold()==selection_name
+                 or (entry.get("category")=="original" and entry.get("template")==named_text)),None)
+    if pinned:
+        return {"question":question,"selection_policy":"selected_example","selected_example":copy.deepcopy(pinned),
+                "candidates":[],"fields_checked":False,
+                "reuse_command":"compose --spec <selected-example.json> --data <supplied-data.json> --out <prefix>",
+                "instruction":"Reuse the selected JSON/Python. Replace its complete data with replace_data; retain layout, style and layers. Do not reroute or regenerate demo data."}
     intents = list(brief.get("intent_ids",[]))
     for key, entry in catalog()["intents"].items():
         if text == key or any(_matches(term,text) for term in entry["terms"]):
@@ -533,12 +551,6 @@ def route(question=None, *, fields=None, count=3, seed=None, usage=None, exclude
     if not intents:
         if named:intents=list(named["intents"])
         else:raise ValueError("No intent matched; use an intent ID from --list or state the scientific relationship")
-    if fields is not None and (isinstance(fields,str) or not all(isinstance(v,str) for v in fields)):
-        raise ValueError("fields must be a list of parameter names")
-    known_fields=brief.get("data",{}).get("fields")
-    if fields is not None and known_fields is not None and set(fields)!=set(known_fields):
-        raise ValueError("CLI fields and paper brief fields disagree")
-    available = None if fields is None and known_fields is None else set(fields if fields is not None else known_fields)
     exclude=set(exclude)|set(brief.get("exclude_charts",[]))
     unknown = set(exclude) - {c["id"] for c in catalog()["charts"]}
     if unknown:
@@ -948,6 +960,128 @@ def single_panel_spec(spec, panel_id, *, width_mm=88, height_mm=68):
     return result
 
 
+
+
+def _replacement_presentation(previous, supplied, *, kind=None, palette="npg"):
+    """Carry visual controls, never missing observations or interval endpoints."""
+    result=copy.deepcopy(supplied)
+    visual={"color","bar_color","line_color","box_color","cmap","missing_color","alpha","band_alpha",
+            "marker","markersize","linewidth","linestyle","font_size","tick_font_size","label_wrap",
+            "bar_style","bar_labels","value_format","xscale","yscale","summary_mode","quantile","gridsize"}
+    legend_visual={"loc","ncol","ncols","fontsize","title_fontsize","frameon","framealpha","edgecolor",
+                   "facecolor","borderaxespad","handlelength","handletextpad","columnspacing","labelspacing",
+                   "mode","bbox_to_anchor","markerfirst","alignment"}
+    old_id=next((previous[k] for k in ("method","label") if isinstance(previous.get(k),str)),None)
+    new_id=next((result[k] for k in ("method","label") if isinstance(result.get(k),str)),None)
+    renamed=old_id is not None and new_id is not None and old_id!=new_id
+    for key in visual:
+        if key not in result and key in previous and not (renamed and key in {"color","marker","linestyle"}):
+            result[key]=copy.deepcopy(previous[key])
+    if "annotate" not in result and isinstance(previous.get("annotate"),bool):result["annotate"]=previous["annotate"]
+    for key in ("legend","legend_options"):
+        if key not in result and isinstance(previous.get(key),bool):result[key]=previous[key]
+        if isinstance(previous.get(key),dict):
+            retained={k:copy.deepcopy(v) for k,v in previous[key].items() if k in legend_visual}
+            if key not in result and retained:result[key]=retained
+            elif isinstance(result[key],dict):result[key]={**retained,**result[key]}
+    for key,value in list(result.items()):
+        old=previous.get(key)
+        if key in ("legend","legend_options","_meta"):continue
+        if isinstance(value,dict) and isinstance(old,dict):
+            result[key]=_replacement_presentation(old,value,palette=palette)
+        elif key=="series" and isinstance(value,list) and isinstance(old,list):
+            def identity(row):
+                return next(((k,row[k]) for k in ("method","label") if isinstance(row,dict) and isinstance(row.get(k),str)),None)
+            indexed={identity(row):row for row in old if identity(row) is not None}
+            # Duplicate or absent IDs do not justify positional style transfer.
+            if len(indexed)==len(old):
+                result[key]=[_replacement_presentation(indexed[identity(row)],row,palette=palette)
+                             if identity(row) in indexed else copy.deepcopy(row) for row in value]
+    from ccfa_plot_recipes import PALETTES
+    for key in ("colors","entity_colors"):
+        if key in result or key not in previous:continue
+        old_ids=previous.get("methods") if key=="entity_colors" else (_entity_sequence(kind,previous) if kind else None)
+        new_ids=result.get("methods") if key=="entity_colors" else (_entity_sequence(kind,result) if kind else None)
+        colors=previous[key]
+        if colors is None:continue
+        if old_ids is None and new_ids is None and kind is not None:
+            result[key]=copy.deepcopy(colors)  # Fixed channel roles, e.g. before/after or negative/neutral/positive.
+        elif isinstance(old_ids,list) and isinstance(new_ids,list):
+            mapped=colors if isinstance(colors,dict) else dict(zip(old_ids,colors)) if len(colors)==len(old_ids) else {}
+            if any(key in mapped for key in new_ids):
+                fallback=PALETTES[palette]
+                result[key]=[mapped.get(name,fallback[i%len(fallback)]) for i,name in enumerate(new_ids)]
+    return result
+
+
+def replace_data(spec, supplied):
+    """Replace complete data while keeping a selected figure's rendering plan.
+
+    Templates/layouts accept their raw data object. Panel compositions accept
+    {"panels":[{"id":...,"data":...,"layers":[{"data":...}, ...]}, ...]}.
+    Every selected panel/layer must be supplied; otherwise old demonstration
+    values could silently survive. Pure presentation controls are retained,
+    with series styles matched by stable method/label identity, never index. Use normal table bindings in the source
+    composition for CSV/TSV rather than mixing bindings with this raw-data API.
+    """
+    if not isinstance(spec,dict) or spec.get("version")!=1:
+        raise ValueError("Data replacement requires an existing version=1 composition")
+    if not isinstance(supplied,dict):raise ValueError("Replacement data must be an object")
+    if "data_sources" in spec or "table" in spec:
+        raise ValueError("Resolve table bindings before replacing data")
+    result=copy.deepcopy(spec)
+    if "template" in result or "layout" in result:
+        if set(supplied)&{"version","template","layout","panels","data_sources","table"}:
+            raise ValueError("Supply the template/layout data only; use compose --spec for a full composition")
+        result["data"]=_replacement_presentation(result.get("data",{}),supplied,palette=result.get("palette","ccfa"))
+        if "title" in supplied:result["title"]=supplied["title"]
+        incoming_meta=supplied.get("_meta",{})
+    else:
+        if set(supplied)-{"panels","_meta"} or not isinstance(supplied.get("panels"),list):
+            raise ValueError("Panel replacement needs a panels list with IDs and complete data/layers")
+        panels=result.get("panels",[]);incoming=supplied["panels"]
+        ids=[row.get("id") for row in incoming if isinstance(row,dict)]
+        if len(ids)!=len(incoming) or len(ids)!=len(set(ids)) or set(ids)!={p["id"] for p in panels}:
+            raise ValueError("Replacement must supply every panel ID exactly once")
+        by_id={row["id"]:row for row in incoming}
+        for panel in panels:
+            node=by_id[panel["id"]]
+            if set(node)-{"id","data","layers"} or not isinstance(node.get("data"),dict):
+                raise ValueError("Panel replacement changes data only, not the selected drawing plan")
+            layers=node.get("layers",[])
+            if not isinstance(layers,list) or len(layers)!=len(panel.get("layers",[])):
+                raise ValueError("Replacement must supply every selected overlay layer")
+            for old,new in zip(panel.get("layers",[]),layers):
+                if not isinstance(new,dict) or set(new)!={"data"} or not isinstance(new["data"],dict):
+                    raise ValueError("Each replacement layer needs only its complete data object")
+                old["data"]=_replacement_presentation(old["data"],new["data"],kind=old["kind"],palette=result.get("palette","npg"))
+            panel["data"]=_replacement_presentation(panel["data"],node["data"],kind=panel["kind"],palette=result.get("palette","npg"))
+        incoming_meta=supplied.get("_meta",{})
+        identities=[]
+        for panel in panels:
+            for node in [panel,*panel.get("layers",[])]:
+                for key in (_entity_sequence(node["kind"],node["data"]) or [])+node.get("entity_ids",[]):
+                    if key not in identities:identities.append(key)
+        previous=result.get("entity_order",[])
+        if identities and not set(identities)<=set(previous):
+            result["entity_order"]=(previous+[key for key in identities if key not in previous]
+                                    if set(identities)&set(previous) else identities)
+    if not isinstance(incoming_meta,dict):raise ValueError("Replacement _meta must be an object")
+    meta=result.setdefault("_meta",{})
+    provenance={key:meta.pop(key) for key in ("study_id","source_id","source_figure","fidelity") if key in meta}
+    if provenance:meta["design_reference"]=provenance
+    for key in ("synthetic","seed","randomness","shared_simulation_contracts","data_file"):
+        meta.pop(key,None)
+    if meta.get("purpose") and spec.get("_meta",{}).get("synthetic"):
+        meta.pop("purpose",None)
+    retained=[]
+    if result.get("title"):retained.append({"scope":"figure","text":result["title"]})
+    retained.extend({"scope":panel["id"],"text":panel["title"]} for panel in result.get("panels",[]) if panel.get("title"))
+    meta.update(copy.deepcopy(incoming_meta));meta.update(data_replaced=True,data_status="supplied")
+    if retained:meta["retained_text_to_check"]=retained
+    return result
+
+
 def compose(spec):
     """Compose an explicit panel plan without filling any missing data."""
     import matplotlib.pyplot as plt
@@ -972,6 +1106,7 @@ def compose(spec):
         import ccfa_analysis_templates as templates
         data=copy.deepcopy(spec.get("data",{}))
         if spec.get("_meta"):data["_meta"]=copy.deepcopy(spec["_meta"])
+        if spec.get("title"):data["title"]=spec["title"]
         return templates.render_template(spec["template"],data,palette=spec.get("palette","ccfa"),
             font=spec.get("font","serif"),font_size=font_size,width_mm=spec.get("width_mm",183),height_mm=spec.get("height_mm"))
     panels = spec.get("panels")
@@ -1255,6 +1390,7 @@ def main(argv=None):
     layout=sub.add_parser("layout");layout.add_argument("kind");layout.add_argument("--demo",action="store_true");layout.add_argument("--data",type=Path);layout.add_argument("--out",type=Path,required=True)
     d=sub.add_parser("demo");d.add_argument("kinds",nargs="*");d.add_argument("--fusion");d.add_argument("--seed",type=int,help=argparse.SUPPRESS);d.add_argument("--columns",type=int);d.add_argument("--out",type=Path,required=True)
     c=sub.add_parser("compose");c.add_argument("--spec",type=Path,required=True);c.add_argument("--out",type=Path,required=True)
+    c.add_argument("--data",type=Path,help="Replace all selected data while retaining the source JSON layout/style; no demo fallback")
     s=sub.add_parser("reproduce");s.add_argument("study");s.add_argument("--demo",action="store_true");s.add_argument("--data",type=Path);s.add_argument("--seed",type=int,help=argparse.SUPPRESS);s.add_argument("--out",type=Path,required=True)
     for output_parser in (d,c,s,use,layout):
         output_parser.add_argument("--formats",nargs="+",choices=("svg","pdf","png"),default=["png"],help="PNG by default; request SVG/PDF explicitly")
@@ -1301,7 +1437,7 @@ def main(argv=None):
                 if args.offset<0 or not 1<=args.limit<=50:raise ValueError("Use a nonnegative offset and limit from 1 to 50")
                 result={"total":len(rows),"offset":args.offset,"examples":rows[args.offset:args.offset+args.limit]}
         else:
-            protected=[]
+            protected=[];panel_selected=False
             if args.command=="demo":
                 kinds=args.kinds
                 if args.fusion:
@@ -1311,6 +1447,11 @@ def main(argv=None):
             elif args.command=="compose":
                 from ccfa_figure_data import load_composition
                 spec,protected=load_composition(args.spec)
+                if args.panel:
+                    spec=single_panel_spec(spec,args.panel);panel_selected=True
+                if args.data:
+                    spec=replace_data(spec,json.loads(args.data.read_text(encoding="utf-8-sig")))
+                    protected.append(args.data.resolve())
             elif args.command in ("example","layout"):
                 if args.demo and args.data:raise ValueError("Use --demo or --data")
                 data=None
@@ -1329,7 +1470,7 @@ def main(argv=None):
                     from ccfa_figure_data import load_composition
                     data,protected=load_composition(args.data)
                 spec=study_spec(args.study,demo=args.demo,data=data,seed=args.seed)
-            if args.panel:
+            if args.panel and not panel_selected:
                 spec=single_panel_spec(spec,args.panel)
             result={k:str(v) for k,v in export(spec,args.out,formats=tuple(args.formats),protected_paths=protected).items()}
         print(json.dumps(result,ensure_ascii=False,indent=2,allow_nan=False))

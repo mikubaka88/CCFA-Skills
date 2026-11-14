@@ -138,7 +138,6 @@ RTAS papers focus on:
 - Timing diagrams
 - Architecture diagrams
 - Scheduling visualizations
-- Use vector graphics (PDF)
 
 ### Table Best Practices
 - Clear headers with units

@@ -64,7 +64,6 @@ We evaluate our file system using:
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) for all diagrams
 - Ensure grayscale legibility — reviewers often print in B&W
 - Self-contained captions: describe what to observe and why it matters
 - Tables should have clear column headers and units

@@ -140,18 +140,14 @@ Use only for requested review-related revision or concrete evidence gaps, not as
 - ethics or responsible-research issue,
 - venue mismatch.
 
-## Score-Lifting Checklist
+## Review-Driven Revision Checklist
 
-Use with `score-lifting-loop.md` and, only when explicitly requested or allowed by the CCFA handoff mode, `ccf-paper-reviewer` for scientific or writing review. Use `ccf-literature-searcher`, `ccf-experiment-designer`, or `ccf-paper-writer` compression mode through the same handoff rule when the blocker is missing prior art, evidence design, or page-limit pressure.
+Use [review-driven-revision.md](review-driven-revision.md) for supplied review findings. Use `ccf-paper-reviewer` for scientific or writing review when requested or needed within the authorized task, with the shared handoff boundaries. Use the relevant owner when a material blocker is missing prior art, evidence design or requested page fitting.
 
-- Current likely score or stance is stated.
-- Target score or readiness threshold is stated.
-- Top score blockers are ranked by severity.
-- Each blocker has a fix class: writing-fixable, analysis-fixable, citation/positioning, figure/table, reproducibility, requires-new-result, accepted-limitation, or venue-mismatch.
-- Literature-search, experiment-design, and compression blockers are separated from ordinary prose fixes.
-- Writing-only fixes are separated from fixes requiring new experiments, proofs, studies, or baselines.
-- Conditional review-risk effect is attached only to concrete changes.
-- After revision, the same reviewer concern is re-tested.
+- Supplied findings are mapped to actual passages and their scientific basis; a speculative objection does not become a revision requirement.
+- Each necessary action has its relevant owner; writing fixes remain distinct from new evidence, research decisions and requested page fitting.
+- Existing reviewer scores are used only when relevant to the request. The writer does not invent a likely score, require a target score or promise score movement.
+- Affected findings and dependencies are checked after revision. A concern closes when its defect is resolved, without a fresh full review of unchanged content.
 
 ## Final Readiness Checklist
 

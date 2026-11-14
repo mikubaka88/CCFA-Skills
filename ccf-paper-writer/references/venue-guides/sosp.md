@@ -248,7 +248,6 @@ We evaluate [Name] to answer:
 
 ## Figures and Tables
 
-- Use vector formats (.pdf, .eps) for all figures
 - Ensure grayscale legibility — reviewers print in B&W
 - Self-contained captions: describe what to observe, not just the topic
 - Tables should have clear column headers and units

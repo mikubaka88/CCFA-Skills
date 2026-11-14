@@ -11,7 +11,7 @@ python -B "<new-lean-dir>/tools/install_release.py" --source "<new-lean-dir>" --
 python -B "<new-lean-dir>/tools/install_release.py" --source "<new-lean-dir>" --target "<skills-root>"
 ```
 
-安装器读取自己的 `.ccfa-release-receipt.json`，只更新仍与旧安装哈希一致的文件；个人修改会在复制前停止。额外文件、偏好与上游已删除的旧文件继续保留，需你核对后自行处理。不存在强制覆盖或自动清理。只更新子集时继续使用相同的 `--skill` 列表；其他已装技能不会被悄悄卸载。
+安装器读取自己的 `.ccfa-release-receipt.json`，只更新仍与旧安装哈希一致的文件。lean manifest 是所选技能及依赖资源的完整清单：以前受安装器管理、现在已移除且没有个人修改的旧文件会一并清理。`--dry-run` 用 `retired_files` 和 `retired_paths` 列出这些文件。待更新或退役的文件如有个人修改，整次操作会在写入前停止并报告路径，先合并再重试。未受管文件、额外用户文件、偏好与可选 papers PDF 保留；没有强制覆盖选项。只更新子集时继续使用相同的 `--skill` 列表，其他已装技能不会被卸载。
 
 完整范例 PDF 通过同版 papers 包显式添加，不自动下载；旧 PDF 也不自动删除。原文 Markdown、范例卡、模板与图例仍在 lean 中。包的 SHA-256、部分安装和补充 PDF 用法见[安装矩阵](../INSTALLATION_MATRIX.zh-CN.md#轻量-release-安装推荐)。首次接管手动或 npx 安装时，完全相同的文件可以登记；有差异的文件先合并，避免覆盖个人调整。release 安装不由 `npx skills update` 管理。
 
@@ -63,4 +63,4 @@ npx skills add "$HOME/ai-skills/CCFA-Skills" --global --agent codex --skill '*' 
 
 随后进入这个 clone 的根目录，执行[相邻资源补齐命令](../INSTALLATION_MATRIX.zh-CN.md#sibling-resources)，将目标设为对应客户端的实际安装根目录。这样 skills、参考文件和模板来自同一版本。仅拉取仓库或只运行 `npx skills update`，都不能替代这一步。
 
-`--ff-only` 会在本地存在分叉提交时停止，不会静默覆盖修改。重新安装可能覆盖安装副本中的个人修改，应先按上文比较和保留；资源合并复制不自动删除上游移除的旧文件，需要根据版本差异处理。开发用 clone 与自动更新 clone 应分开。
+`--ff-only` 会在本地存在分叉提交时停止，不会静默覆盖修改。重新安装可能覆盖安装副本中的个人修改，应先按上文比较和保留；资源合并复制不自动删除上游移除的旧文件。需要持续清理受管退役文件时，改用同版本 lean 包的安装器；首次接管前仍须核对差异。开发用 clone 与自动更新 clone 应分开。

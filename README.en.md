@@ -33,7 +33,7 @@ Yann LeCun and James M. Manyika, [*Learning Abstractions*](https://www.amacad.or
 - [From idea to submission](#from-idea-to-submission)
 - [Visual examples](#visual-examples)
 - [Keeping the writing natural](#keeping-the-writing-natural)
-- [Figures that remain editable](#figures-that-remain-editable)
+- [Figures that fit the paper](#figures-that-fit-the-paper)
 - [Distinct roles, shared story](#distinct-roles-shared-story)
 - [Repository and maintenance](#repository)
 - [Latest updates](#latest-updates)
@@ -55,7 +55,7 @@ Choose the agent you use:
 
 [Codex](docs/getting-started/CODEX.md) · [Claude Code](docs/getting-started/CLAUDE_CODE.md) · [Cursor](docs/getting-started/CURSOR.md) · [Gemini CLI](docs/getting-started/GEMINI_CLI.md) · [Other agents](docs/getting-started/OTHER_AGENTS.md) · [Automatic updates](docs/getting-started/AUTO_UPDATE.md)
 
-Download and extract the lean package from the [0.12.1 Release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.1). It retains skills, original paper text, the figure library and sibling templates; full paper PDFs are available as an optional offline pack. Use the local installer described in the [installation matrix](docs/INSTALLATION_MATRIX.md) to preview and apply the installation. Personal preferences remain separate, and existing personal edits are checked first.
+Download and extract the lean package from the [0.12.1 Release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.1). It retains skills, original paper text, the figure library and sibling templates; full paper PDFs are available as an optional offline pack. Use the local installer described in the [installation matrix](docs/INSTALLATION_MATRIX.md) to preview and apply the installation. Personal preferences remain separate, and existing personal edits are checked first. Updates also retire unchanged managed files removed from the selected inventory.
 
 The complete GitHub repository also supports one-line installation. This route still obtains the repository's full paper resources:
 
@@ -72,7 +72,7 @@ Review and rank these three ideas, and identify the most likely rejection reason
 Find recent work, benchmarks, and published baselines for temporal visual reasoning.
 Design the main experiments, ablations, and robustness evidence for this paper without inventing results.
 Rewrite the method section in a CVPR style while preserving equations, terminology, and citations.
-Draw the method architecture and deliver PNG by default; create native PPTX when editability is explicitly requested.
+Draw the method architecture through prompt preparation, GPT Image generation and same-prompt refinement; deliver PNG.
 ```
 
 ## Why a family of skills
@@ -85,7 +85,7 @@ The difficulties of paper research are connected, but they do not require the sa
 | Literature facts, experimental values, and manuscript claims drift apart | Sources, experiment design, and whole-paper consistency remain distinct responsibilities |
 | A revision begins to sound like a review response full of caveats and internal status language | Writing forms the argument; Humanization restores direct and natural academic prose |
 | Each review round changes its focus, obscuring whether the manuscript actually improved | Current publication readiness and progress over the previous version are considered separately |
-| Architecture figures are either plain box diagrams or attractive but impossible to edit | Precise geometry and meaningful scientific illustrations, with PNG delivery and native PPTX on an editability request |
+| Diagrams become mechanical boxes; data figures drift from their templates | Three-stage GPT Image diagrams, faithful reuse of selected JSON/Python data templates |
 | More installed skills create more noise instead of better work | Only capabilities relevant to the present question enter the conversation |
 
 ## What we value
@@ -94,7 +94,7 @@ The difficulties of paper research are connected, but they do not require the sa
 - **Evidence keeps its provenance.** Literature, protocols, values, claims, figures, and citations do not collapse into plausible prose. A missing fact stays missing until it is found or verified.
 - **A paper should sound academic, not defensive.** Humanization removes ritual caveats, mechanical enumeration, excessive em dashes, and internal process language while preserving material limitations and disclosures.
 - **Review remains independent from revision.** The Reviewer judges; the Writer revises. Diagnosis comes before repair, so the manuscript does not argue with its own evaluation.
-- **Scientific figures should explain and invite attention.** Quantitative plots remain reproducible. Method figures first explore a visual language suited to their content, then become editable when the user chooses.
+- **Scientific figures should explain and invite attention.** Quantitative plots keep their selected reproducible templates. Method diagrams use references and article content in the three-stage raster workflow.
 - **Exemplars provide direction rather than a template.** When users supply target papers, CCFA learns their narrative rhythm, paragraph roles, and evidence organization without copying sentences or forcing one style onto every project.
 
 ## The family
@@ -121,7 +121,7 @@ Every CCFA task activates `ccf-humanization` first, then `ccf-common`, before th
 | Paper writing | `ccf-paper-writer` | Drafts, rewrites, polishes, and compresses manuscript text |
 | Academic voice | `ccf-humanization` | Removes defensive and mechanical prose without weakening rigor |
 | Author response | `ccf-rebuttal-writer` | Organizes rebuttals, response letters, and revision records |
-| Scientific visuals | `ccf-visual-composer` | Creates plots, visual tables, method figures, and editable versions |
+| Scientific visuals | `ccf-visual-composer` | Renders data templates, three-stage diagrams and existing-figure edits |
 | Submission | `ccf-submission-checker` | Checks templates, page limits, anonymity, PDFs, and supplementary material |
 | Exemplar learning | `ccf-paper-to-exemplar` | Distills controllable writing patterns from papers supplied by the user |
 | Family maintenance | `ccf-skill-forger` | Improves skills, resolves conflicts, and validates releases |
@@ -200,7 +200,7 @@ The figure below extracts the computational relationships from `output/DynTrace.
 
 ![Paper method architecture](assets/visual-showcase/dyntrace-paper-mechanism-llava4d-reference.png)
 
-**How it was made:** The DynTrace paper was distilled into mechanism relationships and representation–operation pairs. GPT Image 2 then generated a layered architecture draft, followed by a check that the method remained complete. The displayed artifact is a PNG visual draft. An explicit editability request defaults to native-object PPTX; SVG requires a specific request, and paper-ready PDF is exported when requested.
+**How it was made:** This retained DynTrace example comes from the paper's mechanisms and representation–operation relationships. New/redrawn diagrams now follow prompt preparation, complete GPT Image generation and same-prompt refinement, delivering PNG without vector/native reconstruction.
 
 <details>
 <summary>Reference figure, source, and composition principles</summary>
@@ -223,7 +223,7 @@ The two earlier visual explorations remain below. They are better suited to slid
 
 ![GPT Image 2 concept draft](assets/visual-showcase/dyntrace-method-architecture-gpt-image-2.png)
 
-**How it was made:** The three-stage DynTrace method was translated into a vivid visual story built around video, trajectories, and graph structure, then explored with GPT Image 2.
+**How it was made:** This retained DynTrace example comes from the paper's mechanisms and representation–operation relationships. New/redrawn diagrams now follow prompt preparation, complete GPT Image generation and same-prompt refinement, delivering PNG without vector/native reconstruction.
 
 #### Reference-guided PPT/Poster
 
@@ -264,17 +264,15 @@ Manuscript re-review answers two different questions:
 - **Is the current manuscript ready for its target venue?** This measures the remaining distance to the publication standard.
 - **Did the revision make genuine progress?** This compares what the new version resolved and what new problems it may have introduced.
 
-## Figures that remain editable
+## Figures that fit the paper
 
-![Visual delivery](assets/ccfa-skills-artifacts.svg)
+A selected data template keeps its original JSON specification and Python renderer. Replace supplied scientific data while retaining layout, type scale, palettes, layers and statistical definitions. Do not rerun a fresh demo or substitute a similar primitive. New designs use input-data and chart-type routing to choose meaningful combinations.
 
-Quantitative figures begin with reproducible code and traceable data. New method diagrams default to complete GPT Image compositions from the supplied science and actual references. Alignment, compactness and straight connections remain quality requirements; they do not by themselves require a code skeleton. Prompts preserve the science and add only missing design requirements. One integrated inspection checks content and appearance, followed by local repairs when needed. Code/native authoring serves explicit choices, exact tolerances or existing sources. Requested editable SVG, vector PDF, or PPTX deliverables continue under the existing authorization; additional formats follow an explicit request. Existing editable figures are revised in their authoring source, with only affected exports rebuilt; local text, color, spacing, value, or format changes do not restart image generation. Common concepts use a coherent open-source icon family, while method-specific scientific objects can be drawn together in the initial draft and isolated as assets when reuse or editing requires it. In PPTX, text, boxes, nodes, and connectors remain native objects wherever possible, so the final figure can still be meaningfully revised.
+New/redrawn method, architecture and flow diagrams use three stages: prepare P from the user prompt, references and article; generate G0 with P and those materials; refine G0 with the same P into G1. Refinement is required within one candidate even with additional candidates switched off. GPT Image designs the complete compact composition, without a vector skeleton or SVG/PPT shape reconstruction.
 
-Figure aspect ratio follows the content and paper placement, with no default square. Allocate space to the main mechanism before placing compact modules, illustrations, and connectors. Align peer edges, text baselines, and ports across groups, and inspect unused regions. Set a consistent type scale at final paper width: Times New Roman by default, or Comic Sans MS for a requested comic treatment. Keep essential scientific labels while removing repeated explanation and ornamental numbers.
+![Figure delivery](assets/ccfa-skills-artifacts.svg)
 
-Five coordinated presets cover formal mechanisms, soft mechanisms, visual evidence, geometric flows, and compact comic illustrations, alongside seven additional palettes. Venue context helps select a preset; actual template requirements take precedence. These are design suggestions, not official conference styles. Each preset coordinates type, strokes, grouping, and color, while each reference has a specific region or property to guide. Pixel gaps are generation targets; requested editable outputs enforce live fonts and coordinates. Local edits check attached connectors and protected regions, with current artifacts organized per figure.
-
-For a requested code route, Python renders PNG by default. Editable delivery prefers native PPTX; SVG requires an explicit SVG request. Existing authoring sources remain in use.
+Local edits preserve the current image or authoring source and need no full restart. PNG is the diagram deliverable; document/PPTX/PDF placement retains its raster nature. Explicit numerical exports remain available. Keep Times New Roman or selected Comic Sans MS, bold titles/legends/axis text, darker same-hue bar/box edges, coherent palettes and compact aligned layouts.
 
 ## Distinct roles, shared story
 
@@ -290,7 +288,7 @@ Each artifact has an owner responsible for integration and delivery. Other skill
 | Choose baselines, metrics, and ablations | `ccf-experiment-designer` | Does not alter or fabricate results |
 | Review, score, and diagnose | `ccf-paper-reviewer` | Does not rewrite the manuscript while judging it |
 | Rewrite, polish, and compress | `ccf-paper-writer` | Does not change the scientific problem, method, or conclusion without authorization |
-| Draw figures, tables, and PPTX | `ccf-visual-composer` | Does not choose datasets, metrics, or values |
+| Draw figures/tables and place them in documents | `ccf-visual-composer` | Does not choose datasets, metrics, or values |
 
 ## Repository
 
@@ -320,13 +318,19 @@ Chinese output uses explicit UTF-8 I/O with optional BOM support on input. Shell
 
 ## Latest updates: keep every revision part of the same paper
 
+### Drawing pipeline repair · 2026-11-14
+
+A selected template can drift when a fresh demo resamples data, dimensions are ignored/rescaled, or presentation settings and layers disappear. The data route now reuses the chosen JSON/Python, replaces complete scientific data, locks named templates, honors explicit size and matches series style by identity. In one fixed-input132×84 mm regression, the repaired call matches direct template rendering pixel for pixel.
+
+First establish what the reader should understand, the necessary objects and their actual relations, then expand the prompt. New/redrawn diagrams require P from user prompt/references/article, GPT Image generation G0, then same-P refinement G1. The third stage is part of one candidate, independent of the additional-candidate switch. Vector skeletons and SVG/PPT shape reconstruction are retired from this route; local edits retain the current image/source. Typography, color, compactness and scientific checks remain active.
+
 ### CVPR 2027 and workflow repairs · 2026-11-12
 
 The template, manuscript and submission check should follow the same rules. This update adds the complete year-specific [official CVPR 2027 kit](ccf-latex-templates/CVPR/2027/main.tex) and [guide](ccf-paper-writer/references/venue-guides/cvpr.md), with local checks for mode, page geometry, anonymity, main-text length and the required LLM Usage Statement. Enrollment and author eligibility remain explicit author checks.
 
 Substantive drafting and expression repair now consistently use matched real paper passages. Compose the scientific point and sentence relationships first, then remove empty labels and unnecessary qualifications; preserve the author's closing significance. Research design starts with missing information, representation, objectives or computation before choosing a mechanism. Experiments distinguish explanations, including declared factor combinations and interaction ablations when useful.
 
-Code drawing defaults to PNG, editable delivery prefers native PPTX, and SVG remains explicit. Copy-install instructions now include the visual reference assets. Humanization and Common still run first, with details loaded as needed.
+Numerical drawing defaults to PNG, with explicit format exports when requested. New method diagrams remain rasters, including inside a requested PPTX. Copy-install instructions now include the visual reference assets. Humanization and Common still run first, with details loaded as needed.
 
 **v0.12.1 · Updated 2026-10-31**
 
@@ -430,7 +434,7 @@ A complex analysis figure should help the reader follow one question across its 
 
 ![Analytical chart combinations with simulated values](assets/semantic-figures-gallery.png)
 
-Figures use GPT Image, Python, or both, with PNG delivery by default. Editable output is opt-in and prefers native PPTX; SVG requires an explicit request. Use Times New Roman or the selected Comic Sans MS, bold titles/legends/axis text, darker same-hue substantial bar and box borders, light fills, and compact aligned layouts.
+New/redrawn method diagrams use the three-stage GPT Image workflow; numerical plots use Python. Both deliver PNG by default. Numerical PDF/SVG exports require a request; existing editable sources support local edits. New diagram placement in PPTX keeps the raster. Use Times New Roman or the selected Comic Sans MS, bold titles/legends/axis text, darker same-hue substantial bar and box borders, light fills, and compact aligned layouts.
 
 Chart selection now begins with the question the reader needs to understand. **43 chart grammars, 16 analytical purposes, and 16 fusion plans** cover tails and distributions, matched gains, error structure, ranking changes, resource trade-offs, and related questions. Each design explains why the arrangement works, what data it needs, what readers might misinterpret, and which complementary view can share the figure. These explanations give later revisions and new combinations a scientific starting point.
 
@@ -466,7 +470,7 @@ The [figure design and fusion guide](ccf-visual-composer/references/figure-desig
 
 These nine templates compose the original 13 reusable panel types, including interval comparisons, curve bands, heatmaps, dot matrices, distributions, embeddings, density maps, binned summaries, and category comparisons. The new 30 components join them in the 43-grammar router. Swap a panel when the question changes without rebuilding the whole figure. Typography and strokes follow the final physical width; related panels align, repeated legends are consolidated, and each entity keeps its color. Comparable quantities share axes or color ranges, while different units retain separate labels. Times New Roman remains the default, with CJK fallbacks and explicit font choices; the destination's submission rules take precedence.
 
-All 14 existing palettes remain available alongside six additions: AAAS, NEJM, Lancet, JCO, Tol bright, and Tol muted. These are palette choices, not journal mandates. Related results retain the same color mapping. PNG is the default finished format. Export vector PDF or SVG when requested; native PPTX is preferred for editable object delivery. Python renders the numerical plots first, with illustrations or mechanism components added locally when needed; image models do not redraw the data.
+All 14 existing palettes remain available alongside six additions: AAAS, NEJM, Lancet, JCO, Tol bright, and Tol muted. These are palette choices, not journal mandates. Related results retain the same color mapping. Numerical plots deliver PNG and retain Python/JSON sources, with PDF/SVG exports on explicit request. Method diagrams deliver PNG and remain raster images when placed in PPTX; existing editable sources can be maintained locally. Python renders the numerical plots first, with illustrations or mechanism components added locally when needed; image models do not redraw the data.
 
 The gallery uses simulated values. Only an explicit `--demo` request creates synthetic examples. Real tasks load supplied data with `--data`, without filling missing results or silently changing values to make a plot work. The tools retain p-value, adjusted-p-value, and q-value distinctions and check intervals, probabilities, axis ranges, and labels.
 
@@ -477,11 +481,11 @@ python -m pip install numpy matplotlib
 python ccf-visual-composer/resources/python/ccfa_analysis_templates.py --demo all --out ccfa-workfiles/figures/analysis-demo
 ```
 
-Only this multi-panel route requires NumPy and Matplotlib. The original SVG library still uses Python's standard library, and existing calls remain supported. The [plotting guide](ccf-visual-composer/references/python-plot-recipes.md) explains template selection, real-data input, typography, and palettes. Repeated runs update the same task directory. Additional candidates and independent review retain their existing switches.
+Python numerical plotting uses NumPy and Matplotlib. Earlier numerical SVG examples remain available as existing sources. The [plotting guide](ccf-visual-composer/references/python-plot-recipes.md) explains template selection, real-data input, typography, and palettes. Repeated runs update the same task directory. Additional candidates and independent review retain their existing switches.
 
 For the two sensitivity panels, replace `--demo all` above with `--demo sensitivity_dynamics --panel-pair sensitivity`. Change `sensitivity` to `dynamics` for the state-evolution and category-comparison pair, retaining the same `--out` path.
 
-> Arrange these results as a multi-panel analysis figure. Decide which relationships need side-by-side comparison before choosing a template. Set type at the final paper width, align related panels, keep method colors consistent, retain relevant uncertainty, and export SVG, PDF, and PNG.
+> Arrange these results as a multi-panel analysis figure. Decide which relationships need side-by-side comparison before choosing a template. Set type at the final paper width, align related panels, keep method colors consistent, retain relevant uncertainty, and deliver PNG with reusable Python/JSON sources.
 
 ### Files and context: pick up where you left off
 
@@ -514,7 +518,7 @@ node --check ccf-common/assets/configurator/app.js
 node ccf-common/scripts/test_configurator.js
 ```
 
-These checks validate the static structure of all 18 skills, configuration and reference paths, and existing script regressions. They do not replace comparisons of actual model quality or token use. Experiment and efficiency results are summarized in [实验结果.md](实验结果.md).
+These checks validate the static structure of all 18 skills, configuration and reference paths, and existing script regressions. They do not replace comparisons of actual model quality or token use. The [historical experiment record](实验结果.md) preserves v0.9.0 results for the models and execution routes measured at that time.
 
 Historical experiments retain their original versions and conditions. Structural checks, scenario cases and script regressions describe their own coverage; they do not establish a percentage gain in current-model quality or token use.
 

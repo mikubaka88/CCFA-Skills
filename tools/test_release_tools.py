@@ -262,6 +262,67 @@ class ReleaseTests(unittest.TestCase):
         self.assertEqual(extra.read_text(encoding="utf-8"), "KEEP")
         self.assertEqual(prefs.read_text(encoding="utf-8"), '{"version":1}')
 
+    def test_retired_files_follow_selected_resource_closure_and_preserve_papers_and_extras(self):
+        name = "ccf-paper-writer/references/exemplar-style-analysis.md"
+        installer.install(self.source, self.target, papers=self.papers)
+        extra = self.target / "ccf-paper-writer/references/personal.md"
+        extra.write_text("KEEP", encoding="utf-8")
+        (self.repo / name).unlink()
+        self.make_release("0.12.1")
+        # An unrelated partial update does not retire the writer's files.
+        installer.install(self.source, self.target, ["ccf-humanization"])
+        self.assertTrue((self.target / name).is_file())
+        # Reviewer selects writer references as resources, without its skill.
+        preview = installer.install(self.source, self.target, ["ccf-paper-reviewer"], dry_run=True)
+        self.assertEqual(preview["retired_paths"], [name])
+        self.assertTrue((self.target / name).is_file())
+        result = installer.install(self.source, self.target, ["ccf-paper-reviewer"])
+        self.assertEqual(result["retired_files"], 1)
+        self.assertFalse((self.target / name).exists())
+        self.assertNotIn(name, support.read_json(self.target / support.RECEIPT)["files"])
+        self.assertEqual(extra.read_text(encoding="utf-8"), "KEEP")
+        self.assertTrue((self.target / (support.PAPERS + "original.pdf")).is_file())
+        self.assertTrue((self.target / self.legacy_pdf).is_file())
+
+    def test_personal_edit_to_retired_file_rejects_update_before_any_mutation(self):
+        name = "ccf-paper-writer/references/exemplar-style-analysis.md"
+        installer.install(self.source, self.target)
+        (self.target / name).write_text("PERSONAL", encoding="utf-8")
+        (self.repo / name).unlink()
+        self.put("ccf-common/SKILL.md", "New common")
+        self.make_release("0.12.1")
+        receipt = (self.target / support.RECEIPT).read_bytes()
+        common = (self.target / "ccf-common/SKILL.md").read_bytes()
+        with self.assertRaisesRegex(ValueError, "personal edit to a retired file"):
+            installer.install(self.source, self.target)
+        self.assertEqual((self.target / name).read_text(encoding="utf-8"), "PERSONAL")
+        self.assertEqual((self.target / support.RECEIPT).read_bytes(), receipt)
+        self.assertEqual((self.target / "ccf-common/SKILL.md").read_bytes(), common)
+
+    def test_retirement_resumes_after_receipt_failure_and_preserves_intervening_edit(self):
+        name = "ccf-paper-writer/references/exemplar-style-analysis.md"
+        installer.install(self.source, self.target)
+        (self.repo / name).unlink()
+        self.make_release("0.12.1")
+        write_receipt = installer._write_receipt
+        def interrupted(target, value):
+            if "pending" not in value:
+                raise OSError("Injected retirement receipt failure")
+            return write_receipt(target, value)
+        with patch.object(installer, "_write_receipt", interrupted), self.assertRaisesRegex(OSError, "retirement receipt"):
+            installer.install(self.source, self.target)
+        self.assertFalse((self.target / name).exists())
+        (self.target / name).write_text("NEW PERSONAL EDIT", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "personal edit to a retired file"):
+            installer.install(self.source, self.target)
+        (self.target / name).unlink()
+        result = installer.install(self.source, self.target)
+        self.assertTrue(result["resuming"])
+        self.assertEqual(result["retired_files"], 0)
+        receipt = support.read_json(self.target / support.RECEIPT)
+        self.assertNotIn("pending", receipt)
+        self.assertNotIn(name, receipt["files"])
+
     def test_personal_edit_or_unmanaged_collision_rejects_the_entire_preflight(self):
         installer.install(self.source, self.target)
         target = self.target/"ccf-paper-writer/SKILL.md"; target.write_text("MY EDIT", encoding="utf-8")

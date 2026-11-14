@@ -2,6 +2,12 @@
 
 Use the Matplotlib panels/templates and composer for numerical plots across fields, including biological data. They deliver PNG by default, retaining reusable Python and data specifications. Use `resources/python/ccfa_plot_recipes.py` only for an explicitly requested SVG or maintenance of an existing SVG source. Reuse an established plotting pipeline when suitable.
 
+## 选中模板的真实数据绘制
+
+已有JSON/Python就是当前绘制计划。通过`ccfa_figure_library.py compose --spec selected.json --data supplied.json --out <当前图稿路径>`替换完整科学数据，或使用Python的`replace_data`后`compose`。保留画布、字体、配色、图层和统计定义；严格区分展示参数与观测值。缺少所选面板／图层的数据会报错，不复用旧demo值。单图用`--panel <id>`先提取再绑定。字段格式见[素材库](figure-design-library.md#已选模板复用原规格只换数据)。
+
+显式`width_mm`／`height_mm`是最终物理尺寸，不再额外乘面板比例。只在未指定高度时使用默认双面板高度。需要和图库外观一致时读取图库提供的同一JSON，不重新生成随机demo。
+
 ## Recipe Library Contract
 
 The original explicit-SVG `ccfa_plot_recipes.py` library remains available without becoming the ordinary rendering route:
@@ -109,10 +115,10 @@ The module directory must be on Python's import path, as in the legacy example b
 - Bounds are supplied lower/upper values in the original metric, not guessed error lengths. State SD, SE, CI, sample count and aggregation in the caption. The synthetic example's repeated-run bars use one sample SD; paired subgroup intervals use an explicitly computed bootstrap 95% CI. The renderer does not convert one into the other.
 - `paired_effects` checks that supplied differences equal the second matched group minus the first. Confusion/count panels consume counts; rates need an explicitly relabeled custom panel. A correlation matrix stays within [-1, 1]. A generic heatmap may show missing cells distinctly instead of filling zeros.
 - Embeddings consume coordinates: they neither calculate UMAP/t-SNE nor establish separation significance. Demo coordinates are synthetic. Volcano plots consume supplied p/q statistics and correction labels; zero probabilities need an explicit justified display floor. Gene/pathway names alone do not establish a biological interpretation.
-- Composite density plots count the actual input samples; a logarithmic colorbar represents counts, not a probability density estimate. The threshold fraction and selected percentile are computed from supplied observations. Box bodies show median/IQR with 1.5-IQR whiskers and visible outliers, while the overlaid line is the named percentile. Preserve the grouping rule and sample identity when linking panels. Percentage panels need their denominator/aggregation in the caption; overlapping state criteria need not sum to 100. An under-curve fill is visual emphasis, not an uncertainty band. Prefer one scale for bars and lines of the same quantity; adding a second axis requires a real unit difference.
+- Composite density plots count the actual input samples; a logarithmic colorbar represents counts, not a probability density estimate. The threshold fraction and selected percentile are computed from supplied observations. Ordinary boxes show median/IQR with 1.5-IQR whiskers and visible outliers; the explicitly selected reference mode instead uses median–P90 boxes, P99 whiskers and P95 markers. Preserve the selected definition rather than applying one default to every box. Preserve the grouping rule and sample identity when linking panels. Percentage panels need their denominator/aggregation in the caption; overlapping state criteria need not sum to 100. An under-curve fill is visual emphasis, not an uncertainty band. Prefer one scale for bars and lines of the same quantity; adding a second axis requires a real unit difference.
 - Set dimensions in mm and type in pt before export; default width is 183 mm and font size 8.5 pt, with content-dependent height. A composition's top-level `font_size` reaches panels, preserved templates and all linked layouts, including the primary axes, ticks and legends. There is no square constraint. `--font serif` uses Times New Roman when present, `sans` and `comic` are available. CJK fallbacks recognize Windows fonts, native macOS PingFang/Songti SC/TC and Noto/Source Han families; a minimal Linux environment needs an installed CJK font, for example Noto Sans CJK. Export refuses missing glyphs, and the release Chinese-text check must run rather than skip. Exact venue typography overrides these defaults when requested.
 - Use shared alignment within each analytical row, short panel titles, room for axis labels, one legend per meaning and restrained cell annotations. Adjust spans before shrinking type. Comparable matrices share normalization; different metrics retain separate labeled scales. The current full-page presets are double-column examples, not layouts to squeeze unchanged into a single column.
-- SVG retains live text and vector marks; PDF embeds fonts; PNG is a preview. Basic export QA checks missing glyphs and canvas bounds. Inspect actual output for overlaps, cramped labels and misleading visual scales. Reuse the existing scientific/visual checks in `render-qa.md`.
+- Requested numerical SVG retains live text and vector marks where supported; PDF embeds fonts; PNG is the default finished figure. Basic export QA checks missing glyphs and canvas bounds. Inspect actual output for overlaps, cramped labels and misleading visual scales. Reuse the existing scientific/visual checks in `render-qa.md`.
 
 ## Available SVG Recipes
 
@@ -143,7 +149,7 @@ The module directory must be on Python's import path, as in the legacy example b
 
 ## Custom Plot Invention Prompt
 
-When inventing a new plot, fill this before coding:
+For an unfamiliar chart, resolve the relevant decisions below from the existing article/data context before coding. This is an internal aid, not a required new form or file; omit fields that do not change the design:
 
 ```text
 Scientific question:
@@ -154,7 +160,7 @@ What the viewer should notice first:
 What must not be visually exaggerated:
 Required labels/units:
 Candidate grammar:
-Why a standard chart is insufficient:
+Reason for any nonstandard encoding:
 Accessibility checks:
 ```
 

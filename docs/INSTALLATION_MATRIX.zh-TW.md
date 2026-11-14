@@ -19,7 +19,7 @@ python -B "<papers-dir>/tools/install_release.py" --source "<papers-dir>" --targ
 
 先安裝同版 lean；也可在安裝 lean 時增加 `--papers "<papers-dir>"`。工具不會自動下載 PDF。保留的真實原文段落繼續用於寫作，遇到必須檢查排版或提取錯誤時，再安裝完整包或讀取獲准使用的原始來源。Git clone 與 `npx skills` 仍取得包含 PDF 的完整原始碼，不屬於輕量下載。
 
-兩個包使用同一發布身份、版本與 manifest 格式，記錄相對路徑、技能清單、大小及 SHA-256。安裝前核驗來源，拒絕路徑穿越與符號連結，並以 `.ccfa-release-receipt.json` 記錄受管理檔案。更新只替換未改動的舊安裝檔案，完全相同的檔案可接管；個人修改會在複製前停止，讓你先合併。額外檔案、偏好與上游已移除的舊檔案皆不自動刪除，也沒有強制覆寫選項。舊手動/npx 安裝若有差異，先核對合併。詳見[更新說明](getting-started/AUTO_UPDATE.md)。
+兩個包使用同一發布身份、版本與 manifest 格式，記錄相對路徑、技能清單、大小及 SHA-256。安裝前核驗來源，拒絕路徑穿越與符號連結，並以 `.ccfa-release-receipt.json` 記錄受管理檔案。更新只替換未改動的舊安裝檔案，完全相同的檔案可接管。lean manifest 是所選技能及相依資源的完整清單。先前受安裝器管理、已從清單移除且安裝雜湊未變的舊檔案會退役清理，`--dry-run` 列出 `retired_files` 與 `retired_paths`。待替換或退役檔案若有個人修改，整次操作會在寫入前停止並報告路徑，先合併再重試。未受管檔案、額外使用者檔案、偏好、可選 papers PDF 與未選技能保留；沒有強制覆寫選項。舊手動/npx 安裝若有差異，先核對合併。詳見[更新說明](getting-started/AUTO_UPDATE.md)。
 
 可以只安裝部分 skills，但任何子集都必須包含 `ccf-humanization` 和 `ccf-common`。 下表列出任務負責人；還需保留所用模式讀取的相鄰資源：審稿、實驗、腳手架與投稿模式可能讀取 `ccf-paper-writer/references/`，模板模式需要安裝根目錄下相鄰的 `ccf-latex-templates/`，舊版寫作轉換命令依賴 `ccf-paper-to-exemplar/scripts/convert.py`。資源依賴不代表授權執行對應 skill。完整倉庫或外掛保留這些路徑；僅複製 skill 的安裝器還需同步所需資源樹。
 
@@ -52,7 +52,7 @@ python -B "<papers-dir>/tools/install_release.py" --source "<papers-dir>" --targ
 
 ## 部分安裝示例
 
-在倉庫 clone 的根目錄執行以下命令，先複製寫作子集，再補齊下一節的相鄰資源。更新前先比較個人修改。重複複製會合併目錄內容，不會多嵌一層；上游已刪除的舊檔案不會自動清除，需要依差異個別處理。
+在倉庫 clone 的根目錄執行以下命令，先複製寫作子集，再補齊下一節的相鄰資源。更新前先比較個人修改。重複複製會合併目錄內容，不會多嵌一層；手動複製不會清理上游已刪除的檔案；需要受管更新與退役清理時，核對個人差異後使用同版 lean 安裝器。
 
 預設目標依據本機核對的 `skills` CLI 1.5.22：Codex 全域安裝使用 `$CODEX_HOME/skills`，未設定或為空時回退到 `~/.codex/skills`；專案安裝使用 `.agents/skills`。先用 `npx skills list --global --agent codex` 確認實際位置。其他用戶端、專案安裝或新版安裝器，請將以下兩組命令中的 `ccfa_skills_dir` / `$ccfaSkillsDir` 改為對應安裝根目錄，不要將資源補到另一個 Codex 目錄。
 
@@ -116,4 +116,4 @@ foreach ($ccfaPath in $ccfaPaths) {
 }
 ```
 
-安裝中斷時，回執會記錄 pending。以同一個包、相同技能選擇和相同目標重新執行即可繼續；手動修改的檔案會停止更新並保留。正式建置預設只包含 Git 已登記路徑；開發時如需未追蹤檔案，明確使用 `--include-untracked`。manifest 記錄提交與 dirty 狀態。
+複製或退役清理中斷時，回執會記錄 pending。以同一個包、相同技能選擇和相同目標重新執行即可繼續；手動修改的檔案會停止更新並保留。正式建置預設只包含 Git 已登記路徑；開發時如需未追蹤檔案，明確使用 `--include-untracked`。manifest 記錄提交與 dirty 狀態。

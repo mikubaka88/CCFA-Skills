@@ -26,6 +26,33 @@ BUILD = ROOT / "ccfa-workfiles/skill-maintenance/analytical-figures/build"
 
 
 class AnalysisTemplateTests(unittest.TestCase):
+    def test_mixed_template_keeps_supplied_raster_without_rebuilding_its_objects(self):
+        data = self.data("mechanism_overview")
+        pixels = np.arange(36, dtype=np.uint8).reshape(3, 4, 3)
+        image = self.folder / "approved-method.png"
+        plt.imsave(image, pixels)
+        data["mechanism"] = {"image": str(image)}
+        original = image.read_bytes()
+        fig = self.render("mechanism_overview", data)
+        axes = next(ax for ax in fig.axes if ax.images)
+        np.testing.assert_array_equal(axes.images[0].get_array(), plt.imread(image))
+        self.assertEqual(len(axes.patches), 0)
+        self.assertEqual(image.read_bytes(), original)
+
+    def test_stage_blueprint_cannot_reactivate_mixed_template_diagram_construction(self):
+        data = self.data("mechanism_overview")
+        data["mechanism"] = {"stages": ["Input", "Encoder", "Output"], "note": "old blueprint"}
+        with self.assertRaisesRegex(ValueError, "approved PNG"):
+            self.render("mechanism_overview", data)
+
+    def test_pair_default_is_compact_but_explicit_height_is_not_scaled_twice(self):
+        data=copy.deepcopy(self.examples["sensitivity_dynamics"]);data["panel_pair"]="sensitivity"
+        default=templates.render_template("sensitivity_dynamics",data)
+        explicit=templates.render_template("sensitivity_dynamics",data,height_mm=84)
+        self.assertAlmostEqual(default.get_figheight()*25.4,142*.56)
+        self.assertAlmostEqual(explicit.get_figheight()*25.4,84)
+        plt.close(default);plt.close(explicit)
+
     def test_aggregate_corridor_uses_counts_and_explicit_weight_units(self):
         fig,ax=plt.subplots();ax.set_xlim(0,40);ax.set_ylim(.01,10);ax.set_yscale("log")
         block={"x":[1,30],"y":[.05,1],"counts":[3,7],

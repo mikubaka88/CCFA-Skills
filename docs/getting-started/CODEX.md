@@ -10,14 +10,14 @@
 
 ## 推荐安装
 
-下载并解压 [0.12.0 的 lean 包](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.0)，按[安装矩阵](../INSTALLATION_MATRIX.zh-CN.md#轻量-release-安装推荐)核验 SHA-256。将 `<lean-dir>` 换成解压后的 `ccfa-skills-0.12.0-lean` 目录，将 `<skills-root>` 换成 Codex 实际技能根目录（全局安装通常为 `$CODEX_HOME/skills`，未设置时为 `~/.codex/skills`）：
+下载并解压 [0.12.1 的 lean 包](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.1)，按[安装矩阵](../INSTALLATION_MATRIX.zh-CN.md#轻量-release-安装推荐)核验 SHA-256。将 `<lean-dir>` 换成解压后的 `ccfa-skills-0.12.1-lean` 目录，将 `<skills-root>` 换成 Codex 实际技能根目录（全局安装通常为 `$CODEX_HOME/skills`，未设置时为 `~/.codex/skills`）：
 
 ```text
 python -B "<lean-dir>/tools/install_release.py" --source "<lean-dir>" --target "<skills-root>" --dry-run
 python -B "<lean-dir>/tools/install_release.py" --source "<lean-dir>" --target "<skills-root>"
 ```
 
-这条路线保留 18 个技能、相邻模板、真实原文 Markdown 与绘图素材，完整范例 PDF 按需显式安装。更新会保护个人改动，不自动删文件或改偏好；见[更新说明](AUTO_UPDATE.md)。
+这条路线保留 18 个技能、相邻模板、真实原文 Markdown 与绘图素材，完整范例 PDF 按需显式安装。更新保护个人改动和偏好，并清理所选范围内未改动的受管退役文件；见[更新说明](AUTO_UPDATE.md)。
 
 ## Git 与 npx 完整源码方案
 
