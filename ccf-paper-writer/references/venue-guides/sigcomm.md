@@ -165,7 +165,6 @@ We evaluate our design through:
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) for all figures
 - Ensure grayscale legibility
 - Include network topology diagrams
 - Tables should have clear column headers and units

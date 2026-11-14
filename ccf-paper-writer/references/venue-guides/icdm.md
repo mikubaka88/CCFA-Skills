@@ -115,7 +115,6 @@ includegraphics[width=0.9\linewidth]{fig/model}
 \end{figure}
 ```
 
-- Use vector formats (.pdf, .eps) preferred
 - Ensure grayscale legibility
 - Captions centered, below figures
 - Number figures and tables sequentially

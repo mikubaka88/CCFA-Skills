@@ -148,7 +148,6 @@ SoCG papers emphasize formal proofs:
 ```
 
 - Use LaTeX picture/tikz for geometric figures when possible
-- Vector formats preferred
 - Self-contained captions with line numbers
 - Ensure clarity at publication scale
 

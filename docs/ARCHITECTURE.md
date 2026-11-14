@@ -22,7 +22,8 @@ idea judgment: closest-work grounding when missing -> concept review
 substantial writing: evidence/citation grounding -> writer -> affected review -> verified revision
 review + revision: reviewer -> writer -> affected checks, retaining resolved concerns
 research implementation: inspect existing stack -> engineer -> relevant execution checks
-new scientific figure: data/topology prerequisites -> visual composer -> render QA
+new data figure: understand question/data -> selected Python/JSON -> render QA
+new method diagram: understand science -> expand P -> GPT Image G0 -> same-P refinement G1
 existing figure label update: reuse scientific inputs -> source edit -> affected exports
 
 Every path begins with Humanization -> Common -> specialist work.
@@ -62,7 +63,7 @@ The file is not meant to contain the whole paper. It is a routing and status spi
 
 ## Owner Boundaries
 
-The family intentionally merged helper skills into owner modes. `ccf-visual-composer` carries a small self-contained Python SVG plotting recipe library for reproducible data figures and an architecture-diagram workflow: content-derived prompt, authorized image generation, draft inspection, and semantic SVG/vector-PDF reconstruction when requested. Existing authorization covers the required stages; optional extra formats remain optional.
+The family merges helper skills into owner modes. Numerical figures reuse the selected Python/JSON specification and supplied data. New/redrawn conceptual diagrams first establish the scientific message and actual relations, then expand one prompt from the article/references, generate G0 with GPT Image, and refine G0 with that same prompt into G1. The last two stages are two actual image calls. This workflow produces a raster without vector reconstruction; existing source maintenance and numerical format exports stay separate.
 
 | Capability | Owner | Boundary |
 | --- | --- | --- |
@@ -74,7 +75,7 @@ The family intentionally merged helper skills into owner modes. `ccf-visual-comp
 | Writing review | `ccf-paper-reviewer` | Diagnoses writing and format-facing risk; does not rewrite unless handed back to writer. |
 | Citation audit | `ccf-integrity-auditor` | Checks existing citations; broad discovery stays with literature search. |
 | Result evidence and specs | `ccf-experiment-designer` | Uses real results; never invents numbers. |
-| Publication visuals | `ccf-visual-composer` | Owns reproducible Python data plots and whole-image method/architecture compositions, palettes, captions, integration and render QA. PNG is the default; requested editable output prefers native PPTX, and SVG requires an explicit request. |
+| Publication visuals | `ccf-visual-composer` | Owns faithful Python data-template rendering and raster diagram creation/redrawing: understand the science, expand a prompt from article/references, generate a GPT Image draft, then refine it with the same prompt. Maintains existing sources locally; no new vector reconstruction. |
 | Venue format and artifacts | `ccf-submission-checker` | Checks package readiness; content polishing stays with writer. |
 | Resubmission adaptation | `ccf-rebuttal-writer` | Maintains response/ledger logic; manuscript edits route back to writer. |
 | Docs SVGs | `ccf-skill-forger` | Repository maintenance only; research figures/tables stay with experiment designer and visual composer. |

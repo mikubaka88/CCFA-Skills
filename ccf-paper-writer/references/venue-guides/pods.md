@@ -145,7 +145,6 @@ The main data structure used is a...
 \end{figure}
 ```
 
-- Vector formats (.pdf) preferred
 - Ensure grayscale legibility
 - Self-contained captions
 - Use `booktabs` for tables (no vertical rules)

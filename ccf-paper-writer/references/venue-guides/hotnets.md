@@ -151,7 +151,6 @@ and motivates follow-up work.
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) for all figures
 - Ensure grayscale legibility
 - Keep figures simple and communicative
 - Tables should have clear column headers and units

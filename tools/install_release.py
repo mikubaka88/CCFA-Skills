@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install an extracted CCFA release without network access or deleting user files."""
+"""Install a CCFA release, retiring unchanged managed files within its selection."""
 from __future__ import annotations
 
 import argparse
@@ -11,7 +11,7 @@ import re
 import sys
 import tempfile
 
-from release_support import RECEIPT, digest, is_paper_pdf, load_release, no_links, read_json, relative_path, select_files
+from release_support import RECEIPT, digest, is_paper_pdf, load_release, no_links, read_json, relative_path, resource_prefixes, select_files
 
 
 def _hash(value):
@@ -54,10 +54,12 @@ def _write_receipt(target, value):
         temporary.unlink(missing_ok=True)
 
 
-def _operation(manifest, skills, entries):
+def _operation(manifest, skills, entries, retired=()):
     # Identify content and selection, independent of the extracted source location.
     value = {"release_id": manifest["release_id"], "profile": manifest["profile"], "skills": skills,
              "files": sorted((entry["path"], entry["sha256"]) for _, entry in entries)}
+    if retired:
+        value["retired"] = sorted(retired)
     return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest()
 
 
@@ -86,9 +88,17 @@ def install(source, target, requested=None, papers=None, dry_run=False):
             if paper_source == target or paper_source in target.parents or target in paper_source.parents:
                 raise ValueError("Papers and target must be separate directory trees")
             entries += [(paper_source, e) for e in paper_manifest["files"] if is_paper_pdf(e["path"])]
-    operation = _operation(manifest, skills, entries)
+    # A lean manifest is the complete inventory for the selected resource paths.
+    # PDFs installed from the optional papers pack are deliberately absent from it.
+    prefixes = resource_prefixes(skills) if manifest["profile"] == "lean" else set()
+    current_inventory = {entry["path"] for entry in manifest["files"]}
+    retired = sorted(name for name in old["files"]
+                     if name not in current_inventory and not is_paper_pdf(name)
+                     and any(name == p or name.startswith(p + "/") for p in prefixes))
+    operation = _operation(manifest, skills, entries, retired)
     pending = old.get("pending")
-    if pending is not None and (pending["operation"] != operation or set(pending["before"]) != {e["path"] for _, e in entries}):
+    affected = {e["path"] for _, e in entries} | set(retired)
+    if pending is not None and (pending["operation"] != operation or set(pending["before"]) != affected):
         raise ValueError("An interrupted update is pending; retry its same release, skill selection, and papers first")
     changes = []
     observed = {}
@@ -107,9 +117,23 @@ def install(source, target, requested=None, papers=None, dry_run=False):
             raise ValueError("Preserving a personal or unmanaged edit; reconcile before updating: "+entry["path"])
         else:
             changes.append((origin, entry, path, current))
+    retiring = []
+    for name in retired:
+        path = no_links(target / name)
+        if not path.resolve().is_relative_to(target):
+            raise ValueError("Retired path escapes the skills target: " + name)
+        if path.exists() and not path.is_file():
+            raise ValueError("A retired managed file conflicts with a directory: " + name)
+        current = digest(path) if path.exists() else None
+        observed[name] = current
+        expected = pending["before"][name] if pending is not None else old["files"][name]["sha256"]
+        if current is not None and current != expected:
+            raise ValueError("Preserving a personal edit to a retired file; reconcile before updating: " + name)
+        retiring.append((name, path, current))
     result = {"version": manifest["version"], "profile": manifest["profile"], "skills": skills,
               "dry_run": dry_run, "new_files": sum(c[3] is None for c in changes),
               "updated_files": sum(c[3] is not None for c in changes), "unchanged_files": unchanged,
+              "retired_files": sum(current is not None for _, _, current in retiring), "retired_paths": retired,
               "extra_user_files": "preserved", "preferences": "unchanged", "resuming": pending is not None}
     if dry_run:
         return result
@@ -140,10 +164,10 @@ def install(source, target, requested=None, papers=None, dry_run=False):
             if measured.hexdigest() != entry["sha256"] or size != entry["bytes"]:
                 raise ValueError("Source changed during copy: "+entry["path"])
         # Recheck every destination before committing any replacement.
-        for _, entry in entries:
-            path = no_links(target / entry["path"])
-            if (digest(path) if path.exists() else None) != observed[entry["path"]]:
-                raise ValueError("Target changed during staging: "+entry["path"])
+        for name, previous in observed.items():
+            path = no_links(target / name)
+            if (digest(path) if path.exists() else None) != previous:
+                raise ValueError("Target changed during staging: "+name)
         journal = {**old, "pending": pending or {"operation": operation, "before": observed}}
         _write_receipt(target, journal)
         # A durable journal makes a partial replacement resumable. A retry accepts
@@ -153,10 +177,17 @@ def install(source, target, requested=None, papers=None, dry_run=False):
             if (digest(no_links(path)) if path.exists() else None) != observed[rel]:
                 raise ValueError("Target changed during commit: "+rel)
             os.replace(temporary, path)
+        for name, path, previous in retiring:
+            if (digest(no_links(path)) if path.exists() else None) != previous:
+                raise ValueError("Retired file changed during commit: " + name)
+            if previous is not None:
+                path.unlink()
         if _receipt(target) != journal:
             raise ValueError("Installation receipt changed during commit; inspect before retrying")
         receipt = {**old, "version": manifest["version"], "files": dict(old["files"]), "skills": dict(old["skills"])}
         receipt.pop("pending", None)
+        for name in retired:
+            receipt["files"].pop(name, None)
         for _, entry in entries:
             receipt["files"][entry["path"]] = {"sha256": entry["sha256"], "version": manifest["version"]}
         for skill in skills:

@@ -174,7 +174,6 @@ Generate CCS Concepts at http://dl.acm.org/ccs.cfm and include them as shown abo
 
 CSCW emphasizes visual communication and empirical data presentation:
 
-- Use high-quality vector figures (.pdf, .eps)
 - Ensure grayscale legibility
 - Include screenshots, study setups, and design artifacts
 - Number figures/tables sequentially

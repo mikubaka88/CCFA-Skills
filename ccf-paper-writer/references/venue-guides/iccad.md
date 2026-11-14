@@ -137,7 +137,6 @@ ICCAD papers focus on:
 - Algorithm flowcharts
 - Circuit/layout examples
 - Experimental results
-- Use vector graphics (PDF)
 
 ### Table Best Practices
 - Clear headers with units

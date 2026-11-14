@@ -58,7 +58,6 @@ ICDE papers often include formal reasoning:
 
 ## Figures and Tables
 
-- Vector formats (.pdf) for diagrams
 - Grayscale legibility required
 - Number sequentially
 - Use `booktabs` for tables (no vertical rules)

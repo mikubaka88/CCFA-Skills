@@ -15,7 +15,7 @@
 
 <rect width="1200" height="430" fill="url(#hero)"/>
 <style>
-text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; }
+text { font-family: "Noto Sans CJK TC", "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif; }
 .small { fill: #667085; font-size: 13px; }
 .mono { font-family: "JetBrains Mono", Consolas, monospace; }
 </style>

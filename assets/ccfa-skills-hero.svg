@@ -32,7 +32,7 @@ text { font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
 <rect x="260" y="294" width="205" height="42" rx="21" fill="#DFF7EA" stroke="#DFF7EA" stroke-width="1.4" />
 <text x="362" y="321" font-size="13" font-weight="750" fill="#233044" text-anchor="middle">Evidence-grounded writing</text>
 <rect x="479" y="294" width="205" height="42" rx="21" fill="#FFE9C7" stroke="#FFE9C7" stroke-width="1.4" />
-<text x="581" y="321" font-size="13" font-weight="750" fill="#233044" text-anchor="middle">Editable scientific figures</text>
+<text x="581" y="321" font-size="13" font-weight="750" fill="#233044" text-anchor="middle">Scientific figures</text>
 <circle cx="1035" cy="305" r="88" fill="#FFFFFF" stroke="#9D7BFF" stroke-width="3.0" filter="url(#softShadow)"/>
 <circle cx="1035" cy="305" r="58" fill="#F2ECFF" stroke="#9D7BFF" stroke-width="1.5" />
 <text x="1035" y="302" font-size="25" font-weight="900" fill="#233044" text-anchor="middle">CCFA</text>

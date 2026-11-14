@@ -137,7 +137,6 @@ ISCAS papers focus on:
 - Circuit schematics
 - Chip layouts
 - Measurement results
-- Use vector graphics (PDF)
 
 ### Table Best Practices
 - Clear headers with units

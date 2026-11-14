@@ -185,6 +185,14 @@ text {{ font-family: Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif
 
 def write_svg(name: str, lang: str, content: str) -> None:
     ASSETS.mkdir(exist_ok=True)
+    # Some rasterizers choose one family for the complete text run rather than
+    # falling back per missing glyph. Start Chinese diagrams with a CJK family.
+    families = {
+        "zh-CN": '"Noto Sans CJK SC", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif',
+        "zh-TW": '"Noto Sans CJK TC", "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif',
+    }
+    if lang in families:
+        content = content.replace('Inter, "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif', families[lang])
     path = ASSETS / f"{name}{LANG[lang]['suffix']}.svg"
     path.write_bytes(content.encode("utf-8"))
 
@@ -198,7 +206,7 @@ def build_hero(lang: str) -> None:
                 "18 focused skills for literature, experiments, writing,",
                 "review, figures, and submission.",
             ],
-            "chips": ["Focused collaboration", "Evidence-grounded writing", "Editable scientific figures"],
+            "chips": ["Focused collaboration", "Evidence-grounded writing", "Scientific figures"],
             "nodes": ["Idea", "Evidence", "Manuscript", "Visuals", "Submission"],
             "hub_label": "Family",
             "footer": "Each task meets the skill that understands it best.",
@@ -208,7 +216,7 @@ def build_hero(lang: str) -> None:
             "eyebrow": "为科研论文而生的 skill 家族",
             "title_lines": ["从研究想法到论文投稿"],
             "subtitle_lines": ["18 个彼此协作的 skills，覆盖文献、实验、写作、审稿、绘图与投稿检查。"],
-            "chips": ["清晰分工", "证据支撑写作", "可编辑科研图"],
+            "chips": ["清晰分工", "证据支撑写作", "科研图表"],
             "nodes": ["选题", "证据", "论文", "绘图", "投稿"],
             "hub_label": "家族",
             "footer": "让每项任务交给最理解它的 skill。",
@@ -218,7 +226,7 @@ def build_hero(lang: str) -> None:
             "eyebrow": "為研究論文而生的 skill 家族",
             "title_lines": ["從研究想法到論文投稿"],
             "subtitle_lines": ["18 個彼此協作的 skills，涵蓋文獻、實驗、寫作、審稿、繪圖與投稿檢查。"],
-            "chips": ["清晰分工", "證據支撐寫作", "可編輯科研圖"],
+            "chips": ["清晰分工", "證據支撐寫作", "科研圖表"],
             "nodes": ["選題", "證據", "論文", "繪圖", "投稿"],
             "hub_label": "家族",
             "footer": "讓每項任務交給最理解它的 skill。",
@@ -434,7 +442,7 @@ def build_routing(lang: str) -> None:
             ("Literature retrieval", "ccf-literature-searcher", "searches prior art and benchmarks"),
             ("Experiment semantics", "ccf-experiment-designer", "chooses evidence structure, not rendering"),
             ("Manuscript editing", "ccf-paper-writer", "changes prose; humanization preflight applies"),
-            ("Rendered visuals", "ccf-visual-composer", "uses GPT Image 2 first unless pure SVG is requested"),
+            ("Rendered visuals", "ccf-visual-composer", "data templates; three-stage GPT Image diagrams"),
         ],
         "zh-CN": [
             ("选题评分", "ccf-idea-reviewer", "负责评分排序，不改写论文"),
@@ -442,7 +450,7 @@ def build_routing(lang: str) -> None:
             ("文献检索", "ccf-literature-searcher", "检索相关工作与 benchmark"),
             ("实验设计", "ccf-experiment-designer", "设计证据结构，不负责图形美化"),
             ("论文改写", "ccf-paper-writer", "修改正文，并按需改善学术表达"),
-            ("科研绘图", "ccf-visual-composer", "默认先用 GPT Image 2，除非指定纯 SVG"),
+            ("科研绘图", "ccf-visual-composer", "数据图沿用模板；流程图三阶段生成"),
         ],
         "zh-TW": [
             ("選題評分", "ccf-idea-reviewer", "負責評分排序，不改寫論文"),
@@ -450,7 +458,7 @@ def build_routing(lang: str) -> None:
             ("文獻檢索", "ccf-literature-searcher", "檢索相關工作與 benchmark"),
             ("實驗設計", "ccf-experiment-designer", "設計證據結構，不負責圖形美化"),
             ("論文改寫", "ccf-paper-writer", "修改正文，並按需改善學術表達"),
-            ("科研繪圖", "ccf-visual-composer", "預設先用 GPT Image 2，除非指定純 SVG"),
+            ("科研繪圖", "ccf-visual-composer", "資料圖沿用範本；流程圖三階段生成"),
         ],
     }[lang]
     body = [text(60, 58, title, 30, 800)]
@@ -465,16 +473,16 @@ def build_routing(lang: str) -> None:
 
 
 def build_artifacts(lang: str) -> None:
-    title = {"en": "From research content to editable figures", "zh-CN": "从研究内容到可编辑图形", "zh-TW": "從研究內容到可編輯圖形"}[lang]
+    title = {"en": "Three stages for scientific diagrams", "zh-CN": "科学流程图三阶段生成", "zh-TW": "科學流程圖三階段生成"}[lang]
     labels = {
-        "en": ["Research content", "Visual composition", "Figure checks", "Editable delivery"],
-        "zh-CN": ["研究内容", "视觉构图", "成图检查", "可编辑交付"],
-        "zh-TW": ["研究內容", "視覺構圖", "成圖檢查", "可編輯交付"],
+        "en": ["Understand figure", "Prompt P", "Draft G0", "Refined G1"],
+        "zh-CN": ["理解绘图任务", "扩展提示词 P", "整图生成 G0", "微调成图 G1"],
+        "zh-TW": ["釐清繪圖任務", "擴展提示詞 P", "整圖生成 G0", "微調成圖 G1"],
     }[lang]
     details = {
-        "en": ["paper, prompt, data", "layout, icons, hierarchy", "meaning, text, alignment", "SVG, PDF, PPTX"],
-        "zh-CN": ["论文、指令、数据", "版式、图标、层次", "含义、文字、对齐", "SVG、PDF、PPTX"],
-        "zh-TW": ["論文、指令、資料", "版式、圖示、層次", "含義、文字、對齊", "SVG、PDF、PPTX"],
+        "en": ["question, scope, relations", "content + visual intent", "P + refs + article", "same P + G0; PNG"],
+        "zh-CN": ["科学内容、范围与真实关系", "机制、标签与视觉要求", "P、参考图与文章", "同 P 与 G0；交付 PNG"],
+        "zh-TW": ["科學內容、範圍與真實關係", "機制、標籤與視覺要求", "P、參考圖與文章", "同 P 與 G0；交付 PNG"],
     }[lang]
     body = [text(60, 58, title, 30, 800)]
     x_positions = [80, 345, 610, 875]
@@ -486,9 +494,9 @@ def build_artifacts(lang: str) -> None:
         if i < 3:
             body.append(line(x + 215, 235, x + 260, 235))
     note = {
-        "en": "The final figure remains clear, traceable, and genuinely editable.",
-        "zh-CN": "最终图形保持清晰、可追溯，并且能够真正编辑。",
-        "zh-TW": "最終圖形保持清晰、可追溯，並且能夠真正編輯。",
+        "en": "Two image calls; data figures reuse selected Python / JSON.",
+        "zh-CN": "流程图两次图像调用；数据图沿用选定 Python / JSON。",
+        "zh-TW": "流程圖兩次圖像呼叫；資料圖沿用選定 Python / JSON。",
     }[lang]
     body.append(rect(250, 390, 700, 70, PALETTE["white"], r=24, extra='filter="url(#softShadow)"'))
     body.append(text(600, 433, note, 17, 700, PALETTE["ink"], "middle"))

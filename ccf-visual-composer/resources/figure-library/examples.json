@@ -4,7 +4,7 @@
     "category": "original",
     "title": "方法总览与支持分析",
     "template": "mechanism_overview",
-    "why": "方法图与关键结果分工，读者从整体进入具体分析。",
+    "why": "放置当前方法的已批准PNG，与数值支持分析分工；Python不重建方法模块和连线。",
     "preserved_from": "initial nine-template library",
     "intents": [
       "response",

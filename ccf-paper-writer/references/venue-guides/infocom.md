@@ -161,7 +161,6 @@ We prove that our protocol achieves:
 
 ## Figures and Tables
 
-- Use vector formats (.pdf, .eps) for all figures
 - Ensure grayscale legibility
 - Include network topology diagrams
 - Report error bars where applicable

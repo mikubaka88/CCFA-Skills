@@ -137,7 +137,6 @@ DATE papers focus on:
 - Design flow diagrams
 - Circuit/layout examples
 - Experimental results
-- Use vector graphics (PDF)
 
 ### Table Best Practices
 - Clear headers with units

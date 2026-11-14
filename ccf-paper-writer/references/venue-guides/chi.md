@@ -203,7 +203,6 @@ Generate CCS Concepts at http://dl.acm.org/ccs.cfm and include them as shown abo
 
 CHI emphasizes visual communication:
 
-- Use high-quality vector figures (.pdf, .eps)
 - Ensure grayscale legibility
 - Include rich visual representations (screenshots, interface mockups, study setups)
 - Number figures/tables sequentially

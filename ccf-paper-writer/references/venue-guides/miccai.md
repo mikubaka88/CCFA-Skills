@@ -135,7 +135,6 @@ Rules:
 - **Minimum 8pt font size** for table text
 - Tables must not be inserted as figures
 - Ensure figures and tables do not extend into the margins
-- Use EPS or vector formats where possible
 
 ## References (numbered)
 

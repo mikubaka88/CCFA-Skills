@@ -188,7 +188,6 @@ while achieving stronger security guarantees.
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) for all figures
 - Ensure readability at LNCS margins
 - Include protocol diagrams and reduction graphs
 

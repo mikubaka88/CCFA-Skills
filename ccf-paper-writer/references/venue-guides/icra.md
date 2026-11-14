@@ -152,7 +152,6 @@ ICRA values papers with **physical experiments** or **substantial simulation res
 \end{table}
 ```
 
-- Use vector formats (.pdf, .eps) where possible
 - Ensure grayscale legibility
 - Caption **below** figures, **above** tables
 

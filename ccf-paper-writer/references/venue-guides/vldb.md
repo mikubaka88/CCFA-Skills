@@ -172,7 +172,6 @@ The source code, data, and/or other artifacts have been made available at
 
 ## Figures and Tables
 
-- Vector formats (.pdf) for diagrams and system architectures
 - Ensure grayscale legibility
 - Number sequentially
 - Use `booktabs` for tables (no vertical rules)

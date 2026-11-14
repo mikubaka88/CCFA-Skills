@@ -189,7 +189,6 @@ faster encapsulation than Kyber.
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) for all figures
 - Include reduction diagrams and efficiency comparisons
 
 ```latex

@@ -210,7 +210,6 @@ The remainder of this paper is organized as follows...
 ## Figure and Table Guidelines
 
 ### Figure Best Practices
-- Use vector graphics (PDF/EPS) over raster images
 - Include captions below figures
 - Reference figures in text: "Figure~\ref{fig:overview} shows..."
 - Ensure sufficient contrast for readability

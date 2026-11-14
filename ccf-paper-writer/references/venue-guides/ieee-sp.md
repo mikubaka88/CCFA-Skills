@@ -82,7 +82,6 @@ If paper addresses privacy:
 - System architecture
 - Protocol flows
 - Attack visualizations
-- Use vector graphics
 
 ### Evaluation
 - Performance overhead measurements

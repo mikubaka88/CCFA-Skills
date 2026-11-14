@@ -157,7 +157,6 @@ ICS papers focus on high-performance computing:
 - Performance scaling plots
 - Comparison bar charts
 - Heat maps for data movement
-- Use vector graphics (PDF)
 
 ### Table Best Practices
 - Clear headers with units

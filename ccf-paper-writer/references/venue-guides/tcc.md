@@ -193,7 +193,6 @@ We show this leads to a contradiction with [known lower bound]:
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) for all figures
 - Include complexity hierarchies, reduction diagrams, and comparison tables
 
 ```latex

@@ -175,7 +175,6 @@ Our approach maintains benefits across issue widths from 2 to 8.
 
 ## Figures and Tables
 
-- Use vector formats (.pdf, .eps) for all figures
 - Ensure grayscale legibility
 - Include microarchitecture diagrams
 - Report error bars where applicable

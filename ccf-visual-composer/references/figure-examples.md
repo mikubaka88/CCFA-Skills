@@ -1,8 +1,6 @@
 # 图例与保留示例表
 
-论文单图优先按实际版面选取，通常从单栏约85–90 mm起稿。在同一坐标系统中组合有意义的位置、颜色、符号、面积和配对连线；需要局部细节时再加小型放大图。多面板只用于确有必要的不同问题或数据域。现有组合案例仍保留，`compose --panel <id>`可单独复用一个面板及其叠加图层，原数据、颜色身份和组合来源不变。
-
-先按当前论文要说明的关系选例，再查看对应设计卡。所有示例都接同一个绘图入口；修改已有图稿继续编辑保存的Python与数据，不重新抽样。旧示例保留在此表，新增图例不会替换它们。
+本表保留原模板、用户参考组合、论文设计卡和已有成图。选择与组合原则见[设计指南](figure-design-library.md)；数值示例使用统一Python入口，已有方法图按实际图像来源使用。修改当前图稿沿用保存的规格与数据，不重新抽样换图。
 
 ## 原有九套模板与用户参考图
 
@@ -59,7 +57,7 @@ python ccf-visual-composer/resources/python/ccfa_figure_library.py example refer
 | GPT Image概念探索 | [查看PNG](../../assets/visual-showcase/dyntrace-method-architecture-gpt-image-2.png) |
 | PPT/Poster参考驱动示例 | [查看PNG](../../assets/visual-showcase/dyntrace-ppt-poster-reference-driven.png) |
 
-## 原生联动布局
+## Python数值联动布局
 
 | 示例ID | 内容 | 设计目的 |
 | --- | --- | --- |
@@ -182,4 +180,4 @@ python ccf-visual-composer/resources/python/ccfa_figure_library.py example layou
 python ccf-visual-composer/resources/python/ccfa_figure_library.py compose --spec path/to/figure-spec.json --out ccfa-workfiles/figures/analysis/build/figure
 ```
 
-`--demo`才生成明确标记的模拟数据。真实表格的列绑定、配对和网格规则见[设计与融合指南](figure-design-library.md)，数值图默认导出PNG并保留Python／JSON源；明确要求可编辑时首选PPTX，SVG仅在明确要求SVG时生成。当前论文正文、已有数据与最终版面决定图的选择；随机仅用于同样合适的候选，不需要设置种子。
+`--demo`才生成明确标记的模拟数据。真实表格的列绑定、配对和网格规则见[设计与融合指南](figure-design-library.md)，数值图默认导出PNG并保留Python／JSON源；明确要求数值SVG时才导出；已有源码可继续局部维护，新方法图放入PPTX仍为位图。当前论文正文、已有数据与最终版面决定图的选择；随机仅用于同样合适的候选，不需要设置种子。

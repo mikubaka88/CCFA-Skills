@@ -185,7 +185,6 @@ Required for credible evaluation:
 - Trend lines (sensitivity analysis)
 - CDFs (performance distribution)
 - Trade-off plots (area vs performance)
-- Use vector graphics (PDF)
 
 ### Table Best Practices
 - Clear headers with units

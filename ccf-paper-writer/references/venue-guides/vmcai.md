@@ -158,7 +158,6 @@ AbsState assign(AbsState s, Var x, Expr e) {
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) where possible
 - Ensure figures are legible in grayscale
 - Number figures and tables sequentially
 - Captions should be descriptive and self-contained

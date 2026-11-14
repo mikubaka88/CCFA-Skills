@@ -232,7 +232,6 @@ Results for RQ2 are shown in \autoref{fig:graph}...
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) where possible
 - Ensure figures are legible in grayscale
 - Number figures and tables sequentially
 - Captions should be descriptive and self-contained

@@ -4,7 +4,7 @@
 
 ## 安装
 
-推荐下载并解压 [0.12.0 lean 包](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.0)，先按[安装矩阵](../INSTALLATION_MATRIX.zh-CN.md#轻量-release-安装推荐)核验 SHA-256。只需 Python 3.10+，把两处路径换成解压目录和实际 Claude Code skills 根目录：
+推荐下载并解压 [0.12.1 lean 包](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.1)，先按[安装矩阵](../INSTALLATION_MATRIX.zh-CN.md#轻量-release-安装推荐)核验 SHA-256。只需 Python 3.10+，把两处路径换成解压目录和实际 Claude Code skills 根目录：
 
 ```text
 python -B "<lean-dir>/tools/install_release.py" --source "<lean-dir>" --target "<skills-root>" --dry-run

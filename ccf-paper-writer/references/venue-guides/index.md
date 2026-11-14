@@ -4,6 +4,8 @@ This index replaces the old runtime `ccf-conference-skills/<venue>/SKILL.md` lay
 
 Guides retain domain writing advice and historical template examples. Before applying page, anonymity, layout or submission rules, match the exact year, track and submission stage through `ccf-submission-checker`, reusing current verified official requirements when available. Legacy summaries and bundled templates are not current policy and must not replace a supplied verified template. A dated snapshot applies only to its named target; it does not automatically update a project to another year.
 
+Figure examples illustrate placement and scientific content; current generation and delivery routes follow [venue-adapters.md](../venue-adapters.md) and the visual composer. Historical generic advice to construct all diagrams as vectors is not a current family rule. Keep a verified official delivery constraint distinct from a figure-generation method, and resolve any actual conflict for the requested target.
+
 | Venue | Family | CCF tier | Template path | Official URL | Page/anonymity summary | Last verified | Source status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [AAAI](./aaai.md) | AI | CCF-A | `ccf-latex-templates/AAAI/aaai2026_template.tex` | https://aaai.org/conference/aaai/aaai-26 | Use when drafting, revising, or formatting papers for AAAI 2026 submission or camera-ready. Covers aaai2026 LaTeX class, anonymous submission mode, page limits, reference formatting with natbib, figure/table placement, Times font requirements, and CCF-A catego | Legacy migration 2026-06-06; reverify official policy | migrated guide; current-year official check required |

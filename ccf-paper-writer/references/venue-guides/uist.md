@@ -185,7 +185,6 @@ Generate CCS Concepts at http://dl.acm.org/ccs.cfm and include them as shown abo
 
 UIST has high standards for figure and interface presentation:
 
-- Use high-quality vector figures (.pdf, .eps)
 - Ensure grayscale legibility
 - Include rich visual representations (screenshots, interface mockups, study setups)
 - Number figures/tables sequentially

@@ -163,7 +163,6 @@ Against our countermeasures:
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) for all figures
 - Include oscilloscope traces, chip layouts, and measurement setups
 
 ```latex

@@ -170,7 +170,6 @@ Results on 10 largest ITC-99 circuits:
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) for all figures
 - Ensure grayscale legibility
 - Include circuit diagrams and optimization landscapes
 - Tables should have clear column headers and units

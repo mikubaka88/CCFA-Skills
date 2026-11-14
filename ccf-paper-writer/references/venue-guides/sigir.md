@@ -295,7 +295,6 @@ Results marked with $\dagger$ indicate $p < 0.05$ after correction.
 
 ## Figures and Tables
 
-- Vector formats (.pdf) for diagrams
 - Grayscale legibility required
 - Number sequentially
 - Use `booktabs` for tables (no vertical rules)

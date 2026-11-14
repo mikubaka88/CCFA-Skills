@@ -157,7 +157,6 @@ ICPP papers emphasize performance evaluation:
 - Speedup curves
 - Scaling plots (strong/weak)
 - Resource utilization charts
-- Use vector graphics (PDF)
 
 ### Table Best Practices
 - Clear headers with units

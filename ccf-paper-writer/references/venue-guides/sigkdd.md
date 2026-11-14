@@ -262,7 +262,6 @@ Use `algorithm` and `algorithmic` environments:
 
 ## Figures and Tables
 
-- Vector formats (.pdf) preferred
 - Grayscale legibility required
 - Number sequentially
 - Use `booktabs` for tables (no vertical rules)

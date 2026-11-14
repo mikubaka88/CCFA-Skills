@@ -150,7 +150,6 @@ We evaluate our proposed QUIC extension through:
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) for all figures
 - Ensure grayscale legibility
 - Include network topology and measurement setup diagrams
 - Tables should have clear column headers and units

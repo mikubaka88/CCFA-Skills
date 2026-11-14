@@ -123,16 +123,21 @@ def load_release(source):
     return source, manifest
 
 
-def select_files(manifest, requested=None):
-    skills = set(manifest["skills"] if not requested else requested) | REQUIRED
-    if not skills.issubset(manifest["skills"]):
-        raise ValueError("Unknown selected skill: " + ", ".join(sorted(skills-set(manifest["skills"]))))
+def resource_prefixes(skills):
+    """Return selected runtime paths and the existing sibling-resource closure."""
     prefixes = set(skills)
     while True:
         expanded = prefixes | {item for key in prefixes for item in RESOURCE_RULES.get(key, [])}
         if expanded == prefixes:
-            break
+            return prefixes
         prefixes = expanded
+
+
+def select_files(manifest, requested=None):
+    skills = set(manifest["skills"] if not requested else requested) | REQUIRED
+    if not skills.issubset(manifest["skills"]):
+        raise ValueError("Unknown selected skill: " + ", ".join(sorted(skills-set(manifest["skills"]))))
+    prefixes = resource_prefixes(skills)
     selected = [e for e in manifest["files"] if any(e["path"] == p or e["path"].startswith(p + "/") for p in prefixes)]
     for prefix in prefixes:
         if not any(e["path"] == prefix or e["path"].startswith(prefix+"/") for e in selected):

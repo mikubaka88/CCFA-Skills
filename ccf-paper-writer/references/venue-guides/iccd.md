@@ -137,7 +137,6 @@ ICCD papers focus on:
 - Block diagrams
 - Performance charts
 - Implementation results
-- Use vector graphics (PDF)
 
 ### Table Best Practices
 - Clear headers with units

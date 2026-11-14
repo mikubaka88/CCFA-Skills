@@ -172,7 +172,6 @@ For parallel complexity, analyze in terms of:
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) for all plots and diagrams
 - Ensure grayscale legibility
 - Number figures/tables sequentially
 - Captions should state what to observe and why it matters

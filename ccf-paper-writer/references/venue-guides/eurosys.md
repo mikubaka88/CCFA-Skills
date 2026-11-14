@@ -132,7 +132,6 @@ for our target workload. We evaluated three alternatives:
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) for all figures
 - Ensure grayscale legibility
 - Self-contained captions
 - Tables should have clear column headers and units

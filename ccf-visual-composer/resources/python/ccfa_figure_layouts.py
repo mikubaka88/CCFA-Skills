@@ -13,7 +13,6 @@ import math
 import matplotlib as mpl
 import matplotlib.colors as mcolors
 from matplotlib.lines import Line2D
-from matplotlib.patches import FancyArrowPatch
 from matplotlib.ticker import MaxNLocator
 import numpy as np
 
@@ -21,88 +20,6 @@ import ccfa_analysis_panels as p
 from ccfa_plot_recipes import PALETTES
 
 
-def diagram_node(ax, bounds, label, *, accent="#587F9D", emphasis=False, font_size=8, subtitle=None):
-    """Quiet method frame with explicit type hierarchy; not a statistical boxplot."""
-    from matplotlib.patches import Rectangle
-    box=np.asarray(bounds,dtype=float)
-    if box.shape!=(4,) or not np.isfinite(box).all() or np.any(box[2:]<=0):
-        raise ValueError("Node bounds require finite x,y and positive width,height")
-    x,y,width,height=box
-    rgb=np.asarray(mcolors.to_rgb(accent));strength=.12 if emphasis else .045
-    fill=1-strength*(1-rgb)
-    edge=accent if emphasis else "#82919C"
-    frame=Rectangle((x,y),width,height,facecolor=fill,edgecolor=edge,linewidth=.8 if emphasis else .6)
-    ax.add_patch(frame)
-    title=ax.text(x+width/2,y+height/2+(height*.13 if subtitle else 0),label,
-                  ha="center",va="center",fontsize=font_size,weight="bold" if emphasis else "normal",color="#253846")
-    texts=[title]
-    if subtitle:
-        texts.append(ax.text(x+width/2,y+height*.24,subtitle,ha="center",va="center",
-                            fontsize=max(7,font_size-1.5),weight="normal",color="#4B606F"))
-    renderer=ax.figure.canvas.get_renderer()
-    boundary=frame.get_window_extent(renderer)
-    for text in texts:
-        extent=text.get_window_extent(renderer)
-        if extent.x0<boundary.x0 or extent.x1>boundary.x1 or extent.y0<boundary.y0 or extent.y1>boundary.y1:
-            frame.remove()
-            for artist in texts:artist.remove()
-            raise ValueError("Node label exceeds its frame; reflow or resize the node before rendering")
-    return {"frame":frame,"texts":texts}
-
-
-def audit_connector_routes(routes):
-    """Count route geometry; strict interior crossings exclude declared branch ports."""
-    segments=[];bends=0;length=0.
-    for route_id,route in enumerate(routes):
-        points=np.asarray(route["points"] if isinstance(route,dict) else route,dtype=float)
-        if points.ndim!=2 or points.shape[1]!=2 or len(points)<2 or not np.isfinite(points).all():
-            raise ValueError("Routes require finite x/y point lists")
-        delta=np.diff(points,axis=0)
-        if np.any((delta[:,0]!=0)&(delta[:,1]!=0)) or np.any(np.all(delta==0,axis=1)):
-            raise ValueError("Audit expects nonzero orthogonal segments")
-        length+=float(np.abs(delta).sum())
-        bends+=sum((a[0]==0)!=(b[0]==0) for a,b in zip(delta,delta[1:]))
-        segments.extend((route_id,a,b) for a,b in zip(points,points[1:]))
-    crossings=[]
-    for i,(left,a,b) in enumerate(segments):
-        for right,c,d in segments[i+1:]:
-            if left==right or (a[0]==b[0])==(c[0]==d[0]):continue
-            v0,v1,h0,h1=(a,b,c,d) if a[0]==b[0] else (c,d,a,b)
-            x,y=float(v0[0]),float(h0[1])
-            if min(v0[1],v1[1])<y<max(v0[1],v1[1]) and min(h0[0],h1[0])<x<max(h0[0],h1[0]):
-                crossings.append({"routes":[left,right],"point":[x,y]})
-    return {"routes":len(routes),"segments":len(segments),"bends":int(bends),
-            "length":length,"interior_crossings":crossings}
-
-
-def orthogonal_connector(ax, points, *, color=p.INK, linewidth=.85, arrow=True):
-    """Draw exact horizontal/vertical data-coordinate segments, without raster tracing.
-
-    The caller chooses semantic ports and waypoints; this helper never invents
-    routes or edits a scientific graph. It returns the native artists for QA.
-    """
-    coordinates=np.asarray(points,dtype=float)
-    if coordinates.ndim!=2 or coordinates.shape[1]!=2 or len(coordinates)<2 or not np.isfinite(coordinates).all():
-        raise ValueError("A connector needs two or more finite x/y points")
-    changes=np.diff(coordinates,axis=0)
-    if np.any((changes[:,0]!=0)&(changes[:,1]!=0)) or np.any(np.all(changes==0,axis=1)):
-        raise ValueError("Connector segments must be nonzero and horizontal or vertical")
-    if not math.isfinite(linewidth) or linewidth<=0:
-        raise ValueError("Connector linewidth must be positive and finite")
-    artists=[]
-    if len(coordinates)>2:
-        line,=ax.plot(coordinates[:-1,0],coordinates[:-1,1],color=color,linewidth=linewidth,
-                      solid_capstyle="butt",solid_joinstyle="miter")
-        artists.append(line)
-    if arrow:
-        end=FancyArrowPatch(coordinates[-2],coordinates[-1],arrowstyle="-|>",
-                            connectionstyle="arc3,rad=0",mutation_scale=7,linewidth=linewidth,
-                            color=color,shrinkA=0,shrinkB=0)
-        ax.add_patch(end);artists.append(end)
-    else:
-        line,=ax.plot(coordinates[-2:,0],coordinates[-2:,1],color=color,linewidth=linewidth,solid_capstyle="butt")
-        artists.append(line)
-    return artists
 
 
 def _vector(values, name):

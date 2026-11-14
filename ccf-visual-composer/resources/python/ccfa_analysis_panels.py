@@ -823,7 +823,7 @@ def save_figure(fig, base_path, formats=("png",), dpi=300,
     """Export at the figure's physical size; never change numeric artists.
 
     PNG is the ordinary deliverable. SVG/PDF are explicit format opt-ins.
-    An unspecified editable request routes to native PPTX in the skill workflow.
+    This exporter handles numerical figures; new conceptual diagrams stay raster.
     Supply protected_paths for every upstream input file.
     """
     base = Path(base_path)

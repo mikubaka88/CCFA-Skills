@@ -62,7 +62,6 @@ HotStorage papers focus on:
 - Architecture diagrams
 - Performance charts
 - Trace visualizations
-- Use vector graphics (PDF)
 
 ### Table Best Practices
 - Clear headers with units

@@ -189,7 +189,6 @@ For real-world vulnerabilities, report the actual disclosure status and timeline
 - System architecture diagrams
 - Attack flow diagrams
 - Packet captures or network traces (if applicable)
-- Use vector graphics for scalability
 
 ```latex
 \begin{figure}

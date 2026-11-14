@@ -2,6 +2,8 @@
 
 Use this file after identifying the target CCF A family. Select the priorities relevant to the contribution and current drafting phase; venue preferences do not create new claims, experiments, or an initial page budget. Final venue requirements come from verified official policy.
 
+Figure authoring belongs to [the visual composer](../../ccf-visual-composer/SKILL.md): preserve a selected numerical Python/JSON template; create/redraw conceptual diagrams through scientific understanding, prompt P, GPT Image G0 and same-P refinement G1. Deliver the diagram as PNG; document/PPTX placement preserves the raster rather than rebuilding geometry. Requested numerical exports and existing source maintenance retain their formats. Venue examples do not impose a vector-construction workflow. Verify an actual venue/year/track delivery requirement before final fitting, and resolve a material format conflict explicitly instead of silently changing the figure route or claiming compliance.
+
 ## Universal CCF A Review Priorities
 
 For any CCF A target, make these visible:

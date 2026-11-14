@@ -90,7 +90,6 @@ and privacy.
 
 ## Figures and Tables
 
-- Use vector formats (.pdf) for all figures
 - Ensure grayscale legibility
 - Include measurement topology and data distribution plots
 - Tables should have clear column headers and units
