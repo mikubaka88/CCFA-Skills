@@ -566,6 +566,11 @@ def check_review_regressions(errors: list[str]) -> None:
         }
         if validate(sample):
             fail(errors, "review validator rejects progress that remains below readiness")
+        duplicate_dimension = copy.deepcopy(sample)
+        duplicate_dimension["contract"]["dimensions"] = ["soundness", "soundness"]
+        duplicate_dimension["contract"]["weights"] = {"soundness": 0.5}
+        if not validate(duplicate_dimension):
+            fail(errors, "review validator counts the same comparison dimension twice")
         for value in (True, float("inf"), float("nan")):
             for field in ("criterion", "overall"):
                 invalid_number = copy.deepcopy(sample)
