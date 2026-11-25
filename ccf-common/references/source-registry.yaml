@@ -7,6 +7,60 @@ default_stale_after_days:
   background_method: 730
   local_reference: 365
 sources:
+  - id: imc-2027-author-policy
+    title: IMC 2027 Official Author Policy
+    url: https://conferences.sigcomm.org/imc/2027/submission-instructions/
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-paper-reviewer, ccf-submission-checker, ccf-rebuttal-writer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Full/short papers have 13/6 technical-content pages respectively, including figures and excluding references and appendices. Confirm the current camera-ready instructions and the separate Replicability track expression-of-interest workflow."
+  - id: imc-ccfddl-record
+    title: CCFDDL record for IMC
+    url: https://github.com/ccfddl/ccf-deadlines/blob/main/conference/NW/imc.yml
+    source_type: background_method
+    used_by: [ccf-skill-forger, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 90
+    notes: "CCF B classification verified in the CCFDDL data. The venue controls submission policy and templates."
+  - id: imc-2027-cfp
+    title: IMC 2027 Cfp
+    url: https://conferences.sigcomm.org/imc/2027/cfp/
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-paper-reviewer, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Official contribution or track guidance for this edition."
+  - id: eccv-2026-author-policy
+    title: ECCV 2026 Official Author Policy
+    url: https://eccv.ecva.net/Conferences/2026/SubmissionPolicies
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-paper-reviewer, ccf-submission-checker, ccf-rebuttal-writer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "The main paper cap is 14 pages including figures and tables. The main PDF may exceed this cap only for cited references. Keep supplemental material separate and recheck the edition's actual instructions."
+  - id: eccv-ccfddl-record
+    title: CCFDDL record for ECCV
+    url: https://github.com/ccfddl/ccf-deadlines/blob/main/conference/AI/eccv.yml
+    source_type: background_method
+    used_by: [ccf-skill-forger, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 90
+    notes: "CCF B classification verified in the CCFDDL data. The venue controls submission policy and templates."
+  - id: eccv-2026-contribution-types
+    title: ECCV 2026 Contribution Types
+    url: https://eccv.ecva.net/Conferences/2026/AuthorContributionTypes
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-paper-reviewer, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Official contribution or track guidance for this edition."
   - id: cvpr-2027-author-guidelines
     title: CVPR 2027 Author Guidelines
     url: https://cvpr.thecvf.com/Conferences/2027/AuthorGuidelines
@@ -34,6 +88,69 @@ sources:
     verified_at: 2026-11-12
     stale_after_days: 7
     notes: "Official dates inspected with the author guide: abstract/author registration 2026-11-10, paper 2026-11-16, supplementary 2026-11-23, AoE. These deadlines and OpenReview enrollment status require live confirmation for an actual submission; a local PDF cannot prove enrollment, author quotas or completed uploads."
+  - id: icml-2027-cfp
+    title: ICML 2027 Call for Papers
+    url: https://icml.cc/Conferences/2027/CallForPapers
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-paper-reviewer, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Main body, two-stage review, contribution types, broader impact, submission quotas and lay summary. Check live updates and OpenReview deadlines."
+  - id: icml-2027-author-instructions
+    title: ICML 2027 Author Instructions
+    url: https://icml.cc/Conferences/2027/AuthorInstructions
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-submission-checker, ccf-rebuttal-writer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Anonymity, PDF packaging, supplemental material, author response and camera-ready requirements."
+  - id: icml-2027-author-kit
+    title: ICML 2027 Official LaTeX Archive
+    url: https://media.icml.cc/Conferences/ICML2027/styles/icml2027.zip
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-project-scaffolder, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Download and per-file hashes in ccf-latex-templates/ICML/2027/template-source.json. Preserves all inputs with the prebuilt sample PDF omitted."
+  - id: icml-2027-author-ai
+    title: ICML 2027 Author Generative AI Policy
+    url: https://icml.cc/Conferences/2027/UseOfGenerativeAIByAuthors
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Required AI Disclosure Statement before or after references, substantive use criteria, routine editing exemptions, author verification and reporting when AI is part of methodology."
+  - id: icml-2027-contribution-types
+    title: ICML 2027 Contribution Types
+    url: https://icml.cc/Conferences/2027/ContributionTypes
+    source_type: review_guideline
+    used_by: [ccf-paper-writer, ccf-paper-reviewer, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Evidence expectations depend on the primary contribution. The position-paper call has its own criteria."
+  - id: icml-2027-review-ai
+    title: ICML 2027 LLM Reviewing Policy
+    url: https://icml.cc/Conferences/2027/LLM-Policy
+    source_type: review_guideline
+    used_by: [ccf-paper-reviewer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Privacy-compliant tools may clarify concepts, help explore related works or polish an existing review. Official judgment, critique, manuscript summary and first-draft review remain with the human reviewer."
+  - id: icml-2027-reviewer-instructions
+    title: ICML 2027 Reviewer Instructions
+    url: https://icml.cc/Conferences/2027/ReviewerInstructions
+    source_type: review_guideline
+    used_by: [ccf-paper-reviewer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Verified full-review form criteria, contribution-type guidance, decision-relevant author questions and post-response final justification. Use with the separate ICML AI-review policy."
   - id: mapanything-factored-geometry-2026
     title: "MapAnything: Universal Feed-Forward Metric 3D Reconstruction"
     url: https://arxiv.org/html/2509.13414v3
@@ -223,6 +340,24 @@ sources:
     verified_at: 2026-09-23
     stale_after_days: 365
     notes: Use scientific clarity, logical organization, and accurate attribution as editing criteria; adapt to user style and preserve actual uncertainty and evidence. No source text or code is redistributed.
+  - id: ecoop-2027-author-policy
+    title: ECOOP 2027 Official Author Policy
+    url: https://2027.ecoop.org/track/ecoop-2027-technical-papers
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-paper-reviewer, ccf-submission-checker, ccf-rebuttal-writer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "The review version has no formal page cap. Select the appropriate author category. The final version has a 25-page limit in LIPIcs, excluding references."
+  - id: ecoop-ccfddl-record
+    title: CCFDDL record for ECOOP
+    url: https://github.com/ccfddl/ccf-deadlines/blob/main/conference/SE/ecoop.yml
+    source_type: background_method
+    used_by: [ccf-skill-forger, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 90
+    notes: "CCF B classification verified in the CCFDDL data. The venue controls submission policy and templates."
   - id: ccf-directory
     title: CCF Recommended International Academic Conference And Journal Directory
     url: https://www.ccf.org.cn/Academic_Evaluation/By_category/
@@ -331,6 +466,24 @@ sources:
     verified_at: 2026-10-30
     stale_after_days: 180
     notes: "Official CVPR 2026 guidelines inspected with its reviewing process and responsible-review requirements. Apply to the named year; author-side manuscript assessment does not imply permission to use LLMs for confidential conference reviews."
+  - id: acsac-2026-author-policy
+    title: ACSAC 2026 Official Author Policy
+    url: https://www.acsac.org/2026/submissions/papers/
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-paper-reviewer, ccf-submission-checker, ccf-rebuttal-writer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Review submissions have at most 11 main-content pages and 16 total pages. The remaining space covers clearly marked references and appendices. This is the 2026 technical-paper policy snapshot."
+  - id: acsac-ccfddl-record
+    title: CCFDDL record for ACSAC
+    url: https://github.com/ccfddl/ccf-deadlines/blob/main/conference/SC/acsac.yml
+    source_type: background_method
+    used_by: [ccf-skill-forger, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 90
+    notes: "CCF B classification verified in the CCFDDL data. The venue controls submission policy and templates."
   - id: cvpr-2026-reviewer-training
     title: CVPR 2026 Reviewer Training Material
     url: https://cvpr.thecvf.com/Conferences/2026/ReviewerTrainingMaterial
@@ -340,13 +493,76 @@ sources:
     verified_at: 2026-10-30
     stale_after_days: 180
     notes: "Official training sections on contribution, soundness, concrete feedback, novelty fallacy, invented policy, and confidentiality inspected. Minor fixable issues do not by themselves justify rejection; its official-review LLM restrictions remain venue-specific."
+  - id: acl-2027-main-cfp
+    title: ACL 2027 Main Conference Call for Papers
+    url: https://2027.aclweb.org/calls/main/
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-project-scaffolder, ccf-submission-checker, ccf-rebuttal-writer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Long/short, ARR then ACL commitment, and one additional content page at camera-ready. Check the live commitment deadline and submission form."
+  - id: acl-arr-cfp
+    title: ACL Rolling Review Call for Papers
+    url: https://aclrollingreview.org/cfp
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-submission-checker, ccf-rebuttal-writer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Submission limits, Limitations, anonymization, appendices, AI assistance, service enrollment and quotas. Consult the active cycle."
+  - id: acl-arr-author-guidelines
+    title: ACL Rolling Review Author Guidelines
+    url: https://aclrollingreview.org/authors
+    source_type: venue_policy
+    used_by: [ccf-submission-checker, ccf-rebuttal-writer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Author response, revision and commitment workflow. The page labels some guidance as applying through August 2026, so use the active CFP and cycle form for service and submission rules."
+  - id: acl-2027-template
+    title: Official ACL Style Files Snapshot
+    url: https://github.com/acl-org/acl-style-files/tree/d5adc823ff0f80f98c80405ca0ab66c68e684409
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-project-scaffolder, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "The shared style linked from ARR is pinned locally for ACL 2027. File hashes are under ccf-latex-templates/ACL/2027. This is a shared template snapshot, not an ACL-only style."
+  - id: acl-arr-responsible-nlp
+    title: ARR Responsible NLP Checklist
+    url: https://aclrollingreview.org/responsibleNLPresearch/
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Checklist answers and evidence, including AI writing assistance. Use the actual cycle form to resolve version-specific details."
+  - id: acl-arr-reviewer-guidelines
+    title: ARR Reviewer Guidelines
+    url: https://aclrollingreview.org/reviewerguidelines
+    source_type: review_guideline
+    used_by: [ccf-paper-reviewer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Official reviewers and meta-reviewers own the initial content and argument. Tool use must preserve manuscript and review confidentiality."
+  - id: acl-arr-ac-guidelines
+    title: ACL Rolling Review Area Chair Guidelines
+    url: https://aclrollingreview.org/acguidelines
+    source_type: review_guideline
+    used_by: [ccf-paper-reviewer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Separate ARR meta-review and recommended revisions from the venue commitment decision. Read the active form for recommendation anchors and apply current confidentiality requirements."
   - id: acl-arr-review-form
     title: ACL Rolling Review Review Form
     url: https://aclrollingreview.org/reviewform
     source_type: review_guideline
     used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
-    verified_at: 2026-10-30
+    verified_at: 2026-11-25
     stale_after_days: 180
     notes: "Official form inspected: contribution-aware soundness, excitement, overall assessment, confidence, limitations, ethics and revision tracking. It permits half-point anchors; use its actual scale only when this form applies."
   - id: keshav-how-to-read-paper

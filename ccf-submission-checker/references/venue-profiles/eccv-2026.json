@@ -1,0 +1,66 @@
+{
+  "conference": "ECCV",
+  "year": 2026,
+  "verified_at": "2026-11-25",
+  "tracks": [
+    "research"
+  ],
+  "page_limits": {
+    "review": {
+      "research": 14
+    }
+  },
+  "total_pages": {},
+  "review_unlimited": false,
+  "letter": false,
+  "separate_supplement": true,
+  "required_appendix_sections": [],
+  "manual_checks": [
+    "Match ID and contribution type to OpenReview. Verify actual fonts, layout, PDF and supplement anonymity.",
+    "Recheck official final packaging and active author instructions."
+  ],
+  "policy_record": "eccv-2026-author-policy",
+  "stage_checks": {
+    "review": [
+      {
+        "kind": "documentclass",
+        "name": "llncs",
+        "options": [],
+        "forbid": [],
+        "paper_id": false,
+        "detail": "Check active llncs format for review."
+      },
+      {
+        "kind": "usepackage",
+        "name": "eccv",
+        "options": [
+          "review",
+          "year=2026"
+        ],
+        "forbid": [],
+        "paper_id": true,
+        "detail": "Check active eccv format for review."
+      }
+    ],
+    "camera-ready": [
+      {
+        "kind": "documentclass",
+        "name": "llncs",
+        "options": [],
+        "forbid": [],
+        "paper_id": false,
+        "detail": "Check active llncs format for camera-ready."
+      },
+      {
+        "kind": "usepackage",
+        "name": "eccv",
+        "options": [],
+        "forbid": [
+          "review"
+        ],
+        "paper_id": false,
+        "detail": "Check active eccv format for camera-ready."
+      }
+    ]
+  }
+}

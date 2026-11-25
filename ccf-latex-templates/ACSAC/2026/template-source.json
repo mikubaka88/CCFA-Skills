@@ -1,0 +1,13 @@
+{
+  "venue": "ACSAC",
+  "year": 2026,
+  "verified_at": "2026-11-25",
+  "source": "https://www.ieee.org/conferences/publishing/templates.html",
+  "dependency": "IEEEtran 1.8b",
+  "files": [
+    {
+      "path": "main.tex",
+      "sha256": "56561729b7a74083be490bd1760a44258522208432eb863ad224585c74743e4a"
+    }
+  ]
+}

@@ -35,6 +35,16 @@ Review emphasis:
 - Penalize weak statistical practice, missing strong baselines, unclear training/evaluation details, and overstated generalization.
 - Reward clean problem formulation, theory/intuition, and evidence that explains why the method works.
 
+### ICML 2027 Assessment
+
+- Use `icml-2027-reviewer-instructions` and `icml-2027-contribution-types`. In the verified venue form, distinguish soundness, presentation, significance and originality. Use its ordinal anchors only when venue-form simulation is requested. The default CCFA report and its rubric still apply to an ordinary internal review.
+- Assess the primary contribution on its own evidence. For example, evaluate the theorem and assumptions for theory, practical utility and credible evaluation for application-driven work, and the tested conditions and inference from failures for negative results. Keep the decisive concerns and the evidence that could resolve them. Reassess those concerns after the author response.
+- Distinguish the first-stage AC decision confirmed by an SAC, the full reviewer recommendation, and the final decision. For an internal review without first-stage feedback, describe evidence-based risks without predicting a screening result.
+
+### ICML 2027 Official Review Assistance
+
+Apply `icml-2027-review-ai` before handling assigned work. The human reviewer authors their own summary, critique, questions and judgment. Help only with permitted clarification, related-work exploration, or polishing a human-written review in a privacy-compliant environment. Ask for the human-written text before polishing. The author-owned internal review workflow may use CCFA's normal assessment and optional expert reading within the authorized scope.
+
 ## ICLR
 
 Primary dimensions: value to the community, new knowledge, soundness, novelty, significance, clarity, and discussion responsiveness.
@@ -62,6 +72,15 @@ Review emphasis:
 - Reproducibility and responsible NLP details matter: data, annotation, human subjects, bias, societal impact, and checklist support.
 - For resubmissions, explicitly show how prior review concerns were addressed.
 
+### ACL 2027 and ARR Assessment
+
+- Use the active `acl-arr-review-form` and `acl-arr-ac-guidelines`. Keep soundness, excitement, overall recommendation and confidence distinct. When explicitly simulating the official form, evaluate soundness and reproducibility for Findings and the additional significance or originality case for a main-conference recommendation. Use the form's actual anchors. ARR reviewer or AC recommendations do not amount to a publication decision at ACL commitment.
+- Evaluate a short paper against the evidence its focused contribution needs. Ground central concerns in the language task, annotation, splits, comparisons or analysis where they matter. Credit candid Limitations and judge the effect of each limitation on the claim. For another ARR cycle, compare the prior issue, the actual change and any residual risk.
+
+### ARR Official Review Assistance
+
+Apply `acl-arr-reviewer-guidelines` and `acl-arr-ac-guidelines` to confidential assignments. The human reviewer or AC writes the first draft and substantive reasoning. Language assistance uses their existing draft and requires a privacy-preserving tool. An author-owned internal pre-review follows the ordinary CCFA workflow.
+
 ## CVPR / ICCV / ECCV
 
 Use the exact venue/year/track guidance rather than transferring rules across these venues. CVPR 2027 author-owned pre-review follows the ordinary internal-review scope; an assigned confidential review must observe the approved-tool boundary in Common's privacy reference and the official policy registered as `cvpr-2027-author-guidelines`. Keep generic dimensions below separate from a verified official scoring form.
@@ -75,6 +94,10 @@ Review emphasis:
 - Penalize cherry-picked visuals, missing failure analysis, low-resolution or unreadable figures, and unclear relation to close CV work.
 - Reward inspectable evidence and concise claims tied to benchmarks and visual examples.
 
+### ECCV 2026
+
+Use evidence appropriate to the primary contribution type and inspect the manuscript's main qualitative and quantitative support. Official assigned reviewers must keep the submissions confidential and must not process them with LLMs. Use the author-side internal workflow only for author-owned drafts. See [the venue guide](../../ccf-paper-writer/references/venue-guides/eccv.md).
+
 ## KDD / SIGMOD / VLDB / ICDE / SIGIR
 
 Primary dimensions: realistic problem setting, novelty, effectiveness, efficiency, scalability, system or algorithm detail, and user/data utility.
@@ -84,6 +107,10 @@ Review emphasis:
 - Require realistic workloads, datasets, query/search/user scenarios, and deployment constraints.
 - Evaluate both effectiveness and efficiency when both are claimed.
 - Penalize toy-only evidence, missing indexes/pipeline details, unclear complexity, and weak large-scale validation.
+
+### IMC 2027
+
+Focus on measurement validity, interpretability, ethical collection and evidence that the results or measurement methods transfer. Check intended artifact availability against the Open Science statement. The brief rebuttal is for clarifying reviewer concerns. Track one-shot revision separately. See [the venue guide](../../ccf-paper-writer/references/venue-guides/imc.md).
 
 ## Systems / Architecture / Networking / Storage
 
@@ -105,6 +132,10 @@ Review emphasis:
 - For attacks, prove real-world impact and handle disclosure/ethics.
 - For defenses, test bypasses, false positives/negatives, deployment constraints, and residual risk.
 - For cryptography, prioritize definitions, assumptions, proof structure, and theorem readability.
+
+### ACSAC 2026
+
+Evaluate applied significance, technical correctness, quality of evaluation and reproducibility. Distinguish initial review, additional reviews after the first round, anonymous response and shepherded minor revision. Track formal artifact evaluation separately from the paper decision. See [the venue guide](../../ccf-paper-writer/references/venue-guides/acsac.md).
 
 ## Software Engineering / PL / Formal Methods
 
@@ -136,6 +167,10 @@ Review emphasis:
 - Make visual improvement inspectable through high-quality figures or demos.
 - Combine metrics with qualitative evidence and user/perceptual studies when needed.
 - Penalize cherry-picked media, weak comparisons, and unclear visual advantage.
+
+### ECOOP 2027
+
+Check correctness, contribution fit, and the reproducibility of evidence appropriate to the paper category. The double-anonymous CFP prohibits using AI tools for assigned reviews or sharing confidential review materials with them. Authors' internal self-review is a separate workflow. Use the four-day author-response window and distinguish revision from immediate resubmission after rejection. See [the venue guide](../../ccf-paper-writer/references/venue-guides/ecoop.md).
 
 ## Theory
 

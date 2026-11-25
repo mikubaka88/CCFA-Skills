@@ -1,0 +1,35 @@
+{
+  "conference": "ECOOP",
+  "year": 2027,
+  "verified_at": "2026-11-25",
+  "tracks": [
+    "technical"
+  ],
+  "page_limits": {
+    "camera-ready": {
+      "technical": 25
+    }
+  },
+  "total_pages": {},
+  "review_unlimited": true,
+  "letter": false,
+  "separate_supplement": false,
+  "required_appendix_sections": [],
+  "manual_checks": [
+    "Verify anonymous author blocks, supplements, active round, policy for author AI use and Reserve Reviewer commitments.",
+    "Final metadata and artifact evaluation follow publisher and conference instructions."
+  ],
+  "policy_record": "ecoop-2027-author-policy",
+  "stage_checks": {
+    "camera-ready": [
+      {
+        "kind": "documentclass",
+        "name": "lipics-v2021",
+        "options": [],
+        "forbid": [],
+        "paper_id": false,
+        "detail": "Check active lipics-v2021 format for camera-ready."
+      }
+    ]
+  }
+}

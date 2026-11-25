@@ -1,0 +1,50 @@
+{
+  "checked": "2026-11-25",
+  "papers": [
+    {
+      "id": "sp-2025-cobbl",
+      "conference": "IEEE S&P",
+      "year": 2025,
+      "title": "CoBBL: Dynamic Constraint Generation for SNARKs",
+      "authors": [
+        "Kunming Jiang",
+        "Fraser Brown",
+        "Riad Wahby"
+      ],
+      "recognition": "Distinguished Paper",
+      "program_or_awards": "https://www.sp2025.ieee-security.org/awards.html",
+      "proceedings": "https://www.ieee-security.org/TC/SP2025/accepted-papers.html",
+      "paper": "https://eprint.iacr.org/2025/1849"
+    },
+    {
+      "id": "ccs-2023-amplification-shuffling",
+      "conference": "ACM CCS",
+      "year": 2023,
+      "title": "Amplification by Shuffling without Shuffling",
+      "authors": [
+        "Borja Balle",
+        "James Bell",
+        "Adrià Gascón"
+      ],
+      "recognition": "Distinguished Paper",
+      "program_or_awards": "https://www.sigsac.org/ccs/CCS_awards/ccs-bestpaper.html",
+      "proceedings": "https://doi.org/10.1145/3576915.3623215",
+      "paper": "https://arxiv.org/abs/2305.10867"
+    },
+    {
+      "id": "ndss-2025-blindfold",
+      "conference": "NDSS",
+      "year": 2025,
+      "title": "Blindfold: Confidential Memory Management by Untrusted Operating System",
+      "authors": [
+        "Caihua Li",
+        "Seung-seob Lee",
+        "Lin Zhong"
+      ],
+      "recognition": "Distinguished Paper",
+      "program_or_awards": "https://www.ndss-symposium.org/wp-content/uploads/NDSS-2025-Awards-NDSS2026.pdf",
+      "proceedings": "https://www.ndss-symposium.org/ndss-paper/blindfold-confidential-memory-management-by-untrusted-operating-system/",
+      "paper": "https://www.ndss-symposium.org/wp-content/uploads/2025-294-paper.pdf"
+    }
+  ]
+}
