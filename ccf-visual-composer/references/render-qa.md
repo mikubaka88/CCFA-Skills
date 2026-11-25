@@ -29,6 +29,8 @@ A new/redrawn diagram uses the mandatory P → G0 → G1 image workflow. Place i
 
 Render requested placement/export to check clipping, resolution, transparency, legibility and aspect ratio. Separately requested PNG assets need clean alpha edges and correct recognition; generating a full method figure does not require a separate icon pack or asset-generation pass.
 
+For a regional label change, locate the target by panel, row and current text or native object ID. Compare the actual before/after render at equal scale. Inspect the neighboring row, arrowheads and both endpoints of attached connectors. Resize the affected label container to fit longer tokens when permitted. For rows that encode the same underlying item, verify its identity after the edit while preserving row-specific representations, such as different token boundaries. Check the full figure at the requested column width for unintended edits outside the target.
+
 ## UTF-8 And Glyphs
 
 Check source encoding separately from font coverage. Inspect actual Chinese, minus signs, Greek letters and superscripts, including PDF extraction/native text when applicable. Use a compatible installed CJK/math fallback rather than empty boxes or suppressed warnings. Changing an encoding label cannot fix a missing glyph or PDF font mapping.

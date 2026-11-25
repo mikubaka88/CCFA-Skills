@@ -8,6 +8,8 @@
 
 用户选中图库入口、命名模板、JSON或Python后，直接读取该规格和绘制实现。不要重新运行demo、换一个相似原语或凭缩略图重写。画布、字号、配色身份、图层与统计定义沿用所选规格；输入不兼容就解决具体字段，不默默换图。
 
+绑定模板前，逐项核对图层对应的字段和单位。跨表配对用观察对象 ID 对齐；同一对象有多次观测时，把条件或重复编号纳入键。列出无法匹配或匹配不唯一的记录，再判断能否计算配对差。按模板核对区间的定义、单位和输入。可使用已给定的上下界，或按明确的统计方法从原始样本、SD 或 SE 等已知字段推导。置信区间还需核对置信水平。仅有均值且 error 含义不明时，指出缺少的定义；若区间是指定模板的必需图层，该面板待补齐后再交付。独立且数据齐全的面板可继续绘制。成本–准确率图若讨论实际开销，横轴绑定实测成本，预算档位用作条件标签。
+
 ```bash
 python ccf-visual-composer/resources/python/ccfa_figure_library.py compose --spec selected.json --data supplied.json --out ccfa-workfiles/figures/analysis/build/figure
 ```
