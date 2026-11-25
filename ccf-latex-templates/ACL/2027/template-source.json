@@ -1,0 +1,30 @@
+{
+  "venue": "ACL",
+  "year": 2027,
+  "verified_at": "2026-11-25",
+  "source": "https://github.com/acl-org/acl-style-files/tree/d5adc823ff0f80f98c80405ca0ab66c68e684409",
+  "source_commit": "d5adc823ff0f80f98c80405ca0ab66c68e684409",
+  "scope": "Shared official ACL styles selected for ACL 2027 via ARR. Both LaTeX entrypoints and the local example dependencies are included.",
+  "files": [
+    {
+      "path": "acl.sty",
+      "sha256": "19dfeddc2c0e448f3926a0bef048a9db3f3611b46265b760caabd7ada4f361de"
+    },
+    {
+      "path": "acl_latex.tex",
+      "sha256": "339c9ee9705c1767d44ef24b85365c0bb8619ecc3fcf66172bf1356292389614"
+    },
+    {
+      "path": "acl_lualatex.tex",
+      "sha256": "0d9987ba833331a996f9abcd1a03eebba7d7ae331145793e7ddb6b5ae8db27b3"
+    },
+    {
+      "path": "acl_natbib.bst",
+      "sha256": "6fbb306202290f4b68e74ac1460a8b27398500cb6dfeb4492e74c457eae7cd1e"
+    },
+    {
+      "path": "custom.bib",
+      "sha256": "d76ccb30ddceb70c9e1ad0be3f43dfe301ad5765aab2c960fc830ef67bf8232a"
+    }
+  ]
+}

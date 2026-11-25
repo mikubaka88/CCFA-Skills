@@ -1,0 +1,48 @@
+{
+  "checked": "2026-11-25",
+  "papers": [
+    {
+      "id": "sigcomm-2020-routing-multiple-criteria",
+      "conference": "SIGCOMM",
+      "year": 2020,
+      "title": "Routing on Multiple Optimality Criteria",
+      "authors": [
+        "João Luís Sobrinho",
+        "Miguel Alves Ferreira"
+      ],
+      "recognition": "Best Paper",
+      "program_or_awards": "https://www.sigcomm.org/awards/best-paper-award",
+      "proceedings": "https://doi.org/10.1145/3387514.3405864",
+      "paper": "https://www.lx.it.pt/~jls/publications_ficheiros/RoutingMultipleOptimalCriteria.pdf"
+    },
+    {
+      "id": "mobicom-2025-rf-3d-slam",
+      "conference": "MobiCom",
+      "year": 2025,
+      "title": "RF-Based 3D SLAM Rivaling Vision Approaches",
+      "authors": [
+        "Haowen Lai",
+        "Zhiwei Zheng",
+        "Mingmin Zhao"
+      ],
+      "recognition": "Main-conference talk and Best Artifact Award",
+      "program_or_awards": "https://www.sigmobile.org/mobicom/2025/program.html",
+      "proceedings": "https://www.sigmobile.org/mobicom/2025/accepted.html",
+      "paper": "https://waves.seas.upenn.edu/projects/cartoradar/"
+    },
+    {
+      "id": "infocom-2024-stochastic-deadline-traffic",
+      "conference": "INFOCOM",
+      "year": 2024,
+      "title": "Scheduling Stochastic Traffic With End-to-End Deadlines in Multi-hop Wireless Networks",
+      "authors": [
+        "Christos Tsanikidis",
+        "Javad Ghaderi"
+      ],
+      "recognition": "Best Paper",
+      "program_or_awards": "https://www.ee.columbia.edu/news/ee-prof-javad-ghaderi-and-phd-student-christos-tsanikidis-win-best-paper-award-ieee-infocom",
+      "proceedings": "https://www.ee.columbia.edu/~jghaderi/infocom24.pdf",
+      "paper": "https://www.ee.columbia.edu/~jghaderi/infocom24.pdf"
+    }
+  ]
+}

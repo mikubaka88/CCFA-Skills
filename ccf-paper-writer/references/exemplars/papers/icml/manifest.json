@@ -1,0 +1,59 @@
+{
+  "checked": "2026-11-25",
+  "papers": [
+    {
+      "id": "icml-2026-diffusion-consistency-rmt",
+      "conference": "ICML",
+      "year": 2026,
+      "title": "A Random Matrix Theory Perspective on the Consistency of Diffusion Models",
+      "authors": [
+        "Binxu Wang",
+        "Jacob A. Zavatone-Veth",
+        "Cengiz Pehlevan"
+      ],
+      "recognition": "Oral and Outstanding Paper Honorable Mention",
+      "program_or_awards": "https://blog.icml.cc/2026/07/05/announcing-the-icml-2026-awards/",
+      "proceedings": "https://proceedings.mlr.press/v306/",
+      "paper": "https://arxiv.org/abs/2602.02908",
+      "local_pdf": "icml-2026-random-matrix-diffusion-arxiv-v2.pdf",
+      "pdf_source": "https://arxiv.org/abs/2602.02908v2",
+      "pdf_sha256": "d3855e619518a64cd328577a598a10778bb82c94b42c0d86537c605d69f3cdc1",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "iclr-2026-transformers-inherently-succinct",
+      "conference": "ICLR",
+      "year": 2026,
+      "title": "Transformers are Inherently Succinct",
+      "authors": [
+        "Pascal Bergsträßer",
+        "Ryan Cotterell",
+        "Anthony Widjaja Lin"
+      ],
+      "recognition": "Outstanding Paper",
+      "program_or_awards": "https://blog.iclr.cc/2026/04/23/announcing-the-iclr-2026-outstanding-papers/",
+      "proceedings": "https://proceedings.iclr.cc/paper_files/paper/2026/hash/5f7804e8855efe5554025217abc49315-Abstract-Conference.html",
+      "paper": "https://arxiv.org/abs/2510.19315",
+      "local_pdf": "../iclr-2026-transformers-succinct.pdf"
+    },
+    {
+      "id": "neurips-2025-superposition-scaling",
+      "conference": "NeurIPS",
+      "year": 2025,
+      "title": "Superposition Yields Robust Neural Scaling",
+      "authors": [
+        "Yizhou Liu",
+        "Ziming Liu",
+        "Jeff Gore"
+      ],
+      "recognition": "Best Paper Runner-Up, presented in an oral session",
+      "program_or_awards": "https://blog.neurips.cc/2025/11/26/announcing-the-neurips-2025-best-paper-awards/",
+      "proceedings": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/e97ac22927560eb2de6b658498cbc575-Abstract-Conference.html",
+      "paper": "https://arxiv.org/abs/2505.10465",
+      "local_pdf": "neurips-2025-superposition-neural-scaling-arxiv-v4.pdf",
+      "pdf_source": "https://arxiv.org/abs/2505.10465v4",
+      "pdf_sha256": "162bf1c6bc1454ee58d81f93a96f9aa507a71cad5f2bbe08d883d02c15f7e772",
+      "license": "CC BY 4.0"
+    }
+  ]
+}

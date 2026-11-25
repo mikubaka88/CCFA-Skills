@@ -39,8 +39,10 @@ Handle post-review communication and revision accountability. Answer the actual 
 2. Parse comments into issue groups by reviewer, concern type, severity, available evidence, response strategy, and promised paper change.
 3. Load `references/response-strategy.md` for substantial responses and apply `../ccf-paper-writer/references/prose-quality-guardrails.md`; answer actual high-impact concerns first: soundness, novelty, missing evidence, incorrect assumptions, and shared concerns.
 4. Load `references/revision-ledger.md` whenever promised edits, manuscript locations, resubmission actions, review rounds, or cross-version score changes must be tracked. Update one canonical ledger in place; do not create a separate ledger per round unless the user requests snapshots.
+   - For ACL 2027, follow [the venue guide](../ccf-paper-writer/references/venue-guides/acl.md). Draft ARR responses for the active OpenReview fields. Track subsequent ARR revision and ACL commitment as distinct stages.
 5. For full rebuttals, load `references/tex-templates.md` and use the TeX templates in `assets/templates/` when useful.
 6. For resubmission, map old reviewer concerns to the new venue's constraints through `ccf-submission-checker`. Resolve citation or evidence actions within the requested revision scope through their owners; identify a material research change before expanding that scope.
+   - For ICML 2027, follow [the venue guide](../ccf-paper-writer/references/venue-guides/icml.md). Draft for the actual OpenReview feedback fields. The feedback stage does not allow a revised manuscript upload.
 7. Complete necessary contributions through their owners: paper writer for requested revisions, experiment designer for authorized evidence work, and submission checker for applicable venue/package rules. Use integrity auditor for unresolved claim/result conflicts and reviewer for a consequential unanswered criticism. Integrate returned evidence and verify actual changes before claiming completion in the response; a planned experiment or promised edit remains planned.
 
 ## Adaptive Output Contract

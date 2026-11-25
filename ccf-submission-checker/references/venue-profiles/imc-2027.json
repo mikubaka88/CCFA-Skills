@@ -1,0 +1,45 @@
+{
+  "conference": "IMC",
+  "year": 2027,
+  "verified_at": "2026-11-25",
+  "tracks": [
+    "full",
+    "short"
+  ],
+  "page_limits": {
+    "review": {
+      "full": 13,
+      "short": 6
+    }
+  },
+  "total_pages": {},
+  "review_unlimited": false,
+  "letter": true,
+  "separate_supplement": false,
+  "required_appendix_sections": [
+    "Ethics",
+    "Open Science",
+    "Generative AI"
+  ],
+  "manual_checks": [
+    "Verify page numbering, actual Generative AI usage, artifact availability and an anonymized PDF.",
+    "Confirm the HotCRP artifact declarations and the actual BBL upload."
+  ],
+  "policy_record": "imc-2027-author-policy",
+  "stage_checks": {
+    "review": [
+      {
+        "kind": "documentclass",
+        "name": "acmart",
+        "options": [
+          "sigconf",
+          "anonymous",
+          "nonacm"
+        ],
+        "forbid": [],
+        "paper_id": false,
+        "detail": "Check active acmart format for review."
+      }
+    ]
+  }
+}
