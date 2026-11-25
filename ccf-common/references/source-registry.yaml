@@ -331,6 +331,24 @@ sources:
     verified_at: 2026-10-30
     stale_after_days: 180
     notes: "Official CVPR 2026 guidelines inspected with its reviewing process and responsible-review requirements. Apply to the named year; author-side manuscript assessment does not imply permission to use LLMs for confidential conference reviews."
+  - id: acsac-2026-author-policy
+    title: ACSAC 2026 Official Author Policy
+    url: https://www.acsac.org/2026/submissions/papers/
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-paper-reviewer, ccf-submission-checker, ccf-rebuttal-writer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Review submissions have at most 11 main-content pages and 16 total pages. The remaining space covers clearly marked references and appendices. This is the 2026 technical-paper policy snapshot."
+  - id: acsac-ccfddl-record
+    title: CCFDDL record for ACSAC
+    url: https://github.com/ccfddl/ccf-deadlines/blob/main/conference/SC/acsac.yml
+    source_type: background_method
+    used_by: [ccf-skill-forger, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 90
+    notes: "CCF B classification verified in the CCFDDL data. The venue controls submission policy and templates."
   - id: cvpr-2026-reviewer-training
     title: CVPR 2026 Reviewer Training Material
     url: https://cvpr.thecvf.com/Conferences/2026/ReviewerTrainingMaterial

@@ -106,6 +106,10 @@ Review emphasis:
 - For defenses, test bypasses, false positives/negatives, deployment constraints, and residual risk.
 - For cryptography, prioritize definitions, assumptions, proof structure, and theorem readability.
 
+### ACSAC 2026
+
+Evaluate applied significance, technical correctness, quality of evaluation and reproducibility. Distinguish initial review, additional reviews after the first round, anonymous response and shepherded minor revision. Track formal artifact evaluation separately from the paper decision. See [the venue guide](../../ccf-paper-writer/references/venue-guides/acsac.md).
+
 ## Software Engineering / PL / Formal Methods
 
 Primary dimensions: problem precision, formal or empirical soundness, tool usefulness, scalability, developer relevance, and threats to validity.

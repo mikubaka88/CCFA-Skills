@@ -104,3 +104,7 @@ The cards locate useful source passages and explain observed writing moves. Use 
 ## Output Reminder
 
 For an explicit exemplar-analysis request, identify selected cards and transferable writing moves with source attribution. For ordinary drafting, apply relevant moves internally and return the requested original prose; do not append a compulsory exemplar report, warning list, or section plan.
+
+## ACSAC Research References
+
+[Three verified reference papers](papers/acsac/README.md) link to the original sources and conference recognition.
