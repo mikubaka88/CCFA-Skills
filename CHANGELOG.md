@@ -1,5 +1,9 @@
 # Changelog
 
+## ACL 2027 venue support · 2026-11-25
+
+- Add the ACL 2027 official template snapshot, venue guidance and local source/PDF preflight.
+
 ## v0.12.0 - 2026-10-31
 
 Plugin version is `0.12.0`.
@@ -14,6 +18,10 @@ Plugin version is `0.12.0`.
 - Reuse optional costly reviews only when completed inputs, guidance, model/runtime, options and actual coverage match. Pending or partial reviews do not become completed full-paper assessments. Helpers perform no model calls; ordinary short edits stay direct.
 - Implement one independent domain-specialist reading through the existing `independent_review` control. Keep the first reader's context free of lead judgments and prior reviews, use a concise language-specific prompt, and have the main reviewer reconcile findings into the fixed report. The host must select and verify an actual GPT-6 instance and fresh context; the request-preparation helper does not execute the review. Preserve Off, consequential Auto triggers, explicit-request priority and the main assessment when the extra capability is unavailable. This reading replaces an equivalent independent check and may add input/output tokens and elapsed time.
 - Refresh the three-language README story and both plugin manifests. Keep the 18-skill family, version-1 preferences and ten existing controls; preserve historical releases, experiment records and example packages.
+
+## ICML 2027 venue support · 2026-11-25
+
+- Add the ICML 2027 official template snapshot, venue guidance and local source/PDF preflight.
 
 ## v0.11.0 - 2026-10-30
 

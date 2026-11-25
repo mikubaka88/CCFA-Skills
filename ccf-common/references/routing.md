@@ -128,7 +128,9 @@ For manuscript writing from an idea or research documents, `ccf-paper-writer` es
 | 完整审稿 / 稿件有什么硬伤 / 结论站得住吗 / 逐段写作评审 | `ccf-paper-reviewer` |
 | 对比论文新旧版本、检查复审分数漂移或 moving-target review | `ccf-paper-reviewer` |
 | 检查 claim、数字、引用是否一致且有支撑 | `ccf-integrity-auditor` |
+| 检查 ACL 2027 短稿页数 | \`ccf-submission-checker\` |
 | NeurIPS page limit / template / anonymity / artifact checklist | `ccf-submission-checker` |
 | 根据 R1/R2 写 rebuttal 并维护修改表 | `ccf-rebuttal-writer` |
+| 检查 ICML 2027 AI Disclosure | \`ccf-submission-checker\` |
 | 迁移到 ICLR 但不新增实验 | `ccf-rebuttal-writer` |
 | 维护 CCFA skill、README、SVG 或 release | `ccf-skill-forger` |

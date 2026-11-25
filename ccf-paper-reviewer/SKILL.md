@@ -31,6 +31,8 @@ Before file work follow [artifact-contracts.md](../ccf-common/references/artifac
 
 For scores, panels, AC/meta-review, change conditions, or standard reports, load [review-output-standards.md](../ccf-common/references/review-output-standards.md). [calibration-and-rank.md](references/calibration-and-rank.md) is the sole generic seven-dimension rubric; use a verified venue form when applicable. [venue-review-styles.md](references/venue-review-styles.md) and [desk-checks.md](references/desk-checks.md) apply to consequential venue decisions. Verify current official year/track rules rather than treating legacy guides as final policy; ICLR 2027 review needs its ICLR guidance and AI-use distinction between author pre-review and official assignment. For CVPR 2027, use the exact-year guidance and Common's approved-tool boundary for assigned confidential reviews; an author's internal pre-submission review retains its ordinary scope.
 
+For an assigned ACL/ARR review, resolve the allowed work and confidentiality rules in [venue-review-styles.md](references/venue-review-styles.md) before handling manuscript or review material. Use the human-written draft for permitted language assistance.
+
 Identify the draft phase. Internal alignment checks of content-first or results-pending drafts assess explanation and consistency, with absent empirical adequacy `not assessed`; no invented acceptance score, imposed page limit or experiment campaign. Unsupported empirical assertions remain findings. A requested full submission review still reports real evidence incompleteness under its normal rubric. [materials-to-manuscript.md](../ccf-paper-writer/references/materials-to-manuscript.md) defines the draft contract.
 
 ## Evidence And Findings
@@ -38,6 +40,8 @@ Identify the draft phase. Internal alignment checks of content-first or results-
 Read the supplied scientific work and relevant dependencies at the requested coverage; filenames and excerpts do not establish whole-paper inspection. Reconstruct contributions, claims and support before judgment. Anchor concerns to actual locations. For every major/critical concern, inspect the strongest supplied passage or appendix that could answer it; record the countercheck and withdraw or narrow refuted criticism. Separate confirmed flaw, unsupported claim, clarification and missing input. Do not force praise, disagreement, or a concern quota.
 
 Resolve consequential gaps through `ccf-literature-searcher` for closest work/benchmarks, `ccf-integrity-auditor` for numerical/citation-support conflicts, or `ccf-experiment-designer` for protocol interpretation. Reuse checks and respect no-browsing/supplied-evidence limits. Review does not authorize manuscript edits or new experiments. A low score needs its deduction and repair condition; confidence and inspected coverage are distinct from quality.
+
+For an assigned ICML 2027 review, resolve the allowed work and confidentiality rules in [venue-review-styles.md](references/venue-review-styles.md) before handling manuscript or review material. Use the human-written draft for permitted language assistance.
 
 ## Optional Independent Expert
 

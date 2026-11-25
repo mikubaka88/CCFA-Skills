@@ -1,0 +1,59 @@
+{
+  "venue": "ECCV",
+  "year": 2026,
+  "verified_at": "2026-11-25",
+  "source": "https://github.com/paolo-favaro/paper-template",
+  "commit": "da8c09c40239d5665757527e77388f4716a6564a",
+  "files": [
+    {
+      "path": "LICENSE",
+      "sha256": "82d8789febf72672fc2c6ce0b3f4b6ae17bad4b7c195b436179d8b71529c81a6"
+    },
+    {
+      "path": "README.md",
+      "sha256": "2892b0207b3c6bb4ebd45efbe75cb25da74f9163871b76add5d1e05870654491"
+    },
+    {
+      "path": "eccv.sty",
+      "sha256": "07785f87dd4741a761e5064d6752e59dbca308b7999de35df983e70dc0a33d80"
+    },
+    {
+      "path": "eccvabbrv.sty",
+      "sha256": "1c9aba814d428d8d90bfdfde53e3ad8edc9f1db0e5f12e052f713fd5b38e483f"
+    },
+    {
+      "path": "eijkel2.eps",
+      "sha256": "e6556d82cb75e295017ea7e89844a7ec97aee83e81488f6270c4e40ae300e0d6",
+      "upstream_sha256": "ea0550c153a8d17c6f601b4768b0d35a1f02d99c2cb82c70b0a7cb8b3daa7feb",
+      "note": "The existing repository copy uses LF line endings. The publisher file uses CRLF."
+    },
+    {
+      "path": "eijkel2.pdf",
+      "sha256": "c42356b1c36d49a336f10828fd547d77040df67ef649a915a8a93f8d479abc9d"
+    },
+    {
+      "path": "llncs.cls",
+      "sha256": "8152fe7afa929cbd3f3679d6f7c1d562525414ed9c5940a69e86cd923416cb2b"
+    },
+    {
+      "path": "lncs_history.txt",
+      "sha256": "d4779d25219ce1d022e45df45ba19e4d31a43314af4cf6099003e9794120ba00"
+    },
+    {
+      "path": "lncs_readme.txt",
+      "sha256": "7dbe59c722450e662ff2ffa248fb4338ea3bbcdaabc3ad6d648be7054aa062d1"
+    },
+    {
+      "path": "main.bib",
+      "sha256": "b0109230a442139b4d0914ae07f0a33b9b86c4277190962216f756a267a2f6ca"
+    },
+    {
+      "path": "main.tex",
+      "sha256": "ac91a7eb6d0991301bca2b1879177495f176dfc7737c77f5d1079852f33fd7e9"
+    },
+    {
+      "path": "splncs04.bst",
+      "sha256": "564cb6156e2400e3755a58bed9caabccb3067dd37a48efcb66851a56d4475c4c"
+    }
+  ]
+}

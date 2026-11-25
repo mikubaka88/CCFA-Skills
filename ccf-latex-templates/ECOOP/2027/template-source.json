@@ -1,0 +1,41 @@
+{
+  "venue": "ECOOP",
+  "year": 2027,
+  "verified_at": "2026-11-25",
+  "source": "https://github.com/dagstuhl-publishing/styles",
+  "commit": "2c1cab75bbcdf0d7dc0aa2ac3fece512a50f9848",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "5c0eed134db65d357e2bf7afde7fdd599cf50cfb426e6ccf5f45721f991e0f43"
+    },
+    {
+      "path": "LICENSE.md",
+      "sha256": "27597ab18210ecf1285ec984cb153df71cf17119347a3fb5ca52b15eccba53f6"
+    },
+    {
+      "path": "cc-by.pdf",
+      "sha256": "91ab98989270efcbd884dff88f0cb67e48e4a7b8368895d761a070b2c43cf58a"
+    },
+    {
+      "path": "lipics-logo-bw.pdf",
+      "sha256": "23cf408069b707ff63ca2a92565197c7aa9c93a029f210fc7197e01bb37de5e0"
+    },
+    {
+      "path": "lipics-v2021-sample-article.bib",
+      "sha256": "ae193bd466a556f68b19febd5e20fae034a81c96b2a40b7fcb3412cd6c89d9d6"
+    },
+    {
+      "path": "lipics-v2021-sample-article.tex",
+      "sha256": "c397434c7ec21283f25fa06723f336efdcdbb849c82d95f850c86e93e92071f9"
+    },
+    {
+      "path": "lipics-v2021.cls",
+      "sha256": "ecae53dfd29c7b22d02a9065327c104760fb726a028b146d556732021a5977f0"
+    },
+    {
+      "path": "orcid.pdf",
+      "sha256": "503580772e93ea803050d3a9db56736517ba78592010f486ba007e03e5a439cf"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "checked": "2026-11-25",
+  "papers": [
+    {
+      "id": "acl-2025-zipf-contextual-diversity",
+      "conference": "ACL",
+      "year": 2025,
+      "title": "A New Formulation of Zipf’s Meaning-Frequency Law through Contextual Diversity",
+      "authors": [
+        "Ryo Nagata",
+        "Kumiko Tanaka-Ishii"
+      ],
+      "recognition": "Outstanding Paper",
+      "program_or_awards": "https://2025.aclweb.org/program/awards/",
+      "proceedings": "https://aclanthology.org/2025.acl-long.744/",
+      "paper": "https://aclanthology.org/2025.acl-long.744.pdf",
+      "license": "CC BY 4.0",
+      "local_pdf": "acl-2025-zipf-contextual-diversity.pdf",
+      "pdf_source": "https://aclanthology.org/2025.acl-long.744.pdf",
+      "pdf_sha256": "fe440df79801b7599dc819bebef35d1531ead1fcc4cb73799fe4aab19bb28f5c"
+    },
+    {
+      "id": "emnlp-2025-filler-gap-interventions",
+      "conference": "EMNLP",
+      "year": 2025,
+      "title": "Causal Interventions Reveal Shared Structure Across English Filler–Gap Constructions",
+      "authors": [
+        "Sasha Boguraev",
+        "Christopher Potts",
+        "Kyle Mahowald"
+      ],
+      "recognition": "Outstanding Paper",
+      "program_or_awards": "https://2025.emnlp.org/program/awards/",
+      "proceedings": "https://aclanthology.org/2025.emnlp-main.1271/",
+      "paper": "https://aclanthology.org/2025.emnlp-main.1271.pdf",
+      "license": "CC BY 4.0",
+      "local_pdf": "emnlp-2025-filler-gap-interventions.pdf",
+      "pdf_source": "https://aclanthology.org/2025.emnlp-main.1271.pdf",
+      "pdf_sha256": "059e5fefea84abbadb721c51c09ce7446797994bd831d5b106b3d5ef4e01ea93"
+    },
+    {
+      "id": "naacl-2025-learning-retrieval",
+      "conference": "NAACL",
+      "year": 2025,
+      "title": "Learning vs Retrieval: The Role of In-Context Examples in Regression with Large Language Models",
+      "authors": [
+        "Aliakbar Nafar",
+        "K. Brent Venable",
+        "Parisa Kordjamshidi"
+      ],
+      "recognition": "Outstanding Paper",
+      "program_or_awards": "https://2025.naacl.org/blog/best-papers/",
+      "proceedings": "https://aclanthology.org/2025.naacl-long.417/",
+      "paper": "https://aclanthology.org/2025.naacl-long.417.pdf",
+      "license": "CC BY 4.0",
+      "local_pdf": "naacl-2025-learning-retrieval.pdf",
+      "pdf_source": "https://aclanthology.org/2025.naacl-long.417.pdf",
+      "pdf_sha256": "073cd81e276a79676743f42d2a7992a7bc7ce532355f93210fb6f7ca827226b1"
+    }
+  ]
+}
