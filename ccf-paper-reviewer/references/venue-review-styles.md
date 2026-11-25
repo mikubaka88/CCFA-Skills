@@ -62,6 +62,15 @@ Review emphasis:
 - Reproducibility and responsible NLP details matter: data, annotation, human subjects, bias, societal impact, and checklist support.
 - For resubmissions, explicitly show how prior review concerns were addressed.
 
+### ACL 2027 and ARR Assessment
+
+- Use the active `acl-arr-review-form` and `acl-arr-ac-guidelines`. Keep soundness, excitement, overall recommendation and confidence distinct. When explicitly simulating the official form, evaluate soundness and reproducibility for Findings and the additional significance or originality case for a main-conference recommendation. Use the form's actual anchors. ARR reviewer or AC recommendations do not amount to a publication decision at ACL commitment.
+- Evaluate a short paper against the evidence its focused contribution needs. Ground central concerns in the language task, annotation, splits, comparisons or analysis where they matter. Credit candid Limitations and judge the effect of each limitation on the claim. For another ARR cycle, compare the prior issue, the actual change and any residual risk.
+
+### ARR Official Review Assistance
+
+Apply `acl-arr-reviewer-guidelines` and `acl-arr-ac-guidelines` to confidential assignments. The human reviewer or AC writes the first draft and substantive reasoning. Language assistance uses their existing draft and requires a privacy-preserving tool. An author-owned internal pre-review follows the ordinary CCFA workflow.
+
 ## CVPR / ICCV / ECCV
 
 Use the exact venue/year/track guidance rather than transferring rules across these venues. CVPR 2027 author-owned pre-review follows the ordinary internal-review scope; an assigned confidential review must observe the approved-tool boundary in Common's privacy reference and the official policy registered as `cvpr-2027-author-guidelines`. Keep generic dimensions below separate from a verified official scoring form.

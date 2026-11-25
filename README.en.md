@@ -324,6 +324,10 @@ A selected template can drift when a fresh demo resamples data, dimensions are i
 
 First establish what the reader should understand, the necessary objects and their actual relations, then expand the prompt. New/redrawn diagrams require P from user prompt/references/article, GPT Image generation G0, then same-P refinement G1. The third stage is part of one candidate, independent of the additional-candidate switch. Vector skeletons and SVG/PPT shape reconstruction are retired from this route; local edits retain the current image/source. Typography, color, compactness and scientific checks remain active.
 
+### ACL 2027 · 2026-11-25
+
+[ACL 2027 guide](ccf-paper-writer/references/venue-guides/acl.md). The guide covers long and short papers, ARR review, ACL commitment, the official bundle and local submission checks.
+
 ### CVPR 2027 and workflow repairs · 2026-11-12
 
 The template, manuscript and submission check should follow the same rules. This update adds the complete year-specific [official CVPR 2027 kit](ccf-latex-templates/CVPR/2027/main.tex) and [guide](ccf-paper-writer/references/venue-guides/cvpr.md), with local checks for mode, page geometry, anonymity, main-text length and the required LLM Usage Statement. Enrollment and author eligibility remain explicit author checks.

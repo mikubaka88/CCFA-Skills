@@ -340,13 +340,76 @@ sources:
     verified_at: 2026-10-30
     stale_after_days: 180
     notes: "Official training sections on contribution, soundness, concrete feedback, novelty fallacy, invented policy, and confidentiality inspected. Minor fixable issues do not by themselves justify rejection; its official-review LLM restrictions remain venue-specific."
+  - id: acl-2027-main-cfp
+    title: ACL 2027 Main Conference Call for Papers
+    url: https://2027.aclweb.org/calls/main/
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-project-scaffolder, ccf-submission-checker, ccf-rebuttal-writer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Long/short, ARR then ACL commitment, and one additional content page at camera-ready. Check the live commitment deadline and submission form."
+  - id: acl-arr-cfp
+    title: ACL Rolling Review Call for Papers
+    url: https://aclrollingreview.org/cfp
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-submission-checker, ccf-rebuttal-writer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Submission limits, Limitations, anonymization, appendices, AI assistance, service enrollment and quotas. Consult the active cycle."
+  - id: acl-arr-author-guidelines
+    title: ACL Rolling Review Author Guidelines
+    url: https://aclrollingreview.org/authors
+    source_type: venue_policy
+    used_by: [ccf-submission-checker, ccf-rebuttal-writer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Author response, revision and commitment workflow. The page labels some guidance as applying through August 2026, so use the active CFP and cycle form for service and submission rules."
+  - id: acl-2027-template
+    title: Official ACL Style Files Snapshot
+    url: https://github.com/acl-org/acl-style-files/tree/d5adc823ff0f80f98c80405ca0ab66c68e684409
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-project-scaffolder, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "The shared style linked from ARR is pinned locally for ACL 2027. File hashes are under ccf-latex-templates/ACL/2027. This is a shared template snapshot, not an ACL-only style."
+  - id: acl-arr-responsible-nlp
+    title: ARR Responsible NLP Checklist
+    url: https://aclrollingreview.org/responsibleNLPresearch/
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Checklist answers and evidence, including AI writing assistance. Use the actual cycle form to resolve version-specific details."
+  - id: acl-arr-reviewer-guidelines
+    title: ARR Reviewer Guidelines
+    url: https://aclrollingreview.org/reviewerguidelines
+    source_type: review_guideline
+    used_by: [ccf-paper-reviewer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Official reviewers and meta-reviewers own the initial content and argument. Tool use must preserve manuscript and review confidentiality."
+  - id: acl-arr-ac-guidelines
+    title: ACL Rolling Review Area Chair Guidelines
+    url: https://aclrollingreview.org/acguidelines
+    source_type: review_guideline
+    used_by: [ccf-paper-reviewer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Separate ARR meta-review and recommended revisions from the venue commitment decision. Read the active form for recommendation anchors and apply current confidentiality requirements."
   - id: acl-arr-review-form
     title: ACL Rolling Review Review Form
     url: https://aclrollingreview.org/reviewform
     source_type: review_guideline
     used_by: [ccf-paper-reviewer]
     recorded_at: 2026-06-05
-    verified_at: 2026-10-30
+    verified_at: 2026-11-25
     stale_after_days: 180
     notes: "Official form inspected: contribution-aware soundness, excitement, overall assessment, confidence, limitations, ethics and revision tracking. It permits half-point anchors; use its actual scale only when this form applies."
   - id: keshav-how-to-read-paper

@@ -1,5 +1,9 @@
 # Changelog
 
+## ACL 2027 venue support · 2026-11-25
+
+- Add the ACL 2027 official template snapshot, venue guidance and local source/PDF preflight.
+
 ## v0.12.0 - 2026-10-31
 
 Plugin version is `0.12.0`.
