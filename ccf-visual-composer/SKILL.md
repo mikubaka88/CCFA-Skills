@@ -38,6 +38,8 @@ New/redrawn diagrams are raster-first throughout, including repair. If the requi
 
 First read the relevant method, caption/data and user's requested use. Establish what the reader should learn, the figure's role and scope, the necessary objects and actual relationships, and the target slot/font. Distinguish an explanatory causal relation from an implemented computation; latent/unknown quantities are not observed system inputs. Use reference images for their declared content or visual role. For numerical figures, establish input types, units and statistical meanings before choosing elements; a selected template remains fixed. Use existing answers and ask only about a missing fact that changes the science. Keep this understanding in the current context or source record: no separate report, approval, agent or image call.
 
+For multi-reference figures, assign each reference its intended role (evidence, layout, palette or lettering). For a regional edit, compare the target and its connected neighbors with the latest supplied figure at publication size.
+
 ## Required Three-Stage Diagram Workflow
 
 1. **Prepare one prompt P.** Expand the established scientific understanding into content, reference roles and visual/delivery instructions. Preserve supported inputs, representations, operations, outputs, labels/equations and important connections; do not invent modules to complete a truncated method. Apply the chosen font, semantic colors and differentiated text hierarchy, with compact groups and clear paths. Let the image model choose detailed placement. Preserve a good supplied prompt and add only missing information; omit duplicated or irrelevant style clauses. No skeleton or separate prompt-writing agent is required.
@@ -53,6 +55,8 @@ For an existing-image edit, apply only the requested change with its established
 A named template, selected gallery entry or supplied JSON/Python is the rendering source, not just inspiration. Open and reuse that exact specification/implementation. Replace only the supplied scientific data and requested fields, keeping canvas, font scale, palette identities, subplot/axis structure, layers, legend definitions and statistical meanings. Do not call a fresh demo, reroute to a nearby primitive, reconstruct by eye, or silently change a composition when a required field is missing. Resolve the data mismatch first. Never leave old demonstration values mixed into a real-data figure.
 
 For a new design without a selected template, classify input data and chart type independently with `resources/python/ccfa_figure_library.py route`; inspect only chosen candidates and their `element_plan`. Combine article-supported comparisons, ranges, distributions, conditional summaries or key observations into a coherent analysis unit. Primitives and extracted panels are reusable components. Preserve original examples, the user's reference pairs, actual observation times and sample identities. Extra labels alone do not add analysis. Use the library's automatic choice among equally suitable designs; ask for no seed and impose no usage quota.
+
+For paired comparisons, verify sample identity or the supplied matching contract. For an interval layer, verify its statistical definition and required inputs. A missing required field blocks that template panel; identify the field and continue with independently supported panels.
 
 ## Visual Requirements And Acceptance
 
