@@ -28,6 +28,10 @@ Use cards to find and learn from original writing. Conventional phrases, natural
 
 For learning from real paper expression, use `references/exemplar-style-analysis.md` and inspect the source passage selected by the card before drafting. Cards contain both source summaries and adaptation advice; only source-anchored observations establish what a paper actually does. Awards and venue membership do not establish a writing technique. Transfer the sentence relationships and scientific explanation that fit the new material, without imposing a source's paragraph count or claim strength.
 
+## ICML Research References
+
+[Three verified reference papers](papers/icml/README.md) link to the original sources and conference recognition.
+
 ## ICLR And CVPR Award Discovery Cards
 
 Use these cards to locate papers when the user asks about ICLR/CVPR awards. An award list establishes award context only. Inspect a candidate's actual passage and judge its clarity before selecting it as a writing reference; these discovery cards are not mandatory writing templates.

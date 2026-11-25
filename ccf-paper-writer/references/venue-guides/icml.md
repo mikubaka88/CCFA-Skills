@@ -38,3 +38,7 @@ python ccf-submission-checker/scripts/check_icml2027.py --tex path/to/main.tex -
 ```
 
 Use `--stage camera-ready` for the accepted main-conference version. The preflight inspects the template, statement order, PDF Author metadata and page sizes. Supply `--main-pages` only after inspecting the compiled main-body boundary. Check statement contents, the actual stage and OpenReview fields separately. Position papers, workshops, and other years require their own rules.
+
+## Reference Papers
+
+[Selected research references](../exemplars/papers/icml/README.md) provide original papers, verified presentation or award status, and reading cues.
