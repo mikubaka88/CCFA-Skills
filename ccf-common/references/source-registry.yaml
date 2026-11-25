@@ -34,6 +34,69 @@ sources:
     verified_at: 2026-11-12
     stale_after_days: 7
     notes: "Official dates inspected with the author guide: abstract/author registration 2026-11-10, paper 2026-11-16, supplementary 2026-11-23, AoE. These deadlines and OpenReview enrollment status require live confirmation for an actual submission; a local PDF cannot prove enrollment, author quotas or completed uploads."
+  - id: icml-2027-cfp
+    title: ICML 2027 Call for Papers
+    url: https://icml.cc/Conferences/2027/CallForPapers
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-paper-reviewer, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Main body, two-stage review, contribution types, broader impact, submission quotas and lay summary. Check live updates and OpenReview deadlines."
+  - id: icml-2027-author-instructions
+    title: ICML 2027 Author Instructions
+    url: https://icml.cc/Conferences/2027/AuthorInstructions
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-submission-checker, ccf-rebuttal-writer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Anonymity, PDF packaging, supplemental material, author response and camera-ready requirements."
+  - id: icml-2027-author-kit
+    title: ICML 2027 Official LaTeX Archive
+    url: https://media.icml.cc/Conferences/ICML2027/styles/icml2027.zip
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-project-scaffolder, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Download and per-file hashes in ccf-latex-templates/ICML/2027/template-source.json. Preserves all inputs with the prebuilt sample PDF omitted."
+  - id: icml-2027-author-ai
+    title: ICML 2027 Author Generative AI Policy
+    url: https://icml.cc/Conferences/2027/UseOfGenerativeAIByAuthors
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Required AI Disclosure Statement before or after references, substantive use criteria, routine editing exemptions, author verification and reporting when AI is part of methodology."
+  - id: icml-2027-contribution-types
+    title: ICML 2027 Contribution Types
+    url: https://icml.cc/Conferences/2027/ContributionTypes
+    source_type: review_guideline
+    used_by: [ccf-paper-writer, ccf-paper-reviewer, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Evidence expectations depend on the primary contribution. The position-paper call has its own criteria."
+  - id: icml-2027-review-ai
+    title: ICML 2027 LLM Reviewing Policy
+    url: https://icml.cc/Conferences/2027/LLM-Policy
+    source_type: review_guideline
+    used_by: [ccf-paper-reviewer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Privacy-compliant tools may clarify concepts, help explore related works or polish an existing review. Official judgment, critique, manuscript summary and first-draft review remain with the human reviewer."
+  - id: icml-2027-reviewer-instructions
+    title: ICML 2027 Reviewer Instructions
+    url: https://icml.cc/Conferences/2027/ReviewerInstructions
+    source_type: review_guideline
+    used_by: [ccf-paper-reviewer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Verified full-review form criteria, contribution-type guidance, decision-relevant author questions and post-response final justification. Use with the separate ICML AI-review policy."
   - id: mapanything-factored-geometry-2026
     title: "MapAnything: Universal Feed-Forward Metric 3D Reconstruction"
     url: https://arxiv.org/html/2509.13414v3

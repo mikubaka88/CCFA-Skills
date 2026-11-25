@@ -332,6 +332,10 @@ Substantive drafting and expression repair now consistently use matched real pap
 
 Numerical drawing defaults to PNG, with explicit format exports when requested. New method diagrams remain rasters, including inside a requested PPTX. Copy-install instructions now include the visual reference assets. Humanization and Common still run first, with details loaded as needed.
 
+### ICML 2027 · 2026-11-25
+
+[ICML 2027 guide](ccf-paper-writer/references/venue-guides/icml.md). The guide covers main-track research papers, contribution types, impact and AI disclosure, the official bundle and local submission checks.
+
 **v0.12.1 · Updated 2026-10-31**
 
 Sometimes the research argument is ready before the final runs finish. The red **Results-pending drafting** control lets you complete a connected manuscript with conditional analysis and unfilled result slots. Anticipated analysis may introduce hallucinations, so this control defaults to off and every preset keeps it off. Actual positive and negative results stay intact. Before delivery, the writer checks the abstract, body, tables, captions and conclusion together, keeping expected outcomes distinct from observations.

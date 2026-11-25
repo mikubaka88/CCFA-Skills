@@ -193,6 +193,10 @@ ccf-latex-templates/
 \usepackage{neurips_2026}
 ```
 
+### ICML 2027
+
+Copy the complete [official ICML 2027 bundle](ICML/2027/example_paper.tex) and follow [its venue guide](../ccf-paper-writer/references/venue-guides/icml.md).
+
 ### ICML 2026
 ```latex
 \usepackage{icml2026}

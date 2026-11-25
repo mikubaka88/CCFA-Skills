@@ -1,0 +1,42 @@
+{
+  "venue": "ICML",
+  "year": 2027,
+  "verified_at": "2026-11-25",
+  "source": "https://media.icml.cc/Conferences/ICML2027/styles/icml2027.zip",
+  "archive_sha256": "52384a2a4f32e562755e44ced55a58f857f8706425f2f04904190f613531801e",
+  "scope": "Official linked archive. The precompiled example_paper.pdf is omitted. All source inputs, including the style figure, are included.",
+  "files": [
+    {
+      "path": "algorithm.sty",
+      "sha256": "93fd0eb31c112eb405833db8f1d7f5d238c7e691b1c05680d7276e68f36d564a"
+    },
+    {
+      "path": "algorithmic.sty",
+      "sha256": "48d18794a5d97c0479a588cc2eac0917992feb9da83acc4631b8f55757d80f9b"
+    },
+    {
+      "path": "example_paper.bib",
+      "sha256": "df950103d38f9cfc81b1f40d84c9be2a3525d046d2991a6973a4446922c06bd1"
+    },
+    {
+      "path": "example_paper.tex",
+      "sha256": "209713159d3590e8fc871a9d629916a8efc21b9bdf90f56482b6060653f065e0"
+    },
+    {
+      "path": "fancyhdr.sty",
+      "sha256": "9130c52f91087abc6d223164ffa587e207e3257fcbcd069ef09ecb5391043f14"
+    },
+    {
+      "path": "icml2027.bst",
+      "sha256": "0ec3d5eb9b02efb7e0b44a32f3775882f42a743d0bdc618f34e6936309b98764"
+    },
+    {
+      "path": "icml2027.sty",
+      "sha256": "3a61b88dc041e0f1db75cd8ff0a8e5396979cfb88cbde684333eb1a0ae585e30"
+    },
+    {
+      "path": "icml_numpapers.pdf",
+      "sha256": "d34e8da982296363627996e6e18850c11fbd616e6946061237051e7a8f7080bb"
+    }
+  ]
+}

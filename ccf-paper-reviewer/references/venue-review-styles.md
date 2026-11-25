@@ -35,6 +35,16 @@ Review emphasis:
 - Penalize weak statistical practice, missing strong baselines, unclear training/evaluation details, and overstated generalization.
 - Reward clean problem formulation, theory/intuition, and evidence that explains why the method works.
 
+### ICML 2027 Assessment
+
+- Use `icml-2027-reviewer-instructions` and `icml-2027-contribution-types`. In the verified venue form, distinguish soundness, presentation, significance and originality. Use its ordinal anchors only when venue-form simulation is requested. The default CCFA report and its rubric still apply to an ordinary internal review.
+- Assess the primary contribution on its own evidence. For example, evaluate the theorem and assumptions for theory, practical utility and credible evaluation for application-driven work, and the tested conditions and inference from failures for negative results. Keep the decisive concerns and the evidence that could resolve them. Reassess those concerns after the author response.
+- Distinguish the first-stage AC decision confirmed by an SAC, the full reviewer recommendation, and the final decision. For an internal review without first-stage feedback, describe evidence-based risks without predicting a screening result.
+
+### ICML 2027 Official Review Assistance
+
+Apply `icml-2027-review-ai` before handling assigned work. The human reviewer authors their own summary, critique, questions and judgment. Help only with permitted clarification, related-work exploration, or polishing a human-written review in a privacy-compliant environment. Ask for the human-written text before polishing. The author-owned internal review workflow may use CCFA's normal assessment and optional expert reading within the authorized scope.
+
 ## ICLR
 
 Primary dimensions: value to the community, new knowledge, soundness, novelty, significance, clarity, and discussion responsiveness.

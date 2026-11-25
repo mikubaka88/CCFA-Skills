@@ -130,5 +130,6 @@ For manuscript writing from an idea or research documents, `ccf-paper-writer` es
 | 检查 claim、数字、引用是否一致且有支撑 | `ccf-integrity-auditor` |
 | NeurIPS page limit / template / anonymity / artifact checklist | `ccf-submission-checker` |
 | 根据 R1/R2 写 rebuttal 并维护修改表 | `ccf-rebuttal-writer` |
+| 检查 ICML 2027 AI Disclosure | \`ccf-submission-checker\` |
 | 迁移到 ICLR 但不新增实验 | `ccf-rebuttal-writer` |
 | 维护 CCFA skill、README、SVG 或 release | `ccf-skill-forger` |

@@ -39,6 +39,8 @@ Read the supplied scientific work and relevant dependencies at the requested cov
 
 Resolve consequential gaps through `ccf-literature-searcher` for closest work/benchmarks, `ccf-integrity-auditor` for numerical/citation-support conflicts, or `ccf-experiment-designer` for protocol interpretation. Reuse checks and respect no-browsing/supplied-evidence limits. Review does not authorize manuscript edits or new experiments. A low score needs its deduction and repair condition; confidence and inspected coverage are distinct from quality.
 
+For an assigned ICML 2027 review, resolve the allowed work and confidentiality rules in [venue-review-styles.md](references/venue-review-styles.md) before handling manuscript or review material. Use the human-written draft for permitted language assistance.
+
 ## Optional Independent Expert
 
 [plain-expert-review.md](references/plain-expert-review.md) implements the existing `independent_review` switch as one fresh-context GPT-6 specialist reading, not an extra layer. `off` adds none automatically; `auto` requires a consequential unresolved judgment or useful requested pre-submission check; `on` favors a relevant substantial scientific/full pass when valuable. Explicit requests override the switch for this task without saving changes. Writing-only does not automatically invoke scientific expertise; concept-only stays with the idea owner.

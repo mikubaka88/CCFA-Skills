@@ -17,6 +17,8 @@ The safety level is moderate by default:
 
 For assigned CVPR 2027 reviewers/area chairs, confidential conference submissions may be processed only with the conference-approved tools provided through OpenReview, following that year's official policy. A simulated expert prompt does not establish tool approval. Author-owned drafts and internal pre-submission reviews keep their ordinary authorized workflow; do not apply the assigned-review restriction to them or insert a routine warning into every review.
 
+For assigned ICML 2027 work, verify the allowed activities and confidentiality before processing a manuscript or review. Use the official policy in the source registry record \`icml-2027-review-ai\`. Substantive judgment remains with the assigned human.
+
 ## Path And Identity Privacy
 
 - Do not commit or publish personal absolute paths, usernames, expanded home directories, private local skill roots, or machine-specific command examples.
