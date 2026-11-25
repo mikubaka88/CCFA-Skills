@@ -1,0 +1,13 @@
+{
+  "venue": "IMC",
+  "year": 2027,
+  "verified_at": "2026-11-25",
+  "source": "https://www.acm.org/publications/proceedings-template",
+  "dependency": "ACM acmart",
+  "files": [
+    {
+      "path": "main.tex",
+      "sha256": "808018dafbc14f7094ef615362f0e59351fd986f70fd0bf48377181309a9c180"
+    }
+  ]
+}

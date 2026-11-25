@@ -37,7 +37,11 @@ Before polishing wording, recover the paragraph's main scientific point and how 
 | `compress` | [compression-rules.md](references/compression-rules.md); preserve scientific relationships, facts and numbers. |
 | `presentation` | The source paper and presentation guidance in [section-modules.md](references/section-modules.md). |
 
+Use the long/short contribution and Limitations guidance in the [ACL 2027 guide](references/venue-guides/acl.md) when writing for that venue.
+
 Naming a venue alone does not trigger a page quota. Read `references/venue-guides/index.md` and the matched guide when audience/format affects the work; [output-style-policy.md](references/output-style-policy.md) preserves supplied templates and governs the disclosed NeurIPS fallback for new LaTeX without one. An abstract, caption, local edit, or exact JSON response does not require whole-paper planning, exemplar analysis, reviewer panels, or a venue guide.
+
+Use the primary contribution type and required statement guidance in the [ICML 2027 guide](references/venue-guides/icml.md) when writing for that venue.
 
 For substantive drafting or expression rewriting, inspect relevant real passages through [exemplar-style-analysis.md](references/exemplar-style-analysis.md). `reference_style_search` defaults to **on**: reuse matched originals and search for additional good writing for the actual question, reusing completed applicable searches across paragraphs. `auto` limits extra discovery to gaps; `off` skips unrequested extra discovery, not supplied references or explicit searches. Choose quality and function without a paper-count quota. Reuse conventional language and technical terms, not distinctive source sentences or scientific claims; keep one author voice.
 

@@ -1,0 +1,60 @@
+{
+  "checked": "2026-11-25",
+  "papers": [
+    {
+      "id": "popl-2026-quotient-polymorphism",
+      "conference": "POPL",
+      "year": 2026,
+      "title": "Quotient Polymorphism",
+      "authors": [
+        "Brandon Hewer",
+        "Graham Hutton"
+      ],
+      "recognition": "Distinguished Paper and 25-minute research talk",
+      "program_or_awards": "https://popl26.sigplan.org/track/POPL-2026-popl-research-papers",
+      "proceedings": "https://popl26.sigplan.org/details/POPL-2026-popl-research-papers/25/Quotient-Polymorphism",
+      "paper": "https://nottingham-repository.worktribe.com/OutputFile/56966982",
+      "local_pdf": "popl-2026-quotient-polymorphism.pdf",
+      "pdf_source": "https://people.cs.nott.ac.uk/pszgmh/quotient-poly.pdf",
+      "pdf_sha256": "4c15caacd9cecf602264bcff1e8eaba8faff4a27ded81560b29c910f989f4486",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "pldi-2025-practical-type-inference",
+      "conference": "PLDI",
+      "year": 2025,
+      "title": "Practical Type Inference with Levels",
+      "authors": [
+        "Andong Fan",
+        "Han Xu",
+        "Ningning Xie"
+      ],
+      "recognition": "Distinguished Paper and 20-minute research talk",
+      "program_or_awards": "https://pldi25.sigplan.org/details/pldi-2025-papers/89/Practical-Type-Inference-with-Levels",
+      "proceedings": "https://pldi25.sigplan.org/details/pldi-2025-papers/89/Practical-Type-Inference-with-Levels",
+      "paper": "https://sec-r.github.io/papers/pldi25level.pdf",
+      "local_pdf": "pldi-2025-practical-type-inference-levels.pdf",
+      "pdf_source": "https://sec-r.github.io/papers/pldi25level.pdf",
+      "pdf_sha256": "db06a61c5b71bd86a75897d9bf3c43459c483a59c9600be9f9f2031753ff37fd",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "oopsla-2024-profiling-language-learning",
+      "conference": "OOPSLA",
+      "year": 2024,
+      "title": "Profiling Programming Language Learning",
+      "authors": [
+        "Will Crichton",
+        "Shriram Krishnamurthi"
+      ],
+      "recognition": "Distinguished Paper and 20-minute research talk",
+      "program_or_awards": "https://2024.splashcon.org/details/splash-2024-oopsla/1/Profiling-Programming-Language-Learning",
+      "proceedings": "https://2024.splashcon.org/details/splash-2024-oopsla/1/Profiling-Programming-Language-Learning",
+      "paper": "https://cs.brown.edu/people/sk/Publications/Papers/Published/ck-prof-prog-lang-learn/paper.pdf",
+      "local_pdf": "oopsla-2024-profiling-programming-language-learning.pdf",
+      "pdf_source": "https://cs.brown.edu/people/sk/Publications/Papers/Published/ck-prof-prog-lang-learn/paper.pdf",
+      "pdf_sha256": "1cdbb84b58d5c33d77b946bceb6ae0ab852c1075507194c6c36f2d1dbe70ad5b",
+      "license": "CC BY 4.0"
+    }
+  ]
+}

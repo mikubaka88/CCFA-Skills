@@ -124,6 +124,10 @@ ccf-latex-templates/
 |-- ACL/ / EMNLP/ / NAACL/ / COLING/ / CoNLL/
 ```
 
+### ACL 2027
+
+Copy the complete [official ACL 2027 bundle](ACL/2027/acl_latex.tex) and follow [its venue guide](../ccf-paper-writer/references/venue-guides/acl.md). The optional multilingual example uses the Lohit Devanagari and Noto Sans Arabic fonts.
+
 ## Verified Template Download Sources
 
 | Conference | Source | URL |
@@ -192,6 +196,10 @@ ccf-latex-templates/
 ```latex
 \usepackage{neurips_2026}
 ```
+
+### ICML 2027
+
+Copy the complete [official ICML 2027 bundle](ICML/2027/example_paper.tex) and follow [its venue guide](../ccf-paper-writer/references/venue-guides/icml.md).
 
 ### ICML 2026
 ```latex

@@ -4,6 +4,17 @@ Use this index to find original passages that help substantive drafting or a spe
 
 The lean release keeps the original Markdown passages and cards. Complete PDFs are an explicit optional offline pack; their absence alone does not prevent learning from a matched original text. When extraction or layout requires the PDF, install the matching pack or use an authorized original source, then inspect the selected passage. The full Git source still contains the PDFs. See the [installation profiles](../../../docs/INSTALLATION_MATRIX.md#lean-release-installation-recommended).
 
+## Reference papers by field
+
+Each selection includes three papers from three conferences, with at most three authors per paper. The field guides link the original work and the conference presentation or award record.
+
+- [Natural language processing](papers/acl/README.md)
+- [Machine learning](papers/icml/README.md)
+- [Computer vision](papers/eccv/README.md)
+- [Programming languages](papers/ecoop/README.md)
+- [Computer networking](papers/imc/README.md)
+- [Computer security](papers/acsac/README.md)
+
 ## Default Custom Format
 
 Use `references/custom-format/default-user-format.md` when explicitly requested or established for the project. Missing venue information alone does not activate it or require exemplar loading. These user-supplied cards are available when relevant:
