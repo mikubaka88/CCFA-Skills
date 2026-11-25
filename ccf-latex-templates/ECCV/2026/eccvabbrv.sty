@@ -1,0 +1,43 @@
+% ---------------------------------------------------------------
+%
+% Formatting Package for ECCV Submissions
+% 
+% initially created for ECCV 2024
+% by Stefan Roth
+%
+% based on previous ECCV templates:
+%   updated April 2002 by Antje Endemann
+%   Based on CVPR 07 and LNCS, with modifications by DAF, AZ and elle, 2008 and AA, 2010, and CC, 2011; TT, 2014; AAS, 2016; AAS, 2020; TH, 2022
+%
+% and the CVPR templates:
+%   https://github.com/cvpr-org/author-kit
+%
+% No guarantee is given that the format corresponds perfectly to
+% LNCS Proceedings, but most features should be ok.
+%
+% ---------------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesPackage{eccvabbrv}[Common abbreviations for ECCV]
+
+% Add a period to the end of an abbreviation unless there's one
+% already, then \xspace.
+\RequirePackage{xspace}
+\makeatletter
+\DeclareRobustCommand\onedot{\futurelet\@let@token\@onedot}
+\def\@onedot{\ifx\@let@token.\else.\null\fi\xspace}
+
+\def\eg{\emph{e.g}\onedot} 
+\def\Eg{\emph{E.g}\onedot}
+\def\ie{\emph{i.e}\onedot} 
+\def\Ie{\emph{I.e}\onedot}
+\def\cf{\emph{cf}\onedot} 
+\def\Cf{\emph{Cf}\onedot}
+\def\etc{\emph{etc}\onedot} 
+\def\vs{\emph{vs}\onedot}
+\def\wrt{w.r.t\onedot} 
+\def\dof{d.o.f\onedot}
+\def\iid{i.i.d\onedot} 
+\def\wolog{w.l.o.g\onedot}
+\def\etal{\emph{et al}\onedot}
+\makeatother

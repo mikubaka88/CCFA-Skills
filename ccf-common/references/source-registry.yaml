@@ -34,6 +34,33 @@ sources:
     verified_at: 2026-11-12
     stale_after_days: 7
     notes: "Official dates inspected with the author guide: abstract/author registration 2026-11-10, paper 2026-11-16, supplementary 2026-11-23, AoE. These deadlines and OpenReview enrollment status require live confirmation for an actual submission; a local PDF cannot prove enrollment, author quotas or completed uploads."
+  - id: eccv-2026-author-policy
+    title: ECCV 2026 Official Author Policy
+    url: https://eccv.ecva.net/Conferences/2026/SubmissionPolicies
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-paper-reviewer, ccf-submission-checker, ccf-rebuttal-writer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "The main paper cap is 14 pages including figures and tables. The main PDF may exceed this cap only for cited references. Keep supplemental material separate and recheck the edition's actual instructions."
+  - id: eccv-ccfddl-record
+    title: CCFDDL record for ECCV
+    url: https://github.com/ccfddl/ccf-deadlines/blob/main/conference/AI/eccv.yml
+    source_type: background_method
+    used_by: [ccf-skill-forger, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 90
+    notes: "CCF B classification verified in the CCFDDL data. The venue controls submission policy and templates."
+  - id: eccv-2026-contribution-types
+    title: ECCV 2026 Contribution Types
+    url: https://eccv.ecva.net/Conferences/2026/AuthorContributionTypes
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-paper-reviewer, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Official contribution or track guidance for this edition."
   - id: mapanything-factored-geometry-2026
     title: "MapAnything: Universal Feed-Forward Metric 3D Reconstruction"
     url: https://arxiv.org/html/2509.13414v3

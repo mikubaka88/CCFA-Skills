@@ -75,6 +75,10 @@ Review emphasis:
 - Penalize cherry-picked visuals, missing failure analysis, low-resolution or unreadable figures, and unclear relation to close CV work.
 - Reward inspectable evidence and concise claims tied to benchmarks and visual examples.
 
+### ECCV 2026
+
+Use evidence appropriate to the primary contribution type and inspect the manuscript's main qualitative and quantitative support. Official assigned reviewers must keep the submissions confidential and must not process them with LLMs. Use the author-side internal workflow only for author-owned drafts. See [the venue guide](../../ccf-paper-writer/references/venue-guides/eccv.md).
+
 ## KDD / SIGMOD / VLDB / ICDE / SIGIR
 
 Primary dimensions: realistic problem setting, novelty, effectiveness, efficiency, scalability, system or algorithm detail, and user/data utility.

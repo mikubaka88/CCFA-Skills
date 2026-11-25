@@ -61,6 +61,10 @@ Use these cards to locate papers when the user asks about ICLR/CVPR awards. An a
 | NeurIPS / RL scaling | `cards/neurips-2025-1000-layer-ssl-rl.md` | scaling studies, capability emergence, self-supervised RL evidence |
 | NeurIPS / image generation | `cards/neurips-2024-var.md` | new generation paradigm, scaling laws, next-scale prediction |
 
+## ECCV Research References
+
+[Three verified reference papers](papers/eccv/README.md) link to the original sources and conference recognition.
+
 ## Non-AI/CV/NLP Venue Cards
 
 Use these cards when the target venue is outside the dominant AI/CV/NLP cluster. They are meant to prevent the writing skill from forcing every paper into an ML-style "model plus table" story.

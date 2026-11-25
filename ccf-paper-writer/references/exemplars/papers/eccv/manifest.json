@@ -1,0 +1,50 @@
+{
+  "checked": "2026-11-25",
+  "papers": [
+    {
+      "id": "cvpr-2020-probably-symmetric-objects",
+      "conference": "CVPR",
+      "year": 2020,
+      "title": "Unsupervised Learning of Probably Symmetric Deformable 3D Objects from Images in the Wild",
+      "authors": [
+        "Shangzhe Wu",
+        "Christian Rupprecht",
+        "Andrea Vedaldi"
+      ],
+      "recognition": "Best Paper",
+      "program_or_awards": "https://www.thecvf.com/?page_id=413",
+      "proceedings": "https://openaccess.thecvf.com/content_CVPR_2020/html/Wu_Unsupervised_Learning_of_Probably_Symmetric_Deformable_3D_Objects_From_Images_CVPR_2020_paper.html",
+      "paper": "https://openaccess.thecvf.com/content_CVPR_2020/papers/Wu_Unsupervised_Learning_of_Probably_Symmetric_Deformable_3D_Objects_From_Images_CVPR_2020_paper.pdf"
+    },
+    {
+      "id": "iccv-2019-singan",
+      "conference": "ICCV",
+      "year": 2019,
+      "title": "SinGAN: Learning a Generative Model from a Single Natural Image",
+      "authors": [
+        "Tamar Rott Shaham",
+        "Tali Dekel",
+        "Tomer Michaeli"
+      ],
+      "recognition": "Best Paper (Marr Prize)",
+      "program_or_awards": "https://www.thecvf.com/?page_id=413",
+      "proceedings": "https://openaccess.thecvf.com/content_ICCV_2019/html/Shaham_SinGAN_Learning_a_Generative_Model_From_a_Single_Natural_Image_ICCV_2019_paper.html",
+      "paper": "https://openaccess.thecvf.com/content_ICCV_2019/papers/Shaham_SinGAN_Learning_a_Generative_Model_From_a_Single_Natural_Image_ICCV_2019_paper.pdf"
+    },
+    {
+      "id": "eccv-2024-minimalist-vision-award",
+      "conference": "ECCV",
+      "year": 2024,
+      "title": "Minimalist Vision with Freeform Pixels",
+      "authors": [
+        "Jeremy Klotz",
+        "Shree K. Nayar"
+      ],
+      "recognition": "Best Paper",
+      "program_or_awards": "https://www.thecvf.com/?page_id=413",
+      "proceedings": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/08113.pdf",
+      "paper": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/08113.pdf",
+      "local_pdf": "../eccv-2024-minimalist-vision.pdf"
+    }
+  ]
+}
