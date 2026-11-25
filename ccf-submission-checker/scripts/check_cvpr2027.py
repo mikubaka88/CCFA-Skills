@@ -52,7 +52,7 @@ def expand_inputs(path, project, stack=(), visited=None):
             local = local.with_suffix(".tex")
         return expand_inputs(local, project, (*stack, path), visited)
 
-    return re.sub(r"\\(?:input|include)\s*(?:\{([^}]+)\}|([^\s\\{}%]+))", load, text)
+    return re.sub(r"\\(?:input|include)(?![A-Za-z@])\s*(?:\{([^}]+)\}|([^\s\\{}%]+))", load, text)
 
 
 def audit(tex, stage="review", pdf=None, main_pages=None, project_root=None):

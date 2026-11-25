@@ -223,6 +223,24 @@ sources:
     verified_at: 2026-09-23
     stale_after_days: 365
     notes: Use scientific clarity, logical organization, and accurate attribution as editing criteria; adapt to user style and preserve actual uncertainty and evidence. No source text or code is redistributed.
+  - id: ecoop-2027-author-policy
+    title: ECOOP 2027 Official Author Policy
+    url: https://2027.ecoop.org/track/ecoop-2027-technical-papers
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-paper-reviewer, ccf-submission-checker, ccf-rebuttal-writer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "The review version has no formal page cap. Select the appropriate author category. The final version has a 25-page limit in LIPIcs, excluding references."
+  - id: ecoop-ccfddl-record
+    title: CCFDDL record for ECOOP
+    url: https://github.com/ccfddl/ccf-deadlines/blob/main/conference/SE/ecoop.yml
+    source_type: background_method
+    used_by: [ccf-skill-forger, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 90
+    notes: "CCF B classification verified in the CCFDDL data. The venue controls submission policy and templates."
   - id: ccf-directory
     title: CCF Recommended International Academic Conference And Journal Directory
     url: https://www.ccf.org.cn/Academic_Evaluation/By_category/

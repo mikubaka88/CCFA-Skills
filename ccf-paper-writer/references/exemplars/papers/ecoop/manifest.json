@@ -1,0 +1,48 @@
+{
+  "checked": "2026-11-25",
+  "papers": [
+    {
+      "id": "popl-2026-quotient-polymorphism",
+      "conference": "POPL",
+      "year": 2026,
+      "title": "Quotient Polymorphism",
+      "authors": [
+        "Brandon Hewer",
+        "Graham Hutton"
+      ],
+      "recognition": "Distinguished Paper and 25-minute research talk",
+      "program_or_awards": "https://popl26.sigplan.org/track/POPL-2026-popl-research-papers",
+      "proceedings": "https://popl26.sigplan.org/details/POPL-2026-popl-research-papers/25/Quotient-Polymorphism",
+      "paper": "https://nottingham-repository.worktribe.com/OutputFile/56966982"
+    },
+    {
+      "id": "pldi-2025-practical-type-inference",
+      "conference": "PLDI",
+      "year": 2025,
+      "title": "Practical Type Inference with Levels",
+      "authors": [
+        "Andong Fan",
+        "Han Xu",
+        "Ningning Xie"
+      ],
+      "recognition": "Distinguished Paper and 20-minute research talk",
+      "program_or_awards": "https://pldi25.sigplan.org/details/pldi-2025-papers/89/Practical-Type-Inference-with-Levels",
+      "proceedings": "https://pldi25.sigplan.org/details/pldi-2025-papers/89/Practical-Type-Inference-with-Levels",
+      "paper": "https://sec-r.github.io/papers/pldi25level.pdf"
+    },
+    {
+      "id": "oopsla-2024-profiling-language-learning",
+      "conference": "OOPSLA",
+      "year": 2024,
+      "title": "Profiling Programming Language Learning",
+      "authors": [
+        "Will Crichton",
+        "Shriram Krishnamurthi"
+      ],
+      "recognition": "Distinguished Paper and 20-minute research talk",
+      "program_or_awards": "https://2024.splashcon.org/details/splash-2024-oopsla/1/Profiling-Programming-Language-Learning",
+      "proceedings": "https://2024.splashcon.org/details/splash-2024-oopsla/1/Profiling-Programming-Language-Learning",
+      "paper": "https://cs.brown.edu/people/sk/Publications/Papers/Published/ck-prof-prog-lang-learn/paper.pdf"
+    }
+  ]
+}

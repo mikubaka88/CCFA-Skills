@@ -42,6 +42,8 @@ Treat submission as a build, venue-policy, page-budget, and artifact-readiness g
 5. For artifact checks, build a reproducibility checklist: code, data, models, environment, seeds, hardware, license, access restrictions, and README.
 6. Route actual findings or authorized fixes through their owners: paper writer for needed text/page revisions, visual composer for figure/table layout defects, and rebuttal writer for post-review response packaging. A paper within the page budget does not automatically need polishing. For a reproducibility gap, distinguish missing documentation, configuration, code, and scientific evidence: research engineer handles implementation or reproduction work, and experiment designer resolves a comparison or protocol question. A missing checklist item alone does not require a new experiment.
 
+For edition profiles linked in a venue guide, run its documented local preflight and inspect the manual checks.
+
 ## Output Contract
 
 ```text

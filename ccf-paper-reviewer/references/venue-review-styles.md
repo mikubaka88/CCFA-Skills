@@ -137,6 +137,10 @@ Review emphasis:
 - Combine metrics with qualitative evidence and user/perceptual studies when needed.
 - Penalize cherry-picked media, weak comparisons, and unclear visual advantage.
 
+### ECOOP 2027
+
+Check correctness, contribution fit, and the reproducibility of evidence appropriate to the paper category. The double-anonymous CFP prohibits using AI tools for assigned reviews or sharing confidential review materials with them. Authors' internal self-review is a separate workflow. Use the four-day author-response window and distinguish revision from immediate resubmission after rejection. See [the venue guide](../../ccf-paper-writer/references/venue-guides/ecoop.md).
+
 ## Theory
 
 Primary dimensions: correctness, nontriviality, novelty, precision, relation to known barriers, and proof readability.

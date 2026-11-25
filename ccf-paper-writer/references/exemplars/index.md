@@ -15,6 +15,10 @@ Use `references/custom-format/default-user-format.md` when explicitly requested 
 
 These two cards are user-supplied references available for matching writing questions. Selecting a useful passage does not activate the whole custom format or make either paper a universal writing model.
 
+## ECOOP Research References
+
+[Three verified reference papers](papers/ecoop/README.md) link to the original sources and conference recognition.
+
 ## Selection Rule
 
 Use as few passages as answer the actual writing questions, with additional sources for distinct functions when useful. There is no required paper count or fixed maximum. Reuse available originals; extra retrieval follows `reference_style_search` in Common's preferences:
