@@ -48,3 +48,7 @@ python ccf-submission-checker/scripts/check_acl2027.py --track short --tex path/
 ```
 
 Use `--track long` for long papers and `--stage camera-ready` for an accepted ACL 2027 paper. The preflight inspects the template, Limitations, PDF Author metadata and page sizes. Supply `--main-pages` only after inspecting the compiled main-content boundary. Check visible anonymity, actual AI assistance, the Responsible NLP form, and the ARR/ACL workflow separately. Resolve a heading the tool cannot detect against the rendered PDF.
+
+## Reference Papers
+
+[Selected research references](../exemplars/papers/acl/README.md) provide original papers, verified presentation or award status, and reading cues.

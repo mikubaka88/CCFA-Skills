@@ -41,6 +41,10 @@ Use these cards to locate papers when the user asks about ICLR/CVPR awards. An a
 | CVPR 2024 Best Papers | `cards/cvpr-2024-best-papers.md` | human-feedback text-to-image and generative image dynamics papers |
 | CVPR 2023 Best Papers | `cards/cvpr-2023-best-papers.md` | visual programming and planning-oriented autonomous driving papers |
 
+## ACL Research References
+
+[Three verified reference papers](papers/acl/README.md) link to the original sources and conference recognition.
+
 ## Other Venue Cards
 
 | Venue family | Card | Use when |
