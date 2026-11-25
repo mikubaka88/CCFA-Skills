@@ -2,6 +2,9 @@
 
 Use GPT Image for an entire new or redrawn scientific method, architecture, flow or conceptual figure. Numerical analysis uses Python; existing-figure edits remain scoped to the current image/source. The entrypoint defines those boundaries. This reference supplies the prompt and attachment details, without a vector skeleton, shape reconstruction or component-assembly route.
 
+For multiple references, associate each with the specific feature to inherit. A layout example supplies grouping and reading order. Derive branch directions and equations from the method. Place supplied observational frames in their scientific role and preserve their identity. Include these distinctions in the existing prompt.
+
+
 ## Before Stage 1: Understand The Scientific Task
 
 Read the relevant method/caption, user requirements and useful authorized references. Establish what the reader should understand, the figure's scope, necessary objects and actual relationships, and its destination/font. Reuse current context; no separate brief, approval, report, agent or image call is required.
