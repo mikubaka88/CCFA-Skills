@@ -4,6 +4,10 @@ Use this index to find original passages that help substantive drafting or a spe
 
 The lean release keeps the original Markdown passages and cards. Complete PDFs are an explicit optional offline pack; their absence alone does not prevent learning from a matched original text. When extraction or layout requires the PDF, install the matching pack or use an authorized original source, then inspect the selected passage. The full Git source still contains the PDFs. See the [installation profiles](../../../docs/INSTALLATION_MATRIX.md#lean-release-installation-recommended).
 
+## IMC Research References
+
+[Three verified reference papers](papers/imc/README.md) link to the original sources and conference recognition.
+
 ## Default Custom Format
 
 Use `references/custom-format/default-user-format.md` when explicitly requested or established for the project. Missing venue information alone does not activate it or require exemplar loading. These user-supplied cards are available when relevant:

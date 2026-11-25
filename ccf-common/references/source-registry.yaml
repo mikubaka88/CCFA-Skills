@@ -340,6 +340,33 @@ sources:
     verified_at: 2026-10-30
     stale_after_days: 180
     notes: "Official training sections on contribution, soundness, concrete feedback, novelty fallacy, invented policy, and confidentiality inspected. Minor fixable issues do not by themselves justify rejection; its official-review LLM restrictions remain venue-specific."
+  - id: imc-2027-author-policy
+    title: IMC 2027 Official Author Policy
+    url: https://conferences.sigcomm.org/imc/2027/submission-instructions/
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-paper-reviewer, ccf-submission-checker, ccf-rebuttal-writer]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Full/short papers have 13/6 technical-content pages respectively, including figures and excluding references and appendices. Confirm the current camera-ready instructions and the separate Replicability track expression-of-interest workflow."
+  - id: imc-ccfddl-record
+    title: CCFDDL record for IMC
+    url: https://github.com/ccfddl/ccf-deadlines/blob/main/conference/NW/imc.yml
+    source_type: background_method
+    used_by: [ccf-skill-forger, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 90
+    notes: "CCF B classification verified in the CCFDDL data. The venue controls submission policy and templates."
+  - id: imc-2027-cfp
+    title: IMC 2027 Cfp
+    url: https://conferences.sigcomm.org/imc/2027/cfp/
+    source_type: venue_policy
+    used_by: [ccf-paper-writer, ccf-paper-reviewer, ccf-submission-checker]
+    recorded_at: 2026-11-25
+    verified_at: 2026-11-25
+    stale_after_days: 30
+    notes: "Official contribution or track guidance for this edition."
   - id: acl-arr-review-form
     title: ACL Rolling Review Review Form
     url: https://aclrollingreview.org/reviewform

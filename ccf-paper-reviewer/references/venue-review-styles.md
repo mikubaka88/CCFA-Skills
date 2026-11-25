@@ -85,6 +85,10 @@ Review emphasis:
 - Evaluate both effectiveness and efficiency when both are claimed.
 - Penalize toy-only evidence, missing indexes/pipeline details, unclear complexity, and weak large-scale validation.
 
+### IMC 2027
+
+Focus on measurement validity, interpretability, ethical collection and evidence that the results or measurement methods transfer. Check intended artifact availability against the Open Science statement. The brief rebuttal is for clarifying reviewer concerns. Track one-shot revision separately. See [the venue guide](../../ccf-paper-writer/references/venue-guides/imc.md).
+
 ## Systems / Architecture / Networking / Storage
 
 Primary dimensions: real problem, design soundness, implementation detail, evaluation realism, end-to-end impact, and operational boundaries.
