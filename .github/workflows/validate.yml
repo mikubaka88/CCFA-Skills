@@ -40,6 +40,7 @@ jobs:
       - run: python ccf-paper-writer/scripts/test_writing_context.py
       - run: python ccf-paper-writer/scripts/test_writing_review_cache.py
       - run: python ccf-paper-writer/scripts/test_writing_runtime.py
+      - run: python ccf-paper-to-exemplar/scripts/test_personal_library.py
       - run: python ccf-submission-checker/scripts/test_icml2027.py
       - run: python ccf-paper-reviewer/scripts/test_prepare_expert_review.py
       - run: python ccf-submission-checker/scripts/test_venue_preflight.py
@@ -66,6 +67,7 @@ jobs:
       - run: python ccf-submission-checker/scripts/test_acl2027.py
       - run: python ccf-paper-writer/scripts/test_manuscript_patch.py
       - run: python ccf-paper-writer/scripts/test_writing_runtime.py
+      - run: python ccf-paper-to-exemplar/scripts/test_personal_library.py
       - run: python ccf-submission-checker/scripts/test_icml2027.py
       - run: python ccf-paper-reviewer/scripts/test_prepare_expert_review.py
       - run: python ccf-submission-checker/scripts/test_venue_preflight.py

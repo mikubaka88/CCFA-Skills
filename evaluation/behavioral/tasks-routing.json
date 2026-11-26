@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "suite": "ccfa-skill-selection-smoke",
+  "purpose": "Maintenance-only natural-request routing, with no preselected owner",
+  "execution": {
+    "mode": "classification only",
+    "instructions": "Read the available skill names/descriptions and the supplied request. Do not execute the research task or browse. Return one JSON object with owner (canonical ccf name or host), create_exemplar_card (boolean), register_personal_library (boolean), and a one-sentence reason. Include the required Humanization/Common preflights in real CCFA execution; owner here means the specialist responsible for the deliverable."
+  },
+  "tasks": [
+    {
+      "id": "one-off-passage",
+      "request": "我给了你一篇论文和我的引言。借鉴它第二段怎样从问题过渡到方法，把我的这段改顺，不要另存范例卡。",
+      "invariants": {"contains": ["ccf-paper-writer"]},
+      "outcome_checks": ["Is the writer selected, with both card creation and registration false?", "Does the answer avoid a whole-paper exemplar workflow?"]
+    },
+    {
+      "id": "reusable-local-card",
+      "request": "请把这篇论文引言里的问题到机制的论证提炼成一张可复用写作范例卡，只分析引言，保存到我指定的卡片文件，不加入个人库。",
+      "invariants": {"contains": ["ccf-paper-to-exemplar"]},
+      "outcome_checks": ["Is exemplar selected with card creation true and registration false?", "Is coverage limited to the introduction rather than all eight full-paper moves?"]
+    },
+    {
+      "id": "personal-registration",
+      "request": "这张写作卡已经完成，原文和位置也核对过了。把它加入当前项目的个人范例库，让以后写方法段可以找到。",
+      "invariants": {"contains": ["ccf-paper-to-exemplar"]},
+      "outcome_checks": ["Is exemplar selected with registration true?", "Does registration reuse the existing card rather than create another card or edit installed skills?"]
+    },
+    {
+      "id": "select-default-exemplar",
+      "request": "将个人库里已经登记的这两张范例卡设为本项目的默认选择，以后匹配的写作任务优先用，保留原文和现有卡片。",
+      "invariants": {"contains": ["ccf-paper-to-exemplar"]},
+      "outcome_checks": ["Is exemplar selected without recreating cards?", "Is an explicit default selection stored in project data, keeping installed public formats and unrelated sources unchanged?"]
+    },
+    {
+      "id": "full-exemplar",
+      "request": "请通读这篇论文，把摘要、引言、方法、结果及引用组织的写作技巧提炼成一张完整范例卡，不修改个人默认。",
+      "invariants": {"contains": ["ccf-paper-to-exemplar"]},
+      "outcome_checks": ["Is exemplar selected with card creation true, registration false and full-paper coverage?"]
+    },
+    {
+      "id": "plain-reading",
+      "request": "读一下这个PDF，三句话概括作者做了什么。只概括内容，不评价论文，不分析写作，也不改写我的论文。",
+      "invariants": {"contains": ["host"]},
+      "outcome_checks": ["Does this remain ordinary document reading by the host, without scientific review or exemplar creation?"]
+    },
+    {
+      "id": "use-personal-examples",
+      "request": "从我已登记的个人范例里找适合解释计算依赖的段落，参考它们改写我的方法部分；不要再建新卡。",
+      "invariants": {"contains": ["ccf-paper-writer"]},
+      "outcome_checks": ["Is the writer selected, querying existing metadata then reading relevant source locations without new cards or registration?"]
+    },
+    {
+      "id": "concept-only-from-manuscript",
+      "request": "我把整篇PDF给你，但这次只判断核心思路是否有新意、机制逻辑是否成立，不审实验或行文。",
+      "invariants": {"contains": ["ccf-idea-reviewer"]},
+      "outcome_checks": ["Does the idea reviewer own this despite the full-PDF input?", "Are experiments excluded from the requested concept judgment?"]
+    },
+    {
+      "id": "manuscript-evidence-review",
+      "request": "审一下这篇稿子的核心结论是否被实验支持，找出论证和写作的硬伤，不要替我改正文。",
+      "invariants": {"contains": ["ccf-paper-reviewer"]},
+      "outcome_checks": ["Does the paper reviewer assess evidence and writing without taking over rewriting?"]
+    },
+    {
+      "id": "existing-citation-audit",
+      "request": "核对稿件现有的十二处引用和数字，看是否与我给出的原文对应，不做新的相关工作搜索。",
+      "invariants": {"contains": ["ccf-integrity-auditor"]},
+      "outcome_checks": ["Does the integrity auditor check existing support instead of broad new retrieval?"]
+    },
+    {
+      "id": "dated-related-work",
+      "request": "为我的检索停止问题做一次近两年的相关工作梳理，按机制分组，找公开baseline。这次没有历史跟踪表，也不需要监控报告。",
+      "invariants": {"contains": ["ccf-literature-searcher"]},
+      "outcome_checks": ["Does searcher remain owner despite the time window, without running a duplicate monitoring workflow?"]
+    },
+    {
+      "id": "incremental-watch",
+      "request": "沿用上周的论文跟踪表，只查本周新增或有实质版本变化的工作，报告哪些会与我们的方向重合。",
+      "invariants": {"contains": ["ccf-literature-monitor"]},
+      "outcome_checks": ["Does monitor compare against prior coverage and preserve source versions rather than restart a full literature review?"]
+    },
+    {
+      "id": "research-codebase",
+      "request": "先检查现有项目，选一个适合复现该机制的成熟codebase，给出必要的架构改动和训练调试方案，再实现。不要重新搭简化模型。",
+      "invariants": {"contains": ["ccf-research-engineer"]},
+      "outcome_checks": ["Does the research engineer own implementation and training, retaining necessary mechanism/protocol clarification as contributions rather than a new coordinator by default?"]
+    }
+  ]
+}

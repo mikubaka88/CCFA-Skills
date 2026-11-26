@@ -20,6 +20,8 @@ Before browsing, apply [privacy-and-evidence.md](../ccf-common/references/privac
 
 Use Common's [task modes](../ccf-common/references/task-modes.md): exploratory for direction/opportunity scouting, quick for a small lookup, standard for substantial related-work/novelty/benchmark retrieval. A helper's scope does not become a full standalone search merely because another skill will use it. The user's requested breadth wins; planning ranges are not quotas.
 
+A date-limited related-work search stays here when its purpose is to answer a topic or comparison question. Use the monitor for a feed/watch, changes against an earlier scan, or a requested recent-overlap alert; reuse its verified source set before deeper retrieval.
+
 ## Retrieve And Verify
 
 Read [search-and-scoring.md](references/search-and-scoring.md) for source roles, query/reuse strategy, taxonomy, relevant scoring anchors and standalone search guidance. Ground substantive claims in inspected original papers or primary artifacts. Indexes and stable landing pages establish identity; snippets, citation counts, institutional prestige and awards do not establish scientific findings. Include relevant technical reports, conference/journal papers and arXiv originals according to their content, version and status.

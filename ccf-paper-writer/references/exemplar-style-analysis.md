@@ -8,6 +8,18 @@ Identify the target passage and the concrete writing problem: introducing a repr
 
 Reuse matched supplied or stored originals first, using cards for navigation. Several sources may answer different writing questions, such as an abstract definition, a motivation-to-mechanism transition, and a result interpretation. Select a passage because its objects are clear, its reasoning can be followed, its emphasis serves the contribution, and its language fits the target field. A famous paper can contain weak prose; do not adopt every phrase or its whole outline.
 
+For an established personal library or a request to use personal examples, query its metadata before opening cards:
+
+```bash
+python ccf-paper-to-exemplar/scripts/personal_library.py query --project <project-root> --query "motivation"
+```
+
+The helper combines project and user entries, with project entries overriding matching IDs. Select by the current writing function, then read the returned card and the located original passage. Missing libraries return no matches and require no initialization. Supplied sources remain usable directly. An invalidated record needs its affected source analysis refreshed before reuse; a different valid passage can still support independent writing. Registering a reusable card belongs to `ccf-paper-to-exemplar`; ordinary reference learning stays in context. Personal entries live outside the installed package, while the bundled index remains a maintained public collection.
+
+For an `unavailable` entry, use its retained paths to inspect the current original directly. Its registered version and locations describe the older analysis and need rechecking. Current-source learning can still serve the requested rewrite; update the persistent card or registration only within the authorized library work. Keep stale analysis out of the current-source findings.
+
+Honor explicit project or personal default selections through `is_default` and `defaults_scope`. Project defaults override personal defaults; without a project selection, the personal selection is inherited. Defaults prioritize matching examples rather than loading unrelated cards. Setting, clearing or restoring defaults is an explicit user action handled by the exemplar skill. An explicitly selected bundled custom format remains available.
+
 Additional retrieval follows Common's `reference_style_search` preference. The default `on` combines reuse of matching originals with a targeted search for other well-written passages during substantive drafting or expression rewriting. Search for the actual writing question, even when a useful existing example is available; a completed, still-applicable search for that same question can be reused. Select passages for their quality and fit without requiring a paper count. `auto` searches when available passages leave a writing-function gap; `off` skips unrequested extra search. Explicit requests to search remain part of the task in all modes. Do not search again for every paragraph or create an extra model call to interpret a passage. Ordinary clear local edits need no new source search. A requested full-paper exemplar analysis still covers the source in coherent sections.
 
 The card guides navigation. Verify descriptions of the source against the source itself, especially paragraph counts, section organization, purported quotations, and claims about what is always present. Inspect the PDF when extraction mixes columns, equations, or paragraph boundaries. If a source is unavailable, identify the unverified part and work from available material without claiming source-based learning.

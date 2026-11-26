@@ -126,6 +126,25 @@ npx skills add mikubaka88/CCFA-Skills --global --agent codex --skill '*' --yes -
 | 範文學習 | `ccf-paper-to-exemplar` | 從使用者提供的論文中提煉可重用的寫作方法 |
 | 家族維護 | `ccf-skill-forger` | 改進 skills，消除衝突，完成發布前檢查 |
 
+### 按目前任務使用能力
+
+18 項技能服務不同場景。思路發展、檢索、工程、實驗、寫作和繪圖負責六類科研產出；思路評審、文章評審、完整性核驗和投稿檢查負責四類判斷。監控、範例提煉、專案初始化、流程編排和審稿回覆在相應階段介入。Humanization 與 Common 提供共同前置，Forger 用於維護家族。公共規則建立一次，再按需讀取專業內容；主責智能體整合結果，獨立問題才交由其他智能體處理。
+
+### 讓寫作範例真正用起來
+
+`ccf-paper-to-exemplar` 將論文解釋問題、引入機制和討論結果的方法整理成範例卡，保留原文位置、適用問題與分析範圍。可以提煉整篇論文，也可以只研究某個章節或段落。眼前的段落改寫由 Writer 直接參考原文；需要日後複用時再提煉卡片，明確要求登記時才加入個人庫。
+
+專案範例保存在 `.ccfa/exemplars/`，個人範例保存在個人設定根目錄下的 `ccfa/exemplars/`。登記引用已有卡片與原文，保留來源和版本，拒絕未完成的骨架。Writer 先查詢符合寫作問題的條目，再讀取需要的卡片與原文；來源變動後刷新相關分析。個人登記與技能安裝文件分開，更新時可以繼續保留。
+
+全文提煉保留原有八類分析，也繼續支持明確指定多張預設範例。專案選擇可覆蓋個人選擇，未指定時繼承。預設項僅在符合目前寫作問題時優先，普通登記不改預設。
+
+```bash
+python ccf-paper-to-exemplar/scripts/personal_library.py query --project . --function motivation
+python ccf-paper-to-exemplar/scripts/personal_library.py set-default --project . --id paper-a-motivation
+```
+
+例如：「把這篇論文引言中從問題到機制的寫法提煉成範例，加入目前專案的個人庫。」以後寫作時，再請 Writer 查找解釋同類科學關係的範例。具體登記命令見[範例技能](ccf-paper-to-exemplar/SKILL.md)。
+
 完整職責視圖：
 
 ![按職責劃分的 skill 目錄](assets/ccfa-skills-catalog.zh-TW.svg)
@@ -317,6 +336,8 @@ CCFA-Skills/
 <a id="latest-updates"></a>
 
 ## 最新更新：讓改過的每一段，仍然屬於同一篇論文
+
+**2026-11-26 · 按任務調用，讓範例進入下一次寫作。** 保留18項能力並精簡公共前置。臨時參考原文直接服務目前改寫，需要日後複用時再提煉範例卡。個人庫與安裝文件分開，Writer 按寫作問題查詢卡片及原文位置。新增局部提煉、庫查詢與相應回歸檢查，見[寫作範例](#讓寫作範例真正用起來)。版本仍為0.12.1。
 
 ### 繪圖鏈路修復 · 2026-11-14
 

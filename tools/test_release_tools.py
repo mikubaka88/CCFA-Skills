@@ -45,6 +45,7 @@ class ReleaseTests(unittest.TestCase):
             "ccf-paper-writer/references/custom-format/default-user-format.md": "Optional user selection",
             "ccf-paper-writer/scripts/convert.py": "# legacy bridge\n",
             "ccf-paper-to-exemplar/scripts/convert.py": "# shared converter\n",
+            "ccf-paper-to-exemplar/scripts/personal_library.py": "# personal library query\n",
             "ccf-latex-templates/NeurIPS/template.tex": "Template retained",
             "ccf-latex-templates/CVPR/2027/main.tex": "Year-specific template retained",
             "ccf-latex-templates/CVPR/2027/template-source.json": '{"venue":"CVPR","year":2027}',
@@ -58,7 +59,8 @@ class ReleaseTests(unittest.TestCase):
         for file in ("install_release.py", "release_support.py"):
             self.put("tools/"+file, (ROOT / "tools" / file).read_bytes())
         subprocess.run(["git", "-C", str(self.repo), "add", "."], check=True)
-        for path in ("ccfa-workfiles/private.txt", "output/private.txt", ".secrets/token.txt"):
+        for path in ("ccfa-workfiles/private.txt", "output/private.txt", ".secrets/token.txt",
+                     ".ccfa/exemplars/library.json", "project/.ccfa/exemplars/private-card.md"):
             self.put(path, "not a release file")
             subprocess.run(["git", "-C", str(self.repo), "add", "-f", path], check=True)
         self.output = self.directory / "packages"
@@ -74,13 +76,15 @@ class ReleaseTests(unittest.TestCase):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(value if isinstance(value, bytes) else value.encode("utf-8"))
 
-    def make_release(self, version="0.12.0"):
+    def make_release(self, version="0.12.0", *, package_dir=None):
         for plugin in (".codex-plugin", ".claude-plugin"):
             self.put(plugin+"/plugin.json", json.dumps({"version": version}))
-        self.reports = builder.build(self.repo, self.output)
+        output = self.output if package_dir is None else Path(package_dir)
+        self.assertTrue(output.resolve().is_relative_to(self.directory))
+        self.reports = builder.build(self.repo, output)
         sources = {}
         for item in self.reports:
-            with zipfile.ZipFile(self.output / item["file"]) as archive:
+            with zipfile.ZipFile(output / item["file"]) as archive:
                 archive.extractall(self.directory / ("extracted-"+version))
             sources[item["profile"]] = self.directory / ("extracted-"+version) / ("ccfa-skills-"+version+"-"+item["profile"])
         self.source, self.papers = sources["lean"], sources["papers"]
@@ -97,6 +101,9 @@ class ReleaseTests(unittest.TestCase):
         self.assertFalse((self.source / self.legacy_pdf).exists())
         self.assertTrue((self.papers / self.legacy_pdf).exists())
         self.assertTrue((self.source / "assets/visual-showcase/reference.svg").is_file())
+        for source in (self.source, self.papers):
+            _, manifest = support.load_release(source)
+            self.assertFalse(any(".ccfa/exemplars/" in e["path"] for e in manifest["files"]))
         for report in self.reports:
             self.assertEqual(support.digest(self.output/report["file"]), report["sha256"])
 
@@ -113,7 +120,7 @@ class ReleaseTests(unittest.TestCase):
     def test_partial_install_completes_siblings_without_activating_their_skills(self):
         result = installer.install(self.source, self.target, ["ccf-paper-reviewer"])
         self.assertEqual(set(result["skills"]), support.REQUIRED | {"ccf-paper-reviewer"})
-        for name in ("ccf-paper-writer/references/exemplars/papers/original.md", "ccf-paper-writer/scripts/convert.py", "ccf-paper-to-exemplar/scripts/convert.py"):
+        for name in ("ccf-paper-writer/references/exemplars/papers/original.md", "ccf-paper-writer/scripts/convert.py", "ccf-paper-to-exemplar/scripts/convert.py", "ccf-paper-to-exemplar/scripts/personal_library.py"):
             self.assertTrue((self.target/name).is_file(), name)
         self.assertFalse((self.target/"ccf-paper-writer/SKILL.md").exists())
         self.assertFalse((self.target/"ccf-paper-to-exemplar/SKILL.md").exists())
@@ -136,12 +143,13 @@ class ReleaseTests(unittest.TestCase):
 
     def test_default_build_excludes_untracked_files_and_records_source_identity(self):
         self.put("private-notes.md", "Untracked fixture, never a public release input")
-        self.make_release()
+        self.make_release(package_dir=self.directory/"tracked-comparison-packages")
         _, manifest = support.load_release(self.source)
         self.assertNotIn("private-notes.md", {e["path"] for e in manifest["files"]})
         self.assertEqual(manifest["source"], {"commit": None, "dirty": True, "file_selection": "tracked"})
-        reports = builder.build(self.repo, self.output, tracked_only=False)
-        with zipfile.ZipFile(self.output/reports[0]["file"]) as archive:
+        untracked_output = self.directory/"untracked-comparison-packages"
+        reports = builder.build(self.repo, untracked_output, tracked_only=False)
+        with zipfile.ZipFile(untracked_output/reports[0]["file"]) as archive:
             self.assertTrue(any(name.endswith("/private-notes.md") for name in archive.namelist()))
             manifest = json.loads(archive.read("ccfa-skills-0.12.0-lean/"+support.MANIFEST))
             self.assertEqual(manifest["source"]["file_selection"], "tracked-and-untracked")
@@ -160,7 +168,7 @@ class ReleaseTests(unittest.TestCase):
             installer.install(self.source, self.target)
         for skill in ("ccf-common", "ccf-humanization"):
             self.put(skill+"/SKILL.md", "Updated "+skill+"\n")
-        self.make_release("0.12.1")
+        self.make_release("0.12.1", package_dir=self.directory/("fresh-update-packages" if fresh else "existing-update-packages"))
         replace = installer.os.replace
         count = 0
         def interrupted(source, destination):
@@ -194,7 +202,9 @@ class ReleaseTests(unittest.TestCase):
                 if fresh:
                     for skill in ("ccf-common", "ccf-humanization"):
                         self.put(skill+"/SKILL.md", "# "+skill+"\n")
-                    self.make_release("0.12.0")
+                    # Keep this restored input package separate from the earlier
+                    # ZIP instead of replacing an archive Windows may still hold.
+                    self.make_release("0.12.0", package_dir=self.directory/"restored-baseline-packages")
 
     def test_pending_update_preserves_intervening_user_edit_or_deletion(self):
         pending = self._interrupt_update()

@@ -1,5 +1,15 @@
 # Changelog
 
+## Focused skill use and personal exemplar libraries · 2026-11-26
+
+Plugin version remains `0.12.1`.
+
+- Keep the 18 public skill names and their specialist boundaries. Condense repeated entry preflights while retaining Humanization before Common, file placement, metadata and accountable integration.
+- Separate temporary reference learning from reusable exemplar analysis. Support selected sections/passages alongside full-paper cards; preserve original Unicode punctuation in extracted text.
+- Register completed cards in project or user data directories, preserving original sources, versions, passage locations and writing functions. Keep explicit default selections with project/user inheritance and task matching. Query metadata without copying papers; invalidate changed sources and avoid modifying installed public indexes during personal use.
+- Connect the writer to personal-library lookup, preserve private-library exclusions in release packaging, and add maintenance-only natural-request routing probes plus library/installation regressions.
+- Clarify dated literature search versus incremental monitoring and restore ICML template-copy guidance to the scaffolder's template-selection step.
+
 ## ACL 2027 venue support · 2026-11-25
 
 - Add the ACL 2027 official template snapshot, venue guidance and local source/PDF preflight.

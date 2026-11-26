@@ -126,6 +126,25 @@ Every CCFA task activates `ccf-humanization` first, then `ccf-common`, before th
 | Exemplar learning | `ccf-paper-to-exemplar` | Distills controllable writing patterns from papers supplied by the user |
 | Family maintenance | `ccf-skill-forger` | Improves skills, resolves conflicts, and validates releases |
 
+### Use the capabilities the task needs
+
+The 18 skills serve different occasions. Six produce research work: idea development, retrieval, engineering, experiments, writing and figures. Four assess ideas, manuscripts, integrity and submission packages. Monitoring, exemplars, scaffolding, orchestration and rebuttals enter at their relevant stage. Humanization and Common provide the shared preflight; the forger maintains the family. Establish shared rules once, then load relevant guidance. One owner integrates the result, with actual subagents used for complete independent questions.
+
+### Make writing exemplars reusable
+
+`ccf-paper-to-exemplar` records how a paper explains its science, with source locations, writing functions and declared coverage. It supports a whole paper or a selected section or passage. A one-off rewrite stays with the writer and needs no card. A reusable analysis becomes a card; an explicit registration request makes a completed card discoverable in the personal library.
+
+Project entries live in `.ccfa/exemplars/`; user entries live under the personal configuration root in `ccfa/exemplars/`. Registration references existing cards and originals, retains source identity and version, and rejects unfinished skeletons. The writer queries metadata before reading matched cards and original passages. Changed sources invalidate their entries. Personal registration leaves installed skill files unchanged.
+
+Whole-paper mode retains all eight established analysis categories. Explicit defaults remain supported, including multiple cards and project selection over inherited user defaults. Defaults prioritize matching examples; ordinary registration preserves the selection.
+
+```bash
+python ccf-paper-to-exemplar/scripts/personal_library.py query --project . --function motivation
+python ccf-paper-to-exemplar/scripts/personal_library.py set-default --project . --id paper-a-motivation
+```
+
+Ask to distill a paper's introduction into a reusable exemplar and register it for the current project. In a later writing task, ask the writer to find personal examples that explain the same scientific relation. See the [exemplar skill](ccf-paper-to-exemplar/SKILL.md) for registration commands.
+
 The complete responsibility map:
 
 ![Skill catalog by responsibility](assets/ccfa-skills-catalog.svg)
@@ -317,6 +336,8 @@ Chinese output uses explicit UTF-8 I/O with optional BOM support on input. Shell
 <a id="latest-updates"></a>
 
 ## Latest updates: keep every revision part of the same paper
+
+**2026-11-26 · Focused skill use and reusable writing references.** Keep all 18 capabilities with shorter shared preflights. Use sources directly for a current rewrite; create cards for reusable analysis. Personal libraries live outside installed skills and expose matched cards and original locations to the writer. Add scoped extraction, metadata queries and library/installation regressions. Version remains 0.12.1; see [writing exemplars](#make-writing-exemplars-reusable).
 
 ### Drawing pipeline repair · 2026-11-14
 

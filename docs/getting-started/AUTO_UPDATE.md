@@ -27,6 +27,8 @@ npx skills update --global --yes
 
 更新前先比较安装副本中的个人修改与仓库版本，将需要保留的改进合并或另存到明确的维护位置；不要用整目录覆盖代替差异核对。个人偏好保存在安装目录之外的 `$CODEX_HOME/ccfa/preferences.json`（未设置时为 `~/.codex/ccfa/preferences.json`）及项目 `.ccfa/preferences.json`，更新时保留。配置页与解析器随 `ccf-common` 一起更新，普通任务无需启动网页服务。
 
+个人写作范例同样保存在安装目录之外：项目使用 `.ccfa/exemplars/library.json`，个人库使用 `$CODEX_HOME/ccfa/exemplars/library.json`。登记引用已有卡片与原文，更新技能时保留这些文件及其稳定路径。旧版若曾手动修改内置范例索引，应先把需要保留的卡片登记到个人库，再核对安装副本的修改；安装器继续保护个人改动，不强制覆盖。
+
 ## Windows 任务计划
 
 ```powershell

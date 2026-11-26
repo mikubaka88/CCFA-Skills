@@ -12,15 +12,9 @@ metadata:
 
 # CCF Project Scaffolder
 
-## Family File Contract
+## Shared Files And Preflight
 
-Before file work, reuse canonical paths and one task/artifact working directory; default to project-root `ccfa-workfiles/<purpose>/<artifact-id>/`. Update in place, preserve inputs, and use UTF-8 with Chinese-text checks. Apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) for naming, ownership, and task-created cleanup; handoffs inherit these paths.
-
-## Collaboration Contract
-
-Before specialist execution, read and apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md). At every handoff, reuse their applicable active rules or refresh missing/changed ones. Both preflights are required even without prose; detailed editing, experiment, and maintenance modes run only when relevant.
-
-Integrate necessary specialist contributions under one owner; reuse valid prerequisites and verify affected results. Follow the [cooperation routes](../ccf-common/references/routing.md) without duplicate reports.
+Reuse one established task directory, default `ccfa-workfiles/<purpose>/<artifact-id>/`; preserve inputs, update in place, and check UTF-8/Chinese text. Apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md) before every task. Reuse applicable active rules; refresh changed or lost ones. Common's artifact and **PARTIAL** handoff contracts govern naming, cleanup and necessary contributions under one owner. Preserve the metadata controls; do not duplicate intake or reports.
 
 ## Invocation Controls
 
@@ -35,9 +29,9 @@ Create the requested project structure, template, and state without inventing re
 1. Resolve the project location, venue, requested folders, and existing artifacts from the conversation and filesystem. Infer routine directory names; ask only about a consequential unresolved location or overwrite choice.
 2. Select the matching template through `../ccf-paper-writer/references/venue-guides/index.md`. Verify that the template and its supporting style/assets are available. For CVPR 2027, copy the complete `../ccf-latex-templates/CVPR/2027/` bundle, preserving the historical 2026 root files. The official sample needs an actual, truthful LLM Usage Statement before references when converted into a submission. Use supplied templates when requested; identify unavailable dependencies precisely instead of copying an incomplete template.
    - For ACL 2027, copy the complete official bundle linked in [the venue guide](../ccf-paper-writer/references/venue-guides/acl.md). Use the chosen long/short track and review or final mode.
+   - For ICML 2027, copy the complete official bundle linked in [the venue guide](../ccf-paper-writer/references/venue-guides/icml.md). Use the research track and match the mode to submission or camera-ready.
 3. Resolve final artifacts and the working root through `../ccf-common/references/artifact-contracts.md`. Create only needed directories and templates, with source/assets/cache/build subdirectories on demand. Preserve existing layout; do not migrate user files or overwrite a manuscript, bibliography, or configuration to refresh a scaffold.
 4. If `ccfa.yaml` is absent and initialization is requested, copy `assets/ccfa.yaml`, preserve the required fields in `../ccf-common/references/ccfa-yaml-contract.md`, and fill only supplied project metadata. Existing state is read and updated only within the requested scope; unknown research fields remain explicit placeholders.
-   - For ICML 2027, copy the complete official bundle linked in [the venue guide](../ccf-paper-writer/references/venue-guides/icml.md). Use the research track and match the mode to submission or camera-ready.
 5. Check the created paths, template references, and YAML. A build is useful when a runnable template was requested and an engine is available; do not run research experiments or final submission checks for directory setup.
 6. Report the actual created/updated paths and any concrete missing dependency. For a dry run, return the proposed tree and actions without writing files.
 

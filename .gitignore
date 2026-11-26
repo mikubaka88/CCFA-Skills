@@ -5,6 +5,7 @@ demo/*/paper/*.pdf
 /output/
 /ccfa-workfiles/
 **/.ccfa/preferences.json
+**/.ccfa/exemplars/
 
 # Local credentials and transient runtime caches must never enter a release.
 **/.secrets/

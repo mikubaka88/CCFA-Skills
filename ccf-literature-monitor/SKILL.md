@@ -12,15 +12,9 @@ metadata:
 
 # CCF Literature Monitor
 
-## Family File Contract
+## Shared Files And Preflight
 
-Before file work, reuse canonical paths and one task/artifact working directory; default to project-root `ccfa-workfiles/<purpose>/<artifact-id>/`. Update in place, preserve inputs, and use UTF-8 with Chinese-text checks. Apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) for naming, ownership, and task-created cleanup; handoffs inherit these paths.
-
-## Collaboration Contract
-
-Before specialist execution, read and apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md). At every handoff, reuse their applicable active rules or refresh missing/changed ones. Both preflights are required even without prose; detailed editing, experiment, and maintenance modes run only when relevant.
-
-Integrate necessary specialist contributions under one owner; reuse valid prerequisites and verify affected results. Follow the [cooperation routes](../ccf-common/references/routing.md) without duplicate reports.
+Reuse one established task directory, default `ccfa-workfiles/<purpose>/<artifact-id>/`; preserve inputs, update in place, and check UTF-8/Chinese text. Apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md) before every task. Reuse applicable active rules; refresh changed or lost ones. Common's artifact and **PARTIAL** handoff contracts govern naming, cleanup and necessary contributions under one owner. Preserve the metadata controls; do not duplicate intake or reports.
 
 ## Core Rule
 
@@ -55,6 +49,8 @@ Treat unpublished ideas, draft abstracts, methods, and results as private materi
 Load `../ccf-common/references/review-output-standards.md` when monitor results feed idea scoring, paper review, or score-risk language.
 
 ## Workflow
+
+Choose monitoring for changes in a tracked topic, a recent-overlap watch or a requested feed scan. A one-off related-work search can have a date limit without becoming monitoring; return that task to `ccf-literature-searcher`. Pass current verified sources and the exact unresolved question instead of repeating the entire retrieval.
 
 1. Load `references/monitoring-workflow.md`.
 2. If project state is available (`ccfa.yaml`), read the current idea, target venue, claims, and tracked competitors.
