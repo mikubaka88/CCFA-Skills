@@ -2,7 +2,7 @@
 
 ## Family-Wide Baseline
 
-Activate Humanization before every CCFA skill, then apply Common's controls. Use direct, evidence-faithful reasoning and communication in planning, retrieval, review, audit, drawing, and maintenance as well as writing. Preserve critical findings, meaningful uncertainty, source quotations, and required checks. Activation does not authorize changing an assessed manuscript or replacing scientific judgment with agreeable wording. Reuse this baseline at handoffs; the sentence-editing procedure below is conditional on authorized prose work.
+Activate Humanization before every CCFA skill, then apply Common's controls. Lead with the requested answer or deliverable and explain the evidence needed to understand it. Use direct, evidence-faithful reasoning and communication in planning, retrieval, review, audit, drawing, and maintenance as well as writing, including progress messages and tool feedback. Preserve critical findings, meaningful uncertainty, source quotations, and required checks. Activation does not authorize changing an assessed manuscript or replacing scientific judgment with agreeable wording. Reuse this baseline at handoffs; the sentence-editing procedure below is conditional on authorized prose work.
 
 ## Manuscript Standard
 
@@ -26,13 +26,26 @@ These are decisions within the current task, not three extra workflow stages or 
 
 For each sentence that sounds defensive, recover its scientific payload and its role in the requested passage before editing. Preserving relevant scientific meaning does not require copying every task-status note from the input into the output. An unfinished experiment constrains empirical claims; it is not automatically a limitation sentence in a passage that makes no such claim.
 
-1. Identify the observation, mechanism, assumption, comparison, or inference it contributes.
-2. If it contains a supported fact relevant to that role or necessary to interpret a claim, state it directly with the needed scope.
-3. If uncertainty affects the claim or requested specification, explain the specific unresolved point. Retain calibrated verbs such as `may` or `suggests` when the evidence warrants them; keep unrelated project status in working context.
-4. If deleting it loses no scientific information, delete it. Do not replace it with another disclaimer or an advisory warning.
-5. If support is missing, leave the result pending or isolate the affected claim. Ask only when an unresolved user choice is needed to proceed; continue authorized edits and unaffected work.
+1. Start with the requested answer or artifact, then supply the relevant reason or evidence. Recover each sentence's observation, mechanism, assumption, comparison, or inference before editing.
+2. Identify its task-relevant fact, reasoning, or decision. Delete framing that adds none, including empty assurances, pleasantries, repeated warnings, and empty summaries. If deleting it loses no scientific information, delete it without replacing it with another disclaimer or warning.
+3. State the actual object, operation, relation, and result directly. Remove unsolicited denial-led positioning and “not A but B” framing. Use a contrast for an explicit comparison, real alternatives, or a material factual correction. Preserve factual negation and negative findings as information. Keep ordinary discussion focused on the question and answer complex or sensitive questions at the supported depth.
+4. Use the strongest wording supported by the evidence. When uncertainty affects the claim or requested specification, state the specific unresolved question and its reason. Retain calibrated verbs such as `may` or `suggests` when warranted. Explain a concrete risk briefly when it changes the current decision; keep unrelated project status in working context.
+5. Preserve content that changes the population, measurement, numbers and units, time, comparison, conditions, evidence strength, negative findings, or relevant work status. Keep each condition attached to its claim. Preserve citation keys, equations, terminology, and required disclosures.
+6. When a sentence mixes empty framing and useful content, rewrite the framing and retain the content needed for its role. Leave clear, accurate wording intact unless the requested format or length requires an edit. Shorter or stronger writing retains the supplied facts and evidence strength.
+7. State supported criticism and factual or logical corrections directly, including when the user asks for a more favorable presentation. Keep the assessment grounded in evidence; do not change a review score merely to sound more agreeable.
+8. For an actual blocker, give its specific cause and consequence briefly, then complete the supported remainder. Ask only for an unresolved user choice needed to proceed. Keep plans as plans, observations as observations, and unavailable results pending; isolate any affected unsupported claim.
 
 Ordinary authorized editing includes preserving material facts, removing rhetorical padding, and rewriting a claim to accurately express its supplied evidence. These edits do not need a second approval. A factual limitation that changes interpretation is scientific content, not a warning to hide outside the paper. A note about unfinished work serves a different purpose and belongs in the text only when the requested content needs it.
+
+These development examples illustrate the decisions above:
+
+| Supplied situation | Direct expression |
+| --- | --- |
+| Two datasets were evaluated; the draft adds a generic guarantee disclaimer. | 本次测试覆盖两个数据集。 |
+| A rises from 70% to 74%; the draft begins with a cautionary preamble. | A 集准确率从 70% 升至 74%，提高 4 个百分点。 |
+| An adult observational study measures association. | 在成年受试者中，X 与 Y 相关。 |
+| Experiments are planned and the results file is absent. | 三个随机种子的实验已列入计划，结果待填写。 |
+| A supplied paragraph is already accurate and direct. | Preserve it, making only edits the requested format or length requires. |
 
 ## Defensive Patterns And Repairs
 
