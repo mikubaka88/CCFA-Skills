@@ -12,15 +12,9 @@ metadata:
 
 # CCF Experiment Designer
 
-## Family File Contract
+## Shared Files And Preflight
 
-Before file work, reuse canonical paths and one task/artifact working directory; default to project-root `ccfa-workfiles/<purpose>/<artifact-id>/`. Update in place, preserve inputs, and use UTF-8 with Chinese-text checks. Apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) for naming, ownership, and task-created cleanup; handoffs inherit these paths.
-
-## Collaboration Contract
-
-Before specialist execution, read and apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md). At every handoff, reuse their applicable active rules or refresh missing/changed ones. Both preflights are required even without prose; detailed editing, experiment, and maintenance modes run only when relevant.
-
-Integrate necessary specialist contributions under one owner; reuse valid prerequisites and verify affected results. Follow the [cooperation routes](../ccf-common/references/routing.md) without duplicate reports.
+Reuse one established task directory, default `ccfa-workfiles/<purpose>/<artifact-id>/`; preserve inputs, update in place, and check UTF-8/Chinese text. Apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md) before every task. Reuse applicable active rules; refresh changed or lost ones. Common's artifact and **PARTIAL** handoff contracts govern naming, cleanup and necessary contributions under one owner. Preserve the metadata controls; do not duplicate intake or reports.
 
 ## Invocation Controls
 

@@ -1,11 +1,11 @@
-"""Convert research paper PDFs to distilled markdown exemplar cards.
+"""Extract paper text and create unfinished Markdown writing-card skeletons.
 
 Usage:
  python convert.py paper.pdf --venue CVPR --full-text
  python convert.py paper-a.pdf paper-b.pdf --output-dir cards/ --full-text --set-default
 
-For each PDF, produces a distilled .md card with writing-pattern analysis.
-Pass --full-text to also save the complete extracted text.
+For each PDF, creates a skeleton for source-grounded analysis by the agent.
+Pass --section for selected writing functions and --full-text for extraction.
 """
 
 import argparse, re, sys
@@ -40,7 +40,6 @@ def clean_text(text):
     text = re.sub(r'(?<!' + chr(92) + 'n)' + chr(92) + 'n(?!' + chr(92) + 'n)', ' ', text)
     text = re.sub(r'' + chr(92) + 'n{3,}', chr(92) + 'n' + chr(92) + 'n', text)
     text = text.replace(chr(0xfb01), 'fi').replace(chr(0xfb02), 'fl')
-    text = text.replace(chr(0x2013), '--').replace(chr(0x2014), '---')
     return text.strip()
 
 
@@ -70,7 +69,7 @@ def detect_sections(text):
     return secs
 
 
-def make_card(meta):
+def make_card(meta, requested=None):
     venue = meta.get('venue','Unknown')
     secs = meta.get('sections',[])
     out = []
@@ -80,30 +79,18 @@ def make_card(meta):
     out.append('Source: [ANALYZE] Identify the supplied PDF and source version; this skeleton is not an analysis.')
     out.append('Use when: [ANALYZE] Match an observed writing technique to the scientific object and writing question; a venue hint alone does not establish fit.')
     out.append('')
-    out.append('## Story Pattern')
-    out.append('')
-    out.append('[ANALYZE] Anchor the observed argument to source sections. Distinguish source description from adaptation advice.')
-    out.append('')
-    out.append('## Abstract Moves')
-    out.append('')
-    out.append('[ANALYZE] At an identified source passage, explain how subjects, verbs, definitions, and sentence relationships convey the contribution.')
-    out.append('')
-    out.append('## Introduction Moves')
-    out.append('')
-    out.append('[ANALYZE] Trace the actual paragraph progression with source anchors; do not impose a generic paragraph count or outline.')
-    out.append('')
-    out.append('## Method Moves')
-    out.append('')
-    out.append('[ANALYZE] Show how a source passage connects an operation, its dependencies, and its purpose. Identify the location.')
-    out.append('')
-    out.append('## Evidence Moves')
-    out.append('')
-    out.append('[ANALYZE] Locate a result passage and explain how comparison, observation, and interpretation are connected.')
-    out.append('')
-    out.append('## Citation Patterns')
-    out.append('')
-    out.append('[ANALYZE] Identify what a cited sentence attributes or supports and how it connects to the surrounding argument.')
-    out.append('')
+    moves = {
+        'story': ('Story Pattern', 'Anchor the observed argument to source sections. Distinguish source description from adaptation advice.'),
+        'abstract': ('Abstract Moves', 'At an identified source passage, explain how subjects, verbs, definitions, and sentence relationships convey the contribution.'),
+        'introduction': ('Introduction Moves', 'Trace the actual paragraph progression with source anchors; do not impose a generic paragraph count or outline.'),
+        'method': ('Method Moves', 'Show how a source passage connects an operation, its dependencies, and its purpose. Identify the location.'),
+        'evidence': ('Evidence Moves', 'Locate a result passage and explain how comparison, observation, and interpretation are connected.'),
+        'citation': ('Citation Patterns', 'Identify what a cited sentence attributes or supports and how it connects to the surrounding argument.'),
+    }
+    selected = list(dict.fromkeys(requested)) if requested else list(moves)
+    for name in selected:
+        heading, instruction = moves[name]
+        out.extend(['## ' + heading, '', '[ANALYZE] ' + instruction, ''])
     out.append('## Reusable Techniques')
     out.append('')
     out.append('[ANALYZE] Label adaptation advice separately from source observations. Explain when a sentence or paragraph technique fits new scientific material.')
@@ -142,13 +129,15 @@ def main():
     for stream in (sys.stdout, sys.stderr):
         if hasattr(stream, "reconfigure"):
             stream.reconfigure(encoding="utf-8", errors="strict")
-    parser = argparse.ArgumentParser(description='Convert PDFs to exemplar cards')
+    parser = argparse.ArgumentParser(description='Extract PDFs and create writing-card skeletons requiring source analysis')
     parser.add_argument('pdf', nargs='+', help='PDF files to convert')
     parser.add_argument('--venue', help='Target venue, e.g. CVPR, NeurIPS, ICLR')
     parser.add_argument('--output-dir', default='.', help='Output directory')
     parser.add_argument('--set-default', action='store_true', help='Print default-exemplar registration instructions')
     parser.add_argument('--full-text', action='store_true', help='Also save full extracted text')
     parser.add_argument('--full-text-dir', help='Extracted-text cache directory; defaults to --output-dir')
+    parser.add_argument('--section', action='append', choices=['story', 'abstract', 'introduction', 'method', 'evidence', 'citation'],
+                        help='Analyze selected writing functions; repeat when useful, omit for a whole-paper skeleton')
     args = parser.parse_args()
     _check_pymupdf()
     slugs = [slugify(Path(pdf).stem) for pdf in args.pdf]
@@ -175,7 +164,7 @@ def main():
         venue = detect_venue(text, args.venue)
         secs = detect_sections(text)
         meta = {'title': pdf_file.stem, 'venue': venue, 'basename': pdf_file.stem, 'sections': secs}
-        card = make_card(meta)
+        card = make_card(meta, args.section)
         slug = slugify(pdf_file.stem)
         card_path = out_dir / (slug + '.md')
         try:
@@ -198,11 +187,13 @@ def main():
     print('Done.', len(results), 'PDF(s) processed.')
     if args.set_default:
         print()
-        print('=== To register as default writing exemplars ===')
-        print('1. Copy generated .md card(s) to:')
-        print(' ccf-paper-writer/references/exemplars/cards/')
-        print('2. Update index: ccf-paper-writer/references/exemplars/index.md')
-        print('3. Set as default: ccf-paper-writer/references/custom-format/default-user-format.md')
+        print('=== Registration requires completed source analysis ===')
+        print('Complete and check each card against its original passages first.')
+        print('Use personal_library.py register --project <project> with the card, original source, source ID/version, locations and writing functions.')
+        print('After registering a completed card, an explicit default request can use:')
+        print(' python personal_library.py set-default --project <project> --id <registered-id>')
+        print('Explicit --scope user selects the personal library under $CODEX_HOME/ccfa/exemplars/.')
+        print('This compatibility flag prints guidance only; it does not change defaults or the built-in library.')
     print()
     print('IMPORTANT: New card skeletons contain [ANALYZE] placeholders; existing cards are preserved.')
     print('Fill them in by reading the full extracted text.')

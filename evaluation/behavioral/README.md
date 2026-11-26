@@ -17,6 +17,7 @@ Prepare model-facing inputs; keep the assessor's copy of the suite separate:
 ```bash
 python evaluation/behavioral/evaluate_outputs.py --prepare
 python evaluation/behavioral/evaluate_outputs.py --suite evaluation/behavioral/tasks-integration.json --prepare
+python evaluation/behavioral/evaluate_outputs.py --suite evaluation/behavioral/tasks-routing.json --prepare
 ```
 
 The second suite adds five terse requests: a method change across a manuscript,
@@ -55,3 +56,12 @@ capability evaluation separate from the deterministic regression suite. An
 additional independent judge is optional outside a requested evaluation budget.
 The new suite is ready for future comparisons; adding its tasks and passing the
 evaluator's own tests does not constitute a model run or a measured quality gain.
+
+`tasks-routing.json` supplies natural requests without an owner. Give its prepared
+requests and the tested version's skill descriptions to a fresh agent, retaining
+the answer anchors for assessment. It separates one-off writing reference use,
+scoped/full exemplar cards, personal registration, ordinary reading, concept and
+manuscript review, citation audit, dated search, incremental monitoring and research
+engineering. Parse the actual returned JSON and assess its owner and scope against
+the outcome questions; the literal-anchor checker alone cannot validate routing.
+These are maintenance probes, not extra calls in ordinary user tasks.

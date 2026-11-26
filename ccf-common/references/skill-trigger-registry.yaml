@@ -1,5 +1,5 @@
 schema_version: 4
-generated_at: 2026-10-30
+generated_at: 2026-11-26
 authority: SKILL.md wins if this registry conflicts with a skill body.
 naming_policy: canonical runtime names use ccf-<object>-<role/action>; ccf-common is the governance exception.
 runtime_skill_count: 18
@@ -47,13 +47,13 @@ skills:
     exclude: "Does not design experiments, invent results/components, write manuscript prose, convert PDFs into writing exemplars, or perform final submission compliance."
     handoff: "ccf-experiment-designer, ccf-idea-optimizer, ccf-paper-writer, ccf-integrity-auditor, ccf-submission-checker"
   - name: ccf-paper-to-exemplar
-    trigger: "Distill supplied paper PDFs into writing exemplar cards and register a requested personal library. Use for PDF to writing exemplar, 写作范例, and reusable paper-writing patterns. Preserve attribution; transfer argument structure and selected language conventions without copying scientific claims. Figure reconstruction, manuscript drafting, and review have separate owners."
-    exclude: "Does not write papers, perform review, render figures, or reconstruct visuals."
+    trigger: "Distill supplied papers or selected passages into reusable writing exemplar cards, register requested project/personal libraries, and save explicitly selected default exemplars. Use for PDF to writing exemplar, 提炼写作范例, 建立个人范例库, and 设置默认范例. Ordinary drafting and one-time reference learning stay with ccf-paper-writer; figure reconstruction and scientific review have separate owners."
+    exclude: "Does not draft manuscripts or create cards for ordinary reading or one-time reference adaptation. Scientific review and visual reconstruction have separate owners."
     handoff: "ccf-paper-writer"
   - name: ccf-paper-writer
     trigger: "Draft, revise, polish, compress, or presentation-adapt CCF manuscript prose. Use for 写作, 润色论文, research documents to complete papers, 完整初稿, 实验留空, 改写, 压缩论文, abstracts, sections, and slides. Draft content before fitting pages; preserve evidence and format. Assessment without rewriting belongs to ccf-paper-reviewer; rebuttal belongs to ccf-rebuttal-writer."
     exclude: "Does not perform full review, scientific review, scoring, assessment-only diagnosis, evidence audit, package check, or rebuttal."
-    handoff: "ccf-humanization, ccf-literature-monitor, ccf-literature-searcher, ccf-experiment-designer, ccf-visual-composer, ccf-paper-reviewer, ccf-integrity-auditor, ccf-submission-checker, ccf-rebuttal-writer"
+    handoff: "ccf-humanization, ccf-literature-monitor, ccf-literature-searcher, ccf-experiment-designer, ccf-visual-composer, ccf-paper-reviewer, ccf-integrity-auditor, ccf-submission-checker, ccf-rebuttal-writer, ccf-paper-to-exemplar"
   - name: ccf-paper-reviewer
     trigger: "Review manuscript claims, evidence, and writing without rewriting. Use for 文章审核, 审稿, 稿件有什么硬伤, 结论站得住吗, 投稿成熟度, writing review, and version comparison. Return a structured scientific or writing review; scores need not be explicitly requested. Concept-only judgment belongs to ccf-idea-reviewer even with a full PDF; requested prose edits belong to ccf-paper-writer."
     exclude: "Does not rewrite the manuscript, handle review-motivated rewrites when no new review is requested, draft rebuttals, own the revision ledger, or style/render visual tables."

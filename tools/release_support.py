@@ -46,7 +46,8 @@ def public_path(value):
     parts = value.split("/")
     return not any(p in {".git", ".secrets", "ccfa-workfiles", "output", "__pycache__"} for p in parts) and not (
         value.endswith(".pyc") or parts[-1] == ".env" or parts[-1].startswith(".env.")
-        or value.endswith("/.ccfa/preferences.json") or value == ".ccfa/preferences.json")
+        or value.endswith("/.ccfa/preferences.json") or value == ".ccfa/preferences.json"
+        or any(parts[i:i+2] == [".ccfa", "exemplars"] for i in range(len(parts)-1)))
 
 
 def no_links(path):

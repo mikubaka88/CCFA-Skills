@@ -45,6 +45,8 @@ Use the primary contribution type and required statement guidance in the [ICML 2
 
 For substantive drafting or expression rewriting, inspect relevant real passages through [exemplar-style-analysis.md](references/exemplar-style-analysis.md). `reference_style_search` defaults to **on**: reuse matched originals and search for additional good writing for the actual question, reusing completed applicable searches across paragraphs. `auto` limits extra discovery to gaps; `off` skips unrequested extra discovery, not supplied references or explicit searches. Choose quality and function without a paper-count quota. Reuse conventional language and technical terms, not distinctive source sentences or scientific claims; keep one author voice.
 
+Learning from a supplied passage for the current rewrite stays with the writer; it does not require a card or full-paper extraction. When the user requests a reusable exemplar or library registration, use `ccf-paper-to-exemplar` and return to the current writing task with its selected source locations. For personal-library discovery, follow the query in [exemplar-style-analysis.md](references/exemplar-style-analysis.md); keep personal records outside installed skill files.
+
 ## Draft, Check, Deliver
 
 1. Recover the requested artifact, evidence, argument and routine choices from existing context. Ask only for a missing decision that changes the science or deliverable; continue independent work. A long coordinated revision can use [writing-execution.md](references/writing-execution.md) and `scripts/writing_runtime.py` for current targets, necessary transitions, source positions and checked patches. Short edits stay direct; section IDs do not imply separate agents.

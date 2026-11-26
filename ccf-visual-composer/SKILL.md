@@ -12,13 +12,9 @@ metadata:
 
 # CCF Visual Composer
 
-## Family File Contract
+## Shared Files And Preflight
 
-Reuse canonical paths and one stable task directory, normally `ccfa-workfiles/<purpose>/<artifact-id>/`. Update current artifacts in place, preserve inputs, and check UTF-8/Chinese text. Apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) when writing files.
-
-## Collaboration Contract
-
-Apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md), once. Reuse their active rules and valid prerequisites. Integrate a needed scientific contribution through [routing.md](../ccf-common/references/routing.md), without duplicate intake or reports.
+Reuse one established task directory, default `ccfa-workfiles/<purpose>/<artifact-id>/`; preserve inputs, update in place, and check UTF-8/Chinese text. Apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md) before every task. Reuse applicable active rules; refresh changed or lost ones. Common's artifact and **PARTIAL** handoff contracts govern naming, cleanup and necessary contributions under one owner. Preserve the metadata controls; do not duplicate intake or reports.
 
 ## Invocation Controls
 

@@ -13,7 +13,9 @@ Resolve common collisions by the requested deliverable:
 - Judge a research concept (“思路审核”, “靠谱吗”, “值得做吗”, “创新够不够”, or mechanism logic) -> `ccf-idea-reviewer`, without requiring scores. Judge manuscript evidence, completeness, writing, or revision readiness -> `ccf-paper-reviewer`. A full PDF can still be input to concept-only review. Idea review excludes experiment assessment by default; manuscript scientific review evaluates the evidence supporting its claims. Develop an idea -> `ccf-idea-optimizer`. A combined request has each deliverable handled by its owner.
 
 - Revised, polished, compressed, or newly drafted prose -> `ccf-paper-writer`; assessment, scoring, issue diagnosis, or version comparison without rewriting -> `ccf-paper-reviewer`. If the request says full review, scientific review, scoring, assessment-only, or no rewrite, choose reviewer.
+- Reuse a source's expression for the current passage -> `ccf-paper-writer`, reading only the useful original context. Extract or update a reusable writing exemplar, or register a personal library -> `ccf-paper-to-exemplar`, then return its card and source locations to the writer. A supplied PDF alone does not request exemplar extraction or a full review; ordinary reading or summarization can use the host's document tools directly.
 - External source discovery -> `ccf-literature-searcher`; end-to-end manuscript assessment remains `ccf-paper-reviewer`, which may request search only when current evidence is actually needed. Supplied-result evidence schemas and result-table structure belong to `ccf-experiment-designer`, not search.
+- A date-limited related-work question still belongs to searcher. A tracked-feed scan, changes since an earlier scan, or a requested recent-overlap watch belongs to `ccf-literature-monitor`. Reuse applicable findings when handing off; temporal keywords alone do not require both workflows.
 - Datasets, baselines, metrics, ablations, evidence schemas, and what a result table should contain -> `ccf-experiment-designer`; plotting, styling, layout, rendering, result-table color/readability improvement, or local edits to existing source figures -> `ccf-visual-composer`.
 
 - Research codebase selection, model implementation, reproduction, training faults, or measured training optimization -> `ccf-research-engineer`. Designer owns scientific comparisons; optimizer owns changes to the research mechanism. Ordinary application coding stays with the host's relevant coding skills.
@@ -43,7 +45,7 @@ Humanization removes empty self-defense while preserving material facts, rigorou
 | Select or extend a research codebase, implement a mechanism, reproduce results, diagnose training, or optimize measured performance. | `ccf-research-engineer` | codebase selection, implementation, reproduction, training diagnosis, performance | Preserves the scientific mechanism and comparison conditions; ordinary app coding, protocol design, and campaign coordination have separate owners. |
 | Render faithful numerical templates with Python; create/redraw scientific diagrams through prompt preparation, GPT Image generation and same-prompt image refinement. Deliver PNG. Maintain existing sources locally; no new diagram vector reconstruction. | `ccf-visual-composer` | visual-contract, figure-design, architecture-generation, diagram-refinement, existing-source-edit, python-plotting, table-design, layout-integration, render-qa | Does not design experiments, invent results/components, write manuscript prose or perform final submission compliance. |
 | Draft, revise, polish, compress, and presentation-adapt paper text. | `ccf-paper-writer` | writing, polishing, compression, venue-aware LaTeX drafting, slides/poster/talk/Q&A | Preserves user format for edits; does not run full review or rebuttal. |
-| Convert user-provided paper PDFs into reusable writing exemplar cards. | `ccf-paper-to-exemplar` | exemplar extraction, writing-pattern cards, custom exemplar registration | Does not write papers or perform review. |
+| Distill supplied paper sources into reusable writing exemplar cards or register a personal library. | `ccf-paper-to-exemplar` | full-paper or scoped exemplar, personal-library registration | One-off passage adaptation stays with writer; ordinary PDF reading does not create a card. |
 | Review manuscripts scientifically and stylistically, including score drift and cross-version comparison with separate relative-progress and absolute-readiness scorecards. | `ccf-paper-reviewer` | scientific review, writing review, format-facing review, version comparison, AC/meta-review | Does not combine the two scorecards, rewrite, rebut, or own the revision ledger. |
 | Audit evidence integrity, numbers, figures/tables, and existing citations. | `ccf-integrity-auditor` | claim audit, numeric audit, citation audit | Does not replace review or broad literature search. |
 | Check venue rules, LaTeX/PDF package, anonymity, metadata, and artifacts. | `ccf-submission-checker` | venue format, package check, artifact/reproducibility | Does not polish content. |
@@ -128,9 +130,9 @@ For manuscript writing from an idea or research documents, `ccf-paper-writer` es
 | 完整审稿 / 稿件有什么硬伤 / 结论站得住吗 / 逐段写作评审 | `ccf-paper-reviewer` |
 | 对比论文新旧版本、检查复审分数漂移或 moving-target review | `ccf-paper-reviewer` |
 | 检查 claim、数字、引用是否一致且有支撑 | `ccf-integrity-auditor` |
-| 检查 ACL 2027 短稿页数 | \`ccf-submission-checker\` |
+| 检查 ACL 2027 短稿页数 | `ccf-submission-checker` |
 | NeurIPS page limit / template / anonymity / artifact checklist | `ccf-submission-checker` |
 | 根据 R1/R2 写 rebuttal 并维护修改表 | `ccf-rebuttal-writer` |
-| 检查 ICML 2027 AI Disclosure | \`ccf-submission-checker\` |
+| 检查 ICML 2027 AI Disclosure | `ccf-submission-checker` |
 | 迁移到 ICLR 但不新增实验 | `ccf-rebuttal-writer` |
 | 维护 CCFA skill、README、SVG 或 release | `ccf-skill-forger` |

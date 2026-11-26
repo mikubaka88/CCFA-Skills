@@ -310,9 +310,36 @@ sources:
     source_type: background_method
     used_by: [ccf-skill-forger]
     recorded_at: 2026-10-15
-    verified_at: 2026-10-15
+    verified_at: 2026-11-26
     stale_after_days: 180
     notes: Adapt representative trigger cases and old/new comparisons with observed quality, time, and token data during maintenance. No extra benchmark runs in ordinary user tasks, copied evaluator, or implied measured performance gain.
+  - id: deepagents-progressive-skill-loading
+    title: Deep Agents Skills Middleware
+    url: https://github.com/langchain-ai/deepagents/blob/main/libs/deepagents/deepagents/middleware/skills.py
+    source_type: background_method
+    used_by: [ccf-common, ccf-skill-forger]
+    recorded_at: 2026-11-26
+    verified_at: 2026-11-26
+    stale_after_days: 180
+    notes: Inspected metadata-first skill discovery and on-demand resources. Applied to compact entrypoints and selective personal-exemplar lookup, without importing a runtime dependency or claiming measured token savings.
+  - id: openai-harness-repository-knowledge
+    title: Harness engineering in an agent-first repository
+    url: https://openai.com/index/harness-engineering/
+    source_type: background_method
+    used_by: [ccf-common, ccf-skill-forger]
+    recorded_at: 2026-11-26
+    verified_at: 2026-11-26
+    stale_after_days: 365
+    notes: Published 2026-02-11. Inspected navigable repository knowledge and executable checks. Applied to the exemplar producer-consumer path and installation checks; no upstream productivity figure is transferred.
+  - id: harness-effects-nanoharness-2026
+    title: Beyond the Model Demystifying Harness Effects in Software Engineering Agents
+    url: https://arxiv.org/abs/2609.32459
+    source_type: background_method
+    used_by: [ccf-skill-forger]
+    recorded_at: 2026-11-26
+    verified_at: 2026-11-26
+    stale_after_days: 365
+    notes: Preprint submitted 2026-09-26. Abstract reports task-dependent effects of harness components, with possible harm from general subagents and compression on repository-generation tasks. Motivates preserving existing coarse-grained ownership rather than adding a coordinator or assuming more agents improve CCFA research.
   - id: orchestra-ml-paper-writing
     title: Orchestra Research ML Paper Writing Skill
     url: https://github.com/Orchestra-Research/AI-Research-SKILLs/blob/main/20-ml-paper-writing/ml-paper-writing/SKILL.md

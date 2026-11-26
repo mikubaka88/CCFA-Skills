@@ -12,15 +12,9 @@ metadata:
 
 # CCF Submission Checker
 
-## Family File Contract
+## Shared Files And Preflight
 
-Before file work, reuse canonical paths and one task/artifact working directory; default to project-root `ccfa-workfiles/<purpose>/<artifact-id>/`. Update in place, preserve inputs, and use UTF-8 with Chinese-text checks. Apply [artifact-contracts.md](../ccf-common/references/artifact-contracts.md) for naming, ownership, and task-created cleanup; handoffs inherit these paths.
-
-## Collaboration Contract
-
-Before specialist execution, read and apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md). At every handoff, reuse their applicable active rules or refresh missing/changed ones. Both preflights are required even without prose; detailed editing, experiment, and maintenance modes run only when relevant.
-
-Integrate necessary specialist contributions under one owner; reuse valid prerequisites and verify affected results. Follow the [cooperation routes](../ccf-common/references/routing.md) without duplicate reports.
+Reuse one established task directory, default `ccfa-workfiles/<purpose>/<artifact-id>/`; preserve inputs, update in place, and check UTF-8/Chinese text. Apply [ccf-humanization](../ccf-humanization/SKILL.md) first, then [ccf-common](../ccf-common/SKILL.md) before every task. Reuse applicable active rules; refresh changed or lost ones. Common's artifact and **PARTIAL** handoff contracts govern naming, cleanup and necessary contributions under one owner. Preserve the metadata controls; do not duplicate intake or reports.
 
 ## Core Rule
 
@@ -38,9 +32,9 @@ Treat submission as a build, venue-policy, page-budget, and artifact-readiness g
 1. Identify venue/year/track, submission mode, project directory, TeX/PDF files, supplementary/artifact files, and deadline pressure.
 2. Read `ccfa.yaml` when available. If absent, proceed with supplied files; report only missing information that affects a requested check.
 3. For venue questions, read `../ccf-paper-writer/references/venue-guides/index.md` and the specific guide as navigation. Apply format, page and anonymity rules only from a verified official source matching the venue/year/track/stage; reuse a current verified result. Legacy guide examples cannot override a supplied verified template. Resolve a real mismatch against the target official requirements before changing the manuscript.
-   - For ICML 2027, use [the venue guide](../ccf-paper-writer/references/venue-guides/icml.md) and \`scripts/check_icml2027.py\`. Check the primary contribution type and the Impact and AI Disclosure Statements.
+   - For ICML 2027, use [the venue guide](../ccf-paper-writer/references/venue-guides/icml.md) and `scripts/check_icml2027.py`. Check the primary contribution type and the Impact and AI Disclosure Statements.
 4. For package checks, inspect the actual TeX/PDF/build output, page accounting for the exact venue/year/track, anonymity, fonts, metadata, references, and applicable required forms. For CVPR 2027, use the complete `CVPR/2027` bundle and the matched guide's eight-page main-text budget, required LLM Usage Statement placement, anonymity and enrollment/quota checks. Use `scripts/check_cvpr2027.py` for local TeX/PDF checks; it cannot establish author enrollment, disclosure truth or official-review AI authorization. For ICLR 2027, retain its distinct template, stage budget and AI-use statement/form rules. Unconfirmed facts remain not verified. Read logs and affected pages; do not infer a successful build from file presence.
-   - For ACL 2027, use [the venue guide](../ccf-paper-writer/references/venue-guides/acl.md) and \`scripts/check_acl2027.py\`. Check the chosen ARR long/short track and separate ARR review from ACL commitment.
+   - For ACL 2027, use [the venue guide](../ccf-paper-writer/references/venue-guides/acl.md) and `scripts/check_acl2027.py`. Check the chosen ARR long/short track and separate ARR review from ACL commitment.
 5. For artifact checks, build a reproducibility checklist: code, data, models, environment, seeds, hardware, license, access restrictions, and README.
 6. Route actual findings or authorized fixes through their owners: paper writer for needed text/page revisions, visual composer for figure/table layout defects, and rebuttal writer for post-review response packaging. A paper within the page budget does not automatically need polishing. For a reproducibility gap, distinguish missing documentation, configuration, code, and scientific evidence: research engineer handles implementation or reproduction work, and experiment designer resolves a comparison or protocol question. A missing checklist item alone does not require a new experiment.
 

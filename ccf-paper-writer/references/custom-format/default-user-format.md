@@ -1,5 +1,7 @@
 # Default User-Custom Writing Format
 
+This is a bundled reference format. Personal exemplar registration uses the external library described in `../exemplar-style-analysis.md`; it does not rewrite this installed file. Preserve an existing explicit project selection.
+
 Use this format when the user requests it or an established project preference selects it. An unspecified venue alone does not activate it. Preserve a supplied document format; a new LaTeX manuscript without a usable target template follows the disclosed NeurIPS format fallback in `references/output-style-policy.md`. Do not impose a LaTeX template on Markdown or another requested format. Review remains owned by `ccf-paper-reviewer`.
 
 ## Source Exemplars
