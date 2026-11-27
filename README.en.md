@@ -31,12 +31,14 @@ Yann LeCun and James M. Manyika, [*Learning Abstractions*](https://www.amacad.or
 - [The family and its 18 core skills](#the-family)
 - [Day and night controls](#day-and-night-controls)
 - [From idea to submission](#from-idea-to-submission)
-- [Visual examples](#visual-examples)
 - [Keeping the writing natural](#keeping-the-writing-natural)
+- [Review and submission checks](#review-and-submission-checks)
+- [Visual examples](#visual-examples)
 - [Figures that fit the paper](#figures-that-fit-the-paper)
 - [Distinct roles, shared story](#distinct-roles-shared-story)
-- [Repository and maintenance](#repository)
+- [Working files and repository](#repository)
 - [Latest updates](#latest-updates)
+- [Maintenance and validation](#maintenance-and-validation)
 - [Star history](#star-history)
 
 At two in the morning, the experiment finally finishes. The new result is better than expected, yet reopening the manuscript reveals the harder problem. The sharp question that began the project is buried beneath related work. The method section no longer quite matches the mechanism in the code. A new experiment answers the previous review, but pulls the argument in another direction. Every part seems to have improved, while the paper as a whole has become less clear.
@@ -130,21 +132,6 @@ Every CCFA task activates `ccf-humanization` first, then `ccf-common`, before th
 
 The 18 skills serve different occasions. Six produce research work: idea development, retrieval, engineering, experiments, writing and figures. Four assess ideas, manuscripts, integrity and submission packages. Monitoring, exemplars, scaffolding, orchestration and rebuttals enter at their relevant stage. Humanization and Common provide the shared preflight; the forger maintains the family. Establish shared rules once, then load relevant guidance. One owner integrates the result, with actual subagents used for complete independent questions.
 
-### Make writing exemplars reusable
-
-`ccf-paper-to-exemplar` records how a paper explains its science, with source locations, writing functions and declared coverage. It supports a whole paper or a selected section or passage. A one-off rewrite stays with the writer and needs no card. A reusable analysis becomes a card; an explicit registration request makes a completed card discoverable in the personal library.
-
-Project entries live in `.ccfa/exemplars/`; user entries live under the personal configuration root in `ccfa/exemplars/`. Registration references existing cards and originals, retains source identity and version, and rejects unfinished skeletons. The writer queries metadata before reading matched cards and original passages. Changed sources invalidate their entries. Personal registration leaves installed skill files unchanged.
-
-Whole-paper mode retains all eight established analysis categories. Explicit defaults remain supported, including multiple cards and project selection over inherited user defaults. Defaults prioritize matching examples; ordinary registration preserves the selection.
-
-```bash
-python ccf-paper-to-exemplar/scripts/personal_library.py query --project . --function motivation
-python ccf-paper-to-exemplar/scripts/personal_library.py set-default --project . --id paper-a-motivation
-```
-
-Ask to distill a paper's introduction into a reusable exemplar and register it for the current project. In a later writing task, ask the writer to find personal examples that explain the same scientific relation. See the [exemplar skill](ccf-paper-to-exemplar/SKILL.md) for registration commands.
-
 The complete responsibility map:
 
 ![Skill catalog by responsibility](assets/ccfa-skills-catalog.svg)
@@ -157,7 +144,7 @@ When you are tightening an abstract, you may want a quick edit. Three days befor
 
 *The 0.12.0 configuration page; 0.12.1 adds a red drafting control under Sources & expression. Adjust the options, then click “Save preferences” to apply them.*
 
-Choose from eight modes that match the work in front of you. The eleven settings are organized into four expandable groups: **Sources & expression**, **Review & delivery**, **Exploration & alternatives**, and **Strategy experiments**. Each regular enhancement has one selector for **Inherit · ☾ Off · ◐ Auto · ☀ On**, combining the previous switch, Auto button, and inheritance action. Settings remain independent, with explanations of their additional work. Simplified Chinese, Traditional Chinese, English, and light, dark, and system themes remain available.
+Choose from eight modes that match the work in front of you. The eleven settings are organized into four expandable groups: **Sources & expression**, **Review & delivery**, **Exploration & alternatives**, and **Strategy experiments**. The ten regular enhancements each have one selector for **Inherit · ☾ Off · ◐ Auto · ☀ On**, combining the previous switch, Auto button, and inheritance action. Settings remain independent, with explanations of their additional work. Simplified Chinese, Traditional Chinese, English, and light, dark, and system themes remain available.
 
 From the repository root, run this command with Python 3.10+; no extra dependencies are needed:
 
@@ -180,9 +167,9 @@ Your browser will open the local configurator. Start with the mode closest to yo
 
 Choosing a mode replaces the eleven choices in the draft while keeping your language and theme. Click **Save preferences** to apply it. **Inherit** removes one override: project settings follow personal preferences, and personal settings follow built-in defaults. Deep retains its existing conditional maintenance-rule iteration; all eight modes keep research policy evolution off until you select it separately. A mode does not authorize training, budgets, or material uploads. Actual effort depends on the task, inputs, and tools.
 
-Three new controls target different work: **Find strong writing examples** defaults to On: substantive drafting and expression rewriting reuse matching originals and search for other well-written passages. Select by actual quality and fit without requiring multiple papers. Reuse applicable searches for the same question; minor corrections do not trigger fresh retrieval. Auto remains available for searching only when examples leave a gap. **Complete research branches** defaults to Off, and **Research policy evolution** defaults to Off. Enable policy comparisons deliberately with a task budget. Existing sparse configurations inherit new defaults without being rewritten.
+Three controls target different work: **Find strong writing examples** defaults to On: substantive drafting and expression rewriting reuse matching originals and search for other well-written passages. Select by actual quality and fit without requiring multiple papers. Reuse applicable searches for the same question; minor corrections do not trigger fresh retrieval. Auto remains available for searching only when examples leave a gap. **Complete research branches** defaults to Off, and **Research policy evolution** defaults to Off. Enable policy comparisons deliberately with a task budget. Existing sparse configurations inherit new defaults without being rewritten.
 
-**Caution: results-pending drafting.** The red control offers Inherit / Off / On, with no Auto mode. Every preset keeps it off. It permits marked conditional analysis and missing-result slots, with a warning about possible hallucinations. A whole-draft alignment pass adds reading and revision tokens and time, without starting experiments. An explicit request to leave experiments empty still takes precedence.
+**Caution: results-pending drafting.** The eleventh setting is a red Inherit / Off / On control without Auto. It defaults to Off, and all eight presets keep it off. Enabling it permits marked conditional analysis and missing-result slots and may introduce hallucinations. The automatic whole-draft consistency pass adds reading and revision tokens and time; it does not start experiments. See [the drafting workflow](#draft-before-missing-results-are-filled) for how existing results and empty experiment sections are handled.
 
 To give a paper its own settings, start the configurator with its directory. Replace the example path with yours:
 
@@ -192,7 +179,7 @@ python ccf-common/scripts/preferences.py serve --project "path/to/paper"
 
 Choose **Personal defaults** or **This project** before saving. Personal defaults carry into future tasks. Explicit project settings take priority, while unset options continue to inherit. You might keep everyday work light and enable independent review only for a paper nearing submission. Preferences live outside installed skill folders and survive skill updates.
 
-**These switches control additional effort only.** Even with Light selected, an explicitly requested full review, several research directions, and necessary verification still happen. The Humanization → Common preflight always applies. Opening the page does not call a model or start a research task.
+**Regular enhancements control additional effort; the red control selects results-pending drafting.** Even with Light selected, an explicitly requested full review, several research directions, and necessary verification still happen. The Humanization → Common preflight always applies. Opening the page does not call a model or start a research task.
 
 <details>
 <summary>Configuration files and offline use</summary>
@@ -207,7 +194,102 @@ After downloading the repository, you can also open the [static configuration pa
 
 ![Default research journey](assets/ccfa-skills-workflow.svg)
 
-This is not a pipeline that everyone must enter at the beginning. You may arrive with a half-formed idea, a result table that resists interpretation, a method reviewers repeatedly misunderstand, or a PDF that is nearly ready to submit. CCFA-Skills begins where you are and brings in only the help that matters there.
+You can enter with a rough idea, a difficult result table, a method that needs clearer explanation, or a nearly finished manuscript. CCFA-Skills starts from the current question and uses the prerequisites needed to complete it.
+
+### Develop the mechanism and implement it
+
+The [idea optimizer](ccf-idea-optimizer/SKILL.md) develops unmet needs and unexplained phenomena into research questions. Ask what information, representation, objective or computation prevents the desired behavior before choosing components. Technical reports, conferences, journals, preprints and earlier foundational results can supply useful mechanisms. Explore different explanations, operations and predictions, then preserve a promising selected route until new evidence warrants reopening it. Foundational questions can be developed on their scientific merits.
+
+The [research engineer](ccf-research-engineer/SKILL.md) inspects the existing project, selects a suitable codebase, reuses applicable baselines and maps the mechanism to model structure and gradient paths. Training changes follow measured bottlenecks. Diagnostic short runs answer specific implementation questions; full-method comparisons retain their corresponding conditions. Experiment design uses comparisons, factor combinations and interaction ablations that can distinguish the explanations at issue.
+
+> Implement this mechanism in the existing project while preserving its training and evaluation interfaces. Inspect reusable code and baselines first, then identify the modules to change. Preserve the target method and profile slow training before choosing an optimization.
+
+### Let experiments inform the next decision
+
+An autonomous campaign runs a baseline, tests a concrete hypothesis, reads actual observations and decides whether to keep, discard, repair or explore another mechanism. The research objective and comparison conditions remain explicit while the approach can change with findings. A useful negative result can eliminate an explanation; an execution failure calls for diagnosis. Current best candidates and promising exploratory routes remain distinct.
+
+The lightweight research runner executes specified commands, tracks run-count and execution-time budgets, protects locked files, retains raw logs and supports controlled rollback. The host agent proposes hypotheses, edits candidates and continues the research. Existing run records prevent an experiment ID from being silently repeated, while necessary candidate replication remains available. Parallel branches share the campaign allowance, retained raw baselines support comparisons, and final confirmation is recorded separately. An unconfirmed worker shutdown preserves the pending run and files so rollback cannot race with continuing writes.
+
+Experiment records can retrieve earlier mechanisms, distinguish implementation failures from valid negative findings, and compare candidates against an agreed quality floor, including lower-cost alternatives of comparable quality. Optional research-policy evolution compares search, context or tool-use strategies on separate development, selection and held-out tasks before reusing a better policy. It follows the task's explicit budget; maintenance-rule iteration retains its separate purpose.
+
+> Autonomously study the retrieval stopping criterion using the project's evaluation script and data split. Allow at most 6 runs including the baseline and failures, at most 60 seconds per run and 240 seconds of total experiment execution. Use no paid services. Inspect existing results, choose experiments that distinguish mechanisms, retain raw records, and deliver the best candidate and unresolved questions.
+
+The [autonomous research guide and commands](ccf-pipeline-orchestrator/references/autonomous-research.md) explain setup, execution and recovery. A campaign begins with an explicit research task and finite budget; ordinary manuscript edits, concept reviews and plan-only requests keep their own scope. The [configurator](#day-and-night-controls) controls optional additional effort.
+
+## Keeping the writing natural
+
+Writing starts from what the paragraph needs to explain. Reuse matching original passages and, by default during substantive drafting or expression repair, search for other well-written examples for the same question. One source may help organize motivation and another explain a mechanism. Select by the actual passage's clarity and fit, preserve the user's scientific content and compose one coherent author voice.
+
+[Humanization](ccf-humanization/SKILL.md) examines how each sentence develops the argument. State supported facts directly, retain conditions and genuine uncertainty, and remove empty defenses, imagined reviewer objections and internal status narration. A sentence that calls a proposal “verifiable and implementable” still needs to explain the operation; an index that supports offline incremental updates states a real technical property. Semicolon or repeated `rather than` diagnostics locate passages for contextual reading, not automatic word deletion. Keep meaningful longer sentences, supported closing emphasis and broader significance. Em dashes remain a sparing choice without a whole-paper quota; explicit user punctuation and rhythm preferences take priority. The [prose guidance](ccf-paper-writer/references/prose-quality-guardrails.md) explains these passage-level decisions.
+
+> Revise this paragraph by clarifying how its reasons and evidence connect. Preserve the numbers, experimental conditions, and limitations that affect the conclusion.
+
+### Make writing exemplars reusable
+
+`ccf-paper-to-exemplar` records how a paper explains its science, with source locations, writing functions and declared coverage. It supports a whole paper or a selected section or passage. A one-off rewrite stays with the writer and needs no card. A reusable analysis becomes a card; an explicit registration request makes a completed card discoverable in the personal library.
+
+Project entries live in `.ccfa/exemplars/`; user entries live under the personal configuration root in `ccfa/exemplars/`. Registration references existing cards and originals, retains source identity and version, and rejects unfinished skeletons. The writer queries metadata before reading matched cards and original passages. Changed sources invalidate their entries. Personal registration leaves installed skill files unchanged.
+
+Whole-paper mode retains all eight established analysis categories. Explicit defaults remain supported, including multiple cards and project selection over inherited user defaults. Defaults prioritize matching examples; ordinary registration preserves the selection.
+
+```bash
+python ccf-paper-to-exemplar/scripts/personal_library.py query --project . --function motivation
+python ccf-paper-to-exemplar/scripts/personal_library.py set-default --project . --id paper-a-motivation
+```
+
+Ask to distill a paper's introduction into a reusable exemplar and register it for the current project. In a later writing task, ask the writer to find personal examples that explain the same scientific relation. See the [exemplar skill](ccf-paper-to-exemplar/SKILL.md) for registration commands.
+
+### Keep long revisions connected
+
+Long revisions carry the paper's throughline, target sections, necessary neighbors and located original passages together. Related work explains scientific relationships; results connect observations to their interpretation. Only the prompt module relevant to the current task is loaded. Source observations and adaptation advice stay distinct, and source sentences or scientific claims are not transplanted into a new paper.
+
+The [writing execution helper](ccf-paper-writer/references/writing-execution.md) binds localized changes to the current manuscript version and permitted edit scope. Changes to declared scientific inputs identify the passages and figures that need rechecking. Optional expensive reviews reuse only completed results with matching inputs, guidance, model parameters and actual coverage; interrupted calls are reconciled before reuse. A short edit stays direct.
+
+> Revise this paper's results and discussion. Keep the full-paper throughline and necessary neighbors, and explain the differences using the actual results. Prepare the current material, apply localized edits, then recheck the affected arguments and figures.
+
+### Draft before missing results are filled
+
+The red [results-pending control](#day-and-night-controls) supports a coherent draft from the supplied problem, mechanism, argument and clearly marked conditional analysis, with result slots filled later. Preserve existing positive and negative results, and honor an explicit request to leave experiments empty. After drafting, check the abstract, body, tables, figure captions and conclusion together so planned outcomes and measured findings remain distinct. Full scientific explanations come before requested page fitting.
+
+## Review and submission checks
+
+Route by the requested judgment: “Is this direction worth pursuing?” uses `ccf-idea-reviewer` without needing an explicit score request; “Does this manuscript support its conclusions?” uses `ccf-paper-reviewer`. A full PDF can still receive concept-only review. Idea ratings cover problem value, novelty, insight, mechanism, elegance, and audience fit; experiments are assessed separately only when requested.
+
+Structured review reports use detailed output by default and brief output on explicit request. Manuscript reports develop contributions, strengths, concerns, prior art, method and evidence, reviewer perspectives, ratings, and action priorities. Idea reports develop problem value, novelty, mechanism logic, and development advice; experiments are outside their default scope. Findings carry specific evidence locations and stable IDs for revision tracking. Percentile ranks require a real comparable corpus. See the [manuscript report format](ccf-paper-reviewer/references/fixed-output-format.md) and [idea-review protocol](ccf-idea-reviewer/references/strict-idea-review.md).
+
+Full manuscript reviews keep 14 ordered sections, writing reviews keep 9, and explicitly requested brief reports use 5 blocks. The generic scientific scorecard has seven criteria: novelty, soundness, evidence, significance, clarity, reproducibility, and ethics/limitations. Evidence expectations follow contribution type; confidence and source coverage are separate. Markdown reports can be checked directly for section order, rating fields, and concern-ID references. Explicit venue or user formats retain priority.
+
+Manuscript re-review answers two different questions:
+
+![Review and revision scoring](assets/ccfa-skills-review-boundaries.svg)
+
+- **Is the current manuscript ready for its target venue?** This measures the remaining distance to the publication standard.
+- **Did the revision make genuine progress?** This compares what the new version resolved and what new problems it may have introduced.
+
+### Add an independent domain reading when needed
+
+An independent specialist first reads the manuscript without the lead score, earlier verdict or drafting history. The main reviewer checks the returned evidence, merges duplicate issues and integrates the findings into one report. A concern does not automatically require a new experiment. Rebuttals answer the actual question, with thanks, concessions and revision promises when warranted.
+
+The existing independent-review control keeps Off, On and Auto behavior: Off adds no unsolicited call, On can add one substantive scientific or full-paper reading, and Auto reserves it for a consequential unresolved judgment or a pre-submission check. Explicit requests take priority. This reading replaces an equivalent extra check and adds input/output tokens and elapsed time. The [preparation helper and workflow](ccf-paper-reviewer/references/plain-expert-review.md) organize the material; the host must execute the call with an available GPT-6 instance and fresh context. When that capability is unavailable, the main review continues.
+
+> Ask an independent specialist to review this manuscript before seeing earlier comments. Identify the issues that matter to the judgment, then have the main reviewer combine the findings into one report. Select an actual GPT-6 instance when the host supports it.
+
+### Use the matched venue edition
+
+Submission checks connect the template, manuscript and required forms for the same venue, year, track and stage. Recent adaptation entrypoints include:
+
+| Venue | Guidance and local checks |
+| --- | --- |
+| ACL 2027 | [Long/short papers and ARR review versus ACL commitment](ccf-paper-writer/references/venue-guides/acl.md) |
+| ICML 2027 | [Contribution type, Impact and AI Disclosure Statements](ccf-paper-writer/references/venue-guides/icml.md) |
+| CVPR 2027 | [Template, main-text budget, anonymity, LLM Usage Statement and author checks](ccf-paper-writer/references/venue-guides/cvpr.md); [template bundle](ccf-latex-templates/CVPR/2027/main.tex) |
+| ICLR 2027 | [Edition-specific template, stage and AI-use guidance](ccf-paper-writer/references/venue-guides/iclr.md) |
+| ECCV | [Venue guide and edition profile](ccf-paper-writer/references/venue-guides/eccv.md) |
+| ECOOP | [Venue guide and edition profile](ccf-paper-writer/references/venue-guides/ecoop.md) |
+| IMC | [Venue guide and edition profile](ccf-paper-writer/references/venue-guides/imc.md) |
+| ACSAC | [Venue guide and edition profile](ccf-paper-writer/references/venue-guides/acsac.md) |
+
+The [venue index](ccf-paper-writer/references/venue-guides/index.md) covers the wider collection. Source/PDF preflight and manual author requirements remain separate checks.
 
 ## Visual examples
 
@@ -215,11 +297,9 @@ These are research visuals rather than release-announcement graphics. Each figur
 
 ### Paper method architecture
 
-The figure below extracts the computational relationships from `output/DynTrace.pdf` and uses a layered layout to explain the mechanism and information flow. Inputs and visual processing sit at the bottom, geometry-grounded evidence and the DTV/DTG branches form the middle, and token integration, the MLLM, and the answer appear at the top. Connections follow computational dependencies so readers can trace the complete method.
+The retained DynTrace example uses a layered layout to explain its computational relationships and information flow. Inputs and visual processing sit at the bottom, geometry-grounded evidence and the DTV/DTG branches form the middle, and token integration, the MLLM, and the answer appear at the top. Connections follow computational dependencies so readers can trace the complete method.
 
 ![Paper method architecture](assets/visual-showcase/dyntrace-paper-mechanism-llava4d-reference.png)
-
-**How it was made:** This retained DynTrace example comes from the paper's mechanisms and representation–operation relationships. New/redrawn diagrams now follow prompt preparation, complete GPT Image generation and same-prompt refinement, delivering PNG without vector/native reconstruction.
 
 <details>
 <summary>Reference figure, source, and composition principles</summary>
@@ -242,17 +322,66 @@ The two earlier visual explorations remain below. They are better suited to slid
 
 ![GPT Image 2 concept draft](assets/visual-showcase/dyntrace-method-architecture-gpt-image-2.png)
 
-**How it was made:** This retained DynTrace example comes from the paper's mechanisms and representation–operation relationships. New/redrawn diagrams now follow prompt preparation, complete GPT Image generation and same-prompt refinement, delivering PNG without vector/native reconstruction.
-
 #### Reference-guided PPT/Poster
 
 ![Reference-guided PPT/Poster](assets/visual-showcase/dyntrace-ppt-poster-reference-driven.png)
 
-**How it was made:** Reference composition principles were added to the three-stage content so that headings, color fields, and visual anchors would read naturally in a presentation or poster.
+Reference composition organizes headings, color fields and visual anchors for presentation or poster reading.
 
 ### Data-analysis figures
 
-The following figures come from reproducible `ccf-visual-composer` drawing recipes. Their values demonstrate visual forms and are not reported paper findings.
+Analysis figures begin with the paper's claim, section, observation units and final physical size. **43 chart grammars, 16 analytical purposes and 16 fusion plans** cover distributions and tails, matched gains, error structure, ranking changes, resource trade-offs and related questions. Each design explains its data requirements, reasoning, common misreadings and possible complementary views. Choose a coherent, information-rich analysis unit; combine panels when their relationship helps the reader.
+
+![Analytical chart combinations with simulated values](assets/semantic-figures-gallery.png)
+
+Equally suitable designs can vary naturally without a seed setting or usage quota. Once selected, the accepted data and composition guide later edits. The [design and fusion guide](ccf-visual-composer/references/figure-design-library.md) links the paper-study coverage, source records, categories and local paper-search tools. Dated coverage counts remain in the [version history](CHANGELOG.md#v0121).
+
+```bash
+python ccf-visual-composer/resources/python/ccfa_figure_library.py route "distribution tails"
+python ccf-visual-composer/resources/python/ccfa_figure_library.py explain ecdf
+python ccf-visual-composer/resources/python/ccfa_figure_library.py demo --fusion paired_benefit --out ccfa-workfiles/figures/paired-effect/build/figure
+```
+
+Real observations load from CSV, TSV or JSON, with filtering and ordering applied to matched rows together. Three linked layouts provide joint distributions with marginals, position-aligned tracks, and matrices with row/column slices. They share the actual observations or grid while keeping distinct units. Compositions preserve entity colors, comparable axes, actual bin edges and stated denominators.
+
+The [complete example table](ccf-visual-composer/references/figure-examples.md) preserves all original templates and the requested density/perturbation and dynamics/category reference pairs. Invoke an example by ID, then adapt its message and data to the current paper.
+
+<details>
+<summary>Nine complete Python layouts and their analytical purpose</summary>
+
+![Nine Python analysis templates illustrated with simulated data](assets/analytical-figures-gallery.png)
+
+| Template | What it helps explain |
+| --- | --- |
+| `mechanism_overview` | How the mechanism connects to performance and resource use |
+| `benchmark_atlas` | Results across tasks, repeated runs and cost trade-offs |
+| `ablation_interactions` | Component contributions and interactions |
+| `scaling_robustness` | Behavior across scale, training budgets and perturbations |
+| `representation_diagnostics` | Embeddings, attention and feature relationships |
+| `biological_atlas` | Cell groups, expression and differential screening |
+| `paired_effects` | Changes within samples and effects across subgroups |
+| `calibration_errors` | Calibration, confusion and error structure |
+| `sensitivity_dynamics` | Density and threshold fractions, boxes with P95, state evolution and category bars/lines; also available as two horizontal panel pairs |
+
+The original 13 components and 30 additions form the 43-grammar router. A useful panel can be replaced or combined with another supported view while keeping the design's statistical meaning.
+
+</details>
+
+Python plotting uses NumPy and Matplotlib. Gallery values are simulated: only `--demo` creates examples; real tasks use `--data` with supplied observations. The tools preserve p-value, adjusted-p-value and q-value distinctions and check intervals, probabilities, axis ranges and labels.
+
+```powershell
+python -m pip install numpy matplotlib
+python ccf-visual-composer/resources/python/ccfa_analysis_templates.py --demo all --out ccfa-workfiles/figures/analysis-demo
+```
+
+For the sensitivity pair, replace `--demo all` with `--demo sensitivity_dynamics --panel-pair sensitivity`; change `sensitivity` to `dynamics` for state evolution and category comparison, retaining the `--out` path. The [plotting guide](ccf-visual-composer/references/python-plot-recipes.md) covers real-data bindings, type and palette parameters. Repeated runs update the same task directory; extra candidates and independent review use the existing switches.
+
+> Arrange these results as a compact analysis figure. Decide which relationships need comparison before choosing a design. Set type at the final paper width, align related elements, keep method colors consistent, retain relevant uncertainty, and deliver PNG with reusable Python/JSON sources.
+
+<details>
+<summary>Earlier numerical SVG examples</summary>
+
+These retained source examples demonstrate visual forms with simulated values. New numerical figures follow the PNG delivery and explicit-export rules below.
 
 | Composite figure | Heatmap |
 |---|---|
@@ -264,50 +393,35 @@ The following figures come from reproducible `ccf-visual-composer` drawing recip
 
 More examples are available in [`assets/visual-showcase/`](assets/visual-showcase/).
 
-## Keeping the writing natural
-
-`ccf-paper-writer` can learn from exemplars chosen by the user. It studies how an effective paper frames its problem, unfolds its method, arranges evidence, and controls pace. It does not copy source sentences or turn one paper into a template for every field.
-
-`ccf-humanization` checks what scientific information each sentence contributes: state supported facts directly, qualify genuine uncertainty accurately, and delete empty defenses. It removes imagined reviewer objections, apologies for the contribution, repeated caveats, ritual endings, and internal status narration. Paragraphs do not need an appended limitation or future-work sentence. Observed failures, scope conditions, reproducibility details, and required disclosures remain visible; only concrete unresolved scientific decisions need a separate warning.
-
-Route by the requested judgment: “Is this direction worth pursuing?” uses `ccf-idea-reviewer` without needing an explicit score request; “Does this manuscript support its conclusions?” uses `ccf-paper-reviewer`. A full PDF can still receive concept-only review. Idea ratings cover problem value, novelty, insight, mechanism, elegance, and audience fit; experiments are assessed separately only when requested.
-
-Structured review reports use detailed output by default and brief output on explicit request. Manuscript reports develop contributions, strengths, concerns, prior art, method and evidence, reviewer perspectives, ratings, and action priorities. Idea reports develop problem value, novelty, mechanism logic, and development advice; experiments are outside their default scope. Findings carry specific evidence locations and stable IDs for revision tracking. Percentile ranks require a real comparable corpus. See the [manuscript report format](ccf-paper-reviewer/references/fixed-output-format.md) and [idea-review protocol](ccf-idea-reviewer/references/strict-idea-review.md).
-
-Full manuscript reviews keep 14 ordered sections, writing reviews keep 9, and explicitly requested brief reports use 5 blocks. The generic scientific scorecard has seven criteria: novelty, soundness, evidence, significance, clarity, reproducibility, and ethics/limitations. Evidence expectations follow contribution type; confidence and source coverage are separate. Markdown reports can be checked directly for section order, rating fields, and concern-ID references. Explicit venue or user formats retain priority.
-
-Manuscript re-review answers two different questions:
-
-![Review and revision scoring](assets/ccfa-skills-review-boundaries.svg)
-
-- **Is the current manuscript ready for its target venue?** This measures the remaining distance to the publication standard.
-- **Did the revision make genuine progress?** This compares what the new version resolved and what new problems it may have introduced.
+</details>
 
 ## Figures that fit the paper
 
-A selected data template keeps its original JSON specification and Python renderer. Replace supplied scientific data while retaining layout, type scale, palettes, layers and statistical definitions. Do not rerun a fresh demo or substitute a similar primitive. New designs use input-data and chart-type routing to choose meaningful combinations.
+A selected data template keeps its JSON specification and Python renderer. Replace supplied scientific data while retaining layout, type scale, palettes, layers and statistical definitions. Explicit dimensions take effect, and colors or shapes follow object identity across plots. A fixed 132 × 84 mm input comparison produced pixel-identical outputs through the corrected library path and direct template rendering. New designs use input-data and chart-type routing; an accepted template is reused directly.
 
-New/redrawn method, architecture and flow diagrams use three stages: prepare P from the user prompt, references and article; generate G0 with P and those materials; refine G0 with the same P into G1. Refinement is required within one candidate even with additional candidates switched off. GPT Image designs the complete compact composition, without a vector skeleton or SVG/PPT shape reconstruction.
+New/redrawn method, architecture and flow diagrams use three stages. First understand the scientific message, actual objects and relationships, then prepare P from the user prompt, references and article. Generate G0 with P and those materials, then refine G0 with the same P into G1. The last two stages are two actual image calls; refinement remains required when additional candidates are off. GPT Image chooses the complete compact composition, with no vector skeleton or SVG/PPT shape reconstruction.
 
 ![Figure delivery](assets/ccfa-skills-artifacts.svg)
 
-Local edits preserve the current image or authoring source and need no full restart. PNG is the diagram deliverable; document/PPTX/PDF placement retains its raster nature. Explicit numerical exports remain available. Keep Times New Roman or selected Comic Sans MS, bold titles/legends/axis text, darker same-hue bar/box edges, coherent palettes and compact aligned layouts.
+Local edits preserve the current image or authoring source and refresh affected exports. Numerical figures use Python and deliver PNG with reusable Python/JSON sources; PDF/SVG exports require an explicit request. Method diagrams deliver PNG and remain raster images when placed in PPTX or PDF. Existing editable source files remain available for local maintenance. Image models can add needed illustrations or mechanism components without redrawing the data.
+
+Type and strokes are set for the final paper width. Use Times New Roman or selected Comic Sans MS, bold titles, legends and axis text, darker same-hue bar/box borders and compact aligned layouts. Related panels share entity colors and comparable axes or color scales; distinct units retain separate labels. CJK fallbacks preserve Chinese glyphs. The 14 existing palettes and six additions—AAAS, NEJM, Lancet, JCO, Tol bright and Tol muted—remain available as color choices, with consistent roles across a figure.
 
 ## Distinct roles, shared story
 
 ![Skill collaboration boundaries](assets/ccfa-skills-routing.svg)
 
-Each artifact has an owner responsible for integration and delivery. Other skills contribute according to prerequisites and quality needs; role boundaries support necessary collaboration:
+Each artifact has one owner responsible for integration and delivery. Work backward from the result to its prerequisites: closest-work evidence for novelty judgments, supported claims and citations for substantive writing, and actual data semantics and topology for figures. Relevant specialists resolve missing, conflicting or stale inputs; valid completed work is reused. Internal contributions return focused findings, while requested reviews keep their fixed report and scoped coverage. The [cooperation routes](ccf-common/references/routing.md) explain which capabilities contribute to each outcome.
 
-| Your request | Responsible skill | What it deliberately avoids |
-|---|---|---|
-| Is this idea worthwhile, novel, or coherent? Score or compare ideas | `ccf-idea-reviewer` | Concept review by default; missing experiments do not lower its score |
-| Develop one rough idea | `ccf-idea-optimizer` | Does not make ranking its primary goal |
-| Find benchmarks and published results | `ccf-literature-searcher` | Does not invent an experiment conclusion |
-| Choose baselines, metrics, and ablations | `ccf-experiment-designer` | Does not alter or fabricate results |
-| Review, score, and diagnose | `ccf-paper-reviewer` | Does not rewrite the manuscript while judging it |
-| Rewrite, polish, and compress | `ccf-paper-writer` | Does not change the scientific problem, method, or conclusion without authorization |
-| Draw figures/tables and place them in documents | `ccf-visual-composer` | Does not choose datasets, metrics, or values |
+### Keep the goal through long conversations
+
+A long task can retain a short record of the goal, important constraints, current route and next action. Check it when changing direction, accepting another assistant's work or recovering context. If a response drifts, return to actual files and observations, preserve valid work and resume with a bounded action that can be checked. New evidence can justify a route change while retaining the research objective. The [continuity rules](ccf-common/references/continuity.md) describe recovery and progress checks.
+
+### Give each agent a complete question
+
+Delegate independent retrieval, mechanism exploration or checks whose result can be assessed as a unit. Keep a tightly connected problem, insight and method under one author, then integrate helpers' evidence into the same argument. Return local defects to the original helper when its context remains useful; regroup work when fragmented ownership is rebuilding the same assumptions. Shared files have a clear owner, and findings based on an older version are reconciled before use. Higher reasoning effort does not require finer task splitting.
+
+Other skill families can provide document, code, context or evaluation tools while the task retains its goal, canonical paths and integrating owner. Reuse active Humanization and Common rules, load only relevant guidance, and check affected dependencies after integration. Save tokens on repeated retrieval, duplicate reports and irrelevant context while completing necessary groundwork. See [task modes](ccf-common/references/task-modes.md) and [handoff rules](ccf-common/references/handoff-modes.md).
 
 ## Repository
 
@@ -325,231 +439,40 @@ CCFA-Skills/
 
 Longer guidance lives in `references/`, while repeatable work belongs in `scripts/`. Iterative artifacts keep stable names so that a new version replaces the previous one instead of leaving behind a trail of indistinguishable attempts.
 
-Work backward from the result to its prerequisites: closest-work evidence before novelty judgments, claims and citation support before substantive writing, and data semantics/topology before scientific rendering. Use the relevant skills to resolve missing, conflicting, or stale evidence; reuse valid checks. Verify affected arguments after substantial revisions and integrate fixes before delivery. Concept review still does not require completed experiments. Internal contributions return focused findings; requested reviews retain their fixed templates and full scoped coverage. Save tokens on repeated retrieval, duplicate reports, irrelevant references, and repeated intake, while completing necessary groundwork. See [cooperation routes](ccf-common/references/routing.md) and [handoff rules](ccf-common/references/handoff-modes.md).
-
 The file contract leads all 18 skill entrypoints. Explicit paths, this artifact's existing mappings, and established task folders take priority. New tasks use a dedicated project-root `ccfa-workfiles/<purpose>/<artifact-id>/`, outside generic `output/` folders. Examples include `figures/method-overview/`, `reviews/paper-short-title/`, and `literature/retrieval-memory/`. If the name belongs to unrelated material, use a stable `ccfa-workfiles-<project-id>/` rather than merging or overwriting contents.
 
 Create `source/` (reusable authoring files), `assets/` (reference/icon assets), `cache/` (downloads/extractions), and `build/` (current previews/logs) only when needed. Skills working on the same artifact share its directory and update current files. Avoid ambiguous new names such as `temp`, `misc`, or `final-final`. Remove only verified disposable files created by the task; retain original evidence, editable sources, requested outputs, and necessary comparison baselines. Failed builds preserve usable results. Existing folders are not migrated to adopt the new default; see the [artifact contract](ccf-common/references/artifact-contracts.md).
+
+Repeated rendering or conversion can use [temporary-output tracking](ccf-common/references/artifact-contracts.md#optional-tracking-for-repeated-builds) to clean only released, unchanged task-owned files. Ordinary edits do not need that helper.
 
 Chinese output uses explicit UTF-8 I/O with optional BOM support on input. Shell pipes, Unicode filenames, and glyph coverage are checked separately. Family validation includes Chinese and uncommon-character regressions and reports decoding errors rather than masking them with replacement characters. Figures retain the chosen Latin font and use an available CJK fallback.
 
 <a id="latest-updates"></a>
 
-## Latest updates: keep every revision part of the same paper
-
-**2026-11-26 · Focused skill use and reusable writing references.** Keep all 18 capabilities with shorter shared preflights. Use sources directly for a current rewrite; create cards for reusable analysis. Personal libraries live outside installed skills and expose matched cards and original locations to the writer. Add scoped extraction, metadata queries and library/installation regressions. Version remains 0.12.1; see [writing exemplars](#make-writing-exemplars-reusable).
-
-### Drawing pipeline repair · 2026-11-14
-
-A selected template can drift when a fresh demo resamples data, dimensions are ignored/rescaled, or presentation settings and layers disappear. The data route now reuses the chosen JSON/Python, replaces complete scientific data, locks named templates, honors explicit size and matches series style by identity. In one fixed-input132×84 mm regression, the repaired call matches direct template rendering pixel for pixel.
-
-First establish what the reader should understand, the necessary objects and their actual relations, then expand the prompt. New/redrawn diagrams require P from user prompt/references/article, GPT Image generation G0, then same-P refinement G1. The third stage is part of one candidate, independent of the additional-candidate switch. Vector skeletons and SVG/PPT shape reconstruction are retired from this route; local edits retain the current image/source. Typography, color, compactness and scientific checks remain active.
-
-### ACL 2027 · 2026-11-25
-
-[ACL 2027 guide](ccf-paper-writer/references/venue-guides/acl.md). The guide covers long and short papers, ARR review, ACL commitment, the official bundle and local submission checks.
-
-### CVPR 2027 and workflow repairs · 2026-11-12
-
-The template, manuscript and submission check should follow the same rules. This update adds the complete year-specific [official CVPR 2027 kit](ccf-latex-templates/CVPR/2027/main.tex) and [guide](ccf-paper-writer/references/venue-guides/cvpr.md), with local checks for mode, page geometry, anonymity, main-text length and the required LLM Usage Statement. Enrollment and author eligibility remain explicit author checks.
-
-Substantive drafting and expression repair now consistently use matched real paper passages. Compose the scientific point and sentence relationships first, then remove empty labels and unnecessary qualifications; preserve the author's closing significance. Research design starts with missing information, representation, objectives or computation before choosing a mechanism. Experiments distinguish explanations, including declared factor combinations and interaction ablations when useful.
-
-Numerical drawing defaults to PNG, with explicit format exports when requested. New method diagrams remain rasters, including inside a requested PPTX. Copy-install instructions now include the visual reference assets. Humanization and Common still run first, with details loaded as needed.
-
-### ICML 2027 · 2026-11-25
-
-[ICML 2027 guide](ccf-paper-writer/references/venue-guides/icml.md). The guide covers main-track research papers, contribution types, impact and AI disclosure, the official bundle and local submission checks.
-
-**v0.12.1 · Updated 2026-10-31**
-
-Sometimes the research argument is ready before the final runs finish. The red **Results-pending drafting** control lets you complete a connected manuscript with conditional analysis and unfilled result slots. Anticipated analysis may introduce hallucinations, so this control defaults to off and every preset keeps it off. Actual positive and negative results stay intact. Before delivery, the writer checks the abstract, body, tables, captions and conclusion together, keeping expected outcomes distinct from observations.
-
-This patch also fixes categorical figure overlays and entity colors, completes standalone-skill dependencies, and makes interrupted installations resumable. Final-test use is tracked across campaign directories, while scoped reviews reuse still-valid inputs. Writing-context selection and trimming remain unchanged.
-
-By the fifth revision, the results have changed, the method has grown, and the introduction still answers the old question. Each passage makes sense on its own, yet together they seem to belong to different papers. Another polish can make the sentences sound more formal without recovering the argument.
-
-Version 0.12.0 connects preparation before writing with the work that follows an edit. Recover the paper's message, write with the target, necessary neighbors and suitable original passages, then follow the arguments affected by the change. Time spent on the prose should make the same research question clearer.
-
-This follow-up connects the details to execution: paired analyses align by sample identity, chart combinations check their data, and font sizes reach templates and linked layouts. Research tasks can explicitly replicate an evaluated candidate, share a campaign budget and record final confirmation separately. Humanization and Common still run first, with detailed rules loaded for the current task. Small content trials complement execution regressions so that a successful check reflects the actual workflow.
-
-The public version, prior local version and candidate each completed four content tasks before anonymous comparison. All 12 answers retained the declared facts, with tied ratings on these tasks. The measured change is about 47% less text in the two required entrypoints; this trial establishes neither model-token savings nor general prose superiority. The [tasks, outputs and results](evaluation/behavioral/results/0.12.0-smoke.md) are available for inspection.
-
-### Resilience: remember the purpose as the conversation grows
-
-Suppose your original request was to find a promising research direction within your current compute budget. Several rounds later, the assistant has added modules and experiments until the plan is beyond your resources. Each step has an explanation, but together they have taken the work away from your goal.
-
-Long tasks can now keep a short record of your goal, important constraints, current approach, and next action. When changing direction, accepting another assistant's work, or recovering context, the assistant checks that record. If an answer goes off course, it returns to actual files and evidence, preserves sound work, and resumes with a small step that can be checked. New evidence can still justify a change of direction, with a clear explanation of why.
-
-This is our practical approach to degraded or inconsistent model behavior: make goals harder to lose and errors harder to carry forward. The [continuity rules](ccf-common/references/continuity.md) describe how it works.
-
-### Multiple agents: give each assistant a useful question to answer
-
-When exploring a direction, assistants can first develop mechanisms independently and then exchange relevant evidence. When checking a paper, one can verify citations while another examines numbers and conclusions, with one person or agent responsible for bringing the findings back into the manuscript. Each contributor has a concrete question and returns sources that can be checked.
-
-Delegate complete questions. One author carries the problem, insight, and method through a connected argument; helpers take on independent evidence checks, mechanism comparisons, or implementation work with a defined use for each result. Return local gaps to the original helper and regroup work that has become fragmented. Shared files have a clear owner, and findings from an older version are checked before reuse. Hosts with real subagents can apply these rules without splitting work more finely merely because reasoning effort is higher. See [task modes](ccf-common/references/task-modes.md) and [handoffs](ccf-common/references/handoff-modes.md).
-
-### Autonomous research: let each experiment inform the next
-
-An overnight experiment fails. The code may be broken, the comparison may not distinguish two explanations, or the observation may contradict the hypothesis. Knowing which layer to revisit keeps a research project moving.
-
-This update connects the research loop to actual execution: run a baseline, change the research code for a specific hypothesis, inspect measured results, then keep, discard, repair, or explore another mechanism. The objective and comparison conditions stay explicit while evidence can change the route. A better metric still needs scientific interpretation, and a crashed program is not a negative scientific result. Existing skills contribute where needed, without a new review panel after every run.
-
-An experiment can rule out a mistaken explanation without setting a new high score. Keep that finding: the best measured candidate and directions worth exploring serve different purposes. A lesson from one project should be checked on other tasks before becoming a shared rule.
-
-The lightweight runner handles sequential experiments, attempt and execution-time limits, protected-file checks, raw logs, and scoped restoration. The host agent proposes hypotheses, edits candidates, and continues the investigation. The runner starts no model service or background research task on its own; training and other work are performed by the specified command. Reusing an experiment ID returns its record instead of silently rerunning it. Active context keeps the goal, best candidate, and relevant failure conditions, with raw evidence available when needed.
-
-> Investigate retrieval stopping rules autonomously. Use the project's evaluator and data split. Run at most six attempts including the baseline and failures, with 60 seconds per attempt and 240 seconds of cumulative experiment execution. Use no paid service. Inspect existing results first, choose experiments that distinguish mechanisms, and deliver the best candidate with the original records and unresolved questions.
-
-See the [research-loop guide and commands](ccf-pipeline-orchestrator/references/autonomous-research.md). An explicit research request and its budget activate this mode; ten preference controls govern optional work, and maintenance evolution still concerns skill maintenance. Ordinary edits, concept reviews, and plan-only requests retain their existing scope. Runner tests check execution and recovery; research quality and total token gains still need comparisons on real projects.
-
-### Personal preferences: spend time on what matters to you now
-
-The same researcher needs different help at different stages. A sentence edit should be straightforward. An unexplained result may deserve a few more papers. Before submission, an independent look at the central claims may be worth the wait.
-
-The [day and night configurator](#day-and-night-controls) makes those preferences visible, adjustable, and reusable. Ten enhancements sit in four task groups, with one four-state selector each. Eight modes cover everyday work, writing, submission review, ideas, figures, and autonomous research. Choose a suitable combination, adjust it, and save; the page explains where the additional tokens and time go. Three languages, day and night themes, and existing configuration inheritance remain available.
-
-### Ideas and writing: make each revision move the substance forward
-
-A new module should explain what it changes and what would be lost without it. Ideas shown to be unworkable can be dropped, while promising hypotheses can first be distinguished through theory, counterexamples, or observations. We removed conflicting instructions that forced another rescue attempt or repeated scoring, giving exploration room to move beyond small variations while keeping a chosen direction steady.
-
-Writing starts with the paragraph's point. It checks whether one sentence gives a reason, evidence, or an inference for the next, then improves order and wording. This release adds diagnostics for English and Chinese semicolons and clusters of `rather than`, helping locate passages where the argument may be hard to follow. Necessary scientific comparisons and limitations stay intact. See [idea development](ccf-idea-optimizer/SKILL.md), [prose guidance](ccf-paper-writer/references/prose-quality-guardrails.md), and [Humanization](ccf-humanization/SKILL.md).
-
-### Writing handoffs: keep empty caveats from coming back
-
-Our follow-up audit found that some artificial prose came from conflicting instructions. Writing would remove a defensive sentence, then a review template would demand a limitation at the end. A literature search could find that an idea was already covered and still require a rescue route. We removed these conflicts. Writing, ideation, and experiment planning now share a practical rule: explain the object, operation, and relationship. Design the study around the current question, identify a specific gap in review, and close the issue once it is resolved.
-
-Calling a proposal “verifiable and implementable” adds little without explaining what it does. Saying an index supports offline incremental updates conveys a technical property worth keeping. New diagnostics flag clusters of abstract labels, repeated comparisons, and defensive prose inside tables for contextual inspection. Your explicitly selected punctuation and rhythm conventions take precedence over generic surface preferences. You can ask:
-
-> Revise this paragraph by clarifying how its reasons and evidence connect. Preserve the numbers, experimental conditions, and limitations that affect the conclusion.
-
-### Write with the right material and preserve the whole argument
-
-We reread the material the writer sees before drafting. Some guides forced different papers into one story, some discouraged ordinary academic phrasing, and some exemplar cards presented editorial suggestions as source facts. Writing now reuses matched original passages and searches for other well-written examples when needed. Different sources can inform motivation and method explanation; the actual passages determine their usefulness. Preserve the research content and coherent longer sentences while learning common phrasing and argument structure. Em dashes remain a sparing choice without a default whole-paper quota.
-
-Writing guidance now reaches the material prepared before drafting. Long revisions keep the paper's throughline, target sections, necessary neighbors and located original passages together. Related work develops the scientific relationships; results explain the observations. Only the applicable prompt module is loaded, with room for the author's supported emphasis and concluding significance.
-
-When several contributors revise a paper, an old draft should not overwrite their work. The new [writing execution helper](ccf-paper-writer/references/writing-execution.md) checks the manuscript version and edit boundaries, then uses declared dependencies to locate passages and figures affected by changed results. Optional expensive reviews reuse only completed results with matching inputs, guidance, model parameters and actual coverage. Interrupted calls require reconciliation. A short edit stays direct, with no new preference or model call.
-
-> Revise this paper's results and discussion. Keep the full-paper throughline and necessary neighbors, and explain the differences using the actual results. Prepare the current material, apply localized edits, then recheck the affected arguments and figures.
-
-### Independent reading: let another specialist see the paper first
-
-Before submission, it helps to have a reader who has not seen the earlier reviews. This release connects that reading to the existing independent-review control. A short prompt asks a specialist to read the manuscript and assess its contribution and argument. The main reviewer then checks the findings, merges duplicates and returns the existing single report. The first reading receives no lead score, earlier verdict or drafting history, and a concern does not automatically require a new experiment.
-
-Off adds no unsolicited call. On can add one independent reading for a substantive scientific or full review; Auto reserves it for a consequential unresolved judgment or a pre-submission check. An explicit request takes precedence. This uses the existing control and replaces an equivalent extra check rather than adding another review round. It costs another reading's input/output tokens and elapsed time. The [preparation helper and workflow](ccf-paper-reviewer/references/plain-expert-review.md) organize the material; the host executes the actual call and confirms an available GPT-6 instance with a fresh context. When that capability is unavailable, the main review continues. A prepared request is not a completed assessment.
-
-> Ask an independent specialist to review this manuscript before seeing earlier comments. Identify the issues that matter to the judgment, then have the main reviewer combine the findings into one report. Select an actual GPT-6 instance when the host supports it.
-
-### From a worthwhile question to a working method
-
-Idea development starts from unmet needs and unexplained phenomena. Technical reports, conferences, journals, preprints, and earlier foundational results can supply useful mechanisms. Recorded sampling broadens the inspiration pool; explanations, interventions, and predictions distinguish candidates. Strong existing routes stay available, and foundational questions need not invent an immediate application.
-
-The new [ccf-research-engineer](ccf-research-engineer/SKILL.md) handles codebase selection, implementation, reproduction, and training diagnosis. It inspects the existing project, reuses applicable baselines, maps the mechanism to code and gradients, and measures bottlenecks before optimizing. Diagnostic short runs keep their identity; full-method results require the corresponding execution.
-
-> Implement this mechanism in the existing project while preserving its training and evaluation interfaces. Inspect reusable code and baselines first, then identify the modules to change. Preserve the target method and profile slow training before choosing an optimization.
-
-Other skill families contribute needed capabilities while the task keeps its goal, paths, and integrating owner. Repeated rendering or conversion can use [temporary-output tracking](ccf-common/references/artifact-contracts.md#optional-tracking-for-repeated-builds): only released, unchanged files owned by the task are eligible for cleanup. Ordinary edits do not need this helper.
-
-This audit followed instructions from entrypoints into references, review rules, and execution scripts. Rebuttals answer the question directly, using thanks, concessions, or revision promises when warranted. Concept reviews and results-pending drafts retain their intended scope. Search indexes help locate originals; reviewers judge the effect of the prose instead of penalizing a sentence pattern by itself.
-
-The research runner checks retained raw baseline measurements before comparisons. If worker termination is unconfirmed, it preserves the pending run and candidate files so that rollback cannot race with a continuing process. Necessary repeats of the same candidate remain allowed, and earlier failures and valid negative results remain available for deciding whether to repair an implementation or revise a hypothesis.
-
-Experiment records now support the next decision: retrieve older mechanisms, separate implementation failures from valid negative results, enforce agreed quality floors, and admit lower-cost candidates at comparable quality. Optional policy evolution compares task-owned search, context, or tool-use strategies on separate development, selection, and held-out tasks before reusing the better policy.
-
-### Figures: make them readable on the paper page
-
-A complex analysis figure should help the reader follow one question across its panels: what the method changes, where it helps, and where it fails. Nine runnable Python templates now bring these relationships onto the same page. They cover analyses inside a main figure, quantitative comparisons, ablations, and biological data, with a reproducible layout ready for further refinement.
-
-![Analytical chart combinations with simulated values](assets/semantic-figures-gallery.png)
-
-New/redrawn method diagrams use the three-stage GPT Image workflow; numerical plots use Python. Both deliver PNG by default. Numerical PDF/SVG exports require a request; existing editable sources support local edits. New diagram placement in PPTX keeps the raster. Use Times New Roman or the selected Comic Sans MS, bold titles/legends/axis text, darker same-hue substantial bar and box borders, light fills, and compact aligned layouts.
-
-Chart selection now begins with the question the reader needs to understand. **43 chart grammars, 16 analytical purposes, and 16 fusion plans** cover tails and distributions, matched gains, error structure, ranking changes, resource trade-offs, and related questions. Each design explains why the arrangement works, what data it needs, what readers might misinterpret, and which complementary view can share the figure. These explanations give later revisions and new combinations a scientific starting point.
-
-The library keeps two levels of coverage explicit: **54,890 paper metadata records** support recent-paper lookup, while **78 design cards from 43 papers** document figures actually inspected—75 directly inspected cards and three reused visual records, including 25 cards added in this update. The coverage manifest records editions, article scopes, and gaps. Runnable reconstructions adapt analytical relationships and layouts with labeled simulated values; real tasks supply their own observations.
-
-Chart selection begins with this paper's claim, section, observation units, matched samples and final figure size. Equally suitable designs can vary naturally without a seed setting or a global usage quota. Once accepted, the concrete data and composition remain the starting point for later edits. Compositions preserve shared entity colors, aligned comparable axes, actual bin edges, and stated denominators.
-
-```bash
-python ccf-visual-composer/resources/python/ccfa_figure_library.py route "distribution tails"
-python ccf-visual-composer/resources/python/ccfa_figure_library.py explain ecdf
-python ccf-visual-composer/resources/python/ccfa_figure_library.py demo --fusion paired_benefit --out ccfa-workfiles/figures/paired-effect/build/figure
-```
-
-Real observations can come directly from CSV, TSV or JSON records, with filtering and ordering applied to matched rows together. Three linked layouts add joint distributions with marginals, position-aligned tracks, and matrix-linked row/column slices. They share actual observations or grids while retaining distinct units.
-
-The [complete example table](ccf-visual-composer/references/figure-examples.md) keeps the original nine templates and the requested density/perturbation and dynamics/category panel pairs. Invoke an example by ID, then adapt its message, data and geometry to the current paper.
-
-The [figure design and fusion guide](ccf-visual-composer/references/figure-design-library.md) covers the categories, real-data inputs, paper studies, and local paper search. The original nine whole-figure templates remain useful starting layouts:
-
-![Nine Python analysis templates illustrated with simulated data](assets/analytical-figures-gallery.png)
-
-| Template | What it helps explain |
-| --- | --- |
-| `mechanism_overview` | How the mechanism connects to performance and resource use |
-| `benchmark_atlas` | Results across tasks, repeated runs, and cost trade-offs |
-| `ablation_interactions` | Component contributions and interactions |
-| `scaling_robustness` | Behavior across scale, training budgets, and perturbations |
-| `representation_diagnostics` | Embeddings, attention, and feature relationships |
-| `biological_atlas` | Cell groups, expression, and differential screening |
-| `paired_effects` | Changes within samples and effects across subgroups |
-| `calibration_errors` | Calibration, confusion, and error structure |
-| `sensitivity_dynamics` | Density and threshold fractions, boxplots with P95, state evolution, and category bars/lines on one axis; also available as two horizontal panel pairs |
-
-These nine templates compose the original 13 reusable panel types, including interval comparisons, curve bands, heatmaps, dot matrices, distributions, embeddings, density maps, binned summaries, and category comparisons. The new 30 components join them in the 43-grammar router. Swap a panel when the question changes without rebuilding the whole figure. Typography and strokes follow the final physical width; related panels align, repeated legends are consolidated, and each entity keeps its color. Comparable quantities share axes or color ranges, while different units retain separate labels. Times New Roman remains the default, with CJK fallbacks and explicit font choices; the destination's submission rules take precedence.
-
-All 14 existing palettes remain available alongside six additions: AAAS, NEJM, Lancet, JCO, Tol bright, and Tol muted. These are palette choices, not journal mandates. Related results retain the same color mapping. Numerical plots deliver PNG and retain Python/JSON sources, with PDF/SVG exports on explicit request. Method diagrams deliver PNG and remain raster images when placed in PPTX; existing editable sources can be maintained locally. Python renders the numerical plots first, with illustrations or mechanism components added locally when needed; image models do not redraw the data.
-
-The gallery uses simulated values. Only an explicit `--demo` request creates synthetic examples. Real tasks load supplied data with `--data`, without filling missing results or silently changing values to make a plot work. The tools retain p-value, adjusted-p-value, and q-value distinctions and check intervals, probabilities, axis ranges, and labels.
-
-Try the gallery from the repository root:
-
-```powershell
-python -m pip install numpy matplotlib
-python ccf-visual-composer/resources/python/ccfa_analysis_templates.py --demo all --out ccfa-workfiles/figures/analysis-demo
-```
-
-Python numerical plotting uses NumPy and Matplotlib. Earlier numerical SVG examples remain available as existing sources. The [plotting guide](ccf-visual-composer/references/python-plot-recipes.md) explains template selection, real-data input, typography, and palettes. Repeated runs update the same task directory. Additional candidates and independent review retain their existing switches.
-
-For the two sensitivity panels, replace `--demo all` above with `--demo sensitivity_dynamics --panel-pair sensitivity`. Change `sensitivity` to `dynamics` for the state-evolution and category-comparison pair, retaining the same `--out` path.
-
-> Arrange these results as a multi-panel analysis figure. Decide which relationships need side-by-side comparison before choosing a template. Set type at the final paper width, align related panels, keep method colors consistent, retain relevant uncertainty, and deliver PNG with reusable Python/JSON sources.
-
-### Files and context: pick up where you left off
-
-After editing a figure or moving to another skill, you should still be able to find its source and current result. Skills now share clearly named working directories, update current files during ordinary revisions, and pass along the locations of relevant evidence. Original material, editable sources, and useful validation records are retained. Disposable files are cleaned up within the task that created them. Detailed instructions load when needed, reducing repeated copies of the entire history. See [Repository](#repository) for directory examples.
-
-The family now includes 18 skills and retains the existing review structure, with personalization expanded to eleven settings. We hope that the next time you open your project, you can reconnect with the work sooner and save your attention for the questions worth solving.
-
-[Full changelog](CHANGELOG.md) · [Earlier ICLR 2027 adaptation](ccf-paper-writer/references/venue-guides/iclr.md)
+## Latest updates
+
+Current version: **0.12.1**. Detailed usage lives with each capability above; dated changes are kept in the [changelog](CHANGELOG.md#v0121).
+
+- **2026-11-27:** Functional guidance consolidated by topic, with version history kept in [CHANGELOG](CHANGELOG.md#v0121).
+- **2026-11-26:** Shorter shared entrypoints and connected [personal writing exemplars](#make-writing-exemplars-reusable), including scoped cards, metadata queries and explicit project/user defaults.
+- **2026-11-25:** Six venue adaptations and reference collections; see [submission entrypoints](#use-the-matched-venue-edition).
+- **2026-11-14:** Faithful selected-template data rendering and the [three-stage diagram workflow](#figures-that-fit-the-paper).
+- **2026-11-12:** [CVPR 2027 guidance and template](ccf-paper-writer/references/venue-guides/cvpr.md), plus coordinated writing, experiment and figure checks.
 
 ## Maintenance and validation
 
+Run the basic documentation and family checks from the repository root:
+
 ```powershell
-python ccf-common\scripts\check_v04.py
-python ccf-visual-composer\scripts\test_plot_recipes.py
-python ccf-visual-composer\scripts\test_analysis_panels.py
-python ccf-visual-composer\scripts\test_analysis_templates.py
-python ccf-common\scripts\check_path_privacy.py
-python ccf-common\scripts\check_markdown_links.py
-python ccf-common\scripts\check_sources.py
-python ccf-common\scripts\test_preferences.py
-python ccf-common\scripts\test_continuity.py
-python ccf-common\scripts\test_artifact_scope.py
-python ccf-paper-writer\scripts\test_manuscript_patch.py
-python ccf-paper-writer\scripts\test_writing_context.py
-python ccf-paper-writer\scripts\test_writing_review_cache.py
-python ccf-paper-writer\scripts\test_writing_runtime.py
-python ccf-paper-reviewer\scripts\test_prepare_expert_review.py
-python ccf-pipeline-orchestrator\scripts\test_research_loop.py
-node --check ccf-common/assets/configurator/app.js
-node ccf-common/scripts/test_configurator.js
+python ccf-common/scripts/check_v04.py
+python ccf-common/scripts/check_path_privacy.py
+python ccf-common/scripts/check_markdown_links.py
+python ccf-common/scripts/check_sources.py
 ```
 
-These checks validate the static structure of all 18 skills, configuration and reference paths, and existing script regressions. They do not replace comparisons of actual model quality or token use. The [historical experiment record](实验结果.md) preserves v0.9.0 results for the models and execution routes measured at that time.
+The [CI workflow](.github/workflows/validate.yml) is the complete regression command list for configuration, writing, review, figures, research execution and installation. The [behavioral smoke-test guide](evaluation/behavioral/README.md) explains content and natural-request routing probes. These cover different checks; actual model quality and token use are measured from task execution.
 
-Historical experiments retain their original versions and conditions. Structural checks, scenario cases and script regressions describe their own coverage; they do not establish a percentage gain in current-model quality or token use.
+The [0.12.0 content comparison](evaluation/behavioral/results/0.12.0-smoke.md) retains its four tasks, actual outputs and anonymous comparison. The [historical experiment record](实验结果.md) preserves v0.9.0 results with their original models and conditions.
 
 ## Commitments
 

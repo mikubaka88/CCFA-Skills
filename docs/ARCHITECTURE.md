@@ -1,6 +1,6 @@
 # CCFA Architecture
 
-CCFA is a paper-project workflow family, not a loose collection of unrelated writing prompts. The current 18-skill architecture has one owner per responsibility area, a first-priority humanization overlay, and `ccfa.yaml` plus explicit artifact contracts to keep stages connected.
+CCFA organizes paper-project work into 18 skills with one owner per responsibility area. Humanization and Common establish the shared preflight, while project state and artifact contracts connect the requested stages. Use an existing `ccfa.yaml` when available; a local task can proceed from its supplied inputs and established paths.
 
 ![Architecture](../assets/ccfa-skills-architecture.svg)
 
@@ -71,7 +71,7 @@ The family merges helper skills into owner modes. Numerical figures reuse the se
 | Research coordination | `ccf-pipeline-orchestrator` | Coordinates planning and authorized research execution, integrates specialist contributions, and continues through the requested deliverable. Scientific owners retain their responsibilities. |
 | Literature monitoring | `ccf-literature-monitor` | Tracks recent papers, venue feeds, labs, and competitors; deep retrieval stays with literature search. |
 | Compression and presentations | `ccf-paper-writer` | Changes manuscript-derived text; does not judge acceptance risk. |
-| Exemplar extraction | `ccf-paper-to-exemplar` | Converts PDFs into writing pattern cards; does not draft or review manuscripts. |
+| Writing exemplars | `ccf-paper-to-exemplar` | Distills whole papers or selected passages into reusable cards; registers external project/user libraries and explicit default selections. One-time reference learning for a rewrite stays with the writer. |
 | Writing review | `ccf-paper-reviewer` | Diagnoses writing and format-facing risk; does not rewrite unless handed back to writer. |
 | Citation audit | `ccf-integrity-auditor` | Checks existing citations; broad discovery stays with literature search. |
 | Result evidence and specs | `ccf-experiment-designer` | Uses real results; never invents numbers. |
