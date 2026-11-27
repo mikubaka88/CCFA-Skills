@@ -1,8 +1,16 @@
 # Changelog
 
-## Focused skill use and personal exemplar libraries · 2026-11-26
+## v0.12.1
 
-Plugin version remains `0.12.1`.
+Plugin version remains `0.12.1`; the dated entries below track changes within it.
+
+### Documentation organization · 2026-11-27
+
+- Merge lasting capability guidance from the README update sections into research, writing, review, figures, collaboration and file-management chapters. Keep the latest-update anchor as a short dated index and align all three languages.
+- Retain the original example images, nine named numerical templates, both reference pairs, demo/fusion/panel-pair commands, personal-library/default instructions and review structures. Consolidate validation commands around the CI entrypoint; keep sources, quotations and acknowledgments.
+- Preserve the earlier README inventory as a dated documentation snapshot: 54,890 paper metadata records; 78 design cards from 43 papers, with 75 direct visual checks and three retained earlier records; the recorded expansion added 25 cards. Current scope and source records remain in the [figure design guide](ccf-visual-composer/references/figure-design-library.md).
+
+### Focused skill use and personal exemplar libraries · 2026-11-26
 
 - Keep the 18 public skill names and their specialist boundaries. Condense repeated entry preflights while retaining Humanization before Common, file placement, metadata and accountable integration.
 - Separate temporary reference learning from reusable exemplar analysis. Support selected sections/passages alongside full-paper cards; preserve original Unicode punctuation in extracted text.
@@ -10,9 +18,25 @@ Plugin version remains `0.12.1`.
 - Connect the writer to personal-library lookup, preserve private-library exclusions in release packaging, and add maintenance-only natural-request routing probes plus library/installation regressions.
 - Clarify dated literature search versus incremental monitoring and restore ICML template-copy guidance to the scaffolder's template-selection step.
 
-## ACL 2027 venue support · 2026-11-25
+### Six conference adaptations · 2026-11-25
 
-- Add the ACL 2027 official template snapshot, venue guidance and local source/PDF preflight.
+- Add or consolidate ACL 2027, ICML 2027, ECCV, ECOOP, IMC and ACSAC venue guidance, templates, local submission checks and reference-paper collections.
+- ACL distinguishes long/short papers, ARR review and ACL commitment. ICML includes contribution type, Impact and AI Disclosure Statements. Exact venue/year/stage guidance stays in the [venue index](ccf-paper-writer/references/venue-guides/index.md).
+
+### Drawing pipeline repair · 2026-11-14
+
+- Preserve the selected JSON/Python template, replace complete scientific inputs and apply explicit dimensions without rerunning a demo or substituting another chart. In the fixed simulated 132×84 mm comparison, the library output matched direct template rendering pixel for pixel.
+- Retain task understanding before P, GPT Image G0 and same-P refinement G1. Keep the two actual image calls for new/redrawn diagrams; existing-figure edits stay local.
+
+### CVPR 2027 adaptation · 2026-11-12
+
+- Add the complete year-specific template and matched guidance for anonymity, page accounting, required LLM Usage Statement and author-side enrollment checks.
+- Align substantive writing with matched original passages and keep numerical figure delivery PNG-first, with explicitly requested exports and sibling installation resources.
+
+### Results-pending drafting and runtime repairs · 2026-10-31
+
+- Add the red, default-off results-pending draft control. Preserve supplied positive/negative results, mark conditional analysis and missing values, then check abstract, body, tables, captions and conclusions for consistency.
+- Repair layer/category and cross-figure identity handling, partial-install dependencies and resumable updates. Preserve campaign-wide final-confirmation accounting and source-aware review reuse.
 
 ## v0.12.0 - 2026-10-31
 
@@ -28,10 +52,6 @@ Plugin version is `0.12.0`.
 - Reuse optional costly reviews only when completed inputs, guidance, model/runtime, options and actual coverage match. Pending or partial reviews do not become completed full-paper assessments. Helpers perform no model calls; ordinary short edits stay direct.
 - Implement one independent domain-specialist reading through the existing `independent_review` control. Keep the first reader's context free of lead judgments and prior reviews, use a concise language-specific prompt, and have the main reviewer reconcile findings into the fixed report. The host must select and verify an actual GPT-6 instance and fresh context; the request-preparation helper does not execute the review. Preserve Off, consequential Auto triggers, explicit-request priority and the main assessment when the extra capability is unavailable. This reading replaces an equivalent independent check and may add input/output tokens and elapsed time.
 - Refresh the three-language README story and both plugin manifests. Keep the 18-skill family, version-1 preferences and ten existing controls; preserve historical releases, experiment records and example packages.
-
-## ICML 2027 venue support · 2026-11-25
-
-- Add the ICML 2027 official template snapshot, venue guidance and local source/PDF preflight.
 
 ## v0.11.0 - 2026-10-30
 
