@@ -10,7 +10,7 @@
 
 [Simplified Chinese](README.md) · [English](README.en.md) · [Traditional Chinese](README.zh-TW.md)
 
-**[Latest updates · v0.12.1](#latest-updates)**
+**[Latest updates · v0.13.0](#latest-updates)**
 
 <img src="assets/ccfaskills.png" alt="CCFA-Skills logo" width="560">
 
@@ -57,7 +57,7 @@ Choose the agent you use:
 
 [Codex](docs/getting-started/CODEX.md) · [Claude Code](docs/getting-started/CLAUDE_CODE.md) · [Cursor](docs/getting-started/CURSOR.md) · [Gemini CLI](docs/getting-started/GEMINI_CLI.md) · [Other agents](docs/getting-started/OTHER_AGENTS.md) · [Automatic updates](docs/getting-started/AUTO_UPDATE.md)
 
-Download and extract the lean package from the [0.12.1 Release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.1). It retains skills, original paper text, the figure library and sibling templates; full paper PDFs are available as an optional offline pack. Use the local installer described in the [installation matrix](docs/INSTALLATION_MATRIX.md) to preview and apply the installation. Personal preferences remain separate, and existing personal edits are checked first. Updates also retire unchanged managed files removed from the selected inventory.
+Download and extract the lean package from the [0.13.0 Release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.13.0). It retains skills, original paper text, the figure library and sibling templates; full paper PDFs are available as an optional offline pack. Use the local installer described in the [installation matrix](docs/INSTALLATION_MATRIX.md) to preview and apply the installation. Personal preferences remain separate, and existing personal edits are checked first. Updates also retire unchanged managed files removed from the selected inventory.
 
 The complete GitHub repository also supports one-line installation. This route still obtains the repository's full paper resources:
 
@@ -332,9 +332,15 @@ Reference composition organizes headings, color fields and visual anchors for pr
 
 Analysis figures begin with the paper's claim, section, observation units and final physical size. **43 chart grammars, 16 analytical purposes and 16 fusion plans** cover distributions and tails, matched gains, error structure, ranking changes, resource trade-offs and related questions. Each design explains its data requirements, reasoning, common misreadings and possible complementary views. Choose a coherent, information-rich analysis unit; combine panels when their relationship helps the reader.
 
-![Analytical chart combinations with simulated values](assets/semantic-figures-gallery.png)
+**Density and perturbation:** a compact linked pair combines state density, region fractions, quantile ranges and a P95 trend.
 
-Equally suitable designs can vary naturally without a seed setting or usage quota. Once selected, the accepted data and composition guide later edits. The [design and fusion guide](ccf-visual-composer/references/figure-design-library.md) links the paper-study coverage, source records, categories and local paper-search tools. Dated coverage counts remain in the [version history](CHANGELOG.md#v0121).
+![Density, region fractions and quantile analysis with simulated data](assets/visual-showcase/analysis-density-quantiles.png)
+
+**Evolution and category differences:** state trajectories sit alongside category bars and lines, with interval bands, selected values and consistent entity colors.
+
+![State evolution and category analysis with simulated data](assets/visual-showcase/analysis-dynamics-categories.png)
+
+Equally suitable designs can vary naturally without a seed setting or usage quota. Once selected, the accepted data and composition guide later edits. The [design and fusion guide](ccf-visual-composer/references/figure-design-library.md) links the paper-study coverage, source records, categories and local paper-search tools. Dated coverage counts remain in the [version history](CHANGELOG.md#v0130).
 
 ```bash
 python ccf-visual-composer/resources/python/ccfa_figure_library.py route "distribution tails"
@@ -349,7 +355,7 @@ The [complete example table](ccf-visual-composer/references/figure-examples.md) 
 <details>
 <summary>Nine complete Python layouts and their analytical purpose</summary>
 
-![Nine Python analysis templates illustrated with simulated data](assets/analytical-figures-gallery.png)
+[Nine-template overview](assets/analytical-figures-gallery.png) · [Complete examples and invocation guide](ccf-visual-composer/references/figure-examples.md)
 
 | Template | What it helps explain |
 | --- | --- |
@@ -378,22 +384,7 @@ For the sensitivity pair, replace `--demo all` with `--demo sensitivity_dynamics
 
 > Arrange these results as a compact analysis figure. Decide which relationships need comparison before choosing a design. Set type at the final paper width, align related elements, keep method colors consistent, retain relevant uncertainty, and deliver PNG with reusable Python/JSON sources.
 
-<details>
-<summary>Earlier numerical SVG examples</summary>
-
-These retained source examples demonstrate visual forms with simulated values. New numerical figures follow the PNG delivery and explicit-export rules below.
-
-| Composite figure | Heatmap |
-|---|---|
-| ![Composite figure](assets/visual-showcase/showcase-13-composite-analysis-dashboard.svg) | ![Heatmap](assets/visual-showcase/showcase-03-evidence-coverage-heatmap.svg) |
-| **Volcano plot** | **Bar chart** |
-| ![Volcano plot](assets/visual-showcase/showcase-11-volcano-candidate-screen.svg) | ![Bar chart](assets/visual-showcase/showcase-10-grouped-benchmark-bars.svg) |
-| **Slopegraph** | **Radial chart** |
-| ![Slopegraph](assets/visual-showcase/showcase-02-revision-lift-slopegraph.svg) | ![Radial chart](assets/visual-showcase/showcase-06-readiness-radial-scorecard.svg) |
-
-More examples are available in [`assets/visual-showcase/`](assets/visual-showcase/).
-
-</details>
+[Earlier numerical examples and their source files](ccf-visual-composer/references/figure-examples.md#早期-svg-与展示图保留原文件) remain in the library.
 
 ## Figures that fit the paper
 
@@ -451,9 +442,9 @@ Chinese output uses explicit UTF-8 I/O with optional BOM support on input. Shell
 
 ## Latest updates
 
-Current version: **0.12.1**. Detailed usage lives with each capability above; dated changes are kept in the [changelog](CHANGELOG.md#v0121).
+Current version: **0.13.0**. Detailed usage lives with each capability above; dated changes are kept in the [changelog](CHANGELOG.md#v0130).
 
-- **2026-11-27:** Functional guidance consolidated by topic, with version history kept in [CHANGELOG](CHANGELOG.md#v0121).
+- **2026-11-27:** Analysis previews refreshed and functional guidance consolidated by topic, with version history kept in [CHANGELOG](CHANGELOG.md#v0130).
 - **2026-11-26:** Shorter shared entrypoints and connected [personal writing exemplars](#make-writing-exemplars-reusable), including scoped cards, metadata queries and explicit project/user defaults.
 - **2026-11-25:** Six venue adaptations and reference collections; see [submission entrypoints](#use-the-matched-venue-edition).
 - **2026-11-14:** Faithful selected-template data rendering and the [three-stage diagram workflow](#figures-that-fit-the-paper).

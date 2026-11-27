@@ -10,7 +10,7 @@
 
 [简体中文](README.md) · [English](README.en.md) · [繁體中文](README.zh-TW.md)
 
-**[最新更新 · v0.12.1](#latest-updates)**
+**[最新更新 · v0.13.0](#latest-updates)**
 
 <img src="assets/ccfaskills.png" alt="CCFA-Skills logo" width="560">
 
@@ -57,7 +57,7 @@ Yann LeCun and James M. Manyika, [*Learning Abstractions*](https://www.amacad.or
 
 [Codex 安裝](docs/getting-started/CODEX.md) · [Claude Code 安裝](docs/getting-started/CLAUDE_CODE.md) · [Cursor 安裝](docs/getting-started/CURSOR.md) · [Gemini CLI 安裝](docs/getting-started/GEMINI_CLI.md) · [其他 Agent](docs/getting-started/OTHER_AGENTS.md) · [自動更新](docs/getting-started/AUTO_UPDATE.md)
 
-建議從 [0.12.1 Release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.1) 下載輕量安裝包並解壓縮。它包含技能、原文文字、繪圖素材庫與相鄰範本，完整論文 PDF 以可選離線包另行提供。進入解壓目錄後，依[安裝矩陣](docs/INSTALLATION_MATRIX.zh-TW.md)使用本機安裝器預覽並安裝；個人偏好保留，既有個人修改會先被識別；更新也會清理所選範圍內未改動的受管退役檔案。
+建議從 [0.13.0 Release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.13.0) 下載輕量安裝包並解壓縮。它包含技能、原文文字、繪圖素材庫與相鄰範本，完整論文 PDF 以可選離線包另行提供。進入解壓目錄後，依[安裝矩陣](docs/INSTALLATION_MATRIX.zh-TW.md)使用本機安裝器預覽並安裝；個人偏好保留，既有個人修改會先被識別；更新也會清理所選範圍內未改動的受管退役檔案。
 
 也可以從完整 GitHub 倉庫一行安裝；這條路徑仍會取得倉庫中的完整論文資源：
 
@@ -340,7 +340,13 @@ python ccf-paper-to-exemplar/scripts/personal_library.py set-default --project .
 
 先確定這張圖要讓讀者理解的關係，再按資料類型、觀察單位、配對條件和紙面尺寸選圖。**43 種圖形語法、16 類表達目的、16 套組合方案**涵蓋分布與長尾、配對收益、誤差來源、排名變化和資源取捨。設計說明記錄所需資料、選圖理由、易誤讀之處與可融合的結構，便於沿著文章內容繼續創作。
 
-![分析關係與組合圖示例，數值為模擬資料](assets/semantic-figures-gallery.png)
+**密度與擾動：**在一組緊湊的關聯面板裡，同時呈現狀態密度、區域占比、分位範圍與 P95 變化。
+
+![密度、區域占比與分位數分析，模擬資料](assets/visual-showcase/analysis-density-quantiles.png)
+
+**演化與類別差異：**將狀態曲線與分類柱線對照放在一起，保留區間帶、關鍵數值與一致的對象配色。
+
+![狀態演化與分類柱線分析，模擬資料](assets/visual-showcase/analysis-dynamics-categories.png)
 
 合適方案之間自然選擇，不要求使用者設定隨機數或湊使用次數。選定後沿用具體設計，配對資料按樣本身分對齊；共同對象保留顏色，可比較的座標或色階保持一致，不同單位分別標註，分箱圖保留相同區間與實際分母。
 
@@ -357,7 +363,7 @@ python ccf-visual-composer/resources/python/ccfa_figure_library.py demo --fusion
 <details>
 <summary>查看九套 Python 分析範本與試畫命令</summary>
 
-![九套 Python 多面板分析圖，使用模擬資料展示](assets/analytical-figures-gallery.png)
+[九套範本總覽](assets/analytical-figures-gallery.png) · [完整示例與呼叫入口](ccf-visual-composer/references/figure-examples.md)
 
 | 範本 | 幫讀者看清什麼 |
 | --- | --- |
@@ -384,23 +390,7 @@ python ccf-visual-composer/resources/python/ccfa_analysis_templates.py --demo al
 
 </details>
 
-<details>
-<summary>查看早期數值圖示例</summary>
-
-下列 SVG 是保留的既有示例，數值僅展示圖形語言。新數值圖的預設與按需匯出規則見[繪圖交付](#讓圖既好看也能繼續修改)。
-
-
-| 組合圖 | 熱圖 |
-|---|---|
-| ![組合圖](assets/visual-showcase/showcase-13-composite-analysis-dashboard.svg) | ![熱圖](assets/visual-showcase/showcase-03-evidence-coverage-heatmap.svg) |
-| **火山圖** | **柱狀圖** |
-| ![火山圖](assets/visual-showcase/showcase-11-volcano-candidate-screen.svg) | ![柱狀圖](assets/visual-showcase/showcase-10-grouped-benchmark-bars.svg) |
-| **坡度圖** | **徑向圖** |
-| ![坡度圖](assets/visual-showcase/showcase-02-revision-lift-slopegraph.svg) | ![徑向圖](assets/visual-showcase/showcase-06-readiness-radial-scorecard.svg) |
-
-更多示例位於 [`assets/visual-showcase/`](assets/visual-showcase/)。
-
-</details>
+[早期數值圖及原始來源檔案](ccf-visual-composer/references/figure-examples.md#早期-svg-与展示图保留原文件)保留在素材庫中。
 
 > 請把這些結果整理成一張緊湊的分析圖，先判斷需要表達的關係，再選範本或組合。依論文最終寬度安排字級，對齊相關元素，同一方法保持同色，保留必要的不確定性，輸出 PNG 及可重用的 Python／JSON 來源。
 
@@ -460,11 +450,11 @@ CCFA-Skills/
 
 ## 最新更新
 
-目前版本 **0.12.1**。完整用法已合併到對應章節，更新歷史見 [CHANGELOG](CHANGELOG.md#v0121)。
+目前版本 **0.13.0**。完整用法已合併到對應章節，更新歷史見 [CHANGELOG](CHANGELOG.md#v0130)。
 
 | 日期 | 變更摘要 | 使用入口 |
 | --- | --- | --- |
-| 2026-11-27 | 合併重複文件，依功能組織閱讀路徑 | 本頁目錄 |
+| 2026-11-27 | 更新資料分析成圖，合併重複文件並整理閱讀路徑 | 本頁目錄 |
 | 2026-11-26 | 精簡技能前置，串接範例提煉、外部個人庫與預設選擇 | [寫作範例](#讓寫作範例真正用起來) |
 | 2026-11-25 | 補充 ACL、ICML、ECCV、ECOOP、IMC、ACSAC 適配與參考集合 | [會議適配](#依會議年份與階段檢查) |
 | 2026-11-14 | 修復所選範本重用、資料替換與明確尺寸交付鏈路 | [資料分析圖](#資料分析圖) |

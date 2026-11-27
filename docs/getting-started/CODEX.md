@@ -10,7 +10,7 @@
 
 ## 推荐安装
 
-下载并解压 [0.12.1 的 lean 包](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.1)，按[安装矩阵](../INSTALLATION_MATRIX.zh-CN.md#轻量-release-安装推荐)核验 SHA-256。将 `<lean-dir>` 换成解压后的 `ccfa-skills-0.12.1-lean` 目录，将 `<skills-root>` 换成 Codex 实际技能根目录（全局安装通常为 `$CODEX_HOME/skills`，未设置时为 `~/.codex/skills`）：
+下载并解压 [0.13.0 的 lean 包](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.13.0)，按[安装矩阵](../INSTALLATION_MATRIX.zh-CN.md#轻量-release-安装推荐)核验 SHA-256。将 `<lean-dir>` 换成解压后的 `ccfa-skills-0.13.0-lean` 目录，将 `<skills-root>` 换成 Codex 实际技能根目录（全局安装通常为 `$CODEX_HOME/skills`，未设置时为 `~/.codex/skills`）：
 
 ```text
 python -B "<lean-dir>/tools/install_release.py" --source "<lean-dir>" --target "<skills-root>" --dry-run
