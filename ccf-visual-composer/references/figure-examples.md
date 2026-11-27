@@ -18,6 +18,8 @@
 | `reference:sensitivity-pair` | 用户参考图：密度与径向扰动双面板 | 六边形密度展示状态分布，分箱箱线和上分位数解释敏感性差异。 |
 | `reference:dynamics-pair` | 用户参考图：状态演化与类别占比双面板 | 整体状态随迭代变化与类别内部变化相邻展示，保留同一类别顺序和占比分母。 |
 
+README 当前展示采用新版 Python 模板直接渲染的[密度与分位数图](../../assets/visual-showcase/analysis-density-quantiles.png)和[状态演化与类别图](../../assets/visual-showcase/analysis-dynamics-categories.png)，分别对应下面的两个 `reference:` 示例入口。两张图都使用模拟数据。
+
 用户上传的组合参考图仍有三个入口：`original:sensitivity_dynamics`保留四面板全图；`reference:sensitivity-pair`和`reference:dynamics-pair`分别保留两组双面板。它们使用模拟数据展示相同分析关系，不声称恢复了截图背后的真实数值。
 
 ```bash

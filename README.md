@@ -10,7 +10,7 @@
 
 [简体中文](README.md) · [English](README.en.md) · [繁體中文](README.zh-TW.md)
 
-**[最新更新 · v0.12.1](#latest-updates)**
+**[最新更新 · v0.13.0](#latest-updates)**
 
 <img src="assets/ccfaskills.png" alt="CCFA-Skills logo" width="560">
 
@@ -57,7 +57,7 @@ Yann LeCun and James M. Manyika, [*Learning Abstractions*](https://www.amacad.or
 
 [Codex 安装](docs/getting-started/CODEX.md) · [Claude Code 安装](docs/getting-started/CLAUDE_CODE.md) · [Cursor 安装](docs/getting-started/CURSOR.md) · [Gemini CLI 安装](docs/getting-started/GEMINI_CLI.md) · [其他 Agent](docs/getting-started/OTHER_AGENTS.md) · [自动更新](docs/getting-started/AUTO_UPDATE.md)
 
-推荐从 [0.12.1 Release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.12.1) 下载轻量安装包并解压。它包含技能、原文文本、绘图库与相邻模板，完整论文 PDF 作为可选离线包单独提供。进入解压目录后，按[安装矩阵](docs/INSTALLATION_MATRIX.zh-CN.md)用本地安装器预览并安装；个人偏好保留，已有个人修改会先被识别；更新同时清理所选范围内未改动的受管退役文件。
+推荐从 [0.13.0 Release](https://github.com/mikubaka88/CCFA-Skills/releases/tag/v0.13.0) 下载轻量安装包并解压。它包含技能、原文文本、绘图库与相邻模板，完整论文 PDF 作为可选离线包单独提供。进入解压目录后，按[安装矩阵](docs/INSTALLATION_MATRIX.zh-CN.md)用本地安装器预览并安装；个人偏好保留，已有个人修改会先被识别；更新同时清理所选范围内未改动的受管退役文件。
 
 也可以从完整 GitHub 仓库一行安装；这条路径仍会获取仓库中的完整论文资源：
 
@@ -344,11 +344,17 @@ python ccf-paper-to-exemplar/scripts/personal_library.py set-default --project .
 
 一张分析图先回答一个研究问题：收益出现在哪里，哪些条件会改变结果，分布、阈值与变化趋势怎样共同解释现象。可以在同一坐标区内组合必要元素，确有阅读需要时再增加关联面板。主图分析、定量结果、消融和生信数据都可以据此选图。
 
-![分析关系与组合图示例，数值为模拟数据](assets/semantic-figures-gallery.png)
+**密度与扰动：**在一组紧凑的关联面板里，联合展示状态密度、区域占比、分位范围与 P95 变化。
+
+![密度、区域占比与分位数分析，模拟数据](assets/visual-showcase/analysis-density-quantiles.png)
+
+**演化与类别差异：**将状态曲线与分类柱线对照放在一起，保留区间带、关键数值和一致的对象配色。
+
+![状态演化与分类柱线分析，模拟数据](assets/visual-showcase/analysis-dynamics-categories.png)
 
 选图按要表达的关系路由。**43 种图形语法、16 类表达目的、16 套组合方案**把分布与长尾、配对收益、误差来源、排名变化、资源取舍等问题分开处理。每种图都写明为什么这样设计、需要哪些数据、容易读错什么，以及还能和哪种图搭配。你可以沿着这些理由继续改版面、换组合，形成适合自己研究的新图。
 
-素材库按论文检索元数据和已检查的图形设计卡分别组织。[设计与融合指南](ccf-visual-composer/references/figure-design-library.md)提供覆盖与来源入口；[版本记录](CHANGELOG.md#v0121)保留对应时间的数量快照。
+素材库按论文检索元数据和已检查的图形设计卡分别组织。[设计与融合指南](ccf-visual-composer/references/figure-design-library.md)提供覆盖与来源入口；[版本记录](CHANGELOG.md#v0130)保留对应时间的数量快照。
 
 选图先看这篇文章要讲什么：当前论点、段落用途、观察单位、样本是否配对，以及图放进论文后的尺寸。合适的方案之间自然随机，不需要设置随机数，也不为凑使用次数而选错图。选定后保留实际数据和布局，后续修改沿着这张图继续做。复杂组合共用对象颜色、对齐相关坐标，分箱图保留相同区间和实际分母。
 
@@ -367,7 +373,7 @@ python ccf-visual-composer/resources/python/ccfa_figure_library.py demo --fusion
 
 原有九套模板保留为完整布局的起点，可按当前文章调整组合：
 
-![九套 Python 多面板分析图，使用模拟数据展示](assets/analytical-figures-gallery.png)
+[九套模板总览](assets/analytical-figures-gallery.png) · [完整示例与调用入口](ccf-visual-composer/references/figure-examples.md)
 
 | 模板 | 帮读者看清什么 |
 | --- | --- |
@@ -402,22 +408,7 @@ Python 数值绘图使用 NumPy 和 Matplotlib；早期 SVG 数值示例作为�
 
 > 请把这些结果整理成一张多面板分析图，先判断哪些关系需要并排比较，再选模板。按论文最终宽度安排字号，对齐相关面板，同一方法保持同色，保留必要的不确定性，输出 PNG 和可复用的 Python／JSON 源。
 
-<details>
-<summary>早期数值图示例</summary>
-
-这些既有 SVG 示例继续保留，数值仅用于图形语言展示。新任务的格式选择见[绘图交付](#让图既好看也能继续修改)。
-
-| 组合图 | 热图 |
-|---|---|
-| ![组合图](assets/visual-showcase/showcase-13-composite-analysis-dashboard.svg) | ![热图](assets/visual-showcase/showcase-03-evidence-coverage-heatmap.svg) |
-| **火山图** | **柱状图** |
-| ![火山图](assets/visual-showcase/showcase-11-volcano-candidate-screen.svg) | ![柱状图](assets/visual-showcase/showcase-10-grouped-benchmark-bars.svg) |
-| **坡度图** | **径向图** |
-| ![坡度图](assets/visual-showcase/showcase-02-revision-lift-slopegraph.svg) | ![径向图](assets/visual-showcase/showcase-06-readiness-radial-scorecard.svg) |
-
-更多示例位于 [`assets/visual-showcase/`](assets/visual-showcase/)。
-
-</details>
+[早期数值图及原始源文件](ccf-visual-composer/references/figure-examples.md#早期-svg-与展示图保留原文件)保留在素材库中。
 
 ## 让图既好看，也能继续修改
 
@@ -477,11 +468,11 @@ CCFA-Skills/
 
 ## 最新更新
 
-当前版本 **0.12.1**。完整用法已并入对应章节，更新历史见 [CHANGELOG](CHANGELOG.md#v0121)。
+当前版本 **0.13.0**。完整用法已并入对应章节，更新历史见 [CHANGELOG](CHANGELOG.md#v0130)。
 
 | 日期 | 变更摘要 | 使用入口 |
 | --- | --- | --- |
-| 2026-11-27 | 合并重复文档，按功能组织阅读路径 | 本页目录 |
+| 2026-11-27 | 更新数据分析成图，合并重复文档并整理阅读路径 | 本页目录 |
 | 2026-11-26 | 精简技能前置，打通范例提炼、外部个人库与默认选择 | [写作范例](#写作范例怎样真正用起来) |
 | 2026-11-25 | 补充 ACL、ICML、ECCV、ECOOP、IMC、ACSAC 适配与参考集合 | [会议适配](#按年份进入会议适配) |
 | 2026-11-14 | 修复所选模板复用、数据替换和显式尺寸交付链路 | [数据分析图](#数据分析图) |

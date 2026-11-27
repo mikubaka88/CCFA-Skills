@@ -1,12 +1,15 @@
 # Changelog
 
-## v0.12.1
+<a id="v0130"></a>
 
-Plugin version remains `0.12.1`; the dated entries below track changes within it.
+## v0.13.0 - 2026-11-27
+
+Plugin version is `0.13.0`. This release gathers the November updates below, preserving all 18 public skills and existing configuration keys.
 
 ### Documentation organization · 2026-11-27
 
 - Merge lasting capability guidance from the README update sections into research, writing, review, figures, collaboration and file-management chapters. Keep the latest-update anchor as a short dated index and align all three languages.
+- Promote two freshly rendered numerical examples in all three READMEs: density/quantile analysis and state evolution/category comparison. Render them through the current Python template with preserved simulated inputs, bold serif type and matching dark edges; replace the small gallery and archived SVG embeds with library links.
 - Retain the original example images, nine named numerical templates, both reference pairs, demo/fusion/panel-pair commands, personal-library/default instructions and review structures. Consolidate validation commands around the CI entrypoint; keep sources, quotations and acknowledgments.
 - Preserve the earlier README inventory as a dated documentation snapshot: 54,890 paper metadata records; 78 design cards from 43 papers, with 75 direct visual checks and three retained earlier records; the recorded expansion added 25 cards. Current scope and source records remain in the [figure design guide](ccf-visual-composer/references/figure-design-library.md).
 
@@ -32,6 +35,12 @@ Plugin version remains `0.12.1`; the dated entries below track changes within it
 
 - Add the complete year-specific template and matched guidance for anonymity, page accounting, required LLM Usage Statement and author-side enrollment checks.
 - Align substantive writing with matched original passages and keep numerical figure delivery PNG-first, with explicitly requested exports and sibling installation resources.
+
+<a id="v0121"></a>
+
+## v0.12.1 - 2026-10-31
+
+Plugin version is `0.12.1`.
 
 ### Results-pending drafting and runtime repairs · 2026-10-31
 
