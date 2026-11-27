@@ -308,6 +308,8 @@ def validate(data: dict) -> list[str]:
     if not isinstance(dimensions, list) or not all(_nonempty(item) for item in dimensions):
         errors.append("contract.dimensions must be a nonempty list of names")
         dimensions = []
+    elif len(dimensions) != len(set(dimensions)):
+        errors.append("contract.dimensions must contain unique names")
     if dimensions:
         missing_weights = [dim for dim in dimensions if dim not in weights]
         if missing_weights:
