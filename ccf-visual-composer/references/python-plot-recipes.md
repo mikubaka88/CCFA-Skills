@@ -60,7 +60,7 @@ The **43 single-axis grammars** also work with **three linked layouts** in `ccfa
 
 `compose --spec` can resolve declared CSV/TSV/JSON records through `data_sources`, one panel/layout `table` selection, and column/group/matrix bindings. It never guesses an aggregation, fills missing matrix cells, or generates samples. All columns in a selected table preserve the same filtered and ordered rows; duplicate matrix cells require an explicit upstream aggregate. Paired grouped samples require `groups.pair_by` to align unique, shared subject IDs, or an explicit `groups.matched_order: true` contract for already aligned anonymous rows. Equal lengths alone do not establish a pairing. Ordinary unpaired groups and already matched arrays keep their existing API. Input files join the export protection list.
 
-The [preserved example table](figure-examples.md) includes the original nine templates and the user-requested density/perturbation and dynamics/category pairs alongside paper studies. List or render one without searching the whole library:
+The [preserved example table](figure-examples.md) includes the original nine templates and the density/group-response and process/category pairs alongside paper studies. List or render one without searching the whole library:
 
 ```bash
 python ccf-visual-composer/resources/python/ccfa_figure_library.py examples --category reference
@@ -78,7 +78,7 @@ python ccf-visual-composer/resources/python/ccfa_figure_library.py example refer
 | `biological_atlas` | Cell groups, expression, effect-size screening and activity/prevalence dot matrix. |
 | `paired_effects` | Matched observations, paired differences, subgroup intervals and time response. |
 | `calibration_errors` | Reliability, confidence counts, residuals, confusion, error distributions and failure categories. |
-| `sensitivity_dynamics` | Hexbin density with a threshold share, boxplots with a computed percentile, state evolution and category bars/lines on one scale. |
+| `sensitivity_dynamics` | Hexbin density with a threshold share, group quantile ranges, process curves and category bars/lines on one scale. |
 
 The layouts are starting points, not required panel inventories. Remove or replace irrelevant panels in the authoring script; never manufacture results to fill a slot. For a bespoke layout, import the needed functions from `ccfa_analysis_panels.py`. Preserve their data checks while changing geometry. All entity IDs and display labels must correspond to the supplied data.
 
@@ -88,9 +88,9 @@ From the repository root:
 python ccf-visual-composer/resources/python/ccfa_analysis_templates.py --demo all --out ccfa-workfiles/figures/analysis-demo
 ```
 
-This explicit legacy demo generates labeled synthetic data for the nine preserved templates. It saves one `source/demo-data.json`, current PNG exports under `figures/` (SVG/PDF only through explicit `--formats`), and one `manifest.json` with export paths and basic QA. Repeat the same command to update these files in place. `--palette-showcase` uses different palettes for these independent examples only. Related figures normally keep one palette and an explicit entity-to-color mapping.
+This explicit demo generates independent synthetic observations with generic labels and categories for the nine preserved templates. It retains the analytical structure without reusing a user study's wording, measurements or setting. It saves one `source/demo-data.json`, current PNG exports under `figures/` (SVG/PDF only through explicit `--formats`), and one `manifest.json` with export paths and basic QA. Repeat the same command to update these files in place. `--palette-showcase` uses different palettes for these independent examples only. Related figures normally keep one palette and an explicit entity-to-color mapping.
 
-For a paper's two-panel combination, replace `--demo all` with `--demo sensitivity_dynamics --panel-pair sensitivity` (density + box/percentile), or `--panel-pair dynamics` (temporal states + category shares). Omit `--panel-pair` for all four panels. Keep a distinct artifact ID for each retained figure. The Python API accepts the same selection in `data["panel_pair"]`; it needs only the selected pair's data. These are separate views of the supplied analyses, not invented extra experiments.
+For a paper's two-panel combination, replace `--demo all` with `--demo sensitivity_dynamics --panel-pair sensitivity` (density + group quantiles), or `--panel-pair dynamics` (process curves + category shares). Omit `--panel-pair` for all four panels. Keep a distinct artifact ID for each retained figure. The Python API accepts the same selection in `data["panel_pair"]`; it needs only the selected pair's data. These are separate views of the supplied analyses, not invented extra experiments.
 
 To use real data, take the matching object structure from `source/demo-data.json`, replace it with actual inputs, remove its synthetic `_meta`, and pass that JSON by path. Inputs can be a single template object or a dictionary keyed by template name. Missing inputs are errors, never a request to generate numbers:
 

@@ -6,6 +6,12 @@
 
 Plugin version is `0.13.0`. This release gathers the November updates below, preserving all 18 public skills and existing configuration keys.
 
+### Public numerical showcase refresh · 2026-11-28
+
+- Use independently synthetic numerical inputs and generic display labels for public previews, examples and packages. Preserve the analysis structures and existing template IDs.
+- Expand the three-language README to six coordinated numerical examples: density/quantiles, process/category comparison, joint marginals, response slices, paired effects and biological analysis. Keep saved public specifications and one reproducible Python builder.
+- Replace the old overview with the six safe public designs and refresh affected distributions; retain real-data fidelity, source attribution and existing rendering APIs.
+
 ### Documentation organization · 2026-11-27
 
 - Merge lasting capability guidance from the README update sections into research, writing, review, figures, collaboration and file-management chapters. Keep the latest-update anchor as a short dated index and align all three languages.

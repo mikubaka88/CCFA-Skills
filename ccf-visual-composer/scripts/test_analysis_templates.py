@@ -359,24 +359,61 @@ class AnalysisTemplateTests(unittest.TestCase):
                     density = data["density"]
                     self.assertEqual(density["yscale"], "log")
                     self.assertEqual(density["count_range"], [1, 1000])
-                    self.assertEqual((density["corridor"]["x_max"], density["corridor"]["y_max"]), (20, .1))
-                    mask = (np.asarray(density["x"]) < 20) & (np.asarray(density["y"]) < .1)
+                    region = density["corridor"]
+                    mask = (np.asarray(density["x"]) < region["x_max"]) & (np.asarray(density["y"]) < region["y_max"])
                     weights = np.asarray(density["corridor"]["weights"])
                     self.assertAlmostEqual(details["corridor"]["state_share"], 100*mask.mean())
                     self.assertAlmostEqual(details["corridor"]["mass_share"], 100*weights[mask].sum()/weights.sum())
                     self.assertEqual(details["quantiles"]["summary_mode"], "median_p90")
                     self.assertEqual(details["quantiles"]["quantile_line"].get_marker(), "D")
-                    np.testing.assert_allclose(details["quantiles"]["quantiles"], [.119, .319, .602, .817])
+                    np.testing.assert_allclose(details["quantiles"]["quantiles"],
+                        [np.quantile(values, .95) for values in data["sensitivity"]["samples"]])
                     self.assertEqual(len(details["quantiles"]["annotations"]), 4)
                 else:
                     near = next(line for line in fig.axes[0].lines if line.get_label() == data["methods"][2])
-                    self.assertEqual((near.get_xdata()[0], near.get_linestyle(), near.get_marker()), (4, "--", "s"))
+                    self.assertEqual((near.get_xdata()[0], near.get_linestyle(), near.get_marker()),
+                                     (data["dynamics"]["series"][2]["x"][0], "--", "s"))
                     self.assertEqual(data["categories"]["bar_style"], "outlined")
                     self.assertEqual(len(details["categories"]["bars"]), 10)
                     self.assertEqual(len(details["categories"]["bands"]), 2)
                     self.assertEqual(len(details["categories"]["annotations"]), 14)
                 self.assertEqual(json.dumps(spec, sort_keys=True), before)
                 plt.close(fig)
+
+    def test_public_reference_demo_generates_new_sensor_observations_and_summaries(self):
+        first = self.examples["sensitivity_dynamics"]
+        second = templates.demo_data(23)["sensitivity_dynamics"]
+        self.assertTrue(first["_meta"]["synthetic"])
+        self.assertEqual(first["density"]["xlabel"], "Drive load (a.u.)")
+        self.assertEqual(first["density"]["corridor"]["state_label"], "samples")
+        self.assertEqual(first["categories"]["labels"], [f"Unit\n{i+1:02d}" for i in range(10)])
+        for block, field in [("density", "x"), ("sensitivity", "samples"), ("categories", "bars")]:
+            self.assertNotEqual(first[block][field], second[block][field])
+        summaries = np.array([np.quantile(row, [.5, .9, .95, .99]) for row in first["sensitivity"]["samples"]])
+        self.assertTrue((np.diff(summaries, axis=1) > 0).all())
+        self.assertTrue((summaries > 0).all())
+        self.assertTrue((summaries < first["sensitivity"]["ylim"][1]).all())
+        for block in first["dynamics"]["series"]:
+            self.assertTrue((np.diff(block["y"]) >= 0).all())
+            self.assertTrue(all(0 <= value <= 100 for value in block["y"]))
+        for block in first["categories"]["series"]:
+            lo, values, hi = (np.array(block[key]) for key in ["lower", "values", "upper"])
+            self.assertTrue(((lo >= 0) & (lo < values) & (values < hi) & (hi <= 100)).all())
+
+    def test_region_annotation_can_name_generic_or_supplied_measures(self):
+        data = self.data("sensitivity_dynamics")
+        data["panel_pair"] = "sensitivity"
+        region = data["density"]["corridor"]
+        fig = self.render("sensitivity_dynamics", data)
+        text = fig._ccfa_reference_details["corridor"]["annotation"].get_text()
+        self.assertIn("% of samples", text)
+        self.assertIn("% of response energy", text)
+        region.pop("state_label")
+        region.pop("weight_label")
+        generic = self.render("sensitivity_dynamics", data)
+        text = generic._ccfa_reference_details["corridor"]["annotation"].get_text()
+        self.assertIn("% of samples", text)
+        self.assertIn("% of weight", text)
 
     def test_reference_corridor_and_quantile_elements_follow_supplied_data(self):
         data = self.data("sensitivity_dynamics")
@@ -388,23 +425,23 @@ class AnalysisTemplateTests(unittest.TestCase):
                        corridor={"x_max": 20, "y_max": .1, "weights": [3, 1, 2, 4], "label": "Corridor"})
         data["sensitivity"].pop("samples")
         data["sensitivity"].update(labels=["Low", "High"], annotate=True,
-            summary={"median": [.02, .1], "p90": [.08, .3], "p95": [.119, .319], "p99": [.2, .6]})
+            summary={"median": [.03, .12], "p90": [.09, .34], "p95": [.14, .42], "p99": [.23, .68]})
         before = json.dumps(data, sort_keys=True)
         fig = self.render("sensitivity_dynamics", data)
         details = fig._ccfa_reference_details
         self.assertEqual(details["corridor"]["state_share"], 25)
         self.assertEqual(details["corridor"]["mass_share"], 30)
-        self.assertEqual(details["corridor"]["annotation"].get_text(), "25.0% of states\n30.0% of sensitivity mass")
-        density_ax = next(ax for ax in fig.axes if ax.get_title(loc="left") == "State-space exposure")
+        self.assertEqual(details["corridor"]["annotation"].get_text(), "25.0% of samples\n30.0% of weight")
+        density_ax = next(ax for ax in fig.axes if ax.get_title(loc="left") == density["title"])
         self.assertEqual(density_ax.get_yscale(), "log")
         self.assertEqual(density_ax.collections[0].norm.vmax, 1000)
         self.assertEqual(details["corridor"]["region"].get_width(), 20)
-        np.testing.assert_allclose(details["quantiles"]["quantiles"], [.119, .319])
+        np.testing.assert_allclose(details["quantiles"]["quantiles"], [.14, .42])
         self.assertEqual(json.dumps(data, sort_keys=True), before)
         density["corridor"].pop("weights")
         without_weights = self.render("sensitivity_dynamics", data)
         self.assertIsNone(without_weights._ccfa_reference_details["corridor"]["mass_share"])
-        self.assertNotIn("sensitivity mass", without_weights._ccfa_reference_details["corridor"]["annotation"].get_text())
+        self.assertNotIn("% of weight", without_weights._ccfa_reference_details["corridor"]["annotation"].get_text())
 
     def test_reference_bounds_and_mass_require_actual_valid_inputs(self):
         data = self.data("sensitivity_dynamics")
@@ -436,7 +473,7 @@ class AnalysisTemplateTests(unittest.TestCase):
         dynamics_ax = next(ax for ax in fig.axes if ax.get_title(loc="left") == "Regime evolution")
         green = next(line for line in dynamics_ax.lines if line.get_label() == data["methods"][2])
         self.assertEqual((green.get_linestyle(), green.get_marker()), ("--", "s"))
-        self.assertEqual(green.get_xdata()[0], 4)
+        self.assertEqual(green.get_xdata()[0], partial["x"][0])
         self.assertEqual(len(green.get_xdata()), len(partial["y"]))
         categories_ax = next(ax for ax in fig.axes if ax.get_title(loc="left") == "Variation across edits")
         self.assertEqual(len(categories_ax.collections), 1)
@@ -448,14 +485,15 @@ class AnalysisTemplateTests(unittest.TestCase):
         data = self.data("sensitivity_dynamics")
         data["density"].pop("corridor", None)
         data["density"].update(x=[0, 1, 2, 3], y=[.1, .2, .25, .5], threshold=.25)
-        data["sensitivity"].update(samples=[[0, 10], [-5, -1, 3]], labels=["Low", "High"], quantile=.95)
+        data["sensitivity"].update(samples=[[0, 10], [-5, -1, 3]], labels=["Low", "High"], quantile=.95,
+                                   quantile_label="95th percentile")
         data["sensitivity"].pop("ylim", None)
         before = copy.deepcopy(data)
         fig = self.render("sensitivity_dynamics", data)
-        density_ax = next(ax for ax in fig.axes if ax.get_title(loc="left") == "State-space exposure")
+        density_ax = next(ax for ax in fig.axes if ax.get_title(loc="left") == data["density"]["title"])
         self.assertEqual(float(density_ax.collections[0].get_array().sum()), 4)
         self.assertTrue(any("75.0% at or below 0.25" == text.get_text() for text in density_ax.texts))
-        sensitivity_ax = next(ax for ax in fig.axes if ax.get_title(loc="left") == "Perturbation by group")
+        sensitivity_ax = next(ax for ax in fig.axes if ax.get_title(loc="left") == data["sensitivity"]["title"])
         quantile_line = next(line for line in sensitivity_ax.lines if "percentile" in line.get_label())
         np.testing.assert_allclose(quantile_line.get_ydata(), [9.5, 2.6])
         self.assertEqual(data, before)

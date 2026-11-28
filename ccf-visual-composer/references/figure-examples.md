@@ -1,8 +1,8 @@
 # 图例与保留示例表
 
-本表保留原模板、用户参考组合、论文设计卡和已有成图。选择与组合原则见[设计指南](figure-design-library.md)；数值示例使用统一Python入口，已有方法图按实际图像来源使用。修改当前图稿沿用保存的规格与数据，不重新抽样换图。
+本表保留原模板、合成组合示例、论文设计卡和已有成图。选择与组合原则见[设计指南](figure-design-library.md)；数值示例使用统一Python入口，已有方法图按实际图像来源使用。修改当前图稿沿用保存的规格与数据，不重新抽样换图。
 
-## 原有九套模板与用户参考图
+## 原有九套模板与组合示例
 
 | 示例ID | 内容 | 设计目的 |
 | --- | --- | --- |
@@ -14,19 +14,34 @@
 | `original:biological_atlas` | 生物数据分析图谱 | 群体、表达和效应分别呈现，同时保留群体颜色。 |
 | `original:paired_effects` | 配对变化与群体效应 | 相同观察单位连接前后变化，再看群体差异。 |
 | `original:calibration_errors` | 校准与错误结构 | 概率解释、分类错误和分布分工明确。 |
-| `original:sensitivity_dynamics` | 密度、扰动与状态演化组合 | 保留用户参考图中的四个分析关系：密度、扰动、状态曲线、类别占比。 |
-| `reference:sensitivity-pair` | 用户参考图：密度与分组响应双面板 | 六边形密度展示状态分布，分箱箱线和上分位数解释敏感性差异。 |
-| `reference:dynamics-pair` | 用户参考图：状态演化与类别占比双面板 | 整体状态随迭代变化与类别内部变化相邻展示，保留同一类别顺序和占比分母。 |
+| `original:sensitivity_dynamics` | 密度、分组响应与过程曲线组合 | 联合展示观测密度、分组响应、过程曲线和类别对照。 |
+| `reference:sensitivity-pair` | 参考组合：密度与分组响应双面板 | 六边形密度展示观测分布，分组区间和上分位数解释响应差异。 |
+| `reference:dynamics-pair` | 参考组合：过程曲线与分组对照双面板 | 相邻呈现总体变化和分组差异，保留系列身份、类别顺序和占比分母。 |
 
-README 当前展示采用新版 Python 模板直接渲染的[密度与分位数图](../../assets/visual-showcase/analysis-density-quantiles.png)和[状态演化与类别图](../../assets/visual-showcase/analysis-dynamics-categories.png)，分别对应下面的两个 `reference:` 示例入口。两张图都使用模拟数据。
+[密度与分位数图](../../assets/visual-showcase/analysis-density-quantiles.png)和[过程曲线与分组图](../../assets/visual-showcase/analysis-dynamics-categories.png)由当前 Python 模板渲染，分别对应下面两个 `reference:` 入口。公开演示使用独立生成的合成数据、通用标签与自定义类别。
 
-用户上传的组合参考图仍有三个入口：`original:sensitivity_dynamics`保留四面板全图；`reference:sensitivity-pair`和`reference:dynamics-pair`分别保留两组双面板。它们使用模拟数据展示相同分析关系，不声称恢复了截图背后的真实数值。
+组合分析保留三个入口：`original:sensitivity_dynamics`提供四面板全图；`reference:sensitivity-pair`和`reference:dynamics-pair`分别提供两组双面板。它们保留可复用的版式、图层和统计含义，公开演示不携带用户图稿的文字、数值或研究设定。
 
 ```bash
 python ccf-visual-composer/resources/python/ccfa_figure_library.py examples --category reference
 python ccf-visual-composer/resources/python/ccfa_figure_library.py example reference:sensitivity-pair --demo --out ccfa-workfiles/figures/sensitivity/build/figure
 python ccf-visual-composer/resources/python/ccfa_figure_library.py example reference:dynamics-pair --demo --out ccfa-workfiles/figures/dynamics/build/figure
 ```
+
+## 公开数值展示
+
+公开预览使用独立合成数据和通用标签，保存的规格与图像同步维护。
+
+| 示例 | 分析用途 |
+| --- | --- |
+| [密度与分组响应](../../assets/visual-showcase/analysis-density-quantiles.png) | 分布、区域占比与分位变化 |
+| [过程与类别对照](../../assets/visual-showcase/analysis-dynamics-categories.png) | 趋势、区间与组间比较 |
+| [联合分布与边缘](../../assets/visual-showcase/analysis-joint-distribution.png) | 同一批样本的关联与边缘频数 |
+| [响应面与同源切片](../../assets/visual-showcase/analysis-response-slices.png) | 两项控制量的交互及行列剖面 |
+| [配对效应](../../assets/visual-showcase/analysis-paired-effects.png) | 前后对应、差值与亚组效应 |
+| [生信分析](../../assets/visual-showcase/analysis-biological-atlas.png) | 群体、表达、效应筛选与通路活动 |
+
+[统一规格](../../assets/visual-showcase/analysis-showcase.json)由 `python tools/build_analysis_showcase.py` 原样渲染；只有明确使用 `--refresh-data` 才重新生成演示输入。全部原有九套模板继续通过上表中的 ID 使用。
 
 ## 已有方法图与展示示例
 

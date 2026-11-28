@@ -105,9 +105,9 @@
   {
     "id": "original:sensitivity_dynamics",
     "category": "original",
-    "title": "密度、扰动与状态演化组合",
+    "title": "密度、分组响应与过程曲线组合",
     "template": "sensitivity_dynamics",
-    "why": "保留用户参考图中的四个分析关系：密度、扰动、状态曲线、类别占比。",
+    "why": "联合展示观测密度、分组响应、过程曲线和类别对照。",
     "preserved_from": "initial nine-template library",
     "intents": [
       "association",
@@ -169,11 +169,11 @@
   {
     "id": "reference:sensitivity-pair",
     "category": "reference",
-    "title": "用户参考图：密度与分组响应双面板",
+    "title": "参考组合：密度与分组响应双面板",
     "template": "sensitivity_dynamics",
     "panel_pair": "sensitivity",
-    "why": "六边形密度展示状态分布，分箱箱线和上分位数解释敏感性差异。",
-    "preserved_from": "user-supplied reference image",
+    "why": "六边形密度展示观测分布，分组区间和上分位数解释响应差异。",
+    "preserved_from": "compositional analysis reference; independent synthetic scenario",
     "intents": [
       "association",
       "response"
@@ -199,11 +199,11 @@
   {
     "id": "reference:dynamics-pair",
     "category": "reference",
-    "title": "用户参考图：状态演化与类别占比双面板",
+    "title": "参考组合：过程曲线与分组对照双面板",
     "template": "sensitivity_dynamics",
     "panel_pair": "dynamics",
-    "why": "整体状态随迭代变化与类别内部变化相邻展示，保留同一类别顺序和占比分母。",
-    "preserved_from": "user-supplied reference image",
+    "why": "相邻呈现总体变化和分组差异，保留系列身份、类别顺序和占比分母。",
+    "preserved_from": "compositional analysis reference; independent synthetic scenario",
     "intents": [
       "dynamics",
       "composition"

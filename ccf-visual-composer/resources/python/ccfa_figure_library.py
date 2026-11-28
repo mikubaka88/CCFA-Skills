@@ -98,7 +98,7 @@ def _drawing_options(data):
         corridor = data.get("corridor")
         if isinstance(corridor, dict):
             result["corridor_fields"] = sorted(key for key in corridor
-                if key not in {"label", "text", "color", "alpha", "annotation_xy"})
+                if key not in {"label", "text", "color", "alpha", "annotation_xy", "state_label", "weight_label"})
     if isinstance(data.get("summary"), dict):
         result["summary_fields"] = sorted(data["summary"])
     if "quantiles" in data and isinstance(data.get("probabilities"), list):

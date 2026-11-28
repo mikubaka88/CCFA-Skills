@@ -21,6 +21,8 @@ For assigned CVPR 2027 reviewers/area chairs, confidential conference submission
 
 For assigned ICML 2027 work, verify the allowed activities and confidentiality before processing a manuscript or review. Use the official policy in the source registry record `icml-2027-review-ai`. Substantive judgment remains with the assigned human.
 
+Public demonstrations and releases must not reuse private reference data or text merely because values are labeled simulated. Replace the complete numerical inputs, labels, equations and identifying scenario with independently synthetic content, then inspect both source/specification files and rendered images. Keep private task inputs outside public packages.
+
 ## Path And Identity Privacy
 
 - Do not commit or publish personal absolute paths, usernames, expanded home directories, private local skill roots, or machine-specific command examples.

@@ -340,13 +340,38 @@ python ccf-paper-to-exemplar/scripts/personal_library.py set-default --project .
 
 先確定這張圖要讓讀者理解的關係，再按資料類型、觀察單位、配對條件和紙面尺寸選圖。**43 種圖形語法、16 類表達目的、16 套組合方案**涵蓋分布與長尾、配對收益、誤差來源、排名變化和資源取捨。設計說明記錄所需資料、選圖理由、易誤讀之處與可融合的結構，便於沿著文章內容繼續創作。
 
-**密度與擾動：**在一組緊湊的關聯面板裡，同時呈現狀態密度、區域占比、分位範圍與 P95 變化。
+以下展示統一使用獨立生成的合成資料與通用標籤，呈現分析結構和排版。
 
-![密度、區域占比與分位數分析，模擬資料](assets/visual-showcase/analysis-density-quantiles.png)
+**密度與分組響應：**共同展示感測器負載分布、選定區域占比、響應分位範圍與 P95 趨勢。
 
-**演化與類別差異：**將狀態曲線與分類柱線對照放在一起，保留區間帶、關鍵數值與一致的對象配色。
+![密度與分組響應，獨立合成資料](assets/visual-showcase/analysis-density-quantiles.png)
 
-![狀態演化與分類柱線分析，模擬資料](assets/visual-showcase/analysis-dynamics-categories.png)
+**過程變化與類別對照：**以虛擬單元的恢復過程和分類柱線說明趨勢、區間與組間差異。
+
+![過程變化與類別對照，獨立合成資料](assets/visual-showcase/analysis-dynamics-categories.png)
+
+**聯合分布與邊緣：**同一批模擬觀察同時呈現二維關係和兩個方向的頻數。
+
+![聯合分布與邊緣頻數，獨立合成資料](assets/visual-showcase/analysis-joint-distribution.png)
+
+**響應面與同源切片：**熱圖呈現兩項控制量的共同作用，橫縱切片直接取自同一網格。
+
+![響應矩陣與同源切片，獨立合成資料](assets/visual-showcase/analysis-response-slices.png)
+
+<details>
+<summary>查看配對效應與生信組合示例</summary>
+
+**配對效應：**前後配對、差值分布、亞組區間與時間變化共同解釋收益。
+
+![配對與亞組效應，獨立合成資料](assets/visual-showcase/analysis-paired-effects.png)
+
+**生信分析：**用合成細胞群體、表達熱圖、差異篩選與通路點陣呈現跨領域組合。
+
+![生信組合分析，獨立合成資料](assets/visual-showcase/analysis-biological-atlas.png)
+
+</details>
+
+展示圖的[保存規格](assets/visual-showcase/analysis-showcase.json)可直接沿用；執行 `python tools/build_analysis_showcase.py` 以同一資料與版式重新渲染。
 
 合適方案之間自然選擇，不要求使用者設定隨機數或湊使用次數。選定後沿用具體設計，配對資料按樣本身分對齊；共同對象保留顏色，可比較的座標或色階保持一致，不同單位分別標註，分箱圖保留相同區間與實際分母。
 
@@ -358,12 +383,12 @@ python ccf-visual-composer/resources/python/ccfa_figure_library.py demo --fusion
 
 實際資料可從 CSV、TSV 或 JSON 表接入，篩選和排序後仍保留同列關係。聯合分布與邊緣、共同位置多軌道、熱圖與行列切片三種連動版面，共用同一批觀察或網格，各軌道保留自己的單位。數值預覽明確使用模擬資料；真實任務以 `--data` 讀取提供的結果，工具區分 p 值、校正 p 值和 q 值，檢查區間、機率、座標範圍與標籤。
 
-九套原有整圖範本，以及密度／擾動、狀態演化／類別占比兩組指定參考圖，都保留在[完整示例表](ccf-visual-composer/references/figure-examples.md)，可按示例 ID 直接呼叫。論文素材的範圍、來源與涵蓋紀錄，見[圖形設計與融合指南](ccf-visual-composer/references/figure-design-library.md)；有日期的歷史規模記錄保存在 [CHANGELOG](CHANGELOG.md)。
+九套原有整圖範本，以及密度／分組響應、過程變化／類別對照兩組指定參考圖，都保留在[完整示例表](ccf-visual-composer/references/figure-examples.md)，可按示例 ID 直接呼叫。論文素材的範圍、來源與涵蓋紀錄，見[圖形設計與融合指南](ccf-visual-composer/references/figure-design-library.md)；有日期的歷史規模記錄保存在 [CHANGELOG](CHANGELOG.md)。
 
 <details>
 <summary>查看九套 Python 分析範本與試畫命令</summary>
 
-[九套範本總覽](assets/analytical-figures-gallery.png) · [完整示例與呼叫入口](ccf-visual-composer/references/figure-examples.md)
+[六類分析圖總覽](assets/analytical-figures-gallery.png) · [完整示例與呼叫入口](ccf-visual-composer/references/figure-examples.md)
 
 | 範本 | 幫讀者看清什麼 |
 | --- | --- |
@@ -375,7 +400,7 @@ python ccf-visual-composer/resources/python/ccfa_figure_library.py demo --fusion
 | `biological_atlas` | 細胞分組、表達分布與差異篩選 |
 | `paired_effects` | 同一樣本前後變化與不同亞組的效應 |
 | `calibration_errors` | 信心度校準、混淆矩陣與錯誤結構 |
-| `sensitivity_dynamics` | 密度與閾值占比、箱線與 P95、狀態演化，以及同軸分類柱線對照；也可拆成兩張橫向雙面板圖 |
+| `sensitivity_dynamics` | 密度與區域占比、箱線與 P95、過程變化，以及同軸分類柱線對照；也可拆成兩張橫向雙面板圖 |
 
 範本與基礎元件可按問題組合，統一字級、線寬、圖例和相關面板的對齊。原有 14 套配色之外，還有 AAAS、NEJM、Lancet、JCO、Tol bright 和 Tol muted 六套選擇；這些名稱表示調色盤參考，並非期刊指定配色。
 
@@ -454,6 +479,7 @@ CCFA-Skills/
 
 | 日期 | 變更摘要 | 使用入口 |
 | --- | --- | --- |
+| 2026-11-28 | 六類獨立合成資料示例，規格與成圖同步維護 | [資料分析圖](#資料分析圖) |
 | 2026-11-27 | 更新資料分析成圖，合併重複文件並整理閱讀路徑 | 本頁目錄 |
 | 2026-11-26 | 精簡技能前置，串接範例提煉、外部個人庫與預設選擇 | [寫作範例](#讓寫作範例真正用起來) |
 | 2026-11-25 | 補充 ACL、ICML、ECCV、ECOOP、IMC、ACSAC 適配與參考集合 | [會議適配](#依會議年份與階段檢查) |

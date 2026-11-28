@@ -332,13 +332,38 @@ Reference composition organizes headings, color fields and visual anchors for pr
 
 Analysis figures begin with the paper's claim, section, observation units and final physical size. **43 chart grammars, 16 analytical purposes and 16 fusion plans** cover distributions and tails, matched gains, error structure, ranking changes, resource trade-offs and related questions. Each design explains its data requirements, reasoning, common misreadings and possible complementary views. Choose a coherent, information-rich analysis unit; combine panels when their relationship helps the reader.
 
-**Density and perturbation:** a compact linked pair combines state density, region fractions, quantile ranges and a P95 trend.
+All previews below use independently generated synthetic data and generic labels to demonstrate analysis and layout.
 
-![Density, region fractions and quantile analysis with simulated data](assets/visual-showcase/analysis-density-quantiles.png)
+**Density and grouped response:** sensor load, a selected region, quantile ranges and a P95 trend in a compact linked analysis.
 
-**Evolution and category differences:** state trajectories sit alongside category bars and lines, with interval bands, selected values and consistent entity colors.
+![Density and grouped response with independently synthetic inputs](assets/visual-showcase/analysis-density-quantiles.png)
 
-![State evolution and category analysis with simulated data](assets/visual-showcase/analysis-dynamics-categories.png)
+**Process and category comparison:** fictional units show recovery trajectories, interval bands and category bars with lines.
+
+![Process and category comparisons with independently synthetic inputs](assets/visual-showcase/analysis-dynamics-categories.png)
+
+**Joint distribution and marginals:** one set of simulated observations provides both the relationship and its two marginal counts.
+
+![Joint distribution and marginal counts with synthetic inputs](assets/visual-showcase/analysis-joint-distribution.png)
+
+**Response surface and linked slices:** the heatmap and its row/column profiles come from the same synthetic grid.
+
+![Response matrix and linked slices with synthetic inputs](assets/visual-showcase/analysis-response-slices.png)
+
+<details>
+<summary>Paired effects and biological analysis examples</summary>
+
+**Paired effects:** matched changes, a difference distribution, subgroup intervals and temporal response explain the simulated effect.
+
+![Paired and subgroup effects with synthetic inputs](assets/visual-showcase/analysis-paired-effects.png)
+
+**Biological analysis:** synthetic cell groups, expression, screening and pathway activity share one coordinated composition.
+
+![Biological analysis with synthetic inputs](assets/visual-showcase/analysis-biological-atlas.png)
+
+</details>
+
+Reuse the [saved specifications](assets/visual-showcase/analysis-showcase.json); run `python tools/build_analysis_showcase.py` to render the same inputs and layouts.
 
 Equally suitable designs can vary naturally without a seed setting or usage quota. Once selected, the accepted data and composition guide later edits. The [design and fusion guide](ccf-visual-composer/references/figure-design-library.md) links the paper-study coverage, source records, categories and local paper-search tools. Dated coverage counts remain in the [version history](CHANGELOG.md#v0130).
 
@@ -350,12 +375,12 @@ python ccf-visual-composer/resources/python/ccfa_figure_library.py demo --fusion
 
 Real observations load from CSV, TSV or JSON, with filtering and ordering applied to matched rows together. Three linked layouts provide joint distributions with marginals, position-aligned tracks, and matrices with row/column slices. They share the actual observations or grid while keeping distinct units. Compositions preserve entity colors, comparable axes, actual bin edges and stated denominators.
 
-The [complete example table](ccf-visual-composer/references/figure-examples.md) preserves all original templates and the requested density/perturbation and dynamics/category reference pairs. Invoke an example by ID, then adapt its message and data to the current paper.
+The [complete example table](ccf-visual-composer/references/figure-examples.md) preserves all original templates and the requested density/grouped-response and process/category reference pairs. Invoke an example by ID, then adapt its message and data to the current paper.
 
 <details>
 <summary>Nine complete Python layouts and their analytical purpose</summary>
 
-[Nine-template overview](assets/analytical-figures-gallery.png) · [Complete examples and invocation guide](ccf-visual-composer/references/figure-examples.md)
+[Six-design overview](assets/analytical-figures-gallery.png) · [Complete examples and invocation guide](ccf-visual-composer/references/figure-examples.md)
 
 | Template | What it helps explain |
 | --- | --- |
@@ -444,6 +469,7 @@ Chinese output uses explicit UTF-8 I/O with optional BOM support on input. Shell
 
 Current version: **0.13.0**. Detailed usage lives with each capability above; dated changes are kept in the [changelog](CHANGELOG.md#v0130).
 
+- **2026-11-28:** Six independently synthetic examples with saved specifications; see [data-analysis figures](#data-analysis-figures).
 - **2026-11-27:** Analysis previews refreshed and functional guidance consolidated by topic, with version history kept in [CHANGELOG](CHANGELOG.md#v0130).
 - **2026-11-26:** Shorter shared entrypoints and connected [personal writing exemplars](#make-writing-exemplars-reusable), including scoped cards, metadata queries and explicit project/user defaults.
 - **2026-11-25:** Six venue adaptations and reference collections; see [submission entrypoints](#use-the-matched-venue-edition).

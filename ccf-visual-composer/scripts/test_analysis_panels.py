@@ -433,19 +433,19 @@ class AnalysisPanelTests(unittest.TestCase):
                 panels.binned_summary(self.ax, samples, labels, quantile=quantile)
 
     def test_explicit_reference_quantiles_preserve_median_p90_p99_and_p95_semantics(self):
-        summary = {"median": [.02, .1], "p90": [.08, .3], "p95": [.119, .319], "p99": [.2, .6]}
+        summary = {"median": [.03, .12], "p90": [.09, .34], "p95": [.14, .42], "p99": [.23, .68]}
         result = panels.binned_summary(self.ax, None, ["Low", "High"], summary=summary, annotate=True,
-                                       quantile_label="P95 displacement")
-        np.testing.assert_array_equal(result["quantiles"], [.119, .319])
+                                       quantile_label="P95 response")
+        np.testing.assert_array_equal(result["quantiles"], [.14, .42])
         self.assertEqual(result["quantile_line"].get_marker(), "D")
         for i, box in enumerate(result["boxes"]["boxes"]):
             y = box.get_path().vertices[:, 1]
             self.assertEqual(float(y.min()), summary["median"][i])
             self.assertEqual(float(y.max()), summary["p90"][i])
-        self.assertEqual(float(result["boxes"]["whiskers"][1].get_ydata().max()), .2)
-        self.assertEqual([text.get_text() for text in result["annotations"]], ["0.119", "0.319"])
+        self.assertEqual(float(result["boxes"]["whiskers"][1].get_ydata().max()), .23)
+        self.assertEqual([text.get_text() for text in result["annotations"]], ["0.140", "0.420"])
         self.assertEqual([text.get_text() for text in self.ax.get_legend().texts],
-                         ["Median–P90 range", "P99 whisker", "P95 displacement"])
+                         ["Median–P90 range", "P99 whisker", "P95 response"])
 
     def test_reference_quantiles_from_samples_and_invalid_summaries(self):
         result = panels.binned_summary(self.ax, [[0, 1, 2, 3, 4]], ["A"], summary_mode="median_p90")

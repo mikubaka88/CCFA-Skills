@@ -54,6 +54,8 @@ For a new design without a selected template, classify input data and chart type
 
 For paired comparisons, verify sample identity or the supplied matching contract. For an interval layer, verify its statistical definition and required inputs. A missing required field blocks that template panel; identify the field and continue with independently supported panels.
 
+For public examples, README previews and distribution packages, use independently synthetic inputs and generic labels throughout code, saved specifications, images and captions. A simulated-data label alone does not authorize retaining private numbers, terminology, formulas, categories or recognizable findings from a reference. Preserve the visual design with newly generated unrelated content; this exception never changes real task data.
+
 ## Visual Requirements And Acceptance
 
 - Preserve modules, connections, labels, equations, values, units, uncertainty and statistical definitions. Align paired data by identity or a supplied matching contract; equal lengths do not establish pairing. Verify actual required source-to-target paths, not proximity.

@@ -344,13 +344,38 @@ python ccf-paper-to-exemplar/scripts/personal_library.py set-default --project .
 
 一张分析图先回答一个研究问题：收益出现在哪里，哪些条件会改变结果，分布、阈值与变化趋势怎样共同解释现象。可以在同一坐标区内组合必要元素，确有阅读需要时再增加关联面板。主图分析、定量结果、消融和生信数据都可以据此选图。
 
-**密度与扰动：**在一组紧凑的关联面板里，联合展示状态密度、区域占比、分位范围与 P95 变化。
+下面的展示统一使用独立生成的合成数据与通用标签，只演示分析结构和排版。
 
-![密度、区域占比与分位数分析，模拟数据](assets/visual-showcase/analysis-density-quantiles.png)
+**密度与分组响应：**联合展示传感器负载分布、选定区域占比、响应分位范围与 P95 趋势。
 
-**演化与类别差异：**将状态曲线与分类柱线对照放在一起，保留区间带、关键数值和一致的对象配色。
+![密度与分组响应，独立合成数据](assets/visual-showcase/analysis-density-quantiles.png)
 
-![状态演化与分类柱线分析，模拟数据](assets/visual-showcase/analysis-dynamics-categories.png)
+**过程变化与类别对照：**用虚拟单元的恢复过程和分类柱线说明趋势、区间与组间差异。
+
+![过程变化与类别对照，独立合成数据](assets/visual-showcase/analysis-dynamics-categories.png)
+
+**联合分布与边缘：**同一批模拟观测同时显示二维关系和两个方向的频数，保留主分析区的阅读空间。
+
+![联合分布与边缘频数，独立合成数据](assets/visual-showcase/analysis-joint-distribution.png)
+
+**响应面与同源切片：**热图标出两项控制量的共同作用，横纵切片直接取自同一网格。
+
+![响应矩阵与同源切片，独立合成数据](assets/visual-showcase/analysis-response-slices.png)
+
+<details>
+<summary>查看配对效应与生信组合示例</summary>
+
+**配对效应：**前后配对、差值分布、亚组区间与时间变化共同解释收益。
+
+![配对与亚组效应，独立合成数据](assets/visual-showcase/analysis-paired-effects.png)
+
+**生信分析：**用合成细胞群体、表达热图、差异筛选与通路点阵展示跨领域组合。
+
+![生信组合分析，独立合成数据](assets/visual-showcase/analysis-biological-atlas.png)
+
+</details>
+
+展示图的[保存规格](assets/visual-showcase/analysis-showcase.json)可直接复用；运行 `python tools/build_analysis_showcase.py` 按同一数据与版式重新渲染。
 
 选图按要表达的关系路由。**43 种图形语法、16 类表达目的、16 套组合方案**把分布与长尾、配对收益、误差来源、排名变化、资源取舍等问题分开处理。每种图都写明为什么这样设计、需要哪些数据、容易读错什么，以及还能和哪种图搭配。你可以沿着这些理由继续改版面、换组合，形成适合自己研究的新图。
 
@@ -366,14 +391,14 @@ python ccf-visual-composer/resources/python/ccfa_figure_library.py demo --fusion
 
 真实数据可以直接从 CSV、TSV 或 JSON 表接入，筛选和排序后仍保留同一行里的配对关系。联动布局包括三种：联合分布与边缘、共同位置多轨道、热图与行列切片。它们共享同一批观测或网格，各轨道保留自己的单位，不把独立生成的图拼成“相互解释”的结果。
 
-此前的九套模板和你要求的参考图都保留在[完整示例表](ccf-visual-composer/references/figure-examples.md)，包括密度与扰动、状态演化与类别占比两组双面板。可以按示例 ID 直接调用，再用当前文章的数据和消息继续改。
+此前的九套模板和你要求的参考图都保留在[完整示例表](ccf-visual-composer/references/figure-examples.md)，包括密度与分组响应、过程变化与类别对照两组双面板。可以按示例 ID 直接调用，再用当前文章的数据和消息继续改。
 
 <details>
 <summary>九套整图模板及用途</summary>
 
 原有九套模板保留为完整布局的起点，可按当前文章调整组合：
 
-[九套模板总览](assets/analytical-figures-gallery.png) · [完整示例与调用入口](ccf-visual-composer/references/figure-examples.md)
+[六类分析图总览](assets/analytical-figures-gallery.png) · [完整示例与调用入口](ccf-visual-composer/references/figure-examples.md)
 
 | 模板 | 帮读者看清什么 |
 | --- | --- |
@@ -385,7 +410,7 @@ python ccf-visual-composer/resources/python/ccfa_figure_library.py demo --fusion
 | `biological_atlas` | 细胞分组、表达分布与差异筛选 |
 | `paired_effects` | 同一样本前后变化与不同亚组的效应 |
 | `calibration_errors` | 置信度校准、混淆矩阵与错误结构 |
-| `sensitivity_dynamics` | 密度与阈值占比、箱线与 P95、状态演化，以及同轴分类柱线对照；也可拆成两张横向双面板图 |
+| `sensitivity_dynamics` | 密度与区域占比、箱线与 P95、过程变化，以及同轴分类柱线对照；也可拆成两张横向双面板图 |
 
 </details>
 
@@ -472,6 +497,7 @@ CCFA-Skills/
 
 | 日期 | 变更摘要 | 使用入口 |
 | --- | --- | --- |
+| 2026-11-28 | 六类独立合成数据演示，规格与成图同步维护 | [数据分析图](#数据分析图) |
 | 2026-11-27 | 更新数据分析成图，合并重复文档并整理阅读路径 | 本页目录 |
 | 2026-11-26 | 精简技能前置，打通范例提炼、外部个人库与默认选择 | [写作范例](#写作范例怎样真正用起来) |
 | 2026-11-25 | 补充 ACL、ICML、ECCV、ECOOP、IMC、ACSAC 适配与参考集合 | [会议适配](#按年份进入会议适配) |
